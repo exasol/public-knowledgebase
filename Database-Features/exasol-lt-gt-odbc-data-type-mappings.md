@@ -1,0 +1,75 @@
+# EXASOL &lt;-&gt; ODBC data type mappings 
+## Question
+
+How is a ODBC data type mapped to EXASOL data type?
+
+How is a EXASOL data type mapped to ODBC data type?
+
+## Answer
+
+## ODBC to EXASOL:
+
+
+
+|  |  |  |
+| --- | --- | --- |
+| **ODBC data type** | -> | **EXASOL data type** |
+|  
+| SQL_BIGINT |  DECIMAL(36,0) |
+| SQL_BINARY | 
+| SQL_CHAR |  CHAR |
+| SQL_DECIMAL(p,s) |  DECIMAL(p,s) |
+| SQL_DOUBLE |  DOUBLE PRECISION |
+| SQL_FLOAT |  DOUBLE PRECISION |
+| SQL_INTEGER |  DECIMAL(18,0) |
+| SQL_INTERVAL_YEAR | 
+| SQL_INTERVAL_MONTH | 
+| SQL_INTERVAL_YEAR_TO_MONTH |  VARCHAR( n ) |
+| SQL_INTERVAL_DAY | 
+| SQL_INTERVAL_HOUR | 
+| SQL_INTERVAL_MINUTE | 
+| SQL_INTERVAL_SECOND | 
+| SQL_INTERVAL_DAY_TO_HOUR | 
+| SQL_INTERVAL_DAY_TO_MINUTE | 
+| SQL_INTERVAL_DAY_TO_SECOND |  VARCHAR( n ) |
+| SQL_INTERVAL_HOUR_TO_MINUTE | 
+| SQL_INTERVAL_HOUR_TO_SECOND | 
+| SQL_INTERVAL_MINUTE_TO_SECOND | 
+| SQL_LONGVARBINARY | 
+| SQL_LONGVARCHAR |  VARCHAR( n ) |
+| SQL_NUMERIC(p[,s]) |  DECIMAL( p,s ) |
+| SQL_REAL |  DOUBLE PRECISION |
+| SQL_SMALLINT |  DECIMAL(9,0) |
+| SQL_TYPE_TIME | 
+| SQL_TINYINT |  DECIMAL(3,0) |
+| SQL_TYPE_DATE |  DATE |
+| SQL_TIMESTAMP |  TIMESTAMP |
+| SQL_VARBINARY | 
+| SQL_VARCHAR |  VARCHAR( n ) |
+| SQL_WCHAR |  VARCHAR( n ) |
+| SQL_WVARCHAR |  VARCHAR( n ) |
+| SQL_WLONGVARCHAR |  VARCHAR( n ) |
+| SQL_BIT |  BOOLEAN |
+
+## EXASOL to ODBC:
+
+
+
+|  |  |  |
+| --- | --- | --- |
+| **EXASOL data type** | -> | **ODBC data type** |
+| DECIMAL( p,s ) |  SQL_DECIMAL( p,s ) |
+| CHAR( n ) |  SQL_CHAR( n ) |
+| VARCHAR( n ) |  SQL_VARCHAR( n ) |
+| DOUBLE PRECISION |  SQL_DOUBLE |
+| BOOLEAN |  SQL_BIT |
+| DATE |  SQL_TYPE_DATE |
+| TIMESTAMP |  SQL_TYPE_TIMESTAMP |
+| TIMESTAMP WITH LOCAL TIME ZONE |  SQL_TYPE_TIMESTAMP |
+| INVERVAL YEAR TO MONTH |  SQL_CHAR( n ) |
+| INTERVAL DAY TO SECOND |  SQL_CHAR( n ) |
+| GEOMETRY |  SQL_VARCHAR(2000000) |
+| HASHTYPE ( * ) |  SQL_VARCHAR |
+
+( * ) Exasol Version 7.0.0
+
