@@ -101,7 +101,7 @@ We also need to fill in the category and the size (this can just be a custom col
 
 ![](images/exa-Pieterjan_1-1618906945475.png)I've added some custom colour as well. The final result is this beautifully rendered map of the New York taxi zones.
 
-![](images/exa-Pieterjan_0-1618906897312.png)And this concludes our short tutorial.   
+![](images/exa-Pieterjan_0-1618906897312.jpg)And this concludes our short tutorial.   
 I hope you've found this helpful.
 
 For more information on all topics I'd advise you to read the links under additional references.

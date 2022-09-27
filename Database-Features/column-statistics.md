@@ -1,8 +1,6 @@
 # Column statistics 
 ## Background
 
-This is a test! 
-
 Exasol database automatically computes and stores column statistics on demand, e.g. when joining tables for the first time. Those statistics consist of distinct estimates, minimum & maximum values, balancing, and other information. They are used by our query optimizer for estimation of join costs, filter sensitivities, etc.
 
 The computation of column statistics performs a complete column scan. Therefore it might be expensive, especially for large tables and/or tables not having all data in memory. This means that a query doing statistics computation may experience a significant slow down compared to the next execution.
