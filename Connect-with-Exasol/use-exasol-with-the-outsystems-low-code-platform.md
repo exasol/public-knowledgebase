@@ -65,7 +65,7 @@ A Demo Application is available in the OutSystems Forge that describes how to us
 1. **Define a Connection to the External Database**
 	1. Set up a connection to your database in Service Center:
 		1. Open**Service Center**and go to**Administration**>******Database Connections******  
-		![](images/Service)
+		![](images/Service.png)
 		2. Click**New Database Connection**and fill in the form. Parameters you need for the Connection String:
 			1. IP Address of the Exasol Server
 			2. Port Number where you can connect to Exasol Client e.g 8563

@@ -15,7 +15,7 @@ You'll find the code I am talking about on our GitHub: [openweather-virtual-sche
 
 A Virtual Schema translates Exasol SQL to something, that the source can understand. With RDBMS this might be another SQL dialect. In our case it's `GET` requests we send to an API. The simplified workflow looks like this.
 
-![](images/2020-10-20)1. The user sends a SQL statement to the database core using a SQL client.  
+![](images/2020-10-20-11_46_57-Window.png)1. The user sends a SQL statement to the database core using a SQL client.  
 2. + 3. The database core sends the SQL to the Virtual Schema adapter.  
 4. The Virtual Schema adapter transforms the users SQL so that it can query the source using the API Handler.  
 5. The adapter returns the re-formatted SQL to the database core which executes it.  
@@ -78,7 +78,7 @@ You can specify a log level here. Only `INFO` and `WARNING` are supported. `INFO
 
 You can explore the layout of the Virtual Schema using your SQL-Editor:    
 
-![](images/2020-10-13)![](images/2020-10-13)The two tables `CURRENT_WEATHER` and `FORECAST` refer to the two API methods [Current weather data](https://openweathermap.org/current) and [5 day weather forecast](https://openweathermap.org/forecast5).Here is an example query showcasing the covered functionalities - this is step 4 and 5 from above:
+![](images/2020-10-13-13_36_47-DbVisualizer.png)The two tables `CURRENT_WEATHER` and `FORECAST` refer to the two API methods [Current weather data](https://openweathermap.org/current) and [5 day weather forecast](https://openweathermap.org/forecast5).Here is an example query showcasing the covered functionalities - this is step 4 and 5 from above:
 ```markup
 SELECT *  FROM   OPENWEATHER.CURRENT_WEATHER WHERE  city_name = 'Stuttgart' OR        'Los Angeles' = city_name OR        latitude = 41.89 AND longitude = 12.48 OR        city_id = 3060972 OR        zip = 96050 AND country_code = 'DE' OR        country_code = 'US' AND zip = 10301 OR        city_id IN (2759794, 3247449, 2957773) OR        city_name IN ('Memphis', 'Zirndorf', 'Kassel');
 ```

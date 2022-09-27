@@ -6,10 +6,10 @@ Handling very large, detailed polygons can result in subpar performance.If you a
 In order to efficiently handle very large polygons it is advised to split them in smaller part. To show how this can be achieved is the goal of this article.
 
 
-
-|  |  |
-| --- | --- |
 |  From this |  To this |
+| --------- | ---------- | 
+|![](images/big.png) | ![](images/2020-06-04-16_03_48.png) |
+
 
 ## How to
 
@@ -31,7 +31,9 @@ So you have your polygon looking like this. In order to segment it, we want to o
 
 ## Step 2 -  Defining the grid
 
-![](images/2020-06-19)In order to create a grid that fits our polygon we need to define a bounding box. For this we use the
+![](images/2020-06-19-11_05_52-Presentation.png)
+
+In order to create a grid that fits our polygon we need to define a bounding box. For this we use the
 
 
 ```markup
@@ -43,7 +45,9 @@ ST_ENVELOPE(polygon)
 ```markup
 POLYGON ((-73.9044655149999 40.80988061199988, -73.89283653100001 40.80988061199988, -73.89283653100001 40.82824854099993, -73.9044655149999 40.82824854099993, -73.9044655149999 40.80988061199988))
 ```
-![](images/2020-06-19)We now use
+![](images/2020-06-19-11_32_37-Presentation1.png)
+
+We now use
 
 
 ```markup
@@ -55,7 +59,7 @@ on our 4-point bounding box polygon. This yields:
 ```markup
 LINESTRING (-73.9044655149999 40.80988061199988, -73.89283653100001 40.80988061199988, -73.89283653100001 40.82824854099993, -73.9044655149999 40.82824854099993, -73.9044655149999 40.80988061199988)
 ```
-![](images/2020-06-19)
+![](images/2020-06-19-11_42_41-Presentation1.png)
 
  From this line string we can extract the extreme points using
 
@@ -101,14 +105,14 @@ INSERT INTO SCHEMA.GRID_TABLE(polygon_id, grid_segment, segment_id)    SELECT po
 ```
 
 
-![](images/2020-06-19)
+![](images/2020-06-19-11_54_44-Presentation1.png)
 
 In the end, what we get looks something like this for a 10x10 grid. Depending on your polygon size and detail even finer grids can perform better. Just play around with the **code_width** variable in the script above.
 
   
 ## Step 4 -  Fitting the grid to the polygon
 
-![](images/2020-06-19)Lastly we face the challenge to fit our grid to our polygon outline. In other words: we need to get rid of all orange areas. We achieve this by using the following query:
+![](images/2020-06-19-11_54_44-Presentation2.png)Lastly we face the challenge to fit our grid to our polygon outline. In other words: we need to get rid of all orange areas. We achieve this by using the following query:
 
 
 ```markup
@@ -118,7 +122,7 @@ This creates a table only containing the tailored segments which overlap with ou
 
 Our end result looks like this:
 
-![](images/2020-06-04)
+![](images/2020-06-04-16_03_48.png)
 
 (this one has been generated with a grid size of 25x25)
 

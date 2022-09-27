@@ -71,7 +71,7 @@ On the basis of the current database usage, e.g. the created TEMP_DB_RAM, the da
 
 **Important:**The Recommended RAM_SIZE is a value estimated by the system and represents a recommendation for an ideal RAM size. Our experience has shown that the system can already be operated optimally with half this value. We have made this factor easy to maintain in the dashboard. If the RECOMMENDED_RAM_SIZE divided by FACTOR is greater than the RAM, the RECOMMENDED_RAM_SIZE is displayed in red. Our experience has shown that NOT (RECOMMENDED> 2 * RAM) turned out to be a good metric.
 
-![](images/Reccomended)
+![](images/Reccomended.jpg)
 
 ## Hardware usage
 
@@ -133,7 +133,7 @@ Every database operation generates a temporary amount of data in the RAM. If the
 
 This dashboard is intended to give an overview of the average runtimes of different queries. The EXA_SQL_DAILY table is used as the data source for this.
 
-![](images/SQL)
+![](images/SQL.jpg)
 
 Source: [https://docs.exasol.com/sql_references/metadata/statistical_system_table.htm#EXA_SQL_DAILY](https://docs.exasol.com/sql_references/metadata/statistical_system_table.htm#EXA_SQL_DAILY "EXA_SQL_DAILY") 
 
@@ -171,7 +171,7 @@ The following graphic gives an overview of the average and maximum duration of C
 
 **Important:** In the BI TOOL we have placed a trend line on the development of the curves for a better overview. The Data is filtered on the COMAND_CLASS "COMMIT", EXECUTION_MODE = "EXECUTE" and SUCCESS.
 
-![](images/COMMIT)
+![](images/COMMIT.jpg)
 
 ## Concurrent Users & Queries
 

@@ -34,7 +34,7 @@ Within the UDF, you should check that the file is both written completely correc
 ```
 If you are unsure of the path you need to write, you can verify it in Exaoperation by clicking on EXABuckets -> click your bucket and view the UDF path:
 
-![](images/Screenshot)
+![](images/Screenshot-2020-10-09-152725.png)
 
 ## Check Bucket Permissions
 

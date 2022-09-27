@@ -15,7 +15,7 @@ See <https://www.youtube.com/watch?v=C3eyqTw3HsQ> for a video demonstration of t
 
 ## Geocoding
 
-![](images/Slide9)
+![](images/Slide9.jpg)
 
 
 ```"code
@@ -23,7 +23,7 @@ See <https://www.youtube.com/watch?v=C3eyqTw3HsQ> for a video demonstration of t
 ```
 ## Reverse Geocoding
 
-![](images/Slide10)
+![](images/Slide10.jpg)
 
 
 ```"code
@@ -31,7 +31,7 @@ CREATE or replace PYTHON SET SCRIPT google_reverse_geocode(lat double, lng doubl
 ```
 ## Nearest Bakery to EXASOL Head Office
 
-![](images/Slide8)
+![](images/Slide8.jpg)
 
 
 ```"code
@@ -39,7 +39,7 @@ CREATE OR REPLACE PYTHON SET SCRIPT google_nearest(address_search varchar(2000),
 ```
 ## Driving distance and time between two points
 
-![](images/Slide11)
+![](images/Slide11.jpg)
 
 
 ```"code
@@ -47,7 +47,7 @@ CREATE or replace PYTHON SET SCRIPT google_summary_directions(from_place varchar
 ```
 ## Detailed Satellite Navigation between two points
 
-![](images/Slide12)
+![](images/Slide12.jpg)
 
 ## Additional References
 

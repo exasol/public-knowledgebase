@@ -17,7 +17,7 @@ As a result, you get automatically generated dashboards in Grafana.
 
 For example, an overview of all tables with some brief ingestion and freshness statistics:
 
-![](images/redata_home.jpc)
+![](images/redata_home.jpg)
 
 Additionally, a detailed dashboard for each table, similar to this: 
 

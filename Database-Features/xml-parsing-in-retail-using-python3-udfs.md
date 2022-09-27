@@ -3,7 +3,7 @@
 
 Let's face it: XML is dead.
 
-![Stack](https://developpaper.com/wp-content/uploads/2019/01/751866558-5c3b72e131ba2_articlex.png)[Source](https://developpaper.com/is-xml-dead/#:~:text=It%20is%20also%20a%20standard,especially%20at%20the%20enterprise%20level.)But just because new shiny alternatives like YAML or JSON are around does not mean we can abandon XML altogether. There are still companies [hiring Cobol developers](https://www.stepstone.de/5/job-search-simple.html?stf=freeText&ns=1&qs=%5B%5D&companyID=0&cityID=0&sourceOfTheSearchField=homepagemex%3Ageneral&searchOrigin=Homepage_top-search&ke=cobol&ws=&ra=30) you know...  
+But just because new shiny alternatives like YAML or JSON are around does not mean we can abandon XML altogether. There are still companies [hiring Cobol developers](https://www.stepstone.de/5/job-search-simple.html?stf=freeText&ns=1&qs=%5B%5D&companyID=0&cityID=0&sourceOfTheSearchField=homepagemex%3Ageneral&searchOrigin=Homepage_top-search&ke=cobol&ws=&ra=30) you know...  
 So until the last 21 gun salute for XML has faded over the wide, misty graveyard of forgotten programming languages, we are going to keep on working with it. And as always Exasol will support you doing your job in every possible way!
 
 In this demo I am going to show a full ELT process, loading retail XML files in the POSlog format into an Exasol database using nothing but SQL, LUA and Python3. This is more of an example on how things could be done then a generic tool at your disposal. The reason for this is simple. Whenever unstructured or semi structured data is transformed into structured data, logic has to be applied. How this logic looks depends on the business case (what information is of interest) and the source format (how to get information). Please keep this in mind when reading the following article. 
@@ -27,7 +27,7 @@ Okok, here you go:
 
 As with any programmatical problem there are infinite ways to solve it. Below is the way I approached it for this demo:
 
-![](images/2021-03-09)
+![](images/2021-03-09-09_56_19.png)
 
 *Schematic overview of the ELT process*
 
@@ -115,7 +115,7 @@ By itself this approach does not make much sense because it uses up more space a
 
 Currently we are writing all the information we pull from our XML into the **XML_STAGING** table. In order to be left with sensible data we need to completely denormalize it. Data duplication is the name of the game here. Because of the staging table having all future production table data it becomes very wide and clunky to work with (e.g. differentiating . In order to be able to write to multiple, individual staging tables we need to split our **parse_my_xml()** UDF as well, because a UDF can only emit **one** set of values which is emitted to **one** SQL context, inserting into **one** table. This would leave us with:
 
-![](images/2021-03-03)
+![](images/2021-03-03-10_33_55.png)
 
 **PRO**-Easy namespace management and clearer/parallel development process because parsing UDFs and staging tables are kept separate
 

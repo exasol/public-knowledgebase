@@ -90,7 +90,7 @@ Transactions contain multiple queries and encompass all queries from the moment 
 ```markup
 -- Session ID = the CONFLICT_SESSION_ID, which corresponds to tr1 -- START_TIME is less than the start time that is shown in EXA_DBA_TRANSACTION_CONFLICTS  SELECT SESSION_ID, STMT_ID, COMMAND_NAME, COMMAND_CLASS, START_TIME, STOP_TIME FROM EXA_DBA_AUDIT_SQL WHERE SESSION_ID = 1678224233621028864 AND COMMAND_CLASS = 'TRANSACTION' AND START_TIME < '2020-09-18 18:38:17.851' ORDER BY START_TIME DESC LIMIT 1;
 ```
-![](images/Screenshot)
+![](images/Screenshot-2020-09-24-133525.png)
 
 Now we know that the last commit had STMT_ID 10, so we need to know all of the queries that ran AFTER that last commit. We can make a query to get this information:
 
@@ -98,7 +98,7 @@ Now we know that the last commit had STMT_ID 10, so we need to know all of the q
 ```markup
 --Session Id = the CONFLICT_SESSION_ID which corresponds to tr1 -- START_TIME is less than the start_time that is shown in EXA_DBA_TRANSACTION_CONFLICTS -- STMT_ID is greater than the statement id of the last commit/rollback  SELECT SESSION_ID, STMT_ID, COMMAND_NAME, COMMAND_CLASS, START_TIME, STOP_TIME, SQL_TEXT FROM EXA_DBA_AUDIT_SQL  WHERE SESSION_ID = 1678224233621028864  AND STMT_ID > 10  AND START_TIME < '2020-09-18 18:38:17.851'  ORDER BY START_TIME ASC;
 ```
-![](images/Screenshot)
+![](images/Screenshot-2020-09-24-134048.png)
 
 In this example, there was only one query which was ran. Let's add all of the queries into our table now. It makes sense to document every query and the times in the table so you don't lose track:
 
@@ -142,7 +142,7 @@ I can further verify that these objects are tables by querying EXA_ALL_OBJECTS:
 ```
 ...and it proves that my objects are tables:
 
-![](images/Screenshot)
+![](images/Screenshot-2020-09-24-135140.png)
 
 If you notice that some of these objects are VIEWS, then you can query EXA_DBA_DEPENDENCIES_RECURSIVE to determine the underlying objects in the named views. So, let's add this information to the table:
 
@@ -182,7 +182,7 @@ Let's write our query then:
 ```
 And here are our results:
 
-![](images/Screenshot)
+![](images/Screenshot-2020-09-24-140507.png)
 
 We have successfully identified a session which modified the object in question! In most real-world cases, there are many options here and it is impossible to identify in auditing, *which* of these sessions are responsible for the conflict, but this is actually not as relevant, because it could be *any* of them. As a best practice, you can assume it is the first one. 
 
@@ -194,6 +194,7 @@ Now that we have a session ID, let's find out exactly what this session did:
 ```markup
 SELECT SESSION_ID, STMT_ID, COMMAND_NAME, COMMAND_CLASS, START_TIME, STOP_TIME, SQL_TEXT FROM EXA_DBA_AUDIT_SQL  WHERE SESSION_ID  = 1678224357205278720;
 ```
+![](images/Screenshot-2020-09-24-140827.png)
 So, this session performed a COMMIT, followed by an INSERT + COMMIT. Let's document this then. 
 
 

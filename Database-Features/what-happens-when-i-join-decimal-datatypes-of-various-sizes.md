@@ -35,7 +35,7 @@ flush statistics;  select stmt_id       ,COMMAND_NAME       ,PART_ID       ,PART
 ```
 The most interesting line in the output is the expression index creation - which should be minimized if not avoided altogether.
 
-![](images/Expression_index)
+![](images/Expression_index.png)
 
  Next, let's look at the indices created.
 
