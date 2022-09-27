@@ -31,7 +31,7 @@ So you have your polygon looking like this. In order to segment it, we want to o
 
 ## Step 2 -  Defining the grid
 
-![](images/2020-06-19-11_05_52-Presentation.png)
+![](images/2020-06-19-11_05_52.png)
 
 In order to create a grid that fits our polygon we need to define a bounding box. For this we use the
 
