@@ -1,0 +1,1 @@
+# Exasol Public Knowledgebase
