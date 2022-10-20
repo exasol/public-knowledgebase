@@ -1,5 +1,7 @@
 # Introducing Azure Data Factory Functions For Exasol. 
-![](images/exaPieterjan_1-1632922633983.png)## Background
+![](images/exaPieterjan_1-1632922633983.png)
+
+## Background
 
 In this article we're introducing Azure Data Factory Functions For Exasol.
 
