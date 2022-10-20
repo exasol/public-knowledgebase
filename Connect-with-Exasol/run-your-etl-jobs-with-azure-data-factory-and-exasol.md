@@ -51,11 +51,18 @@ Documented below is my preferred method of doing so:
 
 Let's navigate to the azure data factory UI and add a new integration runtime there:
 
-![](images/exa-Pieterjan_0-1621601254920.png)Then we pick "Azure, Self-Hosted",
+![](images/exa-Pieterjan_0-1621601254920.png)
 
-![](images/exa-Pieterjan_0-1621601866786.png)Then "Self-Hosted"
+Then we pick "Azure, Self-Hosted",
 
-![](images/exa-Pieterjan_1-1621601880297.png)Let's pick a  good recognizable name and then press "Create" (You won't be able to change this name later so that's why I specifically mention this here).
+![](images/exa-Pieterjan_0-1621601866786.png)
+
+Then "Self-Hosted"
+
+![](images/exa-Pieterjan_1-1621601880297.png)
+
+Let's pick a  good recognizable name and then press "Create" 
+(You won't be able to change this name later so that's why I specifically mention this here).
 
 This will open another pop-up menu:
 
@@ -77,7 +84,9 @@ On the 'Manage' tab (we should still be on this tab) we need to create a linked 
 
 Click on 'Linked Services', under 'Connections', there click 'New'
 
-![](images/exa-Pieterjan_0-1621609938753.png)A new menu pops up where we'll have to do further configurations:
+![](images/exa-Pieterjan_0-1621609938753.png)
+
+A new menu pops up where we'll have to do further configurations:
 
 Let's pick the integrated runtime we've just created under 'connect via integration runtime'.
 
@@ -111,7 +120,9 @@ ODBC datasets can be used by the 'Copy' and 'Lookup' activities in Azure Data Fa
 
 Let's move back to the 'Authoring' tab in Azure Data Factory.
 
-![](images/exa-Pieterjan_0-1622116518424.png)Next to dataset click the dotted line ('...').
+![](images/exa-Pieterjan_0-1622116518424.png)
+
+Next to dataset click the dotted line ('...').
 
 Pick 'Create new dataset'.
 
@@ -119,7 +130,9 @@ Search for 'odbc', select the right result and press 'Create'.
 
 Pick the linked ODBC service we've created in the previous step, to select a table.
 
-![](images/exa-Pieterjan_0-1622017666331.png)For this example I've added a very simple table to my database containing just a first name and last name column.
+![](images/exa-Pieterjan_0-1622017666331.png)
+
+For this example I've added a very simple table to my database containing just a first name and last name column.
 
 Here's the script:
 
@@ -135,7 +148,9 @@ Here's the script:
 
 This is what our dataset should look like then:
 
-![](images/exa-Pieterjan_0-1622118812350.png)## Adding an azure blob storage dataset
+![](images/exa-Pieterjan_0-1622118812350.png)
+
+## Adding an azure blob storage dataset
 
 We'll also need an azure blob storage dataset for this tutorial.
 
@@ -152,13 +167,22 @@ Now let's create a new dataset:
 
 Search for 'blob', pick 'Azure Blob Storage'
 
-![](images/exa-Pieterjan_0-1622019358830.png)Pick 'DelimitedText' as the format:![](images/exa-Pieterjan_1-1622019421513.png)We're picking the "DelimitedText" option because this allows us to configure how to extract comma separated values from our CSV file out of the box. For Parquet files or other files we'd pick one of the other corresponding options.
+![](images/exa-Pieterjan_0-1622019358830.png)
+
+Pick 'DelimitedText' as the format:
+
+![](images/exa-Pieterjan_1-1622019421513.png)
+
+We're picking the "DelimitedText" option, because this allows us to configure how to extract comma separated values from our CSV file out of the box. 
+For Parquet files or other files we'd pick one of the other corresponding options.
 
 Then we'll need to configure the filepath so it points to the right csv file(s) in our blob storage. There's a handy file browser you can use for this.
 
 Our configured blob storage dataset should look like this:
 
-![](images/exa-Pieterjan_1-1622120616219.png)## Creating a pipeline and transferring data to the database
+![](images/exa-Pieterjan_1-1622120616219.png)
+
+## Creating a pipeline and transferring data to the database
 
 Now for the final step we'll create a pipeline, add a copy activity to this pipeline, configure sink and source of the copy activity, validate our pipeline, and finally, run the pipeline and transfer our data to the database!
 
@@ -168,7 +192,13 @@ Add a 'Copy data' activity:
 
 Set the csv file dataset we've created as the source.
 
-![](images/exa-Pieterjan_2-1622021297130.png)Pick the ODBC table dataset we've created as the sink.![](images/exa-Pieterjan_3-1622021366202.png)If your source CSV file has no header, like in our case, we need to explicitly configure the mapping (as the source doesn't contain column names).
+![](images/exa-Pieterjan_2-1622021297130.png)
+
+Pick the ODBC table dataset we've created as the sink.
+
+![](images/exa-Pieterjan_3-1622021366202.png)
+
+If your source CSV file has no header, like in our case, we need to explicitly configure the mapping (as the source doesn't contain column names).
 
 If you want more information on this you can read: <https://docs.microsoft.com/en-us/azure/data-factory/copy-activity-schema-and-type-mapping>
 
@@ -180,7 +210,9 @@ Take note: We'll need to enter the database column names manually.
 
 In our case the first csv value maps to the first name column in the database and the second csv value maps to the last name so the process is very straightforward:
 
-![](images/exa-Pieterjan_0-1622022149361.png)And we're good to go!
+![](images/exa-Pieterjan_0-1622022149361.png)
+
+And we're good to go!
 
 Next we'll validate the pipeline to see if everything's OK and then publish it.
 
@@ -198,7 +230,9 @@ The ODBC dataset could also be a view.
 
 Another possibility is a custom query, we can set this option in the activity source tab:
 
-![](images/exa-Pieterjan_0-1622128058140.png)## Calling a stored procedure or script.
+![](images/exa-Pieterjan_0-1622128058140.png)
+
+## Calling a stored procedure or script.
 
 We can also call a stored procedure (or 'script' as we call them) that returns a table. 
 
@@ -218,11 +252,15 @@ Which returns a custom table with a greeting to whatever name you've passed in a
 
 We can easily execute this script and get the results:
 
-![](images/exa-Pieterjan_1-1622128286812.png)In some cases you'd probably also want to call a script without defining a data sink.
+![](images/exa-Pieterjan_1-1622128286812.png)
+
+In some cases you'd probably also want to call a script without defining a data sink.
 
 You can accomplish this by using a 'Lookup' activity instead of the 'Copy data' activity we've been using before.
 
-![](images/exa-Pieterjan_2-1622128546499.png)## Conclusion
+![](images/exa-Pieterjan_2-1622128546499.png)
+
+## Conclusion
 
 As you can see the setup and workflows for using the Exasol database in Azure Data Factory are quite straightforward.
 
