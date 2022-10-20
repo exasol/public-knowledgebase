@@ -22,7 +22,8 @@ To enable Windows authentication to work properly, you need to check the "Disabl
 
 To disable the security manager, go to the "Software" Tab in Exaoperation and open the JDBC Drivers tab. Click your SQL Server JDBC driver which you installed and check the box to "Disable Security Manager":
 
-![](images/exa-Nico_0-1616081990498.png)Afterwards, click "Apply" to save the changes. 
+![](images/exa-Nico_0-1616081990498.png)
+Afterwards, click "Apply" to save the changes. 
 
 ## Step 2: Create Connection
 
