@@ -31,7 +31,7 @@ The connection string contains for a 4 +1 -node cluster for example following da
 ```
 Note that the connect time will increase if the host specified does not have an Exasol node running on them.
 
-If the reconnect was not successful you can get one of the SQL states 40004, 40009, 40018, 40020. If it was successful and the transaction was rolled back you can get one of the SQL states: 40001, 40002, 40003, 40005, 40007, 40008, 40010, 40011, 40017, 40019. If the connection was completely lost you get the SQL state 08001.
+If the reconnect was not successful, you can get one of the SQL states 40004, 40009, 40018, 40020. If it was successful and the transaction was rolled back you can get one of the SQL states: 40001, 40002, 40003, 40005, 40007, 40008, 40010, 40011, 40017, 40019. If the connection was completely lost you get the SQL state 08001.
 
 ## Additional References
 
