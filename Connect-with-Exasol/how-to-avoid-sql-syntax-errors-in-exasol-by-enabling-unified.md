@@ -68,7 +68,7 @@ To implement the behaviour also for database connections to Exasol, the followin
 
 **Install the new database object "new_database_m2021.pds"** as described in chapter 3 of the MicroStrategy Knowledge Base article **[Exasol 6.x](https://community.microstrategy.com/s/article/Exasol-6-x?language=en_US)**
 
-**Be sure to change all of your existing Exasol Database Connections in MicroStrategy to the newly installed database object (Database Connection Type)****"EXAsolution 6.x"** and check all connection parameters accordingly as described in the [Exasol Documentation](https://docs.exasol.com/connect_exasol/bi_tools/microstrategy/microstrategyintelligenceserver.htm)
+**Be sure to change all of your existing Exasol Database Connections in MicroStrategy to the newly installed database object (Database Connection Type)** **"EXAsolution 6.x"** and check all connection parameters accordingly as described in the [Exasol Documentation](https://docs.exasol.com/connect_exasol/bi_tools/microstrategy/microstrategyintelligenceserver.htm)
 
 All relevant steps are described in MicroStrategy Knowledge Base article [KB43537](https://community.microstrategy.com/s/article/KB43537-How-to-install-DBMS-objects-provided-by-MicroStrategy?language=en_US)
 
