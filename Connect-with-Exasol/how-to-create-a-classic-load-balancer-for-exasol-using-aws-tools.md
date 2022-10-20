@@ -1,7 +1,7 @@
-# How to create a classic Load Balancer for EXASOL using AWS tools 
+# How to create a classic Load Balancer for Exasol using AWS tools 
 ## Background
 
-An Internet-facing load balancer has a publicly resolvable DNS name, so it can route requests from clients over the Internet to the EC2 instances that are registered with the load balancer. We use this approach make your EXASOL DB connectable from the internet using a single DNS name. An alternative approach using HAproxy and Keepalived (Floating IP) is described in this [article](https://community.exasol.com/t5/connect-with-exasol/how-to-create-a-haproxy-load-balancer-with-floating-ip/ta-p/1457 "How").
+An Internet-facing load balancer has a publicly resolvable DNS name, so it can route requests from clients over the Internet to the EC2 instances that are registered with the load balancer. We use this approach make your Exasol DB connectable from the internet using a single DNS name. An alternative approach using HAproxy and Keepalived (Floating IP) is described in this [article](https://community.exasol.com/t5/connect-with-exasol/how-to-create-a-haproxy-load-balancer-with-floating-ip/ta-p/1457 "How").
 
 Charges that may apply for the load balancer can be found here: <https://aws.amazon.com/elasticloadbalancing/classicloadbalancer/pricing>.
 
@@ -15,7 +15,7 @@ EXA<->EXA export and import is not supported.
 
 -
 
-## How to create a classic Load Balancer for EXASOL using AWS tools
+## How to create a classic Load Balancer for Exasol using AWS tools
 
 ### 1. Go to the EC2 console>Load Balancing>Load Balancers
 
@@ -43,7 +43,7 @@ EXA<->EXA export and import is not supported.
 2. Port: 8563
 3. Click "Next"
 
-### 8. Add EXASOL DB instances
+### 8. Add Exasol DB instances
 
 1. Select **All** database nodes (active + spare)
 2. Disable Cross-Zone Load Balancing and Connection Draining
@@ -53,11 +53,5 @@ EXA<->EXA export and import is not supported.
 
 ### 10. Review and Create Classic Load Balancer (it will take some time for DNS entries to be propagated)
 
-## Additional Notes
 
--
-
-## Additional References
-
--
 
