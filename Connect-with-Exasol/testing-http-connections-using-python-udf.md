@@ -7,8 +7,8 @@ As Exasol comes with its own operating system and users do rarely have access to
 
 The attached SQL file contains aSCALAR PYTHON SCRIPTthat does minimalistic network testing using the following steps:
 
-1. **Hostname lookup**using DNS (Domain Name Service)
-2. **TCP connect**to the resulting address
+1. **Hostname lookup** using DNS (Domain Name Service)
+2. **TCP connect** to the resulting address
 3. **HTTP 1.1 request**
 
 The script will output some information, including the cluster node it ran on and an elapsed time (in seconds).
