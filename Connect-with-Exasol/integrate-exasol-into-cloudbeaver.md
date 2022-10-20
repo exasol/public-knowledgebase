@@ -8,7 +8,7 @@
 This blog will show you how to:
 
 * Integrate Exasol JDBC driver into CloudBeaver build environment
-* Use Docker to build CloudBeaver + EXASOL
+* Use Docker to build CloudBeaver + Exasol
 
 
 	+ Build CloudBeaver and install it onto a runtime Docker image, using multistage Dockerfile
