@@ -20,7 +20,18 @@ In order to run the examples below, let's create a basic test environment.
 
 
 ```markup
-CREATE SCHEMA exa_test;  CREATE OR REPLACE TABLE exa_test.users (     user_id         DECIMAL(18,0),     user_name       VARCHAR(255),     register_dt     DATE,     last_visit_ts   TIMESTAMP,     is_female       BOOLEAN,     user_rating     DECIMAL(10,5),     user_score      DOUBLE,     status          VARCHAR(50) );
+CREATE SCHEMA exa_test;  
+CREATE OR REPLACE TABLE exa_test.users 
+ (     
+  user_id DECIMAL(18,0),     
+  user_name VARCHAR(255),     
+  register_dt DATE,     
+  last_visit_ts TIMESTAMP,     
+  is_female BOOLEAN,     
+  user_rating DECIMAL(10,5),     
+  user_score DOUBLE,     
+  status VARCHAR(50) 
+ );
 ```
 ## IMPORT data from stream
 
@@ -30,7 +41,8 @@ Example:
 
 
 ```markup
-cat users.csv | head -n 100 | ./exajload \ -c 'localhost:8563' \ -u 'SYS' \ -P 'exasol' \ -s 'exa_test' \ -presql 'TRUNCATE TABLE users' \ -sql 'IMPORT INTO users FROM LOCAL CSV FILE '\''/dev/stdin'\'' ROW SEPARATOR = '\''LF'\'''
+cat users.csv | head -n 100 | ./exajload \ -c 'localhost:8563' \ -u 'SYS' \ -P 'exasol' \ -s 'exa_test' \ 
+-presql 'TRUNCATE TABLE users' \ -sql 'IMPORT INTO users FROM LOCAL CSV FILE '\''/dev/stdin'\'' ROW SEPARATOR = '\''LF'\'''
 ```
 ## IMPORT data from GZ-compressed stream
 
@@ -48,7 +60,8 @@ Example:
 
 
 ```markup
-cat users.csv | head -n 200 | gzip -c | ./exajload \ -c 'localhost:8563' \ -u 'SYS' \ -P 'exasol' \ -s 'exa_test' \ -presql 'TRUNCATE TABLE users' \ -sql 'IMPORT INTO users FROM LOCAL CSV FILE '\''stdin.gz'\'' ROW SEPARATOR = '\''LF'\'''
+cat users.csv | head -n 200 | gzip -c | ./exajload \ -c 'localhost:8563' \ -u 'SYS' \ -P 'exasol' \ -s 'exa_test' \ 
+-presql 'TRUNCATE TABLE users' \ -sql 'IMPORT INTO users FROM LOCAL CSV FILE '\''stdin.gz'\'' ROW SEPARATOR = '\''LF'\'''
 ```
 ## Disable encryption to improve performance
 
@@ -64,7 +77,8 @@ Example:
 
 
 ```markup
-./exajload \ -c 'localhost:8563;encryption=0' \ -u 'SYS' \ -P 'exasol' \ -s 'exa_test' \ -presql 'TRUNCATE TABLE users' \ -sql 'IMPORT INTO users FROM LOCAL CSV FILE '\''users.csv'\'' ROW SEPARATOR = '\''LF'\'''
+./exajload \ -c 'localhost:8563;encryption=0' \ -u 'SYS' \ -P 'exasol' \ -s 'exa_test' \ 
+-presql 'TRUNCATE TABLE users' \ -sql 'IMPORT INTO users FROM LOCAL CSV FILE '\''users.csv'\'' ROW SEPARATOR = '\''LF'\'''
 ```
 You may roughly measure the performance benefit by adding **time**command at the beginning.
 
@@ -78,9 +92,9 @@ Example:
 
 
 ```markup
-./exajload \ -c 'localhost:8563;autocommit=0' \ -u 'SYS' \ -P 'exasol' \ -s 'exa_test' \ -presql 'TRUNCATE TABLE users' \ -sql 'IMPORT INTO users FROM LOCAL CSV FILE '\''users.csv'\'' ROW SEPARATOR = '\''LF'\''' \ -postsql 'COMMIT'
+./exajload \ -c 'localhost:8563;autocommit=0' \ -u 'SYS' \ -P 'exasol' \ -s 'exa_test' \ 
+-presql 'TRUNCATE TABLE users' \ -sql 'IMPORT INTO users FROM LOCAL CSV FILE '\''users.csv'\'' ROW SEPARATOR = '\''LF'\''' \ -postsql 'COMMIT'
 ```
 You may have any number of **-presql** and **-postsql** statements. Just make sure you always have COMMIT at the end.
 
-Enjoy!
 
