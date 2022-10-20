@@ -33,7 +33,15 @@ Create an Exasol table corresponding to the Parquet schema:
 
 
 ```sql
-CREATE TABLE SALES_POSITIONS (   SALES_ID       INTEGER,   SALES_POSITION DECIMAL(4,0),   PRODUCT_ID     DECIMAL(6,0),   PRODUCT_PRICE  DECIMAL(9,2),   AMOUNT         DECIMAL(2,0),   EXA_ROW_ROLES  DECIMAL(20, 0) );
+CREATE TABLE SALES_POSITIONS 
+ (   
+  SALES_ID       INTEGER,   
+  SALES_POSITION DECIMAL(4,0),   
+  PRODUCT_ID     DECIMAL(6,0),   
+  PRODUCT_PRICE  DECIMAL(9,2),   
+  AMOUNT         DECIMAL(2,0),   
+  EXA_ROW_ROLES  DECIMAL(20, 0) 
+ );
 ```
  Create a connection object that encodes the username and password as S3 access and secret keys:
 
@@ -45,7 +53,12 @@ Run the import SQL statement:
 
 
 ```sql
-IMPORT INTO RETAIL.SALES_POSITIONS FROM SCRIPT ETL.IMPORT_PATH WITH   BUCKET_PATH              = 's3a://parquet-test-data/*.parquet'   DATA_FORMAT              = 'PARQUET'   S3_ENDPOINT              = 'http://172.31.21.23:8080'   CONNECTION_NAME          = 'S3_CONNECTION'   PARALLELISM              = 'nproc()';
+IMPORT INTO RETAIL.SALES_POSITIONS FROM SCRIPT ETL.IMPORT_PATH WITH   
+BUCKET_PATH              = 's3a://parquet-test-data/*.parquet'   
+DATA_FORMAT              = 'PARQUET'   
+S3_ENDPOINT              = 'http://172.31.21.23:8080'   
+CONNECTION_NAME          = 'S3_CONNECTION'   
+PARALLELISM              = 'nproc()';
 ```
 The `S3_ENDPOINT` parameter should point to the CES IPv4 address of Spectrum Scale.
 
@@ -57,7 +70,11 @@ In this guide, I am going to create a VS over [JSON Lines](https://jsonlines.org
 
 
 ```json
-{   "$schema": "https://schemas.exasol.com/edml-1.2.0.json",   "source": "test.jsonl",   "destinationTable": "LINES",   "description": "Maps JSON Data Lines to Exasol LINES VS table",   "addSourceReferenceColumn": true,   "mapping": {     "fields": {       "id": {         "toVarcharMapping": {         }       }     }   } }
+{   "$schema": "https://schemas.exasol.com/edml-1.2.0.json",   
+"source": "test.jsonl",   "destinationTable": "LINES",   
+"description": "Maps JSON Data Lines to Exasol LINES VS table",   
+"addSourceReferenceColumn": true,   "mapping": {     "fields": {       "id": 
+{         "toVarcharMapping": {         }       }     }   } }
 ```
 You can read more about EDML schema mapping in S3 VS files [user guide, Defining the Schema Mapping](https://github.com/exasol/s3-document-files-virtual-schema/blob/main/doc/user_guide/user_guide.md#defining-the-schema-mapping).
 
@@ -65,7 +82,15 @@ Now we can create a VS over JSON Lines data stored Spectrum Scale:
 
 
 ```sql
-CREATE OR REPLACE CONNECTION S3_VS_CONNECTION    TO 'http://jsonlines-test-data.s3.us-east-1.172.31.21.23:8080/'    USER 'admin'    IDENTIFIED BY 'Passw0rd';  CREATE VIRTUAL SCHEMA FILES_VS_TEST USING ADAPTER.S3_FILES_ADAPTER WITH     CONNECTION_NAME = 'S3_VS_CONNECTION'     SQL_DIALECT     = 'S3_DOCUMENT_FILES'     MAPPING         = '/buckets/bfsdefault/schemamapping/jsonl-mapping.json';
+CREATE OR REPLACE CONNECTION S3_VS_CONNECTION    
+TO 'http://jsonlines-test-data.s3.us-east-1.172.31.21.23:8080/'    
+USER 'admin'    
+IDENTIFIED BY 'Passw0rd';  
+
+CREATE VIRTUAL SCHEMA FILES_VS_TEST USING ADAPTER.S3_FILES_ADAPTER WITH     
+CONNECTION_NAME = 'S3_VS_CONNECTION'     
+SQL_DIALECT     = 'S3_DOCUMENT_FILES'     
+MAPPING         = '/buckets/bfsdefault/schemamapping/jsonl-mapping.json';
 ```
 As you can see, in the address of the connection object, we use custom endpoint from Spectrum Scale Object Storage.
 
