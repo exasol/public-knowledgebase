@@ -8,7 +8,9 @@ Sometimes a user may encounter 'Authentication Failed' error when trying to logi
 An Authentication Failed error may look like one of the following screenshots:
 
 ![](images/exa-Vandana_0-1621342489198.png)  
-![](images/exa-Vandana_1-1621342715904.png)## Explanation
+![](images/exa-Vandana_1-1621342715904.png)
+
+## Explanation
 
 In general, the authentication error means that the user name or password is not correct.
 
