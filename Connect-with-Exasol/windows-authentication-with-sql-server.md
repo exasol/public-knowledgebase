@@ -59,7 +59,11 @@ For the User field, do not include the domain before your username. If your user
 
 
 ```markup
-[Code: 0, SQL State: ETL-5]  JDBC-Client-Error: Connecting to 'jdbc:sqlserver://192.168.56.113:1433;DatabaseName=TEST;domain=WINDEV2101EVAL;IntegratedSecurity=True;authenticationScheme=NTLM;' as user='WINDEV2101EVAL\test' failed: Login failed. The login is from an untrusted domain and cannot be used with Integrated authentication.
+[Code: 0, SQL State: ETL-5]  JDBC-Client-Error: 
+Connecting to 'jdbc:sqlserver://192.168.56.113:1433;
+DatabaseName=TEST;domain=WINDEV2101EVAL;IntegratedSecurity=True;
+authenticationScheme=NTLM;' as user='WINDEV2101EVAL\test' failed: Login failed. 
+The login is from an untrusted domain and cannot be used with Integrated authentication.
 ```
 ## Step 3: Test your connection
 
@@ -82,13 +86,21 @@ A full connection string would look like:
 
 
 ```markup
-create or replace CONNECTION JTDS_SQLSERVER TO 'jdbc:jtds:sqlserver://<server host>:<port>;DatabaseName=<name>;domain=<domain>;useNTLMv2=true;' USER '<Windows User>' IDENTIFIED BY '<Windows Password>'; 
+create or replace CONNECTION JTDS_SQLSERVER TO 'jdbc:jtds:sqlserver://<server host>:<port>;
+ DatabaseName=<name>;
+ domain=<domain>;
+ useNTLMv2=true;
+ ' USER '<Windows User>' IDENTIFIED BY '<Windows Password>'; 
 ```
 For example, my connection string is:
 
 
 ```markup
-CREATE OR REPLACE CONNECTION JTDS_SQLSERVER to 'jdbc:jtds:sqlserver://192.168.56.113:1433;DatabaseName=TEST;domain=WINDEV2101EVAL;useNTLMv2=true;' USER 'test' IDENTIFIED BY 'test';
+CREATE OR REPLACE CONNECTION JTDS_SQLSERVER to 'jdbc:jtds:sqlserver://192.168.56.113:1433;
+ DatabaseName=TEST;
+ domain=WINDEV2101EVAL;
+ useNTLMv2=true;
+ ' USER 'test' IDENTIFIED BY 'test';
 ```
 Note: Depending on your SQL Server settings, additonal parameters may be needed.
 
@@ -106,7 +118,9 @@ If you receive the following error message, then the Security Manager needs to b
 
 
 ```markup
-[Code: 0, SQL State: ETL-5]  JDBC-Client-Error: Internal failure: access denied ("java.lang.RuntimePermission" "loadLibrary.mssql-jdbc_auth-9.2.1.x64.dll") (Session: 1694589929857417216)
+[Code: 0, SQL State: ETL-5]  JDBC-Client-Error: 
+Internal failure: access denied ("java.lang.RuntimePermission" "loadLibrary.mssql-jdbc_auth-9.2.1.x64.dll") 
+(Session: 1694589929857417216)
 ```
 ## Additional References
 
