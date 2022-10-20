@@ -71,14 +71,65 @@ The attached file Data.sql creates a table for storing the XML-Text and inserts 
 
 
 ```"code
-Data.sqlcreate schema xmlparsing;  create or replace table myXML (v varchar(2000000));  insert into myXML values  '<?xml version="1.0" encoding="UTF-8" standalone="yes"?> <document>           <entry>           <id>1</id>           <name>Nuremberg</name>      </entry>      <entry>           <id>2</id>           <name>Berlin</name>      </entry> </document>';  insert into myXML values  '<?xml version="1.0" encoding="UTF-8" standalone="yes"?> <document>           <entry>           <id>3</id>           <name>London</name>      </entry>      <entry>           <id>4</id>           <name>Stockholm</name>      </entry> </document>';  commit; 
+-- Data.sql
+create schema xmlparsing;  
+
+create or replace table myXML (v varchar(2000000));  
+
+insert into myXML values  
+'<?xml version="1.0" encoding="UTF-8" standalone="yes"?> 
+<document>           
+ <entry>           
+  <id>1</id>           
+  <name>Nuremberg</name>      
+ </entry>      
+ <entry>           
+  <id>2</id>           
+  <name>Berlin</name>      
+ </entry> 
+</document>';  
+
+insert into myXML values  
+'<?xml version="1.0" encoding="UTF-8" standalone="yes"?> 
+<document>           
+ <entry>           
+  <id>3</id>           
+  <name>London</name>      
+ </entry>      
+ <entry>           
+  <id>4</id>           
+  <name>Stockholm</name>      
+ </entry> 
+</document>';  
+
+commit; 
 ```
 The attached file UDF.sql   describes how to create a UDF that imports the installed jar library and uses the XML-parsing functionality.  
 In addition, the UDF function is used to insert data into an EXASOL table.
 
 
 ```"code
-UDF.sqlcreate or replace java scalar script processXML(xml varchar(2000000))  emits (id int, name varchar(200000)) as %scriptclass com.exasol.xmlexample6.ProcessXML;  %jar /buckets/bucketfs1/jars/xmlexample-0.0.1-SNAPSHOT-jar-with-dependencies.jar; } / commit; -- Usage: SELECT select processXML(v) from xmlparsing.myxml;  -- Usage: INSERT INTO ... FROM SELECT create table cities (id int, name varchar(200000)); insert into cities select processXML(v) from xmlparsing.myxml; commit;  select * from cities;  
+--UDF.sql
+create or replace java scalar script processXML(xml varchar(2000000))  
+emits (id int, name varchar(200000)) 
+as 
+%scriptclass com.exasol.xmlexample6.ProcessXML;  
+%jar /buckets/bucketfs1/jars/xmlexample-0.0.1-SNAPSHOT-jar-with-dependencies.jar; } 
+/ 
+
+commit; 
+
+-- Usage: SELECT 
+select processXML(v) from xmlparsing.myxml;  
+
+-- Usage: INSERT INTO ... FROM SELECT 
+create table cities (id int, name varchar(200000)); 
+
+insert into cities select processXML(v) from xmlparsing.myxml; 
+
+commit;  
+
+select * from cities;  
 ```
 ## Step 5. Use UDF for ETL
 
