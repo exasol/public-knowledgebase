@@ -31,11 +31,19 @@ Which version of the driver and redistributables you need depends on the excel v
 
 In windows, navigate to 'ODBC Data sources'.
 
-![](images/exaPieterjan_0-1622811291892.png)Let's create a New Data Source.
+![](images/exaPieterjan_0-1622811291892.png)
 
-![](images/exaPieterjan_2-1622812662405.png)Let's pick 'EXASolution Driver'. This option is available after installing the Exasol ODBC driver.
+Let's create a New Data Source.
 
- Enter the connection string for the database, like so: (I'm using the exasol demo db for this tutorial)![](images/exaPieterjan_3-1622813651241.png)You can also test the connection here (with the username and password).
+![](images/exaPieterjan_2-1622812662405.png)
+
+Let's pick 'EXASolution Driver'. This option is available after installing the Exasol ODBC driver.
+
+Enter the connection string for the database, like so: (I'm using the exasol demo db for this tutorial)
+
+![](images/exaPieterjan_3-1622813651241.png)
+
+You can also test the connection here (with the username and password).
 
 ## Fetching data in Excel
 
@@ -43,45 +51,72 @@ Let's open excel.
 
 Navigate to the data tab.
 
-![](images/exaPieterjan_4-1622814343631.png)Pick 'Get data' , 'From other sources' and then 'From ODBC'.
+![](images/exaPieterjan_4-1622814343631.png)
+
+Pick 'Get data' , 'From other sources' and then 'From ODBC'.
 
 A new wizard window will pop up.
 
-![](images/exaPieterjan_5-1622814391207.png)Select the DSN you just created.
+![](images/exaPieterjan_5-1622814391207.png)
+
+Select the DSN you just created.
 
 (You could also use a connection string instead, available under 'Advanced Options.')
 
-![](images/exaPieterjan_6-1622814464423.png)You'll be prompted to authenticate.
+![](images/exaPieterjan_6-1622814464423.png)
+
+You'll be prompted to authenticate.
 
 Provide the username and password from your database account (or pick 'Default or Custom' if you already did so in the DSN).
 
-![](images/exaPieterjan_7-1622814538607.png)After clicking connect a navigator will pop up:
+![](images/exaPieterjan_7-1622814538607.png)
 
-![](images/exaPieterjan_8-1622814763851.png)Here you can select the data you'd like to import.
+After clicking connect a navigator will pop up:
+
+![](images/exaPieterjan_8-1622814763851.png)
+
+Here you can select the data you'd like to import.
 
 As an example I will pick a table with NYC taxi companies:
 
-![](images/exaPieterjan_9-1622814828891.png)You'll get a new sheet added to your excel file that contains the data you selected.
+![](images/exaPieterjan_9-1622814828891.png)
 
-![](images/exaPieterjan_0-1622815383282.png)You can then further change this data in the excel sheet itself or in the Power Query Editor.
+You'll get a new sheet added to your excel file that contains the data you selected.
+
+![](images/exaPieterjan_0-1622815383282.png)
+
+You can then further change this data in the excel sheet itself or in the Power Query Editor.
 
 To access the Power Query Editor you need to select the Query tab and then press 'Edit',
 
-![](images/exaPieterjan_1-1622815699876.png)or double click on the 'Queries and Connections' panel on the right.
+![](images/exaPieterjan_1-1622815699876.png)
 
-![](images/exaPieterjan_2-1622815772409.png)## Refreshing
+or double click on the 'Queries and Connections' panel on the right.
 
- You can also easily refresh this data under the 'Queries & Connections' menu by right clicking and selecting 'Refresh'.![](images/exaPieterjan_0-1622817558264.png)## Extracting data using a query
+![](images/exaPieterjan_2-1622815772409.png)
+
+## Refreshing
+
+ You can also easily refresh this data under the 'Queries & Connections' menu by right clicking and selecting 'Refresh'.
+ ![](images/exaPieterjan_0-1622817558264.png)
+ 
+ ## Extracting data using a query
 
 Using a custom SQL query is also possible, albeit a little more tricky.
 
 In Excel, select the 'Data' tab, then 'Get Data' and 'Launch Power Query Editor'.
 
-![](images/exaPieterjan_2-1622817020741.png) Right mouse click, select "New Query," "Other Sources," and then "Blank Query" respectively.
+![](images/exaPieterjan_2-1622817020741.png) 
 
-![](images/exaPieterjan_1-1622816836526.png) Click 'Advanced Editor' on top:
+Right mouse click, select "New Query," "Other Sources," and then "Blank Query" respectively.
 
-![](images/exaPieterjan_0-1622816614384.png)Here we have Power Query at our disposal: 
+![](images/exaPieterjan_1-1622816836526.png) 
+
+Click 'Advanced Editor' on top:
+
+![](images/exaPieterjan_0-1622816614384.png)
+
+Here we have Power Query at our disposal: 
 
 We'll use the PowerQuery `Odbc.Query` function (documented here: <https://docs.microsoft.com/en-us/powerquery-m/odbc-query>).
 
@@ -97,16 +132,26 @@ The first argument we pass in is the DSN name or connection string, the second t
 
 This is how it looks for us in the editor:
 
-![](images/exaPieterjan_1-1622819067265.png)Press 'Done'.
+![](images/exaPieterjan_1-1622819067265.png)
+
+Press 'Done'.
 
 Excel will ask you for permission to run the native database query. Click on 'Edit Permission'.
 
-![](images/exaPieterjan_2-1622819127011.png)Select 'Run'.![](images/exaPieterjan_3-1622819139266.png)The results will pop up in the Power Query Editor.
+![](images/exaPieterjan_2-1622819127011.png)
+
+Select 'Run'.
+
+![](images/exaPieterjan_3-1622819139266.png)
+
+The results will pop up in the Power Query Editor.
 
  Press 'Close and Load.'  
 ![](images/exaPieterjan_4-1622819164227.png) 
 
 The results should swiftly load in to your worksheet:
 
-![](images/exaPieterjan_5-1622819225033.png)And you've successfully imported data using PowerQuery with an SQL query!
+![](images/exaPieterjan_5-1622819225033.png)
+
+And you've successfully imported data using PowerQuery with an SQL query!
 
