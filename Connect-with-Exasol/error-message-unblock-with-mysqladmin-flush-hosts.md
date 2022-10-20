@@ -9,8 +9,8 @@ When connecting to external network services from a database (e.g. via IMPORT/EX
 
 
 ```
-**select*****from**  
-(**import****from****JDBC**DRIVER='MySQL8'**at**MYSQL_TEST**statement**'select * FROM dual');
+**select** * **from**  
+(**import** **from** **JDBC** DRIVER='MySQL8' **at** MYSQL_TEST **statement** 'select * FROM dual');
 ```
 Fails with:
 
