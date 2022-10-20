@@ -3,7 +3,7 @@
 
 ### Parallel data exchange between EXASOL and Microsoft Azure Blob Storage
 
-You have an EXASOL database and want to read data from Microsoft Azure Blob Storage. Beginning with Version 7.0, Exasol supports IMPORT and EXPORT from Azure Blog Storage. You can find more information [here](https://docs.exasol.com/loading_data/load_data_azure_blob.htm)
+You have an Exasol database and want to read data from Microsoft Azure Blob Storage. Beginning with Version 7.0, Exasol supports IMPORT and EXPORT from Azure Blog Storage. You can find more information [here](https://docs.exasol.com/loading_data/load_data_azure_blob.htm)
 
 ## Prerequisites
 
@@ -18,7 +18,7 @@ In practice, you will face the following problems:
 
 ## Step 1
 
-The best way to read data is via the HTTP/HTTPS protocol using EXASOLs native loading interface EXAloader with the IMPORT statement.
+The best way to read data is via the HTTP/HTTPS protocol using Exasol's native loading interface EXAloader with the IMPORT statement.
 
 ## Step 2
 
@@ -26,7 +26,7 @@ You can make use of Lua scripting to generate the IMPORT SQL commands. Addition
 
 ## Additional Notes
 
-Follow the steps described in the comments of file[azure_blob.sql](https://www.exasol.com/support/secure/attachment/78668/78668_azure_blob.sql "azure_blob.sql")
+Follow the steps described in the comments of the file [azure_blob.sql](https://www.exasol.com/support/secure/attachment/78668/78668_azure_blob.sql "azure_blob.sql")
 
 .
 
