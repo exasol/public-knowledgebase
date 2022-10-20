@@ -12,7 +12,11 @@ When connecting to your database, you will get an error message similar to this:
 
 
 ```sql
-java.io.IOException: TLS connection to host (192.168.56.101) failed: PKIX path building failed: sun.security.provider.certpath.SunCertPathBuilderException: unable to find valid certification path to requested target. If you trust the server, connect to it using the fingerprint: 2747B64E34414C293091FF37F428CC8D795B64B7159E50EDD7EA507B58D4FAEA.
+java.io.IOException: TLS connection to host (192.168.56.101) failed: 
+PKIX path building failed: sun.security.provider.certpath.SunCertPathBuilderException: 
+unable to find valid certification path to requested target. 
+If you trust the server, connect to it using the fingerprint: 
+2747B64E34414C293091FF37F428CC8D795B64B7159E50EDD7EA507B58D4FAEA.
 ```
 ## Explanation
 
@@ -21,7 +25,10 @@ With the release of 7.1.0, we made a big change in our drivers: JDBC, ODBC and A
 
 
 ```sql
-TLS connection to host (exadb1.example.com) failed: unable to get local issuer certificate. If you trust the server, connect to it using the fingerprint: 2747B64E34414C293091FF37F428CC8D795B64B7159E50EDD7EA507B58D4FAEA.
+TLS connection to host (exadb1.example.com) failed: 
+unable to get local issuer certificate. 
+If you trust the server, connect to it using the fingerprint: 
+2747B64E34414C293091FF37F428CC8D795B64B7159E50EDD7EA507B58D4FAEA.
 ```
 **If another certificate has not been uploaded using EXAoperation, a self-signed certificate is used by Exasol per default. Since this certificate is self-signed, TLS connections to Exasol will fail by default.**
 
