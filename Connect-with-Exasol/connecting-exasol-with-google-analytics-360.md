@@ -68,7 +68,10 @@ If all requirements are fulfilled, the [connection URL](https://www.simba.com/pr
 
 
 ```sql
-CREATE OR REPLACE CONNECTION BIGQUERY_JDBC TO  'jdbc:bigquery://https://www.googleapis.com/bigquery/v2:443;ProjectId=<your-project-id>;OAuthType=0;Timeout=600;OAuthServiceAcctEmail=<your-service-account>;OAuthPvtKeyPath=/d02_data/<bucketfs-service>/<bucket-name>/<your-account-keyfile>;';
+CREATE OR REPLACE CONNECTION BIGQUERY_JDBC TO  
+ 'jdbc:bigquery://https://www.googleapis.com/bigquery/v2:443;ProjectId=<your-project-id>;OAuthType=0;Timeout=600;
+ OAuthServiceAcctEmail=<your-service-account>;
+ OAuthPvtKeyPath=/d02_data/<bucketfs-service>/<bucket-name>/<your-account-keyfile>;';
 ```
 Afterwards, the [IMPORT](https://docs.exasol.com/sql/import.htm "IMPORT") Command can be used to transfer data from BigQuery into Exasol database.
 
@@ -98,13 +101,20 @@ In addition to the existing driver files we also need the BigQuery Virtual Schem
 
 
 ```sql
-CREATE JAVA ADAPTER SCRIPT SCHEMA_FOR_VS_SCRIPT.ADAPTER_SCRIPT_BIGQUERY AS     %scriptclass com.exasol.adapter.RequestDispatcher;     %jar /buckets/bfsdefault/bq/virtual-schema-dist-9.0.1-bigquery-2.0.0.jar;     %jar /buckets/bfsdefault/bq/GoogleBigQueryJDBC42.jar; ... / ;
+CREATE JAVA ADAPTER SCRIPT SCHEMA_FOR_VS_SCRIPT.ADAPTER_SCRIPT_BIGQUERY AS    
+ %scriptclass com.exasol.adapter.RequestDispatcher;     
+ %jar /buckets/bfsdefault/bq/virtual-schema-dist-9.0.1-bigquery-2.0.0.jar;     
+ %jar /buckets/bfsdefault/bq/GoogleBigQueryJDBC42.jar; ... / ;
 ```
 After all the required files have been uploaded to BucketFS, the Virtual Schema can be created with the following adapter script. The adapter script defines the Java class and tells the UDF framework where to find the required libraries (JAR files) for Virtual Schema and database driver.
 
 
 ```sql
-CREATE VIRTUAL SCHEMA VS_BIGQUERY     USING SCHEMA_FOR_VS_SCRIPT.ADAPTER_SCRIPT_BIGQUERY     WITH     CONNECTION_NAME = 'BIGQUERY_JDBC'     CATALOG_NAME = '<your-project-id>'     SCHEMA_NAME = '<your-dataset>';
+CREATE VIRTUAL SCHEMA VS_BIGQUERY     
+ USING SCHEMA_FOR_VS_SCRIPT.ADAPTER_SCRIPT_BIGQUERY     
+ WITH CONNECTION_NAME = 'BIGQUERY_JDBC'     
+ CATALOG_NAME = '<your-project-id>'     
+ SCHEMA_NAME = '<your-dataset>';
 ```
 Let's go back to our example from Google Analytics and answer the question we asked at the beginning. We wanted to find out which browser generates the most visits from Linux users over a specific time period. We will create a view (example dataset: exasol) from the Analytics raw data in BigQuery and make this data available in Exasol using Virtual Schema.
 
@@ -112,7 +122,11 @@ Let's go back to our example from Google Analytics and answer the question we as
 
 
 ```sql
--- Example Analytics View in BigQuery CREATE VIEW `your-project-id.exasol.linux_visits_example` AS SELECT   CAST(date AS INT64) AS date,   device.operatingSystem,   device.browser,   SUM(totals.visits) AS visits FROM `your-project-id.1234567.ga_sessions_*` WHERE _TABLE_SUFFIX BETWEEN '2021XXXX' AND '2021XXXX' GROUP BY   date,   device.operatingSystem,   device.browser ;
+-- Example Analytics View in BigQuery 
+CREATE VIEW `your-project-id.exasol.linux_visits_example` 
+ AS SELECT   CAST(date AS INT64) AS date,   device.operatingSystem,   device.browser,   SUM(totals.visits) AS visits 
+ FROM `your-project-id.1234567.ga_sessions_*` 
+ WHERE _TABLE_SUFFIX BETWEEN '2021XXXX' AND '2021XXXX' GROUP BY   date,   device.operatingSystem,   device.browser ;
 ```
 The initial question can be answered directly within Exasol with a simple query.
 
@@ -127,7 +141,9 @@ Another interesting project on this topic is the Exasol Github project [Exasol C
 
 
 ```markup
-[BigQueryJDBCDriver](100004) HttpTransport IO error : 400 Bad Request {   "error" : "invalid_grant",   "error_description" : "Invalid JWT: Token must be a short-lived token (60 minutes) and in a reasonable timeframe. Check your iat and exp values in the JWT claim." }.​
+[BigQueryJDBCDriver](100004) HttpTransport IO error : 400 Bad Request {   "error" : "invalid_grant",   "error_description" : 
+"Invalid JWT: Token must be a short-lived token (60 minutes) and in a reasonable timeframe. 
+Check your iat and exp values in the JWT claim." }.​
 ```
 * ExaOperation allows only one jar file per upload in the JDBC Driver Configuration menu. However, the Simba driver requires many jar files. The best and easiest way is to upload using the [python script](https://github.com/exasol/exa-toolbox/blob/master/jdbc_drivers_tool/DriverUploader.py "DriverUploader.py").
 * I have used the ExaCommunity Version 7.0.6 for this tutorial. Even if you don't have a premium account from Google Analytics. BigQuery offers the possibility to create a free dataset, so it is possible to link Exasol with the [public BigQuery dataset](https://cloud.google.com/bigquery/public-data "BigQuery").
