@@ -50,6 +50,7 @@ The path is {{HKEY_LOCAL_MACHINE\Software\JavaSoft}}
 ## Another workaround
 
 Start Exaplus direct with a java command. For further executions create an icon for the call.  
-Example:  
+Example:
+```
 "c:\Program Files\Java\openJDK8\bin\java.exe" -jar "c:\Program Files (x86)\EXASOL\EXASolution-6.0\EXAplus\exaplusgui.jar"
-
+```
