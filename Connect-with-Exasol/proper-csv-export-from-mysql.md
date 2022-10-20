@@ -74,7 +74,11 @@ For additional information about this query see below the paragraph, "option 2" 
 
 
 ```"noformat
-SELECT CITY_ID, IFNULL(CITY, ''), IFNULL(Country_ID,0), IFNULL(IF(last_update = '0000-00-00', '', last_update), '') INTO OUTFILE 'C:/users/joas/downloads/city4.csv' FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '"' ESCAPED BY '\"' LINES TERMINATED BY '\n' FROM city WHERE 1; 
+SELECT CITY_ID, IFNULL(CITY, ''), IFNULL(Country_ID,0), IFNULL(IF(last_update = '0000-00-00', '', last_update), '') 
+ INTO OUTFILE 'C:/users/joas/downloads/city4.csv' 
+ FIELDS TERMINATED BY ',' 
+ OPTIONALLY ENCLOSED BY '"' ESCAPED BY '\"' 
+ LINES TERMINATED BY '\n' FROM city WHERE 1; 
 ```
 ## How to export a CSV using MySQL Server 5.7
 
@@ -126,7 +130,12 @@ Example:
 
 
 ```"code
-SELECT ID, IFNULL(Name, ''), IFNULL(CountryCode, '') IFNULL(IF(FoundingDate = '0000-00-00', '', FoundingDate),'') INTO OUTFILE 'C:/ProgramData/MySQL/MySQL Server 5.7/Uploads/city.csv' FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '"' ESCAPED BY '\"' LINES TERMINATED BY '\n' FROM city WHERE 1; 
+SELECT ID, IFNULL(Name, ''), IFNULL(CountryCode, '') IFNULL(IF(FoundingDate = '0000-00-00', '', FoundingDate),'') 
+ INTO OUTFILE 'C:/ProgramData/MySQL/MySQL Server 5.7/Uploads/city.csv' 
+ FIELDS TERMINATED BY ',' 
+ OPTIONALLY ENCLOSED BY '"' 
+ ESCAPED BY '\"' 
+ LINES TERMINATED BY '\n' FROM city WHERE 1; 
 ```
 This query will export all selected columns from the table ***city*** to the file ***city.csv***.
 
@@ -141,5 +150,22 @@ Example:
 
 
 ```"code
-SELECT ID, IFNULL(Name, ''), IFNULL(CountryCode, '') IFNULL(IF(FoundingDate = '0000-00-00', '', FoundingDate),'') INTO OUTFILE 'C:/ProgramData/MySQL/MySQL Server 5.7/Uploads/city.csv' FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '"' ESCAPED BY '\"' LINES TERMINATED BY '\n' FROM city WHERE 1;  SELECT Code, IFNULL(Name, ''), IFNULL(Continent, ''), IFNULL(Region, '') INTO OUTFILE 'C:/ProgramData/MySQL/MySQL Server 5.7/Uploads/country.csv' FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '"' ESCAPED BY '\"' LINES TERMINATED BY '\n' FROM country WHERE 1;  SELECT CountryCode, IFNULL(IsOfficial, ''), Language, IFNULL(Percentage, '') INTO OUTFILE 'C:/ProgramData/MySQL/MySQL Server 5.7/Uploads/countrylanguage.csv' FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '"' ESCAPED BY '\"' LINES TERMINATED BY '\n' FROM countrylanguage WHERE 1;
+SELECT ID, IFNULL(Name, ''), IFNULL(CountryCode, '') IFNULL(IF(FoundingDate = '0000-00-00', '', FoundingDate),'') 
+ INTO OUTFILE 'C:/ProgramData/MySQL/MySQL Server 5.7/Uploads/city.csv' 
+ FIELDS TERMINATED BY ',' 
+ OPTIONALLY ENCLOSED BY '"' 
+ ESCAPED BY '\"' 
+ LINES TERMINATED BY '\n' FROM city WHERE 1;  
+SELECT Code, IFNULL(Name, ''), IFNULL(Continent, ''), IFNULL(Region, '') 
+ INTO OUTFILE 'C:/ProgramData/MySQL/MySQL Server 5.7/Uploads/country.csv' 
+ FIELDS TERMINATED BY ',' 
+ OPTIONALLY ENCLOSED BY '"' 
+ ESCAPED BY '\"' 
+ LINES TERMINATED BY '\n' FROM country WHERE 1;  
+SELECT CountryCode, IFNULL(IsOfficial, ''), Language, IFNULL(Percentage, '') 
+ INTO OUTFILE 'C:/ProgramData/MySQL/MySQL Server 5.7/Uploads/countrylanguage.csv' 
+ FIELDS TERMINATED BY ',' 
+ OPTIONALLY ENCLOSED BY '"' 
+ ESCAPED BY '\"' 
+ LINES TERMINATED BY '\n' FROM countrylanguage WHERE 1;
 ```
