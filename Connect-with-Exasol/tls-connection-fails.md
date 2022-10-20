@@ -48,7 +48,9 @@ For example: `192.168.56.101/2747B64E34414C293091FF37F428CC8D795B64B7159E50EDD7
 
 The below screenshots show what the connect box should look like in DbVisualizer and DBeaver. 
 
-![](images/exaNico_1-1630058020013.png)![](images/exaNico_2-1630058092668.png)### **Option 2. Deactivate the certificate check using a driver parameter (not recommended)**
+![](images/exaNico_1-1630058020013.png)![](images/exaNico_2-1630058092668.png)### 
+ 
+ **Option 2. Deactivate the certificate check using a driver parameter (not recommended)**
 
 The TLS Certificate check can be disabled using the following driver parameters.
 
