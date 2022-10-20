@@ -26,13 +26,19 @@ You can create a connection object to SQL Server and use this in your import sta
 
 
 ```markup
-CREATE CONNECTION conn_jtdsmssql  TO 'jdbc:jtds:sqlserver://dbserver;databaseName=testdb'  USER 'user1' IDENTIFIED BY 'user1pw';
+CREATE CONNECTION conn_jtdsmssql  TO 
+ 'jdbc:jtds:sqlserver://dbserver;databaseName=testdb'  
+ USER 'user1' 
+ IDENTIFIED BY 'user1pw';
 ```
 It is also possible to use Windows Authentication in conjunction with this driver. In order to enable this authentication, simply add the parameters "useNTLMv2=true" and "domain=[Domain name]", like so:
 
 
 ```"code-sql"
-CREATE CONNECTION conn_jtdsmssql TO 'jdbc:jtds:sqlserver://<host>:1433;DatabaseName=<db name>;domain=AD;useNTLMv2=true;' USER 'username' -- Windows Username IDENTIFIED BY 'AD password here' --Windows password; 
+CREATE CONNECTION conn_jtdsmssql TO 
+ 'jdbc:jtds:sqlserver://<host>:1433;DatabaseName=<db name>;domain=AD;useNTLMv2=true;' 
+ USER 'username' -- Windows Username 
+ IDENTIFIED BY 'AD password here' --Windows password; 
 ```
 Once the AD user/password are defined in the database connection (USER '' IDENTIFIED BY ''), they can be re-used as often as needed (as long as the credentials are valid). Please note that the passwords are masked in all SQL texts and logs. With this method, you can grant the connection only to the required users on EXASOL side and it can be used to IMPORT data from SQL server. 
 
@@ -40,19 +46,28 @@ Once your connection is created, you can test the connectivity by querying the S
 
 
 ```markup
-select * from  ( import from jdbc at conn_jtdsmssql statement 'select * from information_schema.tables'  );
+select * from  
+ ( import from jdbc at conn_jtdsmssql statement 'select * from information_schema.tables'  );
 ```
 If your connection is successful, you're ready to IMPORT/EXPORT data from SQL Server! IF it's not, please check your network settings and/or the settings of your SQL Server instance. Using the JTDS driver, one could import/export data using the following commands:
 
 
 ```"code-sql"
-IMPORT INTO table1 FROM JDBC DRIVER='JTDSMSSQL'  AT 'jdbc:jtds:sqlserver://dbserver;databaseName=testdb'  USER 'user1' IDENTIFIED BY 'user1pw' TABLE table2;  EXPORT table1 INTO JDBC DRIVER='JTDSMSSQL' AT 'jdbc:jtds:sqlserver://dbserver;databaseName=testdb'  USER 'user1' IDENTIFIED BY 'user1pw' TABLE table2;  
+IMPORT INTO table1 FROM JDBC DRIVER='JTDSMSSQL'  
+ AT 'jdbc:jtds:sqlserver://dbserver;databaseName=testdb'  
+ USER 'user1' 
+ IDENTIFIED BY 'user1pw' TABLE table2;  
+ 
+EXPORT table1 INTO JDBC DRIVER='JTDSMSSQL' 
+ AT 'jdbc:jtds:sqlserver://dbserver;databaseName=testdb'  
+ USER 'user1' 
+ IDENTIFIED BY 'user1pw' TABLE table2;  
   
 IMPORT INTO table1 FROM JDBC DRIVER='JTDSMSSQL'  
-AT conn_jtdsmssql TABLE table2;  
+ AT conn_jtdsmssql TABLE table2;  
   
 EXPORT table1 INTO JDBC DRIVER='JTDSMSSQL'  
-AT conn_jtdsmssql TABLE table2;
+ AT conn_jtdsmssql TABLE table2;
 ```
 ## Microsoft SQL Server Driver
 
@@ -77,19 +92,32 @@ Using**Microsoft's JDBC driver for SQL Server**, one could import/export data us
 
 
 ```"code-sql"
-IMPORT INTO table1  FROM JDBC DRIVER='MSSQL'  AT 'jdbc:sqlserver://dbserver;databaseName=testdb'  USER 'user1' IDENTIFIED BY 'user1pw' TABLE table2;  EXPORT table1 INTO JDBC DRIVER='MSSQL'  AT 'jdbc:sqlserver://dbserver;databaseName=testdb'  USER 'user1' IDENTIFIED BY 'user1pw' TABLE table2; 
+IMPORT INTO table1  FROM JDBC DRIVER='MSSQL'  
+ AT 'jdbc:sqlserver://dbserver;databaseName=testdb'  
+ USER 'user1' IDENTIFIED BY 'user1pw' TABLE table2;  
+ 
+EXPORT table1 INTO JDBC DRIVER='MSSQL'  
+ AT 'jdbc:sqlserver://dbserver;databaseName=testdb'  
+ USER 'user1' IDENTIFIED BY 'user1pw' TABLE table2; 
 ```
 A**connection**could also be created and used:
 
 
 ```"code-sql"
-CREATE CONNECTION conn_mssql  TO 'jdbc:sqlserver://dbserver;databaseName=testdb'  USER 'user1' IDENTIFIED BY 'user1pw';  IMPORT INTO table1 FROM JDBC DRIVER='MSSQL'  AT conn_mssql TABLE table2; EXPORT table1  INTO JDBC DRIVER='MSSQL' AT conn_mssql TABLE table2;
+CREATE CONNECTION conn_mssql  TO 
+'jdbc:sqlserver://dbserver;databaseName=testdb'  
+USER 'user1' IDENTIFIED BY 'user1pw';  
+
+IMPORT INTO table1 FROM JDBC DRIVER='MSSQL'  AT conn_mssql TABLE table2; 
+
+EXPORT table1  INTO JDBC DRIVER='MSSQL' AT conn_mssql TABLE table2;
 ```
 Once your connection is created, you can test the connectivity by querying the SQL Server system catalog like before:
 
 
 ```markup
-select * from  ( import from jdbc at conn_mssql statement 'select * from information_schema.tables'  );
+select * from  
+ ( import from jdbc at conn_mssql statement 'select * from information_schema.tables'  );
 ```
 Please note, that usage of the newly created connection requires either a system privilege USE ANY CONNECTION or the connection has to be explicitly granted to the user. Connections are automatically granted to the creator, including the ADMIN OPTION.
 
