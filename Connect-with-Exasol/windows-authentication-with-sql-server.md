@@ -23,6 +23,7 @@ To enable Windows authentication to work properly, you need to check the "Disabl
 To disable the security manager, go to the "Software" Tab in Exaoperation and open the JDBC Drivers tab. Click your SQL Server JDBC driver which you installed and check the box to "Disable Security Manager":
 
 ![](images/exa-Nico_0-1616081990498.png)
+
 Afterwards, click "Apply" to save the changes. 
 
 ## Step 2: Create Connection
@@ -51,8 +52,8 @@ CREATE OR REPLACE CONNECTION JDBC_SQLSERVER to 'jdbc:sqlserver://192.168.56.113:
  DatabaseName=TEST;
  domain=WINDEV2101EVAL;
  IntegratedSecurity=True;
- authenticationScheme=NTLM;
- ' USER 'test' IDENTIFIED BY 'test';
+ authenticationScheme=NTLM;'
+ USER 'test' IDENTIFIED BY 'test';
 ```
 Note: Depending on your SQL Server settings, additional parameters may be needed.
 
@@ -90,8 +91,8 @@ A full connection string would look like:
 create or replace CONNECTION JTDS_SQLSERVER TO 'jdbc:jtds:sqlserver://<server host>:<port>;
  DatabaseName=<name>;
  domain=<domain>;
- useNTLMv2=true;
- ' USER '<Windows User>' IDENTIFIED BY '<Windows Password>'; 
+ useNTLMv2=true;'
+ USER '<Windows User>' IDENTIFIED BY '<Windows Password>'; 
 ```
 For example, my connection string is:
 
@@ -100,8 +101,8 @@ For example, my connection string is:
 CREATE OR REPLACE CONNECTION JTDS_SQLSERVER to 'jdbc:jtds:sqlserver://192.168.56.113:1433;
  DatabaseName=TEST;
  domain=WINDEV2101EVAL;
- useNTLMv2=true;
- ' USER 'test' IDENTIFIED BY 'test';
+ useNTLMv2=true;'
+ USER 'test' IDENTIFIED BY 'test';
 ```
 Note: Depending on your SQL Server settings, additonal parameters may be needed.
 
