@@ -1,7 +1,7 @@
 # How to start Exaplus CLI in Background Mode 
 ## Problem
 
-When I start EXAplus in background modeusing '&', it goes into "stopped" mode, even when using 'nohup'. 
+When I start EXAplus in background mode using '&', it goes into "stopped" mode, even when using 'nohup'. 
 
 ## Diagnosis
 
