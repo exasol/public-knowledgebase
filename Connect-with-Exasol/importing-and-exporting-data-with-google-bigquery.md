@@ -25,13 +25,15 @@ The description on how to IMPORT data from Google Bigquery is described in detai
 2. Upload JSON key to BucketFS
 3. Configure the Driver in EXAoperation
 4. Create Database Connection to Google Bigquery, such as:
-	1. ```markup
-	CREATE CONNECTION BQ_CON TO 'jdbc:bigquery://https://www.googleapis.com/bigquery/v2:443;ProjectId=<your-project-id>;OAuthType=0;Timeout=10000;OAuthServiceAcctEmail=<your-service-account>;OAuthPvtKeyPath=/d02_data/<bucketfs-service>/<bucket-name>/<your-account-keyfile>;';
-	```
+```markup
+CREATE CONNECTION BQ_CON TO 'jdbc:bigquery://https://www.googleapis.com/bigquery/v2:443;
+ ProjectId=<your-project-id>;OAuthType=0;Timeout=10000;OAuthServiceAcctEmail=<your-service-account>;
+ OAuthPvtKeyPath=/d02_data/<bucketfs-service>/<bucket-name>/<your-account-keyfile>;';
+```
 5. You can run an IMPORT statement like below:
-	1. ```markup
-	IMPORT INTO (C1 INT) FROM JDBC AT BQ_CON STATEMENT 'SELECT 1';
-	```
+```markup
+IMPORT INTO (C1 INT) FROM JDBC AT BQ_CON STATEMENT 'SELECT 1';
+```
 
 ## Method 2: Using the script (more performant and scalable)
 
@@ -51,7 +53,8 @@ Create a CONNECTION to Google Cloud Storage as described [here](https://docs.exa
 
 
 ```markup
-create connection google_cloud_storage to 'https://<bucket-name>.storage.googleapis.com' user '<access key>' IDENTIFIED BY '<secret>';
+create connection google_cloud_storage to 'https://<bucket-name>.storage.googleapis.com' 
+ user '<access key>' IDENTIFIED BY '<secret>';
 ```
 ### Step 2 - Create Scripts
 
@@ -112,7 +115,8 @@ Create a CONNECTION to Google Cloud Storage as described [here](https://docs.exa
 
 
 ```markup
-create connection google_cloud_storage to 'https://<bucket-name>.storage.googleapis.com' user '<access key>' IDENTIFIED BY '<secret>';
+create connection google_cloud_storage to 'https://<bucket-name>.storage.googleapis.com' 
+ user '<access key>' IDENTIFIED BY '<secret>';
 ```
 ## Step 2 - Create Scripts
 
