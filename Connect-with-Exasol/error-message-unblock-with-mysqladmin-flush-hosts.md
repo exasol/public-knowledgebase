@@ -9,14 +9,16 @@ When connecting to external network services from a database (e.g. via IMPORT/EX
 
 
 ```
-**select** * **from**  
-(**import** **from** **JDBC** DRIVER='MySQL8' **at** MYSQL_TEST **statement** 'select * FROM dual');
+select * from  
+ (import from JDBC DRIVER='MySQL8' at MYSQL_TEST statement 'select * FROM dual');
 ```
 Fails with:
 
 
 ```
-SQL Error[ETL-5]: JDBC-Client-Error: Connecting to 'jdbc:mysql://u....com:3306' as user='user' failed: null, message from server: "Host 'xxx' is blocked because of many connection errors; unblock with 'mysqladmin flush-hosts'" 
+SQL Error[ETL-5]: JDBC-Client-Error: Connecting to 'jdbc:mysql://u....com:3306' as user='user' failed: 
+null, message from server: "Host 'xxx' is blocked because of many connection errors; 
+unblock with 'mysqladmin flush-hosts'" 
 ```
 ## Explanation
 
@@ -46,7 +48,9 @@ In case of such an error message:
 
 
 ```"code-java"
-SQL Error [ETL-5]: JDBC-Client-Error: Connecting to 'jdbc:mysql://....com:3306' as user='user' failed: Communications link failure The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+SQL Error [ETL-5]: JDBC-Client-Error: Connecting to 'jdbc:mysql://....com:3306' as user='user' failed: 
+Communications link failure The last packet sent successfully to the server was 0 milliseconds ago. 
+The driver has not received any packets from the server.
 ```
 please refer to this Communications Link Failure with JDBC and MySQL (Case: No Connectivity issue) playbook: <https://community.exasol.com/t5/tkb/workflowpage/tkb-id/Connect/article-id/80> 
 
