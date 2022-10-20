@@ -1,7 +1,7 @@
 # Testing HTTP connections using python UDF 
 ## Background
 
-As EXASolution comes with its own operating system and users do rarely have access to that system, testing network connectivity can be quite hard. This makes debugging Import/Export/UDF that fail with**timeouts**or**connection refused**a lengthy task.
+As Exasol comes with its own operating system and users do rarely have access to that system, testing network connectivity can be quite hard. This makes debugging Import/Export/UDF that fail with**timeouts**or**connection refused**a lengthy task.
 
 ## How to test HTTP connections using python UDF
 
