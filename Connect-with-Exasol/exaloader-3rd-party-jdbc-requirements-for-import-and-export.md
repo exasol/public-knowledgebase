@@ -70,7 +70,7 @@ When EXPORTing data into JDBC sources, EXAloader requires that the following met
 	+ int getParameterCount()
 	+ int getParameterType(int param)
 
-In order to use a JDBC driver that doesn't support all required functions, you can write a wrapper for it; in that wrapper, you can e.g. suppress Exceptions or enhance the functionality of the JDBC driver in order to get it to work.
+In order to use a JDBC driver that doesn't support all required functions, you can write a wrapper for it. In that wrapper, you can e.g. suppress Exceptions or enhance the functionality of the JDBC driver in order to get it to work.
 
 ## Additional References
 
