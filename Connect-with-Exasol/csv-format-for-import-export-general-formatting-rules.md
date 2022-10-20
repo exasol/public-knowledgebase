@@ -13,5 +13,5 @@ e.g.
 * Data type DATE: "0000-00-00" is NOT supported and has to be converted to "" (empty string)
 * UCS2 and UTF-16 are not supported => use UTF-8 or similar.
 
-See a detailed desciption in the EXASOL User Manual.
+See a detailed desciption in the Exasol User Manual.
 
