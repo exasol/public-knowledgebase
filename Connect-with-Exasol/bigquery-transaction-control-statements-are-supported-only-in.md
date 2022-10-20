@@ -18,7 +18,14 @@ The error is caused by the following change in the Simba BigQuery JDBC driver:
 
 
 ```"c-mrkdwn__pre"
-[GBQJ-566] Transaction API support     The connector now supports JDBC transaction APIs. BigQuery supports     multi-statement transactions inside a single query, or across multiple     queries, when using sessions. For more information about transactions, see:    <https://cloud.google.com/bigquery/docs/reference/standard-sql/transactions>.        To use transaction APIs, and work with transactions across multiple     queries, set the EnableSession property to 1. For more information about    sessions, see:    <https://cloud.google.com/bigquery/docs/sessions-intro>    
+[GBQJ-566] Transaction API support     
+The connector now supports JDBC transaction APIs. BigQuery supports     
+multi-statement transactions inside a single query, or across multiple     
+queries, when using sessions. For more information about transactions, see:    
+<https://cloud.google.com/bigquery/docs/reference/standard-sql/transactions>.        
+To use transaction APIs, and work with transactions across multiple     
+queries, set the EnableSession property to 1. For more information about    
+sessions, see: <https://cloud.google.com/bigquery/docs/sessions-intro>    
 ```
 Change log: [release-notes_1.3.0.1001.txt](https://storage.googleapis.com/simba-bq-release/jdbc/release-notes_1.3.0.1001.txt)
 
