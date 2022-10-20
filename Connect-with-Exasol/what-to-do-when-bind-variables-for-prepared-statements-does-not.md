@@ -9,7 +9,8 @@ When the user executes this statement *con.prepareStatement( "EXECUTE SCRIPT LU
 
 
 ```
-java.sql.SQLSyntaxErrorException: syntax error, unexpected '?', expecting END_OF_INPUT_ or ';' [line 1, column 26] (Session: 1681284472046092288)  
+java.sql.SQLSyntaxErrorException: syntax error, unexpected '?', 
+expecting END_OF_INPUT_ or ';' [line 1, column 26] (Session: 1681284472046092288)  
 at com.exasol.jdbc.ExceptionFactory.createSQLException(ExceptionFactory.java:39)  
 ...
 ```
