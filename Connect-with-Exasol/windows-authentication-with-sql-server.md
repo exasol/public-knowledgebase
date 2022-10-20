@@ -42,7 +42,12 @@ For example, my connection string is:
 
 
 ```markup
-CREATE OR REPLACE CONNECTION JDBC_SQLSERVER to 'jdbc:sqlserver://192.168.56.113:1433;DatabaseName=TEST;domain=WINDEV2101EVAL;IntegratedSecurity=True;authenticationScheme=NTLM;' USER 'test' IDENTIFIED BY 'test';
+CREATE OR REPLACE CONNECTION JDBC_SQLSERVER to 'jdbc:sqlserver://192.168.56.113:1433;
+ DatabaseName=TEST;
+ domain=WINDEV2101EVAL;
+ IntegratedSecurity=True;
+ authenticationScheme=NTLM;
+ ' USER 'test' IDENTIFIED BY 'test';
 ```
 Note: Depending on your SQL Server settings, additional parameters may be needed.
 
