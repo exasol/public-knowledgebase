@@ -11,7 +11,7 @@ A JDBC connection must be created to your source.  
 
 ## Step 1: View Documentation
 
-The JDBC Connection string needs to be edited to enable JDBC logging. The exact parameters and connection string to be used is not related to Exasol, but actually is determined by the source. So if you are connecting to an Oracle database, you must look at Oracle's documentation to find the correct connection string to use which enables JDBC logging. If you are connecting to an Exasol Database, you can look at [our documentation](https://docs.exasol.com/connect_exasol/drivers/jdbc.htm)
+The JDBC Connection string needs to be edited to enable JDBC logging. The exact parameters and connection string to be used is not related to Exasol, but actually is determined by the source. So if you are connecting to an Oracle database, you must look at Oracle's documentation to find the correct connection string to use which enables JDBC logging. If you are connecting to an Exasol Database, you can look at [our documentation](https://docs.exasol.com/connect_exasol/drivers/jdbc.htm).
 
 ## Step 2: Edit Connection String
 
@@ -20,7 +20,7 @@ Edit your JDBC Connection string (based on step 1) and use this path and filenam
 /var/tmp/<identifier>-jdbc.log
 
 For example :  
-You can set this parameter debug=1 in the connection string of your JDBC driver.  
+You can set this parameter ***debug=1*** in the connection string of your JDBC driver.  
 *jdbc:exa:192.168.6.11..14:8563;debug=1;logdir=/tmp/my folder/;schema=sys*
 
 It is useful to use a unique identifier for every IMPORT/EXPORT job so that we know which file to look at. 
