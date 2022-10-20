@@ -5,7 +5,7 @@ I want to run a query or job regularly, without having to do this manually. How 
 
 ## Answer
 
-Exasol does not offer an in-database scheduler. There are a variety of 3rd party tools that you can use to schedule jobs to run in the database, as long as the software is able to connect directly to Exasol or can run an external command like Exaplus. 
+Exasol does not offer an in-database scheduler. There is a variety of 3rd party tools that you can use to schedule jobs to run in the database, as long as the software is able to connect directly to Exasol or can run an external command like Exaplus. 
 
 One method is to install Exaplus CLI on a Linux environment, and set up a Cron Job which opens up Exaplus. You can find more information about Cron Jobs [here](https://ostechnix.com/a-beginners-guide-to-cron-jobs/). The cronjob will run every x minutes or hours, and will connect to the database via Exaplus. Within the Exaplus command, you can specify either a query to run, or a file containing multiple SQL Files. 
 
