@@ -7,7 +7,7 @@ Using this, MS SQL Server can be configured to access data in Exasol, both for r
 
 ## Prerequisites
 
-* The Exasol ODBC driver for windows, in the architecture (x86 / amd64) fitting the SQL Server installation. We recommend installing the latest available Exasol ODBC driver, even if it is a newer version than your Exasol database. All drivers are backward compatible. [Downloads](https://www.exasol.com/portal/display/DOWNLOAD)
+* The Exasol ODBC driver for windows, in the architecture (x86 / amd64) fitting the SQL Server installation. We recommend installing the latest available Exasol ODBC driver, even if it is a newer version than your Exasol database. All drivers are backward compatible. You can get them here: [Downloads](https://www.exasol.com/portal/display/DOWNLOAD)
 * A properly configured ODBC data source (DSN), again with the correct architecture (x86 or 64).
 	+ Provide a default schema if schema name and user name are not equal. The following setup will be limited to accessing tables in that schema
 	+ on the advanced tab, check the "Show only current schema" option. This will limit all catalog queries to one schema, eliminating "more than one table" errors later.
@@ -42,18 +42,18 @@ In the tree view, you can now 'drill down' to table and view level on the remote
 In queries/views you will be able to access the Exasol database objects using two different methods:
 
 * Three-dots-notation <link-name>...<object_name> will allow you to use objects in native SQL, SQL Server will exchange data with Exasol as necessary (see Limitations below).
-	+ ```markup
-	SELECT * FROM EXASOL_TEST...SUPPLIER;
-	```
+```markup
+SELECT * FROM EXASOL_TEST...SUPPLIER;
+```
 * OPENQUERY (see<http://msdn.microsoft.com/en-us/library/ms188427.aspx>).
 
 To execute LUA scripts stored in Exasol from SQL Server do the following steps:
 
 * Edit the properties of the linked server. Set the parameter "RPC out" to True in the section "Server Options". This enables the execution of remote procedure calls.
 * Use the following command to trigger the execution of LUA Scripts
-	+ ```markup
-	 EXEC('EXECUTE SCRIPT my_schema.my_lua_script') AT <link-name>;
-	```
+```markup
+ EXEC('EXECUTE SCRIPT my_schema.my_lua_script') AT <link-name>;
+```
 
 ## Additional Notes
 
@@ -79,7 +79,9 @@ insert into EXASOL_TEST...SUPPLIER select * from Test.dbo.SUPPLIER
 ```
  Duration: 600 seconds (estimated) | 
 ```markup
-IMPORT INTO TEST.SUPPLIER FROM JDBC AT  'jdbc:jtds:sqlserver://<ip address>;databaseName=Test'  user 'sa' identified by *** TABLE SUPPLIER;
+IMPORT INTO TEST.SUPPLIER FROM JDBC AT  
+ 'jdbc:jtds:sqlserver://<ip address>;databaseName=Test'  
+ user 'sa' identified by *** TABLE SUPPLIER;
 ```
  Duration: 52 seconds |
 | Exasol -> SQL Server | 
