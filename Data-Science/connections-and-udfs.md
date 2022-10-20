@@ -39,7 +39,7 @@ GRANT ACCESS ON <CONNECTION_NAME> for <SCHEMA_NAME> TO <USER>;
 ```markup
 GRANT ACCESS ON <CONNECTION_NAME> FOR <SCHEMA_NAME>.<SCRIPT_NAME> TO <USER>;
 ```
- **Note- if you use method 3, any re-creation of the script (CREATE OR REPLACE) will drop also the privileges for this script**. So you would need to re-grant the access privileges. If you know that the script will be updated or re-created often, it may be better to grant it on the entire schema to avoid this problem.
+**Note- if you use method 3, any re-creation of the script (CREATE OR REPLACE) will drop also the privileges for this script**. So you would need to re-grant the access privileges. If you know that the script will be updated or re-created often, it may be better to grant it on the entire schema to avoid this problem.
 
 ## Additional References
 
