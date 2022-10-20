@@ -1,7 +1,7 @@
 # MySQL to Exasol Migration Lessons Learned 
 Here is a list of lessons we learned while migrating our reporting tools from MySQL (5.6 with strict mode off) to Exasol.
 
-Hopefully this will be useful for others making the same transition:
+Hopefully, this will be useful for others making the same transition:
 
 1. MySQL supports both`--` and`#` for indicating SQL comments. Exasol only supports `--`
 2. `'\n'`in MySQL strings is interpreted as a newline. In Exasol it's treated as a literal slash + n so instead you need to use a literal newline character
