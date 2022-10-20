@@ -41,7 +41,10 @@ So the full connection string will look like
 
 
 ```java
-jdbc:bigquery://https://www.googleapis.com/bigquery/v2:443;ProjectId=<your-project-id>;OAuthType=0;Timeout=10000;OAuthServiceAcctEmail=<your-service-account>;OAuthPvtKeyPath=/d02_data/<bucketfs-service>/<bucket-name>/<your-account-keyfile>;EnableSession=1;
+jdbc:bigquery://https://www.googleapis.com/bigquery/v2:443;ProjectId=<your-project-id>;
+OAuthType=0;Timeout=10000;OAuthServiceAcctEmail=<your-service-account>;
+OAuthPvtKeyPath=/d02_data/<bucketfs-service>/<bucket-name>/<your-account-keyfile>;
+EnableSession=1;
 ```
 ## Additional References
 
