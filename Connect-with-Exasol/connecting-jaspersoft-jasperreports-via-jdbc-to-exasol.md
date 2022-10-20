@@ -1,9 +1,9 @@
-# Connecting JasperSoft JasperReports via JDBC to EXASOL 
-## How to connect JasperSoftReports via JDBC to EXASOL
+# Connecting JasperSoft JasperReports via JDBC to Exasol
+## How to connect JasperSoftReports via JDBC to Exasol
 
 ## Step 1
 
-Use the appropriate EXASOL JDBC Driver.
+Use the appropriate Exasol JDBC Driver.
 
 ## Step 2
 
