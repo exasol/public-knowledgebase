@@ -36,7 +36,11 @@ A full connection string would look like:
 
 
 ```sql
-create or replace CONNECTION JDBC_SQLSERVER TO 'jdbc:sqlserver://<server host>:<port>;DatabaseName=<name>;domain=<domain>;integratedSecurity=true;authenticationScheme=NTLM' USER '<Windows User>' IDENTIFIED BY '<Windows Password>'; 
+create or replace CONNECTION JDBC_SQLSERVER TO 'jdbc:sqlserver://<server host>:<port>;
+ DatabaseName=<name>;
+ domain=<domain>;
+ integratedSecurity=true;
+ authenticationScheme=NTLM' USER '<Windows User>' IDENTIFIED BY '<Windows Password>'; 
 ```
 For example, my connection string is:
 
