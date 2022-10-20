@@ -34,7 +34,8 @@ If the same SQLs against the corresponding tables will be executed in the new cl
 
 ```"code-sql"
 SELECT   
- 'enforce ' || index_type || ' index ' ||' on "' || index_schema || '"."' || index_table || '"' || REPLACE(REPLACE(remarks, 'GLOBAL INDEX'), 'LOCAL INDEX') || '; '   
+ 'enforce ' || index_type || ' index ' ||' on "' || index_schema || '"."' || index_table || '"' 
+ || REPLACE(REPLACE(remarks, 'GLOBAL INDEX'), 'LOCAL INDEX') || '; '   
  FROM sys.exa_dba_indices   
  WHERE 1=1   
  AND <your filters>   
