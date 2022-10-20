@@ -3,7 +3,7 @@
 
 ## What is pagination?
 
-Many times a frontend enters the challenge of presenting a very large result set to its user. A choice then has to be made between trying to do exactly that – load and display all data at once – and risking to run out of memory, taking "forever" to do so or overwhelming the unsuspecting user.
+Many times, a frontend enters the challenge of presenting a very large result set to its user. A choice then has to be made between trying to do exactly that – load and display all data at once – and risking to run out of memory, taking "forever" to do so or overwhelming the unsuspecting user.
 
 Usually, this problem is solved by implementing a technique called **pagination**: The large result set is arbitrarily split into multiple segments, usually equally-sized based on row numbers. The client then displays only one of those pages at a time, giving the user control over navigation between those pages.
 
