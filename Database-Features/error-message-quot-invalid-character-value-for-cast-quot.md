@@ -48,7 +48,7 @@ Value: '9,25' in write of column T.A (Session: 1714045834776412163)
 
 In general, EXASolution does implicit casting. The problem comes from attempting to insert a non-numeric string in a numeric column. The string is converted to a number causes the cast exception to be thrown.
 
-The parameter **NLS_NUMERIC_CHARACTERS**specifies the characters to use as the group separator and decimal character and are used for representing numbers. The group separator separates integer groups (that is, thousands, millions, billions, and so on). The decimal character separates the integer portion of a number from the decimal portion.
+The parameter **NLS_NUMERIC_CHARACTERS** specifies the characters to use as the group separator and decimal character and are used for representing numbers. The group separator separates integer groups (that is, thousands, millions, billions, and so on). The decimal character separates the integer portion of a number from the decimal portion.
 
 Examples:
 
@@ -57,7 +57,7 @@ Examples:
 
 ## Recommendation
 
-The group and decimal separators are defined in the [**NLS_NUMERIC_CHARACTERS**](https://docs.exasol.com/sql/alter_session.htm#NLS_NUMERIC_CHARACTERS) parameter and you can check it by doing the below query:
+The group and decimal separators are defined in the [**NLS_NUMERIC_CHARACTERS**] (https://docs.exasol.com/sql/alter_session.htm#NLS_NUMERIC_CHARACTERS) parameter and you can check it by doing the below query:
 
 
 ```sql
@@ -65,13 +65,13 @@ select * from exa_parameters where PARAMETER_NAME='NLS_NUMERIC_CHARACTERS';
 ```
 If this is not the NLS_NUMERIC_CHARACTERS you need, you can change it as follows:
 
-for the current session using [**ALTER SESSION**](https://docs.exasol.com/sql/alter_session.htm#ALTERSESSION) 
+for the current session using [**ALTER SESSION**] (https://docs.exasol.com/sql/alter_session.htm#ALTERSESSION) 
 
 
 ```sql
 ALTER SESSION SET NLS_NUMERIC_CHARACTERS = ',.';
 ```
-or for the entire database using [**ALTER SYSTEM**](https://docs.exasol.com/sql/alter_system.htm#ALTER_SYSTEM)
+or for the entire database using [**ALTER SYSTEM**] (https://docs.exasol.com/sql/alter_system.htm#ALTER_SYSTEM)
 
 
 ```sql
