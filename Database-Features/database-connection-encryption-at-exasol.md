@@ -11,9 +11,9 @@ How to check encryption is enabled in database?
 
 How to enable/disable encryption?
 
-What is the parameter forceProtocolEncryption used for
+What is the parameter forceProtocolEncryption used for?
 
-How to enforce encrypted client connections ? and so on..
+How to enforce encrypted client connections ? and so on ...
 
 ### Explanation
 
