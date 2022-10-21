@@ -31,7 +31,44 @@ In the Add data source template enter EXASOL as name and copy paste the followin
 
 
 ```"code-java"
-<jdbc-type-settings> <type-name>EXASOL</type-name> <driver>com.exasol.jdbc.EXADriver</driver> <connection-url-pattern>jdbc:exa:&lt;host&gt;:&lt;port&gt;;clientname=Spotfire;</connection-url-pattern> <ping-command>SELECT 1</ping-command> <supports-catalogs>false</supports-catalogs> <supports-schemas>true</supports-schemas> <java-to-sql-type-conversions>  <type-mapping>  <from max-length="2000000">String</from>  <to>VARCHAR($$value$$)</to>  </type-mapping>  <type-mapping>  <from>Integer</from>  <to>DECIMAL(18,0)</to>  </type-mapping>  <type-mapping>  <from>Long</from>  <to>DECIMAL(36,0)</to>  </type-mapping>  <type-mapping>  <from>Float</from>  <to>REAL</to>  </type-mapping>  <type-mapping>  <from>Double</from>  <to>DOUBLE PRECISION</to>  </type-mapping>  <type-mapping>  <from>Date</from>  <to>DATE</to>  </type-mapping>  <type-mapping>  <from>DateTime</from>  <to>TIMESTAMP</to>  </type-mapping> </java-to-sql-type-conversions> </jdbc-type-settings> 
+<jdbc-type-settings>
+<type-name>EXASOL</type-name>
+<driver>com.exasol.jdbc.EXADriver</driver>
+<connection-url-pattern>jdbc:exa:&lt;host&gt;:&lt;port&gt;;clientname=Spotfire;</connection-url-pattern>
+<ping-command>SELECT 1</ping-command>
+<supports-catalogs>false</supports-catalogs>
+<supports-schemas>true</supports-schemas>
+<java-to-sql-type-conversions>
+ <type-mapping>
+ <from max-length="2000000">String</from>
+ <to>VARCHAR($$value$$)</to>
+ </type-mapping>
+ <type-mapping>
+ <from>Integer</from>
+ <to>DECIMAL(18,0)</to>
+ </type-mapping>
+ <type-mapping>
+ <from>Long</from>
+ <to>DECIMAL(36,0)</to>
+ </type-mapping>
+ <type-mapping>
+ <from>Float</from>
+ <to>REAL</to>
+ </type-mapping>
+ <type-mapping>
+ <from>Double</from>
+ <to>DOUBLE PRECISION</to>
+ </type-mapping>
+ <type-mapping>
+ <from>Date</from>
+ <to>DATE</to>
+ </type-mapping>
+ <type-mapping>
+ <from>DateTime</from>
+ <to>TIMESTAMP</to>
+ </type-mapping>
+</java-to-sql-type-conversions>
+</jdbc-type-settings>
 ```
 ## *Step 6*
 
