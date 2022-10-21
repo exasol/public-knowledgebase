@@ -28,14 +28,22 @@ Whenever there is an issue when using an ODBC driver. Exasol requires the ODBC l
 ## Windows
 
 1. In Windows, search for "ODBC Data Sources" and choose the Data Source Manager that corresponds to the driver you chose. If you are using the 64-bit version of the Exasol ODBC driver, you would choose "ODBC Data Sources (64 bit)".
-2. Select the DSN that your client or tool is using to connect to the database and click "Configure".![](images/Screenshot-2020-11-16-114341.png)
-3. Click on the "Advanced" tab at the top:![](images/Screenshot-2020-11-16-114404.png)
+2. Select the DSN that your client or tool is using to connect to the database and click "Configure".
+
+![](images/Screenshot-2020-11-16-114341.png)
+
+3. Click on the "Advanced" tab at the top:
+
+![](images/Screenshot-2020-11-16-114404.png)
+
 4. In the advanced Tab, set the following
 
 
 	* Log file = Choose a file that will contain the log
 	* Log Mode = **Debug comm** in case of performance or connection issues and **Verbose** otherwise  
-	![](images/Screenshot-2020-11-16-114443.png)
+	
+![](images/Screenshot-2020-11-16-114443.png)
+
 5. Click OK to save these changes
 6. Re-run the process.  Please note that ODBC logging will impact performance.
 7. After the process is finished, **deactivate the logging to remove any potential performance impacts during logging by setting LOG MODE = None.**
