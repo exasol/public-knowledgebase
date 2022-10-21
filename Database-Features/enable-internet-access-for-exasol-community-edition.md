@@ -46,8 +46,4 @@ Add one or two DNS servers reachable from the VM (e.g. "8.8.8.8" for an environm
 
 Log out.
 
-## Additional Notes
 
-### Troubleshooting
-
-* Firewalls and/or company proxy servers may block or restrict traffic to internet hosts.
