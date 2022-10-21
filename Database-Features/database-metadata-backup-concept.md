@@ -7,8 +7,8 @@
 
 The file contains several scripts which will copy the DDL for all objects in the database. It also contains the necessary scripts to restore the metadata. If the config file is set up correctly, "_backup._sh" performs the following tasks:
 
-1. Creates the specified directory. This is where all of the files will be stored
-2. Connects to the database using an Exaplus profile (must be created beforehand)
+1. Creates the specified directory. This is where all of the files will be stored.
+2. Connects to the database using an Exaplus profile (must be created beforehand).
 3. Once connected to the database, the script creates a schema "BACKUP_SCRIPTS" and 2 scripts which are used in the backup process.
 4. EXPORT statements are generated using the database script "BACKUP_SYS" for several system tables which can be referenced later on. The CSV files are saved in the './ddl/' path.
 5. A database "*restore_sys.sql*" script is created and saved in the './ddl/' path that includes all the commands neccesary to restore the system tables on a new "SYS_OLD" schema.
@@ -86,7 +86,7 @@ Edit config file with the help of following information:
 	+ SYSPATH = The path where metabackup_vYYYYMMDD.tar.gz was extracted to
 	+ DB_NAME = The Database Name
 	+ EXAPLUS_TIMEOUT = Timeout for Exaplus (default 300 seconds). If you want to prevent long-running queries, set the timeout accordingly. Please note, for very large databases, it might take over 5 minutes to run all of the scripts, so please set the timeout higher.
-	+ EXAPLUS_RECONNECT = Reconnect tries for Exaplus if the connection fails. Default value is set to '1'
+	+ EXAPLUS_RECONNECT = Reconnect tries for Exaplus if the connection fails. Default value is set to '1'.
 
 ## *Step 6*
 
