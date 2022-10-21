@@ -22,14 +22,21 @@ We need an Exasol-Version 6.2 for the Python3 example.
 
 
 ```"code-java"
-install.packages('randomForest')  
-install.packages('devtools') devtools::install_github("EXASOL/r-exasol") library(exasol) library(randomForest)  con <- dbConnect("exa", exahost = "localhost:8563", uid = "sys", pwd = "exasol") train <- dbGetQuery(con, "SELECT * FROM RF.TRAIN") 
+install.packages('randomForest')
+install.packages('devtools')
+devtools::install_github("EXASOL/r-exasol")
+library(exasol)
+library(randomForest)
+
+con <- dbConnect("exa", exahost = "localhost:8563", uid = "sys", pwd = "exasol")
+train <- dbGetQuery(con, "SELECT * FROM RF.TRAIN")
 ```
 The dataframe train contains the data from the Exasol table RF.TRAIN.  head(train) shows the first rows in this table, barplot(table(train$TASTE)) shows the taste distribution as a bar chart, e.g. in R Studio. Next, the random forest model can be created and stored into a file:
 
 
 ```"code-java"
-rf <- randomForest(as.factor(TASTE) ~ ., data = train, ntree=1000) saveRDS(rf, "D:/rf.rds", version=2)
+rf <- randomForest(as.factor(TASTE) ~ ., data = train, ntree=1000)
+saveRDS(rf, "D:/rf.rds", version=2)
 ```
 ### 1b. Learning Phase in Python 3
 
@@ -37,19 +44,32 @@ Since Exasol Version 6.2, the language Python 3 is included with many built-in p
 
 
 ```"code-java"
-import pyexasol import pandas as pd import numpy as np import pickle from sklearn.ensemble import RandomForestClassifier C = pyexasol.connect(dsn='localhost:8563', user='sys', password='exasol') train = C.export_to_pandas("SELECT * FROM RF.TRAIN") 
+import pyexasol
+import pandas as pd
+import numpy as np
+import pickle
+from sklearn.ensemble import RandomForestClassifier
+C = pyexasol.connect(dsn='localhost:8563', user='sys', password='exasol')
+train = C.export_to_pandas("SELECT * FROM RF.TRAIN") 
 ```
 The pandas dataframe train can be inspected withtrain.head(5)ortrain.describe(). Next, the labels (bad/normal/good) from the taste column need to be converted into integers (-1/0/1):
 
 
 ```"code-java"
-train.TASTE[train.TASTE == 'bad'] = -1 train.TASTE[train.TASTE == 'normal'] = 0 train.TASTE[train.TASTE == 'good'] = 1 labels = np.array(train['TASTE']) labels = labels.astype('int') features = train.drop('TASTE', axis=1) 
+train.TASTE[train.TASTE == 'bad'] = -1
+train.TASTE[train.TASTE == 'normal'] = 0
+train.TASTE[train.TASTE == 'good'] = 1
+labels = np.array(train['TASTE'])
+labels = labels.astype('int')
+features = train.drop('TASTE', axis=1)
 ```
 The arraylabelsjust contains the numeric labels for a all wines, e.g.[1, 0, 0, -1, 1, 1, ...].featureslooks like the originaltraindataframe but it does not contain the taste column. Next, the random-forest model can be trained and written into a file:
 
 
 ```"code-java"
-clf = RandomForestClassifier(n_estimators=100, max_depth=2) clf.fit(features, labels) pickle.dump(clf, open('D:/clf.dat', 'wb'))
+clf = RandomForestClassifier(n_estimators=100, max_depth=2)
+clf.fit(features, labels)
+pickle.dump(clf, open('D:/clf.dat', 'wb'))
 ```
 ## Step 2:Putting the model into BucketFS
 
@@ -69,11 +89,44 @@ In an R UDF script, the random-forest model is read from BucketFS. After that, t
 
 
 ```"code-sql"
---/ create or replace r set script rf.predict(...) emits (wine_id INT, taste VARCHAR(6)) as library(randomForest)  run <- function(ctx) { rf <- readRDS("/buckets/bucketfs1/udf/rf.rds")  ## load the first batch of 1000 rows in the input set ctx$next_row(1000) repeat {   wine_ids <- ctx[[1]]()    ## create a dataframe from all input columns (except the first one (wine_id))   numCols <- exa$meta$input_column_count   df <- data.frame(ctx[[2]]())   for (i in 3:numCols) {         df <- cbind(df,ctx[[i]]())   }    colnames(df) <- c("FIXED_ACIDITY", "VOLATILE_ACIDITY", "CITRIC_ACID",                     "RESIDUAL_SUGAR", "CHLORIDES", "FREE_SULFUR_DIOXIDE",                     "TOTAL_SULFUR_DIOXIDE", "DENSITY", "PH", "SULPHATES", "ALCOHOL")    prediction <- predict(rf, newdata=df)    ctx$emit(wine_ids, as.character(prediction))      ## load the next batch of 1000 rows in the input set   if (!(ctx$next_row(1000))){break} } } / 
+--/
+create or replace r set script rf.predict(...) emits (wine_id INT, taste VARCHAR(6)) as
+library(randomForest)
+
+run <- function(ctx) {
+rf <- readRDS("/buckets/bucketfs1/udf/rf.rds")
+
+## load the first batch of 1000 rows in the input set
+ctx$next_row(1000)
+repeat {
+  wine_ids <- ctx[[1]]()
+
+  ## create a dataframe from all input columns (except the first one (wine_id))
+  numCols <- exa$meta$input_column_count
+  df <- data.frame(ctx[[2]]())
+  for (i in 3:numCols) {
+        df <- cbind(df,ctx[[i]]())
+  }
+
+  colnames(df) <- c("FIXED_ACIDITY", "VOLATILE_ACIDITY", "CITRIC_ACID",
+                    "RESIDUAL_SUGAR", "CHLORIDES", "FREE_SULFUR_DIOXIDE",
+                    "TOTAL_SULFUR_DIOXIDE", "DENSITY", "PH", "SULPHATES", "ALCOHOL")
+
+  prediction <- predict(rf, newdata=df)
+
+  ctx$emit(wine_ids, as.character(prediction))  
+
+  ## load the next batch of 1000 rows in the input set
+  if (!(ctx$next_row(1000))){break}
+}
+}
+/
 ```
 
 ```"code-sql"
-select rf.predict(wine_id, fixed_acidity, volatile_acidity, citric_acid, residual_sugar, chlorides, free_sulfur_dioxide, total_sulfur_dioxide, density, pH, sulphates, alcohol) from RF.test group by iproc(); 
+select rf.predict(wine_id, fixed_acidity, volatile_acidity, citric_acid, residual_sugar, 
+ chlorides, free_sulfur_dioxide, total_sulfur_dioxide, density, pH, sulphates, alcohol) 
+ from RF.test group by iproc(); 
 ```
 Due to theGROUP BY iproc(), the UDF script is called once per Exasol node with the data that is locally stored on that node to enable parallel and fast predictions.
 
@@ -83,11 +136,35 @@ Using the scripting language PYTHON3 - which is built-in in Exasol since version
 
 
 ```"code-sql"
---/ CREATE OR REPLACE PYTHON3 SET SCRIPT test.predict_wine_py(...) emits (wine_id INT, taste VARCHAR(6)) as import pickle import pandas as pdclf = pickle.load(open('/buckets/bucketfs1/udf/clf.dat', 'rb')) clf.n_jobs = 1def run(ctx):     BATCH_ROWS = 1000     while True:         df = ctx.get_dataframe(num_rows=BATCH_ROWS)         if df is None:             break     wine_ids = df['0']     features = df.drop('0', axis=1)          res_df = pd.DataFrame(columns=['WINE_ID', 'TASTE'])     res_df['WINE_ID'] = wine_ids     res_df['TASTE'] = clf.predict(features)          res_df.TASTE[res_df.TASTE == -1] = 'bad'     res_df.TASTE[res_df.TASTE == 0] = 'normal'     res_df.TASTE[res_df.TASTE == 1] = 'good'        ctx.emit(res_df) /
+--/
+CREATE OR REPLACE PYTHON3 SET SCRIPT test.predict_wine_py(...) emits (wine_id INT, taste VARCHAR(6)) as
+import pickle
+import pandas as pdclf = pickle.load(open('/buckets/bucketfs1/udf/clf.dat', 'rb'))
+clf.n_jobs = 1def run(ctx):
+	BATCH_ROWS = 1000
+	while True:
+		df = ctx.get_dataframe(num_rows=BATCH_ROWS)
+		if df is None:
+			break
+	wine_ids = df['0']
+	features = df.drop('0', axis=1)
+	
+	res_df = pd.DataFrame(columns=['WINE_ID', 'TASTE'])
+	res_df['WINE_ID'] = wine_ids
+	res_df['TASTE'] = clf.predict(features)
+	
+	res_df.TASTE[res_df.TASTE == -1] = 'bad'
+	res_df.TASTE[res_df.TASTE == 0] = 'normal'
+	res_df.TASTE[res_df.TASTE == 1] = 'good'
+  
+	ctx.emit(res_df)
+/
 ```
 
 ```"code-sql"
-select rf.predict_wine_py(wine_id, fixed_acidity, volatile_acidity, citric_acid, residual_sugar, chlorides, free_sulfur_dioxide, total_sulfur_dioxide, density, pH, sulphates, alcohol) from RF.test group by iproc();
+select rf.predict_wine_py(wine_id, fixed_acidity, volatile_acidity, citric_acid, residual_sugar, 
+ chlorides, free_sulfur_dioxide, total_sulfur_dioxide, density, pH, sulphates, alcohol) 
+ from RF.test group by iproc();
 ```
 ## Additional References
 
