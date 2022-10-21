@@ -18,8 +18,12 @@ execute script exa_toolbox.create_table_ddl('SOURCE_SCHEMA', 'SOURCE_TABLE', 'TA
    ## Additional References
 
 
-	+ The script itself: [create_table_ddl.sql](https://raw.githubusercontent.com/exasol/exa-toolbox/master/utilities/create_table_ddl.sql)
-	+ [DBVisualizer Documentation](http://confluence.dbvis.com/display/UG110/Users+Guide)
-	+ [DBeaver Documentation](https://dbeaver.com/docs/wiki/)
-	+ [Lua Scripts](https://docs.exasol.com/database_concepts/scripting.htm)
-	+ [Create DDL for Database](https://community.exasol.com/t5/database-features/create-ddl-for-the-entire-database/ta-p/1417)
+The script itself: [create_table_ddl.sql](https://raw.githubusercontent.com/exasol/exa-toolbox/master/utilities/create_table_ddl.sql)
+
+[DBVisualizer Documentation](http://confluence.dbvis.com/display/UG110/Users+Guide)
+
+[DBeaver Documentation](https://dbeaver.com/docs/wiki/)
+
+[Lua Scripts](https://docs.exasol.com/database_concepts/scripting.htm)
+
+[Create DDL for Database](https://community.exasol.com/t5/database-features/create-ddl-for-the-entire-database/ta-p/1417)
