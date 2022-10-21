@@ -29,7 +29,33 @@ These system dictionaries provide you the total size of database objects in the 
 
 
 ```"code-sql"
-        OBJECT_NAME              OBJECT_TYPE RAW_OBJE MEM_OBJE         ------------------------ ----------- -------- --------         TESTADR                  TABLE         492836  2615072         ITEMS                    TABLE           1120    23489         PAYMENTS                 TABLE            208    13956         PRODUCTS                 TABLE           1191   230942         NEW_CITIES               TABLE            132    80336         V_PRODUCT_ORDERING       VIEW             578      578         V_CUSTOMERS              VIEW             431      431         V_PRODUCT_RATING_MONTHLY VIEW             755      755         CUSTOMER_MOVES           TABLE              0    13920         MYMAX                    FUNCTION         290      290         DAYS_BETWEEN             FUNCTION         402      402         COUNTRIES                TABLE             64    74655         NEW_CUSTOMERS            TABLE            117   217756         CITIES                   TABLE            167    80336         ORDERS                   TABLE            399    13996         TESTADR_CLEANSED         TABLE          41770  1822724         CUSTOMERS                TABLE            365   222986         RETURNED_ITEMS           TABLE            178    92179         V_ORDERS                 VIEW             648      648         V_RETURNS                VIEW             713      713         V_PAYMENTS               VIEW             472      472         V_CUSTOMER_RAITING       VIEW             861      861         V_TRANSACTIONS           VIEW             615      615         LAG                      TABLE             45     9299         MYFUNCS                  PACKAGE          208      208  
+        OBJECT_NAME              OBJECT_TYPE RAW_OBJE MEM_OBJE
+        ------------------------ ----------- -------- --------
+        TESTADR                  TABLE         492836  2615072
+        ITEMS                    TABLE           1120    23489
+        PAYMENTS                 TABLE            208    13956
+        PRODUCTS                 TABLE           1191   230942
+        NEW_CITIES               TABLE            132    80336
+        V_PRODUCT_ORDERING       VIEW             578      578
+        V_CUSTOMERS              VIEW             431      431
+        V_PRODUCT_RATING_MONTHLY VIEW             755      755
+        CUSTOMER_MOVES           TABLE              0    13920
+        MYMAX                    FUNCTION         290      290
+        DAYS_BETWEEN             FUNCTION         402      402
+        COUNTRIES                TABLE             64    74655
+        NEW_CUSTOMERS            TABLE            117   217756
+        CITIES                   TABLE            167    80336
+        ORDERS                   TABLE            399    13996
+        TESTADR_CLEANSED         TABLE          41770  1822724
+        CUSTOMERS                TABLE            365   222986
+        RETURNED_ITEMS           TABLE            178    92179
+        V_ORDERS                 VIEW             648      648
+        V_RETURNS                VIEW             713      713
+        V_PAYMENTS               VIEW             472      472
+        V_CUSTOMER_RAITING       VIEW             861      861
+        V_TRANSACTIONS           VIEW             615      615
+        LAG                      TABLE             45     9299
+        MYFUNCS                  PACKAGE          208      208
 ```
 ## Data distribution
 
@@ -43,7 +69,12 @@ SELECT count(*), iproc() FROM mytable GROUP BY iproc() ORDER BY 2;
 ```
 
 ```"code-sql"
-        COUNT(*)            IPROC         ------------------- -----                     5327099     0                     5325780     1                     5333799     2                     5319445     3          
+        COUNT(*)            IPROC
+        ------------------- -----
+                    5327099     0
+                    5325780     1
+                    5333799     2
+                    5319445     3     
 ```
 ## Additional References
 
