@@ -1,7 +1,7 @@
 # Connection lost after session running out of memory 
 ## Scope
 
-The error we are addressing is connection lost after the session runs out of memory. The error was encountered while running a Lua script on Exasol version 6.2.11. Just so you are aware, the DBRAM is currently split in two: Heap (showing as MEM in profiling) and other (for background processing). This article looks at both potential errors: 1. SESSION out of memory; 2. SYSTEM out of memory. 
+The error we are addressing is connection lost after the session runs out of memory. It was encountered while running a Lua script on Exasol version 6.2.11. Just so you are aware, the DBRAM is currently split in two: Heap (showing as MEM in profiling) and other (for background processing). This article looks at both potential errors: 1. SESSION out of memory; 2. SYSTEM out of memory. 
 
 Version 6.1.x had additional issues, such as  JDBC has high memory usage for encrypted communication. If you are running version 6.1.x and seeing high memory usage for JDBC encrypted communication, a workaround is to set encryption=0.
 
