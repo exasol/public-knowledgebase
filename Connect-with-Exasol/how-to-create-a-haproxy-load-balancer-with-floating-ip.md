@@ -35,19 +35,27 @@ This How to describes the installation of two HAproxy instances (Master 10.0.1.2
 
 
 ```
-[ec2-user@ip-10-0-1-207 ~]$ sudo mkdir /usr/libexec/keepalived/ [ec2-user@ip-10-0-1-207 ~]$ sudo yum -y upgrade && sudo yum -y install haproxy keepalived && sudo reboot 
+[ec2-user@ip-10-0-1-207 ~]$ sudo mkdir /usr/libexec/keepalived/
+[ec2-user@ip-10-0-1-207 ~]$ sudo yum -y upgrade && sudo yum -y install haproxy keepalived && sudo reboot
 ```
 ### 7. Use the packages from the repo (Point 6) **OR** (Point 7) install the latest keepalived (additional packages are required see below)
 
 
 ```
-[root@ip-10-0-1-207]# yum install -y openssl-devel kernel-devel kernel-headers gcc && wget http://www.keepalived.org/software/keepalived-1.3.2.tar.gz && tar xf keepalived* && cd keepalived-1.3.2 && mkdir /opt/keepalived && ./configure --prefix=/opt/keepalived && make && make install 
+[root@ip-10-0-1-207]# yum install -y openssl-devel kernel-devel kernel-headers gcc && wget http://www.keepalived.org/software/keepalived-1.3.2.tar.gz && tar xf keepalived* && cd keepalived-1.3.2 && mkdir /opt/keepalived && ./configure --prefix=/opt/keepalived && make && make install
 ```
 Use the steps below when keepalived has been compiled from source. We also need to the init script (attached to this SOL) and sysconfig file of keepalived.
 
 
 ```
-[root@ip-10-0-1-207]# cp keepalived_initd.txt /etc/init.d/keepalived [root@ip-10-0-1-207]# cp /root/keepalived-1.3.2/keepalived/etc/sysconfig/keepalived /etc/sysconfig/ [root@ip-10-0-1-207]# cp /root/keepalived-1.3.2/keepalived/etc/init/keepalived.conf /etc/init/ [root@ip-10-0-1-207]# ln -s /opt/keepalived/sbin/keepalived /usr/sbin/ [root@ip-10-0-1-207]# mkdir /etc/keepalived/ [root@ip-10-0-1-207]# cp /opt/keepalived/etc/keepalived/keepalived.conf /etc/keepalived/ [root@ip-10-0-1-207]# mkdir /usr/libexec/keepalived/ [root@ip-10-0-1-207]# useradd -M keepalived_script 
+[root@ip-10-0-1-207]# cp keepalived_initd.txt /etc/init.d/keepalived
+[root@ip-10-0-1-207]# cp /root/keepalived-1.3.2/keepalived/etc/sysconfig/keepalived /etc/sysconfig/
+[root@ip-10-0-1-207]# cp /root/keepalived-1.3.2/keepalived/etc/init/keepalived.conf /etc/init/
+[root@ip-10-0-1-207]# ln -s /opt/keepalived/sbin/keepalived /usr/sbin/
+[root@ip-10-0-1-207]# mkdir /etc/keepalived/
+[root@ip-10-0-1-207]# cp /opt/keepalived/etc/keepalived/keepalived.conf /etc/keepalived/
+[root@ip-10-0-1-207]# mkdir /usr/libexec/keepalived/
+[root@ip-10-0-1-207]# useradd -M keepalived_script
 ```
 ## Configuration
 
@@ -55,37 +63,172 @@ Use the steps below when keepalived has been compiled from source. We also need 
 
 
 ```
-[ec2-user@ip-10-0-1-207 ~]$ cat /etc/haproxy/haproxy.cfg global     log         127.0.0.1 local2      chroot      /var/lib/haproxy     pidfile     /var/run/haproxy.pid     maxconn     4000     user        haproxy     group       haproxy     daemon  defaults         log     global         mode    tcp         option  httplog         option  dontlognull         timeout connect 5000         timeout client 50000         timeout server 50000  listen stats :9090         balance         mode http         stats enable         stats uri /haproxy_stats         stats auth admin:strongPassworD  listen exasol_proxy :8563         mode tcp         option tcplog         balance roundrobin          server ip-10-0-1-11.eu-west-1.compute.internal 10.0.1.11:8563 weight 1 check rise 2 fall 3         server ip-10-0-1-12.eu-west-1.compute.internal 10.0.1.12:8563 weight 1 check rise 2 fall 3         server ip-10-0-1-13.eu-west-1.compute.internal 10.0.1.13:8563 weight 1 check rise 2 fall 3 
+[ec2-user@ip-10-0-1-207 ~]$ cat /etc/haproxy/haproxy.cfg
+global
+    log         127.0.0.1 local2
+
+    chroot      /var/lib/haproxy
+    pidfile     /var/run/haproxy.pid
+    maxconn     4000
+    user        haproxy
+    group       haproxy
+    daemon
+
+defaults
+        log     global
+        mode    tcp
+        option  httplog
+        option  dontlognull
+        timeout connect 5000
+        timeout client 50000
+        timeout server 50000
+
+listen stats :9090
+        balance
+        mode http
+        stats enable
+        stats uri /haproxy_stats
+        stats auth admin:strongPassworD
+
+listen exasol_proxy :8563
+        mode tcp
+        option tcplog
+        balance roundrobin
+
+        server ip-10-0-1-11.eu-west-1.compute.internal 10.0.1.11:8563 weight 1 check rise 2 fall 3
+        server ip-10-0-1-12.eu-west-1.compute.internal 10.0.1.12:8563 weight 1 check rise 2 fall 3
+        server ip-10-0-1-13.eu-west-1.compute.internal 10.0.1.13:8563 weight 1 check rise 2 fall 3 
 ```
 ### 2. Configure Keepalived Master
 
 
 ```
-[ec2-user@ip-10-0-1-207 ~]$ cat /etc/keepalived/keepalived.conf vrrp_script chk_haproxy { script "pidof haproxy" interval 2 }  vrrp_instance VI_1 { debug 2 interface eth0                  # interface to monitor state MASTER virtual_router_id 1             # Assign one ID for this route priority 101                    # 101 on master, 100 on slave unicast_src_ip 10.0.1.207       # Private IP unicast_peer { 10.0.1.190 } track_script { chk_haproxy } notify_master "/usr/libexec/keepalived/notify.sh MASTER" notify_backup "/usr/libexec/keepalived/notify.sh BACKUP" notify_fault "/usr/libexec/keepalived/notify.sh FAULT"    } 
+[ec2-user@ip-10-0-1-207 ~]$ cat /etc/keepalived/keepalived.conf
+vrrp_script chk_haproxy {
+script "pidof haproxy"
+interval 2
+}
+
+vrrp_instance VI_1 {
+debug 2
+interface eth0                  # interface to monitor
+state MASTER
+virtual_router_id 1             # Assign one ID for this route
+priority 101                    # 101 on master, 100 on slave
+unicast_src_ip 10.0.1.207       # Private IP
+unicast_peer {
+10.0.1.190
+}
+track_script {
+chk_haproxy
+}
+notify_master "/usr/libexec/keepalived/notify.sh MASTER"
+notify_backup "/usr/libexec/keepalived/notify.sh BACKUP"
+notify_fault "/usr/libexec/keepalived/notify.sh FAULT"  
+
+}
 ```
 ### 3. Configure Keepalived Slave
 
 
 ```
-[ec2-user@ip-10-0-1-190 ~]$ cat /etc/keepalived/keepalived.conf vrrp_script chk_haproxy { script "pidof haproxy" interval 2 }  vrrp_instance VI_1 { debug 2 interface eth0                  # interface to monitor state BACKUP virtual_router_id 1             # Assign one ID for this route priority 100                    # 101 on master, 100 on slave unicast_src_ip 10.0.1.190       # Private IP unicast_peer { 10.0.1.207 } track_script { chk_haproxy } notify_master "/usr/libexec/keepalived/notify.sh MASTER" notify_backup "/usr/libexec/keepalived/notify.sh BACKUP" notify_fault "/usr/libexec/keepalived/notify.sh FAULT"   }   
+[ec2-user@ip-10-0-1-190 ~]$ cat /etc/keepalived/keepalived.conf
+vrrp_script chk_haproxy {
+script "pidof haproxy"
+interval 2
+}
+
+vrrp_instance VI_1 {
+debug 2
+interface eth0                  # interface to monitor
+state BACKUP
+virtual_router_id 1             # Assign one ID for this route
+priority 100                    # 101 on master, 100 on slave
+unicast_src_ip 10.0.1.190       # Private IP
+unicast_peer {
+10.0.1.207
+}
+track_script {
+chk_haproxy
+}
+notify_master "/usr/libexec/keepalived/notify.sh MASTER"
+notify_backup "/usr/libexec/keepalived/notify.sh BACKUP"
+notify_fault "/usr/libexec/keepalived/notify.sh FAULT"  
+}   
 ```
 ### 4. Keepalived will trigger a script when the HAproxy service fails on the current master, deploy the scripts (**notify.sh, master.sh, backup.sh**) on both instances ( (!)change owner to keepalived_script if using the latest version of keepalived)
 
 
 ```
-  [root@ip-10-0-1-207 ec2-user]# cat /usr/libexec/keepalived/notify.sh #!/bin/bash                                                                                                                               STATE=$1                                                             NOW=$(date +"%D %T")                                                 KEEPALIVED="/tmp"                                                                                                                         case $STATE in                                                               "MASTER") touch $KEEPALIVED/MASTER                                             echo "$NOW Becoming MASTER" >> $KEEPALIVED/COUNTER                   /usr/libexec/keepalived/master.sh                                    exit 0                                                               ;;                                                         "BACKUP") rm $KEEPALIVED/MASTER                                                echo "$NOW Becoming BACKUP" >> $KEEPALIVED/COUNTER                   /usr/libexec/keepalived/backup.sh                                    exit 0                                                               ;;                                                         "FAULT")  rm $KEEPALIVED/MASTER                                                echo "$NOW Becoming FAULT" >> $KEEPALIVED/COUNTER                    /usr/libexec/keepalived/backup.sh                                     exit 0                                                               ;;                                                         *)        echo "unknown state"                                                 echo "$NOW Becoming UNKOWN" >> $KEEPALIVED/COUNTER                   exit 1                                                               ;;                                                 esac                                                                 
+[root@ip-10-0-1-207 ec2-user]# cat /usr/libexec/keepalived/notify.sh
+#!/bin/bash                                                         
+                                                                    
+STATE=$1                                                            
+NOW=$(date +"%D %T")                                                
+KEEPALIVED="/tmp"                                                   
+                                                                    
+case $STATE in                                                      
+        "MASTER") touch $KEEPALIVED/MASTER                          
+                  echo "$NOW Becoming MASTER" >> $KEEPALIVED/COUNTER
+                  /usr/libexec/keepalived/master.sh                 
+                  exit 0                                            
+                  ;;                                                
+        "BACKUP") rm $KEEPALIVED/MASTER                             
+                  echo "$NOW Becoming BACKUP" >> $KEEPALIVED/COUNTER
+                  /usr/libexec/keepalived/backup.sh                 
+                  exit 0                                            
+                  ;;                                                
+        "FAULT")  rm $KEEPALIVED/MASTER                             
+                  echo "$NOW Becoming FAULT" >> $KEEPALIVED/COUNTER 
+                  /usr/libexec/keepalived/backup.sh                  
+                  exit 0                                            
+                  ;;                                                
+        *)        echo "unknown state"                              
+                  echo "$NOW Becoming UNKOWN" >> $KEEPALIVED/COUNTER
+                  exit 1                                            
+                  ;;                                                
+esac                                                                  
 ```
 ### 5. Master Script (change owner to keepalived_script if using the latest version of keepalived)
 
 
 ```
-[root@ip-10-0-1-207 ec2-user]# cat /usr/libexec/keepalived/master.sh #!/bin/bash                                                                                                                                                                                                                                     exec >> /tmp/master.log                                                                                                 exec 2>&1                                                                                                               #set -x                                                                                                                                                                                                                                          AWS_ACCESS_KEY=Key                                                                             AWS_SECRET_KEY=Secret                                                          export EC2_URL=https://ec2.eu-west-1.amazonaws.com                                                                      export EC2_HOME="/opt/aws/apitools/ec2"                                                                                 export JAVA_HOME=/usr/lib/jvm/jre                                                                                       export AWS_CLOUDWATCH_HOME=/opt/aws/apitools/mon                                                                        export AWS_PATH=/opt/aws                                                                                                export AWS_AUTO_SCALING_HOME=/opt/aws/apitools/as                                                                       export AWS_ELB_HOME=/opt/aws/apitools/elb                                                                                                                                                                                                       EIP=34.249.49.35 # Elastic IP to be associated                                                                                                                                                                                                  INSTANCE_ID=$(curl -s http://169.254.169.254/latest/meta-data/instance-id)                                              PRIVATE_IP=$(curl -s http://169.254.169.254/latest/meta-data/local-ipv4)                                                                                                                                                                  /opt/aws/bin/ec2-associate-address -O $AWS_ACCESS_KEY -W $AWS_SECRET_KEY -U $EC2_URL $EIP -instance $INSTANCE_ID -p $PRIVATE_IP --allow-reassociation echo "$(date) I'm master now" 
+[root@ip-10-0-1-207 ec2-user]# cat /usr/libexec/keepalived/master.sh
+#!/bin/bash                                                                                                            
+                                                                                                                       
+exec >> /tmp/master.log                                                                                                
+exec 2>&1                                                                                                              
+#set -x                                                                                                                 
+                                                                                                                       
+AWS_ACCESS_KEY=Key                                                                            
+AWS_SECRET_KEY=Secret                                                         
+export EC2_URL=https://ec2.eu-west-1.amazonaws.com                                                                     
+export EC2_HOME="/opt/aws/apitools/ec2"                                                                                
+export JAVA_HOME=/usr/lib/jvm/jre                                                                                      
+export AWS_CLOUDWATCH_HOME=/opt/aws/apitools/mon                                                                       
+export AWS_PATH=/opt/aws                                                                                               
+export AWS_AUTO_SCALING_HOME=/opt/aws/apitools/as                                                                      
+export AWS_ELB_HOME=/opt/aws/apitools/elb                                                                              
+                                                                                                                       
+EIP=34.249.49.35 # Elastic IP to be associated                                                                         
+                                                                                                                       
+INSTANCE_ID=$(curl -s http://169.254.169.254/latest/meta-data/instance-id)                                             
+PRIVATE_IP=$(curl -s http://169.254.169.254/latest/meta-data/local-ipv4)                                                                                                                                                                 
+/opt/aws/bin/ec2-associate-address -O $AWS_ACCESS_KEY -W $AWS_SECRET_KEY -U $EC2_URL $EIP -instance $INSTANCE_ID -p $PRIVATE_IP --allow-reassociation
+echo "$(date) I'm master now"
 ```
 ### 6. Backup Script (change owner to keepalived_script if using the latest version of keepalived)
 
 
 ```
-[root@ip-10-0-1-207 ec2-user]# cat /usr/libexec/keepalived/backup.sh #!/bin/bash                                                                                                                                                                                                                     exec >> /tmp/backup.log                                                                                         exec 2>&1                                                                                                       #set -x                                                                                                           echo "$(date) I'm backup nothing to do" 
+[root@ip-10-0-1-207 ec2-user]# cat /usr/libexec/keepalived/backup.sh
+#!/bin/bash                                                                                                    
+                                                                                                               
+exec >> /tmp/backup.log                                                                                        
+exec 2>&1                                                                                                      
+#set -x                                                                                                         
+
+echo "$(date) I'm backup nothing to do" 
 ```
 ### 7. Make keepalived scripts executable (both instances)
 
@@ -103,19 +246,15 @@ Use the steps below when keepalived has been compiled from source. We also need 
 
 
 ```
-[root@ip-10-0-1-207 ec2-user]# service haproxy start && service keepalived start [root@ip-10-0-1-207 ec2-user]# tail -n 30 /var/log/messages 
+[root@ip-10-0-1-207 ec2-user]# service haproxy start && service keepalived start 
+[root@ip-10-0-1-207 ec2-user]# tail -n 30 /var/log/messages 
 ```
 ### 10. Start HAproxy and Keepalived on the slave and check logs
 
 
 ```
-[root@ip-10-0-1-207 ec2-user]# service haproxy start && service keepalived start [root@ip-10-0-1-207 ec2-user]# tail -n 30 /var/log/messages 
+[root@ip-10-0-1-207 ec2-user]# service haproxy start && service keepalived start 
+[root@ip-10-0-1-207 ec2-user]# tail -n 30 /var/log/messages 
 ```
-## Additional Notes
 
--
-
-## Additional References
-
--
 
