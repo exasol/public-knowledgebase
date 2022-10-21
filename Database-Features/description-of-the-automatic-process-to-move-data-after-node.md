@@ -12,7 +12,7 @@ This article describes the automatic process to move data after node failures
 
 ## Explanation
 
-To automatically recover a missing data redundancy in the above-mentioned scenario, a process exists to handle this situation. For this process to work, the user is required to define a Restore Delay in the database configuration, whose default value is 10 minutes, which means
+To automatically recover a missing data redundancy in the above-mentioned scenario, a process exists to handle this situation. For this process to work, the user is required to define a Restore Delay in the database configuration (default value is 10 minutes), which means
 
 
 >  Look at all database and volume nodes 10 minutes after an automatic database restart and try to move data from the offline volume node to the newly utilized database reserve node.
