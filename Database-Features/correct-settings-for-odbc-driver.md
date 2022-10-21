@@ -28,7 +28,13 @@ For an exemplary ODBC DSN "myexaodbcdsn", the following REG file would do the jo
 
 
 ```"noformat
-Windows Registry Editor Version 5.00  [HKEY_LOCAL_MACHINE\SOFTWARE\ODBC\ODBC.INI\myexaodbcdsn] "AnsiArgEncoding"="CP_UTF8" "AnsiDataEncoding"="CP_UTF8" "UnicodeArgEncoding"="CP_UTF8" "UnicodeDataEncoding"="CP_UTF8" 
+Windows Registry Editor Version 5.00
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\ODBC\ODBC.INI\myexaodbcdsn]
+"AnsiArgEncoding"="CP_UTF8"
+"AnsiDataEncoding"="CP_UTF8"
+"UnicodeArgEncoding"="CP_UTF8"
+"UnicodeDataEncoding"="CP_UTF8"
 ```
 ## Step 2
 
