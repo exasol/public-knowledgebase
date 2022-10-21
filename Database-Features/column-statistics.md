@@ -15,7 +15,7 @@ Due to format changes, all column statistics are **invalidated** during an upda
 
 #### Required User Action
 
-After the update to EXASOL 6.0, we recommend to recompute the statistics for the whole database to avoid any potential unexpected performance losses. Please note that the following command is introduced with version 6.0.4 (see ~~~~[EXASOL-2110](https://www.exasol.com/support/browse/EXASOL-2110 "Column")~~~~).
+After the update to EXASOL 6.0, we recommend to recompute the statistics for the whole database to avoid any potential unexpected performance losses. Please note that the following command is introduced with version 6.0.4.
 
 ANALYZE DATABASE REFRESH STATISTICS;
 
@@ -29,9 +29,26 @@ The query below delivers such an estimate (measured in seconds) when running **b
 
 
 ```"code
-select     cast(         zeroifnull(             sum(raw_object_size) / 1024 / 1024 / 150 / nproc()         ) as dec(18, 1)     ) as COLUMN_STATISTICS_REFRESH_SECONDS from     "$EXA_COLUMN_SIZES" where     (column_schema, column_table, column_name) in (         select             column_schema,             column_table,             column_name         from             "$EXA_COLUMN_STATISTICS"         where             -- filter does not work on 6.0 before the REFRESH             min_value_estimate is not null       ); 
+select
+    cast(
+        zeroifnull(
+            sum(raw_object_size) / 1024 / 1024 / 150 / nproc()
+        ) as dec(18, 1)
+    ) as COLUMN_STATISTICS_REFRESH_SECONDS
+from
+    "$EXA_COLUMN_SIZES"
+where
+    (column_schema, column_table, column_name) in (
+        select
+            column_schema,
+            column_table,
+            column_name
+        from
+            "$EXA_COLUMN_STATISTICS"
+        where
+            -- filter does not work on 6.0 before the REFRESH
+            min_value_estimate is not null  
+    ); 
 ```
-## Additional References
 
-<https://community.exasol.com/t5/database-features/exa-statistics/ta-p/1413>
 
