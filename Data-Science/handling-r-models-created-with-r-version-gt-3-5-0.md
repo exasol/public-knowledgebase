@@ -1,7 +1,7 @@
 # Handling R models created with R Version &gt; 3.5.0 
 ## Scope
 
-Serialized models that have been created with a version of R > 3.5.0 will lead to an error in Exasol when calling unserialize within a R UDF. The error raised by the R UDF might read something like 
+Serialized models that have been created with a version of R > 3.5.0 will lead to an error in Exasol, when calling unserialize within a R UDF. The error raised by the R UDF might read something like 
 
 
 ```"default
