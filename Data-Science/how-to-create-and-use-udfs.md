@@ -43,7 +43,12 @@ Write your script in the database - we'll do a simple one for this example:
 
 
 ```markup
---/ create or replace R scalar script Rsquare(x int) returns int as  run <- function(ctx) {     ctx$x * ctx$x } /
+--/ 
+create or replace R scalar script Rsquare(x int) returns int as  
+run <- function(ctx) {     
+ ctx$x * ctx$x 
+} 
+/
 ```
 ## Step 3
 
@@ -69,7 +74,25 @@ A scalar UDF computes on one input row per UDF instance and returns one output r
 
 
 ```markup
-reate or replace table t (x int, y int);  insert into t values(1,1),(1,2),(4,2);  select * from t; --/ CREATE OR REPLACE LUA SCALAR SCRIPT my_maximum (a DOUBLE, b DOUBLE) RETURNS DOUBLE AS  function run(ctx)     if ctx.a == nul or ctx.b == null then         return null     end     if ctx.a > ctx.b then         return ctx.a     else         return ctx.b     end end /  SELECT x, y, my_maximum(x, y) from t;
+reate or replace table t (x int, y int);  
+insert into t values(1,1),(1,2),(4,2);  
+select * from t; 
+
+--/ 
+CREATE OR REPLACE LUA SCALAR SCRIPT my_maximum (a DOUBLE, b DOUBLE) RETURNS DOUBLE AS  
+function run(ctx)     
+ if ctx.a == nul or ctx.b == null then         
+  return null     
+ end     
+ if ctx.a > ctx.b then         
+  return ctx.a     
+ else         
+  return ctx.b     
+ end 
+end 
+/  
+
+SELECT x, y, my_maximum(x, y) from t;
 ```
 ## Aggregate UDFs
 
@@ -79,7 +102,24 @@ The number of UDF instances to be started is handled by the GROUP BY clause. Wit
 
 
 ```markup
---/ CREATE OR REPLACE LUA SET SCRIPT my_average (a DOUBLE) RETURNS DOUBLE AS  function run(ctx)     if ctx.size() == 0 then         return null     else         local sum = 0         repeat             if ctx.a ~= null then                 sum = sum + ctx.a             end         until not ctx.next()         return sum/ctx.size()     end end /  SELECT my_average(x), my_average(y) from t;
+--/ 
+CREATE OR REPLACE LUA SET SCRIPT my_average (a DOUBLE) RETURNS DOUBLE AS  
+function run(ctx)     
+ if ctx.size() == 0 then         
+  return null     
+ else         
+  local sum = 0         
+ repeat             
+  if ctx.a ~= null then                 
+   sum = sum + ctx.a             
+  end         
+ until not ctx.next()         
+ return sum/ctx.size()     
+ end 
+end 
+/  
+
+SELECT my_average(x), my_average(y) from t;
 ```
 ## Analytical UDFs
 
@@ -89,7 +129,23 @@ In the following example, a running sum is computed. Notice that the simple algo
 
 
 ```markup
---/ CREATE OR REPLACE LUA SET SCRIPT my_sum ( a DOUBLE)    EMITS (count DOUBLE, val DOUBLE, sum DOUBLE) AS      function run(ctx)       local sum  = 0       local count = 0       repeat           if ctx.a ~= null then               sum = sum + ctx.a               count = count +1               ctx.emit(count, ctx.a, sum)           end       until not ctx.next()   end /    SELECT my_sum(x ORDER BY x) from t;
+--/ 
+CREATE OR REPLACE LUA SET SCRIPT my_sum ( a DOUBLE)    
+EMITS (count DOUBLE, val DOUBLE, sum DOUBLE) AS      
+function run(ctx)       
+ local sum  = 0       
+ local count = 0       
+ repeat           
+  if ctx.a ~= null then               
+   sum = sum + ctx.a               
+   count = count +1               
+   ctx.emit(count, ctx.a, sum)           
+  end       
+ until not ctx.next()   
+end 
+/    
+
+SELECT my_sum(x ORDER BY x) from t;
 ```
 You can find all of these examples in the attached file. 
 
