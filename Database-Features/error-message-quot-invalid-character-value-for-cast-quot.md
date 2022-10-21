@@ -13,7 +13,9 @@ You might face the exception “**data exception - invalid character value for c
 
 A **data exception**error has occurred if you receive the following error messages:
 
-`**[Code: 0, SQL State: 22018] data exception - invalid character value for cast; Value: …**`
+```
+[Code: 0, SQL State: 22018] data exception - invalid character value for cast; Value: …
+```
 
 ## **Examples:**
 
@@ -25,7 +27,10 @@ SELECT TO_NUMBER('1,0420000000000005E+03') TO_NUMBER1;
 ```
  **Error Message:**
 
-`**[Code: 0, SQL State: 22018]  data exception - invalid character value for cast; Value: '1,0420000000000005E+03' (Session: 1714045834776412163)**`
+```
+[Code: 0, SQL State: 22018]  data exception - invalid character value for cast; 
+Value: '1,0420000000000005E+03' (Session: 1714045834776412163)
+```
 
 ### **Insert into a Table**
 
@@ -35,8 +40,10 @@ INSERT INTO T VALUES ('9,25');
 ```
 **Error Message:**
 
-`**[Code: 0, SQL State: 22018]  data exception - invalid character value for cast; Value: '9,25' in write of column T.A (Session: 1714045834776412163)**`
-
+```sql
+[Code: 0, SQL State: 22018]  data exception - invalid character value for cast; 
+Value: '9,25' in write of column T.A (Session: 1714045834776412163)
+```
 ## Explanation
 
 In general, EXASolution does implicit casting. The problem comes from attempting to insert a non-numeric string in a numeric column. The string is converted to a number causes the cast exception to be thrown.
