@@ -18,7 +18,11 @@ The configuration is embedded in the top of the script, where different limits c
 
 
 ```"noformat
-    local USER_LIMITS = {         USER1 = { query_timeout = 300, temp_ram = 3000, idle_timeout = 1800 },         USER2  = { query_timeout = 150, idle_timeout = 300 },         SYS = { temp_ram = 10000 }     } 
+	local USER_LIMITS = {
+		USER1 = { query_timeout = 300, temp_ram = 3000, idle_timeout = 1800 },
+		USER2  = { query_timeout = 150, idle_timeout = 300 },
+		SYS = { temp_ram = 10000 }
+	}
 ```
 The above example will impose resource limits per session for three database users, with different criteria each.
 
