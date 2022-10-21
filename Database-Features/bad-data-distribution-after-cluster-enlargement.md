@@ -6,7 +6,7 @@
 
 ## Additional Notes
 
-This may be caused by the semantics of the cluster enlargement (REORGANIZE TABLE). Meaning, the step causing the problem ** is the Cluster enlargement to N+X nodes, including REORGANIZE of the fact tables.
+This may be caused by the semantics of the cluster enlargement (REORGANIZE TABLE). Meaning, the step causing the problem is the Cluster enlargement to N+X nodes, including REORGANIZE of the fact tables.
 
 ## Prerequisites
 
@@ -22,5 +22,5 @@ With chronologically sorted data, data inserted last equals the latest data... t
 
 In the worst case, X==1 and any query asking for the latest data are performed on one node only.
 
-To avoid this, always put a distribution key on your fact tables, but**not**on a date column.
+To avoid this, always put a distribution key on your fact tables, but **not** on a date column.
 
