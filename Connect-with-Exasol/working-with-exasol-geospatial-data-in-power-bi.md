@@ -32,9 +32,13 @@ INSERT INTO cities VALUES('London', 'POINT (-0.1233 51.5309)');
 ```
 Let's quickly get this data via 'Get data', pick the Exasol connector, connect to the data source and then by using the navigator and selecting the right table:
 
-![](images/exa-Pieterjan_1-1618839715289.png)When we fetch this data using the Exasol connector, we can see it's not showing up (yet) in the Fields we can use in our visualisations.
+![](images/exa-Pieterjan_1-1618839715289.png)
 
-![](images/exa-Pieterjan_0-1618839483229.png) Let's quickly amend this!
+When we fetch this data using the Exasol connector, we can see it's not showing up (yet) in the Fields we can use in our visualisations.
+
+![](images/exa-Pieterjan_0-1618839483229.png) 
+
+Let's quickly amend this!
 
 ## Edit the query using the Power Query Editor
 
@@ -44,11 +48,17 @@ The Power Query Editor will pop up and we'll see both columns.
 
 Let's change the column type to 'Text' by right mouse clicking on the 'geo' column header
 
-![](images/exa-Pieterjan_2-1618840294176.png)Immediately after, at the top left right, press 'File' and then 'Close & Apply'
+![](images/exa-Pieterjan_2-1618840294176.png)
 
-![](images/exa-Pieterjan_3-1618840389949.png) The geo field is now useable in any visualisation! That's it!
+Immediately after, at the top left right, press 'File' and then 'Close & Apply'
 
-![](images/exa-Pieterjan_4-1618840549123.png)## Extracting longitude and latitude from Well Known Text (WKT) data.
+![](images/exa-Pieterjan_3-1618840389949.png) 
+
+The geo field is now useable in any visualisation! That's it!
+
+![](images/exa-Pieterjan_4-1618840549123.png)
+
+## Extracting longitude and latitude from Well Known Text (WKT) data.
 
 Let's continue from our example above. We now have a `geometry` column we could use straight away, but there's a challenge:
 
