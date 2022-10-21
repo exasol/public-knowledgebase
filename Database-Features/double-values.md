@@ -15,11 +15,14 @@ CREATE TABLE TEST AS SELECT ROUND(((71222-65504)/65504*100) ,1); -- Creates a DO
 ```
 ## Solution
 
-You can use an exact numeric type, like DECIMAL to remove inaccuracies.  Such as the example below:
+You can use an exact numeric type, like DECIMAL to remove inaccuracies. Such as the example below:
 
 
 ```"code-sql"
-SELECT ROUND(CAST((71222-65504)/65504*100 AS DECIMAL(16,3)) ,1); > 8.7 SELECT cast(1 as DECIMAL(17,16)) - cast(1E-16 as DECIMAL(17,16)) AS exact; > 0.9999999999999999
+SELECT ROUND(CAST((71222-65504)/65504*100 AS DECIMAL(16,3)) ,1); 
+> 8.7 
+SELECT cast(1 as DECIMAL(17,16)) - cast(1E-16 as DECIMAL(17,16)) AS exact; 
+> 0.9999999999999999
 ```
 ## Additional References
 
