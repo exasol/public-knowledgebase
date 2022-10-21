@@ -26,7 +26,8 @@ You can execute the script with the below statement:
 
 
 ```"code-sql"
--- parameters: add_user_structure, add_rights, store_in_table execute script create_db_DDL(true, true, false);
+-- parameters: add_user_structure, add_rights, store_in_table 
+execute script create_db_DDL(true, true, false);
 ```
 ## Additional References
 
