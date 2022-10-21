@@ -32,7 +32,23 @@ Like in the original article, latitude, and longitude are clipped at ~85 (resp. 
 
 
 ```"code
-create function coords2pixel(latitude double, longitude double, detail int)     returns varchar(100) is     sinLatitude double;     pixelX decimal(36,0);     pixelY decimal(36,0); begin     latitude := greatest( -85.05112878, least( 85.05112878, latitude ) );     longitude := greatest(-180, least( 180, longitude ) );     sinLatitude := sin(latitude * pi() / 180);      pixelX := ((longitude + 180) / 360) * 256 * power(2,detail);     pixelY := (0.5 - log((1 + sinLatitude) / (1- sinLatitude)) / (4 * pi())) * 256 * power(2,detail);      return pixelX || '/' || pixelY; end; / 
+create function coords2pixel(latitude double, longitude double, detail int)
+	returns varchar(100)
+is
+	sinLatitude double;
+	pixelX decimal(36,0);
+	pixelY decimal(36,0);
+begin
+	latitude := greatest( -85.05112878, least( 85.05112878, latitude ) );
+	longitude := greatest(-180, least( 180, longitude ) );
+	sinLatitude := sin(latitude * pi() / 180);
+
+	pixelX := ((longitude + 180) / 360) * 256 * power(2,detail);
+	pixelY := (0.5 - log((1 + sinLatitude) / (1- sinLatitude)) / (4 * pi())) * 256 * power(2,detail);
+
+	return pixelX || '/' || pixelY;
+end;
+/
 ```
 Please note that this will perform a virtual transposition of coordinate ordering: input is LAT/LONG (or vertical/horizontal when looking at a map) while the output is X/Y (horizontal/vertical).
 
@@ -45,7 +61,16 @@ We use **regular expressions** with lookahead and look behind qualifiers for **s
 
 
 ```"code
-create function pixel2tile(pixel varchar(100))     returns varchar(100) is begin     return          floor( regexp_substr(pixel, '.*(?=/)') / 256 )         || '/' ||         floor( regexp_substr(pixel, '(?<=/).*') / 256 ); end; / 
+create function pixel2tile(pixel varchar(100))
+	returns varchar(100)
+is
+begin
+	return 
+		floor( regexp_substr(pixel, '.*(?=/)') / 256 )
+		|| '/' ||
+		floor( regexp_substr(pixel, '(?<=/).*') / 256 );
+end;
+/
 ```
 **REGEXP_SUBSTR** is used as a replacement for **ST_X** and **ST_Y**, which are part of the GEOSPATIAL license package.
 
@@ -62,7 +87,24 @@ This makes the conversion routine itself rather short:
 
 
 ```"code
-create or replace function tile2quad(tile varchar(100), detail int)     returns varchar(30) is     xCoord int;     yCoord int;     quadkey varchar(30);     lod int; begin     xCoord := regexp_substr(tile, '.*(?=/)');     yCoord := regexp_substr(tile, '(?<=/).*');     quadkey := '';     for lod := 1 to detail do         quadkey := quadkey || ( bit_check(xCoord,detail-lod) + 2* bit_check(yCoord,detail-lod) );     end for;      return quadkey; end; / 
+create or replace function tile2quad(tile varchar(100), detail int)
+	returns varchar(30)
+is
+	xCoord int;
+	yCoord int;
+	quadkey varchar(30);
+	lod int;
+begin
+	xCoord := regexp_substr(tile, '.*(?=/)');
+	yCoord := regexp_substr(tile, '(?<=/).*');
+	quadkey := '';
+	for lod := 1 to detail do
+		quadkey := quadkey || ( bit_check(xCoord,detail-lod) + 2* bit_check(yCoord,detail-lod) );
+	end for;
+
+	return quadkey;
+end;
+/
 ```
 ## Step 4
 
@@ -70,7 +112,14 @@ We now have a set of cascading functions that can transform GPS coordinates into
 
 
 ```"code
-select coords2pixel(49.45, 11.08, 3); --> '1087/699'  select pixel2tile('1087/699'); --> '4/2'  select tile2quad('4/2', 3); --> '120' 
+select coords2pixel(49.45, 11.08, 3);
+--> '1087/699'
+
+select pixel2tile('1087/699');
+--> '4/2'
+
+select tile2quad('4/2', 3);
+--> '120'
 ```
 And indeed, according to the [image](https://msdn.microsoft.com/dynimg/IC96238.jpg) on the link given above, Nuremberg should be inside mapped tile "120" (which is fully contained in the larger map tiles "12" and "1").
 
@@ -78,7 +127,8 @@ Short version for a smaller map tile with more details:
 
 
 ```"code
-select tile2quad(pixel2tile(coords2pixel(49.45, 11.08, 10)), 10); --> '1202033313' 
+select tile2quad(pixel2tile(coords2pixel(49.45, 11.08, 10)), 10); 
+--> '1202033313' 
 ```
 ## Additional Notes
 
