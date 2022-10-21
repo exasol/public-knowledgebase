@@ -27,8 +27,26 @@ You can use the LS script to verify that the file is accessible by the database:
 
 
 ```
---/ CREATE PYTHON SCALAR SCRIPT ls(my_path VARCHAR(100)) EMITS (files VARCHAR(100)) AS import subprocess  def run(c):     try:       p = subprocess.Popen('ls '+c.my_path,         stdout = subprocess.PIPE,         stderr = subprocess.STDOUT,         close_fds = True,         shell = True)       out, err = p.communicate()       for line in out.strip().split('\n'):         c.emit(line)     finally:       if p is not None:         try: p.kill()         except: pass /   
- 
+--/
+CREATE PYTHON SCALAR SCRIPT ls(my_path VARCHAR(100))
+EMITS (files VARCHAR(100)) AS
+import subprocess
+
+def run(c):
+	try:
+	  p = subprocess.Popen('ls '+c.my_path,
+		stdout = subprocess.PIPE,
+		stderr = subprocess.STDOUT,
+		close_fds = True,
+		shell = True)
+	  out, err = p.communicate()
+	  for line in out.strip().split('\n'):
+	    c.emit(line)
+	finally:
+	  if p is not None:
+	    try: p.kill()
+	    except: pass
+/ 
 ```
 Once the script is created, you can run the following command to ensure that the database is able to see the file. In this example, the bucket is test1:
 
@@ -40,7 +58,8 @@ You should see the file in the results:
 
 
 ```markup
-FILES --------------------- my-app-1.0-SNAPSHOT.jar
+FILES --------------------- 
+my-app-1.0-SNAPSHOT.jar
 ```
 If you don't see the file listed, it means something went wrong. You can check the following:
 
@@ -55,7 +74,23 @@ You can create your UDF using the code below:
 
 
 ```markup
---/ CREATE OR REPLACE JAVA SCALAR SCRIPT HELLOWORLD() RETURNS VARCHAR(200) AS  // Tested using Exasol 6.2.5 // This jar was generated using the following tutorial:  // http://maven.apache.org/guides/getting-started/maven-in-five-minutes.html  %jar /buckets/bucketfs1/test1/my-app-1.0-SNAPSHOT.jar; import java.io.*; import com.mycompany.app.App;  class HELLOWORLD {      static String run(ExaMetadata exa, ExaIterator ctx) throws Exception {          ByteArrayOutputStream baos = new ByteArrayOutputStream();          System.setOut(new PrintStream(baos));          App.main(null);          return baos.toString(); } } /  SELECT HELLOWORLD();
+--/
+CREATE OR REPLACE JAVA SCALAR SCRIPT HELLOWORLD() RETURNS VARCHAR(200) AS 
+// Tested using Exasol 6.2.5
+// This jar was generated using the following tutorial: 
+// http://maven.apache.org/guides/getting-started/maven-in-five-minutes.html 
+%jar /buckets/bucketfs1/test1/my-app-1.0-SNAPSHOT.jar;
+import java.io.*;
+import com.mycompany.app.App; 
+class HELLOWORLD { 
+    static String run(ExaMetadata exa, ExaIterator ctx) throws Exception { 
+        ByteArrayOutputStream baos = new ByteArrayOutputStream(); 
+        System.setOut(new PrintStream(baos)); 
+        App.main(null); 
+        return baos.toString(); } }
+/
+
+SELECT HELLOWORLD();
 ```
 Most importantly, **you must edit your UDF to show the correct path to your file.**In my example above, the file resides in /buckets/bucketfs1/test1. Just replace the path to the file with the path to your own UDF. It should match the one you used in your LS script from step 2.
 
