@@ -26,7 +26,7 @@ As an example, we only demonstrate geocoding and reverse geocoding.
 
 ## Step 1 - Install Python Package Requests (optional)
 
-In Version 6.2, the Python package "Requests" already comes in the standard language container shipped with the database. However, if you are using a nonstandard container or an earlier version, you may need to install the Python package beforehand. You can confirm this is the case by running the examples below. If you get an error message stating "No module named Requests", then the package needs to be installed. You can find more information on how to do this [here](https://docs.exasol.com/database_concepts/udf_scripts/expand_script_using_bucketfs.htm#PythonLibraries)
+In Version 6.2, the Python package "Requests" already comes in the standard language container shipped with the database. However, if you are using a nonstandard container or an earlier version, you may need to install the Python package beforehand. You can confirm this is the case by running the examples below. If you get an error message stating "No module named Requests", then the package needs to be installed. You can find more information on how to do this [here].(https://docs.exasol.com/database_concepts/udf_scripts/expand_script_using_bucketfs.htm#PythonLibraries)
 
 ## Step 2 - Adapt arcgis_demo.sql (optional)
 
@@ -34,11 +34,13 @@ If you do not have the proper packages installed (see step 1) - you may need to 
 
 
 ```
-import sys import glob   sys.path.extend(glob.glob('/path/to/bucket/*'))
+import sys 
+import glob   
+sys.path.extend(glob.glob('/path/to/bucket/*'))
 ```
 ## Step 3: Run arcgis_cities
 
-Run the attached script "arcgis_cities.sql" to create the data that you will use in the example
+Run the attached script "arcgis_cities.sql" to create the data that you will use in the example.
 
 ## Step 4: Run arcgis_demo
 
