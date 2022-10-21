@@ -19,7 +19,20 @@ See <https://www.youtube.com/watch?v=C3eyqTw3HsQ> for a video demonstration of t
 
 
 ```"code
- CREATE or replace PYTHON SET SCRIPT google_geocode(placename varchar(200)) emits (lat double, lng double) AS import googlemaps def run(ctx):     gmaps = googlemaps.Client(key='<your-secret-key>')     geocode_result = gmaps.geocode(ctx.placename)     for this_place in geocode_result:         lat=this_place["geometry"]["location"]["lat"]         lng=this_place["geometry"]["location"]["lng"]         ctx.emit(lat,lng) /  select google_geocode('10 Downing Street, London, UK') from dual;
+--/
+CREATE or replace PYTHON SET SCRIPT google_geocode(placename varchar(200)) 
+emits (lat double, lng double) AS
+import googlemaps
+def run(ctx):
+	gmaps = googlemaps.Client(key='<your-secret-key>')
+	geocode_result = gmaps.geocode(ctx.placename)
+	for this_place in geocode_result:
+		lat=this_place["geometry"]["location"]["lat"]
+		lng=this_place["geometry"]["location"]["lng"]
+		ctx.emit(lat,lng)
+/
+
+select google_geocode('10 Downing Street, London, UK') from dual;
 ```
 ## Reverse Geocoding
 
@@ -27,7 +40,18 @@ See <https://www.youtube.com/watch?v=C3eyqTw3HsQ> for a video demonstration of t
 
 
 ```"code
-CREATE or replace PYTHON SET SCRIPT google_reverse_geocode(lat double, lng double) emits (placename varchar(20000)) AS import googlemaps def run(ctx):     gmaps = googlemaps.Client(key='<your-secret-key>')     reverse_geocode_result = gmaps.reverse_geocode((ctx.lat, ctx.lng))     for this_result in reverse_geocode_result:         if str(this_result["geometry"]["location_type"])=='ROOFTOP':             ctx.emit(str(this_result["formatted_address"])) /  select google_reverse_geocode(51.5034066, -0.1275923) from dual;
+--/
+CREATE or replace PYTHON SET SCRIPT google_reverse_geocode(lat double, lng double) emits (placename varchar(20000)) AS
+import googlemaps
+def run(ctx):
+	gmaps = googlemaps.Client(key='<your-secret-key>')
+	reverse_geocode_result = gmaps.reverse_geocode((ctx.lat, ctx.lng))
+	for this_result in reverse_geocode_result:
+		if str(this_result["geometry"]["location_type"])=='ROOFTOP':
+			ctx.emit(str(this_result["formatted_address"]))
+/
+
+select google_reverse_geocode(51.5034066, -0.1275923) from dual;
 ```
 ## Nearest Bakery to EXASOL Head Office
 
@@ -35,7 +59,23 @@ CREATE or replace PYTHON SET SCRIPT google_reverse_geocode(lat double, lng doubl
 
 
 ```"code
-CREATE OR REPLACE PYTHON SET SCRIPT google_nearest(address_search varchar(2000), category_search varchar(2000))  EMITS (placename varchar(20000), geolocation varchar(200)) AS import googleplaces from googleplaces import GooglePlaces  def run(ctx):     google_places = GooglePlaces('<your-secret-key>')     query_result = google_places.nearby_search(        location=ctx.address_search, keyword=ctx.category_search, rankby='distance')      for this_place in query_result.places:         ctx.emit(this_place.name, str(this_place.geo_location))  /  select google_nearest('Neumeyerstrasse, Nuremberg, Germany', 'Bakery') from dual;
+--/
+CREATE OR REPLACE PYTHON SET SCRIPT google_nearest(address_search varchar(2000), category_search varchar(2000)) 
+EMITS (placename varchar(20000), geolocation varchar(200)) AS
+import googleplaces
+from googleplaces import GooglePlaces
+
+def run(ctx):
+	google_places = GooglePlaces('<your-secret-key>')
+	query_result = google_places.nearby_search(
+	   location=ctx.address_search, keyword=ctx.category_search, rankby='distance')
+
+	for this_place in query_result.places:
+		ctx.emit(this_place.name, str(this_place.geo_location))
+
+/
+
+select google_nearest('Neumeyerstrasse, Nuremberg, Germany', 'Bakery') from dual;
 ```
 ## Driving distance and time between two points
 
@@ -43,7 +83,22 @@ CREATE OR REPLACE PYTHON SET SCRIPT google_nearest(address_search varchar(2000),
 
 
 ```"code
-CREATE or replace PYTHON SET SCRIPT google_summary_directions(from_place varchar(20000), to_place varchar(20000))  emits (distance_metres double, duration_seconds double) AS import googlemaps def run(ctx):     gmaps = googlemaps.Client(key='<your-secret-key>')     query_result = gmaps.directions(ctx.from_place, ctx.to_place, mode='driving')     for this_result in query_result:         for legs in this_result["legs"]:             distance_metres=legs["distance"]["value"]             duration_seconds=legs["duration"]["value"]             ctx.emit(distance_metres, duration_seconds) /   select google_summary_directions('Buckingham Palace, Westminster, London', '10 Downing Street, London') from dual;
+--/
+CREATE or replace PYTHON SET SCRIPT google_summary_directions(from_place varchar(20000), to_place varchar(20000)) 
+emits (distance_metres double, duration_seconds double) AS
+import googlemaps
+def run(ctx):
+	gmaps = googlemaps.Client(key='<your-secret-key>')
+	query_result = gmaps.directions(ctx.from_place, ctx.to_place, mode='driving')
+	for this_result in query_result:
+		for legs in this_result["legs"]:
+			distance_metres=legs["distance"]["value"]
+			duration_seconds=legs["duration"]["value"]
+			ctx.emit(distance_metres, duration_seconds)
+/
+
+
+select google_summary_directions('Buckingham Palace, Westminster, London', '10 Downing Street, London') from dual;
 ```
 ## Detailed Satellite Navigation between two points
 
