@@ -148,7 +148,22 @@ Class ProcessXML.java:
 
 
 ```"code
-// ... public static String generateSqlForImportSpec(ExaMetadata meta, ExaImportSpecification importSpec)  {           Map<String, String> params = importSpec.getParameters();                      String etludf = new String(meta.getScriptSchema() + "." + meta.getScriptName());                      String mySelect = new String("SELECT ");             mySelect += etludf;           mySelect += " (";           mySelect += params.get("COLUMN_NAME");           mySelect += ") FROM ";           mySelect += params.get("TABLE_NAME");           return mySelect; } // ... 
+// ...
+public static String generateSqlForImportSpec(ExaMetadata meta, ExaImportSpecification importSpec)  {
+    	  Map<String, String> params = importSpec.getParameters();
+    	  
+    	  String etludf = new String(meta.getScriptSchema() + "." + meta.getScriptName());
+    	  
+    	  String mySelect = new String("SELECT ");  
+    	  mySelect += etludf;
+    	  mySelect += " (";
+    	  mySelect += params.get("COLUMN_NAME");
+    	  mySelect += ") FROM ";
+    	  mySelect += params.get("TABLE_NAME");
+    	  return mySelect;
+}
+// ...
+
 ```
 ## Additional Notes
 
