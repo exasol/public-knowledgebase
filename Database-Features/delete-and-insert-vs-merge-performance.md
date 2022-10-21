@@ -5,6 +5,7 @@ Scenario: Merge data from a (small) source table into a (big) target table.
 
 The source contains only a few rows (below 10.000, mostly about 1000).  
 The target contains some million records.  
+
 **Solution1:**
 
 
@@ -30,7 +31,7 @@ Testing with a variety of source row sets against a target with about 6 mio. row
 
 Overall less internal steps are performed in the merge compared to delete/insert. Furthermore the subselect in the delete command will be materialized in a temporary table and then replicated over all nodes, because the number or rows is below the replication border. This causes additional load in the network.
 
-The suggestion is therefore: **use the merge command**
+The suggestion is therefore: **use the MERGE command**
 
 Cleaning the source from duplicates is mandatory since the on-condition within the merge-statement needs a unique source rowset.  
 Otherwise the exception "Unable to get a stable set of rows in the source tables" will be thrown.
