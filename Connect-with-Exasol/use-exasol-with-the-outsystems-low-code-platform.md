@@ -33,7 +33,7 @@ A Demo Application is available in the OutSystems Forge that describes how to us
 
 ## Step 1: Installing the Exasol database Connector
 
-1. **(Note: Make sure you save all the work being done on your OutSystems Environment before doing this step)**Go to your windows server where OutSystems is installed, open services and stop the following services:  
+1. **(Note: Make sure you save all the work being done on your OutSystems Environment before doing this step)** Go to your windows server where OutSystems is installed, open services and stop the following services:  
 - World Wide Web Publishing Service  
 - OutSystems Deployment Controller Service  
 - OutSystems Deployment Service  
@@ -78,16 +78,20 @@ A Demo Application is available in the OutSystems Forge that describes how to us
 	1. Open **Service Studio**, create a new application and add an Extension module to this application.
 	2. Clicking on Create module will open **Integration Studio**. Connect to your OutSystems environment.
 	3. Right-click the Entities folder in the Extension Tree and select Connect to External Table or View.  
+	
 	![](images/connect-external-db-3.png)  
 	  
 	![](images/connect-external-db-4.png)
+	
 	4. After closing the wizard, review the imported entity names, descriptions and data types for each attribute.
 	5. Click **1-Click Publish** to publish the Extension Module.
 	6. After publishing the extension, OutSystems warns you that you still need to configure which database connection the extension will use.
 	7. In the **1-Click Publish** summary window, select the **Missing Configuration** warning and then select **Configure**  
+	
 	![](images/mohamedemam_1-1598947528919.png)
+
 1. **Configure the Extension to Use a Database Connection**
-	1. In Service Center, make sure you are in the **Operation** tab of **Factory > Extensions > <your extension name>**.
+	1. In Service Center, make sure you are in the **Operation** tab of **Factory > Extensions > (your extension name)**.
 	2. Associate the logical database name of the extension to the database connection that the extension will use in runtime.  
 	  
 	![](images/mohamedemam_3-1598947597531.png)
@@ -103,8 +107,10 @@ For custom queries, we have built an extension in OutSystems where you can find 
 	2. Add this Action to your application via "Manage Dependencies"  
 	  
 	![](images/mohamedemam_0-1598947998438.png)
+	
 	3. This “**ExasolExecute**” action takes two parameters; SQL Query (Query to be executed) and Connection Name (Exasol Connection Name that’s installed on your OutSystems Server in Service Center), and it returns the result set in Rows, Columns, Count, and Affected Rows.
 	4. You will find in our demo app how to use it properly.      
+	
 	![](images/mohamedemam_2-1598948012271.png)
 
 For more information or help visit [novioq.com](https://www.novioq.com/outsystems-exasol-connector/) or mail directly to [support@novioq.com](mailto:support@novioq.com) 
