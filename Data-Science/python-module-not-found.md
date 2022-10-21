@@ -9,7 +9,9 @@ If the Python library you are trying to import is not installed by default, you 
 
 
 ```markup
-[Code: 0, SQL State: 22002]  VM error: F-UDF-CL-LIB-1125: F-UDF-CL-SL-PYTHON-1000: F-UDF-CL-SL-PYTHON-1017: ExaUDFError: F-UDF-CL-SL-PYTHON-1122: Exception while parsing UDF  <UDF name>:1 <module> ImportError: No module named <module name>  (Session: 1690055142405898240)
+[Code: 0, SQL State: 22002]  VM error: F-UDF-CL-LIB-1125: F-UDF-CL-SL-PYTHON-1000: F-UDF-CL-SL-PYTHON-1017: 
+ExaUDFError: F-UDF-CL-SL-PYTHON-1122: Exception while parsing UDF  <UDF name>:1 <module> ImportError: 
+No module named <module name>  (Session: 1690055142405898240)
 ```
 ## Explanation
 
@@ -17,7 +19,15 @@ Exasol's script languages are built using a set of default packages that are com
 
 
 ```markup
---/ CREATE OR REPLACE PYTHON3 SCALAR SCRIPT "GET_AVAILABLE_PYTHON_MODULES" () EMITS ("res" VARCHAR(4096) UTF8) AS import pkgutil as pkgutil  def run(ctx):    for module_name in pkgutil.iter_modules():     ctx.emit(module_name[1]) /
+--/
+CREATE OR REPLACE PYTHON3 SCALAR SCRIPT "GET_AVAILABLE_PYTHON_MODULES" () EMITS ("res" VARCHAR(4096) UTF8) AS
+import pkgutil as pkgutil
+
+def run(ctx):
+
+  for module_name in pkgutil.iter_modules():
+    ctx.emit(module_name[1])
+/
 ```
  **Note: If using Python 2, just replace the PYTHON3 with PYTHON in the script definition.**
 
@@ -36,7 +46,9 @@ To solve this problem, you can create a new Script Language Container. Before cr
 
 
 ```markup
-./exaslct upload --flavor-path=flavors/<flavor-name> --database-host <hostname-or-ip> --bucketfs-port <port> \                     --bucketfs-username w --bucketfs-password <password>  --bucketfs-name <bucketfs-name> \                    --bucket-name <bucket-name> --path-in-bucket <path/in/bucket>
+./exaslct upload --flavor-path=flavors/<flavor-name> --database-host <hostname-or-ip> --bucketfs-port <port> \ 
+                   --bucketfs-username w --bucketfs-password <password>  --bucketfs-name <bucketfs-name> \
+                   --bucket-name <bucket-name> --path-in-bucket <path/in/bucket>
 ```
 You can find more in-depth instructions in the [Readme](https://github.com/exasol/script-languages-release#table-of-contents) of the Github Repository
 
