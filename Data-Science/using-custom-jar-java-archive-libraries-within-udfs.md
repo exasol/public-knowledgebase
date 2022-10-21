@@ -101,7 +101,7 @@ Now you can run your UDF and the JAR file that you uploaded to BucketFS will be 
 ## Additional Notes
 
 * Although this example is very simple, if you want to reference any custom JAR file within a UDF, you can follow these steps. Most importantly, you can tell your UDF to use the jar file by inserting the below line at the beginning of your UDF. You could even have a UDF which *only* references a JAR file and does nothing else, like we do for Virtual Schema Adapters.
-* ```markup
+```markup
 %jar /buckets/<bucketfs_name>/<bucket_name>/<file_name>.jar; 
 ```
 
