@@ -46,7 +46,7 @@ Auditing data can be dropped by the "[TRUNCATE AUDIT LOGS](https://docs.exasol.c
 
 ### Profiling data
 
-Profiling can be used to analyze queries in detail. Therefore the tables EXA_DBA_PROFILE_LAST_DAY and EXA_USER_PROFILE_LAST_DAY can be used. See [here](https://docs.exasol.com/database_concepts/profiling.htm)for further information on profiling. This information is only available for the previous 24 hours.
+Profiling can be used to analyze queries in detail. Therefore the tables EXA_DBA_PROFILE_LAST_DAY and EXA_USER_PROFILE_LAST_DAY can be used. See [here](https://docs.exasol.com/database_concepts/profiling.htm) for further information on profiling. This information is only available for the previous 24 hours.
 
 ### Transaction conflicts
 
@@ -69,7 +69,9 @@ Determining the overall average compression ratio, average raw database size and
 
 
 ```"code-sql"
-SELECT RAW_OBJECT_SIZE_AVG/NULLIFZERO(MEM_OBJECT_SIZE_AVG) AS COMPRESSION_RATIO,        RAW_OBJECT_SIZE_AVG,        MEM_OBJECT_SIZE_AVG FROM EXA_DB_SIZE_MONTHLY;
+SELECT RAW_OBJECT_SIZE_AVG/NULLIFZERO(MEM_OBJECT_SIZE_AVG) AS COMPRESSION_RATIO,        
+ RAW_OBJECT_SIZE_AVG,        
+ MEM_OBJECT_SIZE_AVG FROM EXA_DB_SIZE_MONTHLY;
 ```
 ## Additional References
 
