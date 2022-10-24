@@ -39,7 +39,18 @@ The generated SQL statements for single-table REORGANIZEs should be split into t
 
 
 ```
-... REORGANIZE TABLE "TPCDS"."WEB_RETURNS";                                                        -- stream "big tables": table estimate 40 sec, stream time estimate 2679 sec                  REORGANIZE TABLE "TPC"."CUSTOMER";                                                             -- stream "big tables": table estimate 90 sec, stream time estimate 2769 sec                  ... REORGANIZE TABLE "TPCDS"."CATALOG_SALES";                                                      -- stream "indices": table estimate 105 sec, stream time estimate 1367 sec                   REORGANIZE TABLE "TPCDS"."STORE_SALES";                                                        -- stream "indices": table estimate 134 sec, stream time estimate 1502 sec                   REORGANIZE TABLE "TPC"."LINEITEM";                                                             -- stream "indices": table estimate 239 sec, stream time estimate 1741 sec                   ... REORGANIZE TABLE "TPCDS"."HOUSEHOLD_DEMOGRAPHICS";                                             -- stream "small tables": table estimate 1 sec, stream time estimate 1554 sec                REORGANIZE TABLE "TPCDS"."CATALOG_PAGE";                                                       -- stream "small tables": table estimate 1 sec, stream time estimate 1555 sec                ... 
+...
+REORGANIZE TABLE "TPCDS"."WEB_RETURNS";                                                        -- stream "big tables": table estimate 40 sec, stream time estimate 2679 sec                 
+REORGANIZE TABLE "TPC"."CUSTOMER";                                                             -- stream "big tables": table estimate 90 sec, stream time estimate 2769 sec                 
+...
+REORGANIZE TABLE "TPCDS"."CATALOG_SALES";                                                      -- stream "indices": table estimate 105 sec, stream time estimate 1367 sec                  
+REORGANIZE TABLE "TPCDS"."STORE_SALES";                                                        -- stream "indices": table estimate 134 sec, stream time estimate 1502 sec                  
+REORGANIZE TABLE "TPC"."LINEITEM";                                                             -- stream "indices": table estimate 239 sec, stream time estimate 1741 sec                  
+...
+REORGANIZE TABLE "TPCDS"."HOUSEHOLD_DEMOGRAPHICS";                                             -- stream "small tables": table estimate 1 sec, stream time estimate 1554 sec               
+REORGANIZE TABLE "TPCDS"."CATALOG_PAGE";                                                       -- stream "small tables": table estimate 1 sec, stream time estimate 1555 sec               
+...[REORGANIZE_files.zip](https://github.com/exasol/Public-Knowledgebase/files/9849888/REORGANIZE_files.zip)
+
 ```
 We do not recommend using more than three streams as index rebuild performance will deteriorate strongly if DBRAM gets heavily under stress by parallel big index rebuilds or big table redistributions.
 
