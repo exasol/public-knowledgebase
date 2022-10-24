@@ -9,7 +9,7 @@ In this first part of a series of blogs, you will learn:
 
 Every craft needs the right tools. Imagine a modern master cabinet maker trying to carve the wood with a butter knife - it's unthinkable.  
 
-*![](images/Carpenter_tools_1920x1280.jpg)*
+![](images/Carpenter_tools_1920x1280.jpg)*
 
 Software development is no different. You need the right tools to code faster, reduce the risk of errors and make your job as easy as possible. But the key is knowing what's right for you - as there are a wide range of IDEs available, all with their own merits and challenges. 
 
@@ -50,7 +50,9 @@ Today I want to draw your attention to a collection of Eclipse plug-ins called [
 			3. Name: "DLTK Core 5.7.1"
 			4. Click "Add"
 			5. Select "Uncategorized" in the software list:  
+			
 			![](images/exa-SebastianB_0-1597996482248.png)
+			
 			6. Click "Next", "Next", accept the license and finish the wizard.
 			7. Don't restart yet. We have more to install.
 	3. Help → Install new software...
@@ -77,7 +79,9 @@ Next we are going to tell LDT where to find the Lua interpreter that we installe
 1. Window → Preferences ...
 	1. In dialog "Preferences"
 	2. Lua Interpreters  
+	
 	![](images/exaSebastianB_1-1630399481795.png) Make sure that you have an entry for the Lua 5.1 interpreter you installed earlier.
+	
 	3. Edit the "Lua 5.1" entry
 	4. In dialog "Edit Interpreter":
 		1. Pick the path to the "Interpreter executable" ![](images/exaSebastianB_0-1630399302629.png)
@@ -97,7 +101,9 @@ Let's dive in directly what the LDT can do for you. And to do so, we will use an
 4. Paste the following link in the empty space in the "Git Repositories" view:  
 <https://github.com/exasol/remotelog-lua.git>  
 You should now have an entry that looks like this:  
+
 ![](images/Screenshot_remotelog_repo.png)
+
 5. Import the contained project
 
 ## How to get coding support and what each function does
@@ -166,6 +172,7 @@ If you prefer a graphical view of the test results, you can modify the run confi
 ```
 -o junit -n ${project_loc}/target/unit_test_report.xml
 ```
+ 
  ![](images/Screenshot_junit_output_settings.png)
 
 This tells LuaUnit to additionally output the test results in JUnit XML format. And since Eclipse knows that format, you can view it in the JUnit view.
@@ -181,7 +188,9 @@ Let's first install MoreUnit.
 1. Help → Eclipse Marketplace...
 2. In dialog "Eclipse Marketplace"
 	1. Search for "MoreUnit"  
+	
 	![](images/Screenshot_MoreUnit_on_Marketplace.png)
+	
 	2. Click "Install"
 	3. Select all sub-features
 	4. Click "Confirm"
@@ -194,7 +203,9 @@ Next we are going to teach MoreUnit how where our test and implementation files 
 2. Search for "MoreUnit"
 3. Click sub-section "User Languages"
 4. Enter source and test path, using placeholders for the project directory (here "`${srcProject}/src`" and "`${srcProject}/test`")  
+
 ![](images/Screenshot_MoreUnit_Lua_settings.png)
+
 5. Enter the test file name pattern (in this example "`test_${srcFile}`"
 6. Click "Apply and Close"
 
