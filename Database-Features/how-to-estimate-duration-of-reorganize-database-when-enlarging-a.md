@@ -49,10 +49,12 @@ REORGANIZE TABLE "TPC"."LINEITEM";                                              
 ...
 REORGANIZE TABLE "TPCDS"."HOUSEHOLD_DEMOGRAPHICS";                                             -- stream "small tables": table estimate 1 sec, stream time estimate 1554 sec               
 REORGANIZE TABLE "TPCDS"."CATALOG_PAGE";                                                       -- stream "small tables": table estimate 1 sec, stream time estimate 1555 sec               
-...[REORGANIZE_files.zip](https://github.com/exasol/Public-Knowledgebase/files/9849888/REORGANIZE_files.zip)
+...
 
 ```
 We do not recommend using more than three streams as index rebuild performance will deteriorate strongly if DBRAM gets heavily under stress by parallel big index rebuilds or big table redistributions.
 
 As long as the REORGANIZE is not finished, we recommend avoiding running queries that access large tables and therefore may try to create big indices. As the creation of big indices needs a lot of memory, several index creations in parallel can easily interfere with each other (swapping). This restriction does not apply to DML statements as they normally don't create indices. Index maintenance is a part of DML, but won't be executed on invalidated indices.
 
+## Attachements
+[REORGANIZE_files.zip](https://github.com/exasol/Public-Knowledgebase/files/9849888/REORGANIZE_files.zip)
