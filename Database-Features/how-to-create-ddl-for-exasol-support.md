@@ -15,11 +15,57 @@ At this point you have two choices:
 
   **Script call**  
 ```"code-sql"
-execute script exa_toolbox.create_view_ddl('DUT', 'TRUNK'); 
-```
-    **Example output**  
-```
---DDL created by user SYS at 2017-11-14 09:44:59.554000  --========================================-- --           table dependencies           -- --========================================-- CREATE SCHEMA "DUT"; CREATE TABLE "DUT"."TAB1"(     "I" DECIMAL(18,0) IDENTITY NOT NULL,     "J" DECIMAL(3,0) ); -- SYSTEM TABLE: SYS.EXA_METADATA    --========================================-- --         function dependencies         -- --========================================-- function func( param decimal(3) ) returns decimal(3) as begin     return sqrt(param) * (select max(i) from dut.tab1); end /  --========================================-- --          script dependencies          -- --========================================-- CREATE LUA SCALAR SCRIPT "LUA_SCALAR" () RETURNS DECIMAL(18,0) AS function run()         return decimal(10,18,0)     end  /  --========================================-- --           view dependencies           -- --========================================--  --> level 2 -- SYSTEM VIEW: SYS.CAT  --> level 1 CREATE VIEW "DUT"."BRANCH"     as ( select * from exa_metadata, cat );  -- final query/view: CREATE VIEW "DUT"."TRUNK"     as (         select * from dut.tab1, dut.branch         where func(j) > lua_scalar()     ); 
+--DDL created by user SYS at 2017-11-14 09:44:59.554000
+
+--========================================--
+--           table dependencies           --
+--========================================--
+CREATE SCHEMA "DUT";
+CREATE TABLE "DUT"."TAB1"(
+	"I" DECIMAL(18,0) IDENTITY NOT NULL,
+	"J" DECIMAL(3,0)
+);
+-- SYSTEM TABLE: SYS.EXA_METADATA
+
+
+
+--========================================--
+--         function dependencies         --
+--========================================--
+function func( param decimal(3) ) returns decimal(3)
+as
+begin
+	return sqrt(param) * (select max(i) from dut.tab1);
+end
+/
+
+--========================================--
+--          script dependencies          --
+--========================================--
+CREATE LUA SCALAR SCRIPT "LUA_SCALAR" () RETURNS DECIMAL(18,0) AS
+function run()
+		return decimal(10,18,0)
+	end
+
+/
+
+--========================================--
+--           view dependencies           --
+--========================================--
+
+--> level 2
+-- SYSTEM VIEW: SYS.CAT
+
+--> level 1
+CREATE VIEW "DUT"."BRANCH"
+	as ( select * from exa_metadata, cat );
+
+-- final query/view:
+CREATE VIEW "DUT"."TRUNK"
+	as (
+		select * from dut.tab1, dut.branch
+		where func(j) > lua_scalar()
+	);
 ```
    ## Caution
 
