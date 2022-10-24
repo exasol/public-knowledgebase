@@ -20,7 +20,30 @@ We will create a**SET/EMITS UDF script**with**variadic input**to gather and emit
 
 
 ```"code-java"
-create or replace java set script     -- variadic input list. Pass any data....     ETYPE(...) emits     (parameter_number integer, SQL_type varchar(64), java_type varchar(64)) as      class ETYPE {          /**             This run method will ignore any actual data passed.             All it does is examine the column types and return that information         */         static void run(final ExaMetadata meta, final ExaIterator ctx) throws Exception {             for( int i=0; i<meta.getInputColumnCount(); i++ ) {                 ctx.emit(                     i,                     meta.getInputColumnSqlType(i),                     meta.getInputColumnType(i).getName()                 );             }         }     } / 
+create or replace java set script
+	-- variadic input list. Pass any data....
+	ETYPE(...)
+emits
+	(parameter_number integer, SQL_type varchar(64), java_type varchar(64))
+as
+
+	class ETYPE {
+
+		/**
+			This run method will ignore any actual data passed.
+			All it does is examine the column types and return that information
+		*/
+		static void run(final ExaMetadata meta, final ExaIterator ctx) throws Exception {
+			for( int i=0; i<meta.getInputColumnCount(); i++ ) {
+				ctx.emit(
+					i,
+					meta.getInputColumnSqlType(i),
+					meta.getInputColumnType(i).getName()
+				);
+			}
+		}
+	}
+/
 ```
 ## Additional Notes for Step 1
 
