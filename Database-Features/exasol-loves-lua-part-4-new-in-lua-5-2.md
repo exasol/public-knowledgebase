@@ -1,5 +1,5 @@
 # Exasol loves Lua (part 4) - New in Lua 5.2 
-If you are familiar with Exasol's Lua capabilities you probably know that they are based on a specially adapted version of Lua 5.1. Just like our customers we felt, it was about time for an update, so we took on the endeavor to build a new embedded version based on Lua 5.4
+If you are familiar with Exasol's Lua capabilities, you probably know that they are based on a specially adapted version of Lua 5.1. Just like our customers we felt, it was about time for an update, so we took on the endeavor to build a new embedded version based on Lua 5.4
 
 In this article series, I am going to discuss a couple of the main changes that Lua underwent between 5.1 and 5.4. And there were a lot. There will be one article per version. In the first one, we will discuss the [changes from Lua 5.1 to 5.2](http://www.lua.org/manual/5.2/readme.html#changes "Changes"). Also, I am concentrating on the most relevant ones.
 
