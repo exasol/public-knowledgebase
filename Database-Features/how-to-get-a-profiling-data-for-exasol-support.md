@@ -3,7 +3,7 @@
 
 Query behavior is unexpected
 
-Sometimes EXASolution exhibits unexpected behavior when executing queries. Analyzing "this is slow" in support is impossible without additional information. The single foremost information we need is profiling data for the query in question, if possible also profiling data of a similar query that gives better results.
+Sometimes Exasol exhibits unexpected behavior when executing queries. Analyzing "this is slow" in support is impossible without additional information. The single foremost information we need is profiling data for the query in question, if possible also profiling data of a similar query that gives better results.
 
 ## How to get a profiling data for Exasol support?
 
