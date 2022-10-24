@@ -26,7 +26,11 @@ Sources to load from are:
 * **CSV / FBV from a local client via EXAplus**: A local dataset is also transferred via HTTP, but in contrast to the option above, the open connection is used for the data transfer – to avoid problems due to NAT/firewall restrictions. This limits the amount of parallelism and will, therefore, be less performant than an import from a server.
 * **JDBC from other data sources:** The protocol introduces some overhead. However, it is possible to define multiple datasets within one IMPORT statement: 
 ```"code
-IMPORT INTO table_4 FROM JDBC AT 'jdbc:exa:192.168.6.11..14:8563' USER 'agent_008' IDENTIFIED BY 'secret' STATEMENT ' SELECT * FROM orders WHERE order_state=''OK'' ' STATEMENT ‘SELECT * from tbl2’ TABLE customers; 
+IMPORT INTO table_4 FROM JDBC 
+AT 'jdbc:exa:192.168.6.11..14:8563' 
+USER 'agent_008' IDENTIFIED BY 'secret' 
+STATEMENT ' SELECT * FROM orders WHERE order_state=''OK'' ' 
+STATEMENT ‘SELECT * from tbl2’ TABLE customers; 
 ```
 * **Import from an Oracle DB via native ORA interface:** The performance of the protocol is preferable to JDBC. Loading is conducted in parallel if the table is partitioned in the Oracle Database.
 
@@ -61,7 +65,10 @@ Alternatively you can lookup the duration of the import runs from the system tab
 * It is possible to do the whole job within one IMPORT statement; EXAloader will utilize resources optimally. However, also the import runs inside an **ACID transaction** which would be rolled back entirely on any error. It may, therefore, be advisable to do larger jobs in separate transactions (sequentially or in parallel e.g. by opening several EXAplus instances).
 * Often the dataset is not entirely known. To avoid **errors causing the import to abort** it may be advisable to define a REJECT LIMIT () combined with an ERROR TABLE or log file. See for details EXASOL manual section 2.2.2 ‘IMPORT’ -> ‘error_clause’ in the notes paragraph. Example: 
 ```"code
-IMPORT INTO table_3 (col1, col2, col4) FROM ORA AT my_oracle USER 'agent_008' IDENTIFIED BY 'secret' STATEMENT ' SELECT * FROM orders WHERE order_state=''OK'' ' ERRORS INTO error_table (CURRENT_TIMESTAMP) REJECT LIMIT 10; 
+IMPORT INTO table_3 (col1, col2, col4) FROM ORA 
+AT my_oracle USER 'agent_008' IDENTIFIED BY 'secret' 
+STATEMENT ' SELECT * FROM orders WHERE order_state=''OK'' ' 
+ERRORS INTO error_table (CURRENT_TIMESTAMP) REJECT LIMIT 10; 
 ```
 
 ## Additional References
