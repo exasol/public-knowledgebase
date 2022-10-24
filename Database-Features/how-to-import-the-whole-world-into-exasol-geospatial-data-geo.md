@@ -19,7 +19,15 @@ The following example shows how to create a table with a geometry column, how to
 
 
 ```"code-sql"
-CREATE TABLE cities(name VARCHAR(200), geo GEOMETRY(4326)); INSERT INTO cities VALUES('Berlin', 'POINT (13.36963 52.52493)'); INSERT INTO cities VALUES('London', 'POINT (-0.1233 51.5309)');  -- this shows the distance in degrees: SELECT a.name, b.name, st_distance(a.geo, b.geo) FROM cities a, cities b; -- this shows the distance in meters: SELECT a.name, b.name, st_distance(ST_Transform(a.geo, 2163),      ST_Transform(b.geo, 2163)) FROM cities a, cities b; 
+CREATE TABLE cities(name VARCHAR(200), geo GEOMETRY(4326));
+INSERT INTO cities VALUES('Berlin', 'POINT (13.36963 52.52493)');
+INSERT INTO cities VALUES('London', 'POINT (-0.1233 51.5309)');
+
+-- this shows the distance in degrees:
+SELECT a.name, b.name, st_distance(a.geo, b.geo) FROM cities a, cities b;
+-- this shows the distance in meters:
+SELECT a.name, b.name, st_distance(ST_Transform(a.geo, 2163),
+     ST_Transform(b.geo, 2163)) FROM cities a, cities b;
 ```
 GEOMETRY columns can be filled with strings using the well-known text representation (WKT), e.g. 'POINT (13.36963 52.52493)'
 
@@ -33,7 +41,14 @@ Often, geodata is present in CSV files or in colunms of tables that are imported
 
 
 ```"code-sql"
-CREATE OR REPLACE TABLE airports( airport_id INT, name VARCHAR(500), latitude DECIMAL(9,6), longitude DECIMAL(9,6) );  IMPORT INTO airports FROM LOCAL CSV FILE 'D:\airports-extended.dat' (1, 2, 7, 8);  ALTER TABLE airports ADD COLUMN geo GEOMETRY(4326); UPDATE airports SET geo = 'POINT ('||longitude||' '||latitude||')';  SELECT * FROM airports;
+CREATE OR REPLACE TABLE airports( airport_id INT, name VARCHAR(500), latitude DECIMAL(9,6), longitude DECIMAL(9,6) );
+
+IMPORT INTO airports FROM LOCAL CSV FILE 'D:\airports-extended.dat' (1, 2, 7, 8);
+
+ALTER TABLE airports ADD COLUMN geo GEOMETRY(4326);
+UPDATE airports SET geo = 'POINT ('||longitude||' '||latitude||')';
+
+SELECT * FROM airports;
 ```
 We firstly used DECIMAL(9,6) columns to store the latitude and longitude values, and then we added a GEOMETRY column to store a geodata point for each airport.
 
@@ -41,7 +56,8 @@ Similar to the example above, we can now calculate the distance between two airp
 
 
 ```"code-sql"
-select st_distance(ST_Transform(a.geo, 2163), ST_Transform(b.geo, 2163))  from airports a, airports b where a.name = 'Berlin-Tegel Airport' and b.name = 'Berlin Hauptbahnhof'; 
+select st_distance(ST_Transform(a.geo, 2163), ST_Transform(b.geo, 2163))  
+ from airports a, airports b where a.name = 'Berlin-Tegel Airport' and b.name = 'Berlin Hauptbahnhof'; 
 ```
 ### Importing data from GeoJSON
 
@@ -57,7 +73,20 @@ After these steps, we have all countries from the GeoJSON file in a GEOMETRY col
 
 
 ```"code-sql"
-create or replace table geo_import(v varchar(2000000)); import into geo_import from local csv file 'D:\custom.geo.json'  column separator = '0x01' column delimiter = '0x02'; -- dummy separaters / delimiters to import a whole line as one column value  -- json_table (can be found in https://community.exasol.com/t5/database-features/querying-and-converting-json-data-with-the-json-table-udf/ta-p/1800) emits a row for each country with two columns name and geojson create or replace view geojson as   select json_table(v, '$.features[*].properties.name', '$.features[*].geometry')   emits (name varchar(2000000), geojson varchar(2000000)) from geo_import;  -- ST_GeomFromGeoJSON is attached to <https://community.exasol.com/t5/database-features/how-to-import-the-whole-world-into-exasol-geospatial-data-geo/ta-p/1669> create or replace table countries as   select name, cast(ST_GeomFromGeoJSON(geojson) as geometry(4326)) as geo from geojson;  select * from countries; 
+create or replace table geo_import(v varchar(2000000));
+import into geo_import from local csv file 'D:\custom.geo.json' 
+column separator = '0x01' column delimiter = '0x02'; -- dummy separaters / delimiters to import a whole line as one column value
+
+-- json_table (can be found in https://community.exasol.com/t5/database-features/querying-and-converting-json-data-with-the-json-table-udf/ta-p/1800) emits a row for each country with two columns name and geojson
+create or replace view geojson as 
+ select json_table(v, '$.features[*].properties.name', '$.features[*].geometry') 
+ emits (name varchar(2000000), geojson varchar(2000000)) from geo_import;
+
+-- ST_GeomFromGeoJSON is attached to https://community.exasol.com/t5/database-features/how-to-import-the-whole-world-into-exasol-geospati...
+create or replace table countries as 
+ select name, cast(ST_GeomFromGeoJSON(geojson) as geometry(4326)) as geo from geojson;
+
+select * from countries;
 ```
 ## Step 2: Geo-Joins and Geo-Indexes
 
@@ -65,13 +94,20 @@ The following query performs a geo-join between the two tables, countries and ai
 
 
 ```"code-sql"
-select a.* from countries c join airports a on st_contains(c.geo, a.geo)  where c.name = 'Italy'; 
+select a.* from countries c join airports a on st_contains(c.geo, a.geo)  
+ where c.name = 'Italy'; 
 ```
 You can use[profiling](https://docs.exasol.com/database_concepts/profiling.htm)to see that an geo-index is created automatically and that this geo-index is used to execute the geo-join:
 
 
 ```"code-sql"
-alter session set profile = 'ON'; alter session set query_cache = 'OFF'; select a.* from countries c join airports a on st_contains(c.geo, a.geo)  where c.name = 'Italy'; flush statistics; select * from exa_statistics.exa_user_profile_last_day  where session_id = current_session and command_name = 'SELECT' preferring high stmt_id; 
+alter session set profile = 'ON';
+alter session set query_cache = 'OFF';
+select a.* from countries c join airports a on st_contains(c.geo, a.geo)
+ where c.name = 'Italy';
+flush statistics;
+select * from exa_statistics.exa_user_profile_last_day 
+where session_id = current_session and command_name = 'SELECT' preferring high stmt_id;
 ```
 Like other indexes in Exasol, the geo-index is persisted so that it can be used for future queries, it is maintained automatically when the table data changes, and it is automatically dropped when it is not used for five weeks or longer. Mind that geo-indexes are a new feature since Exasol 6.1.
 
