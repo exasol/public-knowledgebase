@@ -49,7 +49,7 @@ This solution will export the bigquery data into a CSV file stored in Google Clo
 
 ### Step 1 - Create Connection
 
-Create a CONNECTION to Google Cloud Storage as described [here](https://docs.exasol.com/loading_data/load_data_google_cloud_storage_buckets.htm). You will use the credentials from the HMAC key in the CONNECTION object, like below. You should replace the <bucket-name> with the name of the Google Cloud Storage bucket
+Create a CONNECTION to Google Cloud Storage as described [here](https://docs.exasol.com/loading_data/load_data_google_cloud_storage_buckets.htm). You will use the credentials from the HMAC key in the CONNECTION object, like below. You should replace the bucket-name with the name of the Google Cloud Storage bucket
 
 
 ```markup
@@ -111,7 +111,7 @@ As Google's documentation states, the JDBC driver is not designed for large volu
 
 ## Step 1 - Create Connection
 
-Create a CONNECTION to Google Cloud Storage as described [here](https://docs.exasol.com/loading_data/load_data_google_cloud_storage_buckets.htm). You will use the credentials from the HMAC key in the CONNECTION object, like below. You should replace the <bucket-name> with the name of the Google Cloud Storage bucket
+Create a CONNECTION to Google Cloud Storage as described [here](https://docs.exasol.com/loading_data/load_data_google_cloud_storage_buckets.htm). You will use the credentials from the HMAC key in the CONNECTION object, like below. You should replace the bucket-name with the name of the Google Cloud Storage bucket
 
 
 ```markup
