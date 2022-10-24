@@ -11,7 +11,8 @@ EXASOL is a shared-nothing database, running on multiple nodes. Ideally, those n
 
 
 ```"code
-IMPORT INTO table_1 FROM CSV AT 'http://192.168.1.1:8080/' USER 'agent_007' IDENTIFIED BY 'secret' FILE 'tab1_part1.csv'; 
+IMPORT INTO table_1 FROM CSV AT 'http://192.168.1.1:8080/' 
+USER 'agent_007' IDENTIFIED BY 'secret' FILE 'tab1_part1.csv'; 
 ```
 Some ETL tools, such. as e.g. Talend, are able to employ EXAloader. An ETL tool that uses a standard connection (ODBC / JDBC) will not be able to manage parallelism (alone for the fact that it is usually unaware of the cluster resources), results will therefore always be suboptimal.
 
@@ -53,7 +54,9 @@ EXAplus can return timings of jobs:
 
 
 ```"code
-timing start; IMPORT FROM ...; timing stop; 
+timing start; 
+IMPORT FROM ...; 
+timing stop; 
 ```
 Alternatively you can lookup the duration of the import runs from the system tables (EXA_DBA_AUDIT_SQL or EXA_*_SQL_LAST_DAY). This makes it easy to visualize it with a standard BI tool.
 
