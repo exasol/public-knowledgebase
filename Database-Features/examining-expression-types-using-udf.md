@@ -9,8 +9,8 @@ This solution describes a method on how to retrieve type information without the
 
 ## Prerequisites
 
-The method described**does**need a CREATE statement, albeit a fixed one where the created script can be reused.  
-One of the**UDF Languages**is required, this example is using the**java**language.
+The method described **does** need a CREATE statement, albeit a fixed one where the created script can be reused.  
+One of the**UDF Languages**is required, this example is using the **java** language.
 
 ## How to Deploy
 
