@@ -15,7 +15,8 @@ The following code demonstrates the new capability:
 
 
 ```lua
-local the_integer = 2^62 print(string.format("%d", the_integer))
+local the_integer = 2^62 
+print(string.format("%d", the_integer))
 ```
 You can try this out directly in the [Lua online interpreter](https://www.lua.org/cgi-bin/demo). Please don't forget that we are still talking about signed integers, so the MSB (most significant bit) is reserved for the sign.
 
@@ -25,7 +26,9 @@ When you have rctual integers, you also need to deal with the situation that a d
 
 
 ```lua
-print(7  /  3) -- ->  2.3333333333333 print(7  // 3) -- ->  2 print(-7 // 3) -- -> -3 
+print(7  /  3) -- ->  2.3333333333333 
+print(7  // 3) -- ->  2 
+print(-7 // 3) -- -> -3 
 ```
 ### Bitwise Functions
 
@@ -68,7 +71,21 @@ As a little reminder of what metamethods are, please take a look at the followin
 
 
 ```lua
-local numerals = {I = 1, II = 2, III = 3, IV = 4, V = 5}  local names = {"one", "two", "three", "four", "five"}  local metatable = {     __index = function(tbl, key)         local index = numerals[key]         return index and tbl[index]     end }  setmetatable(names, metatable)  print(names[3]) print(names.IV)
+local numerals = {I = 1, II = 2, III = 3, IV = 4, V = 5}
+
+local names = {"one", "two", "three", "four", "five"}
+
+local metatable = {
+    __index = function(tbl, key)
+        local index = numerals[key]
+        return index and tbl[index]
+    end
+}
+
+setmetatable(names, metatable)
+
+print(names[3])
+print(names.IV)
 ```
 First we define a mapping of Roman numerals to regular numbers. Then we create an array of names. Note that  in this array (which in Lua is also a table) there is no connection between the Roman numerals and the array items. Then we override the index calculation by defining an `__index` metamethod, and assigning the table that contains that metamethod as metatable to the array. After we did this Lua now checks that metatable, realizes that the `__index` method is defined and uses it in case of index access attempts.
 
@@ -78,7 +95,28 @@ In the following script you can see that `ipairs` now takes metamethods into acc
 
 
 ```lua
-local weekdays = {short = "MonTueWedThuFriSatSun"}  local metatable = {     __len = function(tbl)         return 7     end,     __index = function(tbl, key)         if(key <= #tbl) then             local start = (key - 1) * 3 + 1             local stop = start + 2             return string.sub(tbl.short, start, stop)         else             return nil         end     end }  setmetatable(weekdays, metatable)  for k, v in ipairs(weekdays) do     print("key: " .. k .. ", value: " .. v) end
+local weekdays = {short = "MonTueWedThuFriSatSun"}
+
+local metatable = {
+    __len = function(tbl)
+        return 7
+    end,
+    __index = function(tbl, key)
+        if(key <= #tbl) then
+            local start = (key - 1) * 3 + 1
+            local stop = start + 2
+            return string.sub(tbl.short, start, stop)
+        else
+            return nil
+        end
+    end
+}
+
+setmetatable(weekdays, metatable)
+
+for k, v in ipairs(weekdays) do
+    print("key: " .. k .. ", value: " .. v)
+end
 ```
 You could of course argue that the script is a very complicated way to do something that could be more easily done with an array of short names. And you would be right. Nonetheless this demonstrates the power of iterating over data hidden in a user type.
 
@@ -107,7 +145,10 @@ Let's look at a typical example where we start with a table that contains all da
 
 
 ```lua
-local week = {"mon", "tue", "wed", "thu", "fri", "sat", "sun"} local workdays = {} table.move(week, 1, 5, 1, workdays) print(table.concat(workdays, ", "))
+local week = {"mon", "tue", "wed", "thu", "fri", "sat", "sun"} 
+local workdays = {} 
+table.move(week, 1, 5, 1, workdays) 
+print(table.concat(workdays, ", "))
 ```
 ## Other Changes
 
