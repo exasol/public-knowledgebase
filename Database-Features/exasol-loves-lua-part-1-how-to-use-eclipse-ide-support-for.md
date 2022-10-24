@@ -9,7 +9,7 @@ In this first part of a series of blogs, you will learn:
 
 Every craft needs the right tools. Imagine a modern master cabinet maker trying to carve the wood with a butter knife - it's unthinkable.  
 
-![](images/Carpenter_tools_1920x1280.jpg)*
+![](images/Carpenter_tools_1920x1280.jpg)
 
 Software development is no different. You need the right tools to code faster, reduce the risk of errors and make your job as easy as possible. But the key is knowing what's right for you - as there are a wide range of IDEs available, all with their own merits and challenges. 
 
@@ -80,7 +80,9 @@ Next we are going to tell LDT where to find the Lua interpreter that we installe
 	1. In dialog "Preferences"
 	2. Lua Interpreters  
 	
-	![](images/exaSebastianB_1-1630399481795.png) Make sure that you have an entry for the Lua 5.1 interpreter you installed earlier.
+	![](images/exaSebastianB_1-1630399481795.png) 
+	
+	Make sure that you have an entry for the Lua 5.1 interpreter you installed earlier.
 	
 	3. Edit the "Lua 5.1" entry
 	4. In dialog "Edit Interpreter":
