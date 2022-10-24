@@ -9,7 +9,27 @@ You can use the below query to calculate the duration of backups. 
 
 
 ```"code
-with intermediate as (     select s.*     , lead(event_type) over (order by measure_time)  end_event     , lead(measure_time) over (order by measure_time)  end_time from     exa_system_events s where     event_type like 'BACKUP%' ) select     i.*     , cast(trunc(measure_time, 'DD') as date) start_date     , cast(round(minutes_between(end_time, measure_time)/60, 2) as decimal(10,2)) backup_duration from     intermediate i where     event_type = 'BACKUP_START' and end_event not like '%START'     and measure_time > trunc(now(), 'YYYY') order by     measure_time desc;
+with intermediate as
+(
+    select s.*
+    , lead(event_type) over (order by measure_time)  end_event
+    , lead(measure_time) over (order by measure_time)  end_time
+from
+    exa_system_events s
+where
+    event_type like 'BACKUP%'
+)
+select
+    i.*
+    , cast(trunc(measure_time, 'DD') as date) start_date
+    , cast(round(minutes_between(end_time, measure_time)/60, 2) as decimal(10,2)) backup_duration
+from
+    intermediate i
+where
+    event_type = 'BACKUP_START' and end_event not like '%START'
+    and measure_time > trunc(now(), 'YYYY')
+order by
+    measure_time desc;
 ```
 ## Additional References
 
