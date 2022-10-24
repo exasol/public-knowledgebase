@@ -106,7 +106,4 @@ select google_summary_directions('Buckingham Palace, Westminster, London', '10 D
 
 ## Additional References
 
-<https://community.exasol.com/t5/connect-with-exasol/importing-and-exporting-data-with-google-bigquery/ta-p/1385>
-
-[test](xml-parsing-using-java-udfs.md)
-
+[Importing and Exporting Data with Google Bigquery](../Connect-with-Exasol/importing-and-exporting-data-with-google-bigquery.md)
