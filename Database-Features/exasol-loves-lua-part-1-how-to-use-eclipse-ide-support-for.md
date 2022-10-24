@@ -86,9 +86,13 @@ Next we are going to tell LDT where to find the Lua interpreter that we installe
 	
 	3. Edit the "Lua 5.1" entry
 	4. In dialog "Edit Interpreter":
-		1. Pick the path to the "Interpreter executable" ![](images/exaSebastianB_0-1630399302629.png)
-		2. Click "OK"
-	5. Click "Apply and Close"
+	
+	Pick the path to the "Interpreter executable": 
+
+![](images/exaSebastianB_0-1630399302629.png)
+
+Click "OK" and 
+Click "Apply and Close"
 
 For now we are set. Later we will install another plug-in for even more convenience.
 
