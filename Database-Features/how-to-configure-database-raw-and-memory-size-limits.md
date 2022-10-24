@@ -38,7 +38,8 @@ All such statements are rejected with a SQL exception alike the following:
 
 
 ```
-[R0010] Statement currently not allowed because latest database raw size of 54.1 GiB exceeded local raw size limit of 50.0 GiB (108.2%). Please increase your limit or delete some data and FLUSH STATISTICS. 
+[R0010] Statement currently not allowed because latest database raw size of 54.1 GiB exceeded local raw size limit of 50.0 GiB (108.2%). 
+Please increase your limit or delete some data and FLUSH STATISTICS. 
 ```
 To get the database back to normal operation, you have to reduce its data size below 100% of the limit. You can achieve this by either restarting the database with no or a larger limit, or by deleting or dropping table data.
 
