@@ -9,7 +9,7 @@ Second, the database garbage collection might not be able to reclaim older objec
 
 You can use the following SQL statement to add locking information to your session system tables using the EXA_SQL_LAST_DAY / EXA_DBA_AUDIT_SQL data:
 
-![](images/exa-Peggy_0-1620655484790.jpeg)**DISCLAIMER  
+**DISCLAIMER  
 An Auto-Commit is not always set for executions in Snapshot-Mode. Thus, in the case of snapshot execution, this solution can lead to false-positive read locks.**
 
 **=> We recommend to use caution when developing watchdog scripts which automatically kill all critical read locks**
