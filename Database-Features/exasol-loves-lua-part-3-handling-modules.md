@@ -65,7 +65,8 @@ The easiest path to a [MacOS LuaRocks installation](https://github.com/luarocks/
 
 
 ```markup
-brew update brew install luarocks
+brew update 
+brew install luarocks
 ```
  There is also the option to install the software by hand, but that is a little bit outside the scope of this article.
 
@@ -97,7 +98,13 @@ Let's look at an example below. I indented the code for better readability. Amal
 
 
 ```java
-do     local _ENV = _ENV     package.preload["remotelog"] = function( ... )         local arg = _G.arg;         -- actual module implementation     end end
+do
+    local _ENV = _ENV
+    package.preload["remotelog"] = function( ... )
+        local arg = _G.arg;
+        -- actual module implementation
+    end
+end
 ```
 When you run such a script, the code of the module is stored in the loader function, assigned to a key in `package.preload` that happens to be the module name.  
 When your use `require("<module-name>")`, Lua first checks if the module is already loaded in `packages.loaded`. If it is not, it next checks if a loader is registered in `package.preload`. In our case it now is. Lua calls the registered loader function, and returns the module reference to the caller of `require`.
@@ -112,7 +119,16 @@ That means you need to prepend all bundled Lua scripts in Exasol up to and inclu
 
 
 ```java
-table.insert(package.loaders,     function (module_name)         local loader = package.preload[module_name]         if not loader then             error("Module " .. module_name .. " not found in package.preload.")         else             return loader         end     end )
+table.insert(package.loaders,
+    function (module_name)
+        local loader = package.preload[module_name]
+        if not loader then
+            error("Module " .. module_name .. " not found in package.preload.")
+        else
+            return loader
+        end
+    end
+)
 ```
 Note that in version 5.2 `package.loaders` has been renamed to `package.searchers`. While the new name definitely is more precise, this is a breaking change. If you want to support 5.1 and 5.2+, I suggest a version switch.
 
@@ -137,7 +153,9 @@ sudo luarocks install remotelog​
 3. Create a minimal script `main.lua` that logs the Lua version number via `remotelog`.  
 
 ```java
-log = require("remotelog") log.connect("172.17.0.1", 3000) log.info(_VERSION)​
+log = require("remotelog") 
+log.connect("172.17.0.1", 3000) 
+log.info(_VERSION)​
 ```
 4. Create the bundle.  
 
@@ -157,7 +175,20 @@ Here is a concrete example.
 
 
 ```java
-CREATE LUA SCRIPT "BUNDLE" () AS     table.insert(_G.package.loaders,         function (module_name)             local loader = package.preload[module_name]             if not loader then                 error("Module " .. module_name .. " not found in package.preload.")             else                 return loader             end         end     )      -- insert the bundle here /
+CREATE LUA SCRIPT "BUNDLE" () AS
+    table.insert(_G.package.loaders,
+        function (module_name)
+            local loader = package.preload[module_name]
+            if not loader then
+                error("Module " .. module_name .. " not found in package.preload.")
+            else
+                return loader
+            end
+        end
+    )
+
+    -- insert the bundle here
+/
 ```
 The command starts with `CREATE LUA SCRIPT <name> AS`. Then we register the searcher function that checks `package.prepload`  after that you insert the Lua code amalg produced and finally you end the command single dash in a separate line.
 
