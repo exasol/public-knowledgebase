@@ -114,7 +114,8 @@ Since you normally set the format before you start logging, you need to use the 
 
 
 ```java
-log = require("remotelog").init("%d.%m.%y", true) log.info("New time format.")
+log = require("remotelog").init("%d.%m.%y", true) 
+log.info("New time format.")
 ```
 yields:
 
@@ -126,7 +127,8 @@ Now let's switch off the high-res timer and see how that looks.
 
 
 ```java
-log.init("%Y-%d-%m", false) log.info("Another time format.")
+log.init("%Y-%d-%m", false) 
+log.info("Another time format.")
 ```
  As you can see, you can safely call `init()` again later even if that is seldom required.
 
@@ -160,7 +162,8 @@ Now we tell `remotelog` to establish a TCP connection to the listening log recei
 
 
 ```java
-log.connect("localhost", 3000) log.info("Hello netcat!") 
+log.connect("localhost", 3000) 
+log.info("Hello netcat!") 
 ```
 This is called a reverse connection and has the advantage of better chances in most network setups for the Exasol instance to reach the outside world instead of the other way round.
 
@@ -187,7 +190,9 @@ Let's disconnect, provide a proper client name and reconnect.
 
 
 ```java
-log.disconnect() log.set_client_name("remotelog-tutorial 1.0.0") log.connect() 
+log.disconnect() 
+log.set_client_name("remotelog-tutorial 1.0.0") 
+log.connect() 
 ```
 Now the greeting looks like this:
 
@@ -203,7 +208,8 @@ You can either concatenate the message strings, or if you want a little bit more
 
 
 ```java
-log.info("%s: %d pound sugar, %d pound butter, %d pound flour, %d pound eggs. %3.0f%% awesome.",     "Pound cake", 1, 1, 1, 1, 100)
+log.info("%s: %d pound sugar, %d pound butter, %d pound flour, %d pound eggs. %3.0f%% awesome.",     
+ "Pound cake", 1, 1, 1, 1, 100)
 ```
 And the result of this is:
 
