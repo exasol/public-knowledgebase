@@ -17,11 +17,15 @@ The result for this specific calculation would be decimal (36,12).
 Regularly the precision and scale were added.  
 Examples:
 
-* (12,0) * (15,3) = (27,3)
-* (12,0) * (15,9) = (27,9)
-* (18,3) * (18,9) = (36,12)
+```
+(12,0) * (15,3) = (27,3)
+(12,0) * (15,9) = (27,9)
+(18,3) * (18,9) = (36,12)
+```
 
 For sums the scale is taken from the factor with the highest precision.
 
-* (12,0) + (15,9) = (22,9)
-* (15,3) + (15,9) = (22,9)
+```
+(12,0) + (15,9) = (22,9)
+(15,3) + (15,9) = (22,9)
+```
