@@ -1,15 +1,16 @@
 # How to create DDL for Exasol support 
-* ## Problem
+## Problem
 
  To reproduce certain problems, Exasol support may ask you to send DDL statements for required tables and views.  
 At this point you have two choices:
 
+1. Start drilling around to find each and every required view / table etc. This may be a lot of work and may end up with some communication round trips in case you overlooked a dependency or two.
+2. Skip all that and just send us the full DDL for all schemas in your database instance. Just let us sort out what is needed and what is not.  
+Both options are not optimal.
 
-	1. Start drilling around to find each and every required view / table etc. This may be a lot of work and may end up with some communication round trips in case you overlooked a dependency or two.
-	2. Skip all that and just send us the full DDL for all schemas in your database instance. Just let us sort out what is needed and what is not.  
-	Both options are not optimal.## Solution
+## Solution
 
- The attachment of this article contains a procedure script (Lua) that can create DDL statements for recursive dependencies of a view. The DDL are presented as a single-column result-set and are ready for copy/paste into a text editor (or EXAplus) for saving.
+The attachment of this article contains a procedure script (Lua) that can create DDL statements for recursive dependencies of a view. The DDL are presented as a single-column result-set and are ready for copy/paste into a text editor (or EXAplus) for saving.
 
  ## Example Call
 
