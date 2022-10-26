@@ -20,5 +20,31 @@ A basic example of this behavior can be found with the following queries:
 
 
 ```markup
-create script queryscript(param1) returns table as     exit(query( [[select :t from dual]] , {t=param1} )); /  create script loopscript_query_local() as     for run=1,500     do         res_local = {}         result = query("execute script queryscript("..run..")")         res_local[run] = result  --local holder         output(run..": is OK, return value="..result[1][1])     end /  create script loopscript_query_global() as     res_global = {}     for run=1,500     do         result = query("execute script queryscript("..run..")")         res_global[run] = result --global holder, to test the exception         output(run..": is OK, return value="..result[1][1])     end /  execute script loopscript_query_local() with output; -- This will work because the variable is recreated on every iteration  execute script loopscript_query_global(); -- this will produce the same error because res_global is storing more than 250 result sets
+create script queryscript(param1) returns table as
+    exit(query( [[select :t from dual]] , {t=param1} ));
+/
+
+create script loopscript_query_local() as
+    for run=1,500
+    do
+        res_local = {}
+        result = query("execute script queryscript("..run..")")
+        res_local[run] = result  --local holder
+        output(run..": is OK, return value="..result[1][1])
+    end
+/
+
+create script loopscript_query_global() as
+    res_global = {}
+    for run=1,500
+    do
+        result = query("execute script queryscript("..run..")")
+        res_global[run] = result --global holder, to test the exception
+        output(run..": is OK, return value="..result[1][1])
+    end
+/
+
+execute script loopscript_query_local() with output; -- This will work because the variable is recreated on every iteration
+
+execute script loopscript_query_global(); -- this will produce the same error because res_global is storing more than 250 result sets
 ```
