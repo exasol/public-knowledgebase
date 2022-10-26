@@ -30,7 +30,9 @@ Here we use the reserved keyword "DAY" as an identifier. Try that statement in y
 
 In a proper SQL client, syntax highlighting is a good indicator whether you hit a keyword or not. Look at the side-by-side comparison in this screenshot from [DBeaver](https://dbeaver.io/).
 
-![](images/exa-SebastianB_0-1615967536695.png)On the left side you see a the keyword "DAY" properly quoted and displayed in the color of an identifier. On the right I "forgot" the quotes and get the word highlighted as a keyword instead. Of course the query on the right will fail.
+![](images/exa-SebastianB_0-1615967536695.png)
+
+On the left side you see a the keyword "DAY" properly quoted and displayed in the color of an identifier. On the right I "forgot" the quotes and get the word highlighted as a keyword instead. Of course the query on the right will fail.
 
 ## Should I use keywords as identifiers?
 
