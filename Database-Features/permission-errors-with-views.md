@@ -15,13 +15,15 @@ or
 
 
 ```markup
-[Code: 0, SQL State: 42500]  insufficient privileges for SELECT on table : USAGE on schema ... needed. 
+[Code: 0, SQL State: 42500]  insufficient privileges for SELECT on table : 
+USAGE on schema ... needed. 
 ```
 or
 
 
 ```markup
-[Code: 0, SQL State: 42500]  insufficient privileges: SELECT on table ... must be grantable for ... (Session: 1680100781957054464)
+[Code: 0, SQL State: 42500]  insufficient privileges: SELECT on table ... 
+must be grantable for ... (Session: 1680100781957054464)
 ```
 ## Explanation
 
@@ -33,13 +35,15 @@ When confronted with these errors, you should first check who is the owner of th
 
 
 ```markup
-SELECT SCHEMA_NAME, SCHEMA_OWNER FROM EXA_SCHEMAS WHERE SCHEMA_NAME = '<Schema name>';
+SELECT SCHEMA_NAME, SCHEMA_OWNER FROM EXA_SCHEMAS 
+WHERE SCHEMA_NAME = '<Schema name>';
 ```
 Once you find out the owner, you should verify the system and object privileges of this owner by checking EXA_DBA_OBJ_PRIVS and EXA_DBA_SYS_PRIVS:
 
 
 ```markup
-SELECT * FROM EXA_DBA_OBJ_PRIVS WHERE GRANTEE = '<Schema Owner>';  SELECT * FROM EXA_DBA_SYS_PRIVS WHERE GRANTEE = '<Schema Owner>';
+SELECT * FROM EXA_DBA_OBJ_PRIVS WHERE GRANTEE = '<Schema Owner>';  
+SELECT * FROM EXA_DBA_SYS_PRIVS WHERE GRANTEE = '<Schema Owner>';
 ```
 When the owner of a schema is a role, the privileges of the role are checked. Even if a member of the role has additional privileges, since the owner of the schema is the role, the additional privileges of the user are not relevant. If the owner has additional privileges because they are members of other roles, you may need to check those permissions as well. 
 
@@ -51,7 +55,8 @@ This occurs because, even though the owner is able to select the underlying tabl
 
 
 ```markup
-GRANT SELECT ANY TABLE TO '<Schema owner>';  ALTER SCHEMA <schema name> CHANGE OWNER <owner name>;
+GRANT SELECT ANY TABLE TO '<Schema owner>';  
+ALTER SCHEMA <schema name> CHANGE OWNER <owner name>;
 ```
 ## Additional References
 
