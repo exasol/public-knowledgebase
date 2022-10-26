@@ -20,7 +20,7 @@ You can verify if your CPU settings follow our best practices by running the fol
 ```sql
 --/ CREATE OR REPLACE PYTHON3 SCALAR SCRIPT "EMIT_CPU_RATES" ("IPROC" INT) EMITS ("HOSTNAME" VARCHAR(120), "IPROC" INT, "CPU_MHZ" DOUBLE) AS  def run(ctx):     import re     import platform     hostname = platform.node().split('.', 1)[0]     cpuinfo = open('/proc/cpuinfo').read()     rates = re.findall('^cpu MHz\s*: *(?P<mhz>[\d.]+)', cpuinfo, re.MULTILINE)     for r in rates:         ctx.emit(hostname, ctx.IPROC, float(r)) /  WITH RATES AS (select EMIT_CPU_RATES(IPROC()) from exa_loadavg) SELECT HOSTNAME, "IPROC", MIN(CPU_MHZ), MAX(CPU_MHZ), MIN(CPU_MHZ)/MAX(CPU_MHZ) > 0.98 AS FULL_POWER  FROM RATES GROUP BY HOSTNAME, "IPROC";
 ```
-The script will return a line for every active database node and non-optimal setups will have aFALSEvalue in the columnFULL_POWER.
+The script will return a line for every active database node and non-optimal setups will have a FALSE value in the column FULL_POWER.
 
 ## Next Steps
 
