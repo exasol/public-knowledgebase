@@ -20,12 +20,12 @@ Have a look at the following diagram showing the general relationships between m
 
 ## Notes:
 
-* The ratio betweenRAW_andMEM_OBJECT_SIZEis what Exasol commonly defines as**compression ratio**
-* The distinction betweenRAWandMEMsizes also applies to system data: Everything is**compressed in RAM**and mapped to/from disk.
-* Usually there is no need to fit all of the data into DB RAM. Systems with a large amount of /passive data/ may perform well with 10% ofDB_RAMcompared to overallMEM_OBJECT_SIZE
-	+ A typical "first guess" estimation for requiredDB_RAMis about 10% of the expectedRAW_OBJECT_SIZE
-* While**deleted blocks**in storage are reused by later operations, as a general rule, storage volumes**do not shrink**unless forced to do so.
-* InDB_RAM, the ratio between active data and temp data is flexible, but temp is hard-limited at 80%.
+* The ratio between RAW_ and MEM_OBJECT_SIZE is what Exasol commonly defines as **compression ratio**
+* The distinction between RAW and MEM sizes also applies to system data: Everything is **compressed in RAM** and mapped to/from disk.
+* Usually there is no need to fit all of the data into DB RAM. Systems with a large amount of passive data may perform well with 10% of DB_RAM compared to overall MEM_OBJECT_SIZE.
+	+ A typical "first guess" estimation for required DB_RAM is about 10% of the expected RAW_OBJECT_SIZE.
+* While **deleted blocks** in storage are reused by later operations, as a general rule, storage volumes **do not shrink** unless forced to do so.
+* In DB_RAM, the ratio between active data and temp data is flexible, but temp is hard-limited at 80%.
 
 ## Information Location
 
@@ -65,7 +65,7 @@ Have a look at the following diagram showing the general relationships between m
 
 ### Node Level
 
-**EXASOL 6.0.0**introduces a new system table for more detailed storage usage:EXA_VOLUME_USAGE  
+**EXASOL 6.0.0** introduces a new system table for more detailed storage usage: EXA_VOLUME_USAGE  
 Please refer to the user manual or column comments for details on the columns.
 
 
