@@ -19,9 +19,9 @@ For Database versions `starting from 7.1` all statements are combined into one f
 
 ## Number of Days Parameter
 
-The scripts *3rdLevelStats_leq_DBv70_Hourly.sql* and *3rdLevelStatistics_geq_DBv71.sql* contain a parameter which defines the number of days in the past to export statistics for. When executing the scripts via the command line or the GUI the user will be prompted to enter this parameter.
+The scripts *3rdLevelStats_leq_DBv70_Hourly.sql* and *3rdLevelStatistics_geq_DBv71.sql* contain a parameter which defines the number of days in the past to export statistics for. When executing the scripts via the command line or the GUI, the user will be prompted to enter this parameter.
 
-NOTE:
+## Note:
 
 * The size of the generated CSV's vary and could be quite large - make sure that there is enough space on the directory that you are saving them to.
 * The "days" parameter is using EXAplus syntax, which may have to be modified for other clients.
