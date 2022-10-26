@@ -1,7 +1,7 @@
 # LDAP error: Can't contact LDAP server, use FORCE option to create user 
 ## Problem
 
-If you create a user using LDAP, a simple connection check to the LDAP server is performed. Basically Exasol tries to connect to the LDAP server with a bogus user and checks that access is denied. This check might produce false negatives in complex LDAP setups, so the error message is thrown, although there is no real problem.
+If you create a user using LDAP, a simple connection check to the LDAP server is performed. Exasol tries to connect to the LDAP server with a bogus user and checks that access is denied. This check might produce false negatives in complex LDAP setups, so the error message is thrown, although there is no real problem.
 
 ## Diagnosis
 
