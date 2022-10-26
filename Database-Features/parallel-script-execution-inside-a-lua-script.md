@@ -13,7 +13,49 @@ The following small example shows this approach:
 
 
 ```"code
-create or replace lua script cat_return returns table as --Lua script that returns resultset of select * from cat --used to test parallel call  suc, res = pquery([[select * from cat]],{})  tab = {}  for i=1, #res do      tmp2 = {}     for j=1, #res[i] do         table.insert(tmp2, res[i][j])      end      table.insert(tab, tmp2)  end  return tab, 'TABLE_NAME VARCHAR(200), TABLE_TYPE VARCHAR(200)'  /  create or replace lua script partest returns rowcount as --Parallel execution of other lua scripts --performed using import statement  suc, res = pquery([[      IMPORT INTO (TABLE_NAME VARCHAR(200), TABLE_TYPE VARCHAR(200)) FROM JDBC      AT 'jdbc:exa:192.148.120.16..20:8563;schema=MYUSER'     USER 'myuser' IDENTIFIED BY 'xxxxxxxxx'     STATEMENT 'execute script myuser.cat_return'     STATEMENT 'execute script myuser.cat_return'     STATEMENT 'execute script myuser.cat_return';  ]],{})  return {rows_affected = #res}  /  execute script partest; 
+create or replace lua script cat_return returns table as
+--Lua script that returns resultset of select * from cat
+--used to test parallel call
+
+suc, res = pquery([[select * from cat]],{})
+
+tab = {}
+
+for i=1, #res do
+
+	tmp2 = {}
+	for j=1, #res[i] do
+		table.insert(tmp2, res[i][j]) 
+	end
+
+	table.insert(tab, tmp2)
+
+end
+
+return tab, 'TABLE_NAME VARCHAR(200), TABLE_TYPE VARCHAR(200)'
+
+/
+
+create or replace lua script partest returns rowcount as
+--Parallel execution of other lua scripts
+--performed using import statement
+
+suc, res = pquery([[
+
+	IMPORT INTO (TABLE_NAME VARCHAR(200), TABLE_TYPE VARCHAR(200)) FROM JDBC 
+	AT 'jdbc:exa:192.148.120.16..20:8563;schema=MYUSER'
+	USER 'myuser' IDENTIFIED BY 'xxxxxxxxx'
+	STATEMENT 'execute script myuser.cat_return'
+	STATEMENT 'execute script myuser.cat_return'
+	STATEMENT 'execute script myuser.cat_return';
+
+]],{})
+
+return {rows_affected = #res}
+
+/
+
+execute script partest;
 ```
 ## Additional References
 
