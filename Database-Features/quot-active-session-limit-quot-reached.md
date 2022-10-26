@@ -71,7 +71,11 @@ If this number is significantly under 100, then some of the other sessions are o
 
 
 ```markup
--- Will kill every session SELECT 'KILL SESSION ' || SESSION_ID || ';' STMT FROM EXA_DBA_SESSIONS WHERE SESSION_ID NOT IN (4,CURRENT_SESSION);  -- Will kill only idle sessions SELECT 'KILL SESSION ' || SESSION_ID || ';' STMT FROM EXA_DBA_SESSIONS WHERE SESSION_ID NOT IN (4,CURRENT_SESSION) AND STATUS = 'IDLE';
+-- Will kill every session
+SELECT 'KILL SESSION ' || SESSION_ID || ';' STMT FROM EXA_DBA_SESSIONS WHERE SESSION_ID NOT IN (4,CURRENT_SESSION);
+
+-- Will kill only idle sessions
+SELECT 'KILL SESSION ' || SESSION_ID || ';' STMT FROM EXA_DBA_SESSIONS WHERE SESSION_ID NOT IN (4,CURRENT_SESSION) AND STATUS = 'IDLE';
 ```
 ### 2.3. Analyze the problem
 
