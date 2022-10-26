@@ -6,7 +6,7 @@ Exasol R SDK offers functionality to interact with the Exasol database out of R 
 ## Example (Digit recognition)
 
 We will use a well-known machine learning algorithm for classifying handwritten digits. It is using a randomforest library, which is used to create decision trees for any kind of image. For a given training set and the actual result for each element, the library returns a decision tree that can be applied to other similar images, the test data. The data is stored pixel-wise (one value for each pixel).  
-This How-To will focus on how to use the EXASolution R SDK and not focus on details of the algorithm or R. Further information on the algorithm and the data can be found[here](https://www.kaggle.com/c/digit-recognizer).  
+This How-To will focus on how to use the EXASolution R SDK and not focus on details of the algorithm or R. Further information on the algorithm and the data can be found [here](https://www.kaggle.com/c/digit-recognizer).  
 The example was chosen to show how easy it is to read or write data from or to EXASolution and how easy it is to deploy a given algorithm to an Exasol UDF.
 
 ## Prerequisites
@@ -14,15 +14,15 @@ The example was chosen to show how easy it is to read or write data from or to E
 Exasol R SDK and randomForest needs to be installed on the used system.  
 The attached files can be used to setup your Exasol database for the example:
 
-1. Run[01_DDL.sql](https://www.exasol.com/support/secure/attachment/45767/45767_01_DDL.sql "01_DDL.sql")   (Creates a schema, a table for train data set and a table for test data set)
-2. Place csv files ([train.csv](https://www.exasol.com/support/secure/attachment/33596/33596_train.csv "train.csv")   and[test.csv](https://www.exasol.com/support/secure/attachment/33595/33595_test.csv "test.csv")   ) at an appropriate place and change the path to those files in[02_IMPORT.sql](https://www.exasol.com/support/secure/attachment/45766/45766_02_IMPORT.sql "02_IMPORT.sql")
-3. Run[02_IMPORT.sql](https://www.exasol.com/support/secure/attachment/45766/45766_02_IMPORT.sql "02_IMPORT.sql")   (Imports the train and test data set)
+1. Run [01_DDL.sql](https://www.exasol.com/support/secure/attachment/45767/45767_01_DDL.sql "01_DDL.sql")   (Creates a schema, a table for train data set and a table for test data set)
+2. Place csv files ([train.csv](https://www.exasol.com/support/secure/attachment/33596/33596_train.csv "train.csv")   and [test.csv](https://www.exasol.com/support/secure/attachment/33595/33595_test.csv "test.csv")   ) at an appropriate place and change the path to those files in [02_IMPORT.sql](https://www.exasol.com/support/secure/attachment/45766/45766_02_IMPORT.sql "02_IMPORT.sql")
+3. Run [02_IMPORT.sql](https://www.exasol.com/support/secure/attachment/45766/45766_02_IMPORT.sql "02_IMPORT.sql")   (Imports the train and test data set)
 
 ## How to use ExaSolution R SDK
 
 ## R implementation (reading the data sets from an EXASolution database)
 
-The attached file[03_RandomForest.r](https://www.exasol.com/support/secure/attachment/45789/45789_03_RandomForest.r "03_RandomForest.r")shows how to useexa.readData()andexa.writeData()to interact with the database in R. As of Exasol 6.2.x, we needed to modify 1 line in 03_RandomForest.r in order to account for R version differences. Specifically, we are adding a parameter to the save command - version = 2. You are welcome to skip this modification and come back to revisit if you run into issues.
+The attached file [03_RandomForest.r](https://www.exasol.com/support/secure/attachment/45789/45789_03_RandomForest.r "03_RandomForest.r")shows how to useexa.readData()andexa.writeData()to interact with the database in R. As of Exasol 6.2.x, we needed to modify 1 line in 03_RandomForest.r in order to account for R version differences. Specifically, we are adding a parameter to the save command - version = 2. You are welcome to skip this modification and come back to revisit if you run into issues.
 
 Before:
 
@@ -56,7 +56,7 @@ This requires an ODBC DSN (named "solo" in this example)
 
 1. We will use a bucket called binary to store the decision forest
 2. Detailed information on EXABucket FS and buckets can be found in <https://community.exasol.com/t5/environment-management/how-to-create-an-exabucketfs-service-and-bucket/ta-p/1515>**
-3. This item does not apply to Exasol 6+ and is only left in for archival purposes.**Important Deprecation Notice:**  In Version 5 it is not possible to store binary data in EXASOL database. One possibility is to serialize the decision forest and store it in a table. SInce VARCHAR type in EXASOL is limited to 2 million characters, the resulting string should not exceed 2 million characters.    
+3. This item does not apply to Exasol 6+ and is only left in for archival purposes. **Important Deprecation Notice:**  In Version 5 it is not possible to store binary data in EXASOL database. One possibility is to serialize the decision forest and store it in a table. SInce VARCHAR type in EXASOL is limited to 2 million characters, the resulting string should not exceed 2 million characters.    
 ```"code-java"
 curl -v -X PUT -T rf.dat http://w:<write_pw>@<ip of one cluster node>:<port>/binary/rf.dat
 ```
