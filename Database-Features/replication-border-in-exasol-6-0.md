@@ -16,11 +16,12 @@ What is a smart table replication and how can the replication border be modified
 ## Soft replication border
 
 A table will be replicated if none of the thresholds below are reached. The table size threshold refers to the RAW_OBJECT_SIZE like in EXA_*_OBJECT_SIZES.  
-The replication borders can be modified through**extra database parameters**in the web interface:
+The replication borders can be modified through **extra database parameters** in the web interface:
 
 
 ```"code-java"
--soft_replicationborder_in_numrows=<numrows> [default is 100000 rows] -soft_replicationborder_in_kb=<kb> [default is 1000000 -> 1GB]
+-soft_replicationborder_in_numrows=<numrows> [default is 100000 rows] 
+-soft_replicationborder_in_kb=<kb> [default is 1000000 -> 1GB]
 ```
 ## Additional References
 
