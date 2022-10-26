@@ -91,7 +91,33 @@ We use the Exasols UDF Framework to build a Python3 script to generate our grid:
 
 
 ```python
-CREATE OR REPLACE PYTHON3 SCALAR SCRIPT NYC_TAXI_STAGE.create_polygon_grid(     min_x DECIMAL(15,13),                                                                                  max_x DECIMAL(15,13),                                                                                  min_y DECIMAL(15,13),                                                                                  max_y DECIMAL(15,13)) EMITS (GRID_FIELD VARCHAR(500), SEGMENT_ID DECIMAL(3)) AS   def run(ctx):         min_x = ctx.min_x         min_y = ctx.min_y         max_x = ctx.max_x         max_y = ctx.max_y           grid_width = 10  #GRID-SIZE DEFINITION: 10: 10 * 10 segments = 100 segments         x_step_width = (max_x-min_x)/grid_width         y_step_width = (max_y-min_y)/grid_width           segment_id = 0         for y in range (grid_width):                 y_step = y * y_step_width                 for x in range(grid_width):                         segment_id += 1                         x_step = x * x_step_width                         ctx.emit(f"POLYGON(({min_x + x_step} {min_y + y_step}, "                                         f"{min_x + x_step + x_step_width} {min_y + y_step}, "                                         f"{min_x + x_step + x_step_width} {min_y + y_step + y_step_width}, "                                         f"{min_x + x_step} {min_y + y_step + y_step_width}, "                                         f"{min_x + x_step} {min_y + y_step}))", segment_id) /
+CREATE OR REPLACE PYTHON3 SCALAR SCRIPT NYC_TAXI_STAGE.create_polygon_grid(     min_x DECIMAL(15,13), 
+                                                                                max_x DECIMAL(15,13), 
+                                                                                min_y DECIMAL(15,13), 
+                                                                                max_y DECIMAL(15,13)) EMITS (GRID_FIELD VARCHAR(500), SEGMENT_ID DECIMAL(3)) AS
+ 
+def run(ctx):
+        min_x = ctx.min_x
+        min_y = ctx.min_y
+        max_x = ctx.max_x
+        max_y = ctx.max_y
+ 
+        grid_width = 10  #GRID-SIZE DEFINITION: 10: 10 * 10 segments = 100 segments
+        x_step_width = (max_x-min_x)/grid_width
+        y_step_width = (max_y-min_y)/grid_width
+ 
+        segment_id = 0
+        for y in range (grid_width):
+                y_step = y * y_step_width
+                for x in range(grid_width):
+                        segment_id += 1
+                        x_step = x * x_step_width
+                        ctx.emit(f"POLYGON(({min_x + x_step} {min_y + y_step}, "
+                                        f"{min_x + x_step + x_step_width} {min_y + y_step}, "
+                                        f"{min_x + x_step + x_step_width} {min_y + y_step + y_step_width}, "
+                                        f"{min_x + x_step} {min_y + y_step + y_step_width}, "
+                                        f"{min_x + x_step} {min_y + y_step}))", segment_id)
+/
 ```
 
 
@@ -101,7 +127,13 @@ After we deployed the script our SQL-statement as a whole looks like this:
 
 
 ```markup
-INSERT INTO SCHEMA.GRID_TABLE(polygon_id, grid_segment, segment_id)    SELECT polygon_id, SCHEMA.GRID_SCRIPT(       ST_X(ST_POINTN(ST_BOUNDARY(ST_ENVELOPE(polygon)), 4)),       ST_X(ST_POINTN(ST_BOUNDARY(ST_ENVELOPE(polygon)), 2)),       ST_Y(ST_POINTN(ST_BOUNDARY(ST_ENVELOPE(polygon)), 2)),       ST_Y(ST_POINTN(ST_BOUNDARY(ST_ENVELOPE(polygon)), 4)))    FROM SCHEMA.SOURCE_TABLE;
+INSERT INTO SCHEMA.GRID_TABLE(polygon_id, grid_segment, segment_id)
+   SELECT polygon_id, SCHEMA.GRID_SCRIPT(
+      ST_X(ST_POINTN(ST_BOUNDARY(ST_ENVELOPE(polygon)), 4)),
+      ST_X(ST_POINTN(ST_BOUNDARY(ST_ENVELOPE(polygon)), 2)),
+      ST_Y(ST_POINTN(ST_BOUNDARY(ST_ENVELOPE(polygon)), 2)),
+      ST_Y(ST_POINTN(ST_BOUNDARY(ST_ENVELOPE(polygon)), 4)))
+   FROM SCHEMA.SOURCE_TABLE;
 ```
 
 
@@ -116,7 +148,13 @@ In the end, what we get looks something like this for a 10x10 grid. Depending on
 
 
 ```markup
-CREATE OR REPLACE TABLE SCHEMA.FITTED_GRID_TABLE AS(    SELECT g.location_id,            g.segment_id,            ST_INTERSECTION(g.grid_segment, z.polygon) AS location_segment    FROM SCHEMA.GRID_TABLE g    JOIN SCHEMA.SOURCE_TABLE z ON g.location_id = z.location_id          AND ST_INTERSECTS(g.grid_segment, z.polygon));
+CREATE OR REPLACE TABLE SCHEMA.FITTED_GRID_TABLE AS(
+   SELECT g.location_id, 
+          g.segment_id, 
+          ST_INTERSECTION(g.grid_segment, z.polygon) AS location_segment
+   FROM SCHEMA.GRID_TABLE g
+   JOIN SCHEMA.SOURCE_TABLE z ON g.location_id = z.location_id 
+        AND ST_INTERSECTS(g.grid_segment, z.polygon));
 ```
 This creates a table only containing the tailored segments which overlap with our polygon. Using **ST_INTERSECTION** tailored segments as POLYGON() or MULTIPOLYGON() which overlap with our initial polygon. The join-condition at the end makes sure we only match segments associated with one specific polygon (assuming we use this process for more then one polygon).
 
