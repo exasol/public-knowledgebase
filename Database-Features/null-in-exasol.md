@@ -11,7 +11,21 @@ The following sample table will be used in all the examples on this page to demo
 
 
 ```markup
-CREATE OR REPLACE TABLE testnull (     num decimal(18, 0),     boo BOOLEAN,     dat date,     str varchar(30) );   INSERT INTO testnull VALUES (1, false, '2010-02-03', 'first row'), (NULL, true, '2010-02-04', 'second row'), (3, NULL, '2010-02-05', 'third row'), (4, true, NULL, 'fourth row'), (5, false, '2010-02-07', NULL), (6, true, '2010-02-08', '');
+CREATE OR REPLACE TABLE testnull
+(
+    num decimal(18, 0),
+    boo BOOLEAN,
+    dat date,
+    str varchar(30)
+);
+ 
+INSERT INTO testnull VALUES
+(1, false, '2010-02-03', 'first row'),
+(NULL, true, '2010-02-04', 'second row'),
+(3, NULL, '2010-02-05', 'third row'),
+(4, true, NULL, 'fourth row'),
+(5, false, '2010-02-07', NULL),
+(6, true, '2010-02-08', '');
 ```
 
 
@@ -35,7 +49,15 @@ The following basic rules apply to operations with NULL values:
 
 
 ```markup
-SELECT     num+1 num,     case boo    when true then 'TRUE'                 when false then 'FALSE'                 else 'X'     end AS boo,     add_month(dat, 1) dat,     case when str IS NULL then 'X' else str end str FROM testnull;
+SELECT
+    num+1 num,
+    case boo    when true then 'TRUE'
+                when false then 'FALSE'
+                else 'X'
+    end AS boo,
+    add_month(dat, 1) dat,
+    case when str IS NULL then 'X' else str end str
+FROM testnull;
 ```
 will return the following results:
 
@@ -105,7 +127,8 @@ The equivalent CASE-expression is:
 
 
 ```markup
-CASE WHEN number=0 THEN NULL ELSE number END
+CASE WHEN number=0 THEN NULL 
+ELSE number END
 ```
 #### [DECODE(expr, val1, ret1, ..., default)](https://docs.exasol.com/sql_references/functions/alphabeticallistfunctions/decode.htm)
 
@@ -127,7 +150,13 @@ Now we can make some different comparisons to our table:
 
 
 ```markup
-SELECT     num,     zeroifnull(num) + 1 num1,     nvl(cast(boo AS varchar(10)), 'unknown'),     coalesce(str, 'X') str,     1/nullifzero(num-3) num2 FROM testnull;
+SELECT
+    num,
+    zeroifnull(num) + 1 num1,
+    nvl(cast(boo AS varchar(10)), 'unknown'),
+    coalesce(str, 'X') str,
+    1/nullifzero(num-3) num2
+FROM testnull;
 ```
 
 
