@@ -13,8 +13,23 @@ The usual way to work around this is to create temporary tables with intermediat
 
 
 ```"code-sql"
-CREATE TABLE german_cities AS (        SELECT cities.* FROM cities, countries        WHERE               cities.country_id=countries.country_id               AND countries.name='Germany' );   SELECT b.name, c.name, count(*) FROM        customer_moves a,        german_cities b, german_cities c WHERE         a."from" = b.city_id AND         a."to" = c.city_id GROUP BY b.name, c.name;  
-  
+CREATE TABLE german_cities AS
+(
+       SELECT cities.* FROM cities, countries
+       WHERE
+              cities.country_id=countries.country_id
+              AND countries.name='Germany'
+);
+ 
+SELECT b.name, c.name, count(*)
+FROM
+       customer_moves a,
+       german_cities b, german_cities c
+WHERE
+        a."from" = b.city_id AND
+        a."to" = c.city_id
+GROUP BY b.name, c.name;
+
 ROLLBACK; -- Does not persist the table
 ```
 However, this has some side-effects:
@@ -37,7 +52,22 @@ The better solution, in this case, is to replace the temporary tables with views
 
 
 ```"code-sql"
-CREATE VIEW german_cities AS (        SELECT cities.* FROM cities, countries        WHERE               cities.country_id=countries.country_id               AND countries.name='Germany' );   SELECT b.name, c.name, count(*) FROM        customer_moves a,        german_cities b, german_cities c WHERE         a."from" = b.city_id AND         a."to" = c.city_id GROUP BY b.name, c.name; 
+CREATE VIEW german_cities AS
+(
+       SELECT cities.* FROM cities, countries
+       WHERE
+              cities.country_id=countries.country_id
+              AND countries.name='Germany'
+);
+ 
+SELECT b.name, c.name, count(*)
+FROM
+       customer_moves a,
+       german_cities b, german_cities c
+WHERE
+        a."from" = b.city_id AND
+        a."to" = c.city_id
+GROUP BY b.name, c.name;
 ```
 But in the case where the multi-path query is generated on the fly by some application, you still have the overhead of views being created and possible namespace clashes.
 
@@ -49,7 +79,21 @@ Basically, they work like views, but they are not database objects. Instead they
 
 
 ```"code-sql"
-WITH german_cities AS (        SELECT cities.* FROM cities, countries        WHERE               cities.country_id=countries.country_id               AND countries.name='Germany' ) SELECT b.name, c.name, count(*) FROM        customer_moves a,        german_cities b, german_cities c WHERE         a."from" = b.city_id AND         a."to" = c.city_id GROUP BY b.name, c.name;
+WITH german_cities AS
+(
+       SELECT cities.* FROM cities, countries
+       WHERE
+              cities.country_id=countries.country_id
+              AND countries.name='Germany'
+)
+SELECT b.name, c.name, count(*)
+FROM
+       customer_moves a,
+       german_cities b, german_cities c
+WHERE
+        a."from" = b.city_id AND
+        a."to" = c.city_id
+GROUP BY b.name, c.name;
 ```
 ## Additional References
 
