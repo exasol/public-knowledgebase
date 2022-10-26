@@ -17,7 +17,8 @@ There are also messages that describe when you are getting close to this limit, 
 
 
 ```markup
-Query queue limit of active sessions nearly reached,  running: <<active_sessions>> of 100 (+ <<blocked_sessions>> WAIT FOR COMMIT) are in use. 
+Query queue limit of active sessions nearly reached,  running: 
+<<active_sessions>> of 100 (+ <<blocked_sessions>> WAIT FOR COMMIT) are in use. 
 ```
 ## Explanation
 
