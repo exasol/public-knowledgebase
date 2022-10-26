@@ -6,7 +6,7 @@
 Indexes are automatically generated, reutilized, and discarded by the system as necessary. The user can not directly influence this, indexes will be automatically created during the execution of queries or statements like MERGE containing an equality join, as long as it completed successfully and didn't rollback.
 
 Indexes will be stored persistently and reused in later executions. Indexes are stored in a compressed manner and don't need to be decompressed when accessing them. Indexes are used for joins and under certain circumstances for filtering the data of a table (index scan).  
-Internally EXASolution is using a highly tuned B-tree structure.
+Internally, Exasol is using a highly tuned B-tree structure.
 
 #### Expression Index
 
@@ -44,7 +44,7 @@ In Version 5 system tables showing detailed information - including size - for a
 
 ## Index types
 
-In EXASolution there are two different types of indexes: GLOBAL and LOCAL indexes depending on the join type (see [Local-and-Global-joins](https://community.exasol.com/t5/database-features/local-and-global-joins/ta-p/1297)). Like tables, indices are stored in a distributed fashion across the cluster.
+In Exasol, there are two different types of indexes: GLOBAL and LOCAL indexes depending on the join type (see [Local-and-Global-joins](https://community.exasol.com/t5/database-features/local-and-global-joins/ta-p/1297)). Like tables, indices are stored in a distributed fashion across the cluster.
 
 #### LOCAL index
 
