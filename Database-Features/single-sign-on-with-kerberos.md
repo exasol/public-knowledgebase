@@ -18,13 +18,13 @@
 
  ### Create user
 
- CREATE USER <identifier> IDENTIFIED BY KERBEROS PRINCIPAL <string-literal>
+ CREATE USER (identifier) IDENTIFIED BY KERBEROS PRINCIPAL (string-literal)
 
- The Kerberos principal is usually formed like this:<user>@<realm>
+ The Kerberos principal is usually formed like this: (user)@(realm)
 
  ### Alter User
 
- ALTER USER <identifier> IDENTIFIED BY KERBEROS PRINCIPAL <string-literal>
+ ALTER USER (identifier) IDENTIFIED BY KERBEROS PRINCIPAL (string-literal)
 
  ### Rename User
 
