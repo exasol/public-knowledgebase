@@ -51,7 +51,9 @@ Well, it is no big surprise that we didn't get an answer. Let's consider all sta
 
 
 ```"code-sql"
-select asset_key,generator_type,location,nominal_output, st_distance('POINT(49 10)', gpscoord) as dist from energymap em where gpscoord is not null and local.dist < 3 order by nominal_output desc; 
+select asset_key,generator_type,location,nominal_output, st_distance('POINT(49 10)', gpscoord) as dist 
+from energymap em where gpscoord is not null and local.dist < 3 
+order by nominal_output desc; 
 ```
 This is a lot of results to consider. When browsing the result set, we soon find power stations which are obviously not very interesting. For instance, the power station with the key E2026001HRA0GROM000000E0000100001 is farther away and less powerful than the power station with the key E3117701SCHAETZUNGSOLPROGNOSE2013. Furthermore, we cannot be sure whether or not we are missing a very powerful power station that is just beyond the distance of 3.
 
