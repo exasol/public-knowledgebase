@@ -5,11 +5,9 @@ Is the IDENTITY Column guaranteed to be unique?
 
 ## Answer
 
-This ticket deals with IDENTITY columns and if they are guaranteed unique.
-
 Even though your use case scenario may not apply here, the uniqueness is NOT guaranteed as you can UPDATE the IDENTITY column. The way around this is to make the IDENTITY column a primary key. Probably not doable for most production database repositories.
 
-We discussed the content in<https://docs.exasol.com/sql_references/data_types/identitycolumns.htm>
+We discussed the content in <https://docs.exasol.com/sql_references/data_types/identitycolumns.htm>
 
 specifically, the part, "*Identity columns cannot be considered as a constraint, that is, identity columns do not guarantee unique values. However, the values are unique as long as they areinserted implicitlyand are not manually changed*." This means a series of concurrent inserts where the IDENTITY is not included in the values inserted, then the FIFO rule applies, where the first insert does a commit and generates the IDENTITY, then the next insert is free to insert. The emphasis is on the*insert implicitly*- where the IDENTITY value is not specified, but system generated. If you do an insert with the IDENTITY value coded in the insert statement if will insert and become a duplicate. Remember, the IDENTITY column can't be considered a constraint.
 
@@ -23,7 +21,10 @@ Another suggestion is to create a function to insert the max(ROW_NUMBER()) + 1 i
 
 
 ```
-drop schema exa_29444 CASCADE; commit; create schema exa_29444; open schema exa_29444; 
+drop schema exa_29444 CASCADE; 
+commit; 
+create schema exa_29444; 
+open schema exa_29444; 
 ```
 –  
 -- Build a test table with an IDENTITY column.  
@@ -44,7 +45,8 @@ create or replace table identity_test (id int identity, name varchar(20));
 
 
 ```
-insert into identity_test (name) values ('Zach'),('Cole'),('Daniel'); commit; 
+insert into identity_test (name) values ('Zach'),('Cole'),('Daniel'); 
+commit; 
 ```
 –  
 -- Present the results  
