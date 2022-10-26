@@ -39,7 +39,7 @@ For a global join the keyword "GLOBAL" is shown in the PART_INFO column. The fol
 | STMT_ID | PART_ID | PART_NAME | PART_INFO | OBJECT_NAME |
 | --- | --- | --- | --- | --- |
 | 1 | 1 | COMPILE / EXECUTE | 
-| 1 | 2 | SCAN |  CITY |
+| 1 | 2 | SCAN | | || CITY |
 | 1 | 3 | JOIN | GLOBAL | CUSTOMER |
 | — | — | — | — |
 | 2 | 1 | COMPILE / EXECUTE | 
