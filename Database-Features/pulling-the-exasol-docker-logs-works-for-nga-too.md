@@ -149,7 +149,7 @@ Build the command to generate the logs. Our example will generate the logs with 
 
 **g**. You will find your new logs in the same directory as you executed the command. You can verify the new logs exist by running the command "ls -lart". The new logs should be at the bottom of the list.
 
-**Commands:**pwd       #Shows your current directory. (Optional command - added for clarity).
+**Commands:** pwd       #Shows your current directory. (Optional command - added for clarity).
 
           ls -lart   #"Lists" contents of current directory
 
