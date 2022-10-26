@@ -37,7 +37,7 @@ Have a look at the following diagram showing the general relationships between m
 | --- | --- | --- |
 | RAW_OBJECT_SIZE | System table EXA_DBA_OBJECT_SIZES | Theoretical value, never actually required |
 | MEM_OBJECT_SIZE | System table EXA_DBA_OBJECT_SIZES | 
-| Index size | AUXILIARY_SIZEin System table EXA_DBA_INDICES | 
+| Index size | AUXILIARY_SIZE in System table EXA_DBA_INDICES | 
 | Statistics + Audit Size | STATISTICS_SIZE in System table EXA_STATISTICS_OBJECT_SIZES | 
 | HDD_READ / HDD_WRITE | N/A | 
 
