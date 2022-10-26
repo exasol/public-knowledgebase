@@ -1,7 +1,7 @@
 # Lua, Python and all the others: When to use which programming language? 
 ## Background
 
-Exasol comes with a variety of programming languages. Especially for new users, it can sometimes be hard to understand, when to use which programming language. So here's a little guide for helping you choose the right language for your task.
+Exasol comes with a variety of programming languages. Especially for new users, it can sometimes be hard to understand when to use which programming language. So here's a little guide for helping you choose the right language for your task.
 
 ## Explanation
 
