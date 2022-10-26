@@ -25,45 +25,31 @@ drop schema exa_29444 CASCADE;
 commit; 
 create schema exa_29444; 
 open schema exa_29444; 
-```
-–  
+
 -- Build a test table with an IDENTITY column.  
-–
 
-
-```
 create or replace table identity_test (id int identity, name varchar(20)); 
-```
-–  
+
 -- optional TRUE constraint for IDENTITY COLUMN  
-–  
+
 --alter table identity_test add constraint it_pk PRIMARY KEY ("ID") enable;
 
-–  
+
 -- Load the table with data using**IMPLICIT insert**on IDENTITY Column "ID"  
-–
 
-
-```
 insert into identity_test (name) values ('Zach'),('Cole'),('Daniel'); 
 commit; 
-```
-–  
+
 -- Present the results  
-–
 
-
-```
 SELECT * FROM IDENTITY_TEST; 
-```
-–  
+ 
 -- Template to generate the next sequential ID - using ROW_NUMBER analytic function.  
-– If you wish to Generate the IDENTITY COLUMN value for the insert (Explicit insert)  
-–
+–- If you wish to Generate the IDENTITY COLUMN value for the insert (Explicit insert)  
 
-
-```
-WITH ROWZ (RowNumber) AS (select ROW_NUMBER() over (ORDER BY ID ASC) RowNumber FROM IDENTITY_TEST)  SELECT MAX(RowNumber) +1 from ROWZ; commit; 
+WITH ROWZ (RowNumber) AS (select ROW_NUMBER() over (ORDER BY ID ASC) RowNumber 
+  FROM IDENTITY_TEST)  SELECT MAX(RowNumber) +1 from ROWZ; 
+commit; 
 ```
 ## Additional References
 
