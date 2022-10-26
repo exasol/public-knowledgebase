@@ -35,10 +35,10 @@ Have a look at the following diagram showing the general relationships between m
 
 | Metric | Location | Comment |
 | --- | --- | --- |
-| RAW_OBJECT_SIZE | System tableEXA_DBA_OBJECT_SIZES | Theoretical value, never actually required |
-| MEM_OBJECT_SIZE | System tableEXA_DBA_OBJECT_SIZES | 
-| Index size | AUXILIARY_SIZEin System tableEXA_DBA_INDICES | 
-| Statistics + Audit Size | STATISTICS_SIZEin System tableEXA_STATISTICS_OBJECT_SIZES | 
+| RAW_OBJECT_SIZE | System table EXA_DBA_OBJECT_SIZES | Theoretical value, never actually required |
+| MEM_OBJECT_SIZE | System table EXA_DBA_OBJECT_SIZES | 
+| Index size | AUXILIARY_SIZEin System table EXA_DBA_INDICES | 
+| Statistics + Audit Size | STATISTICS_SIZE in System table EXA_STATISTICS_OBJECT_SIZES | 
 | HDD_READ / HDD_WRITE | N/A | 
 
 ### Database Level
@@ -47,17 +47,17 @@ Have a look at the following diagram showing the general relationships between m
 
 | Metric | Location | Comment |
 | --- | --- | --- |
-| RAW_OBJECT_SIZE | System tableEXA_DB_SIZE_LAST_DAY | 
-| MEM_OBJECT_SIZE | System tableEXA_DB_SIZE_LAST_DAY | 
-| Index Size | System tableEXA_DB_SIZE_LAST_DAY | 
-| Statistics+Audit Size | System tableEXA_DB_SIZE_LAST_DAY | 
-| HDD_READ / HDD_WRITE | System TableEXA_MONITOR_LAST_DAY | 
-| DB_RAM Size | System tableEXA_SYSTEM_EVENTS | You can assume that the database will always "use" all that RAM and does not yield to others. |
-| RECOMMENDED_DB_RAM_SIZE | System tableEXA_DB_SIZE_LAST_DAY | 
-| TEMP_DB_RAM_SIZE | System TableEXA_MONITOR_LAST_DAY | == (DB_RAM:temp + Temporary:used) |
+| RAW_OBJECT_SIZE | System table EXA_DB_SIZE_LAST_DAY | 
+| MEM_OBJECT_SIZE | System table EXA_DB_SIZE_LAST_DAY | 
+| Index Size | System table EXA_DB_SIZE_LAST_DAY | 
+| Statistics+Audit Size | System table EXA_DB_SIZE_LAST_DAY | 
+| HDD_READ / HDD_WRITE | System Table EXA_MONITOR_LAST_DAY | 
+| DB_RAM Size | System table EXA_SYSTEM_EVENTS | You can assume that the database will always "use" all that RAM and does not yield to others. |
+| RECOMMENDED_DB_RAM_SIZE | System table EXA_DB_SIZE_LAST_DAY | 
+| TEMP_DB_RAM_SIZE | System Table EXA_MONITOR_LAST_DAY | == (DB_RAM:temp + Temporary:used) |
 | DB_RAM:active data | N/A | 
 | DB_RAM:temp | see Node Level below | 
-| Persistent:size | STORAGE_SIZEinEXA_DB_SIZE_LAST_DAY | 
+| Persistent:size | STORAGE_SIZE in EXA_DB_SIZE_LAST_DAY | 
 | Persistent:committed | see Node Level below | ~= ( MEM_OBJECT_SIZE + AUXILIARY_SIZE + STATISTICS_SIZE ) |
 | Persistent:deleted | see Node Level below | size = committed * (100 / USE ) |
 
