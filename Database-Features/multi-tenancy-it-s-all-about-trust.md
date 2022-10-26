@@ -68,7 +68,7 @@ The development of a shared data model usually requires significantly more effor
 
 ## Security
 
-If you store sensitive customer data in your data warehouse, the security question will significantly influence your decision. A common prejudice is that only physically separated data can be secure. Therefore a great deal of convincing might be necessary if you consider a more shared solution favorable. In fact, a shared solution can be just as secure as an isolated one. However, to achieve this you usually need to develop a rather complicated design.
+If you store sensitive customer data in your data warehouse, the security question will significantly influence your decision. A common prejudice is that only physically separated data can be secure. Therefore, a great deal of convincing might be necessary if you consider a more shared solution favorable. In fact, a shared solution can be just as secure as an isolated one. However, to achieve this you usually need to develop a rather complicated design.
 
 ## Additional References
 
