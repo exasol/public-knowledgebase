@@ -77,13 +77,19 @@ We now take these two points apart into their X- and Y-coordinates using
 
 
 ```markup
-ST_X(ST_POINTN(ST_BOUNDARY(ST_ENVELOPE(polygon)), 4)) --top left x coord ST_X(ST_POINTN(ST_BOUNDARY(ST_ENVELOPE(polygon)), 2)) --bottom right x coord ST_Y(ST_POINTN(ST_BOUNDARY(ST_ENVELOPE(polygon)), 2)) --bottom right y coord ST_Y(ST_POINTN(ST_BOUNDARY(ST_ENVELOPE(polygon)), 4)) --top left y coord
+ST_X(ST_POINTN(ST_BOUNDARY(ST_ENVELOPE(polygon)), 4)) --top left x coord 
+ST_X(ST_POINTN(ST_BOUNDARY(ST_ENVELOPE(polygon)), 2)) --bottom right x coord 
+ST_Y(ST_POINTN(ST_BOUNDARY(ST_ENVELOPE(polygon)), 2)) --bottom right y coord 
+ST_Y(ST_POINTN(ST_BOUNDARY(ST_ENVELOPE(polygon)), 4)) --top left y coord
 ```
 Our 4 points are:
 
 
 ```markup
--73.9044655149999     -73.89283653100001     40.80988061199988     40.82824854099993
+-73.9044655149999     
+-73.89283653100001     
+40.80988061199988     
+40.82824854099993
 ```
 ## Step 3 -  Building the grid
 
