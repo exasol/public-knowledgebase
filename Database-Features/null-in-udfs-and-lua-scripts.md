@@ -12,7 +12,31 @@ The following example shows the different meaning of nil and NULL in the context
 
 
 ```markup
-create table null_nil_test (COL1 INT); insert into null_nil_test values NULL;  --/ create or replace lua script null_nil_explanation as  res = query ([[ select * from null_nil_test]]) if res[1].COL1 == null then --column COL1 exists and contains a NULL value     output('res[1].COL1 is null') end  if res[1].COL1 == nil then --this condition is false, so no output     output('res[1].COL1 is nil') end  if res[1].X == nil then --column X doesn't exist so it equals to nil     output('res[1].X is nil') end  if null ~= nil then --null is not equal to nil     output('null is not equal to nil') end /  execute script null_nil_explanation with output;
+create table null_nil_test (COL1 INT);
+insert into null_nil_test values NULL;
+
+--/
+create or replace lua script null_nil_explanation as
+
+res = query ([[ select * from null_nil_test]])
+if res[1].COL1 == null then --column COL1 exists and contains a NULL value
+	output('res[1].COL1 is null')
+end
+
+if res[1].COL1 == nil then --this condition is false, so no output
+	output('res[1].COL1 is nil')
+end
+
+if res[1].X == nil then --column X doesn't exist so it equals to nil
+	output('res[1].X is nil')
+end
+
+if null ~= nil then --null is not equal to nil
+	output('null is not equal to nil')
+end
+/
+
+execute script null_nil_explanation with output;
 ```
 Please note that comparisons in Lua always yield true or false, so
 
