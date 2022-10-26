@@ -15,7 +15,7 @@ You can immediately diagnose if this is the case by looking into the EXA_DBA_SES
 
 
 ```markup
-SELECT * FROM EXA_ALL_SESSIONS WHERE INSTR(ACTIVITY,'Waiting') > 0
+SELECT * FROM EXA_ALL_SESSIONS WHERE INSTR(ACTIVITY,'Waiting') > 0;
 ```
 **If the query was in the past:**
 
@@ -23,7 +23,7 @@ You can view previous transaction conflicts by viewing the table EXA_DBA_TRANSAC
 
 
 ```markup
-SELECT * FROM EXA_DBA_TRANSACTION_CONFLICTS WHERE SESSION_ID = <Session ID>
+SELECT * FROM EXA_DBA_TRANSACTION_CONFLICTS WHERE SESSION_ID = <Session ID>;
 ```
 ## Explanation/Investigation
 
@@ -49,7 +49,7 @@ The other option is to take no action, and simply let the conflict session ID co
 
 
 ```markup
-SELECT * FROM EXA_DBA_SESSIONS WHERE SESSION_ID = <conflict session Id>
+SELECT * FROM EXA_DBA_SESSIONS WHERE SESSION_ID = <conflict session Id>;
 ```
 If the conflict session is simply left open (STATUS='IDLE') and not doing anything, waiting for the session may not be an option and may need to be killed. 
 
