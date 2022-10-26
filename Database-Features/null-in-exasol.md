@@ -39,6 +39,7 @@ INSERT INTO testnull VALUES
 | 6 | true | 2010-02-08 | 
 |  true | 2010-02-04 | second row |
 
+
 ### General Rules
 
 The following basic rules apply to operations with NULL values:
