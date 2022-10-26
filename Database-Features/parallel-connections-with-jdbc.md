@@ -9,7 +9,7 @@
 
 ## Answer
 
-You can use subconnections to read or insert data in parallel from and into the EXASOL server.  
+You can use subconnections to read or insert data in parallel from and into the Exasol server.  
 This will increase performance considerably.
 
 Using this interface you can read/write data in parallel from different physical hosts or from different processes or in one process from different threads.
