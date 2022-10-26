@@ -9,19 +9,24 @@ The new system privilege IMPERSONATE ANY USER has been granted to sys and to the
 
 
 ```"code-sql"
--- Example 1: sys is connected and becomes fred: IMPERSONATE fred;
+-- Example 1: sys is connected and becomes fred: 
+IMPERSONATE fred;
 ```
 Otherwise, the IMPERSONATION ON <user_name> privilege can be granted to a user that should be allowed to impersonate that other user.
 
 
 ```"code-sql"
--- Example 2: bob is allowed to impersonate sys GRANT IMPERSONATION ON sys TO bob; 
+-- Example 2: bob is allowed to impersonate sys 
+GRANT IMPERSONATION ON sys TO bob; 
 ```
 Using the IMPERSONATE command, users can change the effective user within their sessions:
 
 
 ```"code-sql"
--- Example 3: bob impersonates sys, so that he has sys' privileges SELECT current_user; -- shows BOB IMPERSONATE sys; SELECT current_user; -- shows SYS 
+-- Example 3: bob impersonates sys, so that he has sys' privileges 
+SELECT current_user; -- shows BOB 
+IMPERSONATE sys; 
+SELECT current_user; -- shows SYS 
 ```
 The following system tables contain information about impersonations:
 
@@ -42,11 +47,26 @@ The following query adds an EFFECTIVE_USER column to the EXA_DBA_AUDIT_SQL. It s
 
 
 ```"code-sql"
-with impersonations as (   select stmt_id + 1 as first_stmt_id, lead(stmt_id, 1, 999999999999) over (partition by session_id order by stmt_id ) as last_stmt_id,          impersonatee as effective_user, session_id   from exa_dba_audit_impersonation   )   select nvl(ai.effective_user, se.user_name) effective_user, sq.*  from  exa_dba_audit_sql sq join  exa_dba_audit_sessions se   on  sq.session_id = se.session_id left join  impersonations    ai        on sq.session_id = ai.session_id        and sq.stmt_id between ai.first_stmt_id and ai.last_stmt_id where sq.session_id = current_session order by stmt_id; 
+with impersonations as
+(
+  select stmt_id + 1 as first_stmt_id, lead(stmt_id, 1, 999999999999) 
+         over (partition by session_id order by stmt_id ) as last_stmt_id,
+         impersonatee as effective_user, session_id
+  from exa_dba_audit_impersonation  
+)  
+select nvl(ai.effective_user, se.user_name) effective_user, sq.* 
+from  exa_dba_audit_sql sq
+join  exa_dba_audit_sessions se
+  on  sq.session_id = se.session_id
+left join  impersonations    ai
+       on sq.session_id = ai.session_id 
+      and sq.stmt_id between ai.first_stmt_id and ai.last_stmt_id
+where sq.session_id = current_session
+order by stmt_id;
 ```
 ## Additional References
 
 See here
 
-* for a video that explains impersonation:<https://www.youtube.com/watch?v=h2Mrbd0r67k>
-* for documentation<https://docs.exasol.com/sql/impersonate.htm>
+* for a video that explains impersonation: <https://www.youtube.com/watch?v=h2Mrbd0r67k>
+* for documentation <https://docs.exasol.com/sql/impersonate.htm>
