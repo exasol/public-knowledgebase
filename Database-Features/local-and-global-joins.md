@@ -21,7 +21,8 @@ Using distribution keys (see [here](https://community.exasol.com/t5/database-fea
 
 
 ```"code-sql"
-ALTER TABLE CUSTOMER DISTRIBUTE BY CITY_ID; ALTER TABLE CITIES DISTRIBUTE BY ID; 
+ALTER TABLE CUSTOMER DISTRIBUTE BY CITY_ID; 
+ALTER TABLE CITIES DISTRIBUTE BY ID; 
 ```
 The optimizer recognizes that both tables have a suitable distribution to perform a local join. It is not necessary to find matches on other nodes and thereby no data needs to be transferred to the responsible nodes.  
 The following image illustrates the same join with a suitable data distribution:
