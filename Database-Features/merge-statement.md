@@ -15,7 +15,16 @@ MERGE is designed to use a small UPDATE table to affect a larger FACT table.
 
 
 ```markup
-MERGE INTO customers c USING new_customers n ON (n.customer_no = c.customer_no) WHEN MATCHED THEN     UPDATE SET     city_id=n.city_id WHEN NOT MATCHED THEN     INSERT VALUES     (customer_no, first_name, last_name, gender, birthday, city_id);
+MERGE INTO customers c
+USING new_customers n
+ON
+(n.customer_no = c.customer_no)
+WHEN MATCHED THEN
+    UPDATE SET
+    city_id=n.city_id
+WHEN NOT MATCHED THEN
+    INSERT VALUES
+    (customer_no, first_name, last_name, gender, birthday, city_id);
 ```
 ## Merge, reversed scenario
 
@@ -29,7 +38,15 @@ INSERT actions generally are not desired in this scenario, most cases can even b
 
 
 ```markup
-MERGE INTO new_customers n USING customer c ON( c.customer_no=n.customer_no ) WHEN MATCHED THEN     UPDATE     SET error_flag=true,     error_text= 'Customer-id already exists with name ' || c.first_name || ',' ||c.last_name     WHERE     c.first_name||c.last_name != n.first_name||n.last_name
+MERGE INTO new_customers n
+USING customer c
+ON( c.customer_no=n.customer_no )
+WHEN MATCHED THEN
+	UPDATE
+	SET error_flag=true,
+	error_text= 'Customer-id already exists with name ' || c.first_name || ',' ||c.last_name
+	WHERE
+	c.first_name||c.last_name != n.first_name||n.last_name
 ```
 ## Merge as difference-finder
 
@@ -56,7 +73,19 @@ The result you can now feed to 'Merge, the standard edition' and update your FAC
 
 
 ```markup
-MERGE INTO new_customer n USING customer c ON (c.customer_no=n.customer_no) WHEN MATCHED THEN     UPDATE SET     status_flag='U'          DELETE WHERE         (c.first_name=n.first_name AND ... AND c.city_id=n.city_id) WHEN NOT MATCHED THEN      INSERT VALUES      (customer_no, first_name, ..., city_id, 'D') ;
+MERGE INTO new_customer n
+USING customer c
+ON
+(c.customer_no=n.customer_no)
+WHEN MATCHED THEN
+    UPDATE SET
+    status_flag='U'
+         DELETE WHERE
+        (c.first_name=n.first_name AND ... AND c.city_id=n.city_id)
+WHEN NOT MATCHED THEN
+     INSERT VALUES
+     (customer_no, first_name, ..., city_id, 'D')
+;
 ```
 Result: * Rows, that have been deleted since the previous day, did not exist in the table „today" anymore and were reinserted by applying the INSERT rule and bear the status_flag „D" for delete.
 * Rows that still exist, receive the flag „U" for update by applying the UPDATE rule.
@@ -69,7 +98,20 @@ Sometimes the update table must be generated dynamically. A sub-select can be us
 
 
 ```markup
-MERGE INTO NYC_TAXI_STAGE.TRIP_LOCATION_ID_MAP insert_target USING   (SELECT  DISTINCT t.id,                 zd.location_id dropoff,                 zp.location_id pickup         FROM NYC_TAXI_STAGE.TRIPDATA t         JOIN NYC_TAXI_STAGE.TRIP_LOCATION_ID_MAP m    ON m.trip_id = t.id          JOIN NYC_TAXI.TAXI_ZONES zp                   ON ST_within(t.pickup_geom, zp.polygon) = true         JOIN NYC_TAXI.TAXI_ZONES zd                   ON ST_within(t.dropoff_geom, zd.polygon) = true)         subselect ON      insert_target.trip_id = subselect.id WHEN MATCHED THEN          UPDATE SET dropoff_location_id = dropoff,                    pickup_location_id  = pickup
+MERGE INTO NYC_TAXI_STAGE.TRIP_LOCATION_ID_MAP insert_target
+USING   (SELECT  DISTINCT t.id,
+                zd.location_id dropoff,
+                zp.location_id pickup
+        FROM NYC_TAXI_STAGE.TRIPDATA t
+        JOIN NYC_TAXI_STAGE.TRIP_LOCATION_ID_MAP m    ON m.trip_id = t.id 
+        JOIN NYC_TAXI.TAXI_ZONES zp                   ON ST_within(t.pickup_geom, zp.polygon) = true
+        JOIN NYC_TAXI.TAXI_ZONES zd                   ON ST_within(t.dropoff_geom, zd.polygon) = true)
+        subselect
+ON      insert_target.trip_id = subselect.id
+WHEN MATCHED THEN 
+        UPDATE SET dropoff_location_id = dropoff,
+                   pickup_location_id  = pickup;
+
 ```
 Notes:
 
