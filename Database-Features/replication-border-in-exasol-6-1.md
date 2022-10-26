@@ -14,7 +14,7 @@ What is a replicated table and how can the replication border be modified?
 #### Replication border
 
 A table will be joined by smart table replication if it has fewer or equal rows than the threshold below.  
-The replication borders can be modified through**extra database parameters**in the web interface:
+The replication borders can be modified through **extra database parameters** in the web interface:
 
 
 ```"code-java"
