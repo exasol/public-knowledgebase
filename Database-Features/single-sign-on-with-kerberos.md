@@ -14,17 +14,17 @@
 
  ## How to install SSO with Kerberos?
 
-  ## *Step 1:*Create Exasol user with Kerberos authentication
+  ## Step 1: Create Exasol user with Kerberos authentication
 
  ### Create user
 
- CREATEUSER<identifier> IDENTIFIED BYKERBEROS PRINCIPAL <string-literal>
+ CREATE USER <identifier> IDENTIFIED BY KERBEROS PRINCIPAL <string-literal>
 
  The Kerberos principal is usually formed like this:<user>@<realm>
 
  ### Alter User
 
- ALTERUSER<identifier> IDENTIFIED BYKERBEROS PRINCIPAL <string-literal>
+ ALTER USER <identifier> IDENTIFIED BY KERBEROS PRINCIPAL <string-literal>
 
  ### Rename User
 
@@ -32,7 +32,7 @@
 
  More details on the creation of users can be found in the user manual.
 
- ## *Step 2:* Client configuration
+ ## Step 2: Client configuration
 
  After these steps, the database is ready to accept users that authenticate via Kerberos.
 
@@ -56,36 +56,41 @@
  You can either use your existing ticket for your user or use a keytab file.
 
 
-	+ **Use existing ticket**:  
-	We assume that you already have a ticket for your user from the KDC. If not, obtain a ticket using kinit:  
++ **Use existing ticket**:  
+We assume that you already have a ticket for your user from the KDC. If not, obtain a ticket using kinit:  
+	
 ```"code-java"
 kinit user@YOUR.REALM 
 ```
  
-	+ **Use keytab file**:  
-	 To use a keytab file, you have to make sure there are no tickets in the cache using kdestroy. Then you have to tell Kerberos where your keytab file is located:  
++ **Use keytab file** :  
+To use a keytab file, you have to make sure there are no tickets in the cache using kdestroy. Then you have to tell Kerberos where your keytab file is located:  
+	
 ```"code-java"
 export KRB5_CLIENT_KTNAME=/home/<your_user>/<your_keytab_file_name> 
 ```
-            Alternative: add the location of the keytab file to the krb5.conf:
+Alternative: add the location of the keytab file to the krb5.conf:
 
    
 ```"code-java"
 [libdefaults]  default_client_keytab_name = /home/<your_user>/<your_keytab_file_name>
 ```
  
-	+ We assume you have a valid krb5.conf
-	+ Create an odbc.ini configured for Kerberos. Here is an example:  
++ We assume you have a valid krb5.conf
++ Create an odbc.ini configured for Kerberos. Here is an example:  
+	
 ```"code-java"
 [exa_linux] Driver = /home/<your_user>/KerberosTest/EXASolution_ODBC-6.0.8/lib/linux/x86_64/libexaodbc-uo2214lv2.so EXAHOST = exasol-host:8563 EXALOGFILE = odbc.log LOGMODE = Debug Comm KerberosServiceName = exasol KerberosHostName = kerberos.hostname.for.exasol 
 ```
  
-	+ Make sure your environment variables are correctly set (this might vary depending on the environment)  
++ Make sure your environment variables are correctly set (this might vary depending on the environment)
+	
 ```"code-java"
 export KRB5CCNAME=DIR:/path/to/your/cache/ export KRB5_CONFIG=/path/to/your/krb5.conf export ODBCINI=/path/to/your/odbc.ini 
 ```
  
-	+ You should now be able to use theexa_linuxDSN  
++ You should now be able to use the exa_linux DSN  
+	
 ```"code-java"
 isql exa_linux -v 
 ```
