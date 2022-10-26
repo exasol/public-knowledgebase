@@ -3,9 +3,7 @@
 
 #### What does a preprocessor script do?
 
-Well, it preprocesses
-
-To be more specific, an active preprocessor script is hooked before Exasol's SQL parser. This allows it to intercept and modify any SQL text sent to the database (or executed within a procedure script) before passing it on to the actual parser.
+A preprocessor script is hooked before Exasol's SQL parser. This allows it to intercept and modify any SQL text sent to the database (or executed within a procedure script) before passing it on to the actual parser.
 
 #### What can I do with it?
 
@@ -57,7 +55,16 @@ Create the preprocessor script. Syntax "around" may depend on the SQL client you
 
 
 ```"code-sql"
---/ create or replace Lua script MY_PREPROCESSOR() as     ...     ...sqlparsing.getsqltext()     ...     ...sqlparsing.setsqltext(...)     ...     return / 
+--/
+create or replace Lua script MY_PREPROCESSOR()
+as
+    ...
+    ...sqlparsing.getsqltext()
+    ...
+    ...sqlparsing.setsqltext(...)
+    ...
+    return
+/
 ```
 **Preconditions:**
 
