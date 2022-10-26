@@ -46,7 +46,7 @@ WHEN MATCHED THEN
 	SET error_flag=true,
 	error_text= 'Customer-id already exists with name ' || c.first_name || ',' ||c.last_name
 	WHERE
-	c.first_name||c.last_name != n.first_name||n.last_name
+	c.first_name||c.last_name != n.first_name||n.last_name;
 ```
 ## Merge as difference-finder
 
@@ -118,8 +118,8 @@ Notes:
 * Aliases inside and outside of the sub-select are in separated namespaces. Even if both occurrences of TRIP_LOCATION_ID_MAP would have the same alias  
  
 ```
-MERGE INTO NYC_TAXI_STAGE.TRIP_LOCATION_ID_MAP **m** ...  
-JOIN NYC_TAXI_STAGE.TRIP_LOCATION_ID_MAP **m** ...
+MERGE INTO NYC_TAXI_STAGE.TRIP_LOCATION_ID_MAP m ...  
+JOIN NYC_TAXI_STAGE.TRIP_LOCATION_ID_MAP m ...
 ```
  Both aliases are still necessary in order for the compiler to address both tables.
 * In the statement above 
