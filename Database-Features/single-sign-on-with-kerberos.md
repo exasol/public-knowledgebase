@@ -80,13 +80,21 @@ Alternative: add the location of the keytab file to the krb5.conf:
 + Create an odbc.ini configured for Kerberos. Here is an example:  
 	
 ```"code-java"
-[exa_linux] Driver = /home/<your_user>/KerberosTest/EXASolution_ODBC-6.0.8/lib/linux/x86_64/libexaodbc-uo2214lv2.so EXAHOST = exasol-host:8563 EXALOGFILE = odbc.log LOGMODE = Debug Comm KerberosServiceName = exasol KerberosHostName = kerberos.hostname.for.exasol 
+[exa_linux]
+Driver = /home/<your_user>/KerberosTest/EXASolution_ODBC-6.0.8/lib/linux/x86_64/libexaodbc-uo2214lv2.so
+EXAHOST = exasol-host:8563
+EXALOGFILE = odbc.log
+LOGMODE = Debug Comm
+KerberosServiceName = exasol
+KerberosHostName = kerberos.hostname.for.exasol
 ```
  
 + Make sure your environment variables are correctly set (this might vary depending on the environment)
 	
 ```"code-java"
-export KRB5CCNAME=DIR:/path/to/your/cache/ export KRB5_CONFIG=/path/to/your/krb5.conf export ODBCINI=/path/to/your/odbc.ini 
+export KRB5CCNAME=DIR:/path/to/your/cache/ 
+export KRB5_CONFIG=/path/to/your/krb5.conf 
+export ODBCINI=/path/to/your/odbc.ini 
 ```
  
 + You should now be able to use the exa_linux DSN  
@@ -101,10 +109,12 @@ isql exa_linux -v
  Now you can setup the connection:
 
 
-	+ Specify any DSN name
-	+ Specify connection string (host: port)
-	+ Specify "Additional parameter" in the second tab (Advanced) of the configuration tool to "kerberosServiceName=<yourServiceName>.
-	+ You may require kerberosHostName too, depending on your Active Directory configuration. For this you have to extend the additional parameters as follows: "kerberosServiceName=<yourServiceName>;kerberosHostName=<yourKrbHostName>".#### Compatibility Mode
++ Specify any DSN name
++ Specify connection string (host: port)
++ Specify "Additional parameter" in the second tab (Advanced) of the configuration tool to "kerberosServiceName=<yourServiceName>.
++ You may require kerberosHostName too, depending on your Active Directory configuration. For this you have to extend the additional parameters as follows: "kerberosServiceName=<yourServiceName>;kerberosHostName=<yourKrbHostName>".
+	
+#### Compatibility Mode
 
  If it is not possible to specify the additional parameters, the "compatibility mode" using username and password can be used. For this, you can specify the Kerberos service name in the "User name" field as:
 
@@ -155,7 +165,50 @@ kinit user@YOUR.REALM
 
    
 ```"code-java"
-package com.exasol;   import java.sql.Connection; import java.sql.DriverManager; import java.sql.SQLException; import java.util.Properties;   public class KerberosTest {           static Properties props = System.getProperties();           private void testKerberosConnection(String h, String p)     {         String connectionString="jdbc:exa:" + h + ":" + p + ";kerberosservicename=exasol;kerberoshostname=kerberos.hostname.for.exasol";         //Optional connection string parameters: ";debug=1;logdir=/home/<your_user>"           try {             Class.forName("com.exasol.jdbc.EXADriver");         } catch (ClassNotFoundException e) {             e.printStackTrace();         }         Connection driverConn=null;         try {              //Connectiong to the EXASOL Server as the current OS user              driverConn = DriverManager.getConnection(connectionString);         } catch (SQLException e) {             e.printStackTrace();         }         try {             if (driverConn!=null && !driverConn.isClosed())                 System.out.println("Kerberos connection test success!");             else                 System.out.println("Kerberos connect failed!");         } catch (SQLException e) {             e.printStackTrace();         }     }       public static void main(String[] args) {         (new KerberosTest()).testKerberosConnection(args[0], args[1]);         System.out.println("Done.");     }   } 
+package com.exasol;
+ 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.util.Properties;
+ 
+public class KerberosTest {
+     
+    static Properties props = System.getProperties();
+     
+    private void testKerberosConnection(String h, String p)
+    {
+        String connectionString="jdbc:exa:" + h + ":" + p + ";kerberosservicename=exasol;kerberoshostname=kerberos.hostname.for.exasol";
+        //Optional connection string parameters: ";debug=1;logdir=/home/<your_user>"
+ 
+        try {
+            Class.forName("com.exasol.jdbc.EXADriver");
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        Connection driverConn=null;
+        try {
+             //Connectiong to the EXASOL Server as the current OS user
+             driverConn = DriverManager.getConnection(connectionString);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        try {
+            if (driverConn!=null && !driverConn.isClosed())
+                System.out.println("Kerberos connection test success!");
+            else
+                System.out.println("Kerberos connect failed!");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+ 
+    public static void main(String[] args) {
+        (new KerberosTest()).testKerberosConnection(args[0], args[1]);
+        System.out.println("Done.");
+    }
+ 
+}
 ```
    How to run the test application:
 
@@ -177,7 +230,13 @@ java -Djavax.security.auth.useSubjectCredsOnly=false -Djava.security.krb5.conf=/
 
    
 ```"code-java"
-com.sun.security.jgss.initiate { com.sun.security.auth.module.Krb5LoginModule required principal="<your_user>@<your_realm>" useKeyTab=true doNotPrompt=true keyTab="/home/<your_user>/<your_keytab_file_name>"; }; 
+com.sun.security.jgss.initiate {
+com.sun.security.auth.module.Krb5LoginModule required
+principal="<your_user>@<your_realm>"
+useKeyTab=true
+doNotPrompt=true
+keyTab="/home/<your_user>/<your_keytab_file_name>";
+};
 ```
    How to run the test application:
 
@@ -221,13 +280,26 @@ Kerberos:<yourServiceName>/<yourKrbHostName>
 
  In the login dialog in EXAplus, the user can choose Username or Kerberos in the dropdown list. If Kerberos is chosen, the GUI will change, so that the user could input service name, host and connection string.
 
-   ![](images/exaplus1.png) #### CLI
+   ![](images/exaplus1.png) 
+	
+#### CLI
 
  For Login with Kerberos, EXAplus should be started with parameter -k. Then the user can input service name, host and connection string.
 
    
 ```"code-java"
-$ /usr/opt/EXASuite-6/EXASolution-6.0.8/bin/Console/exaplus -k EXAplus 6.0.8 (c) EXASOL AG   Service name: exasol Host: vcluster.exasol.com Connection String (localhost:8563): mynode:8563   Thursday, March 8, 2018 12:57:48 PM CET Connected to database exa.mynode.8563 as user null. EXASolution 6.0.8 (c) EXASOL AG   SQL_EXA> 
+$ /usr/opt/EXASuite-6/EXASolution-6.0.8/bin/Console/exaplus -k
+EXAplus 6.0.8 (c) EXASOL AG
+ 
+Service name: exasol
+Host: vcluster.exasol.com
+Connection String (localhost:8563): mynode:8563
+ 
+Thursday, March 8, 2018 12:57:48 PM CET
+Connected to database exa.mynode.8563 as user null.
+EXASolution 6.0.8 (c) EXASOL AG
+ 
+SQL_EXA> 
 ```
    ### Manipulation of JVM Properties
 
