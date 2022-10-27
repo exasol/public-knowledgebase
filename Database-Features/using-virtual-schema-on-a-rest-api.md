@@ -15,7 +15,9 @@ You'll find the code I am talking about on our GitHub: [openweather-virtual-sche
 
 A Virtual Schema translates Exasol SQL to something, that the source can understand. With RDBMS this might be another SQL dialect. In our case it's `GET` requests we send to an API. The simplified workflow looks like this.
 
-![](images/2020-10-20-11_46_57-Window.png)1. The user sends a SQL statement to the database core using a SQL client.  
+![](images/2020-10-20-11_46_57-Window.png)
+
+1. The user sends a SQL statement to the database core using a SQL client.  
 2. + 3. The database core sends the SQL to the Virtual Schema adapter.  
 4. The Virtual Schema adapter transforms the users SQL so that it can query the source using the API Handler.  
 5. The adapter returns the re-formatted SQL to the database core which executes it.  
@@ -46,13 +48,90 @@ In order to create the Virtual Schema you need to create the adapter script and 
 
 
 ```markup
---/ CREATE OR REPLACE PYTHON3 ADAPTER SCRIPT openweather_vs_scripts.openweather_adapter AS  import requests import sys from pathlib import Path   def download_python_files():    ...               def adapter_call(request) -> str:     """Public entry point to any adapter script on Exasol"""     download_python_files()     sys.path.append('tmp/')     from openweather_adapter import AdapterCallHandler          call_handler = AdapterCallHandler(request)     return call_handler.controll_request_processing() /  --/ --Adapter uses this UDF to request the API CREATE OR REPLACE PYTHON3 SET SCRIPT openweather_vs_scripts.api_handler(api_host varchar(100),                                                                         api_method varchar(100),                                                                         api_parameters varchar(2000),                                                                         api_key varchar(50),                                                                         logger_ip varchar(20),                                                                         logger_port varchar(10),                                                                         logger_level varchar(10)) EMITS(...) AS import requests import sys from pathlib import Path   def download_python_files():     ...  def run(ctx) -> None:     """Public run method as entry point to any Python UDF on Exasol"""     download_python_files()     sys.path.append('tmp/')     from api_handler import ApiHandler          api_handler = ApiHandler(ctx)      api_handler.logger.info('>>>>API CALL<<<<')     api_handler.logger.info(f'URL PARAMETER SET \n{ctx.api_parameters}\n')      api_handler.api_calls() /  --/ CREATE VIRTUAL SCHEMA openweather USING openweather_vs_scripts.openweather_adapter WITH API_KEY = '...'      LOG_LISTENER = '0.0.0.0'   --IP Address      LOG_LISTENER_PORT = '3333'         --Port      LOG_LEVEL = 'INFO'                 --INFO or WARNING /  -- Test Current_Weather SELECT * FROM OPENWEATHER.CURRENT_WEATHER WHERE  city_name = 'München' OR        ...  ---- Test forecast SELECT * FROM OPENWEATHER.FORECAST WHERE   city_name = 'Los Angeles' OR         ...
+--/
+CREATE OR REPLACE PYTHON3 ADAPTER SCRIPT openweather_vs_scripts.openweather_adapter AS 
+import requests
+import sys
+from pathlib import Path
+
+
+def download_python_files():
+   ...
+            
+
+def adapter_call(request) -> str:
+    """Public entry point to any adapter script on Exasol"""
+    download_python_files()
+    sys.path.append('tmp/')
+    from openweather_adapter import AdapterCallHandler
+    
+    call_handler = AdapterCallHandler(request)
+    return call_handler.controll_request_processing()
+/
+
+--/
+--Adapter uses this UDF to request the API
+CREATE OR REPLACE PYTHON3 SET SCRIPT openweather_vs_scripts.api_handler(api_host varchar(100),
+                                                                        api_method varchar(100),
+                                                                        api_parameters varchar(2000),
+                                                                        api_key varchar(50),
+                                                                        logger_ip varchar(20),
+                                                                        logger_port varchar(10),
+                                                                        logger_level varchar(10))
+EMITS(...) AS
+import requests
+import sys
+from pathlib import Path
+
+
+def download_python_files():
+    ...
+
+def run(ctx) -> None:
+    """Public run method as entry point to any Python UDF on Exasol"""
+    download_python_files()
+    sys.path.append('tmp/')
+    from api_handler import ApiHandler
+    
+    api_handler = ApiHandler(ctx)
+
+    api_handler.logger.info('>>>>API CALL<<<<')
+    api_handler.logger.info(f'URL PARAMETER SET \n{ctx.api_parameters}\n')
+
+    api_handler.api_calls()
+/
+
+--/
+CREATE VIRTUAL SCHEMA openweather
+USING openweather_vs_scripts.openweather_adapter
+WITH API_KEY = '...'
+     LOG_LISTENER = '0.0.0.0'   --IP Address
+     LOG_LISTENER_PORT = '3333'         --Port
+     LOG_LEVEL = 'INFO'                 --INFO or WARNING
+/
+
+-- Test Current_Weather
+SELECT * FROM OPENWEATHER.CURRENT_WEATHER
+WHERE  city_name = 'München' OR
+       ...
+
+---- Test forecast
+SELECT * FROM OPENWEATHER.FORECAST
+WHERE   city_name = 'Los Angeles' OR
+        ...
 ```
 Note that the solution is built in a modular way. The actual code for the adapter script and the API Handler is not contained in the openweather-virtual-schema.sql but is dynamically loaded at runtime from GitHub using the `download_python_files()` method. To find out more about the inner workings of those files please visit the [GitHub](https://github.com/exasol/openweather-virtual-schema) repository. After 1. and 2. from the `openweather-virtual-schema.sql` is completed we can create the Virtual Schema itself (Step 3).
 
 
 ```markup
---/ CREATE VIRTUAL SCHEMA openweather USING openweather_vs_scripts.openweather_adapter WITH API_KEY = 'd5ea350b0aff3ba4e448f8570bd7c73'      LOG_LISTENER = '192.168.177.83'      LOG_LISTENER_PORT = '3333'      LOG_LEVEL = 'INFO' /
+--/
+CREATE VIRTUAL SCHEMA openweather
+USING openweather_vs_scripts.openweather_adapter
+WITH API_KEY = 'd5ea350b0aff3ba4e448f8570bd7c73'
+     LOG_LISTENER = '192.168.177.83'
+     LOG_LISTENER_PORT = '3333'
+     LOG_LEVEL = 'INFO'
+/
 ```
 The creation of the Virtual Schema takes 4 arguments:
 
@@ -78,15 +157,27 @@ You can specify a log level here. Only `INFO` and `WARNING` are supported. `INFO
 
 You can explore the layout of the Virtual Schema using your SQL-Editor:    
 
-![](images/2020-10-13-13_36_47-DbVisualizer.png)The two tables `CURRENT_WEATHER` and `FORECAST` refer to the two API methods [Current weather data](https://openweathermap.org/current) and [5 day weather forecast](https://openweathermap.org/forecast5).Here is an example query showcasing the covered functionalities - this is step 4 and 5 from above:
+![](images/2020-10-13-13_36_47-DbVisualizer.png)
+
+The two tables `CURRENT_WEATHER` and `FORECAST` refer to the two API methods [Current weather data](https://openweathermap.org/current) and [5 day weather forecast](https://openweathermap.org/forecast5).Here is an example query showcasing the covered functionalities - this is step 4 and 5 from above:
 ```markup
-SELECT *  FROM   OPENWEATHER.CURRENT_WEATHER WHERE  city_name = 'Stuttgart' OR        'Los Angeles' = city_name OR        latitude = 41.89 AND longitude = 12.48 OR        city_id = 3060972 OR        zip = 96050 AND country_code = 'DE' OR        country_code = 'US' AND zip = 10301 OR        city_id IN (2759794, 3247449, 2957773) OR        city_name IN ('Memphis', 'Zirndorf', 'Kassel');
+SELECT * 
+FROM   OPENWEATHER.CURRENT_WEATHER
+WHERE  city_name = 'Stuttgart' OR
+       'Los Angeles' = city_name OR
+       latitude = 41.89 AND longitude = 12.48 OR
+       city_id = 3060972 OR
+       zip = 96050 AND country_code = 'DE' OR
+       country_code = 'US' AND zip = 10301 OR
+       city_id IN (2759794, 3247449, 2957773) OR
+       city_name IN ('Memphis', 'Zirndorf', 'Kassel');
+
 ```
 Note that only those features can be supported by the Virtual Schema push-down that are supported by the source. For example
 
 
 ```markup
-SELECT * FROM OPENWEATHER.CURRENT_WEATHER WHERE temperature = 30.0
+SELECT * FROM OPENWEATHER.CURRENT_WEATHER WHERE temperature = 30.0;
 ```
 won't work. The Virtual Schema will try to push down the `PREDICATE_EQUAL` expression (`temperature = 30.0`) to the source but openweather does us not allow to request places by temperature. With other words: *No you can't use this to look for a vacation destination* 
 
@@ -94,7 +185,9 @@ Apart from `PREDICATE_EQUAL` (e.g. `city_name **=** 'Nuremberg'`) no other predi
 
 
 ```markup
-SELECT * FROM OPENWEATHER.CURRENT_WEATHER WHERE city_name IN ('Berlin', 'Los Angeles', 'Oslo') AND temperature > 25.0;
+SELECT * FROM OPENWEATHER.CURRENT_WEATHER 
+WHERE city_name IN ('Berlin', 'Los Angeles', 'Oslo') 
+AND temperature > 25.0;
 ```
  will work.
 
