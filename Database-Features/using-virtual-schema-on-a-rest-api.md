@@ -139,9 +139,7 @@ The creation of the Virtual Schema takes 4 arguments:
 
 Unfortunately there are very little free and public APIs out there. For this Example I went with <https://openweathermap.org/api>. In order to use the API you need an account with openweather. Please register at their site and get your API key - it's free for low volumes.
 
-Disclaimer: In a production environment you should never put your `API_KEY` in plain text here. Instead create a [named connection](https://docs.exasol.com/7.0/sql/create_connection.htm). Otherwise the `API_KEY` will 
-
-                    show up in your database logging.  
+Disclaimer: In a production environment, you should never put your `API_KEY` in plain text here. Instead create a [named connection](https://docs.exasol.com/7.0/sql/create_connection.htm). Otherwise the `API_KEY` will show up in your database logging.  
   
 
 
