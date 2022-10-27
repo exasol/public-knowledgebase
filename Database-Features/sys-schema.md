@@ -7,7 +7,7 @@ Exasol offers numerous system tables describing the metadata of the database and
 
 ## General Information
 
-These system tables are located in the "SYS" schema but are automatically integrated into the current namespace. This means that if an object with the same name does not exist in the current schema, they can be queried without stating the schema name, "SYS". Otherwise, the system tables can be accessed via the respective schema-qualified name, SYS.<table_name> (e.g. "SELECT * FROM SYS.DUAL").
+These system tables are located in the "SYS" schema, but are automatically integrated into the current namespace. This means that if an object with the same name does not exist in the current schema, they can be queried without stating the schema name, "SYS". Otherwise, the system tables can be accessed via the respective schema-qualified name, SYS.<table_name> (e.g. "SELECT * FROM SYS.DUAL").
 
 There are some system tables that are critical to security, these can only be accessed by users with the "SELECT ANY DICTIONARY" system privilege (users with the DBA role have this privilege implicitly). This includes all system tables with the "EXA_DBA_" prefix.
 
