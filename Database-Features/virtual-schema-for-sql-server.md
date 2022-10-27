@@ -245,7 +245,11 @@ We build the command as follows:
 
 
 ```
-CREATE OR REPLACE JAVA ADAPTER SCRIPT SCHEMA_FOR_VS_SCRIPT.ADAPTER_SCRIPT_SQLSERVER AS %scriptclass com.exasol.adapter.RequestDispatcher; %jar /buckets/<BFS service>/<bucket>/<SQL_Server_Virtual_Schema_JAR_filename>; %jar /buckets/<BFS service>/<bucket>/<SQL_Server_JDBC_driver_JAR_filename>; /
+CREATE OR REPLACE JAVA ADAPTER SCRIPT SCHEMA_FOR_VS_SCRIPT.ADAPTER_SCRIPT_SQLSERVER AS 
+ %scriptclass com.exasol.adapter.RequestDispatcher; 
+ %jar /buckets/<BFS service>/<bucket>/<SQL_Server_Virtual_Schema_JAR_filename>; 
+ %jar /buckets/<BFS service>/<bucket>/<SQL_Server_JDBC_driver_JAR_filename>; 
+ /
 ```
 In our case, it looks like:
 
@@ -260,9 +264,11 @@ CREATE OR REPLACE JAVA ADAPTER SCRIPT SCHEMA_FOR_VS_SCRIPT.ADAPTER_SCRIPT_SQLSER
 ```
 Referring back to our example images, we see the full path in the EXABucketFS Service Buckets under the "UDF path".
 
-![](images/exa-John_0-1614169585207.png)## Step 9.
+![](images/exa-John_0-1614169585207.png)
+ 
+ ## Step 9.
 
-**a.**Define the connection to the SQL Server database by executing the `CREATE OR REPLACE CONNECTION` command.
+**a.** Define the connection to the SQL Server database by executing the `CREATE OR REPLACE CONNECTION` command.
 
 This command requires:
 
@@ -297,7 +303,9 @@ The optional changes you can make are:
 
 **i.**  The BucketFS bucket "jars" contains both virtual schema jar and jdbc.jar.
 
-![](images/exa-John_0-1614180981319.png)**ii.** The JDBC software section contains mssql**-**jdbc**-**9.2.0.jre8.jar. It is tied to the CONNECTION we created using the driver's prefix.
+![](images/exa-John_0-1614180981319.png)
+ 
+ **ii.** The JDBC software section contains mssql-jdbc-9.2.0.jre8.jar. It is tied to the CONNECTION we created using the driver's prefix.
 
 ![](images/40_tie_connection_to_jdbc_driver.png)
 
@@ -307,13 +315,23 @@ Create the Virtual Schema. We present the generic example first, followed by our
 
 
 ```markup
-CREATE VIRTUAL SCHEMA <virtual schema name>     USING SCHEMA_FOR_VS_SCRIPT.ADAPTER_SCRIPT_SQLSERVER     WITH     CONNECTION_NAME = 'SQLSERVER_JDBC_CONNECTION'     CATALOG_NAME   = '<database name>'     SCHEMA_NAME = '<schema name>';
+CREATE VIRTUAL SCHEMA <virtual schema name>
+    USING SCHEMA_FOR_VS_SCRIPT.ADAPTER_SCRIPT_SQLSERVER
+    WITH
+    CONNECTION_NAME = 'SQLSERVER_JDBC_CONNECTION'
+    CATALOG_NAME   = '<database name>'
+    SCHEMA_NAME = '<schema name>';
 ```
 Here is our example's use case:
 
 
 ```markup
-CREATE VIRTUAL SCHEMA SQLSERVER_DBO     USING SCHEMA_FOR_VS_SCRIPT.ADAPTER_SCRIPT_SQLSERVER     WITH     CONNECTION_NAME = 'SQLSERVER_JDBC_CONNECTION'     CATALOG_NAME   = 'john'     SCHEMA_NAME = 'dbo';
+CREATE VIRTUAL SCHEMA SQLSERVER_DBO
+    USING SCHEMA_FOR_VS_SCRIPT.ADAPTER_SCRIPT_SQLSERVER
+    WITH
+    CONNECTION_NAME = 'SQLSERVER_JDBC_CONNECTION'
+    CATALOG_NAME   = 'john'
+    SCHEMA_NAME = 'dbo';
 ```
 The optional changes you can make for your use case:
 
@@ -356,7 +374,25 @@ One of the hidden facts about granting permissions is if a view contains a table
 
 
 ```markup
-OPEN SCHEMA RETAIL; DROP USER IF EXISTS USER1 CASCADE; CREATE USER USER1 IDENTIFIED BY "abc"; --=========================================-- -- GRANT SYSTEM PRIVILEGES                 -- --=========================================-- GRANT CREATE SESSION TO USER1; GRANT IMPORT TO USER1;(optional - only need if query is running an IMPORT FROM JDBC) --=========================================-- -- GRANT OBJECT PRIVILEGES                 -- --=========================================-- GRANT CONNECTION SQLSERVER_JDBC_CONNECTION TO USER1; GRANT EXECUTE ON SCRIPT SCHEMA_FOR_VS_SCRIPT.ADAPTER_SCRIPT_SQLSERVER TO USER1; GRANT ACCESS ON CONNECTION SQLSERVER_JDBC_CONNECTION FOR SCRIPT SCHEMA_FOR_VS_SCRIPT.ADAPTER_SCRIPT_SQLSERVER to USER1; --=========================================-- -- Prep to run as USER1 --=========================================-- OPEN SCHEMA SQLSERVER_DBO; IMPERSONATE USER1;
+OPEN SCHEMA RETAIL;
+DROP USER IF EXISTS USER1 CASCADE;
+CREATE USER USER1 IDENTIFIED BY "abc";
+--=========================================--
+-- GRANT SYSTEM PRIVILEGES                 --
+--=========================================--
+GRANT CREATE SESSION TO USER1;
+GRANT IMPORT TO USER1;(optional - only need if query is running an IMPORT FROM JDBC)
+--=========================================--
+-- GRANT OBJECT PRIVILEGES                 --
+--=========================================--
+GRANT CONNECTION SQLSERVER_JDBC_CONNECTION TO USER1;
+GRANT EXECUTE ON SCRIPT SCHEMA_FOR_VS_SCRIPT.ADAPTER_SCRIPT_SQLSERVER TO USER1;
+GRANT ACCESS ON CONNECTION SQLSERVER_JDBC_CONNECTION FOR SCRIPT SCHEMA_FOR_VS_SCRIPT.ADAPTER_SCRIPT_SQLSERVER to USER1;
+--=========================================--
+-- Prep to run as USER1
+--=========================================--
+OPEN SCHEMA SQLSERVER_DBO;
+IMPERSONATE USER1;
 ```
 ## Step 13.
 
