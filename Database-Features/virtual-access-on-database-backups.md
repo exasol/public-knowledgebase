@@ -35,8 +35,10 @@ Amount of active nodes * 4GiB = DB RAM VR instance:  4 * 4GiB = 16GiB DB RAM VR 
 ```markup
 DB RAM - DB RAM VR instance = reduced DB RAM: 112GiB - 16GiB = 96GiB
 ```
-****Step 1.1:** Shutdown database**  
-Select the database and click Shutdown from Services > EXASolution. Skip this step if the database is already shut down.![](images/ShutdownDB.png)
+**Step 1.1: Shutdown database**  
+Select the database and click Shutdown from Services > EXASolution. Skip this step if the database is already shut down.
+
+![](images/ShutdownDB.png)
 
 **Step 1.2: Edit/Adjust DB RAM**  
 Wait for the database to be shut down. Then edit database settings:
@@ -46,13 +48,21 @@ Wait for the database to be shut down. Then edit database settings:
 * Apply changes
 * Start the database
 
-**Step 2: Create DATA volume for the VR instance**Go to the database properties:![](images/SelectDB.png)
+**Step 2: Create DATA volume for the VR instance**
+Go to the database properties:
+
+![](images/SelectDB.png)
 
 Note down amount of active database nodes:
 
 ![](images/ViewRequiredNodes.png)
 
-**Step 2.1: Create EXAStorage DATA volume**Click on EXAStorage and then click on "Add Volume":![](images/AddEXAStorage.png)* Redundancy 1
+**Step 2.1: Create EXAStorage DATA volume**
+Click on EXAStorage and then click on "Add Volume":
+
+![](images/AddEXAStorage.png)
+
+* Redundancy 1
 * Allowed Users e.g. Admin
 * Read-only Users: None
 * Priority 10
@@ -63,7 +73,10 @@ Note down amount of active database nodes:
 * Block Size: None
 * Disk: e.g. d03_storage
 
-![](images/CreateStorage.png)**Step 3: Create EXAStorage DATA volume*** EXASolution - Add
+![](images/CreateStorage.png)
+
+**Step 3: Create EXAStorage DATA volume**
+* EXASolution - Add
 * DB name: VR
 * Active Nodes: Same amount as active database nodes
 * Node List: Active database nodes
@@ -72,28 +85,42 @@ Note down amount of active database nodes:
 * Connection Port: e.g. 9563 it must differ from production
 * DB RAM: 16GiB
 
-![](images/CreateVRDatabase.png)**Step 4: Create EXAStorage DATA volume*** Click on the newly created database
+![](images/CreateVRDatabase.png)
+
+**Step 4: Create EXAStorage DATA volume**
+* Click on the newly created database
 * Click on "Backups"
 * Click on "Show foreign database backups"
 * Select backup you want to restore (Ensure backup dependencies are fulfilled)
 
-![](images/RestoreBackups.png)![](images/RestoreableBackups.png)* Restore Type: Virtual Access
+![](images/RestoreBackups.png)
+
+![](images/RestoreableBackups.png)
+
+* Restore Type: Virtual Access
 * Click on Restore, this will start the VR instance
 * Wait for the database to become online
 
-****Step 5: Exampl**e Import/Export data**IMPORT:
+**Step 5: Example Import/Export data**
 
+IMPORT:
 
 ```"code-sql"
-    CREATE OR REPLACE TABLE SCHEMA.TABLE AS     SELECT *     FROM ( import from EXA at 'CONNECTION-STRING:PORT' USER 'myuser' IDENTIFIED BY "mypass" table SCHEMA.TABLE ); 
+    CREATE OR REPLACE TABLE SCHEMA.TABLE AS     
+    SELECT *     
+    FROM ( import from EXA at 'CONNECTION-STRING:PORT' 
+    USER 'myuser' IDENTIFIED BY "mypass" table SCHEMA.TABLE ); 
 ```
 EXPORT:
 
-
 ```"code-sql"
-    EXPORT SCHEMA.TABLE     INTO EXA at 'CONNECTION-STRING:PORT' USER "myuser" IDENTIFIED BY "mypass" TABLE SCHEMA.TABLE; 
+    EXPORT SCHEMA.TABLE     
+    INTO EXA at 'CONNECTION-STRING:PORT' 
+    USER "myuser" IDENTIFIED BY "mypass" 
+    TABLE SCHEMA.TABLE; 
 ```
-**Step 6: Cleanup VR database instance*** Shutdown VR instance
+**Step 6: Cleanup VR database instance**
+* Shutdown VR instance
 * Delete VR instance
 * Delete EXAStorage DATA volume of the VR instance
 * Afterward, increase DB RAM for production
