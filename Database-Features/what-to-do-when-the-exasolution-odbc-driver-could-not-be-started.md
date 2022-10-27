@@ -1,7 +1,7 @@
 # What to do, when the ExaSolution ODBC Driver could not be started during Setup 
 ## Scope
 
-Users may report that they are not able to install Exasol ODBC drivers on Windows. They get an error while trying to create an ODBC data source that `EXAODBCConfig.dll` is missing. Although if the user copy the path from the error message, the file exists.
+Users may report that they are not able to install Exasol ODBC drivers on Windows. They get an error while trying to create an ODBC data source, saying that `EXAODBCConfig.dll` is missing. Although if the user copy the path from the error message, the file exists.
 
 ## Diagnosis
 
