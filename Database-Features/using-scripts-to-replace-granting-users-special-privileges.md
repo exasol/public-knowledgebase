@@ -134,7 +134,9 @@ As we approach the solution, we will introduce a new user name, "JOHN". John was
 
 
 ```sql
---DROP USER IF EXISTS JOHN CASCADE; -- Uncomment to reuse, if you are sure about dropping JOHN CREATE USER "JOHN" identified by "exasol"; GRANT CREATE SESSION TO JOHN;
+--DROP USER IF EXISTS JOHN CASCADE; -- Uncomment to reuse, if you are sure about dropping JOHN 
+CREATE USER "JOHN" identified by "exasol"; 
+GRANT CREATE SESSION TO JOHN;
 ```
 ### Test the new user
 
