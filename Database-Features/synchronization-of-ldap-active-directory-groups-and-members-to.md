@@ -7,19 +7,27 @@ With the help of the below scripts, you can set up an automatic synchronization 
 
  You must first configure the database to accept LDAP authentication. To do this, go to EXAoperation and [shut down](https://docs.exasol.com/administration/on-premise/manage_database/start_stop_db.htm#DatabaseShutdown) the database in question. Once the database is shut down, you can edit the database and add the LDAP server in the field "LDAP Server URLs". The URL must start with ldap:// or ldaps://. Afterward, start the database back up. You can find more information [here](https://docs.exasol.com/sql/create_user.htm), which points to [edit_database.](https://docs.exasol.com/administration/on-premise/manage_database/edit_database.htm)Afterward, add the distinguished name of the corresponding LDAP (Active Directory) group as a comment on all database roles you want to synchronize with LDAP:
 ```markup
-CREATE ROLE "EXAMPLE-READONLY";  COMMENT ON ROLE "EXAMPLE-READONLY" IS 'cn=example-readonly,ou=groups,dc=ldap,dc=example,dc=org';   CREATE ROLE "EXAMPLE-ADMIN";  COMMENT ON ROLE "EXAMPLE-ADMIN" IS 'cn=example-admin,ou=groups,dc=ldap,dc=example,dc=org';
+CREATE ROLE "EXAMPLE-READONLY";  
+COMMENT ON ROLE "EXAMPLE-READONLY" IS 'cn=example-readonly,ou=groups,dc=ldap,dc=example,dc=org';   
+CREATE ROLE "EXAMPLE-ADMIN";  
+COMMENT ON ROLE "EXAMPLE-ADMIN" IS 'cn=example-admin,ou=groups,dc=ldap,dc=example,dc=org';
 ```
 Finally, create a CONNECTION with your LDAP information. In this connection, you should configure the LDAP server (beginning with ldap:// or ldaps://), the user that will connect to the LDAP server and pull the information for the groups, and that user's password. The specified user should be able to read the properties of users and groups. You may need assistance from your Active Directory team to provide the appropriate user and password for building the connection. 
 
 
 ```markup
-CREATE CONNECTION LDAP_SERVER TO 'ldap://<ldap_url>' user 'cn=admin,dc=ldap,dc=example,dc=org' identified by 'mysecretpassword'; 
+CREATE CONNECTION LDAP_SERVER TO 'ldap://<ldap_url>' 
+user 'cn=admin,dc=ldap,dc=example,dc=org' 
+identified by 'mysecretpassword'; 
 ```
 Note: When testing the connection, if the connection fails with "Server not found", try replacing the <ldap_url> with the I.P. address and port. If Exasol was not configured to use your DNS servers, using the I.P. address and port is a common workaround, at least until you have successfully implemented the solution. Here is a simple example of how it would appear. 
 
 
 ```sql
-create or replace connection test_ldap_server to 'ldap://192.168.1.155:389' user 'cn=admin,dc=manhlab,dc=com' identified by 'abc';
+create or replace connection test_ldap_server 
+to 'ldap://192.168.1.155:389' 
+user 'cn=admin,dc=manhlab,dc=com' 
+identified by 'abc';
 ```
 You can find more LDAP connection and authentication help here:
 
@@ -41,7 +49,8 @@ If you are not running the scripts as a DBA, then you must grant the appropriate
 
 
 ```sql
-GRANT EXECUTE ON EXA_TOOLBOX TO <user or role>; GRANT ACCESS ON CONNECTION LDAP_SERVER FOR EXA_TOOLBOX TO <user or role>;
+GRANT EXECUTE ON EXA_TOOLBOX TO <user or role>; 
+GRANT ACCESS ON CONNECTION LDAP_SERVER FOR EXA_TOOLBOX TO <user or role>;
 ```
 ## Step 3: Determine attributes to sync
 
@@ -49,7 +58,14 @@ You can use the LDAP_HELPER script to help determine which attributes in LDAP co
 
 
 ```sql
--- To find out which attributes contain the group members, you can run this: select EXA_TOOLBOX.LDAP_HELPER('LDAP_SERVER', ROLE_COMMENT) from exa_Dba_roles where role_name = <role name>  -- To find out which attributes contain the username, you can run this: select EXA_TOOLBOX.LDAP_HELPER('LDAP_SERVER', user_name) from exa_dba_connections WHERE connection_name = 'LDAP_SERVER';   -- For other purposes, you can run the script using the LDAP connection you created and the distinguished name of the object you want to investigate: SELECT EXA_TOOLBOX.LDAP_HELPER(<LDAP connection>,<distinguished name>);
+-- To find out which attributes contain the group members, you can run this:
+select EXA_TOOLBOX.LDAP_HELPER('LDAP_SERVER', ROLE_COMMENT) from exa_Dba_roles where role_name = <role name>
+
+-- To find out which attributes contain the username, you can run this:
+select EXA_TOOLBOX.LDAP_HELPER('LDAP_SERVER', user_name) from exa_dba_connections WHERE connection_name = 'LDAP_SERVER'; 
+
+-- For other purposes, you can run the script using the LDAP connection you created and the distinguished name of the object you want to investigate:
+SELECT EXA_TOOLBOX.LDAP_HELPER(<LDAP connection>,<distinguished name>);
 ```
  **These scripts will read all attributes of the given object specified. You can also ask your AD admins to give you this information.**
 
@@ -66,8 +82,22 @@ Some examples of the execution are below:
 
 
 ```sql
--- the below execution shows the parameter names EXECUTE SCRIPT EXA_TOOLBOX."SYNC_AD_GROUPS_TO_DB_ROLES_AND_USERS" (LDAP_CONNECTION, GROUP_ATTRIBUTE, USER_ATTRIBUTE, EXECUTION_MODE)  -- the below uses the default values for GROUP and USER ATTRIBUTE EXECUTE SCRIPT EXA_TOOLBOX."SYNC_AD_GROUPS_TO_DB_ROLES_AND_USERS" ('LDAP_SERVER','','','');  --the below specifies values (note this matches the execution as the above because member and uid are the default attributes) EXECUTE SCRIPT EXA_TOOLBOX."SYNC_AD_GROUPS_TO_DB_ROLES_AND_USERS" ('LDAP_SERVER','member','uid','EXECUTE');  --the below specifies values that are different from the defaults EXECUTE SCRIPT EXA_TOOLBOX."SYNC_AD_GROUPS_TO_DB_ROLES_AND_USERS"('LDAP_SERVER','memberOf','sAMAccountName', 'EXECUTE');  --the below runs the script in debug mode EXECUTE SCRIPT EXA_TOOLBOX."SYNC_AD_GROUPS_TO_DB_ROLES_AND_USERS"('LDAP_SERVER','memberOf','sAMAccountName', 'DEBUG');
+-- the below execution shows the parameter names
+EXECUTE SCRIPT EXA_TOOLBOX."SYNC_AD_GROUPS_TO_DB_ROLES_AND_USERS" (LDAP_CONNECTION, GROUP_ATTRIBUTE, USER_ATTRIBUTE, EXECUTION_MODE)
+
+-- the below uses the default values for GROUP and USER ATTRIBUTE
+EXECUTE SCRIPT EXA_TOOLBOX."SYNC_AD_GROUPS_TO_DB_ROLES_AND_USERS" ('LDAP_SERVER','','','');
+
+--the below specifies values (note this matches the execution as the above because member and uid are the default attributes)
+EXECUTE SCRIPT EXA_TOOLBOX."SYNC_AD_GROUPS_TO_DB_ROLES_AND_USERS" ('LDAP_SERVER','member','uid','EXECUTE');
+
+--the below specifies values that are different from the defaults
+EXECUTE SCRIPT EXA_TOOLBOX."SYNC_AD_GROUPS_TO_DB_ROLES_AND_USERS"('LDAP_SERVER','memberOf','sAMAccountName', 'EXECUTE');
+
+--the below runs the script in debug mode
+EXECUTE SCRIPT EXA_TOOLBOX."SYNC_AD_GROUPS_TO_DB_ROLES_AND_USERS"('LDAP_SERVER','memberOf','sAMAccountName', 'DEBUG');
 ```
+
 If you would like to automate this, you can trigger this script via cron job. You can read more about scheduling database queries [here](https://community.exasol.com/t5/connect-with-exasol/scheduling-database-jobs/ta-p/1586).
 
 ## Additional Notes
