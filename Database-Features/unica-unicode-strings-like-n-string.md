@@ -6,7 +6,7 @@ Error:[42000]syntax error, unexpected simple_string_literal, expecting
 
 ## Explanation
 
-Unica campaign sends Unicode strings like N'String' to the database. EXASolution does not support this syntax. Set property  
+Unica campaign sends Unicode strings like N'String' to the database. Exasol does not support this syntax. Set property  
 'ODBCUnica' : disabled in Unica.
 
 ## Additional References
