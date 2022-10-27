@@ -1,7 +1,7 @@
 # The Exasol Logserver 
 ## Background
 
-When looking into sessions on the database, you may notice a Session ID 4 which never disappears. 
+When looking into sessions on the database, you may notice a Session-ID 4 which never disappears. 
 
 ## Explanation
 
