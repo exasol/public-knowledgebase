@@ -318,7 +318,8 @@ Let's test as user JOHN. The first test is to ensure JOHN is unable to run the L
 --===================================--
 --Test Lua script as John to validate insufficient permissions
 --===================================--
-EXECUTE SCRIPT RETAIL.ADMIN ('TEST_SCHEMA', 'TEST_USER', 'exasol', 'TEST_ROLE') WITH OUTPUT; --Should get error >>  insufficient privileges for executing a script
+EXECUTE SCRIPT RETAIL.ADMIN ('TEST_SCHEMA', 'TEST_USER', 'exasol', 'TEST_ROLE') WITH OUTPUT; 
+--Should get error >>  insufficient privileges for executing a script
 ```
 Next, we validate JOHN is unable to execute the Python UDF.
 
@@ -327,7 +328,8 @@ Next, we validate JOHN is unable to execute the Python UDF.
 --===================================--
 --Test the python script as John to validate insufficent privileges.
 --===================================--
-select RETAIL.ADMIN_USER_COMMANDS('TEST_SCHEMA', 'TEST_USER', 'exasol', 'TEST_ROLE') from dual; --Should get error >> insufficient privileges for calling script
+select RETAIL.ADMIN_USER_COMMANDS('TEST_SCHEMA', 'TEST_USER', 'exasol', 'TEST_ROLE') from dual; 
+--Should get error >> insufficient privileges for calling script
 ```
 ### Grant JOHN needed permissions
 
@@ -349,7 +351,14 @@ As user JOHN, we regression test JOHN invoking the Lua script - which should fai
 
 
 ```sql
---===================================-- --Test again as John, which demonstrates the permissions we just granted as user SYS. --===================================-- -- IMPERSONATE JOHN; -- Uncomment if you have granted impersonation on SYS to JOHN. Otherwise, we assume you have a second session open and running as the user JOHN. --===================================-- --Test John invoking the Lua script >> Should get error -- insufficient privileges for executing a script --===================================-- EXECUTE SCRIPT RETAIL.ADMIN ('TEST_SCHEMA', 'TEST_USER', 'exasol', 'TEST_ROLE') WITH OUTPUT;
+--===================================--
+--Test again as John, which demonstrates the permissions we just granted as user SYS.
+--===================================--
+-- IMPERSONATE JOHN; -- Uncomment if you have granted impersonation on SYS to JOHN. Otherwise, we assume you have a second session open and running as the user JOHN.
+--===================================--
+--Test John invoking the Lua script >> Should get error -- insufficient privileges for executing a script
+--===================================--
+EXECUTE SCRIPT RETAIL.ADMIN ('TEST_SCHEMA', 'TEST_USER', 'exasol', 'TEST_ROLE') WITH OUTPUT;
 ```
 Now it's time to test the whole solution running as user John. 
 
