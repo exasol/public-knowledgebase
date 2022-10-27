@@ -275,7 +275,10 @@ We test the Python script (UDF - notice we do a "SELECT")  as the SYS user.
 
 
 ```sql
---===================================-- -- Run as the SYS user --===================================-- select RETAIL.ADMIN_USER_COMMANDS('TEST_SCHEMA', 'TEST_USER', 'exasol', 'TEST_ROLE') from dual;
+--===================================--
+-- Run as the SYS user
+--===================================--
+select RETAIL.ADMIN_USER_COMMANDS('TEST_SCHEMA', 'TEST_USER', 'exasol', 'TEST_ROLE') from dual;
 ```
 ### Confirm the solution
 
