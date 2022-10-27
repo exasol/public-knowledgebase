@@ -13,7 +13,7 @@ select regexp_substr('dejá vu', '[[:lower:]]+'); --> "dej"
 
 Character groups using [[:group:]] notation are Unicode-unaware as well as highly locale-dependant. Basically, they only work for the ASCII part of Unicode (characters 0 through 127).
 
-As EXASolution implements the PCRE syntax for regular expressions, you should use Unicode character classes instead, using \p notation:
+As Exasol implements the PCRE syntax for regular expressions, you should use Unicode character classes instead, using \p notation:
 
 
 ```"noformat
