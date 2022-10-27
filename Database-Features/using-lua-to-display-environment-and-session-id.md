@@ -17,7 +17,17 @@ Create the LUA script
 
 
 ```markup
---/ CREATE OR REPLACE LUA SCRIPT "WHOAMI" () RETURNS ROWCOUNT AS output("Database Name:"..tostring(exa.meta.database_name)) output("Database Version:"..tostring(exa.meta.database_version)) output("Number of Nodes:"..tostring(exa.meta.node_count)) output("Current User:"..tostring(exa.meta.current_user)) output("Current Schema:"..tostring(exa.meta.current_schema)) output("Session_ID:"..tostring(exa.meta.session_id)) / 
+--/
+CREATE OR REPLACE LUA SCRIPT "WHOAMI" () RETURNS ROWCOUNT AS
+output("Database Name:"..tostring(exa.meta.database_name))
+output("Database Version:"..tostring(exa.meta.database_version))
+output("Number of Nodes:"..tostring(exa.meta.node_count))
+output("Current User:"..tostring(exa.meta.current_user))
+output("Current Schema:"..tostring(exa.meta.current_schema))
+output("Session_ID:"..tostring(exa.meta.session_id))
+/
+
+St
 ```
 ## Step 2
 
