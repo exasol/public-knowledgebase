@@ -144,9 +144,11 @@ We suggest opening up a new session and running the next query, as once we imper
 
 
 ```sql
---DROP USER IF EXISTS JOHN CASCADE; -- Uncomment to reuse, if you are sure about dropping JOHN
-CREATE USER "JOHN" identified by "exasol";
-GRANT CREATE SESSION TO JOHN;
+--===================================--
+-- This should NOT work >> insufficient privileges for calling script
+--===================================--
+IMPERSONATE JOHN;
+select RETAIL.ADMIN_COMMANDS('SYS_CONN') from dual;
 ```
 ### Build a Lua script to execute the desired SQL
 
