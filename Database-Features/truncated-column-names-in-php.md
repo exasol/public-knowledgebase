@@ -3,7 +3,7 @@
 
 When reading ODBC result sets in PHP, column names are truncated to 32 characters
 
-This is not a fault in the driver or communication, but a builtin limitation in the php code.
+This is not a fault in the driver or communication, but a built-in limitation in the php code.
 
 ## Solution
 
