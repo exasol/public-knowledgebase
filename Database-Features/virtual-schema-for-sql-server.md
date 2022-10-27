@@ -151,7 +151,7 @@ Navigate to the directory where you saved the SQL Server JDBC driver. To move t
 
 ![](images/19_cd_downloads.png)
 
-**c.**Make sure the JDBC driver is in the current directory. You can do it by using the `dir` command to see your directory contents, as follows:
+**c.** Make sure the JDBC driver is in the current directory. You can do it by using the `dir` command to see your directory contents, as follows:
 
 ![](images/20_validate_jdbc_in_dir.png)
 
