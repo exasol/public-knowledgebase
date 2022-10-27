@@ -17,13 +17,13 @@ An Internal Server error has occurred if you receive one of the following error 
 ```
 ## Explanation
 
-Internal Server Errors are difficult to determine the exact cause without looking into the logs. The exact cause of the internal server error could be something that is reproducible or not. Since the error message does not state the exact problem, you can try various things to remove the error message, for example:
+It is difficult to determine the exact cause of Internal Server Errors without looking into the logs. The exact cause of the internal server error could be something that is reproducible or not. Since the error message does not state the exact problem, you can try various things to remove the error message, for example:
 
 * Re-writing the query
 * Restarting the database
 * Re-creating affected objects
 
-These can all be difficult to perform, however, so for these reasons, usually, the best course of action is to prepare logs for Exasol support to investigate. 
+These can all be difficult to perform, however, so the best course of action is to prepare logs for Exasol support to investigate. 
 
 ## Recommendation
 
@@ -35,7 +35,7 @@ To further investigate the cause, please open a support ticket and include the f
 * DDL of the tables and views used in the query so that we can reproduce it.
 * [SQL/Server Logs for the day that it happened](https://docs.exasol.com/administration/on-premise/support/logs_files_for_sql_server_processes.htm)
 
-If we need additional information, we will let you know in the ticket. Once we have investigated, we will let you know of any potential workarounds and fixes.
+Once we have investigated, we will let you know of any potential workarounds and fixes.
 
 ## Additional References
 
