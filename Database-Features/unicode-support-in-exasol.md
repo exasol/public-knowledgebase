@@ -1,7 +1,7 @@
 # Unicode Support in Exasol 
 ## Background
 
-Unicode is a computing industry standard (ISO 10646) allowing computers to consistently represent and manipulate text expressed in most of the world's writing systems. With text processing, Unicode takes the role of providing a unique code point — a number, not a glyph — for each character. In other words, Unicode represents a character in an abstract way and leaves the visual rendering (size, shape, font or style) to other software, such as a web browser or word processor.
+Unicode is a computing industry standard (ISO 10646) allowing computers to consistently represent and manipulate text expressed in most of the world's writing systems. With text processing, Unicode takes the role of providing a unique code point - a number, not a glyph - for each character. In other words, Unicode represents a character in an abstract way and leaves the visual rendering (size, shape, font or style) to other software, such as a web browser or word processor.
 
 ## Explanation
 
