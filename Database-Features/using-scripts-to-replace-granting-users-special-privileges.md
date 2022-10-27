@@ -57,7 +57,10 @@ Let start with a connection. This might seem insecure as the SYS user credential
 
 
 ```sql
---===================================-- -- Set up Connection --===================================-- CREATE OR REPLACE CONNECTION SYS_CONN to 'localhost:8563' user 'sys' identified by 'exasol';
+--===================================-- 
+-- Set up Connection 
+--===================================-- 
+CREATE OR REPLACE CONNECTION SYS_CONN to 'localhost:8563' user 'sys' identified by 'exasol';
 ```
 Where:
 
@@ -85,7 +88,8 @@ Notice the SQL part IMPORT FROM EXA. This means we are using the built-in Exasol
 
 
 ```sql
-CREATE SCHEMA IF NOT EXISTS RETAIL; OPEN SCHEMA RETAIL;
+CREATE SCHEMA IF NOT EXISTS RETAIL; 
+OPEN SCHEMA RETAIL;
 ```
  ### **Optional** Simple Example of Solution
 
@@ -93,13 +97,32 @@ CREATE SCHEMA IF NOT EXISTS RETAIL; OPEN SCHEMA RETAIL;
 
  
 ```sql
---===================================-- -- Create the optional Python demonstration script --===================================-- --/ CREATE OR REPLACE PYTHON3 SCALAR SCRIPT RETAIL.ADMIN_COMMANDS(CONNECTION_NAME VARCHAR(2000000)) EMITS(MESSAGE VARCHAR(2000000)) AS import pyexasol def run(ctx):     c = pyexasol.connect(dsn=exa.get_connection(ctx.CONNECTION_NAME).address,          user=exa.get_connection(ctx.CONNECTION_NAME).user,          password=exa.get_connection(ctx.CONNECTION_NAME).password)     stmt = c.execute("CREATE SCHEMA IF NOT EXISTS PYTHON_TEST_SCHEMA;")     c.close()     ctx.emit("Schema created"); / 
+--===================================--
+-- Create the optional Python demonstration script
+--===================================--
+--/
+CREATE OR REPLACE PYTHON3 SCALAR SCRIPT RETAIL.ADMIN_COMMANDS(CONNECTION_NAME VARCHAR(2000000))
+EMITS(MESSAGE VARCHAR(2000000)) AS
+import pyexasol
+def run(ctx):
+    c = pyexasol.connect(dsn=exa.get_connection(ctx.CONNECTION_NAME).address,
+         user=exa.get_connection(ctx.CONNECTION_NAME).user,
+         password=exa.get_connection(ctx.CONNECTION_NAME).password)
+    stmt = c.execute("CREATE SCHEMA IF NOT EXISTS PYTHON_TEST_SCHEMA;")
+    c.close()
+    ctx.emit("Schema created");
+/
 ```
   Time to test the new RETAIL.ADMIN_COMMANDS UDF (script). Here is the SQL to execute as the SYS user, to build another test schema, "PYTHON_TEST_SCHEMA".
 
  
 ```sql
---===================================-- -- Test as SYS user --===================================-- select RETAIL.ADMIN_COMMANDS('SYS_CONN') from dual;   select * from exa_all_schemas where SCHEMA_NAME = 'PYTHON_TEST_SCHEMA'; -- confirm it was created!
+--===================================--
+-- Test as SYS user
+--===================================--
+select RETAIL.ADMIN_COMMANDS('SYS_CONN') from dual; 
+
+select * from exa_all_schemas where SCHEMA_NAME = 'PYTHON_TEST_SCHEMA'; -- confirm it was created!
 ```
   
 
@@ -119,7 +142,9 @@ We suggest opening up a new session and running the next query, as once we imper
 
 
 ```sql
---===================================-- -- This should NOT work >> insufficient privileges for calling script --===================================-- IMPERSONATE JOHN; select RETAIL.ADMIN_COMMANDS('SYS_CONN') from dual; 
+--DROP USER IF EXISTS JOHN CASCADE; -- Uncomment to reuse, if you are sure about dropping JOHN
+CREATE USER "JOHN" identified by "exasol";
+GRANT CREATE SESSION TO JOHN;
 ```
 ### Build a Lua script to execute the desired SQL
 
@@ -127,7 +152,49 @@ As the SYS user, we create a Lua script to accept parameters and run predefined 
 
 
 ```sql
---===================================-- --Create the Lua script --===================================-- --/ CREATE OR REPLACE SCRIPT RETAIL.ADMIN(in_schema, in_user, in_password, in_role) AS   function cleanup()     query([[DROP USER IF EXISTS :: u CASCADE ]], {u=in_user})     query([[DROP ROLE IF EXISTS :: r CASCADE ]], {r=in_role})     query([[DROP SCHEMA IF EXISTS :: s CASCADE]],{s=in_schema})   end   ret1, success1  = pquery([[CREATE SCHEMA IF NOT EXISTS ::s ]], {s=in_schema})     if success1 then      output("CREATE SCHEMA success")     else      output("CREATE SCHEMA failed")      cleanup()      exit()   end   ret2, success2  = pquery([[OPEN SCHEMA ::s ]],  {s=in_schema})     if success2 then      output("OPEN SCHEMA success")     else      cleanup()      exit()   end   ret3, success3 =  pquery([[CREATE USER ::u IDENTIFIED BY ::p]], {u=in_user, p=in_password})   if success3 then      output("CREATE USER success")   else      output("CREATE USER failed")      cleanup()      exit()   end   ret4, success4 = pquery([[CREATE ROLE ::r ]], {r=in_role})   if success4 then     output("CREATE ROLE success")   else     output("CREATE ROLE failed")     cleanup()     exit()   end   results_table ={} /
+--===================================--
+--Create the Lua script
+--===================================--
+--/
+CREATE OR REPLACE SCRIPT RETAIL.ADMIN(in_schema, in_user, in_password, in_role) AS
+  function cleanup()
+    query([[DROP USER IF EXISTS :: u CASCADE ]], {u=in_user})
+    query([[DROP ROLE IF EXISTS :: r CASCADE ]], {r=in_role})
+    query([[DROP SCHEMA IF EXISTS :: s CASCADE]],{s=in_schema})
+  end
+  ret1, success1  = pquery([[CREATE SCHEMA IF NOT EXISTS ::s ]], {s=in_schema})
+    if success1 then
+     output("CREATE SCHEMA success")
+    else
+     output("CREATE SCHEMA failed")
+     cleanup()
+     exit()
+  end
+  ret2, success2  = pquery([[OPEN SCHEMA ::s ]],  {s=in_schema})
+    if success2 then
+     output("OPEN SCHEMA success")
+    else
+     cleanup()
+     exit()
+  end
+  ret3, success3 =  pquery([[CREATE USER ::u IDENTIFIED BY ::p]], {u=in_user, p=in_password})
+  if success3 then
+     output("CREATE USER success")
+  else
+     output("CREATE USER failed")
+     cleanup()
+     exit()
+  end
+  ret4, success4 = pquery([[CREATE ROLE ::r ]], {r=in_role})
+  if success4 then
+    output("CREATE ROLE success")
+  else
+    output("CREATE ROLE failed")
+    cleanup()
+    exit()
+  end
+  results_table ={}
+/
 ```
 ### Test the Lua script
 
@@ -135,13 +202,23 @@ Running as the SYS user, we test the Lua script. If you already have a schema na
 
 
 ```sql
---===================================-- --Test the lua script as SYS user --===================================-- EXECUTE SCRIPT RETAIL.ADMIN ('TEST_SCHEMA', 'TEST_USER', 'exasol', 'TEST_ROLE') WITH OUTPUT;
+--===================================--
+--Test the lua script as SYS user
+--===================================--
+EXECUTE SCRIPT RETAIL.ADMIN ('TEST_SCHEMA', 'TEST_USER', 'exasol', 'TEST_ROLE') WITH OUTPUT;
 ```
  We can validate the Lua script worked by querying our system tables for the new schema, user, ...etc.
 
 
 ```sql
---===================================-- --Prove the Lua script created the objects --===================================-- select 'SCHEMA NAME', SCHEMA_NAME from exa_all_schemas where SCHEMA_NAME = 'TEST_SCHEMA' UNION ALL -- confirm it was created! select 'USER NAME', USER_NAME from exa_all_users where USER_NAME = 'TEST_USER' UNION ALL select 'ROLE NAME', ROLE_NAME from exa_all_roles where ROLE_NAME = 'TEST_ROLE';
+--===================================--
+--Prove the Lua script created the objects
+--===================================--
+select 'SCHEMA NAME', SCHEMA_NAME from exa_all_schemas where SCHEMA_NAME = 'TEST_SCHEMA'
+UNION ALL -- confirm it was created!
+select 'USER NAME', USER_NAME from exa_all_users where USER_NAME = 'TEST_USER'
+UNION ALL
+select 'ROLE NAME', ROLE_NAME from exa_all_roles where ROLE_NAME = 'TEST_ROLE';
 ```
 ### Recapping work so far and cleaning up SQL objects
 
@@ -157,7 +234,31 @@ Continuing, we now build the Python wrapper or proxy UDF which will invoke the L
 
 
 ```sql
---===================================-- -- Create the Python wrapper or proxy script --===================================--  --/ CREATE OR REPLACE PYTHON3 SCALAR SCRIPT RETAIL.ADMIN_USER_COMMANDS( in_schema VARCHAR(2000000) -- new schema ,in_user VARCHAR(2000000) -- new user ,in_password VARCHAR(2000000) -- user password ,in_role VARCHAR(2000000)) -- new role  EMITS(MESSAGE VARCHAR(2000000)) AS import pyexasol def run(ctx):     CONNECTION_NAME = 'SYS_CONN'     c = pyexasol.connect(dsn=exa.get_connection(CONNECTION_NAME).address,          user=exa.get_connection(CONNECTION_NAME).user,          password=exa.get_connection(CONNECTION_NAME).password)      stmt = c.execute(f"EXECUTE SCRIPT RETAIL.ADMIN ('{ctx.in_schema}', '{ctx.in_user}', '{ctx.in_password}', '{ctx.in_role}') WITH OUTPUT")     row = stmt.fetchall()          for i in row:         ctx.emit(str(i[0]))     c.close() /
+--===================================--
+-- Create the Python wrapper or proxy script
+--===================================--
+ --/
+CREATE OR REPLACE PYTHON3 SCALAR SCRIPT RETAIL.ADMIN_USER_COMMANDS(
+in_schema VARCHAR(2000000) -- new schema
+,in_user VARCHAR(2000000) -- new user
+,in_password VARCHAR(2000000) -- user password
+,in_role VARCHAR(2000000)) -- new role
+
+EMITS(MESSAGE VARCHAR(2000000)) AS
+import pyexasol
+def run(ctx):
+    CONNECTION_NAME = 'SYS_CONN'
+    c = pyexasol.connect(dsn=exa.get_connection(CONNECTION_NAME).address,
+         user=exa.get_connection(CONNECTION_NAME).user,
+         password=exa.get_connection(CONNECTION_NAME).password)
+
+    stmt = c.execute(f"EXECUTE SCRIPT RETAIL.ADMIN ('{ctx.in_schema}', '{ctx.in_user}', '{ctx.in_password}', '{ctx.in_role}') WITH OUTPUT")
+    row = stmt.fetchall()
+    
+    for i in row:
+        ctx.emit(str(i[0]))
+    c.close()
+/
 ```
 ### Test the new Python UDF
 
@@ -173,7 +274,14 @@ Let's confirm the results by querying the system tables for the new database obj
 
 
 ```sql
---===================================-- -- Confirm the Python UDF worked by querying the system tables --===================================-- select 'SCHEMA NAME', SCHEMA_NAME from exa_all_schemas where SCHEMA_NAME = 'TEST_SCHEMA' UNION ALL -- confirm it was created! select 'USER NAME', USER_NAME from exa_all_users where USER_NAME = 'TEST_USER' UNION ALL select 'ROLE NAME', ROLE_NAME from exa_all_roles where ROLE_NAME = 'TEST_ROLE'; 
+--===================================--
+-- Confirm the Python UDF worked by querying the system tables
+--===================================--
+select 'SCHEMA NAME', SCHEMA_NAME from exa_all_schemas where SCHEMA_NAME = 'TEST_SCHEMA'
+UNION ALL -- confirm it was created!
+select 'USER NAME', USER_NAME from exa_all_users where USER_NAME = 'TEST_USER'
+UNION ALL
+select 'ROLE NAME', ROLE_NAME from exa_all_roles where ROLE_NAME = 'TEST_ROLE';
 ```
 ### Clean up objects created by the solution
 
@@ -181,7 +289,12 @@ We clean up the new objects.
 
 
 ```sql
---===================================-- --clean up --===================================-- drop schema TEST_SCHEMA cascade; drop user test_user cascade; drop role test_role cascade; 
+--===================================--
+--clean up
+--===================================--
+drop schema TEST_SCHEMA cascade;
+drop user test_user cascade;
+drop role test_role cascade;
 ```
 ### Test as user JOHN to demonstrate insufficient privileges (so far)
 
@@ -189,13 +302,20 @@ Let's test as user JOHN. The first test is to ensure JOHN is unable to run the L
 
 
 ```sql
---impersonate JOHN; -- Uncomment if you have granted impersonation on SYS to JOHN. Otherwise, we assume you have a second session open and running as the user JOHN. --===================================-- --Test Lua script as John to validate insufficient permissions --===================================-- EXECUTE SCRIPT RETAIL.ADMIN ('TEST_SCHEMA', 'TEST_USER', 'exasol', 'TEST_ROLE') WITH OUTPUT; --Should get error >>  insufficient privileges for executing a script 
+--impersonate JOHN; -- Uncomment if you have granted impersonation on SYS to JOHN. Otherwise, we assume you have a second session open and running as the user JOHN.
+--===================================--
+--Test Lua script as John to validate insufficient permissions
+--===================================--
+EXECUTE SCRIPT RETAIL.ADMIN ('TEST_SCHEMA', 'TEST_USER', 'exasol', 'TEST_ROLE') WITH OUTPUT; --Should get error >>  insufficient privileges for executing a script
 ```
 Next, we validate JOHN is unable to execute the Python UDF.
 
 
 ```sql
---===================================-- --Test the python script as John to validate insufficent privileges. --===================================-- select RETAIL.ADMIN_USER_COMMANDS('TEST_SCHEMA', 'TEST_USER', 'exasol', 'TEST_ROLE') from dual; --Should get error >> insufficient privileges for calling script 
+--===================================--
+--Test the python script as John to validate insufficent privileges.
+--===================================--
+select RETAIL.ADMIN_USER_COMMANDS('TEST_SCHEMA', 'TEST_USER', 'exasol', 'TEST_ROLE') from dual; --Should get error >> insufficient privileges for calling script
 ```
 ### Grant JOHN needed permissions
 
@@ -203,7 +323,13 @@ Returning to our session running as SYS, we grant JOHN the appropriate permissio
 
 
 ```sql
---===================================-- --Run as SYS user to grant John only needed permissions --===================================-- --impersonate sys; -- only needed if you switching between SYS and JOHN in same session. GRANT EXECUTE ON RETAIL.ADMIN_USER_COMMANDS TO JOHN; GRANT USAGE ON SCHEMA RETAIL TO JOHN; GRANT ACCESS ON CONNECTION SYS_CONN FOR SCRIPT RETAIL.ADMIN_USER_COMMANDS TO JOHN;
+--===================================--
+--Run as SYS user to grant John only needed permissions
+--===================================--
+--impersonate sys; -- only needed if you switching between SYS and JOHN in same session.
+GRANT EXECUTE ON RETAIL.ADMIN_USER_COMMANDS TO JOHN;
+GRANT USAGE ON SCHEMA RETAIL TO JOHN;
+GRANT ACCESS ON CONNECTION SYS_CONN FOR SCRIPT RETAIL.ADMIN_USER_COMMANDS TO JOHN;
 ```
 ### Showtime! Run the solution as JOHN
 
@@ -217,7 +343,10 @@ Now it's time to test the whole solution running as user John. 
 
 
 ```sql
---===================================-- --As user John, try invoking the python script, which SHOULD work! --===================================-- select RETAIL.ADMIN_USER_COMMANDS('TEST_SCHEMA', 'TEST_USER', 'exasol', 'TEST_ROLE') from dual;
+--===================================--
+--As user John, try invoking the python script, which SHOULD work!
+--===================================--
+select RETAIL.ADMIN_USER_COMMANDS('TEST_SCHEMA', 'TEST_USER', 'exasol', 'TEST_ROLE') from dual;
 ```
 ### Confirm results
 
@@ -225,11 +354,23 @@ Still with us? As the SYS user, confirm JOHN successfully invoked the Python wra
 
 
 ```sql
---===================================-- -- Confirm the Python UDF worked by querying the system tables --===================================-- select 'SCHEMA NAME', SCHEMA_NAME from exa_all_schemas where SCHEMA_NAME = 'TEST_SCHEMA' UNION ALL -- confirm it was created! select 'USER NAME', USER_NAME from exa_all_users where USER_NAME = 'TEST_USER' UNION ALL select 'ROLE NAME', ROLE_NAME from exa_all_roles where ROLE_NAME = 'TEST_ROLE'; 
-```
+--===================================--
+-- Confirm the Python UDF worked by querying the system tables
+--===================================--
+select 'SCHEMA NAME', SCHEMA_NAME from exa_all_schemas where SCHEMA_NAME = 'TEST_SCHEMA'
+UNION ALL -- confirm it was created!
+select 'USER NAME', USER_NAME from exa_all_users where USER_NAME = 'TEST_USER'
+UNION ALL
+select 'ROLE NAME', ROLE_NAME from exa_all_roles where ROLE_NAME = 'TEST_ROLE';
 
-```sql
---===================================-- --As the SYS user, CONFIRM JOHN does NOT have CREATE SCHEMA, CREATE USER, CREATE ROLE PRIVS --===================================-- -- IMPERSONATE SYS; -- Uncomment if you have already granted impersonation on SYS to JOHN. Otherwise, we simply run this in the session for user SYS. select * from EXA_DBA_OBJ_PRIVS where grantee = 'JOHN'; select * from EXA_DBA_SYS_PRIVS where grantee = 'JOHN';
+ 
+
+--===================================--
+--As the SYS user, CONFIRM JOHN does NOT have CREATE SCHEMA, CREATE USER, CREATE ROLE PRIVS
+--===================================--
+-- IMPERSONATE SYS; -- Uncomment if you have already granted impersonation on SYS to JOHN. Otherwise, we simply run this in the session for user SYS.
+select * from EXA_DBA_OBJ_PRIVS where grantee = 'JOHN';
+select * from EXA_DBA_SYS_PRIVS where grantee = 'JOHN';
 ```
 ## Epilogue
 
@@ -239,7 +380,13 @@ Complete JOHN's privileges test by trying to create some database objects. The n
 
 
 ```sql
---===================================-- --Confirm privilege testing by running these queries as John --===================================-- -- IMPERSONATE JOHN; -- Uncomment is you are running solution in same session as SYS. create schema if not exists JOHN; -- >> fail! create user johns_friend identified by "exasol"; -- >> Fail! create role johns_role; -- >> fail!
+--===================================--
+--Confirm privilege testing by running these queries as John
+--===================================--
+-- IMPERSONATE JOHN; -- Uncomment is you are running solution in same session as SYS.
+create schema if not exists JOHN; -- >> fail!
+create user johns_friend identified by "exasol"; -- >> Fail!
+create role johns_role; -- >> fail!
 ```
 ### Recapping from the Prologue - point #2
 
