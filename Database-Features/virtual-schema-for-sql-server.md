@@ -141,7 +141,7 @@ Assuming you are familiar with how to [Create a new bucket in the BucketFS servi
 
 Upload the new JDBC driver to the "jars" bucket. We will repeat this step later for uploading the virtual schema jar for SQL Server.
 
-**a.** Open a command-line terminal. If you are running Windows, you can do it as follows: <WINDOWS Button> + r ==> cmd.exe. This should open the Command Prompt window for the command-line commands.  You should see something like this:
+**a.** Open a command-line terminal. If you are running Windows, you can do it as follows: (WINDOWS Button) + r ==> cmd.exe. This should open the Command Prompt window for the command-line commands.  You should see something like this:
 
 ![](images/18_open_cmd_window.png)
 
