@@ -15,7 +15,7 @@ If you are using **WebSocket-API**, the encryption works differently. You need t
 
 The two most common clients for Exasol are the DbVisualizer and the DBeaver. Both these clients include a parameter using which you can switch the encryption on or off.
 
-In **DbVIsualizer**, you can switch the encryption on or off by
+In **DbVisualizer**, you can switch the encryption on or off by
 
 1. Double-clicking a **Connection** under the **Databases** section.   
 ![](images/image-2020-09-03-16-34-27-904.png)
