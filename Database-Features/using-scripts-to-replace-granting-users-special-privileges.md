@@ -230,7 +230,12 @@ So far, we have created a user JOHN, built and tested the Lua script. Time to cl
 
 
 ```sql
---===================================-- --Clean up --===================================-- drop schema TEST_SCHEMA cascade; drop user TEST_USER cascade; drop role TEST_ROLE cascade;
+--===================================-- 
+--Clean up 
+--===================================-- 
+drop schema TEST_SCHEMA cascade; 
+drop user TEST_USER cascade; 
+drop role TEST_ROLE cascade;
 ```
 ### Build the Python wrapper or proxy UDF
 
