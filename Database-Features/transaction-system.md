@@ -22,14 +22,14 @@ The transaction management system ensures the adherence of the ACID rules:
 
 All transactions are supervised by the transaction management system, which automatically solves conflicts that might arise between concurrent transactions. This can lead to delayed transactions or forced rollbacks.
 
-## Is the TMS of EXASolution comparable to other systems?
+## Is the TMS of Exasol comparable to other systems?
 
 Some database management systems have only a partial implementation of the transaction model. Especially schema statements like CREATE SCHEMA or CREATE TABLE are sometimes instantly written to the database and the changes published to already running transactions.
 
 * **PRO:** Fewer collisions with parallel transactions
 * **CON:** Some changes cannot be rolled back and immediately impact other users or processes.
 
-## Which operations in EXASolution follow the ACID concept?
+## Which operations in Exasol follow the ACID concept?
 
 All database operations in EXASolution follow the ACID concept:
 
@@ -43,14 +43,14 @@ All database operations in EXASolution follow the ACID concept:
 * **CON:**
 	+ Higher probability of transaction conflicts
 
-## How does EXASolution enable users to work in parallel?
+## How does Exasol enable users to work in parallel?
 
-EXASolution is a multi-copy database (multi-version concurrency control). Following this concept, multiple versions of a database object may temporarily exist at the same time. Write access is handled on separate copies of the concerned database objects while simultaneous reads on those objects are not affected.  
+Exasol is a multi-copy database (multi-version concurrency control). Following this concept, multiple versions of a database object may temporarily exist at the same time. Write access is handled on separate copies of the concerned database objects while simultaneous reads on those objects are not affected.  
 Object locking is based on table level, so different transactions are not able to modify different rows of a single table at the same time.
 
-## Which transaction isolation levels are supported by EXASolution?
+## Which transaction isolation levels are supported by Exasol?
 
-EXASolution only supports the transaction isolation level "SERIALIZABLE".
+Exasol only supports the transaction isolation level "SERIALIZABLE".
 
 ## How do collisions occur?
 
@@ -77,9 +77,9 @@ If no read operations were done before writing within one transaction, the trans
 
 ## Additional References
 
-## How to obtain information on a conflict within EXASolution?
+## How to obtain information on a conflict within Exasol?
 
-There are three system tables with information on transaction conflicts within EXASolution.
+There are three system tables with information on transaction conflicts within Exasol.
 
 * EXA_DBA_TRANSACTION_CONFLICTS contains information on all conflicts.
 	+ Which sessions are involved?
@@ -93,5 +93,5 @@ In the case of a WAIT FOR COMMIT, the responsible session is shown here.
 ## Additional information on transactions
 
 * New transactions are automatically scheduled after finished transactions
-* EXASolution TMS affects objects created for query execution (e.g. Indices)
+* Exasol's TMS affects objects created for query execution (e.g. Indices)
 	+ If a transaction including a query that creates an index is rolled back, the index creation is rolled back, too
