@@ -3,12 +3,12 @@
 
 #### As of Version 6.1, Exasol supports partitioning, however, this optimization is still present.
 
-On a typical Exasol cluster, data is**distributed**across multiple nodes very much like a hash partition, but the use case is very different: While partitions are used for filtering (eliminate as many partitions as possible in queries), distribution is used for load balancing (spread the processed data across as many nodes as possible).  
+On a typical Exasol cluster, data is **distributed** across multiple nodes very much like a hash partition, but the use case is very different: While partitions are used for filtering (eliminate as many partitions as possible in queries), distribution is used for load balancing (spread the processed data across as many nodes as possible).  
 Table data is also split into columns and multiple data blocks per column, such that some features of partitioning are achieved automatically, but this is far from perfect, as blocks may still contain a wide range of rows that should (in some cases) be split into separate partitions.
 
 ## Workaround: UNION ALL
 
-Exasolution 5 introduced a powerful optimization that can be used for**manual partitioning**:
+Exasol 5 introduced a powerful optimization that can be used for **manual partitioning**:
 
 #### UNION ALL branch elimination using column statistics
 
@@ -16,7 +16,19 @@ As an example, given the following view and statement:
 
 
 ```"code-sql"
-create view union_all as (         select * from sales_2011     UNION ALL         select * from sales_2012     UNION ALL         select * from sales_2013     UNION ALL         select * from sales_2014 );  select sum(sales_amount) as turnover from union_all where sales_date between date '2013-11-01' and date '2014-02-28'; 
+create view union_all as (
+        select * from sales_2011
+    UNION ALL
+        select * from sales_2012
+    UNION ALL
+        select * from sales_2013
+    UNION ALL
+        select * from sales_2014
+);
+
+select sum(sales_amount) as turnover
+from union_all
+where sales_date between date '2013-11-01' and date '2014-02-28';
 ```
 The intent here is that
 
@@ -25,18 +37,32 @@ The intent here is that
 
 ## Prerequisites:
 
-The mentioned optimization can take place if the**following conditions**are met (as of version 5.0.15):
+The mentioned optimization can take place if the **following conditions** are met (as of version 5.0.15):
 
 * All the union branches are simple selects on tables (no expressions, no conditions, no limit, ...)
-* All the union branches select all columns from the tables, ****in their original order****All the tables in the union share the same structure (column order, column types, distribution keys)
+* All the union branches select all columns from the tables, ****in their original order****. All the tables in the union share the same structure (column order, column types, distribution keys)
 
 Example:
 
 
 ```"code-sql"
--- slow variant => not all columns included SELECT * FROM (    SELECT a FROM T   UNION ALL   SELECT a FROM T ) LIMIT 9;  -- fast variant => all columns in original order included SELECT * FROM (    SELECT * FROM T   UNION ALL   SELECT * T ) LIMIT 9;
+-- slow variant => not all columns included
+SELECT *
+FROM ( 
+  SELECT a FROM T
+  UNION ALL
+  SELECT a FROM T
+) LIMIT 9;
+
+-- fast variant => all columns in original order included
+SELECT *
+FROM ( 
+  SELECT * FROM T
+  UNION ALL
+  SELECT * T
+) LIMIT 9;
 ```
-If those conditions are met, the**following optimization**is possible if the outer select contains a**literal filter**(no subselects, no joins, etc) that can be propagated to a column of the union all view:
+If those conditions are met, the **following optimization** is possible if the outer select contains a **literal filter** (no subselects, no joins, etc) that can be propagated to a column of the union all view:
 
 * The database will (create and) evaluate column statistics (min/max) for the filtered column
 * Based on those values, whole branches are eliminated from the union all
@@ -44,7 +70,7 @@ If those conditions are met, the**following optimization**is possible if the out
 * The remaining branches will be placed in a temporary wrapper object for actual query processing
 	+ If there is only one branch, the union view will actually be replaced by that single table
 
-Properties of the**union table wrapper**:
+Properties of the **union table wrapper**:
 
 * If used as a scan table,
 	+ the scan simply iterates through the contained tables
@@ -54,10 +80,10 @@ Properties of the**union table wrapper**:
 	+ All index accesses are wrapped to automatically return data from all the contained indices.
 	+ No pre-materialization is required
 
-**Limitations**of the union wrapper:
+**Limitations** of the union wrapper:
 
 * **Views are read only**, so ETL will have to make sure the right data ends up in the right table.
-* The elimination is based on**data ranges**, so it is mostly suitable for monotonous data (creation date, etc) or manually grouped data. It is unsuitable for strings (hashes) or other non-contiguous data.
+* The elimination is based on **data ranges**, so it is mostly suitable for monotonous data (creation date, etc) or manually grouped data. It is unsuitable for strings (hashes) or other non-contiguous data.
 * As access to wrapped indices adds overhead (asking 10+ indices for data when only one may return results), the implementation is (per default) limited to **128** branch tables
 * As the branches have to select from actual tables, cascading is not possible.
 * One single outlier in data (NULL, -inf, +inf) may 'corrupt' column statistics and prevent branches from being eliminated
