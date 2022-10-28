@@ -1,11 +1,6 @@
 # Changing the license file on a Docker-based Exasol system 
-**WHAT WE'LL LEARN?**
 
-This article will show you how to change your license file in your Docker Exasol environment.
-
-**HOW-TO**
-
-**NOTE:**$CONTAINER_EXA is a variable set before deploying an Exasol database container with persistent storage. For more information, please check [our Github repo](https://github.com/exasol/docker-db).
+**Note:** $CONTAINER_EXA is a variable set before deploying an Exasol database container with persistent storage. For more information, please check [our Github repo](https://github.com/exasol/docker-db).
 
 1. Ensure that your Docker container is running with persistent storage. This means that your docker run command should contain a ***-v***statement, like the example below:
 
