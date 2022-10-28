@@ -1,18 +1,11 @@
 # Enabling Auditing in a Docker-based Exasol system 
-## Background
-
-In this tutorial we will show you how to enable Auditing on a Docker-based Exasol system
-
-## Prerequisites
-
-* Access to the Docker host
-
-## How to enable Auditing on a docker-based Exasol system
 
 In this section we will show you how to:
 
 1. Edit the EXAConf file and add the Auditing parameter
 2. Commit the changes
+3. Restart the container(s)
+4. Verify the parameter's value
 
 ### Step 1. Log in to the Docker host and edit your EXAConf file
 
@@ -20,7 +13,7 @@ Log in to your Docker host via ssh (or console), log in to your Exasol container
 
 
 ```"lia-message-template-content-zone"
-$ docker exec -it ***<your_exasol_container_name>*** /bin/bash
+$ docker exec -it <your_exasol_container_name> /bin/bash
 ```
 Edit the EXAConf file with your preferred text editor and add the following line to your database parameters: 
 
@@ -38,7 +31,7 @@ The database section of your EXAConf file should look like this:
     Port = 8563  
     Owner = 500 : 500  
     Nodes = 11  
-    **EnableAuditing = yes**  
+    EnableAuditing = yes  
     NumActiveNodes = 1  
     DataVolume = DataVolume1
 ```
@@ -62,7 +55,7 @@ Once the changes are done, restart the container(s) on you Docker hosts
 
 
 ```
-$ docker restart ***<your_exasol_container_name>***
+$ docker restart <your_exasol_container_name>
 ```
 ### Step 4. Verify the parameter's value
 
