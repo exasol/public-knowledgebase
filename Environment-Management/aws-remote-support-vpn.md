@@ -11,12 +11,12 @@ To complete these steps, you will need access to AWS and have the permissions to
 
 ## Step 1: Create Virtual Private Gateway
 
-* Go to the**Amazon VPC dashboard**
-* In VPN Connections group, click**Virtual Private Gateways**
+* Go to the **Amazon VPC dashboard**
+* In VPN Connections group, click **Virtual Private Gateways**
 * Click Create virtual private gateway
 * Type your preferred name (for example, test-vpn)
 * ASN: Amazon default ASN
-* Click**create Virtual Private Gateway**
+* Click **create Virtual Private Gateway**
 
 Attach your VPC to your virtual private gateway:
 
@@ -26,19 +26,19 @@ Attach your VPC to your virtual private gateway:
 
 In the VPN Connections group, click Customer Gateways
 
-* Click**Create Customer Gateway**
+* Click **Create Customer Gateway**
 * Type your preferred name
-* Select**static routing**
+* Select **static routing**
 * Select the IP address of your gateway. Exasol gateway IP: 62.128.13.20 and click create customer gateway
 
 ## Step 3: Create a VPN Connection
 
-* In VPN Connections group, click**VPN Connections**  
-Click**Create VPN Connection**
+* In VPN Connections group, click **VPN Connections**  
+Click **Create VPN Connection**
 * Type your preferred name
-* Select Virtual Private Gateway which was created in**step 1**
-* Select Customer Gateway which was created in**step 2**
-* Select static routing and**type IP range of company (Exasol range e.g. : 10.60.2.0/24) and click Create VPN connection**
+* Select Virtual Private Gateway which was created in **step 1**
+* Select Customer Gateway which was created in **step 2**
+* Select static routing and **type IP range of company (Exasol range e.g. : 10.60.2.0/24) and click Create VPN connection**
 * Select VPN connection and click Download Configuration.
 * Select "Generic" and click Download. Provide configuration to the responsible person for the VPN in the company
 
