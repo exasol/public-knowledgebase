@@ -1,7 +1,7 @@
 # Firewall configuration for installing/operating a cluster 
 This article describes the way a firewall should be configured in preparation for Exasol installation and then for operating the cluster.
 
-#### **Installation**
+#### Exasol installation
 
 * ALLOW
 	+ SSH access to the license node (TCP port 20 + 22)
@@ -9,7 +9,7 @@ This article describes the way a firewall should be configured in preparation fo
 	+ LOM access to the data nodes (KVM)
 	+ HTTP/S access to all cluster nodes (EXAoperation web UI ,TCP 80/443). The web UI is running as a cluster service and can be accessed from any cluster node.
 
-#### **Operating**
+#### Operating the cluster
 
 * ALLOW
 	+ Database port clients use to connect to the database (default TCP 8563)
