@@ -8,7 +8,7 @@ The tables below list the **default** ports of network services and DBMSs with w
 * Many of the following protocols and DBMSs can be manually configured to use different ports.
 * The File Transfer Protocol (FTP) data connections require additional ports to be available (depending on the transfer mode).
 
-## Explanation
+## Network port assignments
 
 ### Incoming Connections
 
