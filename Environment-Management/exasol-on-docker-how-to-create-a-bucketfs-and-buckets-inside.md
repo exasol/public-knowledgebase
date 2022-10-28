@@ -23,13 +23,15 @@ In this section, we will show you the whole process of:
 
  Log in to your host via ssh (or console) and get inside your Exasol on Docker container:
 ```"lia-message-template-content-zone"
-$ docker exec -it ***<your_exasol_container_name>*** /bin/bash
+$ docker exec -it <your exasol container name> /bin/bash
 ```
 You can find the container's name by running ***docker ps***. Once inside the container run the following command to create a BucketFS:
 
 
 ```
-$ exaconf add-bucketfs --name ***newbucketfs**** --http-port ***6932***** --https-port **0***** --owner 500:500
+$ exaconf add-bucketfs --name <new bucket name> --http-port <port for communicating via HTTP> --https-port <port for communicating via HTTPS> --owner 500:500
+Example:
+$ exaconf add-bucketfs --name newbucketfs --http-port 6932 --https-port 0 --owner 500:500
 ```
 ###### ** - This will be the name of your new BucketFS*
 
