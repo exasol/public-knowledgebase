@@ -33,7 +33,9 @@ exaconf add-node /path/to/EXAConf -p 10.10.10.12/16 -n 12
 ```
 * **Alternatively** you can copy/paste the existing node configuration for each new node and change UUID and private network manually. Without exaconf you can use hddident to create a UUID: 
 ```
-[root@n11 /]# /usr/opt/EXASuite-6/EXAClusterOS-6.0.12/sbin/hddident -G -u new_uuid [root@n11 /]# cat new_uuid  C88D5DDC4BB3135344E0120E6BAC485CD191E1BB
+[root@n11 /]# /usr/opt/EXASuite-6/EXAClusterOS-6.0.12/sbin/hddident -G -u new_uuid 
+[root@n11 /]# cat new_uuid  
+C88D5DDC4BB3135344E0120E6BAC485CD191E1BB
 ```
 * Change ssh port from 22 -> unused port
 * Give real IP address to the old node
@@ -52,7 +54,11 @@ Start docker instances on each node, it will not increase the number of database
 
 
 ```
-on the first node: docker run --name n11 --detach --network=host --privileged -v /mnt/docker/:/exa exasol/docker-db:latest init-sc --node-id 11  on second node:  docker run --name n12 --detach --network=host --privileged -v /mnt/docker/:/exa exasol/docker-db:latest init-sc --node-id 12
+on the first node: 
+docker run --name n11 --detach --network=host --privileged -v /mnt/docker/:/exa exasol/docker-db:latest init-sc --node-id 11  
+
+on second node:  
+docker run --name n12 --detach --network=host --privileged -v /mnt/docker/:/exa exasol/docker-db:latest init-sc --node-id 12
 ```
 ## Step 6
 
@@ -100,7 +106,9 @@ Add DB parameters -enlargeCluster=1, append to the list of parameters. One can g
 
 
 ```
-dwad_client print-setup DB1 > db1.cfg sed -i '/^PARAMS:/ s/$/ -enlargeCluster=1/' db1.cfg dwad_client setup DB1 db1.cfg 
+dwad_client print-setup DB1 > db1.cfg 
+sed -i '/^PARAMS:/ s/$/ -enlargeCluster=1/' db1.cfg 
+dwad_client setup DB1 db1.cfg 
 ```
 ## Step 12
 
@@ -128,5 +136,9 @@ Stop the database again and remove the parameter "-enlargeCluster=1"
 
 
 ```
-dwad_client stop-wait DB1 dwad_client print-setup DB1 > db1.cfg sed -i -e s/'-enlargeCluster=1/'/g db1.cfg dwad_client setup DB1 db1.cfg dwad_client start-wait DB1
+dwad_client stop-wait DB1 
+dwad_client print-setup DB1 > db1.cfg 
+sed -i -e s/'-enlargeCluster=1/'/g db1.cfg 
+dwad_client setup DB1 db1.cfg 
+dwad_client start-wait DB1
 ```
