@@ -44,7 +44,7 @@ curl --user w -v -X DELETE <http://10.70.0.61:8080/bucketone/file.tar.gz>
 ```
 curl --user w -v -X GET <http://10.70.0.61:8080/bucketone/file.tar.gz>
 ```
-#### Testing connectivity (read)
+## Testing connectivity (read)
 
 **List size of all bucket objects**  
 ```
