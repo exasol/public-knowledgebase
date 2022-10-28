@@ -1,7 +1,7 @@
 # How to change public IP subnet 
 ## Background
 
-That article guides you through the procedure to change the network for a cluster without tagged VLAN. It's strongly recommended to contact EXASOL support if you have tagged VLAN.
+That article guides you through the procedure to change the network for a cluster without tagged VLAN. It's strongly recommended to contact Exasol support if you have tagged VLAN.
 
 ## Prerequisites
 
@@ -17,19 +17,24 @@ That article guides you through the procedure to change the network for a cluste
 * The changes must be applied to the real license server since it is the only node that boots from the local hard drive.
 * Check the following:
 
-![](images/1.1_Check__EXAoperation.PNG) Is EXAoperation running on the license server? If not, move it to the license server.
+![](images/1.1_Check__EXAoperation.PNG) 
+
+Is EXAoperation running on the license server? If not, move it to the license server.
 
 ## 2. Shutdown all databases
 
 * Navigate to the EXAoperation page Services > EXASolution
 * Review the database list and check if the column "Background Restore" indicates "None" on all instances
 
-![](images/2.1_Shutdown_DB.PNG)* Select all (running) EXASolution instances
+![](images/2.1_Shutdown_DB.PNG)
+
+* Select all (running) EXASolution instances
 * Click on the button "Shutdown"
 * Reload the page until all instances change their status from "Running" to "Created"
 
-![](images/2.2_DB_offline.PNG)You may follow the procedure in an appropriate logservice: 
+![](images/2.2_DB_offline.PNG)
 
+This is recorded, if a logservice was configured: 
 
 ```
 System marked as stopped.  
@@ -43,9 +48,12 @@ User 0 requested shutdown of system
 Navigate to the EXAoperation page Services > EXAStorage 
 
 ![](images/3.1_shutdown_Storage.PNG)  
+
 Click on the button "Shutdown Storage Service" and confirm your choice when prompted. When the storage service is down, it looks like:
 
-![](images/3.2_Storage_Offline.PNG)## 4. Suspend Nodes
+![](images/3.2_Storage_Offline.PNG)
+
+## 4. Suspend Nodes
 
 * Open the Configuration > Nodes page in EXAoperation
 * Select all nodes in the tab "Cluster Nodes"
@@ -53,32 +61,45 @@ Click on the button "Shutdown Storage Service" and confirm your choice when prom
 * Confirm with click on the button "Execute"
 
 ![](images/4.1_suspend_nodes.PNG)  
+
 * Reload the page and until all nodes indicate the State/Op. "Suspended"
 
-![](images/4.2_nodes_suspended.PNG)  The 2nd state of every node must be "Active"! Restarting a node that has the "To Install" state will lead to an unrecoverable data loss!
+![](images/4.2_nodes_suspended.PNG)  
+
+The 2nd state of every node must be "Active"! Restarting a node that has the "To Install" state will lead to an unrecoverable data loss!
 
 ## 5. Change network settings
 
 * Navigate to Configuration -> Network
 * Click on the button "Edit"
 
-![](images/5.1_edit_Network.PNG)* Fill in the characteristics of the new network in Fields "Public Network", "Gateway", "NTP Server 1", "DNS Server 1". If there are no characteristics for NTP or DNS remove the entries, that the field is clear.
+![](images/5.1_edit_Network.PNG)
 
-![](images/5.2.network_edited.PNG)*Click on Button "Apply" to save the new configuration
+* Fill in the characteristics of the new network in Fields "Public Network", "Gateway", "NTP Server 1", "DNS Server 1". If there are no characteristics for NTP or DNS remove the entries, that the field is clear.
+
+![](images/5.2.network_edited.PNG)
+
+* Click "Apply" to save the new configuration
 
 ##  6. Change IP and reboot license server
 
 Log in as maintenance user via the console.
 
- Connect via iDRAC, vSphere, or change it locally on the terminal. If you're connected via ssh and confirm the IP with "OK" you will get disconnected instantly. Make sure that you're able to reboot the server after the reconfiguration.
+Connect via iDRAC, vSphere, or change it locally on the terminal. If you're connected via ssh and confirm the IP with "OK" you will get disconnected instantly. Make sure that you're able to reboot the server after the reconfiguration.
 
 * confirm on "Configure Network"
 
-![](images/6.1_change_IP_LIC.PNG)* Change IP of the license, subnet mask, and gateway and confirm with "OK"
+![](images/6.1_change_IP_LIC.PNG)
 
-![](images/6.2_change_IP.PNG)* Reboot the license server with the "Reboot" button .
+* Change IP of the license, subnet mask, and gateway and confirm with "OK"
 
-![](images/6.3_Reboot.PNG) **Now you are able to reconfigure your own network (eg. local public switch, VLAN, etc.)** 
+![](images/6.2_change_IP.PNG)
+
+* Reboot the license server with the "Reboot" button .
+
+![](images/6.3_Reboot.PNG) 
+
+**Now you are able to reconfigure your own network (eg. local public switch, VLAN, etc.)** 
 
 * Wait for the license server to finish its startup procedure and log into EXAoperation again.
 
@@ -129,9 +150,14 @@ client ID is '10.17.1.11'Additional Notes
 * Click on the button "Start"
 * Reload the page until all instances change their status from "Created" to "Running"
 
-![](images/8.1_Start_DB.PNG)* You may follow the procedure in an appropriate logservice:
+![](images/8.1_Start_DB.PNG)
+
+* You may watch the procedure with an appropriate logservice:
 
 
 ```
-EXASolution exa_test is accepting connections System is ready to receive client connections. System started successfully in partition 44. User 0 requests startup of system. User 0 requests new system setup.
+EXASolution exa_test is accepting connections. 
+System is ready to receive client connections. 
+System started successfully in partition 44. User 0 requests startup of system. 
+User 0 requests new system setup.
 ```
