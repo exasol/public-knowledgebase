@@ -1,7 +1,7 @@
 # AWS EXAStorage disk enlargement 
 ## Background
 
-Enlarge EXAStorage disk(s) after changing disk size of the ec2 instances
+Enlarge EXAStorage disk(s) after changing disk size of the EC2 instances
 
 ## Prerequisites
 
