@@ -1,7 +1,7 @@
 # How to create an EXABucketFS service and bucket 
 ## Background
 
-The default bucket service contains a Container Image. The default bucket and bucket service (cannot be deleted).
+The default bucket service contains a Container Image. The default bucket and bucket service cannot be deleted.
 
 ## Create an EXABucketFS service and bucket
 
@@ -33,17 +33,23 @@ One bucket service can have an arbitrary amount of buckets.
 ## Testing connectivity (write)
 
 **PUT**  
+```
 curl --user w -v -X PUT -T file.tar.gz <http://10.70.0.61:8080/bucketone/file.tar.gz>  
+```
 **DELETE**  
+```
 curl --user w -v -X DELETE <http://10.70.0.61:8080/bucketone/file.tar.gz>  
+```
 **GET**  
+```
 curl --user w -v -X GET <http://10.70.0.61:8080/bucketone/file.tar.gz>
-
+```
 #### Testing connectivity (read)
 
 **List size of all bucket objects**  
+```
 curl --user r -v <http://10.70.0.61:8080/bucketone/@>
-
+```
 ## Additional References
 
 <https://docs.exasol.com/administration/on-premise/bucketfs/create_new_bucket_in_bucketfs_service.htm>
