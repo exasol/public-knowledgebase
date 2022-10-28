@@ -156,7 +156,10 @@ The other Exasol services (e. g. Cored, BucketFS, and the DB itself) are using p
 
 
 ```markup
-Port 22 – SSH connection  Port 443 – for XMLRPC  Port 8888 – port of the Database  Port 6583 – port for bucketfs
+Port   22 – SSH connection  
+Port  443 – for XMLRPC  
+Port 8888 – port of the Database  
+Port 6583 – port for bucketfs
 ```
 5) Nameservers
 
@@ -168,8 +171,7 @@ It can be found in the 'Global' section, near the top of the file. Please also a
 
 ## **Step 5 Create the EXAStorage device files**
 
-EXAStorage is a distributed storage engine. All data is stored inside volumes. It also provides a failover mechanism. We recommend using a 32 GB LVM disk for EXAStorage:
-
+EXAStorage is a distributed storage engine. All data is stored inside volumes. It also provides a failover mechanism. We recommend using a 32 GB LVM disk for EXAStorage, which can be checked by:
 
 ```markup
 $ lsblk
