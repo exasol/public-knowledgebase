@@ -1,13 +1,4 @@
 # How to deploy an Exasol Cluster on Amazon Web Service (AWS) 
-## Background
-
-Deploying 2+1 Exasol Cluster on Amazon Web Service (AWS)
-
-## **Post snapshot:**
-
-This post will show you:  
-How to deploy a 2+1 Exasol Cluster on Amazon Web Services (AWS)  
-Before we go into the step-by-step guide, please read through the following prerequisites and recommendations to make sure that you're prepared
 
 ## Prerequisites
 
@@ -30,7 +21,7 @@ You must have subscribed to one of the following Exasol subscriptions on AWS Mar
 
 ## Step 1
 
-Open <https://cloudtools.exasol.com/> to access the cloud deployment wizard in your browser and choose your cloud provider. In this case, the Cloud Provider should be Amazon Web Services. Select your region from the drop-down list. I'm going to deploy our cluster in Frankfurt
+Open <https://cloudtools.exasol.com/> to access the cloud deployment wizard in your browser and choose your cloud provider. In this case, the Cloud Provider should be Amazon Web Services. Select your region from the drop-down list. We deploy our cluster in Frankfurt
 
 ![](images/wizard_home.png)
 
@@ -42,7 +33,7 @@ On the **Configuration** screen, by default, you see the **Basic Configuration**
 * **Balanced Configuration**: Shows an average specification for your data size for good performance.
 * **High-Performance Configuration**: Shows the best possible specification for your data size for high performance.
 
-In this case, I'm going to choose **the Advanced Configuration** option.
+We choose **the Advanced Configuration** option.
 
 If you are going to deploy a cluster for production purposes we recommend discussing sizing options with the Exasol support team or use one of the existing configurations made by Exasol.
 
@@ -64,7 +55,7 @@ You can find detailed information about licensing in <https://docs.exasol.com/ad
 
 System Type:
 
-You can choose one of the Exasol Single Node and Enterprise Cluster options. I'm going to choose the Enterprise Cluster option.
+You can choose one of the Exasol Single Node and Enterprise Cluster options. We choose the Enterprise Cluster option.
 
 Instance Family:
 
@@ -104,11 +95,11 @@ Click **Launch Stack**. You will be redirected to the **Quick create stack** pag
 
 ## Step 4
 
-After redirecting to the **Quick create stack** page on AWSReview and I'm going to fill the required stack parameters:
+After getting redirected to the **Quick create stack** page on AWSReview, fill in the required stack parameters:
 
 * Stack Name
 * **Key Pair**, **SYS User Password**, or **ADMIN User Password**.
-* In the **VPC/Network/Security** section, the **Public IPs** are set to **false** by default. I'm going to set this to **true.**
+* In the **VPC/Network/Security** section, the **Public IPs** are set to **false** by default. We set this to **true.**
 
 If you want to keep the **Public IP** address set to **false**, then you need to enable VPN or other methods to be able to access your instance.
 
@@ -118,7 +109,7 @@ You can view the stack you created under **AWS CloudFormation > Stacks**, with t
 
 For more information about the stack parameters, please check the table here <https://docs.exasol.com/cloud_platforms/aws/installation_cf_template.htm?Highlight=Template%20Parameters>
 
-After filling the required parameters I'm going to click **Create Stack** to continue deploying Exasol in the CloudFormation Console.   
+After filling the required parameters, we click **Create Stack** to continue deploying Exasol in the CloudFormation Console.   
 We can view the stack created under **AWS CloudFormation > Stacks**, with the status CREATE_IN_PROGRESS. Once the stack is created successfully, the status is changed to CREATE_COMPLETE.
 
 ![](images/stack.jpg)
@@ -138,29 +129,29 @@ We need the Public IP or DNS name displayed in the EC2 Console to connect to the
 
 *If the **Public IP** parameter for your stack is set to **false**,  you need to enable VPN or other methods to connect to the database server via the private IP address of the instances.*
 
-*![](images/ec2-instance.jpg)*
+![](images/ec2-instance.jpg)
 
 ## Step 6
 
 ### Access to Initialization page
 
-Copy and paste this IP address prefixed with **https** in a browser. In the case of an Exasol cluster deployment, I need to copy the IP address or DNS name of the **management node**.
+Copy and paste this IP address prefixed with **https** in a browser. In the case of an Exasol cluster deployment, we copy the IP address or DNS name of the **management node**.
 
-After confirming the digital certificate the following screen is displayed.
+After confirming the digital certificate, the following screen is displayed.
 
 ![](images/exasol_initialization.png)
 
-Once the installation is complete, I will be redirected to the EXAoperation screen. It may take up to 45 minutes for the EXAoperation to be online after deployment.
+Once the installation is complete, we are redirected to the EXAoperation screen. It may take up to 45 minutes for the EXAoperation to be online after deployment.
 
 You can login with the admin user name and password provided while creating your stack. 
 
 ![](images/exaoperation.png)
 
-Step 7
+## Step 7
 
 ### Connect to the database
 
-In this case (a 2+1 cluster deployment), I need to use the Public IP address of the data node along with the admin user name and password to connect to the SQL client. I can also connect to all the data nodes by entering the pubic IP address of all the nodes separated by a comma.
+In this case (a 2+1 cluster deployment), we use the Public IP address of the data node along with the admin user name and password to connect to the SQL client. We can also connect to all the data nodes by entering the pubic IP address of all the nodes separated by a comma.
 
 ## Additional Notes
 
@@ -178,9 +169,6 @@ After installing Exasol on AWS, you can do the following:
 
 After you have connected your choice of tool to Exasol, you can load your data into Exasol and process further. To know more about loading data into Exasol, see [Loading Data](https://docs.exasol.com/loading_data.htm).
 
-## Conclusion
-
-In this article, we deployed a 2+1 Exasol cluster on AWS. In the future, I will be sharing new articles about managing the Exasol cluster on AWS, using lambda functions to schedule the start/stop of a cluster, etc.
 
 ## Additional References
 
