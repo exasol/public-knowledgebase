@@ -2,11 +2,11 @@
 
 **Note:** $CONTAINER_EXA is a variable set before deploying an Exasol database container with persistent storage. For more information, please check [our Github repo](https://github.com/exasol/docker-db).
 
-1. Ensure that your Docker container is running with persistent storage. This means that your docker run command should contain a ***-v***statement, like the example below:
+1. Ensure that your Docker container is running with persistent storage. This means that your docker run command should contain a **-v** statement, like the example below:
 
 
 ```
-$ docker run --detach --network=host --privileged --name *<container_name>* -v $CONTAINER_EXA:/exa exasol/docker-db:6.1.5-d1 init-sc --node-id *<node_id>*
+$ docker run --detach --network=host --privileged --name <container_name> -v $CONTAINER_EXA:/exa exasol/docker-db:6.1.5-d1 init-sc --node-id <node_id>
 ```
 2. Copy the new license file to the the $CONTAINER_EXA/etc/ folder:
 
@@ -18,9 +18,9 @@ $ cp /home/user/Downloads/new_license.xml $CONTAINER_EXA/etc/new_license.xml
 
 
 ```
-$ docker exec -it *<container_name>* /bin/bash
+$ docker exec -it <container_name> /bin/bash
 ```
-4. Go to the /exa/etc folder and rename the old *license.xml*file:
+4. Go to the /exa/etc folder and rename the old license.xml file:
 
 
 ```
@@ -33,15 +33,15 @@ $ mv license.xml license.xml.old
 ```
 $ mv new_license.xml license.xml
 ```
-6. Double-check the contents of the directory, to ensure that the newer file is name *license.xml*:
+6. Double-check the contents of the directory, to ensure that the newer file is name license.xml:
 
 
 ```
 $ ls -l  
-*<other files>*  
--rw-r--r-- 1 root root 2275 **Jul 15** 10:13 license.xml.old  
--rw-r--r-- 1 root root 1208 **Jul 21** 07:38 license.xml  
-*<other files>*
+<other files>  
+-rw-r--r-- 1 root root 2275 Jul 15 10:13 license.xml.old  
+-rw-r--r-- 1 root root 1208 Jul 21 07:38 license.xml  
+<other files>
 ```
 7. Sync file across all nodes if you are using a multi-node cluster:
 
@@ -54,19 +54,20 @@ $ cos_sync_files /exa/etc/license.xml.old
 
 
 ```
-$ dwad_client stop-wait *<database_instance>*$ csctrl -d
+$ dwad_client stop-wait <database_instance>
+$ csctrl -d
 ```
 9. Restart the Container:
 
 
 ```
-$ docker restart *<container_name>*
+$ docker restart <container_name>
 ```
 10. Log in to the container and check if the proper license is installed:
 
 
 ```
-$ docker exec -it *<container_name>* /bin/bash  
+$ docker exec -it <container_name> /bin/bash  
 $ awk '/SHLVL/ {for(i=1; i<=6; i++) {getline; print}}' /exa/logs/cored/exainit.log | tail -6
 ```
 You should get an output similar to this:
