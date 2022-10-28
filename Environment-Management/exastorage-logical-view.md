@@ -1,5 +1,5 @@
 # EXAStorage Logical View 
-This article presents an overview of EXAStorage, which consists of the following: 
+This article shows an overview of EXAStorage, which consists of the following: 
 
 #### Volumes
 
