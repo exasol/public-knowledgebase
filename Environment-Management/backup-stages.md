@@ -33,7 +33,7 @@ Progress is reported by EXAoperation log services:
 | 2014-06-16 09:54:59.587537 | NOTICE | exa_db1 | Remove of expired backups finished. |
 | 2014-06-16 09:55:00.204568 | NOTICE | exa_db1 | Backup finished. |
 
-##### EXASolution
+##### Exasol database
 
 The system table SYS.EXA_SYSTEM_EVENTS records the start and stop events, but it does not present the single backup steps:
 
