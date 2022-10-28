@@ -226,9 +226,9 @@ As we can see the size of the data volume is 20.00 GiB. You can also find inform
 
 Since the database is running and the connection state is up let’s try to connect and run for example SQL queries. You can use any SQL clients or Exaplus CLI to connect.
 
-I’m going to use DBeaver in this article. You can find more detailed information in <https://docs.exasol.com/connect_exasol/sql_clients/dbeaver.htm>
+We use DBeaver in this article. You can find more detailed information in <https://docs.exasol.com/connect_exasol/sql_clients/dbeaver.htm>
 
-I’m using the public IP address of the virtual machine and port 8888 which configured as a database port in EXAConf.
+We're using the public IP address of the virtual machine and port 8888, which is configured as a database port in EXAConf.
 
 ![](images/16.png)
 
@@ -238,9 +238,6 @@ By default, the password of the sys user is “exasol”. Let's run an example q
 ```markup
 SELECT * FROM EXA_SYSCAT;
 ```
-**Conclusion**
-
-In this article, we deployed a single-node Exasol database in a docker container and went through the EXAConf file. In the future, I will be sharing new articles about running Exasol on docker and will analyze the EXAConf file and Exasol services in-depth.
 
 ## Additional References
 
