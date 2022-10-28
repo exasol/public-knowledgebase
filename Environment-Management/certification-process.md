@@ -11,7 +11,7 @@ The same applies to any sort of shared environments like AWS, a combination of b
 
 We strongly encourage customers to use standard rack-mount server hardware with locally attached storage.
 
-If you intend to deploy Exasol in a non-certified environment, it will need to undergo a certification process by EXASOL to determine the extent of support provided for Exasol products in the projected environment. Please be aware, that the certification process will be a subject of extra charge.
+If you intend to deploy Exasol in a non-certified environment, it will need to undergo a certification process by Exasol to determine the extent of support provided for Exasol products in the projected environment. Please be aware that the certification process will be a subject of extra charge.
 
 ## Explanation
 
@@ -45,7 +45,7 @@ Please note that the benchmarks don't allow statements about the performance for
 
 ## Certification results
 
-The new certified hardware will be added to the list of certified[hardware](https://community.exasol.com/t5/certified-hardware-list/tkb-p/certified_HW)
+The new certified hardware will be added to the list of certified [hardware](https://community.exasol.com/t5/certified-hardware-list/tkb-p/certified_HW)
 
 In the cases of a shared or virtual environment, Exasol recognizes errors as defined in our terms and conditions only if they are reproducible on the standard hardware. Moreover, as it is not possible for us to properly analyze performance issues in a shared environment, they may not be recognized as errors. Please be aware, the same applies to the incident management: Exasol operation engineers will handle incidents from the operating system level only.
 
