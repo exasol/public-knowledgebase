@@ -1,14 +1,4 @@
 # How to deploy a single-node Exasol database as a Docker image for testing purposes 
-## Background
-
-Deploy a single-node Exasol database as a Docker image for testing purposes
-
-## Blog snapshot
-
-This blog will show you:
-
-* How to deploy a single-node Exasol database as a Docker image for testing purposes
-* Before we go into the step-by-step guide, please read through the following prerequisites and recommendations to make sure that you're prepared
 
 ## Prerequisites
 
@@ -18,7 +8,7 @@ Currently, Exasol only supports Docker on Linux. It’s not possible to use Dock
 
 Docker installed Linux machine:
 
-In this article, I’m going to use Centos 7.6 virtual machine with the latest version of docker (currently Version 19.03).
+In this article, we use Centos 7.6 virtual machine with the latest version of docker (currently Version 19.03).
 
 Privileged mode:
 
@@ -26,7 +16,7 @@ Docker privileged mode is required for permissions management, UDF support, and 
 
 Memory requirements for the host environment:
 
-Each database instance needs at least 2 GiB RAM. Exasol recommends that the host reserves at least 4 GiB RAM for each running Exasol container. Since in this article I’m going to deploy a single node container I will use 6 GiB RAM for VM.
+Each database instance needs at least 2 GiB RAM. Exasol recommends that the host reserves at least 4 GiB RAM for each running Exasol container. Since in this article, we deploy a single node container with 6 GiB RAM for the VM.
 
 Service requirements for the host environment:
 
@@ -54,7 +44,7 @@ Hugepages:
 
 Exasol recommends enabling hugepages for hosts with at least 64GB RAM. To do so, we have to set the Hugepages option in EXAConf to either auto, host, or the number of hugepages per container. If we will set it to auto, the number of hugepages will be determined automatically, depending on the DB settings.
 
-When setting it to host the nr. of hugepages from the host system will be used (i. e. /proc/sys/VM/nr_hugepages will not be changed). However, /proc/sys/VM/hugetlb_shm_group will always be set to an internal value!
+When setting it to host, the nr. of hugepages from the host system will be used (i. e. /proc/sys/VM/nr_hugepages will not be changed). However, /proc/sys/VM/hugetlb_shm_group will always be set to an internal value!
 
 Resource limitation:
 
@@ -72,7 +62,7 @@ Find more detailed information here <https://docs.docker.com/config/containers/r
 
 ## **Step 1 Create a directory to store data from container persistently**
 
-To store all persistent data from the container I’m going to create a directory. I will name it “container_exa” and create it in the home folder of the Linux user.
+To store all persistent data from the container, we create a directory, name it “container_exa” and place it in the home folder of the Linux user.
 
 
 ```python
@@ -92,7 +82,7 @@ The command for creating a configuration file is:
 ```python
 $ docker run -v "$CONTAINER_EXA":/exa --rm -i exasol/docker-db:<version> init-sc --template --num-nodes 1
 ```
-Since I’m going to use the latest version of exasol (currently 6.2.6). I will use the **latest** tag.
+We use the latest version of exasol (currently 6.2.6) with the **latest** tag.
 
 ***Num-nodes** is the number of containers. We need to change the value of this if we want to deploy a cluster*.
 
@@ -124,7 +114,7 @@ The configuration file is EXAConf and it’s stored in the “$CONTAINER_EXA/etc
 * Network port numbers
 * Nameservers
 
-Different options can be configured in the EXAConf file. I will post articles about most of them.
+Different options can be configured in the EXAConf file. 
 
 1)  A private network of the node
 
@@ -134,7 +124,9 @@ $ vim $CONTAINER_EXA/etc/EXAConf
 ```
 
 ```python
-[Node : 11]      PrivateNet = 10.10.10.11/24 # <-- replace with the real network
+[Node : 11]      
+
+   PrivateNet = 10.10.10.11/24 # <-- replace with the real network
 ```
 In this case, the IP address of Linux the virtual machine is **10.1.2.4/24**.
 
@@ -150,17 +142,17 @@ Configure the volume size for Exasol DB before starting the container. There are
 
 Volumes in Exasol serve three different purposes. You can find detailed information in <https://docs.exasol.com/administration/on-premise/manage_storage/volumes.htm?Highlight=volumes>
 
-Since it’s recommended to use less disk space than the size of LVM disk (because Exasol will create a temporary volume and there should be a free disk space for it) I’d recommend using 20 GiB space for volume. The actual size of the volume increases or decreases depending on the data stored.
+Since it’s recommended to use less disk space than the size of LVM disk (because Exasol will create a temporary volume and there should be a free disk space for it), we'll use 20 GiB space for the volume. The actual size of the volume increases or decreases depending on the data stored.
 
 ![](images/6.png)
 
 4) Network port numbers
 
-Since you should use the host network mode (see "Start the cluster" below), you have to adjust the port numbers used by the Exasol services. The one that's most likely to collide is the SSH daemon, which is using the well-known port 22. I’m going to change it to 2222 in EXAConf file:
+Since you should use the host network mode (see "Start the cluster" below), you have to adjust the port numbers used by the Exasol services. The one that's most likely to collide is the SSH daemon, which is using the well-known port 22. We change it to 2222 in EXAConf file:
 
 ![](images/7.png)
 
-The other Exasol services (e. g. Cored, BucketFS, and the DB itself) are using port numbers above 1024. However, you can change them all by editing EXAConf. In this example, I’m going to use the default ports.
+The other Exasol services (e. g. Cored, BucketFS, and the DB itself) are using port numbers above 1024. However, you can change them all by editing EXAConf. In this example, we use the default ports.
 
 
 ```markup
@@ -176,13 +168,13 @@ It can be found in the 'Global' section, near the top of the file. Please also a
 
 ## **Step 5 Create the EXAStorage device files**
 
-EXAStorage is a distributed storage engine. All data is stored inside volumes. It also provides a failover mechanism. I’d recommend using a 32 GB LVM disk for EXAStorage:
+EXAStorage is a distributed storage engine. All data is stored inside volumes. It also provides a failover mechanism. We recommend using a 32 GB LVM disk for EXAStorage:
 
 
 ```markup
 $ lsblk
 ```
-IMPORTANT: Each device should be slightly bigger (~1%) than the required space for the volume(s) because a part of it will be reserved for metadata and checksums.
+IMPORTANT: Each device should be slightly bigger (~1%) than the required space for the volume(s), because a part of it will be reserved for metadata and checksums.
 
 ## **Step 5 Start the cluster**
 
