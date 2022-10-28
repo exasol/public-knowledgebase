@@ -12,7 +12,7 @@ In this article, we use Centos 7.6 virtual machine with the latest version of do
 
 Privileged mode:
 
-Docker privileged mode is required for permissions management, UDF support, and environment configuration and validation (sysctl, hugepages, block-devices, etc.).
+Docker privileged mode is required for permissions management, UDF support and environment configuration and validation (sysctl, hugepages, block-devices, etc.).
 
 Memory requirements for the host environment:
 
