@@ -7,7 +7,7 @@ In this tutorial we are going to show you how to create a BucketFS and Buckets i
 
 * Access to the Docker host
 * Access to firewall/cloud management console to open port (in our example, **AWS** will be used)
-* Very basic knowledge of the ***curl*** command
+* Basic knowledge of the ***curl*** command
 
 ## How to create a BucketFS and Buckets inside it
 
@@ -27,17 +27,11 @@ $ docker exec -it <your exasol container name> /bin/bash
 ```
 You can find the container's name by running ***docker ps***. Once inside the container run the following command to create a BucketFS:
 
-
 ```
 $ exaconf add-bucketfs --name <new bucket name> --http-port <port for communicating via HTTP> --https-port <port for communicating via HTTPS> --owner 500:500
 Example:
 $ exaconf add-bucketfs --name newbucketfs --http-port 6932 --https-port 0 --owner 500:500
 ```
-###### ** - This will be the name of your new BucketFS*
-
-###### *** - This will be the port for communicating via HTTP*
-
-###### **** - This will be the port for communicating via HTTPS*
 
 This will create the BucketFS config required in the **/exa/etc/EXAConf** file.
 
@@ -47,15 +41,11 @@ Once the BucketFS is created run the following command to create the bucket insi
 
 
 ```
-$ exaconf add-bucket --name ***newbucketfs-bucket**** --bfs-name ***newbucketfs***** --read-passwd $(echo -n "***newread***"*** | base64) --write-passwd $(echo -n "***newwrite***"**** | base64)
+$ exaconf add-bucket --name <bucket name> --bfs-name <bucketFS name> --read-passwd $(echo -n "<read password>" | base64) --write-passwd $(echo -n "<write password>" | base64)
+Example:
+$ exaconf add-bucket --name newbucketfs-bucket --bfs-name newbucketfs --read-passwd $(echo -n "newread" | base64) --write-passwd $(echo -n "newwrite" | base64)
 ```
-###### ** - This will be the name of your new Bucket*
 
-###### *** - This is the name of your newly created BucketFS*
-
-###### **** - This will be your new password for read (r)*
-
-###### ***** - This will be your new password for write (w)*
 
 Once the bucket is created, open the **/exa/etc/EXAConf** file and check if you can see the newly added BucketFS/Bucket there:
 
@@ -97,7 +87,7 @@ Once that is done, run the following command:
 ```
 $ exaconf commit
 ```
-Once the commit is done your new bucket should be available via the ***curl***command.
+Once the commit is done your new bucket should be available via the ***curl*** command.
 
 ### Step 5. Using the *curl* command to upload/download/delete
 
