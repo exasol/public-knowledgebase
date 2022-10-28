@@ -15,7 +15,7 @@ Scenario: License Upgrade with DB RAM expansion
 
 #### Step 1: Upload License file to EXAoperation
 
-* In EXAoperation navigate to "Software"
+* In EXAoperation, navigate to "Software"
 * On the software page, click on the "License" Tab
 * Click on the "Browse" button to open a file upload dialog. Select the new license file and confirm by clicking the "Upload" button
 * Refresh the "License" page and review new license information
