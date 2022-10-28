@@ -1,7 +1,7 @@
 # Creating new data nodes using the copy function 
-Adding data nodes to a cluster does not mean that they must be created again. If a data node has already been configured, then by going to the Nodes tab and clicking on the existing node, we can find the Copy and Multiple Copy options.
+Adding data nodes to a cluster does not mean that they must be created again. If a data node has already been configured, then by going to the Nodes tab and clicking on the existing node, we can find the **Copy** and **Multiple Copy** options.
 
-Copy button will use the current node's configuration to create a new one with the same configuration, while the Multiple Copy will create any desired number of nodes using the "master" node's configuration.
+**Copy** will use the current node's configuration to create a new one with the same configuration, while **Multiple Copy** will create any desired number of nodes using the "master" node's configuration.
 
 #### Multiple Copy
 
