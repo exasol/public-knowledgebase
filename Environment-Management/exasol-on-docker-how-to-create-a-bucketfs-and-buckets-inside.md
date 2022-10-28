@@ -91,11 +91,11 @@ Once the commit is done your new bucket should be available via the ***curl*** 
 
 ### Step 5. Using the *curl* command to upload/download/delete
 
-To upload a file via curl use:
+To upload a file via curl, use:
 
 
 ```
-$ curl -X PUT -T testfile.jar http://w:newwrite@***<docker_host_ip>***:6932/newbucketfs-bucket/testfile.jar
+$ curl -X PUT -T testfile.jar http://w:newwrite@<docker_host_ip>:6932/newbucketfs-bucket/testfile.jar
 ```
 To delete a file via curl use:
 
@@ -107,5 +107,5 @@ To list the contents of the bucket:
 
 
 ```
-$ curl http://r:newread@***<docker_host_ip>***:6932/newbucketfs-bucket/
+$ curl http://r:newread@<docker_host_ip>:6932/newbucketfs-bucket/
 ```
