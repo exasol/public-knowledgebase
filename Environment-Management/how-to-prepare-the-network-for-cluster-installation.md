@@ -1,7 +1,9 @@
 # How to prepare the network for cluster installation 
 This article describes how to prepare the network for Exasol installation.
 
-![](images/Network_simple_1.png) The schema above shows a basic network setup needed for Exasol to run properly. In addition to this, failsafety and link bonding can also be used.
+![](images/Network_simple_1.png) 
+
+The schema above shows a basic network setup needed for Exasol to run properly. In addition to this, failsafety and link bonding can also be used.
 
 #### Cluster Internal Communication Network (CICN) or "Private Network"
 
@@ -28,7 +30,9 @@ Depending on, whether network failsafety or link bonding is wanted. Both methods
 
 * Add 3rd NIC of each cluster member to existing VLAN "CICN"
 
-![](images/Network_failover_1.png)#### Private bonding interface
+![](images/Network_failover_1.png)
+
+#### Private bonding interface
 
 Create a new dedicated and isolated VLAN "CICN_2"
 
