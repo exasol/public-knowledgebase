@@ -18,7 +18,17 @@ min.io is an S3-compatible storage service (see <https://min.io>) that can be us
 4. In the min.io startup script set the MINIO_REGION_NAMEENV variable tous-east-1 (or other region of your choice). This will cause min.io to include that in all HTTP response headers.
 5. Check out the min.io source code from <https://github.com/minio/minio.git>and apply the patch below. See the repository's Dockerfile for how to rebuild it:  
 ```"lia-code-sample
---- /cmd/api-headers.go +++ /cmd/api-headers.go @@ -51,7 +51,8 @@ func setCommonHeaders(w http.ResponseWriter) {     // Set `x-amz-bucket-region` only if region is set on the server     // by default minio uses an empty region.     if region := globalServerRegion; region != "" { -       w.Header().Set(xhttp.AmzBucketRegion, region) +       h := strings.ToLower(xhttp.AmzBucketRegion) +       w.Header()[h] = append(w.Header()[h], region)     }     w.Header().Set(xhttp.AcceptRanges, "bytes")
+--- /cmd/api-headers.go
++++ /cmd/api-headers.go
+@@ -51,7 +51,8 @@ func setCommonHeaders(w http.ResponseWriter) {
+    // Set `x-amz-bucket-region` only if region is set on the server
+    // by default minio uses an empty region.
+    if region := globalServerRegion; region != "" {
+-       w.Header().Set(xhttp.AmzBucketRegion, region)
++       h := strings.ToLower(xhttp.AmzBucketRegion)
++       w.Header()[h] = append(w.Header()[h], region)
+    }
+    w.Header().Set(xhttp.AcceptRanges, "bytes")
 ```
 6. Redeploy your min.io server with the patch
 7. In the Exasol ExaOperation interface for adding a remote archive volume
