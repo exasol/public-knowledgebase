@@ -41,7 +41,9 @@ Create a new dedicated and isolated VLAN "CICN_2"
 * Disable STP (Spanning Tree Protocol)
 * Disable EEE (Energy Efficient Ethernet)
 
-![](images/Network_bonding_1.png)#### LOM (Out-of-band management)
+![](images/Network_bonding_1.png)
+
+#### LOM (Out-of-band management)
 
 * LOM addresses can be auto-assigned via cluster internal DHCP "VLAN CICN"  
 OR
