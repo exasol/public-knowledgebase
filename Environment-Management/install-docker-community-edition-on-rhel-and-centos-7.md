@@ -18,10 +18,10 @@ $ sudo yum install -y yum-utils device-mapper-persistent-data lvm2
 3. Add the official Docker repository:
 
 
-``
-$ sudo yum-config-manager --add-repo <https://download.docker.com/linux/centos/docker-ce.repo> for CentOS 
-$ sudo yum-config-manager --add-repo [https://download.docker.com/linux/rhel/docker-ce.repo](https://download.docker.com/linux/centos/docker-ce.repo) for RHEL  
-$ sudo yum-config-manager --add-repo [https://download.docker.com/linux/fedora/docker-ce.repo](https://download.docker.com/linux/centos/docker-ce.repo) for Fedora
+```
+$ sudo yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo  (for CentOS )
+$ sudo yum-config-manager --add-repo https://download.docker.com/linux/rhel/docker-ce.repo    (for RHEL)
+$ sudo yum-config-manager --add-repo https://download.docker.com/linux/fedora/docker-ce.repo  (for Fedora)
 ```
 4. Update the new packages list (you should see the Docker package list being downloaded):
 
