@@ -1,19 +1,10 @@
 # How to get debug information and log files from docker based systems 
-## Background
 
-Get debug information and log files from docker based systems
-
-## Prerequisites
-
-Access to host where is the docker container(s) running
-
-## How to get debug information
-
-In order to get debug information and log files "exasupport" tool can be used. There is no installation required, the tool comes preinstalled with docker image 
+In order to get debug information and log files, the tool "exasupport" can be used. There is no installation required, the tool comes preinstalled with the docker image. 
 
 ## Step 1
 
-Launch to launch a *Bash* terminal within a container:
+Launch a *Bash* terminal within a container:
 
 
 ```python
@@ -21,7 +12,7 @@ docker exec -it {CONTAINER_NAME} bash
 ```
 ## Step 2
 
-"exasupport --help" command will return detailed information about the command
+The command "exasupport --help" will return detailed information about the command:
 
 
 ```python
@@ -63,7 +54,7 @@ Options:
 ```
 ## Step 3
 
-An example to get all server processes and sql log file for specific session ID and date period you can use:
+An example: To get all server processes and sql log file for specific session ID and date period, you can use:
 
 
 ```python
@@ -71,11 +62,11 @@ exasupport -d 0 -s 2020-10-25 -t 2020-10-26 -e {DATABASE_NAME} -x 1 -i {SESSION_
 ```
 
 
-If you don't know the database name you can use the command "**dwad_client shortlist"** to get it.
+If you don't know the database name, you can use the command "**dwad_client shortlist"** to get it.
 
 ## Step 4
 
-The command above will create a tar.gz file in /exa/tmp/support folder.
+The command above will create a tar.gz file in the folder /exa/tmp/support.
 
 
 ```python
@@ -89,7 +80,7 @@ total 492
 ```
 ## Step 5
 
-You can access to this folder from the host system. If you used the article <https://community.exasol.com/t5/environment-management/how-to-deploy-a-single-node-exasol-database-as-a-docker-image/ta-p/921> then all of your configuration and log files stored in $CONTAINER_EXA (/root/container_exa) folder.
+You can access this folder from the host system. If you used the article <https://community.exasol.com/t5/environment-management/how-to-deploy-a-single-node-exasol-database-as-a-docker-image/ta-p/921> then all of your configuration and log files are stored in  the $CONTAINER_EXA (/root/container_exa) folder.
 
 
 ```python
