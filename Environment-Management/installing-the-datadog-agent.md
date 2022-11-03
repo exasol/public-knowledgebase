@@ -13,5 +13,5 @@ DD_API_KEY=<Your-API-Key> bash -c "$(curl -L https://raw.githubusercontent.com/D
 ```
 ### Changing hostnames
 
-The hostname can be changed in '/etc/datadog-agent/datadog.yaml', afterward, restart the agent as user root with 'systemctl restart datadog-agent'.
+The hostname can be changed in '/etc/datadog-agent/datadog.yaml'. Afterwards, restart the agent as user root with 'systemctl restart datadog-agent'.
 
