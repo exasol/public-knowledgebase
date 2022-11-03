@@ -3,7 +3,7 @@ This article describes how the physical hardware must be configured prior to an 
 
 ## Data nodes settings:
 
-## BIOS:
+### BIOS:
 
 * Disable EFI
 * Disable C-States (Maximum Performance)
@@ -11,33 +11,33 @@ This article describes how the physical hardware must be configured prior to an 
 * Enable Hyperthreading
 * Boot order: Boot from PXE 1st NIC (VLAN CICN)
 
-#### RAID:
+### RAID:
 
 * Controller RW-Cache only enabled with BBU
 * All disks are configured as RAID-1 mirrors (best practice. For different setup, ask EXASOL Support)
 * Keep the default strip size
 * Keep the default R/W cache ratio
 
-#### LOM Interface
+### LOM Interface
 
 * Enable SOL (Serial over LAN console)
 
 ## Management node settings:
 
-## BIOS:
+### BIOS:
 
 * Disable EFI
 * Disable C-States (Maximum Performance)
 * Enable Hyperthreading
 * Boot order: Boot from disk
 
-#### RAID:
+### RAID:
 
 * Controller RW-Cache only enabled with BBU
 * All disks are configured as RAID-1 mirrors (best-practice, for different setup ask EXASOL Support)
 * Keep the default strip size
 * Keep the default R/W cache ratio
 
-#### LOM Interface
+### LOM Interface
 
 * Enable SOL (Serial over LAN console)
