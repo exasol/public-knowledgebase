@@ -1,7 +1,7 @@
 # Monitoring of an Exasol Database 
 ## What is this article about?
 
-Today I would like to give you an insight into how you can monitor the development of your database with regard to size, usage, hardware resources and SQL statements. At Exasol we use our customer dashboards to evaluate the progression of customer systems in these areas.In this article, I will show you what the dashboards look like, on which metadata they are based and what you should pay attention to during the evaluation. A small note: We developed our dashboards on the basis of Tableau. My goal is that this article will help you to develop your own dashboards based on the technology you prefer.
+It shows how you can monitor the development of your database with regard to size, usage, hardware resources and SQL statements. At Exasol we use our customer dashboards to evaluate the progression of customer systems in these areas.In this article, we show you what the dashboards look like, on which metadata they are based and what you should pay attention to during the evaluation. A small note: We developed our dashboards on the basis of Tableau. Our goal is that this article will help you to develop your own dashboards based on the technology you prefer.
 
 ## Lets take a look at the statistic tables we need.
 
@@ -20,11 +20,11 @@ The tables that are important to us are here
 
 It is important to understand that these tables each come with 4 different levels of granularity. These include LAST_DAY, HOURLY, DAILY and MONTHLY. The EXA_SQL_LAST_DAY includes, for example, every SQL statement with the statement type, the CPU power used, the TEMP_DB_RAM generated, etc. ... at the level of transactions. Since the data is only kept for 24 hours at this granularity level, the LAST_DAY tables are not suitable for long-term monitoring - an exception would be if the tables are imported into another table on a daily basis in order to keep them here long-term. The counterpart to the EXA_SQL_LAST_DAY described above is the EXA_SQL_HOURLY. As the name suggests, the values are aggregated here on an hourly level. This means values such as CPU usage or generated TEMP_DB_RAM are provided in an AVG and a MAX value for all statement types on an hourly basis.
 
-Which table and granularity is the right one depends entirely on the KPIs and their observation period. In the following, I will show you which tables we have used for our dashboards and I will explain the respective decision on the source tables.
+Which table and granularity is the right one depends entirely on the KPIs and their observation period. In the following, we show you which tables we have used for our dashboards and we will explain the respective decision on the source tables.
 
 ## How we build our dashboards
 
-In the following I would show you 4 of our most important customer dashboards with you. They are about the following topics in detail:
+In the following, we show you 4 of our most important customer dashboards. They are about the following topics in detail:
 
 * Database size
 * Hardware usage
@@ -157,7 +157,7 @@ The following graphic gives an overview of the average and maximum duration of D
 
 **Details of the graphic:** Line diagram
 
-**Important:** In the BI Tool we have placed a trend line on the development of the curves for a better overview. The Data is filtered on the COMMAND_CLASS "DQL", EXECUTION_MODE = "EXECUTE" and SUCCESS.
+**Important:** In the BI Tool, we have placed a trend line on the development of the curves for a better overview. The Data is filtered on the COMMAND_CLASS "DQL", EXECUTION_MODE = "EXECUTE" and SUCCESS.
 
 ![](images/DURATION_EXECUTED.png)
 
@@ -169,7 +169,7 @@ The following graphic gives an overview of the average and maximum duration of C
 
 **Details of the graphic:** Line diagram
 
-**Important:** In the BI TOOL we have placed a trend line on the development of the curves for a better overview. The Data is filtered on the COMAND_CLASS "COMMIT", EXECUTION_MODE = "EXECUTE" and SUCCESS.
+**Important:** In the BI TOOL, we have placed a trend line on the development of the curves for a better overview. The Data is filtered on the COMAND_CLASS "COMMIT", EXECUTION_MODE = "EXECUTE" and SUCCESS.
 
 ![](images/COMMIT.jpg)
 
