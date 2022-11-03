@@ -31,7 +31,95 @@ Create a bash script in the license server.
 
 
 ```python
-#/bin/bash  # ---------------------------------- # Colors # ---------------------------------- RED='\033[0;31m' GREEN='\033[0;32m' YELLOW='\033[1;33m' NC='\033[0m' # No Color  # Display usage message echo -e "${GREEN}=============================================================================================================================================================${NC} \n" echo -e "Run this script ${RED}without any argument${NC} in order to schedule start/stop of your exasol cluster." echo -e "In order to delete existing schedule -d option can to be used." echo -e "\nUsage: $0 OR $0 [-d] \n" echo -e "${GREEN}=============================================================================================================================================================${NC} \n"  # Setting up required variables exacluster_stop=/etc/cron.d/exacluster-stop exacluster_start=/etc/cron.d/exacluster-start py_interpreter=$(which python)  check_message="Are you sure that you want to delete the existing schedule?"  # The function for get yes or no if required function check_yes_or_no {     while true; do         read -p "$* [y/n]: " yn         case $yn in             [Yy]*) return 0  ;;             [Nn]*) echo "Aborted" ; return  1 ;;         esac     done }  # Check if user added -d option to delete existing schedule if [ $# -ne 0 ]; then     while getopts "d" option; do         case ${option} in          d ) #For option c           check_yes_or_no "$check_message" && echo '#' > $exacluster_stop && echo '#' > $exacluster_start && echo -e "Scheduler has been disabled"           ;;          \? ) echo "Usage: cmd [-d]"           ;;     esac     done     exit 1 fi  # Get Exaoperation username and password from user read -p "Enter EXAOperation username: " username read -p "Enter EXAOperation password: " password  # Encrypt the username and password for CloudUI plugin method base64_credentials=`echo -n $username:$password | base64`  # Get Linux cron expression for stop and start cluster read -p "Enter cron expression for stop cluster (e.g. 00 18 * * *): " cron_expression_stop read -p "Enter cron expression for start cluster (e.g. 00 09 * * *): " cron_expression_start  echo -e "${GREEN}=======================================================${NC}" echo -e "${YELLOW}Creating cron files in /etc/cron.d directory...${NC}" echo -e "${GREEN}=======================================================${NC}"  # create cron file for stop cluster cat <<EOF >$exacluster_stop $cron_expression_stop root $py_interpreter /opt/ui-backend/handle_cloudui_request.py -d '{"method":"stop_cluster","credentials":"'$base64_credentials'"}' EOF  if [ $? -eq 0 ]; then     echo -e "${GREEN}=> Cron job for stopping cluster created successfully!${NC}"     echo -e "${GREEN}=======================================================${NC}" else     echo echo -e "${RED}=> Cron job for stopping cluster not created successfully!${NC}"     echo -e "${GREEN}=======================================================${NC}" fi  # create cron file for start cluster cat <<EOF >$exacluster_start $cron_expression_start root $py_interpreter /opt/ui-backend/handle_cloudui_request.py -d '{"method":"start_cluster","credentials":"'$base64_credentials'"}' EOF  if [ $? -eq 0 ]; then     echo -e "${GREEN}=> Cron job for starting cluster created successfully!${NC}"     echo -e "${GREEN}=======================================================${NC}" else     echo echo -e "${RED}=> Cron job for starting cluster not created successfully!${NC}"     echo -e "${GREEN}=======================================================${NC}" fi
+#/bin/bash
+
+# ----------------------------------
+# Colors
+# ----------------------------------
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+NC='\033[0m' # No Color
+
+# Display usage message
+echo -e "${GREEN}=============================================================================================================================================================${NC} \n"
+echo -e "Run this script ${RED}without any argument${NC} in order to schedule start/stop of your exasol cluster."
+echo -e "In order to delete existing schedule -d option can to be used."
+echo -e "\nUsage: $0 OR $0 [-d] \n"
+echo -e "${GREEN}=============================================================================================================================================================${NC} \n"
+
+# Setting up required variables
+exacluster_stop=/etc/cron.d/exacluster-stop
+exacluster_start=/etc/cron.d/exacluster-start
+py_interpreter=$(which python)
+
+check_message="Are you sure that you want to delete the existing schedule?"
+
+# The function for get yes or no if required
+function check_yes_or_no {
+    while true; do
+        read -p "$* [y/n]: " yn
+        case $yn in
+            [Yy]*) return 0  ;;
+            [Nn]*) echo "Aborted" ; return  1 ;;
+        esac
+    done
+}
+
+# Check if user added -d option to delete existing schedule
+if [ $# -ne 0 ]; then
+    while getopts "d" option; do
+        case ${option} in
+         d ) #For option c
+          check_yes_or_no "$check_message" && echo '#' > $exacluster_stop && echo '#' > $exacluster_start && echo -e "Scheduler has been disabled"
+          ;;
+         \? ) echo "Usage: cmd [-d]"
+          ;;
+    esac
+    done
+    exit 1
+fi
+
+# Get Exaoperation username and password from user
+read -p "Enter EXAOperation username: " username
+read -p "Enter EXAOperation password: " password
+
+# Encrypt the username and password for CloudUI plugin method
+base64_credentials=`echo -n $username:$password | base64`
+
+# Get Linux cron expression for stop and start cluster
+read -p "Enter cron expression for stop cluster (e.g. 00 18 * * *): " cron_expression_stop
+read -p "Enter cron expression for start cluster (e.g. 00 09 * * *): " cron_expression_start
+
+echo -e "${GREEN}=======================================================${NC}"
+echo -e "${YELLOW}Creating cron files in /etc/cron.d directory...${NC}"
+echo -e "${GREEN}=======================================================${NC}"
+
+# create cron file for stop cluster
+cat <<EOF >$exacluster_stop
+$cron_expression_stop root $py_interpreter /opt/ui-backend/handle_cloudui_request.py -d '{"method":"stop_cluster","credentials":"'$base64_credentials'"}'
+EOF
+
+if [ $? -eq 0 ]; then
+    echo -e "${GREEN}=> Cron job for stopping cluster created successfully!${NC}"
+    echo -e "${GREEN}=======================================================${NC}"
+else
+    echo echo -e "${RED}=> Cron job for stopping cluster not created successfully!${NC}"
+    echo -e "${GREEN}=======================================================${NC}"
+fi
+
+# create cron file for start cluster
+cat <<EOF >$exacluster_start
+$cron_expression_start root $py_interpreter /opt/ui-backend/handle_cloudui_request.py -d '{"method":"start_cluster","credentials":"'$base64_credentials'"}'
+EOF
+
+if [ $? -eq 0 ]; then
+    echo -e "${GREEN}=> Cron job for starting cluster created successfully!${NC}"
+    echo -e "${GREEN}=======================================================${NC}"
+else
+    echo echo -e "${RED}=> Cron job for starting cluster not created successfully!${NC}"
+    echo -e "${GREEN}=======================================================${NC}"
+fi
 ```
 Give executable permission to the script via **chmod** command. (e.g. chmod +x {name_of_file})
 
