@@ -13,21 +13,21 @@ Example: Instance type m4.10xlarge
 
 a. Stop database instances  
 b. Stop EXAStorage service  
-c. Set**Install**flag for all data nodes by selecting all the nodes from the **Nodes** tab, then select **Set Install Flag** from the **Actions** tab and click **Execute**  
-d. Edit Disks of each node by going to**Nodes - n0011- Disks**and add additional disks
+c. Set **Install** flag for all data nodes by selecting all the nodes from the **Nodes** tab, then select **Set Install Flag** from the **Actions** tab and click **Execute**  
+d. Edit Disks of each node by going to **Nodes - n0011- Disks** and add additional disks
 
-1. Select d04_storage and click**Edit**
-2. Click**Add**, each device requires one separate field
-3. Fill in additional device names, e.g. “/dev/xvdd, /dev/xvde, …” and click**Apply**
+1. Select d04_storage and click **Edit**
+2. Click **Add**, each device requires one separate field
+3. Fill in additional device names, e.g. “/dev/xvdd, /dev/xvde, …” and click **Apply**
 4. Repeat steps for all data nodes
 
 e. Create additional EC2 volumes (same size 1TB) using EC2 console, pay attention to the Availability Zones  
 f. Attach volumes to the data nodes using EC2 console, use the very same device names as before in EXAoperation, e.g. “/dev/xvdd, /dev/xvde, …”  
 g. Reboot nodes though EC2 console  
 h. During reboot, data nodes will be reinstalled with the new disks  
-i. Once the nodes are up and running set the**Active****flag** by selecting all the nodes from the **Nodes** tab, then select **Set Active Flag** from the **Actions** tab and click **Execute**  
+i. Once the nodes are up and running, set the **Active flag** by selecting all the nodes from the **Nodes** tab, then select **Set Active Flag** from the **Actions** tab and click **Execute**  
 j. Remove EXAStorage Metadata and start EXAStorage  
-k. In EXAStorage, add unused disks on all nodesby selecting all nodes and then clicking**Add Unused Disks**  
+k. In EXAStorage, add unused disks on all nodesby selecting all nodes and then clicking **Add Unused Disks**  
 l. Recreate data volume(s)  
 m. Recreate database (optional)  
 n. Restore database backup (optional)
