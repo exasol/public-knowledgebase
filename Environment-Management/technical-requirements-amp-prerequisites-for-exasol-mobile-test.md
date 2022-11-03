@@ -1,5 +1,5 @@
-# Technical Requirements &amp; Prerequisites for EXASOL Mobile Test System 
-EXASOL offers a fully preconfigured mobile test system in the scope of a proof of concept, to showcase Exasol's capabilities.
+# Technical Requirements &amp; Prerequisites for Exasol Mobile Test System 
+Exasol offers a fully preconfigured mobile test system in the scope of a proof of concept, to showcase Exasol's capabilities.
 
 In order to ensure a smooth process to start and execute the proof of concept, we kindly ask you to take note of the following technical requirements and prerequisites for the operation of a mobile trial cluster.
 
