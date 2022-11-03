@@ -1,5 +1,7 @@
 # Tracking Exasol metadata in a code-versioning system 
-In a [recent user group](https://community.exasol.com/t5/rest-of-the-world/17-nov-2021-17-00-cet-grant-street-group-managing-exasol/td-p/7575), I described our solution to keeping track of Exasol metadata. This article is meant to provide more details of our implementation for those who may wish to adapt parts of it.## Background
+In a [recent user group](https://community.exasol.com/t5/rest-of-the-world/17-nov-2021-17-00-cet-grant-street-group-managing-exasol/td-p/7575), I described our solution to keeping track of Exasol metadata. This article is meant to provide more details of our implementation for those who may wish to adapt parts of it.
+
+## Background
 
 First of all, by "Exasol metadata" I mean: table, view, function, script and schema DDL, users, roles, permissions, connections, system parameters, etc
 
@@ -82,7 +84,20 @@ Different code-versioning systems have different ways of triggering requests for
 
 
 ```bash
-curl "https://bitbucket-url/rest/api/1.0/projects/your-proj/repos/your-repo/pull-requests" \     --user "$user:$password" \     --header "Content-Type: application/json" \     --data @- <<EOJ {    "title": "$title",    "description": "$description",    "fromRef": { "id": "refs/heads/$branch_name" },    "toRef": { "id": "refs/heads/master" },    "reviewers": [       {"user":{"name":"..."}}    ] } EOJ
+curl "https://bitbucket-url/rest/api/1.0/projects/your-proj/repos/your-repo/pull-requests" \
+    --user "$user:$password" \
+    --header "Content-Type: application/json" \
+    --data @- <<EOJ
+{
+   "title": "$title",
+   "description": "$description",
+   "fromRef": { "id": "refs/heads/$branch_name" },
+   "toRef": { "id": "refs/heads/master" },
+   "reviewers": [
+      {"user":{"name":"..."}}
+   ]
+}
+EOJ
 ```
  Here you would decide who gets to review this portion of the metadata (multiple reviewers if so configured).
 
@@ -105,3 +120,5 @@ If you wish you also choose to export small amounts of table or view data (the a
 * Golang Exasol metadata (and small-data) backup library: [github.com/GrantStreetGroup/go-exasol-backup](https://github.com/GrantStreetGroup/go-exasol-backup)
 * Exasol's table and view DDL generation SQL: [github.com/exasol/database-migration](https://github.com/exasol/database-migration/blob/master/exasol_to_exasol.sql)
 * I have also attached below the bash script that we use to orchestrate this job. It's heavily customized to our use-case but you may want to use it as a starting point.
+* [exasol-bitbucket-backup.zip](https://github.com/exasol/Public-Knowledgebase/files/9928339/exasol-bitbucket-backup.zip)
+
