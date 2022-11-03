@@ -72,17 +72,19 @@ In order to start up the database instances, we can use the "csmove" command. Th
 ```python
 csmove -s {source node ID} -d {destination node ID} -m -v {volume ID}
 ```
-- Source and Destination node IDs can be found via **"cosps -N"** command.
+- Source and Destination node IDs can be found via the **"cosps -N"** command.
 
-- The volume ID can be found via **"csinfo -v"** command. Please check the volume labels in order to verify the data volume. for example:
+- The volume ID can be found via the **"csinfo -v"** command. Please check the volume labels in order to verify the data volume. for example:
 
 
 ```markup
- === Labels ===  Name : 'DataVolume1' (#)  pub  : 'DB1_persistent'
+ === Labels ===  
+ Name : 'DataVolume1' (#)  
+ pub  : 'DB1_persistent'
 ```
 After starting the moving procedure the data volume will start the data recovery process automatically. The performance of the database is reduced until the data has fully been transferred to the target node.
 
-You can monitor the recovery process via **"cstop"** command.
+You can monitor the recovery process via the **"cstop"** command.
 
 * Run "cstop" command
 * Press 'r' for recovery
