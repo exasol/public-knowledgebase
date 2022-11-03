@@ -1,7 +1,7 @@
 # Remote Volumes and digitally signed communication (SMB remote archive volumes) 
 ## Background
 
-This article describes how to improve the speed of your SMB share with disabling the policy "Microsoft network server: Digitally sign communications (always)
+This article describes how to improve the speed of your SMB share with disabling the policy **Microsoft network server: Digitally sign communications (always)**
 
 ## Symptoms
 
