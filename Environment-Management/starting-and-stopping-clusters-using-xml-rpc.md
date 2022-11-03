@@ -18,7 +18,7 @@ The python snippets are mere examples for the usage of the XML-RPC function call
 | getDatabaseList | Cluster | Lists all database instances defined on the cluster |
 | getDatabaseOperation | Database instance | Get current operation of an EXASolution instance |
 | getDatabaseState | Database instance | Get the runtime state of an EXASolution instance |
-| getHardwareInformation | Cluster | Reports information about your system's hardware as provided by[dmidecode](https://www.nongnu.org/dmidecode/) |
+| getHardwareInformation | Cluster | Reports information about your system's hardware as provided by [dmidecode](https://www.nongnu.org/dmidecode/) |
 | getNodeList | Cluster | Lists all defined cluster nodes except for license server(s) |
 | getServiceState | Cluster | List the cluster services and their current runtime status |
 | logEntries | Logservice | Fetch messages collected y a preconfigured EXAoperation logservice |
@@ -37,7 +37,20 @@ The code examples in this article are written in Python (tested in versions 2.7 
 
 
 ```"code-java"
-import sys  if sys.version_info[0] > 2:     # Importing the XML-RPC library in python 3     from xmlrpc.client import ServerProxy else:     # Importing the XML-RPC library in python 2     from xmlrpclib import ServerProxy  # define the EXAoperation url cluster_url = "https://user:password@license-server/cluster1"  # create a handle to the XML-RPC interface cluster = ServerProxy(cluster_url) 
+import sys
+
+if sys.version_info[0] > 2:
+    # Importing the XML-RPC library in python 3
+    from xmlrpc.client import ServerProxy
+else:
+    # Importing the XML-RPC library in python 2
+    from xmlrpclib import ServerProxy
+
+# define the EXAoperation url
+cluster_url = "https://user:password@license-server/cluster1"
+
+# create a handle to the XML-RPC interface
+cluster = ServerProxy(cluster_url)
 ```
 ### Startup of a cluster
 
@@ -49,7 +62,16 @@ Physically Power-on the license server and wait until the EXAoperation interface
 
 
 ```"code-java"
-cluster_url = "https://user:password@license-server/cluster1"  while True:     try:         cluster = ServerProxy(cluster_url)         if cluster.getNodeList():             print("connected\n")             break     except:         continue 
+cluster_url = "https://user:password@license-server/cluster1"
+
+while True:
+    try:
+        cluster = ServerProxy(cluster_url)
+        if cluster.getNodeList():
+            print("connected\n")
+            break
+    except:
+        continue
 ```
 ##### 2. Start the database/compute nodes
 
@@ -57,19 +79,26 @@ Please note that The option to power-on the database nodes using startupNode() i
 
 
 ```"code-java"
-for node in cluster.getNodeList():     cluster.startupNode(node) 
+for node in cluster.getNodeList():     
+ cluster.startupNode(node) 
 ```
 The function getNodeList returns the list of database nodes currently configured in EXAoperation but it does not provide information about the availability in the cluster. You may check if a node is online by querying the node's hardware inventory.
 
 
 ```"code-java"
-for node in cluster.getNodeList():     if 'dmidecode' in cluster.getHardwareInformation(node):         print("node {} is online\n".format(node))     else:         print("node {} is offline\n".format(node)) 
+for node in cluster.getNodeList():
+    if 'dmidecode' in cluster.getHardwareInformation(node):
+        print("node {} is online\n".format(node))
+    else:
+        print("node {} is offline\n".format(node))
 ```
 The boot process itself can be monitored by following the messages in an appropriate logservice. Look for messages like 'Boot process finished after XXX seconds' for every node.
 
 
 ```"code-java"
-logservice_url = "https://user:password@license-server/cluster1/logservice1" logservice = ServerProxy(logservice_url) logservice.logEntries() 
+logservice_url = "https://user:password@license-server/cluster1/logservice1"
+logservice = ServerProxy(logservice_url)
+logservice.logEntries()
 ```
 It is vital that all cluster nodes are up and running before you proceed with the next steps.
 
@@ -81,7 +110,17 @@ The startEXAStorage function returns 'OK' on success or an exception in case of 
 
 
 ```"code-java"
-cluster_url = "https://user:password@license-server/cluster1" storage_url = "https://user:password@license-server/cluster1/storage"  cluster = ServerProxy(cluster_url) storage = ServerProxy(storage_url)  # start the Storage service storage.startEXAStorage()  # check the runtime state of all services cluster.getServiceState() 
+cluster_url = "https://user:password@license-server/cluster1"
+storage_url = "https://user:password@license-server/cluster1/storage"
+
+cluster = ServerProxy(cluster_url)
+storage = ServerProxy(storage_url)
+
+# start the Storage service
+storage.startEXAStorage()
+
+# check the runtime state of all services
+cluster.getServiceState()
 ```
 The getServiceState call returns a list of all cluster services. Ensure that all of them indicate the runtime state 'OK' before you proceed.
 
@@ -95,7 +134,15 @@ Iterate over the EXASolution instances and start them:
 
 
 ```"code-java"
-for db in cluster.getDatabaseList():     instance_url = "https://user:password@license-server/cluster1/db_{}".format(db)     instance = ServerProxy(instance_url)     instance.startDatabase()     while True:         if 'Yes' == instance.getDatabaseConnectionState():             print("database {} is accepting connections at {}\n".format(                 db, instance.getDatabaseConnectionString()))             break 
+for db in cluster.getDatabaseList():
+    instance_url = "https://user:password@license-server/cluster1/db_{}".format(db)
+    instance = ServerProxy(instance_url)
+    instance.startDatabase()
+    while True:
+        if 'Yes' == instance.getDatabaseConnectionState():
+            print("database {} is accepting connections at {}\n".format(
+                db, instance.getDatabaseConnectionString()))
+            break
 ```
 Again, you may monitor the database startup process by following an appropriate logservice. Wait for messages indicating that the given database is accepting connections.
 
@@ -105,7 +152,16 @@ Some third-party plugins for EXAoperation may require further attention. This ex
 
 
 ```"code-java"
-plugin = 'Administration.vmware-tools'  # Restart the service on the license server # to bring it into the correct PID namespace cluster.callPlugin(plugin, 'n0010', 'STOP') cluster.callPlugin(plugin, 'n0010', 'START')  for node in cluster.getNodeList():     if 'vmtoolsd is running' not in cluster.callPlugin(plugin, node, 'STATUS')[1]:         cluster.callPlugin(plugin, node, 'START') 
+plugin = 'Administration.vmware-tools'
+
+# Restart the service on the license server
+# to bring it into the correct PID namespace
+cluster.callPlugin(plugin, 'n0010', 'STOP')
+cluster.callPlugin(plugin, 'n0010', 'START')
+
+for node in cluster.getNodeList():
+    if 'vmtoolsd is running' not in cluster.callPlugin(plugin, node, 'STATUS')[1]:
+        cluster.callPlugin(plugin, node, 'START')
 ```
 ### Shutdown of a cluster
 
@@ -115,7 +171,12 @@ Example
 
 
 ```"code-java"
-license_server_id = "n0010" exaoperation_master = cluster.getEXAoperationMaster()  if exaoperation_master != license_server_id:     print("node {} is the current EXAoperation master but it should be {}\n".format(         exaoperation_master, license_server_id)) 
+license_server_id = "n0010"
+exaoperation_master = cluster.getEXAoperationMaster()
+
+if exaoperation_master != license_server_id:
+    print("node {} is the current EXAoperation master but it should be {}\n".format(
+        exaoperation_master, license_server_id))
 ```
 If the license server is not the EXAoperation master node, please log into EXAoperation and move EXAoperation to the license server before you continue.
 
@@ -125,7 +186,23 @@ Iterate over the EXASolution instances, review their operational state and stop 
 
 
 ```"code-java"
-for db in cluster.getDatabaseList():     instance_url = "https://user:password@license-server/cluster1/db_{}".format(db)     instance = ServerProxy(instance_url)      state = instance.getDatabaseState()     if 'running' == state:         operation = instance.getDatabaseOperation()         if 'None' == operation:             instance.stopDatabase()             while True:                 if 'setup' == instance.getDatabaseState():                     print("database {} stopped\n".format(db))                     break         else:             print("Database {} is currently in operation state {}\n".format(db, operation))     else:         print("Database {} is currently in runtime state {}\n".format(db, state)) 
+for db in cluster.getDatabaseList():
+    instance_url = "https://user:password@license-server/cluster1/db_{}".format(db)
+    instance = ServerProxy(instance_url)
+
+    state = instance.getDatabaseState()
+    if 'running' == state:
+        operation = instance.getDatabaseOperation()
+        if 'None' == operation:
+            instance.stopDatabase()
+            while True:
+                if 'setup' == instance.getDatabaseState():
+                    print("database {} stopped\n".format(db))
+                    break
+        else:
+            print("Database {} is currently in operation state {}\n".format(db, operation))
+    else:
+        print("Database {} is currently in runtime state {}\n".format(db, state))
 ```
 ##### 2. Shutdown of the EXAStorage service
 
@@ -133,7 +210,14 @@ Please assure yourself that all databases are shut down properly before stopping
 
 
 ```"code-java"
-cluster_url = "https://user:password@license-server/cluster1" storage_url = "https://user:password@license-server/cluster1/storage"  cluster = ServerProxy(cluster_url) storage = ServerProxy(storage_url)  storage.stopEXAStorage() cluster.getServiceState() 
+cluster_url = "https://user:password@license-server/cluster1"
+storage_url = "https://user:password@license-server/cluster1/storage"
+
+cluster = ServerProxy(cluster_url)
+storage = ServerProxy(storage_url)
+
+storage.stopEXAStorage()
+cluster.getServiceState()
 ```
 The state of the Storaged will switch to 'not running':
 
@@ -145,7 +229,12 @@ The state of the Storaged will switch to 'not running':
 
 
 ```"code-java"
-for node in cluster.getNodeList():     cluster.shutdownNode(node)  license_servers = ['n0010',] for ls in license_servers:     cluster.shutdownNode(ls) 
+for node in cluster.getNodeList():
+    cluster.shutdownNode(node)
+
+license_servers = ['n0010',]
+for ls in license_servers:
+    cluster.shutdownNode(ls) 
 ```
 The last call triggers the shutdown of the license server(s) and therefore terminate all EXAoperation instances.
 
