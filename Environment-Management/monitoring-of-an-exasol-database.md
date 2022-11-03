@@ -43,7 +43,7 @@ Source: <https://docs.exasol.com/sql_references/metadata/statistical_system_tab
 
 Let's start with a detailed analysis of the individual graphics. The DB Size graphic shows us the development of the database size - compressed and not compressed. As well as the ratio of the size to the available RAM. 
 
-**Data sources:**Table: EXA_DB_SIZE_DAILY - Due to the long observation period, we choose the **maximum** of the corresponding day for the columns **RAW** and **MEM_OBJECT_SIZE**. We also use the **DB_RAM_SIZE** from the EXA_SYSTEM_EVENTS table.
+**Data sources:** Table: EXA_DB_SIZE_DAILY - Due to the long observation period, we choose the **maximum** of the corresponding day for the columns **RAW** and **MEM_OBJECT_SIZE**. We also use the **DB_RAM_SIZE** from the EXA_SYSTEM_EVENTS table.
 
 **Details of the graphic:** A line is drawn for the values of RAW_OBJECT_SIZE_MAX and MEM_OBJECT_SIZE_MAX. The INTERVAL_START column serves as the time factor. Due to the aggregation there is a value for each day. These values allow the database size to be analyzed over a longer period of time. Simple math makes it possible to read the average data growth over a period of time from the graph. Also peaks in the data filling or the deletion of data can be traced.
 
@@ -69,7 +69,7 @@ On the basis of the current database usage, e.g. the created TEMP_DB_RAM, the da
 
 **Details of the graphic:** Line diagram
 
-**Important:**The Recommended RAM_SIZE is a value estimated by the system and represents a recommendation for an ideal RAM size. Our experience has shown that the system can already be operated optimally with half this value. We have made this factor easy to maintain in the dashboard. If the RECOMMENDED_RAM_SIZE divided by FACTOR is greater than the RAM, the RECOMMENDED_RAM_SIZE is displayed in red. Our experience has shown that NOT (RECOMMENDED> 2 * RAM) turned out to be a good metric.
+**Important:** The Recommended RAM_SIZE is a value estimated by the system and represents a recommendation for an ideal RAM size. Our experience has shown that the system can already be operated optimally with half this value. We have made this factor easy to maintain in the dashboard. If the RECOMMENDED_RAM_SIZE divided by FACTOR is greater than the RAM, the RECOMMENDED_RAM_SIZE is displayed in red. Our experience has shown that NOT (RECOMMENDED> 2 * RAM) turned out to be a good metric.
 
 ![](images/Reccomended.jpg)
 
@@ -89,7 +89,7 @@ As a MPP database an Exasol cluster has a variable number of Nodes with its own 
 
 **Details of the graphic:** Line Diagram
 
-**Important:**The highest possible CPU utilization is desirable. The maximum values of the day are used for this. The average value is not meaningful because IDLE times have a massive influence on the result. The goal is a maximum utilization of over 85%. If the CPU load falls below this value on a day, this is displayed in red in the diagram
+**Important:** The highest possible CPU utilization is desirable. The maximum values of the day are used for this. The average value is not meaningful because IDLE times have a massive influence on the result. The goal is a maximum utilization of over 85%. If the CPU load falls below this value on a day, this is displayed in red in the diagram
 
 ![](images/CPU.png)
 
@@ -101,19 +101,19 @@ With an in-memory database, the most important data should always fit in the RAM
 
 **Details of the graphic:** Line diagram
 
-**Important:**The HDD_READ values should be as low as possible. We have used AVG as a window function in our BI tool to determine whether values are increasing permanently or not. This ensures that the line is displayed in red if there is a permanent incline. For a long-term view, the Average is very important because peaks can occur from time to time.
+**Important:** The HDD_READ values should be as low as possible. We have used AVG as a window function in our BI tool to determine whether values are increasing permanently or not. This ensures that the line is displayed in red if there is a permanent incline. For a long-term view, the Average is very important because peaks can occur from time to time.
 
 ![](images/HDD_READ.png)
 
 ### NET diagram
 
-If data is distributed to different Nodes, it is important to set the distribution key and use replication border (see: <https://docs.exasol.com/performance/best_practices.htm?Highlight=Best>) to avoid too many global operations. Global operations like global joins and global aggregations cannot be avoided completely. Therefore the network traffic should be monitored*.*
+If data is distributed to different Nodes, it is important to set the distribution key and use replication border (see: <https://docs.exasol.com/performance/best_practices.htm?Highlight=Best>) to avoid too many global operations. Global operations like global joins and global aggregations cannot be avoided completely. Therefore the network traffic should be monitored.
 
 **Data sources:** Table EXA_MONITOR_DAILY - NET_AVG, NET_MAX
 
 **Details of the graphic:** Line diagram
 
-**Important:**For the reason mentioned above, the NET values should be as low as possible. We have used AVG as a window function in our BI tool to determine whether values are increasing permanently or not. This ensures that the line is displayed in red if there is a permanent incline.
+**Important:** For the reason mentioned above, the NET values should be as low as possible. We have used AVG as a window function in our BI tool to determine whether values are increasing permanently or not. This ensures that the line is displayed in red if there is a permanent incline.
 
 ![](images/NET.png)
 
@@ -125,7 +125,7 @@ Every database operation generates a temporary amount of data in the RAM. If the
 
 **Details of the graphic:** Line diagram
 
-**Important:**For the reason mentioned above, the TEM DB RAM values should be monitored. We have used AVG as a window function in our BI tool to determine whether values are increasing permanently or not. This ensures that the line is displayed in red if there is a permanent incline.
+**Important:** For the reason mentioned above, the TEM DB RAM values should be monitored. We have used AVG as a window function in our BI tool to determine whether values are increasing permanently or not. This ensures that the line is displayed in red if there is a permanent incline.
 
 ![](images/TEMP_DB_RAM.png)
 
@@ -145,7 +145,7 @@ The graphic shows over a longer timeline how many queries of a COMMAND_CLASS hav
 
 **Details of the graphic:** Line diagram
 
-**Important:**The graphic shows differently colored lines. Each line stands for a COMMAND_CLASS. The statements are filtered on EXECUTION_MODE = 'EXECUTE' and SUCCESS*.* There is also a filter on the COMMAND_CLASS.
+**Important:** The graphic shows differently colored lines. Each line stands for a COMMAND_CLASS. The statements are filtered on EXECUTION_MODE = 'EXECUTE' and SUCCESS*.* There is also a filter on the COMMAND_CLASS.
 
 ![](images/SQL_QUERIES_BY_CLASS_DASH.png)
 
@@ -157,7 +157,7 @@ The following graphic gives an overview of the average and maximum duration of D
 
 **Details of the graphic:** Line diagram
 
-**Important:**In the BI Tool we have placed a trend line on the development of the curves for a better overview. The Data is filtered on the COMMAND_CLASS "DQL", EXECUTION_MODE = "EXECUTE" and SUCCESS.
+**Important:** In the BI Tool we have placed a trend line on the development of the curves for a better overview. The Data is filtered on the COMMAND_CLASS "DQL", EXECUTION_MODE = "EXECUTE" and SUCCESS.
 
 ![](images/DURATION_EXECUTED.png)
 
@@ -187,9 +187,9 @@ By combining the different types of diagrams, this graphic provides an insight i
 
 **Data sources:** Table EXA_USAGE_HOURLY - IDLE Column from EXA_USAGE_HOURLY
 
-**Details of the graphic:**This graphic contains both a **bar** and a **matrix diagram**. The bar chart shows the average idle time by day of the week. The matrix diagram shows the idle time broken down into day of the week and hour of the day. To do this, the INTERVAL_START field is broken down to the weekday and hour level.
+**Details of the graphic:** This graphic contains both a **bar** and a **matrix diagram**. The bar chart shows the average idle time by day of the week. The matrix diagram shows the idle time broken down into day of the week and hour of the day. To do this, the INTERVAL_START field is broken down to the weekday and hour level.
 
-**Important:**The IDLE column indicates the percentage of the hour (EXA_USAGE_HOURLY) for which the database has no queries to process. Depending on the percentage, the field is displayed in a different color.
+**Important:** The IDLE column indicates the percentage of the hour (EXA_USAGE_HOURLY) for which the database has no queries to process. Depending on the percentage, the field is displayed in a different color.
 
 ![](images/IDLE.png)
 
@@ -201,12 +201,10 @@ The database describes in the table EXA_USAGE_LAST_DAY exactly how many queries 
 
 **Details of the graphic:**  Line diagram
 
-**Important:**The limit of parallel queries in Exasol is 100 by default. In the dashboard, the user has the option of specifying a limit value from which he sees the database load as critical. If this limit is exceeded, both the line for the average and the line for the maximum turn red.
+**Important:** The limit of parallel queries in Exasol is 100 by default. In the dashboard, the user has the option of specifying a limit value from which he sees the database load as critical. If this limit is exceeded, both the line for the average and the line for the maximum turn red.
 
 ![](images/Concurrent_Queries.png)
 
 ## Final conclusion
 
-I hope I was able to give you an insight with this article into how you can monitor an Exasol database in a long-term perspective. The statistical system tables DB_SIZE, MONITORING, SQL and USAGE already give you a good overview of what is happening on the system. However, there are many other system tables that are suitable for different monitoring scenarios. There are no limits to creativity here.
-
-"
+This might have given you an insight how you can monitor an Exasol database in a long-term perspective. The statistical system tables DB_SIZE, MONITORING, SQL and USAGE already give you a good overview of what is happening on the system. However, there are many other system tables that are suitable for different monitoring scenarios. There are no limits to creativity here.
