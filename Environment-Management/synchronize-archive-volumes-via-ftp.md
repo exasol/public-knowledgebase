@@ -1,7 +1,7 @@
 # Synchronize Archive Volumes via FTP 
 ## Background
 
-With this UDF (backup_copy_ftp.sql) written in Python, you can easily synchronize archive volumes between clusters. Transport is TLS encrypted (self._ftp = FTP_TLS). After volumes have been initially synchronized all files added or deleted will be added or deleted in the target archive volume. This UDF does not support synchronizing specific days or backup IDs but it can be easily adjusted to your needs. Parallelism is handled by the database. So for best performance, the number of database and master nodes of the target archive volume should be the same.
+With this UDF (backup_copy_ftp.sql) written in Python, you can easily synchronize archive volumes between clusters. Transport is TLS encrypted (self._ftp = FTP_TLS). After volumes have been initially synchronized, all files added or deleted will be added or deleted in the target archive volume. This UDF does not support synchronizing specific days or backup IDs, but it can be easily adjusted to your needs. Parallelism is handled by the database. So for best performance, the number of database and master nodes of the target archive volume should be the same.
 
 ![](images/UDF_sync_volumes.PNG)
 
@@ -20,7 +20,9 @@ Open the attached file (backup_copy_ftp.sql) and create the script in the schema
 
 
 ```markup
-LOCAL_URL    = 'ftp://ExaoperationUser:EXAoperationPW@%s/SourceArchiveVolumeID' REMOTE_URL   = 'ftp://EXAoperationUser:EXAoperationPW@%s/TargetArchiveVolumeID' REMOTE_NODES = [ 'IP node 11', 'IP node 12', 'IP node 13']
+LOCAL_URL    = 'ftp://ExaoperationUser:EXAoperationPW@%s/SourceArchiveVolumeID' 
+REMOTE_URL   = 'ftp://EXAoperationUser:EXAoperationPW@%s/TargetArchiveVolumeID' 
+REMOTE_NODES = [ 'IP node 11', 'IP node 12', 'IP node 13']
 ```
 ## Step 2
 
@@ -39,3 +41,5 @@ If a synchronization attempt fails, you must cleanup the target volume manually
 ## Additional References
 
 * [Create Remote Archive Volume](https://docs.exasol.com/administration/on-premise/manage_storage/create_remote_archive_volume.htm)
+* [backup_copy_ftp.zip](https://github.com/exasol/Public-Knowledgebase/files/9927383/backup_copy_ftp.zip)
+
