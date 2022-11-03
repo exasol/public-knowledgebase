@@ -8,7 +8,7 @@
 ```
 rpm -ivh splunk-7.3.1-bd63e13aa157-linux-2.6-x86_64.rpm 
 ```
-* Start Splunk, accept EULA and enter**username**and**password**   
+* Start Splunk, accept EULA and enter **username** and **password**   
 ```
 /opt/splunk/bin/splunk start 
 ```
@@ -69,14 +69,52 @@ rpm -ivh splunkforwarder-7.3.1-bd63e13aa157-linux-2.6-x86_64.rpm
 ```
 * Check if forward server and log files have been enabled, restart splunkforwarder if nothing happens   
 ```
-/opt/splunkforwarder/bin/splunk list monitor Your session is invalid.  Please login. Splunk username: admin Password: Monitored Directories:         $SPLUNK_HOME/var/log/splunk                 /opt/splunkforwarder/var/log/splunk/audit.log                 /opt/splunkforwarder/var/log/splunk/btool.log                 /opt/splunkforwarder/var/log/splunk/conf.log                 /opt/splunkforwarder/var/log/splunk/first_install.log                 /opt/splunkforwarder/var/log/splunk/health.log                 /opt/splunkforwarder/var/log/splunk/license_usage.log                 /opt/splunkforwarder/var/log/splunk/mongod.log                 /opt/splunkforwarder/var/log/splunk/remote_searches.log                 /opt/splunkforwarder/var/log/splunk/scheduler.log                 /opt/splunkforwarder/var/log/splunk/searchhistory.log                 /opt/splunkforwarder/var/log/splunk/splunkd-utility.log                 /opt/splunkforwarder/var/log/splunk/splunkd_access.log                 /opt/splunkforwarder/var/log/splunk/splunkd_stderr.log                 /opt/splunkforwarder/var/log/splunk/splunkd_stdout.log                 /opt/splunkforwarder/var/log/splunk/splunkd_ui_access.log         $SPLUNK_HOME/var/log/splunk/license_usage_summary.log                 /opt/splunkforwarder/var/log/splunk/license_usage_summary.log         $SPLUNK_HOME/var/log/splunk/metrics.log                 /opt/splunkforwarder/var/log/splunk/metrics.log         $SPLUNK_HOME/var/log/splunk/splunkd.log                 /opt/splunkforwarder/var/log/splunk/splunkd.log         $SPLUNK_HOME/var/log/watchdog/watchdog.log*                 /opt/splunkforwarder/var/log/watchdog/watchdog.log         $SPLUNK_HOME/var/run/splunk/search_telemetry/*search_telemetry.json         $SPLUNK_HOME/var/spool/splunk/...stash_new Monitored Files:         $SPLUNK_HOME/etc/splunk.version         /var/log/all.log         /var/log/audit/audit.log 
+/opt/splunkforwarder/bin/splunk list monitor
+Your session is invalid.  Please login.
+Splunk username: admin
+Password:
+Monitored Directories:
+        $SPLUNK_HOME/var/log/splunk
+                /opt/splunkforwarder/var/log/splunk/audit.log
+                /opt/splunkforwarder/var/log/splunk/btool.log
+                /opt/splunkforwarder/var/log/splunk/conf.log
+                /opt/splunkforwarder/var/log/splunk/first_install.log
+                /opt/splunkforwarder/var/log/splunk/health.log
+                /opt/splunkforwarder/var/log/splunk/license_usage.log
+                /opt/splunkforwarder/var/log/splunk/mongod.log
+                /opt/splunkforwarder/var/log/splunk/remote_searches.log
+                /opt/splunkforwarder/var/log/splunk/scheduler.log
+                /opt/splunkforwarder/var/log/splunk/searchhistory.log
+                /opt/splunkforwarder/var/log/splunk/splunkd-utility.log
+                /opt/splunkforwarder/var/log/splunk/splunkd_access.log
+                /opt/splunkforwarder/var/log/splunk/splunkd_stderr.log
+                /opt/splunkforwarder/var/log/splunk/splunkd_stdout.log
+                /opt/splunkforwarder/var/log/splunk/splunkd_ui_access.log
+        $SPLUNK_HOME/var/log/splunk/license_usage_summary.log
+                /opt/splunkforwarder/var/log/splunk/license_usage_summary.log
+        $SPLUNK_HOME/var/log/splunk/metrics.log
+                /opt/splunkforwarder/var/log/splunk/metrics.log
+        $SPLUNK_HOME/var/log/splunk/splunkd.log
+                /opt/splunkforwarder/var/log/splunk/splunkd.log
+        $SPLUNK_HOME/var/log/watchdog/watchdog.log*
+                /opt/splunkforwarder/var/log/watchdog/watchdog.log
+        $SPLUNK_HOME/var/run/splunk/search_telemetry/*search_telemetry.json
+        $SPLUNK_HOME/var/spool/splunk/...stash_new
+Monitored Files:
+        $SPLUNK_HOME/etc/splunk.version
+        /var/log/all.log
+        /var/log/audit/audit.log
 ```
 
 ## Check if the Splunk server is available
 
 
 ```
-/opt/splunkforwarder/bin/splunk list forward-server Active forwards:         10.70.0.186:9700 Configured but inactive forwards:         None 
+/opt/splunkforwarder/bin/splunk list forward-server
+Active forwards:
+        10.70.0.186:9700
+Configured but inactive forwards:
+        None
 ```
 ## Search logs in the Web UI
 
@@ -87,13 +125,15 @@ rpm -ivh splunkforwarder-7.3.1-bd63e13aa157-linux-2.6-x86_64.rpm
 * Download the Splunk Unix Add-on splunk-add-on-for-unix-and-linux_602.tgz
 * unpack and copy to the splunkforwarder app folder   
 ```
-tar xf splunk-add-on-for-unix-and-linux_602.tgz mv Splunk_TA_nix /opt/splunkforwarder/etc/apps/ 
+tar xf splunk-add-on-for-unix-and-linux_602.tgz 
+mv Splunk_TA_nix /opt/splunkforwarder/etc/apps/ 
 ```
-* Enable Metrics you want to receivce, set**disable = 0**to *enable *metric   
+* Enable Metrics you want to receivce, set **disable = 0** to enable metric   
 ```
 vim /opt/splunkforwarder/etc/apps/Splunk_TA_nix/default/inputs.conf 
 ```
 * Stop splunk forwarder and start splunk forwarder   
 ```
-/opt/splunkforwarder/bin/splunk stop /opt/splunkforwarder/bin/splunk start
+/opt/splunkforwarder/bin/splunk stop 
+/opt/splunkforwarder/bin/splunk start
 ```
