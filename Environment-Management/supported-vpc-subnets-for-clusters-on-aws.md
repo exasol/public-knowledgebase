@@ -1,7 +1,7 @@
 # Supported VPC Subnets for Clusters on AWS 
 ## Background
 
-With versions prior to 5.0.15 EXASOL cluster deployments only supported CIDR block 27.1.0.0/16 and subnet 27.1.0.0/16, now it's possible to use custom CIDR blocks but with some restrictions, because the CIDR block will automatically be managed by our cluster operating system.
+With versions prior to 5.0.15, EXASOL cluster deployments only supported CIDR block 27.1.0.0/16 and subnet 27.1.0.0/16, now it's possible to use custom CIDR blocks but with some restrictions, because the CIDR block will automatically be managed by our cluster operating system.
 
 1. VPC CIDR block netmask must be between /16 (255.255.0.0) and /24 (255.255.255.0)
 2. The first ten IP addresses of the cluster's subnet are reserved and cannot be used
