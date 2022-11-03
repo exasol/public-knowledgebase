@@ -33,7 +33,7 @@ $ mkfs.ext4 /dev/VG1/lvol0
 ```
 $ mount /dev/VG1/lvol0 /mnt/ 
 ```
-5.1. or Mount Permanently by adding it to ***/etc/fstab****:*
+5.1. or Mount Permanently by adding it to ***/etc/fstab***:
 
 
 ```
@@ -93,5 +93,6 @@ $ resize2fs /dev/VG1/lvol0
 
 
 ```
-$ truncate --size=+10GB /exa/data/storage/dev.1 $ cshdd --enlarge -n 11 -h /exa/data/storage/dev.1
+$ truncate --size=+10GB /exa/data/storage/dev.1 
+$ cshdd --enlarge -n 11 -h /exa/data/storage/dev.1
 ```
