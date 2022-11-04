@@ -126,3 +126,7 @@ With this framework, you can specify as many restrictions on as many tables as y
 * <https://github.com/exasol/row-level-security>
 * <https://docs.exasol.com/database_concepts/virtual_schemas.htm>
 * <https://docs.exasol.com/database_concepts/privileges.htm>
+
+## Downloads
+[RLS-CLS-Demo_V2.zip](https://github.com/exasol/Public-Knowledgebase/files/9937198/RLS-CLS-Demo_V2.zip)
+[data_schema_customer.zip](https://github.com/exasol/Public-Knowledgebase/files/9937199/data_schema_customer.zip)
