@@ -17,14 +17,14 @@ But... as we all know, sometimes you cannot avoid this due to given data structu
 
 
 ```
-**Example 1  
-The following query will fail with the error:**  
+Example 1  
+The following query will fail with the error:  
 [EXASOL][EXASolution driver]syntax error, **unexpected DATE_**, expecting UNION_ or EXCEPT_ or MINUS_ or INTERSECT_   
   
 SELECT  
 a.CUSTOMER_ID CUSTOMER_ID,  
 a.CUSTOMER_NAME CUSTOMER_NAME,  
-a.**DATE** **DATE**  
+a.DATE DATE  
 FROM  
 X.CUSTOMER a  
 WHERE  
@@ -35,16 +35,16 @@ So the query needs to be modified to run without errors. In this case the colum
 
 
 ```
-**Example 2  
-The following query will run without errors:**  
-  
-SELECT  
-a.CUSTOMER_ID CUSTOMER_ID,  
-a.CUSTOMER_NAME CUSTOMER_NAME,  
-a.**"DATE" "DATE"**  
-FROM  
-X.CUSTOMER a  
-WHERE  
+Example 2
+The following query will run without errors:
+
+SELECT
+a.CUSTOMER_ID CUSTOMER_ID,
+a.CUSTOMER_NAME CUSTOMER_NAME,
+a."DATE" "DATE"
+FROM
+X.CUSTOMER a
+WHERE
 a.CUSTOMER_ID = 1234;
 ```
 **To solve this issue when pushing down SQL from MicroStrategy to Exasol you must enable "Unified Quoting" in your MicroStrategy environment.**
