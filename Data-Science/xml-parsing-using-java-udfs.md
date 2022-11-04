@@ -62,7 +62,8 @@ For this solution, the fat jar was deployed to an EXABucket named "jars" using t
 
 
 ```"code
-curl -X PUT -T xmlexample-0.0.1-SNAPSHOT-jar-with-dependencies.jar   http://w:<w_pwd>@<db_node>:<EXABucketFS_port>/jars/xmlexample-0.0.1-SNAPSHOT-jar-with-dependencies.jar 
+curl -X PUT -T xmlexample-0.0.1-SNAPSHOT-jar-with-dependencies.jar   
+ http://w:<w_pwd>@<db_node>:<EXABucketFS_port>/jars/xmlexample-0.0.1-SNAPSHOT-jar-with-dependencies.jar 
 ```
 ## Step 4. UDF and usage
 
@@ -72,62 +73,61 @@ The attached file Data.sql creates a table for storing the XML-Text and inserts 
 
 ```"code
 -- Data.sql
-create schema xmlparsing;  
 
-create or replace table myXML (v varchar(2000000));  
+create schema xmlparsing;
 
-insert into myXML values  
-'<?xml version="1.0" encoding="UTF-8" standalone="yes"?> 
-<document>           
- <entry>           
-  <id>1</id>           
-  <name>Nuremberg</name>      
- </entry>      
- <entry>           
-  <id>2</id>           
-  <name>Berlin</name>      
- </entry> 
-</document>';  
+create or replace table myXML (v varchar(2000000));
 
-insert into myXML values  
-'<?xml version="1.0" encoding="UTF-8" standalone="yes"?> 
-<document>           
- <entry>           
-  <id>3</id>           
-  <name>London</name>      
- </entry>      
- <entry>           
-  <id>4</id>           
-  <name>Stockholm</name>      
- </entry> 
-</document>';  
+insert into myXML values 
+'<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<document>     
+     <entry>
+          <id>1</id>
+          <name>Nuremberg</name>
+     </entry>
+     <entry>
+          <id>2</id>
+          <name>Berlin</name>
+     </entry>
+</document>';
 
-commit; 
+insert into myXML values 
+'<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<document>     
+     <entry>
+          <id>3</id>
+          <name>London</name>
+     </entry>
+     <entry>
+          <id>4</id>
+          <name>Stockholm</name>
+     </entry>
+</document>';
+
+commit;
 ```
 The attached file UDF.sql   describes how to create a UDF that imports the installed jar library and uses the XML-parsing functionality.  
 In addition, the UDF function is used to insert data into an EXASOL table.
 
 
 ```"code
---UDF.sql
-create or replace java scalar script processXML(xml varchar(2000000))  
-emits (id int, name varchar(200000)) 
-as 
-%scriptclass com.exasol.xmlexample6.ProcessXML;  
-%jar /buckets/bucketfs1/jars/xmlexample-0.0.1-SNAPSHOT-jar-with-dependencies.jar; } 
-/ 
+-- UDF.sql
 
-commit; 
+create or replace java scalar script processXML(xml varchar(2000000)) 
+emits (id int, name varchar(200000)) as
+%scriptclass com.exasol.xmlexample6.ProcessXML;
 
--- Usage: SELECT 
-select processXML(v) from xmlparsing.myxml;  
+%jar /buckets/bucketfs1/jars/xmlexample-0.0.1-SNAPSHOT-jar-with-dependencies.jar;
+}
+/
+commit;
+-- Usage: SELECT
+select processXML(v) from xmlparsing.myxml;
 
--- Usage: INSERT INTO ... FROM SELECT 
-create table cities (id int, name varchar(200000)); 
-
-insert into cities select processXML(v) from xmlparsing.myxml; 
-
-commit;  
+-- Usage: INSERT INTO ... FROM SELECT
+create table cities (id int, name varchar(200000));
+insert into cities select processXML(v) from xmlparsing.myxml;
+commit;
 
 select * from cities;  
 ```
@@ -181,3 +181,8 @@ This solution requires that the table storing the XML data is located in the cur
 
 <https://community.exasol.com/t5/data-science/how-to-create-and-use-udfs/ta-p/501>
 
+## Downloads
+[UDF.zip](https://github.com/exasol/Public-Knowledgebase/files/9936894/UDF.zip)
+[Data.zip](https://github.com/exasol/Public-Knowledgebase/files/9936895/Data.zip)
+[xmlexample-0.0.1-SNAPSHOT-jar-with-dependencies.jar.zip](https://github.com/exasol/Public-Knowledgebase/files/9936896/xmlexample-0.0.1-SNAPSHOT-jar-with-dependencies.jar.zip)
+[xmlexample.zip](https://github.com/exasol/Public-Knowledgebase/files/9936897/xmlexample.zip)
