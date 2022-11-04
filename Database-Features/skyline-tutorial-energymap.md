@@ -134,3 +134,6 @@ PARTITION BY generator_type;
 * <https://docs.exasol.com/sql_references/functions/analyticfunctions.htm>
 * <https://docs.exasol.com/sql_references/geospatialdata/import_geospatial_data_from_csv.htm>
 * <https://docs.exasol.com/advanced_analytics/geocoding_with_udfs.htm>
+
+## Downloads
+[energymap.zip](https://github.com/exasol/Public-Knowledgebase/files/9937292/energymap.zip)
