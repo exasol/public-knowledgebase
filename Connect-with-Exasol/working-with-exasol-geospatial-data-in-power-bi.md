@@ -145,3 +145,7 @@ A post by Microsoft's Chris Webb on recent additions to Power BI for working wit
 The wikipedia entry on Well Known Text:  
 <https://en.wikipedia.org/wiki/Well-known_text_representation_of_geometry>
 
+## Downloads
+[TAXI_ZONES_202104201127.zip](https://github.com/exasol/Public-Knowledgebase/files/9936562/TAXI_ZONES_202104201127.zip)
+[create_table.zip](https://github.com/exasol/Public-Knowledgebase/files/9936568/create_table.zip)
+
