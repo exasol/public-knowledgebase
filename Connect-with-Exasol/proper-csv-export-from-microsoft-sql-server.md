@@ -88,5 +88,5 @@ From WideWorldImporters.Dimension.Customer"
 queryout "C:\Test.csv" -c -t"," -r"\n" -q -S HW1729 –T
 * Start the export by pressing Enter
 
-What topic do you want us to cover next? Let us know in the comments!
+
 
