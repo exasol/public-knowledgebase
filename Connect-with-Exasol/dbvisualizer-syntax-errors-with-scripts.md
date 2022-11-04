@@ -16,7 +16,10 @@ If you just hit "Continue", the database will then more than likely throw a synt
 DbVisualizer supports several different type of "Parameter Markers", which look like:
 
 ```markup
-&name: 'name' {name}: 'name'
+&name
+:name
+:{name}
+:'name'
 ```
 If your UDF contains one of these markers, DbVisualizer will assume that it is a parameter and will ask you to insert a value for that parameter, even though you don't intend for this to be one. You can read more about these Markers in [DbVisualizer's documentation](http://confluence.dbvis.com/display/UG100/Parameterized+SQL+-+Variables+and+Parameter+Markers)
 
