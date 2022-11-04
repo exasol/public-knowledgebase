@@ -16,10 +16,12 @@ Find your datasource and edit the connection class:
 
 
 ```"code-xml"
-<workbook>   
-<datasources>     
-<datasource caption='your_datasource_name' ...>       
-<connection class='exasolution' odbc-connect-string-extras='' port='8563' schema='YOURSCHEMA' server='192.168.10.11..22:8563'...> 
+
+
+<workbook>
+  <datasources>
+    <datasource caption='your_datasource_name' ...>
+      <connection class='exasolution' odbc-connect-string-extras='' port='8563' schema='YOURSCHEMA' server='192.168.10.11..22:8563'...>
 ```
 ## Step 2
 
