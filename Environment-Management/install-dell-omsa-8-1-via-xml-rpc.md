@@ -56,4 +56,5 @@ This article describes how to install Dell's OpenManage Server Administration so
 
 #### 8. For monitoring DELL OMSA please review <http://folk.uio.no/trondham/software/check_openmanage.html>
 
+## Downloads
 [snmpd.zip](https://github.com/exasol/Public-Knowledgebase/files/9921941/snmpd.zip)
