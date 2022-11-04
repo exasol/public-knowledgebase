@@ -75,3 +75,7 @@ con.commit();
 
 * <https://docs.exasol.com/database_concepts/scripting/db_interaction.htm>
 * <https://docs.exasol.com/connect_exasol/drivers/jdbc.htm>
+
+## Downloads
+[Bind_variables_not_working_example.zip](https://github.com/exasol/Public-Knowledgebase/files/9936528/Bind_variables_not_working_example.zip)
+
