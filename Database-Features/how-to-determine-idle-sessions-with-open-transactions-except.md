@@ -18,7 +18,7 @@ For Database versions `up to 7.0` the query can be found in
 
 [open_transactions_leq_DBv70.sql](https://raw.githubusercontent.com/exasol/exa-toolbox/master/utilities/open_transactions_leq_DBv70.sql) 
 
-For Database versions `starting from 7.1` the query can be found in
+For Database versions `starting from 7.1`, the query can be found in
 
 [open_transactions_geq_DBv71.sql](https://raw.githubusercontent.com/exasol/exa-toolbox/master/utilities/open_transactions_geq_DBv71.sql) 
 
