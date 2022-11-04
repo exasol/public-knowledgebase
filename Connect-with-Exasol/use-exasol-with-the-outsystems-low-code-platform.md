@@ -119,3 +119,5 @@ For more information or help visit [novioq.com](https://www.novioq.com/outsyste
 
 *Visit the [OutSystems Forge](https://www.outsystems.com/forge/component-overview/8697/exasol-connector) for more extensive documentation and and [the NovioQ instruction page](https://novioq.com/outsystems-exasol-connector/) to watch step by step recordings on how to install and use this connector.*
 
+## Downloads
+[Exasol-database-connector-for-OutSystems.pdf](https://github.com/exasol/Public-Knowledgebase/files/9936516/Exasol-database-connector-for-OutSystems.pdf)
