@@ -171,3 +171,8 @@ select rf.predict_wine_py(wine_id, fixed_acidity, volatile_acidity, citric_acid,
 * [BucketFS Explorer](https://github.com/exasol/bucketfs-explorer)
 * [UDF Scripts](https://docs.exasol.com/database_concepts/udf_scripts.htm)
 * [Creating a UDF](https://community.exasol.com/t5/Data-Science/How-to-create-and-use-UDFs/ta-p/501)
+
+## Downloads
+[test.zip](https://github.com/exasol/Public-Knowledgebase/files/9936798/test.zip)
+[DDL_and_IMPORT.zip](https://github.com/exasol/Public-Knowledgebase/files/9936800/DDL_and_IMPORT.zip)
+[train.zip](https://github.com/exasol/Public-Knowledgebase/files/9936801/train.zip)
