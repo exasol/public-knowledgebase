@@ -106,3 +106,5 @@ select webtest_py('www.heise.de', 80, '/') from exa_loadavg order by 1,2;
 | n0020.c0001.exacluster.local | 0.004 | Trying to connect to 193.99.144.85, port 80 |
 | n0020.c0001.exacluster.local | 63.003 | Failed:[Errno 110]Connection timed out |
 
+## Downloads
+[webtest_py.zip](https://github.com/exasol/Public-Knowledgebase/files/9936499/webtest_py.zip)
