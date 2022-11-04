@@ -147,7 +147,7 @@ execute script ETL.bigquery_export('GOOGLE_CLOUD_STORAGE','test_1.csv','DATASET1
 ```
 ## Additional Notes
 
-* If you try to run a normal EXPORT to Google Bigquery, then you may receive the following error:**[42636] ETL-5402: JDBC-Client-Error: Committing data failed: [Simba][JDBC]****(10040) Cannot use commit while Connection is in auto-commit mode.** This is because Bigquery does not support COMMIT or ROLLBACK. A workaround can be delivered via support, but this method would still have the same pitfalls mentioned above and is not recommended.
+* If you try to run a normal EXPORT to Google Bigquery, then you may receive the following error:**[42636] ETL-5402: JDBC-Client-Error: Committing data failed: [Simba][JDBC]** **(10040) Cannot use commit while Connection is in auto-commit mode.** This is because Bigquery does not support COMMIT or ROLLBACK. A workaround can be delivered via support, but this method would still have the same pitfalls mentioned above and is not recommended.
 * Google BigQuery is very sensitive to time differences, so ensure that your Exasol Environment has an NTP Server defined and that the time is synchronized. If the times are too far apart, you might see an error like **Invalid JWT: Token must be a short-lived token (60 minutes) and in a reasonable timeframe. Check your iat and exp values in the JWT claim.**
 * The script does not support statements, only tables, however the Lua script can be expanded to handle exporting statements and not just tables.
 
@@ -158,3 +158,9 @@ execute script ETL.bigquery_export('GOOGLE_CLOUD_STORAGE','test_1.csv','DATASET1
 * [CREATE CONNECTION statement](https://docs.exasol.com/sql/create_connection.htm)
 * [Loading Data into Google Cloud Storage](https://docs.exasol.com/loading_data/load_data_google_cloud_storage_buckets.htm)
 * [Loading Data with Bigquery](https://docs.exasol.com/loading_data/connect_databases/google_bigquery.htm)
+
+## Downloads
+[export_to_bigquery.zip](https://github.com/exasol/Public-Knowledgebase/files/9936311/export_to_bigquery.zip)
+[import_from_bigquery.zip](https://github.com/exasol/Public-Knowledgebase/files/9936312/import_from_bigquery.zip)
+
+
