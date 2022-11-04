@@ -48,5 +48,5 @@ Additional Notes:
 * ***IBM Data Studio***a utomatically masks double quotes ("Example" -> ""Example"")
 
    
-Feel free to leave a comment and give us feedback!
+
 
