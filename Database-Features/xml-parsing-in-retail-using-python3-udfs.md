@@ -324,4 +324,6 @@ Currently we are writing all the information we pull from our XML into the **XML
 
 The second CON-point is the reason we talked about storing the raw XML in a **VARCHAR()** column earlier. You would still need to parse the XML multiple times but you would do so within the perimeter of your database and not cause excess network traffic. Depending on the complexity of your XML files, the power of your FTP server, your development process and your general architecture different approaches might suite you.
 
+## Downloads
+[POSLog Spec.pdf](https://github.com/exasol/Public-Knowledgebase/files/9937391/POSLog.Spec.pdf)
 
