@@ -41,8 +41,13 @@ Example:
 
 
 ```markup
-cat users.csv | head -n 100 | ./exajload \ -c 'localhost:8563' \ -u 'SYS' \ -P 'exasol' \ -s 'exa_test' \ 
--presql 'TRUNCATE TABLE users' \ -sql 'IMPORT INTO users FROM LOCAL CSV FILE '\''/dev/stdin'\'' ROW SEPARATOR = '\''LF'\'''
+cat users.csv | head -n 100 | ./exajload \
+-c 'localhost:8563' \
+-u 'SYS' \
+-P 'exasol' \
+-s 'exa_test' \
+-presql 'TRUNCATE TABLE users' \
+-sql 'IMPORT INTO users FROM LOCAL CSV FILE '\''/dev/stdin'\'' ROW SEPARATOR = '\''LF'\'''
 ```
 ## IMPORT data from GZ-compressed stream
 
@@ -60,8 +65,13 @@ Example:
 
 
 ```markup
-cat users.csv | head -n 200 | gzip -c | ./exajload \ -c 'localhost:8563' \ -u 'SYS' \ -P 'exasol' \ -s 'exa_test' \ 
--presql 'TRUNCATE TABLE users' \ -sql 'IMPORT INTO users FROM LOCAL CSV FILE '\''stdin.gz'\'' ROW SEPARATOR = '\''LF'\'''
+cat users.csv | head -n 200 | gzip -c | ./exajload \
+-c 'localhost:8563' \
+-u 'SYS' \
+-P 'exasol' \
+-s 'exa_test' \
+-presql 'TRUNCATE TABLE users' \
+-sql 'IMPORT INTO users FROM LOCAL CSV FILE '\''stdin.gz'\'' ROW SEPARATOR = '\''LF'\'''
 ```
 ## Disable encryption to improve performance
 
@@ -77,10 +87,15 @@ Example:
 
 
 ```markup
-./exajload \ -c 'localhost:8563;encryption=0' \ -u 'SYS' \ -P 'exasol' \ -s 'exa_test' \ 
--presql 'TRUNCATE TABLE users' \ -sql 'IMPORT INTO users FROM LOCAL CSV FILE '\''users.csv'\'' ROW SEPARATOR = '\''LF'\'''
+./exajload \
+-c 'localhost:8563;encryption=0' \
+-u 'SYS' \
+-P 'exasol' \
+-s 'exa_test' \
+-presql 'TRUNCATE TABLE users' \
+-sql 'IMPORT INTO users FROM LOCAL CSV FILE '\''users.csv'\'' ROW SEPARATOR = '\''LF'\'''
 ```
-You may roughly measure the performance benefit by adding **time**command at the beginning.
+You may roughly measure the performance benefit by adding **time** command at the beginning.
 
 ## Run other queries in the same transaction
 
@@ -92,9 +107,17 @@ Example:
 
 
 ```markup
-./exajload \ -c 'localhost:8563;autocommit=0' \ -u 'SYS' \ -P 'exasol' \ -s 'exa_test' \ 
--presql 'TRUNCATE TABLE users' \ -sql 'IMPORT INTO users FROM LOCAL CSV FILE '\''users.csv'\'' ROW SEPARATOR = '\''LF'\''' \ -postsql 'COMMIT'
+./exajload \
+-c 'localhost:8563;autocommit=0' \
+-u 'SYS' \
+-P 'exasol' \
+-s 'exa_test' \
+-presql 'TRUNCATE TABLE users' \
+-sql 'IMPORT INTO users FROM LOCAL CSV FILE '\''users.csv'\'' ROW SEPARATOR = '\''LF'\''' \
+-postsql 'COMMIT'
 ```
 You may have any number of **-presql** and **-postsql** statements. Just make sure you always have COMMIT at the end.
 
+## Downloads
+[users.zip](https://github.com/exasol/Public-Knowledgebase/files/9935962/users.zip)
 
