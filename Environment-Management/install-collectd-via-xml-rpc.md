@@ -58,4 +58,5 @@
 ```
 #### 7. Repeat steps 4-6 for each node.
 
+## Downloads
 [collectd.zip](https://github.com/exasol/Public-Knowledgebase/files/9920847/collectd.zip)
