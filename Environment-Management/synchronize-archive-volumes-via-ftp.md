@@ -41,5 +41,7 @@ If a synchronization attempt fails, you must cleanup the target volume manually
 ## Additional References
 
 * [Create Remote Archive Volume](https://docs.exasol.com/administration/on-premise/manage_storage/create_remote_archive_volume.htm)
-* [backup_copy_ftp.zip](https://github.com/exasol/Public-Knowledgebase/files/9927383/backup_copy_ftp.zip)
+
+## Downloads
+[backup_copy_ftp.zip](https://github.com/exasol/Public-Knowledgebase/files/9927383/backup_copy_ftp.zip)
 
