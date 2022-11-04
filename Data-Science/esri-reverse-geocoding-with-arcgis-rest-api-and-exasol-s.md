@@ -55,3 +55,7 @@ For better performance when working with large datasets, we recommend batch geoc
 * [BucketFS](https://docs.exasol.com/database_concepts/bucketfs/bucketfs.htm)
 * [Expanding Script Languages](https://docs.exasol.com/database_concepts/udf_scripts/expand_script_using_bucketfs.htm)
 * [ArcGIS](https://www.arcgis.com/index.html)
+
+## Downloads
+[arcgis_demo.zip](https://github.com/exasol/Public-Knowledgebase/files/9936768/arcgis_demo.zip)
+[arcgis_cities.zip](https://github.com/exasol/Public-Knowledgebase/files/9936769/arcgis_cities.zip)
