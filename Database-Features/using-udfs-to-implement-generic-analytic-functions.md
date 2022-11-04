@@ -234,3 +234,5 @@ The code of the generic analytic UDF with a small example is attached.
 
 <https://community.exasol.com/t5/data-science/custom-aggregate-functions-for-large-data-sets/ta-p/1420>
 
+## Downloads
+[af_udf.zip](https://github.com/exasol/Public-Knowledgebase/files/9937355/af_udf.zip)
