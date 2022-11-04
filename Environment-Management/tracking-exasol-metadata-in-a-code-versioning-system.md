@@ -120,5 +120,7 @@ If you wish you also choose to export small amounts of table or view data (the a
 * Golang Exasol metadata (and small-data) backup library: [github.com/GrantStreetGroup/go-exasol-backup](https://github.com/GrantStreetGroup/go-exasol-backup)
 * Exasol's table and view DDL generation SQL: [github.com/exasol/database-migration](https://github.com/exasol/database-migration/blob/master/exasol_to_exasol.sql)
 * I have also attached below the bash script that we use to orchestrate this job. It's heavily customized to our use-case but you may want to use it as a starting point.
-* [exasol-bitbucket-backup.zip](https://github.com/exasol/Public-Knowledgebase/files/9928339/exasol-bitbucket-backup.zip)
+
+## Downloads
+[exasol-bitbucket-backup.zip](https://github.com/exasol/Public-Knowledgebase/files/9928339/exasol-bitbucket-backup.zip)
 
