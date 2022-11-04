@@ -33,3 +33,5 @@ Commits should be made only on the main connection after the subconections have 
 **An Java example is attached.**  
 In the example a main connection reads the connection strings for the subconnections from the server. For each subconnection a thread is started that inserts a few rows. Commit is executed on the main connection. Then other threads read the data from the table.
 
+## Downloads
+[ParallelConnectionsExample.zip](https://github.com/exasol/Public-Knowledgebase/files/9937141/ParallelConnectionsExample.zip)
