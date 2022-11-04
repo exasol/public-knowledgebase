@@ -257,4 +257,7 @@ echo "$(date) I'm backup nothing to do"
 [root@ip-10-0-1-207 ec2-user]# tail -n 30 /var/log/messages 
 ```
 
+## Downloads
+[keepalived_initd.zip](https://github.com/exasol/Public-Knowledgebase/files/9936059/keepalived_initd.zip)
+
 
