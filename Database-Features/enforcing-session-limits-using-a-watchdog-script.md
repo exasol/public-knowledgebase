@@ -34,3 +34,6 @@ The script will check all current sessions against the given limits and will cal
 
 * KILL STATEMENT <...> IN SESSION <...> when a session exceeds any of the given limits
 * KILL SESSION <...> when the limit is exceeded by more than 10 percent.
+
+## Downloads
+[session_watchdog.zip](https://github.com/exasol/Public-Knowledgebase/files/9937010/session_watchdog.zip)
