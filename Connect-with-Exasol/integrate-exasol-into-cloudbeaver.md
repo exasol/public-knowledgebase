@@ -163,8 +163,8 @@ tree
 │   ├── pom.xml  
 ├── derby  
 │   ├── pom.xml  
-├── **exasol**  
-│   ├── **pom.xml**  
+├── exasol  
+│   ├── pom.xml  
 ├── h2  
 │   ├── pom.xml  
 ├── pom.xml  
@@ -204,7 +204,7 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
  <module>sqlite</module>  
  <module>sqlserver</module>  
  <module>trino</module>  
- **<module>exasol</module>**  
+ <module>exasol</module>  
 </modules>  
 ...
 ```
@@ -248,7 +248,7 @@ And finally, we add the new driver to the server, by adding the reference to the
  <bundle id="drivers.sqlite.xerial" label="SQLite drivers"/>  
  <bundle id="drivers.mssql.new" label="SQL Server drivers"/>  
  <bundle id="drivers.trino" label="Trino drivers"/>  
- **<bundle id="drivers.exasol" label="Exasol drivers"/>**  
+ <bundle id="drivers.exasol" label="Exasol drivers"/>  
 </extension>  
   
 <!-- Enabled drivers -->  
@@ -265,7 +265,7 @@ And finally, we add the new driver to the server, by adding the reference to the
  <driver id="generic:sqlite_jdbc"/>  
  <driver id="sqlserver:microsoft"/>  
  <driver id="generic:trino_jdbc"/>  
- **<driver id="exasol:exasol"/>**  
+ <driver id="exasol:exasol"/>  
 </extension>  
 </plugin>
 ```
@@ -427,8 +427,8 @@ The first part of the Docker image is similar to the one in the previous chapter
 
 
 ```
-FROM ubuntu:18.04 AS **cloudbeaver_build  
-...**
+FROM ubuntu:18.04 AS cloudbeaver_build  
+...
 ```
 And then we add the new multistage step:
 
@@ -498,5 +498,7 @@ Other relevant sites/information:
 * [CloudBeaver Github site](https://github.com/dbeaver/cloudbeaver)
 * [Docker](https://www.docker.com/)
 
-*We're happy to hear your feedback on this article below!*
+## Downloads
+[CloudBeaverWithExasolDocker.zip](https://github.com/exasol/Public-Knowledgebase/files/9936349/CloudBeaverWithExasolDocker.zip)
+
 
