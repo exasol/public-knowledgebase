@@ -129,23 +129,24 @@ In the following example, a running sum is computed. Notice that the simple algo
 
 
 ```markup
---/ 
-CREATE OR REPLACE LUA SET SCRIPT my_sum ( a DOUBLE)    
-EMITS (count DOUBLE, val DOUBLE, sum DOUBLE) AS      
-function run(ctx)       
- local sum  = 0       
- local count = 0       
- repeat           
-  if ctx.a ~= null then               
-   sum = sum + ctx.a               
-   count = count +1               
-   ctx.emit(count, ctx.a, sum)           
-  end       
- until not ctx.next()   
-end 
-/    
-
-SELECT my_sum(x ORDER BY x) from t;
+--/
+CREATE OR REPLACE LUA SET SCRIPT my_sum ( a DOUBLE) 
+  EMITS (count DOUBLE, val DOUBLE, sum DOUBLE) AS
+  
+  function run(ctx)
+      local sum  = 0
+      local count = 0
+      repeat
+          if ctx.a ~= null then
+              sum = sum + ctx.a
+              count = count +1
+              ctx.emit(count, ctx.a, sum)
+          end
+      until not ctx.next()
+  end
+/
+ 
+ SELECT my_sum(x ORDER BY x) from t;
 ```
 You can find all of these examples in the attached file. 
 
