@@ -169,3 +169,6 @@ Run restore.sh
 * <https://www.exasol.com/support/secure/attachment/78805/metadatabackup_v20190418.tar.gz>
 * <https://community.exasol.com/t5/database-features/create-ddl-for-the-entire-database/ta-p/1417>
 * <https://www.exasol.com/support/browse/IDEA-371>
+
+## Downloads
+[metadatabackup_v20190418.tar.zip](https://github.com/exasol/Public-Knowledgebase/files/9936966/metadatabackup_v20190418.tar.zip)
