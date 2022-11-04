@@ -413,7 +413,6 @@ create role johns_role; -- >> fail!
 
 When concluding your development testing, be sure and execute either "DROP USER JOHN CASCADE " or "REVOKE IMPERSONATION ON SYS FROM JOHN". Otherwise, you have a gaping security issue in your development region. 
 
-We hope you find this article informative if not interesting. Please feel free to post comments or questions about this article. It is a lot of content and we wish to have *your input* to improve our community's articles.
 
 ## Additional References
 
