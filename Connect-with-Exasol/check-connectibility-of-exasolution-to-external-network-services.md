@@ -34,16 +34,18 @@ SELECT lua_connect('192.168.2.1', '80') res FROM dual;
 
 
 ```"code-sql"
-CREATE OR REPLACE PYTHON3 SCALAR SCRIPT python_connect(hostname varchar(4096), port varchar(4096)) 
-RETURNS varchar(4096) 
-AS 
-import socket  
-def run(ctx):     
-sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)     
-sock.connect((ctx.hostname, int(ctx.port)))     
-sock.close()     
-return 'OK' 
-/  
+CREATE OR REPLACE PYTHON3 SCALAR SCRIPT
+python_connect(hostname varchar(4096), port varchar(4096))
+RETURNS varchar(4096)
+AS
+import socket
+
+def run(ctx):
+    sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    sock.connect((ctx.hostname, int(ctx.port)))
+    sock.close()
+    return 'OK'
+/
 
 SELECT python_connect('192.168.2.1', '80') res FROM dual;
 ```
