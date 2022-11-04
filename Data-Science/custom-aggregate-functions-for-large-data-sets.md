@@ -9,7 +9,7 @@ The primary goals for our versions of AVG and STDDEV are:
 Goal 1: The UDFs should be robust enough to handle large data sets  
 Goal 2: The UDFs should run in parallel as much as possible.
 
-## Fundamentals of programming in EXAPowerlytics
+## Fundamentals of UDF programming
 
 For UDF programming, there are a number of basic principles to keep in mind:
 
@@ -107,7 +107,8 @@ First, let's focus on computing the AVG in MAP-REDUCE style The map() function i
 CREATE or replace R SET SCRIPT r_avg_map(input_number DOUBLE) 
 EMITS (avg DOUBLE, weight DOUBLE) 
 AS 
-run <- function(ctx) { # fetch all records from this group into a single vector     
+run <- function(ctx) 
+{ # fetch all records from this group into a single vector     
  ctx$next_row(NA)     
  ctx$emit( mean(ctx$input_number), ctx$size()  ) 
 } 
@@ -117,18 +118,19 @@ Our version of the reduce() function is called only once (other approaches are p
 
 
 ```"code-sql"
---/  
-CREATE or replace R SET SCRIPT r_avg_reduce(tmp_avg DOUBLE, weight DOUBLE ) 
-EMITS (avg DOUBLE) 
-AS 
-run <- function(ctx) {m <- 0     
- repeat {         
-  if (!ctx$next_row(1000000)) break  # here, we take care read no more than 10000 rows at once         
-  m <- m + sum(ctx$tmp_avg * ctx$weight / sum(ctx$weight))     
- }     
- ctx$emit(m) 
-} 
-/ 
+--/
+CREATE or replace R SET SCRIPT r_avg_reduce(tmp_avg DOUBLE, weight DOUBLE )
+EMITS (avg DOUBLE) AS
+run <- function(ctx)
+{ 
+    m <- 0
+    repeat {
+        if (!ctx$next_row(1000000)) break  # here, we take care read no more than 10000 rows at once
+        m <- m + sum(ctx$tmp_avg * ctx$weight / sum(ctx$weight))
+    }
+    ctx$emit(m)
+}
+/
 ```
 With map() and reduce() functions in place, we now have to create a SQL query which combines both and also has a proper GROUP BY clause in order to achieve good parallelism and not to exceed the resource limits, especially in the map() functions. By the rule of thumb above we aim to create groups of sizes about 10000 to 100000 elements. So for our queries on the table BIG, we aim to create a group by clause which produces around
 
@@ -176,7 +178,7 @@ On the other hand, this is interpreted and slow generic R vs. extremely optimize
 
 ## Step 5: Map-Reduce style UDFs for STDDEV
 
-Now after computing the AVG function let's tackle STDDEV, again using MAP-REDUCE style. We implement the same definition of STDDEV, namely*corrected sample standard deviation*, which is implemented in Exasol.
+Now after computing the AVG function let's tackle STDDEV, again using MAP-REDUCE style. We implement the same definition of STDDEV, namely *corrected sample standard deviation*, which is implemented in Exasol.
 
 ![](images/stddev.png)
 
@@ -186,34 +188,36 @@ Again, we start with the map() function. Later, via GROUP BY, we will guarantee 
 
 
 ```"code-sql"
---/  
-CREATE or replace R SET SCRIPT r_stddev_map(n DOUBLE, avg double) 
-EMITS (avg DOUBLE, square_diff DOUBLE, num DOUBLE) 
-AS 
-run <- function(ctx) {   
- ctx$next_row(NA)     
- ctx$emit( ctx$avg[[1]], sum((ctx$n - ctx$avg)^2), ctx$size()  ) 
-} 
-/ 
+--/
+CREATE or replace R SET SCRIPT r_stddev_map(n DOUBLE, avg double)
+EMITS (avg DOUBLE, square_diff DOUBLE, num DOUBLE) AS
+run <- function(ctx)
+{   ctx$next_row(NA)
+    ctx$emit( ctx$avg[[1]], sum((ctx$n - ctx$avg)^2), ctx$size()  )
+}
+/
 ```
 Again the reduce function is more complicated as the input size is not limited.
 
 
 ```"code-sql"
---/  
-CREATE or replace R SET SCRIPT r_stddev_reduce(avg DOUBLE, square_diff DOUBLE, num double) 
-EMITS (avg DOUBLE, square_diff DOUBLE, num DOUBLE) 
-AS 
-run <- function(ctx) {s <- 0     n <- 0     m <- NA     
- repeat {         
-  if (!ctx$next_row(10000)) break  # here, we take care read no more than 10000 rows at once         
-  s <- s + sum(ctx$square_diff)         
-  n <- n + sum(ctx$num)         
-  m <- ctx$avg[[1]]     
- }     
- ctx$emit( m, s, n) 
-} 
-/ 
+--/
+CREATE or replace R SET SCRIPT r_stddev_reduce(avg DOUBLE, square_diff DOUBLE, num double)
+EMITS (avg DOUBLE, square_diff DOUBLE, num DOUBLE) AS
+run <- function(ctx)
+{   
+    s <- 0
+    n <- 0
+    m <- NA
+    repeat {
+        if (!ctx$next_row(10000)) break  # here, we take care read no more than 10000 rows at once
+        s <- s + sum(ctx$square_diff)
+        n <- n + sum(ctx$num)
+        m <- ctx$avg[[1]]
+    }
+    ctx$emit( m, s, n)
+}
+/
 ```
 When calling the above map() and reduce() functions, we have to provide some value for the average. This can be achieved by joining a scalar value to the BIG table:
 
@@ -226,23 +230,26 @@ Here is the call to compute STDDEV when the average (which for table BIG is 5) i
 
 
 ```"code-sql"
-select avg, sqrt(square_diff / (num -1)) from (select r_stddev_reduce(avg, square_diff, num)       
-from (select r_stddev_map(x, m)             
-from big, (select 5 as m)     -- here we provide the average             
-group by floor(random() * (select count(*) from big) / 10000))); 
+select avg, sqrt(square_diff / (num -1))
+from (select r_stddev_reduce(avg, square_diff, num)
+	  from (select r_stddev_map(x, m)
+			from big,
+				 (select 5 as m)     -- here we provide the average
+			group by floor(random() * (select count(*) from big) / 10000)));
 ```
 Clearly, providing the average manually in the query is not nice. It is possible to combine several MAP-REDUCE computations, hence we simply can replace(select 5 as m)by the MAP-REDUCE computation above as a subselect:
 
 
 ```"code-sql"
-select avg, sqrt(square_diff/(num-1)) 
-from (select r_stddev_reduce(avg, square_diff, num)       
-from (select r_stddev_map(x,m)             
-from big, (select r_avg_reduce(m,w) -- inner MAP-REDUCE computation for the average                        
-from (select r_avg_map(x)                              
-from big                              
-group by floor(random()*((select count(*) from big) / 10000))) as p(m,w)) as l(m)                  
-group by floor(random()*(select count(*) from big) / 10000)));
+select avg, sqrt(square_diff/(num-1))
+from (select r_stddev_reduce(avg, square_diff, num)
+      from (select r_stddev_map(x,m)
+            from big, (select r_avg_reduce(m,w)                    -- inner MAP-REDUCE computation for the average
+                       from (select r_avg_map(x)
+                             from big
+                             group by floor(random()*((select count(*) from big) / 10000))) as p(m,w)
+                       ) as l(m)     
+            group by floor(random()*(select count(*) from big) / 10000)));
 ```
 ## Additional Notes
 
