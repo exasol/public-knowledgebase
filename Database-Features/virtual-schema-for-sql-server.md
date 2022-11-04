@@ -411,3 +411,6 @@ SELECT * FROM "t" ORDER BY "col1" DESC;
 * [Microsoft SQL Server Dialect User Guide](https://github.com/exasol/sqlserver-virtual-schema/blob/main/doc/user_guide/sqlserver_user_guide.md)
 * [SQL Server Virtual Schema Releases](https://github.com/exasol/sqlserver-virtual-schema/releases/)
 * [Supported Data Sources](https://docs.exasol.com/database_concepts/virtual_schema/supported_data_sources.htm)
+
+## Downloads
+ [cr_LS_example.zip](https://github.com/exasol/Public-Knowledgebase/files/9937375/cr_LS_example.zip)
