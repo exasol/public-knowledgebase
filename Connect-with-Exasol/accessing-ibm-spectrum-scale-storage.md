@@ -70,20 +70,20 @@ In this guide, I am going to create a VS over [JSON Lines](https://jsonlines.org
 
 
 ```json
-{   
-  "$schema": "https://schemas.exasol.com/edml-1.2.0.json",   
-  "source": "test.jsonl",   
-  "destinationTable": "LINES",   
-  "description": "Maps JSON Data Lines to Exasol LINES VS table",   
-  "addSourceReferenceColumn": true,   
-  "mapping": {     
-   "fields":  {       
-    "id":      {         
-   "toVarcharMapping": {         
-    }       
-   }     
-  }   
- } 
+{
+  "$schema": "https://schemas.exasol.com/edml-1.2.0.json",
+  "source": "test.jsonl",
+  "destinationTable": "LINES",
+  "description": "Maps JSON Data Lines to Exasol LINES VS table",
+  "addSourceReferenceColumn": true,
+  "mapping": {
+    "fields": {
+      "id": {
+        "toVarcharMapping": {
+        }
+      }
+    }
+  }
 }
 ```
 You can read more about EDML schema mapping in S3 VS files [user guide, Defining the Schema Mapping](https://github.com/exasol/s3-document-files-virtual-schema/blob/main/doc/user_guide/user_guide.md#defining-the-schema-mapping).
