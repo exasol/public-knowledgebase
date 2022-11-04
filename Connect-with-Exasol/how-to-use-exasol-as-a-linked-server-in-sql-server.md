@@ -69,7 +69,6 @@ To execute LUA scripts stored in Exasol from SQL Server do the following steps:
 The following measurements are done on a single machine, using SQL Server 2017 Express and a local VM running a single-node Exasol 6.2.4. The benchmark consists of transferring the 1 million row SUPPLIER table of the TPC-H scenario between both systems, the target table always truncated before the run.
 
 
-
 |  |  |
 | --- | --- |
 |  **SQL Server** | **Exasol** |
