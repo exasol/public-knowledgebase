@@ -68,7 +68,7 @@ Ask at [service@exasol.com](mailto:service@exasol.com) for FSC Monitoring plugin
 
 For monitoring the FSC agents go to <http://support.ts.fujitsu.com/content/QuicksearchResult.asp> and search for "ServerView Integration Pack for NAGIOS
 
-
+## Downloads
 [snmpd-min-fsc.zip](https://github.com/exasol/Public-Knowledgebase/files/9922038/snmpd-min-fsc.zip)
 
 
