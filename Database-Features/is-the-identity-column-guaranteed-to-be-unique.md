@@ -13,7 +13,7 @@ specifically, the part, "*Identity columns cannot be considered as a constraint,
 
 There are a couple of suggestions to get closer to guaranteed uniqueness:  
 1. LOCK the table you are inserting into - which means no one can insert until you either commit or rollback. This can be achieved with:  
-DELETE FROM <tableName> where FALSE;  
+DELETE FROM &lt;tableName&gt; where FALSE;  
 2. Do the insert  
 3. Release lock with commit or rollback.
 

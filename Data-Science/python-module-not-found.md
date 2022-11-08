@@ -33,11 +33,11 @@ def run(ctx):
 
 ## Recommendation
 
-To solve this problem, you can create a new Script Language Container. Before creating the container, you will add the requested packages to the flavors/<flavor>/flavor_customization/packages directory. The basic steps to create a Container look like this:
+To solve this problem, you can create a new Script Language Container. Before creating the container, you will add the requested packages to the flavors/&lt;flavor&gt;/flavor_customization/packages directory. The basic steps to create a Container look like this:
 
 1. Clone the Github Repository
 2. Choose your starting flavor. In most cases, you can take the "standard" flavor that corresponds to the database version you are using (example: standard-exasol-7.0.0.tar.gz). You can find the full list of flavors in the [/flavors/ folder in Github](https://github.com/exasol/script-languages-release/tree/master/flavors).
-3. Navigate to the flavors/<flavor name>/flavor_customization/packages and edit either the python3_pip_packages or python2_pip_packages file (depending on which version Python you are using). Add the name(s) of the packages you need.
+3. Navigate to the flavors/&lt;flavor name&gt;/flavor_customization/packages and edit either the python3_pip_packages or python2_pip_packages file (depending on which version Python you are using). Add the name(s) of the packages you need.
 4. [Build the script language container using exaslct](https://github.com/exasol/script-languages-release#how-to-customize-an-existing-flavor)
 5. Upload the container into BucketFS
 6. Run an ALTER SESSION or ALTER SYSTEM statement to change which container is being used for UDF's.

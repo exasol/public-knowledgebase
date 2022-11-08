@@ -11,7 +11,7 @@ A user may identify this problem by complaining that the query is running slow. 
 
 **If the query is still running:**
 
-You can immediately diagnose if this is the case by looking into the EXA_DBA_SESSIONS or EXA_ALL_SESSIONS. For each session which experiences a WAIT FOR COMMIT, you will see that the session has the activity "Waiting for session <Session ID>". The session mentioned in the ACTIVITY column is known as the "Conflict Session ID".
+You can immediately diagnose if this is the case by looking into the EXA_DBA_SESSIONS or EXA_ALL_SESSIONS. For each session which experiences a WAIT FOR COMMIT, you will see that the session has the activity "Waiting for session &lt;Session ID&gt;". The session mentioned in the ACTIVITY column is known as the "Conflict Session ID".
 
 
 ```markup

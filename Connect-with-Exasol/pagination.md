@@ -28,7 +28,7 @@ Where things get really complicated is when the frontend is not able to keep a p
 
 ### 3.1 - Using LIMIT
 
-The simplest solution for the application developer is to use the LIMIT SQL feature: Appending LIMIT <count>,<offset> at the end of the query will only send the defined slice of data to the client.  
+The simplest solution for the application developer is to use the LIMIT SQL feature: Appending LIMIT &lt;count&gt;,&lt;offset&gt; at the end of the query will only send the defined slice of data to the client.  
 **Drawbacks:**
 
 * Without a well-defined ORDER BY clause, the result of LIMIT may change between executions, resulting in inconsistent data display for the user. ORDER BY however is a costly operation.

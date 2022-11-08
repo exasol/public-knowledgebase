@@ -7,7 +7,7 @@ This is not a fault in the driver or communication, but a built-in limitation in
 
 ## Solution
 
-Compile PHP from source code after editing file ...<php-dir>/ext/odbc/php_odbc_includes.c:
+Compile PHP from source code after editing file ...&lt;php-dir&gt;/ext/odbc/php_odbc_includes.c:
 
 In "struct odbc_result_value", increase size of "char name[32]" to your needs.
 

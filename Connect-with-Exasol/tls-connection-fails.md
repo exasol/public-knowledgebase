@@ -44,7 +44,7 @@ To re-establish connection to your database using the latest driver, there are 3
 
 The error message provides you a fingerprint that you can append to your hostname when connecting to the database. The fingerprint looks like: `2747B64E34414C293091FF37F428CC8D795B64B7159E50EDD7EA507B58D4FAEA`. You can also see this fingerprint in Exaoperation (if your DB is on version 7.1 or newer):
 
-![](images/exaNico_0-1630057772662.png)In your client or driver, change the server or host field to follow this format: <ip address>/<fingerprint>:8563
+![](images/exaNico_0-1630057772662.png)In your client or driver, change the server or host field to follow this format: &lt;ip address&gt;/&lt;fingerprint&gt;:8563
 
 For example: `192.168.56.101/2747B64E34414C293091FF37F428CC8D795B64B7159E50EDD7EA507B58D4FAEA:8563`
 

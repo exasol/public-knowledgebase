@@ -12,7 +12,7 @@ Using this, MS SQL Server can be configured to access data in Exasol, both for r
 	+ Provide a default schema if schema name and user name are not equal. The following setup will be limited to accessing tables in that schema
 	+ on the advanced tab, check the "Show only current schema" option. This will limit all catalog queries to one schema, eliminating "more than one table" errors later.
 * As with many other systems, Exasol's database/catalog/schema concept is not 100% compatible with SQL Server, which is why we have to 'tune down' the data provider to lower its expectations:
-	+ In the SQL Server Management Console, open the tree view to access "Linked Servers -> Data Providers -> MSDASQL". Use the context menu to open its properties
+	+ In the SQL Server Management Console, open the tree view to access "Linked Servers -&gt; Data Providers -&gt; MSDASQL". Use the context menu to open its properties
 	+ Check the '**use level 0 only**' option. This will reduce cross-checks on table metadata, especially catalog/schema names.
 
 ## How to Create a Linked Server
@@ -41,7 +41,7 @@ In the tree view, you can now 'drill down' to table and view level on the remote
 
 In queries/views you will be able to access the Exasol database objects using two different methods:
 
-* Three-dots-notation <link-name>...<object_name> will allow you to use objects in native SQL, SQL Server will exchange data with Exasol as necessary (see Limitations below).
+* Three-dots-notation &lt;link-name&gt;...&lt;object_name&gt; will allow you to use objects in native SQL, SQL Server will exchange data with Exasol as necessary (see Limitations below).
 ```markup
 SELECT * FROM EXASOL_TEST...SUPPLIER;
 ```
@@ -72,7 +72,7 @@ The following measurements are done on a single machine, using SQL Server 2017 E
 |  |  |
 | --- | --- |
 |  **SQL Server** | **Exasol** |
-| SQL Server -> Exasol | 
+| SQL Server -&gt; Exasol | 
 ```markup
 insert into EXASOL_TEST...SUPPLIER select * from Test.dbo.SUPPLIER
 ```
@@ -83,7 +83,7 @@ IMPORT INTO TEST.SUPPLIER FROM JDBC AT
  user 'sa' identified by *** TABLE SUPPLIER;
 ```
  Duration: 52 seconds |
-| Exasol -> SQL Server | 
+| Exasol -&gt; SQL Server | 
 ```markup
 insert into Test.dbo.SUPPLIER select * from EXASOL_TEST...SUPPLIER;
 ```
@@ -93,7 +93,7 @@ export tpc.supplier into JDBC at CONN_SQLEXPRESS -- same as above, but in a conn
 ```
  Duration: 68 seconds |
 
-The SQL Server -> EXA export using a Linked Server could only be estimated because of the 30-second timeout.
+The SQL Server -&gt; EXA export using a Linked Server could only be estimated because of the 30-second timeout.
 
 ### Stored Procedures (aka. EXECUTE SCRIPT)
 

@@ -30,7 +30,7 @@ The **SQLServer Virtual Schema** provides an abstraction layer that makes an e
 You will need:
 
 1. A computer with access to the internet.
-2. Access to the EXASolution UI - the Exasol GUI for managing Exasol. You can find it using the URL: [HTTPS://<your-exasol-server>:443](HTTP://<your-server>:443). If you are using the community edition,  the credentials are "admin" / "admin".
+2. Access to the EXASolution UI - the Exasol GUI for managing Exasol. You can find it using the URL: [HTTPS://&lt;your-exasol-server&gt;:443](HTTP://&lt;your-server&gt;:443). If you are using the community edition,  the credentials are "admin" / "admin".
 3. Access to a SQL Server instance. If you are able to connect to SQL Server and see tables in a database using the SQL Server Management Studio, you are all set. The point is that you have valid SQL Server credentials.
 
 ## How to set up a Virtual Schema for SQL Server
@@ -49,7 +49,7 @@ Once you have found the appropriate *jre8.jar file, click on it to start the dow
 
 Upload the JDBC driver to Exasol.
 
-**a.** Open a web-browser and navigate to <HTTPS://<your-exasol-server>:443>. If you are using a VM, then refer to the port mapping to find the forwarded port, and use that in your HTTP connection. Here is an example from running Exasol on VirtualBox and it uses port forwarding. 
+**a.** Open a web-browser and navigate to HTTPS://&lt;your-exasol-server&gt;:443. If you are using a VM, then refer to the port mapping to find the forwarded port, and use that in your HTTP connection. Here is an example from running Exasol on VirtualBox and it uses port forwarding. 
 
 ![](images/1_Port_Forwarding.png)
 
@@ -141,7 +141,7 @@ Assuming you are familiar with how to [Create a new bucket in the BucketFS servi
 
 Upload the new JDBC driver to the "jars" bucket. We will repeat this step later for uploading the virtual schema jar for SQL Server.
 
-**a.** Open a command-line terminal. If you are running Windows, you can do it as follows: (WINDOWS Button) + r ==> cmd.exe. This should open the Command Prompt window for the command-line commands.  You should see something like this:
+**a.** Open a command-line terminal. If you are running Windows, you can do it as follows: (WINDOWS Button) + r ==&gt; cmd.exe. This should open the Command Prompt window for the command-line commands.  You should see something like this:
 
 ![](images/18_open_cmd_window.png)
 

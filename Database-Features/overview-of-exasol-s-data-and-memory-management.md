@@ -85,10 +85,10 @@ Please refer to the user manual or column comments for details on the columns.
 
 | Metric | Location | Comment |
 | --- | --- | --- |
-| Persistent Volume Size | EXAStorage -> (Labels: <dbname>_persistent) -> Size | == Persistent:size from Database level |
-| Temporary Volume Size | EXAStorage -> (Labels: <dbname>_temporary) -> Size | 
-| Exists Slave Segment? | EXAStorage -> persistent -> Redundancy | Gives total number of copies: 1 == no redundancy |
-| Free Disk Space | EXAStorage -> Space on Disks -> sum(sum:free) | 
+| Persistent Volume Size | EXAStorage -&gt; (Labels: &lt;dbname&gt;_persistent) -&gt; Size | == Persistent:size from Database level |
+| Temporary Volume Size | EXAStorage -&gt; (Labels: &lt;dbname&gt;_temporary) -&gt; Size | 
+| Exists Slave Segment? | EXAStorage -&gt; persistent -&gt; Redundancy | Gives total number of copies: 1 == no redundancy |
+| Free Disk Space | EXAStorage -&gt; Space on Disks -&gt; sum(sum:free) | 
 | Free database (disk) space | See [how-to-monitor-free-database-disk-space](https://community.exasol.com/t5/environment-management/how-to-monitor-free-database-disk-space/ta-p/1364) | 
 
 ![](images/storage.png)
