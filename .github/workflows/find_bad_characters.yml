@@ -1,0 +1,21 @@
+name: Find Invalid Bad Characters
+on: [push, pull_request]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Find and Replace less than
+        uses: jacobtomlinson/gha-find-replace@v2
+        with:
+          find: "<"
+          replace: "&lt"
+          regex: false
+      - uses: actions/checkout@v2
+      - name: Find and Replace greater than
+        uses: jacobtomlinson/gha-find-replace@v2
+        with:
+          find: ">"
+          replace: "&gt"
+          regex: false
+      
