@@ -1,10 +1,6 @@
 # Accessing IBM Spectrum Scale Storage 
 ## Background
 
-This is a test! 
-
-This is another test
-
 Spectrum Scale, previously known as General Parallel File System (GPFS), is a high-performance clustered file system software developed by IBM. It offers a parallel high-performance solution for many data related challenges with global file and object data access for managing data at scale.
 
 In this article, we are going to show how to import data into a table or create a Virtual Schema over data stored in Spectrum Scale using its S3 API. For that, we are going to use Exasol's [Cloud Storage Extension](https://github.com/exasol/cloud-storage-extension) and [S3 Document Files Virtual Schema](https://github.com/exasol/s3-document-files-virtual-schema) integration projects.
