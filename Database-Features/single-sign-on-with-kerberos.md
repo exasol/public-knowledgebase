@@ -111,8 +111,8 @@ isql exa_linux -v
 
 + Specify any DSN name
 + Specify connection string (host: port)
-+ Specify "Additional parameter" in the second tab (Advanced) of the configuration tool to "kerberosServiceName=<yourServiceName>.
-+ You may require kerberosHostName too, depending on your Active Directory configuration. For this you have to extend the additional parameters as follows: "kerberosServiceName=<yourServiceName>;kerberosHostName=<yourKrbHostName>".
++ Specify "Additional parameter" in the second tab (Advanced) of the configuration tool to "kerberosServiceName=&lt;yourServiceName&gt;.
++ You may require kerberosHostName too, depending on your Active Directory configuration. For this you have to extend the additional parameters as follows: "kerberosServiceName=&lt;yourServiceName&gt;;kerberosHostName=&lt;yourKrbHostName&gt;".
 	
 #### Compatibility Mode
 

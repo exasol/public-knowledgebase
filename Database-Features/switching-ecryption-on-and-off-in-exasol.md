@@ -9,7 +9,7 @@ For information on how to use this parameter, refer to the relevant documentatio
 [https://docs.exasol.com/connect_exasol/drivers/odbc/using_odbc.htm](https://docs.exasol.com/connect_exasol/drivers/odbc/using_odbc.htm "Follow")  
 [https://docs.exasol.com/connect_exasol/drivers/ado_net.htm](https://docs.exasol.com/connect_exasol/drivers/ado_net.htm "Follow")
 
-If you are using **WebSocket-API**, the encryption works differently. You need to specify the encryption in the URL similar to HTTP:// and HTTPS://. For example, **wss://<host>** indicates **encrypted** protocol and **ws://<host>** indicates **unencrypted** protocol.
+If you are using **WebSocket-API**, the encryption works differently. You need to specify the encryption in the URL similar to HTTP:// and HTTPS://. For example, **wss://&lt;host&gt;** indicates **encrypted** protocol and **ws://&lt;host&gt;** indicates **unencrypted** protocol.
 
 ## Clients
 

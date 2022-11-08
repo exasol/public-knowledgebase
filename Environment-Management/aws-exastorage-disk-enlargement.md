@@ -12,8 +12,8 @@ Enlarge EXAStorage disk(s) after changing disk size of the EC2 instances
 
 1. Stop all databases and stop EXAStorage in EXAoperation
 2. Stop your EC2 instances, except the license node (ensure they don’t get terminated on shutdown; check shutdown behavior <http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-expand-volume.html>)
-3. Modify the disk on AWS console (Select Volume -> Actions -> Modify -> Enter the new size -> Click Modify)
-4. Ensure Storage disk size is set to “Rest” <EXAoperation node setting>, if d03_storage/d04_storage is not set to "Rest", set INSTALL flag for all nodes adjust the setting and set the ACTIVE flag for all nodes, otherwise nodes will be reinstalled during boot (data loss)!
+3. Modify the disk on AWS console (Select Volume -&gt; Actions -&gt; Modify -&gt; Enter the new size -&gt; Click Modify)
+4. Ensure Storage disk size is set to “Rest” &lt;EXAoperation node setting&gt;, if d03_storage/d04_storage is not set to "Rest", set INSTALL flag for all nodes adjust the setting and set the ACTIVE flag for all nodes, otherwise nodes will be reinstalled during boot (data loss)!
 5. Start instances
 6. Start EXAStorage
 7. Enlarge each node device using the “Enlarge Button” in EXAoperation/EXAStorage/n00xx/h000x/

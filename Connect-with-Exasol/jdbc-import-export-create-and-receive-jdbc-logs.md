@@ -17,7 +17,7 @@ The JDBC Connection string needs to be edited to enable JDBC logging. The exact 
 
 Edit your JDBC Connection string (based on step 1) and use this path and filename when choosing your filename:
 
-/var/tmp/<identifier>-jdbc.log
+/var/tmp/&lt;identifier&gt;-jdbc.log
 
 For example :  
 You can set this parameter ***debug=1*** in the connection string of your JDBC driver.  
