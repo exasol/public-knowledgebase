@@ -1,4 +1,4 @@
-name: Find Invalid Bad Characters
+name: Find Invalid Characters
 on: [push, pull_request]
 jobs:
   build:
