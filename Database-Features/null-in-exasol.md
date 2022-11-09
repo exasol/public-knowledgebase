@@ -153,6 +153,14 @@ SELECT
 FROM testnull;
 ```
 
+| NUM | NUM1 | NVL | STR | NUM2 |
+|---|---|---|---|---|
+|   |1   |true   |second row   |   |
+|5   |6   |false   |X   |0.5   |
+|3   |4   |unknown   |third row   |   |
+|4   |5   |true   |fourth row   |1   |
+|1   |2   |false   |first row   |-0.5   |
+|6  |7   |true   |X   |0.33333   |
 
 |  |  |  |  |  |
 | --- | --- | --- | --- | --- |
