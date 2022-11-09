@@ -62,7 +62,7 @@ will return the following results:
 |NUM   |BOO   |DAT   |STR   |
 |---|---|---|---|
 |2   |false   |2010-03-03   |first row   |
-|4   |X   |2010-03-05   |   |third row
+|4   |X   |2010-03-05      |third row   |
 |5   |true   |   |fourth row   |
 |6   |false   |2010-03-07   |X   |
 |7   |true |2010-03-08 |X |
@@ -70,7 +70,7 @@ will return the following results:
 
 ### NULL and Strings
 
-Exasol does**not distinguish**between NULL and an empty string (''). The same basic rules apply to strings as they do to any other data type, with one exception:
+Exasol does **not distinguish** between NULL and an empty string (''). The same basic rules apply to strings as they do to any other data type, with one exception:
 
 Concatenation ('||', CONCAT) with a NULL value does not yield a NULL value, but the remaining operand(s). Only when all operands are NULL, the result also is NULL.
 
@@ -80,9 +80,8 @@ SELECT 'str: '||str A FROM testnull;
 ```
 
 
-|  |
+| A |
 | --- |
-| **A** |
 | str: second row |
 | str: |
 | str: third row |
