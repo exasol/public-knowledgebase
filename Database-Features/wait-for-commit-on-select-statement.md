@@ -3,7 +3,7 @@
 
 ### Cause and Effect:
 
-Since EXASolution transaction isolation level is SERIALIZABLE and newly created transactions are automatically scheduled after finished transactions, it is possible that WAIT FOR COMMITS occur for pure read transactions (consisting of SELECT statements, only). 
+Since Exasol's transaction isolation level is SERIALIZABLE and newly created transactions are automatically scheduled after finished transactions, it is possible that WAIT FOR COMMITS occur for pure read transactions (consisting of SELECT statements, only). 
 
 ## Explanation
 
@@ -16,17 +16,14 @@ Three different connections (having AUTOCOMMIT off) are needed to reproduce this
 If a long running transaction (Tr1) reads object A and writes object B (e.g. long running IMPORT statements) and a second transaction (Tr2) writes object A and commits in parallel, Tr2 is scheduled after   
 Tr1. AfterTr2 is commited all new transactions are scheduled after it. If such a transaction wants to read object B it has to wait for the commit of Tr1.
 
-
-
 | Transaction 1 | Transaction 2 | Transaction 3 | Comment |
-| --- | --- | --- | --- |
-| select * from tab1; |  
-| insert into tab2 values 1; |  
-| – transaction remains opened |  
-|  insert into WFC.tab1 values 1; |  Transaction 1 < Transaction 2 |
-|  commit; | 
-|  commit; | Starts a new transaction (Transaction 2 < Transaction 3) |
-|  select * from tab2; | This statement ends up in WAIT FOR COMMIT, waiting for Transaction 1 |
+|---|---|---|---|
+|select * from tab1;   |   |   |   |
+|– transaction remains opened   |   |   |   |
+|   |insert into WFC.tab1 values 1;   |   |Transaction 1 < Transaction 2   |
+|   |commit;   |   |   |
+|   |   |commit;   |Starts a new transaction (Transaction 2 < Transaction 3)   |
+|   |   |select * from tab2;   |This statement ends up in WAIT FOR COMMIT, waiting for Transaction 1   |
 
 #### Example 2:
 
