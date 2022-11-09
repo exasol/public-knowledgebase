@@ -181,7 +181,13 @@ FROM EXA_DBA_AUDIT_SQL  WHERE SESSION_ID  = 1678224357205278720;
 
 So, this session performed a COMMIT, followed by an INSERT + COMMIT. Let's document this then. 
 
-
+|Transaction 1 (tr1)<br>Session ID: 1678224233621028864   |Transaction 2 (tr2)<br>Session ID: ???   |Transaction 3 (tr3)<br>Session ID: 1678224389846990848   |Comments   |
+|---|---|---|---|
+|Start-time: 2020-09-18 18:37:37.532<br>Query:<br>```INSERT INTO TEST.T1 SELECT * FROM TEST.T2;```   |   |   |Reads the object TEST.T2<br>Writes the object TEST.T1   |
+|   |Start-time: 2020-09-18 18:37:46.688<br>Query:<br>```COMMIT;```   |   |   |
+|   |Start-time: 2020-09-18 18:38:07.016<br>Query:>br>```insert into test.t2 values (4);```   |   |   |
+|   |   |   |   |
+|   |   |Start-time: 2020-09-18 18:38:17.851<br>Query:<br>```select * from test.t1;```   |Reads the object TEST.T1<br>Experiences a WAIT FOR COMMIT.<br>Conflict objects: TEST.T1    |
 
 |  |  |  |  |
 | --- | --- | --- | --- |
