@@ -22,8 +22,8 @@ This expression is evaluated as follows:
 |path step   |result   |
 |---|---|
 |```$```   |```{ "name": "Bob", "age": 37, "address":{"street":"Example Street 5","city":"Berlin"},```<br>```"phone":[{"type":"home","number":"030555555"},{"type":"mobile","number":"017777777"}],```<br>```"email":["bob@example.com","bobberlin@example.com"] }```   |
-|```$.phone```   |   |
-|```$.phone[*]```   |   |
+|```$.phone```   |```[{"type":"home","number":"030555555"},{"type":"mobile","number":"017777777"}]```   |
+|```$.phone[*]```   |```{"type":"home","number":"030555555"}```<br>```{"type":"mobile","number":"017777777"}```   |
 |```$.phone[*].number```|  |
 
 ## Solution
