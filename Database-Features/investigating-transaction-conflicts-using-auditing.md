@@ -181,13 +181,13 @@ FROM EXA_DBA_AUDIT_SQL  WHERE SESSION_ID  = 1678224357205278720;
 
 So, this session performed a COMMIT, followed by an INSERT + COMMIT. Let's document this then. 
 
-|Transaction 1 (tr1)<br>Session ID: 1678224233621028864   |Transaction 2 (tr2)<br>Session ID: ???   |Transaction 3 (tr3)<br>Session ID: 1678224389846990848   |Comments   |
+|Transaction 1 (tr1)<br>Session ID: 1678224233621028864   |Transaction 2 (tr2)<br>Session ID: 1678224357205278720   |Transaction 3 (tr3)<br>Session ID: 1678224389846990848   |Comments   |
 |---|---|---|---|
 |Start-time: 2020-09-18 18:37:37.532<br>Query:<br>```INSERT INTO TEST.T1 SELECT * FROM TEST.T2;```   |   |   |Reads the object TEST.T2<br>Writes the object TEST.T1   |
 |   |Start-time: 2020-09-18 18:37:46.688<br>Query:<br>```COMMIT;```   |   |   |
-|   |Start-time: 2020-09-18 18:38:07.016<br>Query:>br>```insert into test.t2 values (4);```   |   |   |
-|   |   |   |   |
-|   |   |Start-time: 2020-09-18 18:38:17.851<br>Query:<br>```select * from test.t1;```   |Reads the object TEST.T1<br>Experiences a WAIT FOR COMMIT.<br>Conflict objects: TEST.T1    |
+|   |Start-time: 2020-09-18 18:38:07.016<br>Query:<br>```insert into test.t2 values (4);```   |   |Writes the object TEST.T2<br>tr1 < tr2, because tr2 writes to a table that was read by tr1   |
+|   |Start-time: 2020-09-18 18:38:07.036<br>Query:<br>```COMMIT /* AUTO */ ```   |   |--autocommit ends the transaction   |
+|   |   |Start-time: 2020-09-18 18:38:17.851<br>Query:<br>```select * from test.t1;```   |Starts a new transaction --> tr2 < tr3, since tr3 was started after tr2 ended (automatic scheduling).<br>We now have the relations tr1 < tr2 < tr3, which implies tr1 < tr3.<br>Reads the object TEST.T1<br>Experiences a WAIT FOR COMMIT.<br>Conflict objects: TEST.T1    |
 
 |  |  |  |  |
 | --- | --- | --- | --- |
