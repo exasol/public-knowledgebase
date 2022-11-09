@@ -29,22 +29,14 @@ In the following example
 |HAS_LOCKS   |EVALUATION   |SESSION_ID   |USER_NAME   |STATUS   |COMMAND_NAME   |DURATION   |
 |---|---|---|---|---|---|---|
 |   |   |4   |SYS   |IDLE   |NOT SPECIFIED   |0:00:02   |
-|NONE   |   |   |   |   |   |   |
-|READ LOCKS   |   |   |   |   |   |   |
-|WRITE LOCKS   |   |   |   |   |   |   |
-|READ LOCKS   |CRITICAL   |   |   |   |   |   |
-|WRITE LOCKS   |VERY CRITICAL   |   |   |   |   |   |
+|NONE   |   |1505059440358261249   |GUEST   |IDLE   |NOT SPECIFIED   |3:28:20   |
+|READ LOCKS   |   |1505059440023663104   |ADMIN   |EXECUTE SQL   |SELECT   |0:00:01   |
+|WRITE LOCKS   |   |1505061190567112340   |LOADER   |EXECUTE SQL   |MERGE   |0:11:02   |
+|READ LOCKS   |CRITICAL   |1505059543549212162   |ANALYST   |IDLE   |NOT SPECIFIED   |1:26:19   |
+|WRITE LOCKS   |VERY CRITICAL   |1505061190568112648   |TESTER   |IDLE   |NOT SPECIFIED   |2:10:02   |
 
-| HAS_LOCKS | EVALUATION | SESSION_ID | USER_NAME | STATUS | COMMAND_NAME | DURATION |
-| --- | --- | --- | --- | --- | --- | --- |
-| | |  4 | SYS | IDLE | NOT SPECIFIED | 0:00:02 |
-| NONE | | |  1505059440358261249 | GUEST | IDLE | NOT SPECIFIED | 3:28:20 |
-| READ LOCKS |  1505059440023663104 | ADMIN | EXECUTE SQL | SELECT | 0:00:01 |
-| WRITE LOCKS |  1505061190567112340 | LOADER | EXECUTE SQL | MERGE | 0:11:02 |
-| READ LOCKS | CRITICAL | 1505059543549212162 | ANALYST | IDLE | NOT SPECIFIED | 1:26:19 |
-| WRITE LOCKS | VERY CRITICAL | 1505061190568112648 | TESTER | IDLE | NOT SPECIFIED | 2:10:02 |
 
-the sessions 1505061190568112648 and 1505059543549212162 in the example have been idle for some time but did not finish their open transactions.
+The sessions 1505061190568112648 and 1505059543549212162 in the example have been idle for some time but did not finish their open transactions.
 
 ## Additional References
 
