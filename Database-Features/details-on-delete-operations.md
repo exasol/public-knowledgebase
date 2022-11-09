@@ -38,7 +38,11 @@ reorganize table t enforce
 
 The table below summarizes the discussion above
 
-
+|   |Delete   |Reorganize   |
+|---|---|---|
+|Semantics   |   |   |
+|Occurrence   |   |   |
+|Performance    |   |   |
 
 |  |  |
 | --- | --- |
