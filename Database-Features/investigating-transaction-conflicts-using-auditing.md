@@ -68,17 +68,6 @@ Since our query is still running, we can assume that the start time of the query
 |---|---|---|---|
 |   |   |Start-time: 2020-09-18 18:38:17.851<br>Query:<br>```select * from test.t1; ```   |Reads the object TEST.T1<br>Experiences a WAIT FOR COMMIT.<br>Conflict objects: TEST.T1   |
 
-|  |  |  |  |
-| --- | --- | --- | --- |
-| **Transaction 1 (tr1)** **Session ID: 1678224233621028864** | **Transaction 2 (tr2)** **Session ID: ???** | **Transaction 3 (tr3)** **Session ID: 1678224389846990848** | **Comments** |
-|   
-|   
-|  Start-time: 2020-09-18 18:38:17.851 Query: 
-```markup
-select * from test.t1;
-```
- | Reads the object TEST.T1  Experiences a WAIT FOR COMMIT. Conflict objects: TEST.T1 |
-
 Important to note - in this example, the query is a simple select on TEST.T1, but the query that experiences the WAIT FOR COMMIT can be much more complicated, involving both some system tables, views, etc. Querying some system tables internally are similar to querying the actual table, so they can also cause conflicts. For more information: <https://community.exasol.com/t5/database-features/filter-on-system-tables-and-transaction-conflicts/ta-p/1232>
 
 ## Step 3: Analyze Transaction 1
@@ -92,15 +81,23 @@ Transactions contain multiple queries and encompass all queries from the moment 
 
 
 ```markup
--- Session ID = the CONFLICT_SESSION_ID, which corresponds to tr1 -- START_TIME is less than the start time that is shown in EXA_DBA_TRANSACTION_CONFLICTS  SELECT SESSION_ID, STMT_ID, COMMAND_NAME, COMMAND_CLASS, START_TIME, STOP_TIME FROM EXA_DBA_AUDIT_SQL WHERE SESSION_ID = 1678224233621028864 AND COMMAND_CLASS = 'TRANSACTION' AND START_TIME < '2020-09-18 18:38:17.851' ORDER BY START_TIME DESC LIMIT 1;
+-- Session ID = the CONFLICT_SESSION_ID, which corresponds to tr1 
+-- START_TIME is less than the start time that is shown in EXA_DBA_TRANSACTION_CONFLICTS  
+SELECT SESSION_ID, STMT_ID, COMMAND_NAME, COMMAND_CLASS, START_TIME, STOP_TIME 
+FROM EXA_DBA_AUDIT_SQL WHERE SESSION_ID = 1678224233621028864 AND COMMAND_CLASS = 'TRANSACTION' 
+AND START_TIME < '2020-09-18 18:38:17.851' ORDER BY START_TIME DESC LIMIT 1;
 ```
 ![](images/Screenshot-2020-09-24-133525.png)
 
 Now we know that the last commit had STMT_ID 10, so we need to know all of the queries that ran AFTER that last commit. We can make a query to get this information:
 
-
 ```markup
---Session Id = the CONFLICT_SESSION_ID which corresponds to tr1 -- START_TIME is less than the start_time that is shown in EXA_DBA_TRANSACTION_CONFLICTS -- STMT_ID is greater than the statement id of the last commit/rollback  SELECT SESSION_ID, STMT_ID, COMMAND_NAME, COMMAND_CLASS, START_TIME, STOP_TIME, SQL_TEXT FROM EXA_DBA_AUDIT_SQL  WHERE SESSION_ID = 1678224233621028864  AND STMT_ID > 10  AND START_TIME < '2020-09-18 18:38:17.851'  ORDER BY START_TIME ASC;
+--Session Id = the CONFLICT_SESSION_ID which corresponds to tr1 
+-- START_TIME is less than the start_time that is shown in EXA_DBA_TRANSACTION_CONFLICTS 
+-- STMT_ID is greater than the statement id of the last commit/rollback  
+SELECT SESSION_ID, STMT_ID, COMMAND_NAME, COMMAND_CLASS, START_TIME, STOP_TIME, SQL_TEXT 
+FROM EXA_DBA_AUDIT_SQL  WHERE SESSION_ID = 1678224233621028864  AND STMT_ID > 10  
+AND START_TIME < '2020-09-18 18:38:17.851'  ORDER BY START_TIME ASC;
 ```
 ![](images/Screenshot-2020-09-24-134048.png)
 
