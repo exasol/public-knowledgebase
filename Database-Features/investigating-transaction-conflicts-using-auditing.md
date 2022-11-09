@@ -106,22 +106,7 @@ In this example, there was only one query which was ran. Let's add all of the qu
 |Transaction 1 (tr1)<br>Session ID: 1678224233621028864   |Transaction 2 (tr2)<br>Session ID: ???   |Transaction 3 (tr3)<br>Session ID: 1678224389846990848   |Comments   |
 |---|---|---|---|
 |Start-time: 2020-09-18 18:37:37.532<br>Query:<br>```INSERT INTO TEST.T1 SELECT * FROM TEST.T2;```   |   |   |   |
-|   |   |   |Start-time: 2020-09-18 18:38:17.851<br>Query:<br>```select * from test.t1;```   |
-
-|  |  |  |  |
-| --- | --- | --- | --- |
-| **Transaction 1 (tr1)** **Session ID: 1678224233621028864** | **Transaction 2 (tr2)** **Session ID: ???** | **Transaction 3 (tr3)** **Session ID: 1678224389846990848** | **Comments** |
-| Start-time: 2020-09-18 18:37:37.532 Query: 
-```markup
-INSERT INTO TEST.T1 SELECT * FROM TEST.T2
-```
- |  
-|   
-|  Start-time: 2020-09-18 18:38:17.851 Query: 
-```markup
-select * from test.t1;
-```
- | Reads the object TEST.T1  Experiences a WAIT FOR COMMIT. Conflict objects: TEST.T1 |
+|   |   |Start-time: 2020-09-18 18:38:17.851<br>Query:<br>```select * from test.t1;```   |Reads the object TEST.T1<br>Experiences a WAIT FOR COMMIT.<br>Conflict objects: TEST.T1    |
 
 ## Step 3 - Identify written/read objects
 
