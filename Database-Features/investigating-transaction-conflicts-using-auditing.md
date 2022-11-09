@@ -23,7 +23,9 @@ The conflicts are visible both in EXA_DBA_SESSIONS and in EXA_DBA_TRANSACTION_CO
 
 EXA_DBA_SESSIONS:
 
-![](images/exa-Nico_0-1600945269225.png)Based on the query above, I have identified a session that is experiencing a conflict. More importantly, I can see that the Session 1678224389846990848 is executing a SELECT statement and is waiting for session 1678224233621028864.
+![](images/exa-Nico_0-1600945269225.png)
+
+Based on the query above, I have identified a session that is experiencing a conflict. More importantly, I can see that the Session 1678224389846990848 is executing a SELECT statement and is waiting for session 1678224233621028864.
 
 This information is also visible in EXA_DBA_TRANSACTION_CONFLICTS:
 
@@ -31,13 +33,16 @@ This information is also visible in EXA_DBA_TRANSACTION_CONFLICTS:
 ```markup
 select * from EXA_DBA_TRANSACTION_CONFLICTS WHERE TO_DATE(START_TIME) = CURRENT_DATE AND STOP_TIME IS NULL;
 ```
-![](images/exa-Nico_1-1600945520523.png)Based on the information, I can already begin to reconstruct the conflict. From a terminology perspective, we will refer to tr1, tr2, and tr3 to correspond with the table in example 1 of [this article](https://community.exasol.com/t5/database-features/transaction-conflicts-for-mixed-read-write-transactions/ta-p/2143).
+![](images/exa-Nico_1-1600945520523.png)
+
+Based on the information, I can already begin to reconstruct the conflict. From a terminology perspective, we will refer to tr1, tr2, and tr3 to correspond with the table in example 1 of [this article](https://community.exasol.com/t5/database-features/transaction-conflicts-for-mixed-read-write-transactions/ta-p/2143).
 
 So - the CONFLICT_SESSION_ID above is session 1678224233621028864. This is the same session which is mentioned in the "Waiting for session..." ACTIVITY in EXA_DBA_SESSIONS. This is the session which needs to perform the commit to resolve the conflict. Therefore, we can mark this session as "tr1" in our table. 
 
 The SESSION_ID above is 1678224389846990848 and is the session that is actually waiting for the commit. This is tr3 in our table. So now we have the following information:
 
-
+|Transaction 1 (tr1)<br>Session ID: 1678224233621028864   |Transaction 2 (tr2)<br>Session ID: ???   |Transaction 3 (tr3)<br>Session ID: 1678224389846990848   |Comments   |
+|---|---|---|---|
 
 |  |  |  |  |
 | --- | --- | --- | --- |
@@ -54,7 +59,9 @@ Now that we have transaction 3 identified (this is also the session which experi
 ```markup
 --The Session ID corresponds to the session in tr3 select SESSION_ID, STATUS, ACTIVITY, SQL_TEXT from EXA_DBA_SESSIONS WHERE SESSION_ID = 1678224389846990848;
 ```
-![](images/exa-Nico_2-1600946355687.png)If you are investigating a conflict in the past, you can query auditing to find this information as well:
+![](images/exa-Nico_2-1600946355687.png)
+
+If you are investigating a conflict in the past, you can query auditing to find this information as well:
 
 
 ```markup
@@ -195,6 +202,7 @@ Now that we have a session ID, let's find out exactly what this session did:
 SELECT SESSION_ID, STMT_ID, COMMAND_NAME, COMMAND_CLASS, START_TIME, STOP_TIME, SQL_TEXT FROM EXA_DBA_AUDIT_SQL  WHERE SESSION_ID  = 1678224357205278720;
 ```
 ![](images/Screenshot-2020-09-24-140827.png)
+
 So, this session performed a COMMIT, followed by an INSERT + COMMIT. Let's document this then. 
 
 
