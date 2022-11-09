@@ -11,10 +11,8 @@ How is a EXASOL data type mapped to ODBC data type?
 
 
 
-|  |  |  |
-| --- | --- | --- |
-| **ODBC data type** | -> | **EXASOL data type** |
-|  
+|**ODBC data type ->** |**EXASOL data type** | 
+| --- | --- |
 | SQL_BIGINT |  DECIMAL(36,0) |
 | SQL_BINARY | 
 | SQL_CHAR |  CHAR |
@@ -53,11 +51,8 @@ How is a EXASOL data type mapped to ODBC data type?
 
 ## EXASOL to ODBC:
 
-
-
-|  |  |  |
-| --- | --- | --- |
-| **EXASOL data type** | -> | **ODBC data type** |
+|**EXASOL data type ->** |**ODBC data type** |
+| --- | --- |
 | DECIMAL( p,s ) |  SQL_DECIMAL( p,s ) |
 | CHAR( n ) |  SQL_CHAR( n ) |
 | VARCHAR( n ) |  SQL_VARCHAR( n ) |
