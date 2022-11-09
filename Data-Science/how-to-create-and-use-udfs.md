@@ -24,7 +24,13 @@ Creating a UDF is as simple as creating a script in the database.
 
 You should decide what language you want to create the script in and what kind of script it is (Scalar/Set). 
 
-
+|**Input Values**   |   |
+|---|---|
+|SCALAR   |The keyword SCALAR specifies that the script processes single input rows. It's code is therefore called once per input row.   |
+|SET   |If you define the option SET, then the processing refers to a set of input values. Within the code, you can iterate through those values (for more information, see[**Examples**](https://docs.exasol.com/database_concepts/udf_scripts/lua_examples.htm)).    |
+|   |   |
+|   |   |
+|   |   |
 
 |  |
 | --- |
