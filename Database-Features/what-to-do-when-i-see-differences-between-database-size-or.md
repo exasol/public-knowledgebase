@@ -79,8 +79,8 @@ The reason why this is happening is very similar to what happens in the simple e
 |---|---|---|---|
 |1   |select from T   |   |Read-locks table T   |
 |2   |   |Create or replace table T   |Create or replace first drops T and then creates new table T; <br>Now we have two distinct tables T, on visible in TR1 and one in TR2   |
-|3   |   |commit   |Version V2 of T is commited. Thus, we see this as increasing commit_data we have V1 of T1 and V2 of T1 commited;  	   |
-|4   |commit   |   | 	TR1 commited. This TR1 does not need the old copy V1 of T. This we can observe this in increasing the COMMIT_SIZE. COMMIT_SIZE contains now only the size of V2 of T Result: Now we would see this as "an decrease of "PHANTOM_%"  in our PHANTOM_%-query   |
+|3   |   |commit   |Version V2 of T is commited. Thus, we see this as increasing commit_data we have V1 of T1 and V2 of T1 commited;<br>Result:<br>Now we would see this as "an increase of "PHANTOM_%"  in our PHANTOM_%-query  	   |
+|4   |commit   |   | 	TR1 commited. This TR1 does not need the old copy V1 of T. We can observe this in increasing the COMMIT_SIZE. COMMIT_SIZE contains now only the size of V2 of T<br> Result: <br>Now we would see this as "an decrease of "PHANTOM_%"  in our PHANTOM_%-query   |
 
 After step 3 (commit TR2) has been executed we have two tables T: one used by TR1 and visible to TR1 and another one which was created and committed by TR2 visible to all transactions that start after TR2 has committed; this can be easily checked by looking up the TABLE_OBJECT_ID column in EXA_ALL_TABLES in TR1 and TR2 - the OBJECT_IDs in both tables are different because TR2 dropped T and created a freshly new table named 'T'. At this point the data blocks of T used by TR1 are "phantom data" that exists on disk but is not visible in EXA_DBA_OBJECT_SIZES - doing select sum(mem_object_size) from EXA_DBA_OBJECT_SIZES considers only the blocks as seen by TR2, because that's any new transaction sees the table created by TR2 and not the original one as used in TR1.
 
