@@ -35,16 +35,15 @@ It is possible to determine the join type using a query profile.
 For a global join the keyword "GLOBAL" is shown in the PART_INFO column. The following table will show the difference between both join types in profiling tables (statement 1: global join, statement 2: local join) :
 
 
-
 | STMT_ID | PART_ID | PART_NAME | PART_INFO | OBJECT_NAME |
 | --- | --- | --- | --- | --- |
-| 1 | 1 | COMPILE / EXECUTE | 
-| 1 | 2 | SCAN | | || CITY |
-| 1 | 3 | JOIN | GLOBAL | CUSTOMER |
-| — | — | — | — |
-| 2 | 1 | COMPILE / EXECUTE | 
-| 2 | 2 | SCAN |  CITY |
-| 2 | 3 | JOIN |  CUSTOMER |
+| 1 | 1 | COMPILE / EXECUTE |  |  |
+| 1 | 2 | SCAN | | CITY |
+| 1 | 3 | JOIN | **GLOBAL** | CUSTOMER |
+| — | — | — | — |— |
+| 2 | 1 | COMPILE / EXECUTE |  |  | 
+| 2 | 2 | SCAN |  |CITY |
+| 2 | 3 | JOIN |  |CUSTOMER |
 
 ## Differences in Performance
 
