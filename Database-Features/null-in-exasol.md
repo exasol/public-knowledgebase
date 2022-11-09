@@ -30,23 +30,12 @@ INSERT INTO testnull VALUES
 
 |NUM   |BOO   |DAT   |STR   |
 |---|---|---|---|
-|1   |false   |2010-02-03   |   |
-|3   |   |2010-02-05   |   |
-|4   |true   |   |   |
+|1   |false   |2010-02-03   |first row   |
+|3   |   |2010-02-05   |third row   |
+|4   |true   |   |fourth row   |
 |5   |false  |2010-02-07   |   |
 |6   |true   |2010-02-08   |   |
-|   |true   |2010-02-04   |   |
-
-|  |  |  |  |
-| --- | --- | --- | --- |
-| **NUM** | **BOO** | **DAT** | **STR** |
-| 1 | false | 2010-02-03 | first row |
-| 3 |  2010-02-05 | third row |
-| 4 | true |  fourth row |
-| 5 | false | 2010-02-07 | 
-| 6 | true | 2010-02-08 | 
-|  true | 2010-02-04 | second row |
-
+|   |true   |2010-02-04   |second row   |
 
 ### General Rules
 
@@ -70,17 +59,14 @@ FROM testnull;
 ```
 will return the following results:
 
-
-
-|  |  |  |  |
-| --- | --- | --- | --- |
-| **NUM** | **BOO** | **DAT** | **STR** |
-| 2 | false | 2010-03-03 | first row |
-| 4 | X | 2010-03-05 | third row |
-| 5 | true |  fourth row |
-| 6 | false | 2010-03-07 | X |
-| 7 | true | 2010-03-08 | X |
-|  true | 2010-03-04 | second row |
+|NUM   |BOO   |DAT   |STR   |
+|---|---|---|---|
+|2   |false   |2010-03-03   |first row   |
+|4   |X   |2010-03-05   |   |third row
+|5   |true   |   |fourth row   |
+|6   |false   |2010-03-07   |X   |
+|7   |true |2010-03-08 |X |
+|    |true |2010-03-04 |second row |
 
 ### NULL and Strings
 
