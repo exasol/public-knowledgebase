@@ -8,8 +8,8 @@ This article adresses some common topics when migrating from SQL Server to Exaso
 |---|---|---|
 |Syntax - Schemas   |```USE [my_schema] ```   |```OPEN SCHEMA "my_schema"; ```   |
 |Syntax - Quotes   |SQL Server uses square brackets a lot. <br> ```SELECT [my_col] FROM [my_table];```   |Exasol's default way of quoting is with double quotes: <br> ```SELECT "my_col" FROM "my_table";```<br>Quoting with square brackets is also supported, however as double quotes are more Exasol-style, use double quotes if you have the choice.   |
-|Common functions   |   |   |
-|Functions   |   |   |
+|Common functions   |ISNULL → <br>GETDATE → <br>CHARINDEX →   |COALESCE <br>CURRENT_TIMESTAMP <br>LOCATE   |
+|Functions   |There are some SQL Server typical functions like EOMONTH, DATEADD, CONVERT_TO_DATE, PATINDEX, … <br>```SELECT [my_col] FROM [my_table];```   |   |
 |Stored Procedures    |   |   |
 
 
