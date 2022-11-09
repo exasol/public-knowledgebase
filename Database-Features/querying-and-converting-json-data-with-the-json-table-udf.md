@@ -34,7 +34,11 @@ The json_table function has the following form:
 
 
 ```"code
-select json_table(  <json string or column>,  <path expression>,  <path expression>,  ... ) emits (<column_name> <data_type>, <column_name> <data_type>, ...) 
+select json_table(  
+ <json string or column>,  
+ <path expression>,  
+ <path expression>,  ... 
+ ) emits (<column_name> <data_type>, <column_name> <data_type>, ...) 
 ```
 The JSON_TABLE UDF attached to this solution takes a VARCHAR containing JSON data as a first parameter and one or more path expressions:
 
@@ -46,19 +50,24 @@ The function can be called in a SELECT query. The EMITS clause has to be used to
 
 
 ```"code
-SELECT json_table('{ "name": "Bob", "age": 37, "address":{"street":"Example Street 5","city":"Berlin"},  "phone":[{"type":"home","number":"030555555"},{"type":"mobile","number":"017777777"}], "email":["bob@example.com","bobberlin@example.com"]}','$.phone[*].number') EMITS (phone VARCHAR(50)); 
+SELECT json_table('{ "name": "Bob", "age": 37, "address":{"street":"Example Street 5","city":"Berlin"},  
+"phone":[{"type":"home","number":"030555555"},{"type":"mobile","number":"017777777"}], 
+"email":["bob@example.com","bobberlin@example.com"]}','$.phone[*].number') EMITS (phone VARCHAR(50)); 
 ```
 When the JSON data is stored in a table, the first parameter of JSON_TABLE contains the column name:
 
 
 ```"code
-CREATE TABLE example_table (column_a INT, json_data VARCHAR(2000000)); -- INSERT INTO example_table VALUES (1, '{ "name": "Bob",…'); (as above) SELECT json_table(json_data,'$.phone[*].number') EMITS (phone VARCHAR(50)) FROM example_table; 
+CREATE TABLE example_table (column_a INT, json_data VARCHAR(2000000)); 
+-- INSERT INTO example_table VALUES (1, '{ "name": "Bob",…'); (as above) 
+SELECT json_table(json_data,'$.phone[*].number') EMITS (phone VARCHAR(50)) FROM example_table; 
 ```
 It is possible to use both the json_table UDF and normal columns of the table within the SELECT clause:
 
 
 ```"code
-SELECT column_a, json_table(json_data,'$.phone[*].number') EMITS (phone VARCHAR(50)) FROM example_table; 
+SELECT column_a, json_table(json_data,'$.phone[*].number') EMITS (phone VARCHAR(50)) 
+FROM example_table; 
 ```
 When a row in the input table consists of n phone numbers within the JSON column, there will be n output rows for that tuple. The value of column_a is constant for all those rows:
 
