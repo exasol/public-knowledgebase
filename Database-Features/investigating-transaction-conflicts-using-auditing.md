@@ -44,12 +44,6 @@ The SESSION_ID above is 1678224389846990848 and is the session that is actually
 |Transaction 1 (tr1)<br>Session ID: 1678224233621028864   |Transaction 2 (tr2)<br>Session ID: ???   |Transaction 3 (tr3)<br>Session ID: 1678224389846990848   |Comments   |
 |---|---|---|---|
 
-|  |  |  |  |
-| --- | --- | --- | --- |
-| **Transaction 1 (tr1)** **Session ID: 1678224233621028864** | **Transaction 2 (tr2)** **Session ID: ???** | **Transaction 3 (tr3)** **Session ID: 1678224389846990848** | **Comments** |
-|   
-|   
-|   
 
 ## Step 2: Analyze Transaction 3
 
@@ -57,7 +51,8 @@ Now that we have transaction 3 identified (this is also the session which experi
 
 
 ```markup
---The Session ID corresponds to the session in tr3 select SESSION_ID, STATUS, ACTIVITY, SQL_TEXT from EXA_DBA_SESSIONS WHERE SESSION_ID = 1678224389846990848;
+--The Session ID corresponds to the session in tr3 
+select SESSION_ID, STATUS, ACTIVITY, SQL_TEXT from EXA_DBA_SESSIONS WHERE SESSION_ID = 1678224389846990848;
 ```
 ![](images/exa-Nico_2-1600946355687.png)
 
@@ -69,7 +64,9 @@ SELECT * FROM EXA_DBA_AUDIT_SQL WHERE SESSION_ID = 1678224389846990848;
 ```
 Since our query is still running, we can assume that the start time of the query is the exact moment that the conflict started, which in this case is 2020-09-18 18:38:17.851 (as seen from EXA_DBA_TRANSACTION_CONFLICTS). We know that TEST.T1 is the conflict object, as seen from EXA_DBA_TRANSACTION_CONFLICTS. So, let's add this information to our table:
 
-
+|Transaction 1 (tr1)<br>Session ID: 1678224233621028864   |Transaction 2 (tr2)<br>Session ID: ???   |Transaction 3 (tr3)<br>Session ID: 1678224389846990848   |Comments   |
+|---|---|---|---|
+|   |   |Start-time: 2020-09-18 18:38:17.851<br>Query:<br>```select * from test.t1; ```   |Reads the object TEST.T1<br>Experiences a WAIT FOR COMMIT.<br>Conflict objects: TEST.T1   |
 
 |  |  |  |  |
 | --- | --- | --- | --- |
