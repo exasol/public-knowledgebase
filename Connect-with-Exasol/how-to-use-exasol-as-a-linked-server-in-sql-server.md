@@ -45,7 +45,7 @@ In queries/views you will be able to access the Exasol database objects using tw
 ```markup
 SELECT * FROM EXASOL_TEST...SUPPLIER;
 ```
-* OPENQUERY (see<http://msdn.microsoft.com/en-us/library/ms188427.aspx>).
+* OPENQUERY (see <http://msdn.microsoft.com/en-us/library/ms188427.aspx>).
 
 To execute LUA scripts stored in Exasol from SQL Server do the following steps:
 
