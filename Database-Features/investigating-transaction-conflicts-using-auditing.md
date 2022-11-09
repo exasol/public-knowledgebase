@@ -74,7 +74,7 @@ Important to note - in this example, the query is a simple select on TEST.T1, bu
 
 Now, we can take a look at auditing to determine information on transaction 1. We know the following details:
 
-1. The Session ID (1678224233621028864**)**
+1. The Session ID (1678224233621028864)
 2. The transaction must have been started BEFORE the conflict started ( 2020-09-18 18:38:17.851)
 
 Transactions contain multiple queries and encompass all queries from the moment that the last COMMIT or ROLLBACK happened. So, we need to identify when exactly the transaction *started* to determine all of the queries that were in this transaction. 
