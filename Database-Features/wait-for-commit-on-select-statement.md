@@ -29,16 +29,15 @@ Tr1. AfterTr2 is commited all new transactions are scheduled after it. If such a
 
 The same situation may occur if you query **system tables** while SqlLogServer is performing one of its tasks (e.g. "DB size task" determining the database size). The following example describes this situation:
 
-
-
 | Transaction 1 | LogServer | Transaction 3 | Comment |
-| --- | --- | --- | --- |
-| select * from EXA_DB_SIZE_LAST_DAY; |  
-| insert into tab1 values 1; |  
-| – transaction remains opened |  
-|  – DB size task (writes EXA_DB_SIZE_LAST_DAY) |  Transaction 1 < LogServer transaction, the task is executed every 30 minutes (0:00, 0:30, 1:00, 1:30, ...) |
-|  commit; | Starts a new transaction (LogServer transaction 2 < Transaction 3) |
-|  select * from EXA_DB_SIZE_LAST_DAY; | This statement end up in WAIT FOR COMMIT |
+|---|---|---|---|
+|select * from EXA_DB_SIZE_LAST_DAY;   |   |   |   |
+|insert into tab1 values 1;   |   |   |   |
+|– transaction remains opened   |   |   |   |
+|   |– DB size task (writes EXA_DB_SIZE_LAST_DAY)   |   |   |
+|   |   |commit;   |   |
+|   |   |select * from EXA_DB_SIZE_LAST_DAY;   |   |
+
 
 ## Solution
 
