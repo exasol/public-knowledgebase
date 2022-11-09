@@ -28,12 +28,12 @@ In the following example
 
 |HAS_LOCKS   |EVALUATION   |SESSION_ID   |USER_NAME   |STATUS   |COMMAND_NAME   |DURATION   |
 |---|---|---|---|---|---|---|
-|   |   |   |   |   |   |   |
+|   |   |4   |SYS   |IDLE   |NOT SPECIFIED   |0:00:02   |
 |NONE   |   |   |   |   |   |   |
 |READ LOCKS   |   |   |   |   |   |   |
 |WRITE LOCKS   |   |   |   |   |   |   |
-|READ LOCKS   |   |   |   |   |   |   |
-|WRITE LOCKS   |   |   |   |   |   |   |
+|READ LOCKS   |CRITICAL   |   |   |   |   |   |
+|WRITE LOCKS   |VERY CRITICAL   |   |   |   |   |   |
 
 | HAS_LOCKS | EVALUATION | SESSION_ID | USER_NAME | STATUS | COMMAND_NAME | DURATION |
 | --- | --- | --- | --- | --- | --- | --- |
