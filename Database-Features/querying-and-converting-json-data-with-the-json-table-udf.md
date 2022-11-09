@@ -19,54 +19,12 @@ $.phone[*].number
 ```
 This expression is evaluated as follows:
 
-
-
-| path step | result |
-| --- | --- |
-| 
-```"code
-$  
-```
- | 
-```"code
-{ "name": "Bob", "age": 37, "address":{"street":"Example Street 5","city":"Berlin"},  "phone":[{"type":"home","number":"030555555"},{"type":"mobile","number":"017777777"}], "email":["bob@example.com","bobberlin@example.com"] } 
-```
- |
-| 
-```"code
-$.phone
-```
- | 
-```"code
-[{"type":"home","number":"030555555"},{"type":"mobile","number":"017777777"}]
-```
- |
-| 
-```"code
-$.phone[*]
-```
- | 
-```"code
-{"type":"home","number":"030555555"}
-```
- 
-```"code
-{"type":"mobile","number":"017777777"}
-```
- |
-| 
-```"code
-$.phone[*].number
-```
- | 
-```"code
-"030555555"
-```
- 
-```"code
-"017777777"
-```
- |
+|path step   |result   |
+|---|---|
+|```$```   |```{ "name": "Bob", "age": 37, "address":{"street":"Example Street 5","city":"Berlin"},```<br>```"phone":[{"type":"home","number":"030555555"},{"type":"mobile","number":"017777777"}],```<br>```"email":["bob@example.com","bobberlin@example.com"] }```   |
+|```$.phone```   |   |
+|```$.phone[*]```   |   |
+|```$.phone[*].number```|  |
 
 ## Solution
 
