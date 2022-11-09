@@ -162,16 +162,6 @@ FROM testnull;
 |1   |2   |false   |first row   |-0.5   |
 |6  |7   |true   |X   |0.33333   |
 
-|  |  |  |  |  |
-| --- | --- | --- | --- | --- |
-| NUM | NUM1 | NVL | STR | NUM2 |
-|  1 | True | second row | 
-| 5 | 6 | False | X | 0.5 |
-| 3 | 4 | unknown | third row | 
-| 4 | 5 | True | fourth row | 1 |
-| 1 | 2 | False | first row | -0.5 |
-| 6 | 7 | True | X | 0.33333 |
-
 #### Count the number of NULL-Values
 
 
