@@ -40,16 +40,9 @@ The table below summarizes the discussion above
 
 |   |Delete   |Reorganize   |
 |---|---|---|
-|Semantics   |   |   |
-|Occurrence   |   |   |
-|Performance    |   |   |
-
-|  |  |
-| --- | --- |
-|  **Delete** | **Reorganize** |
-| Semantics | Marks rows as deleted, data is not removed | Physically removes data from the tables |
-| Occurrence | Whenever data is deleted (delete or merge) | When more than 25% of rows are marked as deleted or when explicitly triggered |
-| Performance | Very Fast | Slow, needs to reorganize all the columns and re-create the indices |
+|**Semantics**   |Marks rows as deleted, data is not removed   |Physically removes data from the tables   |
+|**Occurrence**   |Whenever data is deleted (delete or merge)   |When more than 25% of rows are marked as deleted or when explicitly triggered   |
+|**Performance**    |Very Fast   |Slow, needs to reorganize all the columns and re-create the indices   |
 
 ## Additional Notes
 
