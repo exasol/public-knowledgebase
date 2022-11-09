@@ -80,59 +80,13 @@ When a row in the input table consists of n phone numbers within the JSON column
 
 The following table shows some more valid path expressions:
 
-
-
-| path | result |
-| --- | --- |
-| 
-```"code
-$.name
-```
- | 
-```"code
-"Bob"
-```
- |
-| 
-```"code
-$.address
-```
- | 
-```"code
-{"street":"Example Street 5","city":"Berlin"}
-```
- |
-| 
-```"code
-$.address.city
-```
- | 
-```"code
-"Berlin"
-```
- |
-| 
-```"code
-$.email
-```
- | 
-```"code
-["bob@example.com","bobberlin@example.com"]
-```
- |
-| 
-```"code
-$.email[*]
-```
- | 
-```"code
-"bob@example.com"
-```
- 
-```"code
-"bobberlin@example.com"
-```
- |
+|path   |result   |
+|---|---|
+|```$.name```   |```"Bob"```   |
+|```$.address```   |```{"street":"Example Street 5","city":"Berlin"}```   |
+|```$.address.city```   |```"Berlin"```   |
+|```$.email```   |```["bob@example.com","bobberlin@example.com"```]   |
+|```$.email[*]```   |```"bob@example.com"```<br> ```"bobberlin@example.com"```   |
 
 This query converts the JSON data into column values:
 
