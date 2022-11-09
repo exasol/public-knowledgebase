@@ -108,7 +108,7 @@ In this example, there was only one query which was ran. Let's add all of the qu
 |Start-time: 2020-09-18 18:37:37.532<br>Query:<br>```INSERT INTO TEST.T1 SELECT * FROM TEST.T2;```   |   |   |   |
 |   |   |Start-time: 2020-09-18 18:38:17.851<br>Query:<br>```select * from test.t1;```   |Reads the object TEST.T1<br>Experiences a WAIT FOR COMMIT.<br>Conflict objects: TEST.T1    |
 
-## Step 3 - Identify written/read objects
+## Step 4 - Identify written/read objects
 
 Now that we know all of the queries from that transaction, we need to document a list of all objects which were read and written in that transaction. In this example, it is very easy as there was only one query, but in real-world scenarios, this can be very complicated and error-prone. First, queries may be querying complex view structures, so it's not immediately clear from the query text which objects are actually being read. But let's start with the objects we know from the queries. 
 
@@ -140,7 +140,7 @@ If you notice that some of these objects are VIEWS, then you can query EXA_DBA_D
 |Start-time: 2020-09-18 18:37:37.532<br>Query:<br>```INSERT INTO TEST.T1 SELECT * FROM TEST.T2;```   |   |   |Reads the object TEST.T2<br>Writes the object TEST.T1   |
 |   |   |Start-time: 2020-09-18 18:38:17.851<br>Query:<br>```select * from test.t1;```   |Reads the object TEST.T1<br>Experiences a WAIT FOR COMMIT.<br>Conflict objects: TEST.T1    |
 
-## Step 4 - Identify sessions which write an object that was read in tr1
+## Step 5 - Identify sessions which write an object that was read in tr1
 
 In order to identify the full conflict, we have to find **a query which *wrote* one of the objects that was *read* in tr1**. This means that there must be a query which modified TEST.T2. Finding this link will enable us to complete the table and fully identify the conflict. 
 
@@ -168,7 +168,7 @@ And here are our results:
 
 We have successfully identified a session which modified the object in question! In most real-world cases, there are many options here and it is impossible to identify in auditing, *which* of these sessions are responsible for the conflict, but this is actually not as relevant, because it could be *any* of them. As a best practice, you can assume it is the first one. 
 
-## Step 5 - Verify tr2 details
+## Step 6 - Verify tr2 details
 
 Now that we have a session ID, let's find out exactly what this session did:
 
@@ -187,38 +187,9 @@ So, this session performed a COMMIT, followed by an INSERT + COMMIT. Let's docum
 |   |Start-time: 2020-09-18 18:37:46.688<br>Query:<br>```COMMIT;```   |   |   |
 |   |Start-time: 2020-09-18 18:38:07.016<br>Query:<br>```insert into test.t2 values (4);```   |   |Writes the object TEST.T2<br>tr1 < tr2, because tr2 writes to a table that was read by tr1   |
 |   |Start-time: 2020-09-18 18:38:07.036<br>Query:<br>```COMMIT /* AUTO */ ```   |   |--autocommit ends the transaction   |
-|   |   |Start-time: 2020-09-18 18:38:17.851<br>Query:<br>```select * from test.t1;```   |Starts a new transaction --> tr2 < tr3, since tr3 was started after tr2 ended (automatic scheduling).<br>We now have the relations tr1 < tr2 < tr3, which implies tr1 < tr3.<br>Reads the object TEST.T1<br>Experiences a WAIT FOR COMMIT.<br>Conflict objects: TEST.T1    |
+|   |   |Start-time: 2020-09-18 18:38:17.851<br>Query:<br>```select * from test.t1;```   |Starts a new transaction --> tr2 < tr3, since tr3 was started after tr2 ended (automatic scheduling).<br>We now have the relations tr1 < tr2 < tr3, which implies tr1 < tr3.<br>Reads the object TEST.T1<br>**Experiences a WAIT FOR COMMIT.**<br>Conflict objects: TEST.T1    |
 
-|  |  |  |  |
-| --- | --- | --- | --- |
-| **Transaction 1 (tr1)** **Session ID: 1678224233621028864** | **Transaction 2 (tr2)** **Session ID: 1678224357205278720** | **Transaction 3 (tr3)** **Session ID: 1678224389846990848** | **Comments** |
-| Start-time: 2020-09-18 18:37:37.532 Query: 
-```markup
-INSERT INTO TEST.T1 SELECT * FROM TEST.T2
-```
- |  Reads the object TEST.T2 Writes the object TEST.T1 |
-|  Start-time: 2020-09-18 18:37:46.688 Query: 
-```markup
-COMMIT;
-```
- | 
-|  Start-time: 2020-09-18 18:38:07.016 Query: 
-```markup
-insert into test.t2 values (4)
-```
- |  Writes the object TEST.T2 tr1 < tr2, because tr2 writes to a table that was read by tr1 |
-|  Start-time: 2020-09-18 18:38:07.036 Query: 
-```markup
-COMMIT /* AUTO */
-```
- |  --autocommit ends the transaction |
-|  Start-time: 2020-09-18 18:38:17.851 Query: 
-```markup
-select * from test.t1;
-```
- | Starts a new transaction --> tr2 < tr3, since tr3 was started after tr2 ended (automatic scheduling).We now have the relations tr1 < tr2 < tr3, which implies tr1 < tr3 Reads the object TEST.T1  **Experiences a WAIT FOR COMMIT.** Conflict objects: TEST.T1 |
-
-## Step 6 - Summarize Conflict
+## Step 7 - Summarize Conflict
 
 With this information, we now can identify the complete turn of events to explain the transaction conflict. 
 
