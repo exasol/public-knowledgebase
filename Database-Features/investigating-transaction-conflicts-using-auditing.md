@@ -140,23 +140,6 @@ If you notice that some of these objects are VIEWS, then you can query EXA_DBA_D
 |Start-time: 2020-09-18 18:37:37.532<br>Query:<br>```INSERT INTO TEST.T1 SELECT * FROM TEST.T2;```   |   |   |Reads the object TEST.T2<br>Writes the object TEST.T1   |
 |   |   |Start-time: 2020-09-18 18:38:17.851<br>Query:<br>```select * from test.t1;```   |Reads the object TEST.T1<br>Experiences a WAIT FOR COMMIT.<br>Conflict objects: TEST.T1    |
 
-
-
-|  |  |  |  |
-| --- | --- | --- | --- |
-| **Transaction 1 (tr1)** **Session ID: 1678224233621028864** | **Transaction 2 (tr2)** **Session ID: ???** | **Transaction 3 (tr3)** **Session ID: 1678224389846990848** | **Comments** |
-| Start-time: 2020-09-18 18:37:37.532 Query: 
-```markup
-INSERT INTO TEST.T1 SELECT * FROM TEST.T2
-```
- |  Reads the object TEST.T2 Writes the object TEST.T1 |
-|   
-|  Start-time: 2020-09-18 18:38:17.851 Query: 
-```markup
-select * from test.t1;
-```
- | Reads the object TEST.T1  Experiences a WAIT FOR COMMIT. Conflict objects: TEST.T1 |
-
 ## Step 4 - Identify sessions which write an object that was read in tr1
 
 In order to identify the full conflict, we have to find **a query which *wrote* one of the objects that was *read* in tr1**. This means that there must be a query which modified TEST.T2. Finding this link will enable us to complete the table and fully identify the conflict. 
@@ -172,7 +155,12 @@ Let's write our query then:
 
 
 ```markup
---Start_time is greater than the start of the transaction in tr1 -- Start time is less than the start of the conflict -- Session ID does not equal the CONFLICT_SESSION_ID SELECT SESSION_ID, STMT_ID, COMMAND_NAME, COMMAND_CLASS, START_TIME, STOP_TIME, SQL_TEXT FROM EXA_DBA_AUDIT_SQL  WHERE COMMAND_CLASS IN ('DDL','DML','DCL')  AND START_TIME BETWEEN '2020-09-18 18:37:22.811' and '2020-09-18 18:38:17.851' AND SESSION_ID != 1678224233621028864;
+-- Start_time is greater than the start of the transaction in tr1 
+-- Start time is less than the start of the conflict 
+-- Session ID does not equal the CONFLICT_SESSION_ID 
+SELECT SESSION_ID, STMT_ID, COMMAND_NAME, COMMAND_CLASS, START_TIME, STOP_TIME, SQL_TEXT 
+FROM EXA_DBA_AUDIT_SQL  WHERE COMMAND_CLASS IN ('DDL','DML','DCL')  AND START_TIME BETWEEN '2020-09-18 18:37:22.811' 
+and '2020-09-18 18:38:17.851' AND SESSION_ID != 1678224233621028864;
 ```
 And here are our results:
 
@@ -186,7 +174,8 @@ Now that we have a session ID, let's find out exactly what this session did:
 
 
 ```markup
-SELECT SESSION_ID, STMT_ID, COMMAND_NAME, COMMAND_CLASS, START_TIME, STOP_TIME, SQL_TEXT FROM EXA_DBA_AUDIT_SQL  WHERE SESSION_ID  = 1678224357205278720;
+SELECT SESSION_ID, STMT_ID, COMMAND_NAME, COMMAND_CLASS, START_TIME, STOP_TIME, SQL_TEXT 
+FROM EXA_DBA_AUDIT_SQL  WHERE SESSION_ID  = 1678224357205278720;
 ```
 ![](images/Screenshot-2020-09-24-140827.png)
 
