@@ -15,7 +15,8 @@ The difference between the size of the database in Exaoperation and the sum of a
 
 
 ```sql
-SELECT SUM( MEM_OBJECT_SIZE )/(1024*1024*1024) AS GB FROM EXA_STATISTICS_OBJECT_SIZES;
+SELECT SUM( MEM_OBJECT_SIZE )/(1024*1024*1024) AS GB 
+FROM EXA_STATISTICS_OBJECT_SIZES;
 ```
 The "missing" size is attributed to "phantom data" and is 0,7TiB in our example.
 
@@ -25,7 +26,26 @@ To check if the problem is caused by phantom data, you have to execute the follo
 
 
 ```sql
-SELECT     measure_time,     COMMIT_SIZE,     MEM_SIZE,     MULTICOPY_SIZE,     COMMIT_SIZE-MEM_SIZE-MULTICOPY_SIZE                    PHANTOM_SIZE,     CAST((local.PHANTOM_SIZE)*100/COMMIT_SIZE AS DEC(7,3)) "PHANTOM_%" FROM     (         SELECT             CAST(COMMITTED_SIZE/1024/1024 AS DEC(12,1)) COMMIT_SIZE,             CAST(MULTICOPY_DATA/1024/1024 AS DEC(12,1)) MULTICOPY_SIZE,             CAST((MEM_OBJECT_SIZE+INDICES_MEM_SIZE+STATISTICS_SIZE)/1024/1024 AS DEC(12,1))             MEM_SIZE,             T.*         FROM             "$EXA_STATS_DB_SIZE" T)     --where measure_time <insert filter on measure_time here> ORDER BY     MEASURE_TIME DESC;
+SELECT
+    measure_time,
+    COMMIT_SIZE,
+    MEM_SIZE,
+    MULTICOPY_SIZE,
+    COMMIT_SIZE-MEM_SIZE-MULTICOPY_SIZE                    PHANTOM_SIZE,
+    CAST((local.PHANTOM_SIZE)*100/COMMIT_SIZE AS DEC(7,3)) "PHANTOM_%"
+FROM
+    (
+        SELECT
+            CAST(COMMITTED_SIZE/1024/1024 AS DEC(12,1)) COMMIT_SIZE,
+            CAST(MULTICOPY_DATA/1024/1024 AS DEC(12,1)) MULTICOPY_SIZE,
+            CAST((MEM_OBJECT_SIZE+INDICES_MEM_SIZE+STATISTICS_SIZE)/1024/1024 AS DEC(12,1))
+            MEM_SIZE,
+            T.*
+        FROM
+            "$EXA_STATS_DB_SIZE" T)
+    --where measure_time <insert filter on measure_time here>
+ORDER BY
+    MEASURE_TIME DESC;
 ```
 Huge phantom percentage (>5%) for a longer periods of time is not normal.
 
@@ -35,9 +55,9 @@ Example:
 
 | MEASURE_TIME | COMMIT_SIZE | MEM_SIZE | MULTICOPY_SIZE | PHANTOM_SIZE | PHANTOM_% |
 | --- | --- | --- | --- | --- | --- |
-| 2020-10-21 09:48:52 | 1974.7 | 979.4 | 0.0 | 995.3 | 50.403 |
-| 2020-10-21 09:30:03 | 1974.8 | 979.5 | 0.0 | 995.3 | 50.400 |
-| 2020-10-21 09:29:00 | 1974.8 | 979.5 | 0.0 | 995.3 | 50.400 |
+| 2020-10-21 09:48:52 | 1974.7 | 979.4 | 0.0 | 995.3 | **50.403** |
+| 2020-10-21 09:30:03 | 1974.8 | 979.5 | 0.0 | 995.3 | **50.400** |
+| 2020-10-21 09:29:00 | 1974.8 | 979.5 | 0.0 | 995.3 | **50.400** |
 | 2020-10-21 09:27:33 | 998.1 | 979.4 | 0.0 | 18.7 | 1.874 |
 
 ## Explanation
@@ -55,14 +75,12 @@ Phantom data can be caused by transactions left open (sessions whose last statem
 
 The reason why this is happening is very similar to what happens in the simple example below:
 
-
-
 | Step id | Transaction 1 (TR1) | Transaction 2 (TR2) | Comments |
-| --- | --- | --- | --- |
-| 1 | select from T |  Read-locks table T |
-| 2 |  Create or replace table T | Create or replace first drops T and then creates new table T; Now we have two distinct tables T, on visible in TR1 and one in TR2 |
-| 3 |  commit | Version V2 of T is commited. Thus, we see this as increasing commit_datawe have V1 of T1 and V2 of T1 commited;Result:Now we would see this as "an increase of "PHANTOM_%"  in our PHANTOM_%-query |
-| 4 | commit |  TR1 commited. This TR1 does not need the old copy V1 of T.This we can observe this in increasing the COMMIT_SIZE.COMMIT_SIZE contains now only the size of V2 of TResult:Now we would see this as "an decrease of "PHANTOM_%"  in our PHANTOM_%-query |
+|---|---|---|---|
+|1   |select from T   |   |Read-locks table T   |
+|2   |   |Create or replace table T   |Create or replace first drops T and then creates new table T; <br>Now we have two distinct tables T, on visible in TR1 and one in TR2   |
+|3   |   |commit   |Version V2 of T is commited. Thus, we see this as increasing commit_data we have V1 of T1 and V2 of T1 commited;  	   |
+|4   |commit   |   | 	TR1 commited. This TR1 does not need the old copy V1 of T. This we can observe this in increasing the COMMIT_SIZE. COMMIT_SIZE contains now only the size of V2 of T Result: Now we would see this as "an decrease of "PHANTOM_%"  in our PHANTOM_%-query   |
 
 After step 3 (commit TR2) has been executed we have two tables T: one used by TR1 and visible to TR1 and another one which was created and committed by TR2 visible to all transactions that start after TR2 has committed; this can be easily checked by looking up the TABLE_OBJECT_ID column in EXA_ALL_TABLES in TR1 and TR2 - the OBJECT_IDs in both tables are different because TR2 dropped T and created a freshly new table named 'T'. At this point the data blocks of T used by TR1 are "phantom data" that exists on disk but is not visible in EXA_DBA_OBJECT_SIZES - doing select sum(mem_object_size) from EXA_DBA_OBJECT_SIZES considers only the blocks as seen by TR2, because that's any new transaction sees the table created by TR2 and not the original one as used in TR1.
 
