@@ -92,7 +92,9 @@ This query converts the JSON data into column values:
 
 
 ```"code
-SELECT json_table(json_data,'$.name', '$.age', '$.address.city') EMITS (name VARCHAR(500), age INT, city VARCHAR(500)) FROM example_table; 
+SELECT json_table(json_data,'$.name', '$.age', '$.address.city') 
+EMITS (name VARCHAR(500), age INT, city VARCHAR(500)) 
+FROM example_table; 
 ```
 
 
@@ -104,7 +106,9 @@ When unnesting an array, the values from different levels stay the same for ever
 
 
 ```"code
-SELECT json_table(json_data,'$.name', '$.age', '$.address.city', '$.email[*]') EMITS (name VARCHAR(500), age INT, city VARCHAR(500), email VARCHAR(500)) FROM example_table; 
+SELECT json_table(json_data,'$.name', '$.age', '$.address.city', '$.email[*]') 
+EMITS (name VARCHAR(500), age INT, city VARCHAR(500), email VARCHAR(500)) 
+FROM example_table; 
 ```
 
 
@@ -117,7 +121,9 @@ The result of unnesting more than one array is the cross product of those arrays
 
 
 ```"code
-SELECT json_table(json_data,'$.name', '$.age', '$.address.city', '$.email[*]', '$.phone[*].type', '$.phone[*].number') EMITS (name VARCHAR(500), age INT, city VARCHAR(500), email VARCHAR(500), phone_type VARCHAR(50), phone_number VARCHAR(50)) FROM example_table; 
+SELECT json_table(json_data,'$.name', '$.age', '$.address.city', '$.email[*]', '$.phone[*].type', '$.phone[*].number') 
+EMITS (name VARCHAR(500), age INT, city VARCHAR(500), email VARCHAR(500), phone_type VARCHAR(50), phone_number VARCHAR(50)) 
+FROM example_table; 
 ```
 
 
