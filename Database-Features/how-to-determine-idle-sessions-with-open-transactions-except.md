@@ -24,7 +24,7 @@ For Database versions `starting from 7.1`, the query can be found in
 
 The query determines the approximate lock status of each session and does a risk evaluation on the basis of idle times and open transaction locks. Session with open transactions being idle for over an hour typically start to cause stated effects.
 
-In the following example
+See the following example:
 
 |HAS_LOCKS   |EVALUATION   |SESSION_ID   |USER_NAME   |STATUS   |COMMAND_NAME   |DURATION   |
 |---|---|---|---|---|---|---|
