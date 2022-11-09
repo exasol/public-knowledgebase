@@ -6,8 +6,8 @@ This article adresses some common topics when migrating from SQL Server to Exaso
 
 |Topic   |SQL Server   |Exasol   |
 |---|---|---|
-|Syntax - Schemas   |   |   |
-|Syntax - Quotes   |   |   |
+|Syntax - Schemas   |```USE [my_schema] ```   |```OPEN SCHEMA "my_schema"; ```   |
+|Syntax - Quotes   |SQL Server uses square brackets a lot. <br> ```SELECT [my_col] FROM [my_table];```   |   |
 |Common functions   |   |   |
 |Functions   |   |   |
 |Stored Procedures    |   |   |
