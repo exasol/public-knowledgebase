@@ -17,7 +17,8 @@ To see what percentage of data is marked as deleted in a table, please see the D
 
 While delete is very fast, it does present a drawback: data that is no longer needed is still stored leading to some extra memory usage. To limit this drawback, whenever too many rows are deleted, the table is "reorganized" by physically replacing the deleted rows with non-deleted ones. After the reorganize is completed, the table contains no rows that are marked as deleted. Moreover, all the indices of the affected table are dropped and created again.
 
-**Performance:**Normally, the reorganize operation is an expensive operation. This is because it typically needs to move a lot of data around to replace the rows marked as deleted with non-deleted rows. It essentially means that the full table is scanned and a lot of write operations take place on each column (proportional with the amount of deleted rows). Furthermore, the fresh index creation adds some extra time.
+**Performance:**
+Normally, the reorganize operation is an expensive operation. This is because it typically needs to move a lot of data around to replace the rows marked as deleted with non-deleted rows. It essentially means that the full table is scanned and a lot of write operations take place on each column (proportional with the amount of deleted rows). Furthermore, the fresh index creation adds some extra time.
 
 **Notes**
 
