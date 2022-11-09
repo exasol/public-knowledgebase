@@ -115,13 +115,9 @@ Now that we know all of the queries from that transaction, we need to document a
 You need to look for any objects that are read in the query - this could be after a FROM clause, IN clause, JOIN clause, or any subselects. Basically, you must parse the queries to determine a list of objects. Our list looks like this:
 
 
-
-|  |  |
+|Objects Read  |Objects Written  |
 | --- | --- |
-| **Objects Read** | **Objects Written** |
 | TEST.T2 | TEST.T1 |
-| 
-| 
 
 I can further verify that these objects are tables by querying EXA_ALL_OBJECTS:
 
