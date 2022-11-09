@@ -219,24 +219,11 @@ Now that MoreUnit is configured, open the file "`remotelog.lua`" in the editor. 
 
 When you want to work in TDD, your workflow becomes:
 
-
-
-|  |  |
-| --- | --- |
-|  **Red** | 1. Create a test file
-2. Create a test
-3. Press [CTRL] + [F11] to run it and verify that it fails (which it should since you did not touch the implementation yet!)
-4. Press [CTRL] + [J] to jump to the implementation
-5. Implement the new functionality
- |
-| **Green** | 1. Press [CTRL] +[J] to jump back to the test
-2. The test should now succeed
- |
-|  **Clean** | 1. Press [CTRL] +[J] to jump to the implementation
-2. Refactor until you are satisfied with the code quality
-3. Press [CTRL] +[J] to jump back to the unit test
-4. Rerun the test with [CTRL] +[F11]
- |
+|  |   |
+|---|---|
+|**Red**      |1. Create a test file<br>2. Create a test<br>3. Press [CTRL] + [F11] to run it and verify that it fails (which it should since you did not touch the implementation yet!)<br>4. Press [CTRL] + [J] to jump to the implementation<br>5. Implement the new functionality   |
+|**Green**   |1. Press [CTRL] +[J] to jump back to the test<br>2. The test should now succeed   |
+|**Clean**   |1. Press [CTRL] +[J] to jump to the implementation<br>2. Refactor until you are satisfied with the code quality<br>3. Press [CTRL] +[J] to jump back to the unit test<br>4. Rerun the test with [CTRL] +[F11]   |
 
 ## Debugging
 
