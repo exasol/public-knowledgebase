@@ -123,13 +123,22 @@ I can further verify that these objects are tables by querying EXA_ALL_OBJECTS:
 
 
 ```markup
--- I use snapshot execution to ensure that this query does not get a Wait for commit --  /*snapshot execution*/ select ROOT_NAME||'.'||OBJECT_NAME FULL_NAME, OBJECT_TYPE FROM EXA_ALL_OBJECTS WHERE LOCAL.FULL_NAME IN ( 'TEST.T2', 'TEST.T1');
+-- I use snapshot execution to ensure that this query does not get a Wait for commit 
+--  
+/*snapshot execution*/ select ROOT_NAME||'.'||OBJECT_NAME FULL_NAME, OBJECT_TYPE FROM EXA_ALL_OBJECTS WHERE LOCAL.FULL_NAME IN ( 
+'TEST.T2', 
+'TEST.T1');
 ```
 ...and it proves that my objects are tables:
 
 ![](images/Screenshot-2020-09-24-135140.png)
 
 If you notice that some of these objects are VIEWS, then you can query EXA_DBA_DEPENDENCIES_RECURSIVE to determine the underlying objects in the named views. So, let's add this information to the table:
+
+|Transaction 1 (tr1)<br>Session ID: 1678224233621028864   |Transaction 2 (tr2)<br>Session ID: ???   |Transaction 3 (tr3)<br>Session ID: 1678224389846990848   |Comments   |
+|---|---|---|---|
+|Start-time: 2020-09-18 18:37:37.532<br>Query:<br>```INSERT INTO TEST.T1 SELECT * FROM TEST.T2;```   |   |   |Reads the object TEST.T2<br>Writes the object TEST.T1   |
+|   |   |Start-time: 2020-09-18 18:38:17.851<br>Query:<br>```select * from test.t1;```   |Reads the object TEST.T1<br>Experiences a WAIT FOR COMMIT.<br>Conflict objects: TEST.T1    |
 
 
 
