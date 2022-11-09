@@ -27,19 +27,10 @@ You should decide what language you want to create the script in and what kind o
 |**Input Values**   |   |
 |---|---|
 |SCALAR   |The keyword SCALAR specifies that the script processes single input rows. It's code is therefore called once per input row.   |
-|SET   |If you define the option SET, then the processing refers to a set of input values. Within the code, you can iterate through those values (for more information, see[**Examples**](https://docs.exasol.com/database_concepts/udf_scripts/lua_examples.htm)).    |
-|   |   |
-|   |   |
-|   |   |
-
-|  |
-| --- |
-| **Input Values** |
-| SCALAR | The keyword SCALAR specifies that the script processes single input rows. It's code is therefore called once per input row. |
-| SET | If you define the option SET, then the processing refers to a set of input values. Within the code, you can iterate through those values (for more information, see[**Examples**](https://docs.exasol.com/database_concepts/udf_scripts/lua_examples.htm)). |
-| **Output Values** |
-| RETURNS | In this case the script returns a single value. |
-| EMITS | If the keyword EMITS was defined, the script can create (emit) multiple result rows (tuples). In case of input type SET, the EMITS result can only be used alone, thus not be combined with other expressions. However, you can nest it through a subselect to do further processing of those intermediate results. |
+|SET   |If you define the option SET, then the processing refers to a set of input values. Within the code, you can iterate through those values (for more information, see [**Examples**](https://docs.exasol.com/database_concepts/udf_scripts/lua_examples.htm)).    |
+| **Output Values**   |   |
+|RETURNS    |In this case the script returns a single value.   |
+|EMITS   |If the keyword EMITS was defined, the script can create (emit) multiple result rows (tuples). In case of input type SET, the EMITS result can only be used alone, thus not be combined with other expressions. However, you can nest it through a subselect to do further processing of those intermediate results.   |
 
 You can use the [script signature generator](https://docs.exasol.com/database_concepts/udf_script_signature_generator.html) to help create the syntax for the header
 
@@ -80,7 +71,7 @@ A scalar UDF computes on one input row per UDF instance and returns one output r
 
 
 ```markup
-reate or replace table t (x int, y int);  
+create or replace table t (x int, y int);  
 insert into t values(1,1),(1,2),(4,2);  
 select * from t; 
 
