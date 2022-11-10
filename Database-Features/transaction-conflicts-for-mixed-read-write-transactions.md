@@ -1,7 +1,7 @@
 # Transaction Conflicts for Mixed Read/Write Transactions 
 ## Background
 
-Exasol's transaction isolation level is**serializable**, which means that each transaction is carried out as if it was part of a sequence (even though transactions can run in parallel). It is vital to read about and understand [Exasol's Transaction System](https://community.exasol.com/t5/database-features/transaction-system/ta-p/1522) before continuing with this article. 
+Exasol's transaction isolation level is **serializable**, which means that each transaction is carried out as if it was part of a sequence (even though transactions can run in parallel). It is vital to read about and understand [Exasol's Transaction System](https://community.exasol.com/t5/database-features/transaction-system/ta-p/1522) before continuing with this article. 
 
 Serialization helps ensure data consistency, but can also lead to some issues, such as: 
 
@@ -14,7 +14,7 @@ This section focuses on the second point – how collisions occur in mixed read
 
 Certain concurrent transactions are related in terms of the database objects they impact. Complex scenarios that mix read and write operations could result in complicated relationships between transactions, and thus more chance of conflicts. To demonstrate how conflicts can occur, let's consider an example.
 
-**Example 1 - Transaction Collision**This example has three different connections (with AUTOCOMMIT off). The following happens (represented in the table below):
+**Example 1 - Transaction Collision** This example has three different connections (with AUTOCOMMIT off). The following happens (represented in the table below):
 
 * An ETL process (tr1) updates fact tables (CORE.PRODUCTS and CORE.STOCKS) using data from staging tables (STG.ETL_PRODUCTS and STG.ETL_STOCKS). It also reads from a control table (STG.JOBS) to determine what needs to be done.
 * A new transaction (tr2)  changes the control table while tr1 is processing.
@@ -22,7 +22,17 @@ Certain concurrent transactions are related in terms of the database objects the
 
 The operations performed by each transaction are shown in the following table:
 
-  
+|Transaction 1 (tr1)   |Transaction 2 (tr2)   |Transaction 3 (tr3)   |Comment   |
+|---|---|---|---|
+|```select * from STG.JOBS;```   |   |   |   |
+|```insert into CORE.PRODUCTS select * from STG.ETL_PRODUCTS;```   |   |   |   |
+|```/* the insert takes a while */```   |   |   |   |
+|   |```insert into STG.JOBS values (...);```   |   |tr1 < tr2, because tr2 writes to a table that was read by tr1   |
+|   |   |   |   |
+|   |   |   |   |
+|   |   |   |   |
+|   |   |   |   |
+|   |   |   |   |  
 
 
 | Transaction 1 (tr1) | Transaction 2 (tr2) | Transaction 3 (tr3) | Comment |
