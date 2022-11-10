@@ -420,24 +420,8 @@ Example 4.1: get node list
                    'users': [[30, False]],
                    'volume_nodes': [11]}}         
 ```
-**other options:**
 
-|   |   |   |
-|---|---|---|
-|   |   |   |
-|   |   |   |
-|   |   |   |
-|   |   |   |
-|   |   |   |
-|   |   |   |
-|   |   |   |
-|   |   |   |
-|   |   |   |
-|   |   |   |
-|   |   |   |
-|   |   |   |
-|   |   |   |
-|   |   |   |
+**other options:**
 
 **EXAStorage Volume Jobs**
 
@@ -454,9 +438,9 @@ Example 4.1: get node list
 | st_volume_move_node | Move nodes of specified volume | vid, src_nodes, dst_nodes |
 | st_volume_increase_redundancy | Increase volume redundancy by delta value | vid, delta, nodes |
 | st_volume_decrease_redundancy | decrease volume redundancy by delta value | vid, delta, nodes |
-| st_volume_lock | Lock a volume | vidoptional: vname |
-| st_volume_lock | Unlock a volume | vidoptional: vname |
-| st_volume_clear_data | Clear data on (a part of) the given volume | vid, num__bytes, node_idsoptional: vname |
+| st_volume_lock | Lock a volume | vid<br>optional: vname |
+| st_volume_lock | Unlock a volume | vid<br>optional: vname |
+| st_volume_clear_data | Clear data on (a part of) the given volume | vid, num__bytes, node_ids<br>optional: vname |
 
 ### Example 6: Working with backups
 
@@ -492,33 +476,51 @@ Example 6.3: list backups
 
 
 
-|  |  |  |  |
-| --- | --- | --- | --- |
-| Name | Description | Parameter | Returns |
+| Name | Description | Parameter |
+| --- | --- | --- |
 | db_backup_list | Lists available backups for the given database | db_name | 
 
 
 ```"code-java"
->>> pprint.pprint(conn.job_exec('db_backup_list', {'params': {'db_name': 'DB1'}}))  {'result_code': 0,  'result_desc': 'Success',  'result_jobid': '11.99',  'result_name': 'OK',  'result_output': [{'bid': 11,                     'comment': '',                     'dependencies': '-',                     'expire': '',                     'expire_alterable': '10001 DB1/id_11/level_0',                     'expired': False,                     'id': '10001 DB1/id_11/level_0/node_0/backup_202007071405 DB1',                     'last_item': True,                     'level': 0,                     'path': 'DB1/id_11/level_0/node_0/backup_202007071405',                     'system': 'DB1',                     'timestamp': '2020-07-07 14:05',                     'ts': '202007071405',                     'usable': True,                     'usage': '0.001 GiB',                     'volume': 'RemoteVolume1'}]}                     
+>>> pprint.pprint(conn.job_exec('db_backup_list', {'params': {'db_name': 'DB1'}}))
+
+{'result_code': 0,
+ 'result_desc': 'Success',
+ 'result_jobid': '11.99',
+ 'result_name': 'OK',
+ 'result_output': [{'bid': 11,
+                    'comment': '',
+                    'dependencies': '-',
+                    'expire': '',
+                    'expire_alterable': '10001 DB1/id_11/level_0',
+                    'expired': False,
+                    'id': '10001 DB1/id_11/level_0/node_0/backup_202007071405 DB1',
+                    'last_item': True,
+                    'level': 0,
+                    'path': 'DB1/id_11/level_0/node_0/backup_202007071405',
+                    'system': 'DB1',
+                    'timestamp': '2020-07-07 14:05',
+                    'ts': '202007071405',
+                    'usable': True,
+                    'usage': '0.001 GiB',
+                    'volume': 'RemoteVolume1'}]}              
 ```
- **other options:**
 
+**other options:**
 
+**Jobs to manage backups**
 
-| Jobs to manage backups | 
-| --- |
 | Name | description | Parameters |
+| --- | --- | --- |
 | db_backups_delete | Delete given backups of given database | db_name, backup list (as returned by 'db_backup_list()') |
-| db_backup_change_expiration | Change expiration time of the given backup files | * backup volume ID
-* backup_files: Prefix of the backup files, like exa_db1/id_1/level_0)
-* expire_time : Timestamp in seconds since the Epoch on which the backup should expire.
+| db_backup_change_expiration | Change expiration time of the given backup files | * backup volume ID * backup_files: Prefix of the backup files, like exa_db1/id_1/level_0) * expire_time : Timestamp in seconds since the Epoch on which the backup should expire.
  |
 | db_backup_delete_unusable | Delete all unusable backups for a given database | db_name |
 | db_restore | Restore a given database from given backup | db_name, backup ID, restore type ('blocking' | 'nonblocking' | 'virtual access') |
-| db_backup_add_schedule | Add a backup schedule to an existing database | db_name, backup_name, volume, level, expire, minute, hour, day, month, weekday, enabled**notes**: * 'level' must be int * 'expire' is string (use common/util.str2sec to convert) * 'backup_name' is string (unique within a DB)
+| db_backup_add_schedule | Add a backup schedule to an existing database | db_name, backup_name, volume, level, expire, minute, hour, day, month, weekday, enabled **notes**: * 'level' must be int * 'expire' is string (use common/util.str2sec to convert) * 'backup_name' is string (unique within a DB)
  |
 | db_backup_remove_schedule | Remove an existing backup schedule |  db_name, backup_name |
-| db_backup_modify_schedule | Modify an existing backup schedule |  db_name, backup_name **optional:**hour, minute, day, month, weekday, enabled |
+| db_backup_modify_schedule | Modify an existing backup schedule |  db_name, backup_name **optional:** hour, minute, day, month, weekday, enabled |
 
  We will continue to add more examples and we will add more options to this article.
 
