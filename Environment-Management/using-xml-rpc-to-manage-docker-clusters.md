@@ -370,14 +370,55 @@ Example 4.1: get node list
 
 
 
-|  |  |  |  |
-| --- | --- | --- | --- |
 | Name | Description | Parameter | Returns |
+| --- | --- | --- | --- |
 | st_volume_info | Return information about volume with id vid | vid | 
 
 
 ```"code-java"
->>> pprint.pprint(conn.job_exec('st_volume_info', {'params': {'vid': 0}}))  {'result_code': 0,  'result_desc': 'Success',  'result_jobid': '11.98',  'result_name': 'OK',  'result_output': {'app_io_enabled': True,                    'block_distribution': 'vertical',                    'block_size': '4 KiB',                    'bytes_per_block': 4096,                    'group': 500,                    'hdd_type': 'disk1',                    'hdds_per_node': 1,                    'id': '0',                    'int_io_enabled': True,                    'labels': ['#Name#DataVolume1', 'pub:DB1_persistent'],                    'name': 'DataVolume1',                    'nodes_list': [{'id': 11, 'unrecovered_segments': 0}],                    'num_master_nodes': 1,                    'owner': 500,                    'permissions': 'rwx------',                    'priority': 10,                    'redundancy': 1,                    'segments': [{'end_block': '2621439',                                  'index': '0',                                  'nid': 0,                                  'partitions': [],                                  'phys_nid': 11,                                  'sid': '0',                                  'start_block': '0',                                  'state': 'ONLINE',                                  'type': 'MASTER',                                  'vid': '0'}],                    'shared': True,                    'size': '10 GiB',                    'snapshots': [],                    'state': 'ONLINE',                    'stripe_size': '256 KiB',                    'type': 'MASTER',                    'unlock_conditions': [],                    'use_crc': True,                    'users': [[30, False]],                    'volume_nodes': [11]}}              
+>>> pprint.pprint(conn.job_exec('st_volume_info', {'params': {'vid': 0}}))
+
+{'result_code': 0,
+ 'result_desc': 'Success',
+ 'result_jobid': '11.98',
+ 'result_name': 'OK',
+ 'result_output': {'app_io_enabled': True,
+                   'block_distribution': 'vertical',
+                   'block_size': '4 KiB',
+                   'bytes_per_block': 4096,
+                   'group': 500,
+                   'hdd_type': 'disk1',
+                   'hdds_per_node': 1,
+                   'id': '0',
+                   'int_io_enabled': True,
+                   'labels': ['#Name#DataVolume1', 'pub:DB1_persistent'],
+                   'name': 'DataVolume1',
+                   'nodes_list': [{'id': 11, 'unrecovered_segments': 0}],
+                   'num_master_nodes': 1,
+                   'owner': 500,
+                   'permissions': 'rwx------',
+                   'priority': 10,
+                   'redundancy': 1,
+                   'segments': [{'end_block': '2621439',
+                                 'index': '0',
+                                 'nid': 0,
+                                 'partitions': [],
+                                 'phys_nid': 11,
+                                 'sid': '0',
+                                 'start_block': '0',
+                                 'state': 'ONLINE',
+                                 'type': 'MASTER',
+                                 'vid': '0'}],
+                   'shared': True,
+                   'size': '10 GiB',
+                   'snapshots': [],
+                   'state': 'ONLINE',
+                   'stripe_size': '256 KiB',
+                   'type': 'MASTER',
+                   'unlock_conditions': [],
+                   'use_crc': True,
+                   'users': [[30, False]],
+                   'volume_nodes': [11]}}         
 ```
 **other options:**
 
@@ -407,27 +448,29 @@ Example 6.1: start a new backup
 
 
 
-|  |  |  |  |
-| --- | --- | --- | --- |
 | Name | Description | Parameter | Returns |
+| --- | --- | --- | --- |
 | db_backup_start | Start a backup of the given database to the given volume | db_name, backup_volume_id, level, expire_time**substitutes**: dackup_volume_name | 
 
 
 ```"code-java"
->>> conn.job_exec('db_backup_start', {'params': {'db_name': 'DB1','backup_volume_name': 'RemoteVolume1','level': 0,'expire_time': '10d'}})  {'result_name': 'OK', 'result_desc': 'Success', 'result_jobid': '11.77', 'result_code': 0}  
+>>> conn.job_exec('db_backup_start', {'params': {'db_name': 'DB1','backup_volume_name': 'RemoteVolume1','level': 0,'expire_time': '10d'}})
+
+{'result_name': 'OK', 'result_desc': 'Success', 'result_jobid': '11.77', 'result_code': 0}
 ```
 Example 6.2: abort backup
 
 
 
-|  |  |  |  |
-| --- | --- | --- | --- |
 | Name | Description | Parameter | Returns |
+| --- | --- | --- | --- |
 | db_backup_abort | Aborts the running backup of the given database | db_name | 
 
 
 ```"code-java"
->>> conn.job_exec('db_backup_abort', {'params': {'db_name': 'DB1'}})  {'result_name': 'OK', 'result_desc': 'Success', 'result_jobid': '11.82', 'result_code': 0}
+>>> conn.job_exec('db_backup_abort', {'params': {'db_name': 'DB1'}})  
+
+{'result_name': 'OK', 'result_desc': 'Success', 'result_jobid': '11.82', 'result_code': 0}
 ```
 Example 6.3: list backups
 
