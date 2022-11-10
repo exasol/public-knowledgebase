@@ -56,6 +56,8 @@ This is an example of my custom setup:
 ## Step 8
 
  Now the node configuration should show something like this, where you can see the 4 MAC addresses in place.
+ 
+ ![](images/image2021-3-2_18-12-46.png)
 
 ## 
 
@@ -63,13 +65,20 @@ This is an example of my custom setup:
 
 If you want to delete the new added MAC Addresses select the checkboxes as below and click on Apply.
 
+ ![](images/image2021-3-2_18-13-11.png)
+
 ## 
 
 After booting the node the new interfaces will be configured automatically as you can see below:
 
+ ![](images/image2021-3-2_18-13-36.png)
+
 ## 
 
 We can verify that the MAC addresses that we selected were configured correctly.
+
+
+ ![](images/image2021-3-2_18-13-48.png)
 
 ## 
 
