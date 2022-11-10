@@ -140,8 +140,8 @@ When tr1a runs, separate transactions are generated to INSERT the data. In the e
 | Transaction 1 (tr1a) | Transactions Resulting from EXPORT | Transaction 2 (tr2) | Transaction 3 (tr3) | Comment |
 |---|---|---|---|---|
 |```select * from JOBS;```   |   |   |   |   |
-|```rollback;```   |   |   |   |   |
-|```export (SELECT * FROM STG.ETL_PRODUCTS) into exa at this table CORE.PRODUCT;```   |**Transaction tr1b:**<br>```insert into CORE.PRODUCTS values (...);```   |   |   |   |
+|```rollback;```   |   |   |   |Job cached (ETL-Tool or Lua ELT-Script)   |
+|```export (SELECT * FROM STG.ETL_PRODUCTS) into exa at this table CORE.PRODUCT;```   |**Transaction tr1b:**<br>```insert into CORE.PRODUCTS values (...);```   |   |   |Using the EXPORT causes a new transaction --> tr1a has no read lock on ETL_PRODUCTS   |
 |```--the select takes a while```   |```--the insert takes a while```   |   |   |   |
 |   |   |   |   |   |
 |   |   |   |   |   |
