@@ -51,6 +51,8 @@ You'll see the following screen, the new private network is available. Now on Ad
 
 This is an example of my custom setup:
 
+![](images/image2021-3-2_18-12-29.png)
+
 ## 
 
 ## Step 8
