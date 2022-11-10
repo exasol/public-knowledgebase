@@ -422,11 +422,27 @@ Example 4.1: get node list
 ```
 **other options:**
 
+|   |   |   |
+|---|---|---|
+|   |   |   |
+|   |   |   |
+|   |   |   |
+|   |   |   |
+|   |   |   |
+|   |   |   |
+|   |   |   |
+|   |   |   |
+|   |   |   |
+|   |   |   |
+|   |   |   |
+|   |   |   |
+|   |   |   |
+|   |   |   |
 
+**EXAStorage Volume Jobs**
 
-| EXAStorage Volume Jobs | 
-| --- |
 | Name | description | Parameters |
+|---|---|---|
 | st_volume_info | Return information about volume with id vid | vid |
 | st_volume_list | List all existing volumes in the cluster. | None |
 | st_volume_set_io_status | Enable or disable application / internal io for volume | app_io, int_io, vid |
