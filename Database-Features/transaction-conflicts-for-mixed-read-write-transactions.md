@@ -147,8 +147,8 @@ When tr1a runs, separate transactions are generated to INSERT the data. In the e
 |   |   |```commit;```   |   |   |
 |   |   |   |```commit;```   |Starts a new transaction --> tr2 < tr3, since tr3 was started after tr2 ended (automatic scheduling). <br>We now have the relations tr1a < tr2 < tr3, which implies tr1a < tr3   |
 |   |   |   |```select * from CORE.STOCKS;```   |   |
-|   |```commit;```<br>**tr1b completed**   |   |```select * from CORE.PRODUCTS;```   |The result of this SELECT statement depends on when the automatic commit for tr1b occurs:<br>-> tr1b commit occurs before SELECT => relation tr1b < tr3, and the new version of data is read<br>-> SELECT occurs before tr1b commit => relation tr1b > tr3 and old version of data is read<br>There is no wait for commit in either case.   |
-|```export (SELECT * FROM STG.ETL_STOCKS) into exa at this table CORE.STOCKS;```   |**Transaction tr1c:**<br>```INSERT into CORE.STOCKS values (...);```   |   |   |   |
+|   |```commit;```<br>**tr1b completed**   |   |```select * from CORE.PRODUCTS;```   |The result of this SELECT statement depends on when the automatic commit for tr1b occurs:<br>-> tr1b commit occurs before SELECT => relation tr1b < tr3, and the new version of data is read<br>-> SELECT occurs before tr1b commit => relation tr1b > tr3 and old version of data is read<br><br>There is no wait for commit in either case.   |
+|```export (SELECT * FROM STG.ETL_STOCKS) into exa at this table CORE.STOCKS;```   |**Transaction tr1c:**<br>```INSERT into CORE.STOCKS values (...);```   |   |   |**Fine,** because tr3 < tr1c   |
 
 **Advantage of this approach**: There are several advantages:
 
