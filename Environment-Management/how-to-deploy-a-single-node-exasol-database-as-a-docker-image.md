@@ -214,7 +214,7 @@ Inside of the container, you can run some exasol specific commands to manage the
 
 **$ dwad_client list:** Gives an output about the current status of the databases.
 
-![](images/13.png)
+![](images/single_exa_on_docker8.png)
 
 As we can see the name of the database is DB1 (this can be configured in EXAConf) and the state is running. The “Connection state: up” means we can connect to the database via port 8888.
 
@@ -222,7 +222,7 @@ As we can see the name of the database is DB1 (this can be configured in EXAConf
 
 **csinfo -v** print information about one (or all) volume(s):
 
-![](images/15.png)
+![](images/single_exa_on_docker9.png)
 
 As we can see the size of the data volume is 20.00 GiB. You can also find information about the temporary volume in the output of the csinfo -v command.
 
@@ -232,7 +232,7 @@ We use DBeaver in this article. You can find more detailed information in <https
 
 We're using the public IP address of the virtual machine and port 8888, which is configured as a database port in EXAConf.
 
-![](images/16.png)
+![](images/single_exa_on_docker10.png)
 
 By default, the password of the sys user is “exasol”. Let's run an example query:
 
