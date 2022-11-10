@@ -109,9 +109,9 @@ This example is similar to Examples 1 and 2, except tr1 locks all target tables 
 |```delete from CORE.STOCKS where FALSE;```   |   |   |   |
 |```insert into CORE.PRODUCTS select * from STG.ETL_PRODUCTS;```   |   |   |   |
 |```--the insert takes a while```   |   |   |   |
-|   |   |   |   |
-|   |   |   |   |
-|   |   |   |   |
+|   |insert into STG.ETL_PRODUCTS values (...);   |   |tr1 < tr2   |
+|   |commit;   |   |   |
+|   |   |   |Starts a new transaction --> tr2 < tr3, since tr3 was started after tr2 ended (automatic scheduling).<br>We now have the relations tr1 < tr2 < tr3 which implies tr1 < tr3   |
 |   |   |   |   |
 |```insert into CORE.STOCKS select * from STG.ETL_STOCKS;```   |   |   |   |
 
