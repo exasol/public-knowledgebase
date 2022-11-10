@@ -83,34 +83,7 @@ If you see only GLOBAL JOINs, especially in joining a huge amount of data then y
 
 The compiler assumes data to be similar to the following example:
 
-
-
-|  |  |  |
-| --- | --- | --- |
-| **Node 1** | **Node 2** | **Node 3** |
-| Table T1 | Table T2 | Table T3 |
-| 
-
-|  |  |  |
-| --- | --- | --- |
-| **A** | **B** | **C** |
-| **A1** | **B1** | **C1** |
-
- | 
-
-|  |  |  |
-| --- | --- | --- |
-| **A** | **B** | **BX** |
-| A1 | **B2** | **B1** |
-
- | 
-
-|  |  |  |
-| --- | --- | --- |
-| **A** | **B** | **C** |
-| **A1** | **B2** | **C1** |
-
- |
+![](images/join_performance1.PNG)
 
 In our example, we can see that the row which matches the join is distributed on 2 nodes because they are not the same (**A1,B1**,**C1** <>**A1,B2**,**C1**). A global join will be used to compute the result.
 
@@ -130,41 +103,11 @@ distribute by A,C
 
  In our example this would lead to the following new distribution:
 
-
-
-|  |  |  |
-| --- | --- | --- |
-| **Node 1** | **Node 2** | **Node 3** |
-| Table T1 | Table T2 | Table T3 |
-| 
-
-|  |  |  |
-| --- | --- | --- |
-| **A** | **B** | **C** |
-| **A1** | **B1** | **C1** |
-| **A1** | **B2** | **C1** |
-
- | 
-
-|  |  |  |
-| --- | --- | --- |
-| **A** | **B** | **BX** |
-| A1 | **B2** | **B1** |
-| - | **-** | **-** |
-
- | 
-
-|  |  |  |
-| --- | --- | --- |
-| **A** | **B** | **C** |
-| **-** | **-** | **-** |
-| **-** | **-** | **-** |
-
- |
+![](images/join_performance2.PNG)
 
 With a distribution key A,C, the row which matches the first join is distributed now on one node, because they are t the same (A1,C1 <>A1,C1). To compute the first join a local join will be used. Every row finds a local join partner on the same node, so the network communication between the nodes on behalf of the join is not required.
 
-As a rule **a single distribution column is optimal** because more joins and aggregations can profit this way (apart from data distribution imbalances)
+As a general rule: **A single distribution column is optimal**, because more joins and aggregations can profit this way (apart from data distribution imbalances)
 
 ## Additional References
 
