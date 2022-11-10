@@ -147,75 +147,8 @@ When tr1a runs, separate transactions are generated to INSERT the data. In the e
 |   |   |commit;   |   |   |
 |   |   |   |commit;   |Starts a new transaction --> tr2 < tr3, since tr3 was started after tr2 ended (automatic scheduling). <br>We now have the relations tr1a < tr2 < tr3, which implies tr1a < tr3   |
 |   |   |   |select * from CORE.STOCKS;   |   |
-|   |   |   |   |The result of this SELECT statement depends on when the automatic commit for tr1b occurs:<br>-> tr1b commit occurs before SELECT => relation tr1b < tr3, and the new version of data is read<br>-> SELECT occurs before tr1b commit => relation tr1b > tr3 and old version of data is read<br>There is no wait for commit in either case.   |
+|   |commit;<br>**tr1b completed**   |   |select * from CORE.PRODUCTS;   |The result of this SELECT statement depends on when the automatic commit for tr1b occurs:<br>-> tr1b commit occurs before SELECT => relation tr1b < tr3, and the new version of data is read<br>-> SELECT occurs before tr1b commit => relation tr1b > tr3 and old version of data is read<br>There is no wait for commit in either case.   |
 |export (SELECT * FROM STG.ETL_STOCKS) into exa at this table CORE.STOCKS;   |Transaction tr1c:<br>INSERT into CORE.STOCKS values (...);   |   |   |   |
-
-
-
-
-
-| Transaction 1 (tr1a) | Transactions Resulting from EXPORT | Transaction 2 (tr2) | Transaction 3 (tr3) | Comment |
-| 
-```
-select * from JOBS;
-```
- |   
-| 
-```
-rollback;
-```
- |   Job cached (ETL-Tool or Lua ELT-Script) |
-| 
-```
-export (SELECT * FROM STG.ETL_PRODUCTS)into exa at this table CORE.PRODUCT; 
-```
- | **Transaction tr1b**: 
-```
-insert into CORE.PRODUCTS  values (...);
-```
- |  Using the EXPORT causes a new transaction --> tr1a has no read lock on ETL_PRODUCTS |
-| /* the select takes a while */ | /* the insert takes a while*/ |  
-|  
-```
-insert into STG.ETL_PRODUCTS  values (...);
-```
- |  tr1a < tr2; no relation to tr1b |
-|  
-```
-commit;
-```
- | 
-|   
-```
-commit;
-```
- | Starts a new transaction --> tr2 < tr3, since tr3 was started after tr2 ended (automatic scheduling). We now have the relations tr1a < tr2 < tr3, which implies tr1a < tr3 |
-|   
-```
-select * from CORE.STOCKS;
-```
- | 
-|  
-```
-commit;
-```
- **tr1b completed** |  
-```
-select * from CORE.PRODUCTS;
-```
- | The result of this SELECT statement depends on when the automatic commit for tr1b occurs:* tr1b commit occurs before SELECT => relation tr1b < tr3, and the new version of data is read
-* SELECT occurs before tr1b commit => relation tr1b > tr3 and old version of data is read
-
-There is no wait for commit in either case. |
-| 
-```
-export (SELECT * FROM STG.ETL_STOCKS)  into exa at this table CORE.STOCKS;
-```
- | **Transaction tr1c**: 
-```
-INSERT into CORE.STOCKS  values (...);
-```
- |  **Fine**, because tr3 < tr1c  |
 
 **Advantage of this approach**: There are several advantages:
 
