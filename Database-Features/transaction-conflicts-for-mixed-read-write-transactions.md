@@ -137,7 +137,18 @@ The same scenario as in example 3 but this time the ETL process uses an EXPORT s
 
 When tr1a runs, separate transactions are generated to INSERT the data. In the example below, these are tr1b and tr1c.
 
-
+| Transaction 1 (tr1a) | Transactions Resulting from EXPORT | Transaction 2 (tr2) | Transaction 3 (tr3) | Comment |
+|---|---|---|---|---|
+|```select * from JOBS;```   |   |   |   |   |
+|```rollback;```   |   |   |   |   |
+|```export (SELECT * FROM STG.ETL_PRODUCTS) into exa at this table CORE.PRODUCT;```   |**Transaction tr1b:**<br>```insert into CORE.PRODUCTS values (...);```   |   |   |   |
+|```--the select takes a while```   |   |   |   |   |
+|   |   |   |   |   |
+|   |   |   |   |   |
+|   |   |   |   |   |
+|   |   |   |   |   |
+|   |   |   |   |   |
+|   |   |   |   |   |
 
 | Transaction 1 (tr1a) | Transactions Resulting from EXPORT | Transaction 2 (tr2) | Transaction 3 (tr3) | Comment |
 | 
