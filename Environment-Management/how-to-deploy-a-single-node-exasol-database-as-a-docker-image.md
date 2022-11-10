@@ -169,6 +169,8 @@ Set the checksum within EXAConf to 'COMMIT'. This is the EXAConf integrity check
 
 It can be found in the 'Global' section, near the top of the file. Please also adjust the Timezone depending on your requirements.
 
+![](images/single_exa_on_docker7.png)
+
 ## **Step 5 Create the EXAStorage device files**
 
 EXAStorage is a distributed storage engine. All data is stored inside volumes. It also provides a failover mechanism. We recommend using a 32 GB LVM disk for EXAStorage, which can be checked by:
@@ -176,6 +178,9 @@ EXAStorage is a distributed storage engine. All data is stored inside volumes. I
 ```markup
 $ lsblk
 ```
+
+![](images/single_exa_on_docker8.png)
+
 IMPORTANT: Each device should be slightly bigger (~1%) than the required space for the volume(s), because a part of it will be reserved for metadata and checksums.
 
 ## **Step 5 Start the cluster**
@@ -194,7 +199,7 @@ Let’s user the “docker logs” command to check the log files.
 ```python
 $ docker logs -f exasoldb
 ```
-![](images/single_exa_on_docker7.png)
+![](images/single_exa_on_docker9.png)
 
 We can see 5 different stages in the logs. Stage 5 is the last and if we can see the node is online and the stage is finished this means the container and database started successfully.
 
@@ -202,6 +207,9 @@ We can see 5 different stages in the logs. Stage 5 is the last and if we can see
 ```python
 $ docker container ls
 ```
+
+![](images/single_exa_on_docker10.png)
+
 Let’s get a bash shell in the container and check the status of the database and volumes
 
 
@@ -214,15 +222,17 @@ Inside of the container, you can run some exasol specific commands to manage the
 
 **$ dwad_client list:** Gives an output about the current status of the databases.
 
-![](images/single_exa_on_docker8.png)
+![](images/single_exa_on_docker11.png)
 
 As we can see the name of the database is DB1 (this can be configured in EXAConf) and the state is running. The “Connection state: up” means we can connect to the database via port 8888.
 
 **$ csinfo -D** – Print HDD info:
 
+![](images/single_exa_on_docker12.png)
+
 **csinfo -v** print information about one (or all) volume(s):
 
-![](images/single_exa_on_docker9.png)
+![](images/single_exa_on_docker13.png)
 
 As we can see the size of the data volume is 20.00 GiB. You can also find information about the temporary volume in the output of the csinfo -v command.
 
@@ -232,7 +242,7 @@ We use DBeaver in this article. You can find more detailed information in <https
 
 We're using the public IP address of the virtual machine and port 8888, which is configured as a database port in EXAConf.
 
-![](images/single_exa_on_docker10.png)
+![](images/single_exa_on_docker14.png)
 
 By default, the password of the sys user is “exasol”. Let's run an example query:
 
@@ -240,6 +250,8 @@ By default, the password of the sys user is “exasol”. Let's run an example q
 ```markup
 SELECT * FROM EXA_SYSCAT;
 ```
+
+![](images/single_exa_on_docker15.png)
 
 ## Additional References
 
