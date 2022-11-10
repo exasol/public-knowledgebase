@@ -143,9 +143,9 @@ When tr1a runs, separate transactions are generated to INSERT the data. In the e
 |```rollback;```   |   |   |   |Job cached (ETL-Tool or Lua ELT-Script)   |
 |```export (SELECT * FROM STG.ETL_PRODUCTS) into exa at this table CORE.PRODUCT;```   |**Transaction tr1b:**<br>```insert into CORE.PRODUCTS values (...);```   |   |   |Using the EXPORT causes a new transaction --> tr1a has no read lock on ETL_PRODUCTS   |
 |```--the select takes a while```   |```--the insert takes a while```   |   |   |   |
-|   |   |   |   |   |
-|   |   |   |   |   |
-|   |   |   |   |   |
+|   |   |   |insert into STG.ETL_PRODUCTS values (...);   |tr1a < tr2; no relation to tr1b   |
+|   |   |commit;   |   |   |
+|   |   |   |commit;   |Starts a new transaction --> tr2 < tr3, since tr3 was started after tr2 ended (automatic scheduling). <br>We now have the relations tr1a < tr2 < tr3, which implies tr1a < tr3   |
 |   |   |   |   |   |
 |   |   |   |   |   |
 |export (SELECT * FROM STG.ETL_STOCKS) into exa at this table CORE.STOCKS;   |Transaction tr1c:<br>INSERT into CORE.STOCKS values (...);   |   |   |   |
