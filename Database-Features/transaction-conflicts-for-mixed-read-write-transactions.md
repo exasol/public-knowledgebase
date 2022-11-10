@@ -77,7 +77,7 @@ This example is similar to Example 1, except tr1 performs a rollback on STG.JOBS
 |   |```commit;```   |   |   |
 |   |   |```commit;```   |Starts a new transaction --> tr2 < tr3, since tr3 was started after tr2 ended (automatic scheduling).<br>We now have the relations tr1 < tr2 < tr3 which implies tr1 < tr3   |
 |   |   |```select * from CORE.STOCKS;```   |   |
-|   |   |```select * from CORE.PRODUCTS;```   |This statement ends up in**WAIT FOR COMMIT**, waiting for tr1 to finish writing to CORE.PRODUCTS.   |
+|   |   |```select * from CORE.PRODUCTS;```   |This statement ends up in **WAIT FOR COMMIT**, waiting for tr1 to finish writing to CORE.PRODUCTS.   |
 |```insert into CORE.STOCKS select * from STG.ETL_STOCKS;```   |   |   |This statement ends up in a **forced ROLLBACK**, because the resulting relation tr1 > tr3 on writing CORE.STOCKS is in conflict to the transitory relation tr1 < tr3   |
 
 As you can see, despite the rollback on STG.JOBS, a conflict still occurs. This is because tr1 is a mix of read and write statements. Such mixed transactions can have unpredictable results due to other transactions that might run in parallel. Therefore a simple rollback is not a sufficient solution for avoiding conflicts.
@@ -101,6 +101,19 @@ To demonstrate how this can be achieved and the results, have a look at Example 
 This example is similar to Examples 1 and 2, except tr1 locks all target tables in advance.
 
 
+| Transaction 1 (tr1) | Transaction 2 (tr2) | Transaction 3 (tr3) | Comment |
+|---|---|---|---|
+|```select * from STG.JOBS;```   |   |   |   |
+|```rollback;```   |   |   |Job cached (ETL-Tool or Lua ELT-Script)   |
+|```delete from CORE.PRODUCTS where FALSE;```   |   |   |   |
+|```delete from CORE.STOCKS where FALSE;```   |   |   |   |
+|```insert into CORE.PRODUCTS select * from STG.ETL_PRODUCTS;```   |   |   |   |
+|```--the insert takes a while```   |   |   |   |
+|   |   |   |   |
+|   |   |   |   |
+|   |   |   |   |
+|   |   |   |   |
+|```insert into CORE.STOCKS select * from STG.ETL_STOCKS;```   |   |   |   |
 
 | Transaction 1 (tr1) | Transaction 2 (tr2) | Transaction 3 (tr3) | Comment |
 |  
