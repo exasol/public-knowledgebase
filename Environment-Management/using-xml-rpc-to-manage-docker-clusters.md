@@ -174,20 +174,27 @@ Example 3.1: Add a remote archive volume to cluster
 
 
 ```"code-java"
->>> conn.job_exec('remote_volume_add', {'params': {'vol_type': 's3','url': 'http://bucketname.s3.amazonaws.com','username': 'ACCESS-KEY','password': 'BASE64-ENCODED-SECRET-KEY'}})   {'result_revision': 18, 'result_jobid': '11.3', 'result_output': [['r0001', 'root', '/exa/etc/remote_volumes/root.0.conf']], 'result_name': 'OK', 'result_desc': 'Success', 'result_code': 0}
+>>> conn.job_exec('remote_volume_add', {'params': {'vol_type': 's3','url': 'http://bucketname.s3.amazonaws.com','username': 'ACCESS-KEY','password': 'BASE64-ENCODED-SECRET-KEY'}})   
+
+{'result_revision': 18, 'result_jobid': '11.3', 'result_output': [['r0001', 'root', '/exa/etc/remote_volumes/root.0.conf']], 'result_name': 'OK', 'result_desc': 'Success', 'result_code': 0}
 ```
 Example 3.2: list all containing  remote volume names
 
 
 
-|  |  |  |  |
-| --- | --- | --- | --- |
 | Name | Description | Parameter | Returns |
+| --- | --- | --- | --- |
 | remote_volume_list | List all existing remote volumes | None | a list containing all remote volume names |
 
 
 ```"code-java"
->>> pprint.pprint(conn.job_exec('remote_volume_list'))  {'result_code': 0,  'result_desc': 'Success',  'result_jobid': '11.94',  'result_name': 'OK',  'result_output': ['RemoteVolume1']} 
+>>> pprint.pprint(conn.job_exec('remote_volume_list'))
+
+{'result_code': 0,
+ 'result_desc': 'Success',
+ 'result_jobid': '11.94',
+ 'result_name': 'OK',
+ 'result_output': ['RemoteVolume1']}
 ```
 Example 3.3: Connection state of the given remote volume
 
