@@ -28,8 +28,8 @@ The operations performed by each transaction are shown in the following table:
 |```insert into CORE.PRODUCTS select * from STG.ETL_PRODUCTS;```   |   |   |   |
 |```/* the insert takes a while */```   |   |   |   |
 |   |```insert into STG.JOBS values (...);```   |   |tr1 < tr2, because tr2 writes to a table that was read by tr1   |
-|   |   |   |   |
-|   |   |   |   |
+|   |```commit;```   |   |   |
+|   |   |```commit;```   |Starts a new transaction --> tr2 < tr3, since tr3 was started after tr2 ended (automatic scheduling).<br>We now have the relations tr1 < tr2 < tr3, which implies tr1 < tr3   |
 |   |   |   |   |
 |   |   |   |   |
 |   |   |   |   |  
