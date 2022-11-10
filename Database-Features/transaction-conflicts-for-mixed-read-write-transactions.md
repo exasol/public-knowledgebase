@@ -71,6 +71,7 @@ This example is similar to Example 1, except tr1 performs a rollback on STG.JOBS
 |---|---|---|---|
 |```select * from STG.JOBS;```   |   |   |   |
 |```rollback;```   |   |   |job cached (ETL-Tool or Lua ELT-Script)   |
+|```insert into CORE.PRODUCTS select * from STG.ETL_PRODUCTS;```   |   |   |   |
 |```/* the insert takes a while */```   |   |   |   |
 |   |```insert into STG.ETL_PRODUCTS values (...);```   |   |tr1 < tr2   |
 |   |```commit;```   |   |   |
