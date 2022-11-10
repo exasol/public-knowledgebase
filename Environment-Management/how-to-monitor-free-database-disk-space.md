@@ -19,18 +19,16 @@ Let's explain the calculation with an example:
 
 * available disk space on the "d03_storage" partition on all nodes: 
 
-|  |  |
-| --- | --- |
 | Node | Available Disk Size (GiB) |
+| --- | --- |
 | n0011 | 1786 |
 | n0012 | 1786 |
 | n0013 | 1786 |
 | n0014 | 1786 |
 * existing volumes, sizes, and redundancies: 
 
-|  |  |  |  |
-| --- | --- | --- | --- |
 | Volume | Type | Size | Redundancy |
+| --- | --- | --- | --- |
 | v0000 | Archive | 1024 | 2 |
 | v0001 | Data | 320 | 2 |
 | v0002 | Data, tmp | 60 | 1 |
@@ -44,11 +42,17 @@ Let's explain the calculation with an example:
 * Next step is to multiply the segment size by the redundancy of the volume:   Segment Size * Redundancy = Used Disk Space per Node  
 341.3 GiB/Node * 2 = 682.6 GiB/Node
 * This has to be done for every volume. After that we're able to fill a table with the used disk space per node like this:
+
+![](images/Sizing.png)
+
 * Now we can simply substract the used sizes from the available disk size per node:
 
    
 ```
-n0011:  1786 GiB - 213 GiB - 20 GiB                             = 1553 GiB n0012:  1786 GiB - 683 GiB - 213 GiB - 20 GiB                   = 870 GiB n0013:  1786 GiB - 683 GiB - 213 GiB - 20 GiB - 120 GiB - 7 GiB = 743 GiB n0014:  1786 GiB - 683 GiB - 120 GiB - 7 GiB                    = 976 GiB 
+n0011:  1786 GiB - 213 GiB - 20 GiB                             = 1553 GiB
+n0012:  1786 GiB - 683 GiB - 213 GiB - 20 GiB                   = 870 GiB
+n0013:  1786 GiB - 683 GiB - 213 GiB - 20 GiB - 120 GiB - 7 GiB = 743 GiB
+n0014:  1786 GiB - 683 GiB - 120 GiB - 7 GiB                    = 976 GiB
 ```
 * The minimum value over all nodes gives us the free available space: **743 GiB** with a redundancy of 1. The reason for the minimum is that all segments of a volume need to have the same size.
 
