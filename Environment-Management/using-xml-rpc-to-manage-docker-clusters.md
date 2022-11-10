@@ -215,27 +215,49 @@ Example 4.1: get node list
 
 
 
-|  |  |  |  |
-| --- | --- | --- | --- |
 | Name | Description | Parameter | Returns |
+| --- | --- | --- | --- |
 | node_list | List all cluster nodes (from EXAConf) |  None | Dict containing all cluster nodes. |
 
 
 ```"code-java"
->>> pprint.pprint( conn.job_exec('node_list'))  {'result_code': 0,  'result_desc': 'Success',  'result_jobid': '11.95',  'result_name': 'OK',  'result_output': {'11': {'disks': {'disk1': {'component': 'exastorage',                                               'devices': ['dev.1'],                                               'direct_io': True,                                               'ephemeral': False,                                               'name': 'disk1'}},                           'docker_volume': '/exa/etc/n11',                           'exposed_ports': [[8888, 8899], [6583, 6594]],                           'id': '11',                           'name': 'n11',                           'private_ip': '192.168.31.171',                           'private_net': '192.168.31.171/24',                           'uuid': 'C5ED84F591574F97A337B2EC9357B68EF0EC4EDE'}}}                 
+>>> pprint.pprint( conn.job_exec('node_list'))
+
+{'result_code': 0,
+ 'result_desc': 'Success',
+ 'result_jobid': '11.95',
+ 'result_name': 'OK',
+ 'result_output': {'11': {'disks': {'disk1': {'component': 'exastorage',
+                                              'devices': ['dev.1'],
+                                              'direct_io': True,
+                                              'ephemeral': False,
+                                              'name': 'disk1'}},
+                          'docker_volume': '/exa/etc/n11',
+                          'exposed_ports': [[8888, 8899], [6583, 6594]],
+                          'id': '11',
+                          'name': 'n11',
+                          'private_ip': '192.168.31.171',
+                          'private_net': '192.168.31.171/24',
+                          'uuid': 'C5ED84F591574F97A337B2EC9357B68EF0EC4EDE'}}}             
 ```
  Example 4.2: get node state
 
 
 
-|  |  |  |  |
-| --- | --- | --- | --- |
 | Name | Description | Parameter | Returns |
+| --- | --- | --- | --- |
 | node_state | State of all nodes (online, offline, deactivated) |  None |  A list containing a string representing the current node state. |
 
 
 ```"code-java"
->>> pprint.pprint(conn.job_exec('node_state'))  {'result_code': 0,  'result_desc': 'Success',  'result_jobid': '11.96',  'result_name': 'OK',  'result_output': {'11': 'online',                    'booted': {'11': 'Tue Jul 7 14:14:07 2020'}}} 
+>>> pprint.pprint(conn.job_exec('node_state'))
+
+{'result_code': 0,
+ 'result_desc': 'Success',
+ 'result_jobid': '11.96',
+ 'result_name': 'OK',
+ 'result_output': {'11': 'online',
+                   'booted': {'11': 'Tue Jul  7 14:14:07 2020'}}}
 ```
 **other available options:**
 
