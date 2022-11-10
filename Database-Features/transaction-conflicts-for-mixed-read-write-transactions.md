@@ -109,64 +109,11 @@ This example is similar to Examples 1 and 2, except tr1 locks all target tables 
 |```delete from CORE.STOCKS where FALSE;```   |   |   |   |
 |```insert into CORE.PRODUCTS select * from STG.ETL_PRODUCTS;```   |   |   |   |
 |```--the insert takes a while```   |   |   |   |
-|   |insert into STG.ETL_PRODUCTS values (...);   |   |tr1 < tr2   |
-|   |commit;   |   |   |
-|   |   |   |Starts a new transaction --> tr2 < tr3, since tr3 was started after tr2 ended (automatic scheduling).<br>We now have the relations tr1 < tr2 < tr3 which implies tr1 < tr3   |
-|   |   |   |   |
-|```insert into CORE.STOCKS select * from STG.ETL_STOCKS;```   |   |   |   |
-
-| Transaction 1 (tr1) | Transaction 2 (tr2) | Transaction 3 (tr3) | Comment |
-|  
-```
-select * from STG.JOBS;
-```
-  |  
-| 
-```
-rollback;
-```
- |  Job cached (ETL-Tool or Lua ELT-Script) |
-| 
-```
-delete from CORE.PRODUCTS  where FALSE;
-```
- |  
-| 
-```
-delete from CORE.STOCKS  where FALSE;
-```
- |  
-| 
-```
-insert into CORE.PRODUCTS select * from STG.ETL_PRODUCTS;
-```
- |  
-| /* the insert takes a while */ |  
-|  
-```
-insert into STG.ETL_PRODUCTS  values (...);
-```
- |  tr1 < tr2 |
-|  
-```
-commit;
-```
- | 
-|  
-```
-commit;
-```
- | Starts a new transaction --> tr2 < tr3, since tr3 was started after tr2 ended (automatic scheduling).We now have the relations tr1 < tr2 < tr3 which implies tr1 < tr3 |
-|  
-```
-select * from CORE.STOCKS;
-```
- | This statement ends up in**WAIT FOR COMMIT**, waiting for tr1 to finish writing CORE.STOCKS |
-| 
-```
-insert into CORE.STOCKS select * from STG.ETL_STOCKS;
-```
- |  **Fine**because no relation via CORE.STOCKS with tr3 (tr1 already has a write-lock on CORE.STOCKS) |
+|   |```insert into STG.ETL_PRODUCTS values (...);```   |   |tr1 < tr2   |
+|   |```commit;```   |   |   |
+|   |   |```commit;```   |Starts a new transaction --> tr2 < tr3, since tr3 was started after tr2 ended (automatic scheduling).<br>We now have the relations tr1 < tr2 < tr3 which implies tr1 < tr3   |
+|   |   |```select * from CORE.STOCKS;```   |This statement ends up in **WAIT FOR COMMIT**, waiting for tr1 to finish writing CORE.STOCKS   |
+|```insert into CORE.STOCKS select * from STG.ETL_STOCKS;```   |   |   |**Fine**, because no relation via CORE.STOCKS with tr3 (tr1 already has a write-lock on CORE.STOCKS)   |
 
 Here the problem is resolved by locking all the tables needed by tr1 in advance, thus preserving the serialization even when other transactions require these tables (other transactions must wait for tr1 to commit before they can use these tables).
 
