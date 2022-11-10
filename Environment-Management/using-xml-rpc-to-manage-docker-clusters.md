@@ -21,7 +21,8 @@ Import required modules and get the master IP:
 
 
 ```"code-java"
->>> import xmlrpclib, requests, urllib3, ssl >>> urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
+>>> import xmlrpclib, requests, urllib3, ssl 
+>>> urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 ```
 **Get current master IP** (you can use any valid IP in the cluster for this request)
 
@@ -37,7 +38,9 @@ Note: We assume you've set the root password **"testing".** You can set a passwo
 
 
 ```"code-java"
->>> connection_string = "https://root:testing@%s:443/" % master_ip >>> sslcontext = ssl._create_unverified_context() >>> conn = xmlrpclib.ServerProxy(connection_string, context = sslcontext, allow_none=True)
+>>> connection_string = "https://root:testing@%s:443/" % master_ip 
+>>> sslcontext = ssl._create_unverified_context() 
+>>> conn = xmlrpclib.ServerProxy(connection_string, context = sslcontext, allow_none=True)
 ```
 #### **The list of examples:**
 
@@ -77,7 +80,31 @@ Run a job to get information about the database:
 
 
 ```"code-java"
->>> import pprint >>> pprint.pprint(conn.job_exec('db_info', {'params': {'db_name': 'DB1'}}))  {'result_code': 0,  'result_desc': 'Success',  'result_jobid': '11.89',  'result_name': 'OK',  'result_output': {'connectible': 'Yes',                    'connection string': '192.168.31.171:8888',                    'info': '',                    'name': 'DB1',                    'nodes': {'active': ['n11'], 'failed': [], 'reserve': []},                    'operation': 'None',                    'persistent volume': 'DataVolume1',                    'quota': 0,                    'state': 'running',                    'temporary volume': 'v0001',                    'usage persistent': [{'host': 'n11',                                          'size': '10 GiB',                                          'used': '6.7109 MiB',                                          'volume id': '0'}],                    'usage temporary': [{'host': 'n11',                                         'size': '1 GiB',                                         'used': '0 B',                                         'volume id': '1'}]}}  
+>>> import pprint
+>>> pprint.pprint(conn.job_exec('db_info', {'params': {'db_name': 'DB1'}}))
+
+{'result_code': 0,
+ 'result_desc': 'Success',
+ 'result_jobid': '11.89',
+ 'result_name': 'OK',
+ 'result_output': {'connectible': 'Yes',
+                   'connection string': '192.168.31.171:8888',
+                   'info': '',
+                   'name': 'DB1',
+                   'nodes': {'active': ['n11'], 'failed': [], 'reserve': []},
+                   'operation': 'None',
+                   'persistent volume': 'DataVolume1',
+                   'quota': 0,
+                   'state': 'running',
+                   'temporary volume': 'v0001',
+                   'usage persistent': [{'host': 'n11',
+                                         'size': '10 GiB',
+                                         'used': '6.7109 MiB',
+                                         'volume id': '0'}],
+                   'usage temporary': [{'host': 'n11',
+                                        'size': '1 GiB',
+                                        'used': '0 B',
+                                        'volume id': '1'}]}}
 ```
 ### Example 2: Database jobs. How to list, start and stop databases
 
@@ -91,7 +118,13 @@ Output example:
 
 
 ```"code-java"
->>> pprint.pprint(conn.job_exec('db_list'))  {'result_code': 0,  'result_desc': 'Success',  'result_jobid': '11.91',  'result_name': 'OK',  'result_output': ['DB1']} 
+>>> pprint.pprint(conn.job_exec('db_list'))
+
+{'result_code': 0,
+ 'result_desc': 'Success',
+ 'result_jobid': '11.91',
+ 'result_name': 'OK',
+ 'result_output': ['DB1']}
 ```
 **Stop the DB1 database:**
 
@@ -99,13 +132,17 @@ Run a job to stop database DB1 in cluster:
 
 
 ```"code-java"
->>> conn.job_exec('db_stop', {'params': {'db_name': 'DB1'}})  {'result_name': 'OK', 'result_desc': 'Success', 'result_jobid': '12.11', 'result_code': 0}
+>>> conn.job_exec('db_stop', {'params': {'db_name': 'DB1'}})
+
+{'result_name': 'OK', 'result_desc': 'Success', 'result_jobid': '12.11', 'result_code': 0}
 ```
 Run a job to confirm the state of the database DB1:
 
 
 ```"code-java"
->>> conn.job_exec('db_state', {'params': {'db_name': 'DB1'}})  {'result_name': 'OK', 'result_output': 'setup', 'result_desc': 'Success', 'result_jobid': '12.12', 'result_code': 0}
+>>> conn.job_exec('db_state', {'params': {'db_name': 'DB1'}})
+
+{'result_name': 'OK', 'result_output': 'setup', 'result_desc': 'Success', 'result_jobid': '12.12', 'result_code': 0}
 ```
  Note: *'result_output': 'setup': the status of the database is "setup"*
 
@@ -113,13 +150,17 @@ Run a job to confirm the state of the database DB1:
 
 
 ```"code-java"
->>> conn.job_exec('db_start', {'params': {'db_name': 'DB1'}})  {'result_name': 'OK', 'result_desc': 'Success', 'result_jobid': '12.13', 'result_code': 0}
+>>> conn.job_exec('db_start', {'params': {'db_name': 'DB1'}})
+
+{'result_name': 'OK', 'result_desc': 'Success', 'result_jobid': '12.13', 'result_code': 0}
 ```
 Run a job to verify the state of the database of DB1 is up and running:
 
 
 ```"code-java"
->>> conn.job_exec('db_state', {'params': {'db_name': 'DB1'}})  {'result_name': 'OK', 'result_output': 'running', 'result_desc': 'Success', 'result_jobid': '12.14', 'result_code': 0}
+>>> conn.job_exec('db_state', {'params': {'db_name': 'DB1'}})
+
+{'result_name': 'OK', 'result_output': 'running', 'result_desc': 'Success', 'result_jobid': '12.14', 'result_code': 0}
 ```
 ### Example 3: Working with archive volumes
 
@@ -127,10 +168,9 @@ Example 3.1: Add a remote archive volume to cluster
 
 
 
-|  |  |  |
-| --- | --- | --- |
 | Name | Description | Parameters |
-| remote_volume_add | Add a remote volume | vol_type, url**optional**: remote_volume_name, username, password, labels, options, owner, allowed_userssubstitutes: remote_volume_id**allowed_groups:** root, exaadm, exastoradm**notes**: * 'ID' is assigned automatically if omitted (10000 + next free ID) * 'ID' must be >= 10000 if specified
+| --- | --- | --- |
+| remote_volume_add | Add a remote volume | vol_type, url **optional**: remote_volume_name, username, password, labels, options, owner, allowed_userssubstitutes: remote_volume_id **allowed_groups:** root, exaadm, exastoradm **notes**: * 'ID' is assigned automatically if omitted (10000 + next free ID) * 'ID' must be >= 10000 if specified
 * 'name' may be empty (for backwards compat.) and is generated from 'ID' in that case (*"r%04i" % ('ID' - 10000*))
 * if 'owner' is omitted, the requesting user becomes the owner
  |
