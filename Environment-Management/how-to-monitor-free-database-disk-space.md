@@ -93,25 +93,13 @@ To monitor the free space of an EXASolution database instance we need the follow
 
 All those data are provided by the EXAoperation XMLRPC interface since EXASuite 4.2. You can use the following functions:
 
+|   |   |
+|---|---|
+|```node.getDiskStates()```   |information about the available space of the storage partition   |
+|```database.getDatabaseInfo()```   |volumes and its usages used by the database   |
+|```storage.getVolumeInfo(volume)```   |volume sizes and redundancies   |
 
 
-|  |  |
-| --- | --- |
-|   
-```"code-java"
-node.getDiskStates()
-```
-   | information about the available space of the storage partition |
-|   
-```"code-java"
-database.getDatabaseInfo()
-```
-   | volumes and its usages used by the database |
-|   
-```"code-java"
-storage.getVolumeInfo(volume)
-```
-   | volume sizes and redundancies |
 
 Please check the EXAoperation user manual for a full description of how to use those functions. You can find this manual on our user portal: [https://www.exasol.com/portal/display/DOWNLOAD/6.0](https://www.exasol.com/portal/display/DOWNLOAD/5.0)
 
