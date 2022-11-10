@@ -94,11 +94,11 @@ NOTE: You need to add --privileged option because the host directory belongs to 
   
 
 
-![](images/1.png)
+![](images/single_exa_on_docker1.png)
 
 After the command has finished, the directory $CONTAINER_EXA contains all subdirectories as well as an EXAConf template (in /etc).
 
-![](images/2.png)
+![](images/single_exa_on_docker2.png)
 
 ## **Step 3** **Complete a configuration file**
 
@@ -106,7 +106,7 @@ The configuration has to be completed before the Exasol DB container can be star
 
 The configuration file is EXAConf and it’s stored in the “$CONTAINER_EXA/etc” folder. To be able to start a container these options have to be configured:
 
-![](images/3.png)
+![](images/single_exa_on_docker3.png)
 
 * A private network of all nodes (Public network is not mandatory in docker version of Exasol DB)
 * EXAStorage device(s)
@@ -134,7 +134,7 @@ In this case, the IP address of Linux the virtual machine is **10.1.2.4/24**.
 
 Use the dev.1 file as an EXAStorage device for Exasol DB and mount the LVM disk to it.
 
-![](images/4.png)
+![](images/single_exa_on_docker4.png)
 
 3) EXAVolume configuration
 
@@ -144,13 +144,13 @@ Volumes in Exasol serve three different purposes. You can find detailed informat
 
 Since it’s recommended to use less disk space than the size of LVM disk (because Exasol will create a temporary volume and there should be a free disk space for it), we'll use 20 GiB space for the volume. The actual size of the volume increases or decreases depending on the data stored.
 
-![](images/6.png)
+![](images/single_exa_on_docker5.png)
 
 4) Network port numbers
 
 Since you should use the host network mode (see "Start the cluster" below), you have to adjust the port numbers used by the Exasol services. The one that's most likely to collide is the SSH daemon, which is using the well-known port 22. We change it to 2222 in EXAConf file:
 
-![](images/7.png)
+![](images/single_exa_on_docker6.png)
 
 The other Exasol services (e. g. Cored, BucketFS, and the DB itself) are using port numbers above 1024. However, you can change them all by editing EXAConf. In this example, we use the default ports.
 
@@ -194,7 +194,7 @@ Let’s user the “docker logs” command to check the log files.
 ```python
 $ docker logs -f exasoldb
 ```
-![](images/11.png)
+![](images/single_exa_on_docker7.png)
 
 We can see 5 different stages in the logs. Stage 5 is the last and if we can see the node is online and the stage is finished this means the container and database started successfully.
 
