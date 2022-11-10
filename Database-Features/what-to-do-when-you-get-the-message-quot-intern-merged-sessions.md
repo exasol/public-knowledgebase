@@ -29,28 +29,7 @@ When you check the conflict in EXA_DBA_TRANSACTION_CONFLICTS, it shows the confl
 |T1   |```@set autocommit off;```<br>```CREATE OR REPLACE TABLE TEST.T2 LIKE TEST.T1;```   |   |read locks table TEST.T1   |
 |T2   |   |```INSERT INTO TEST.T1 SELECT * FROM TEST.T3;```   |write locks TEST.T1   |
 |T3   |   |```/* EXAConnection.commit() */ commit;```   |   |
-|T4   |```INSERT INTO TEST.T1 SELECT * FROM TEST.T3;```   |   |attempts to write lock table TEST.T1 which causes transaction conflict   |
-
-
-|  |  |  |  |
-| --- | --- | --- | --- |
-| **Time** | **Session S1** | **Session S2** | **Note** |
-| T1 | 
-```sql
-@set autocommit off CREATE OR REPLACE TABLE TEST.T2 LIKE TEST.T1;
-```
- |  read locks table TEST.T1 |
-|  T2 |  
-```sql
-INSERT INTO TEST.T1 SELECT * FROM TEST.T3
-```
- | write locks TEST.T1 |
-| T3 |   /* EXAConnection.commit() */ commit; | 
-| T4 | 
-```sql
-INSERT INTO TEST.T1 values(1);
-```
- |  attempts to write lock table TEST.T1 which causes transaction conflict |
+|T4   |```INSERT INTO TEST.T1 values(1);```   |   |attempts to write lock table TEST.T1 which causes transaction conflict   |
 
 Whenever two transactions are merged, the resulting "super-transaction" has all the object locks of the composing transactions (read and write locks). While this improves performance and memory footprint, we lose the ability to identify single sessions for conflicts. This is indicated by the 'intern merged sessions' conflict info.  
 We use a heuristic to merged active transactions (that may be involved in potential conflicts).
@@ -69,11 +48,10 @@ DELETE FROM <table> WHERE FALSE;
 ```
 Example:
 
-
 ```sql
 DELETE FROM TEST.T1 WHERE FALSE;
 ```
-It is not possible to determine the exact conflict from system tables when the transaction is merged and**if it happens regularly, the best practices on avoiding transaction conflicts does not help and** you need further clarity on the exact conflict, [contact Exasol support](https://community.exasol.com/t5/support/ct-p/Support) and send the [session and server logs](https://docs.exasol.com/administration/on-premise/support/logs_files_for_sql_server_processes.htm) for the day that the conflict occurred. 
+It is not possible to determine the exact conflict from system tables when the transaction is merged and **if it happens regularly, the best practices on avoiding transaction conflicts does not help and** you need further clarity on the exact conflict, [contact Exasol support](https://community.exasol.com/t5/support/ct-p/Support) and send the [session and server logs](https://docs.exasol.com/administration/on-premise/support/logs_files_for_sql_server_processes.htm) for the day that the conflict occurred. 
 
 ## Additional References
 
