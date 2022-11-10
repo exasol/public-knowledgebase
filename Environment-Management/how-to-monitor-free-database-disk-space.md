@@ -68,13 +68,17 @@ This results in the data volume usually aren't used completely by the database a
 | --- | --- | --- | --- | --- | --- |
 | v0001 | Used 200 GiB | Unused 120 GiB | Redundancy=2 | 2 * 120 GiB = 240 GiB Free | 2 * 200 GiB = 400 GiB Used |
 | v0002 | Used 30 GiB | Unused 20 GiB | Redundancy=1 | 1 * 20 GiB = 20 GiB Free | 1 * 30 GiB = 30 GiB Used |
-|    260 GiB Free | 430 GiB Used |
+|  |  |  |  |    260 GiB Free | 430 GiB Used |
 
 Now we can calculate the available space for the database which is using the volumes v0001 and v0002:
 
 
 ```
-Free = available space for volumes + available space inside the DB volume Free = 743 GiB + 260 GiB = 1003 GiB Free (with a redundancy of 1)  Usage = (1 - (free space / (free space + used space))) * 100% Usage = (1 - (1003 GiB / (1003 GiB + 430 GiB))) * 100% = 30%  
+Free = available space for volumes + available space inside the DB volume
+Free = 743 GiB + 260 GiB = 1003 GiB Free (with a redundancy of 1)
+
+Usage = (1 - (free space / (free space + used space))) * 100%
+Usage = (1 - (1003 GiB / (1003 GiB + 430 GiB))) * 100% = 30% 
 ```
 ### How to get the necessary data for monitoring the free space
 
