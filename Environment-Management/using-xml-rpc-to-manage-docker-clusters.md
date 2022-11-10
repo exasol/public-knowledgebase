@@ -170,9 +170,9 @@ Example 3.1: Add a remote archive volume to cluster
 
 | Name | Description | Parameters |
 | --- | --- | --- |
-| remote_volume_add | Add a remote volume | vol_type, url **optional**: remote_volume_name, username, password, labels, options, owner, allowed_userssubstitutes: remote_volume_id **allowed_groups:** root, exaadm, exastoradm **notes**: * 'ID' is assigned automatically if omitted (10000 + next free ID) * 'ID' must be >= 10000 if specified
-* 'name' may be empty (for backwards compat.) and is generated from 'ID' in that case (*"r%04i" % ('ID' - 10000*))
-* if 'owner' is omitted, the requesting user becomes the owner
+| remote_volume_add | Add a remote volume | vol_type, url <br>**optional**: remote_volume_name, username, password, labels, options, owner, allowed_users<br>substitutes: remote_volume_id <br>**allowed_groups:** root, exaadm, exastoradm **notes**: * 'ID' is assigned automatically if omitted (10000 + next free ID) <br>--> 'ID' must be >= 10000 if specified
+<br>--> 'name' may be empty (for backwards compat.) and is generated from 'ID' in that case (*"r%04i" % ('ID' - 10000*))
+<br>--> if 'owner' is omitted, the requesting user becomes the owner
  |
 
 
