@@ -203,11 +203,13 @@ Example 3.3: Connection state of the given remote volume
 |  |  |  |  |
 | --- | --- | --- | --- |
 | Name | Description | Parameter | Returns |
-| remote_volume_state | Return the connection state of the given remote volume, online / Unmounted / Connection problem | remote_volume_namesubstitutes: remote_volume_id | List of the connection state of the given remote volume on all nodes |
+| remote_volume_state | Return the connection state of the given remote volume, online / Unmounted / Connection problem | remote_volume_name <br>substitutes: remote_volume_id | List of the connection state of the given remote volume on all nodes |
 
 
 ```"code-java"
->>> conn.job_exec('remote_volume_state',  {'params': {'remote_volume_name': 'r0001'}})  {'result_name': 'OK', 'result_output': ['Online'], 'result_desc': 'Success', 'result_jobid': '11.10', 'result_code': 0} 
+>>> conn.job_exec('remote_volume_state',  {'params': {'remote_volume_name': 'r0001'}})
+
+{'result_name': 'OK', 'result_output': ['Online'], 'result_desc': 'Success', 'result_jobid': '11.10', 'result_code': 0} 
 ```
 ### Example 4: Manage cluster nodes
 
@@ -265,11 +267,11 @@ Example 4.1: get node list
 
 |  |  |  |  |
 | --- | --- | --- | --- |
-| node_add | Add a node to the cluster | priv_net**optional**: id, name, pub_net, space_warn_threshold, bg_rec_limit**allowed_groups:** root, exaadm | int node_id |
-| node_remove | Remove a node from the cluster | node_id**optional**: force**allowed_groups:** root, exaadm | None |
+| node_add | Add a node to the cluster | priv_net<br>**optional**: id, name, pub_net, space_warn_threshold, bg_rec_limit<br>**allowed_groups:** root, exaadm | int node_id |
+| node_remove | Remove a node from the cluster | node_id<br>**optional**: force<br>**allowed_groups:** root, exaadm | None |
 | node_info | Single node info with extended information (Cored, platform, load, state) | None | See the output of cosnodeinfo |
-| node_suspend | Suspend node, i. e. mark it as "permanently offline". | node_id**allowed_groups:** root, exaadm | mark one node as suspended |
-| node_resume | Manually resume a suspended node. | node_id**allowed_groups:** root, exaadm | unmark one suspended node |
+| node_suspend | Suspend node, i. e. mark it as "permanently offline". | node_id<br>**allowed_groups:** root, exaadm | mark one node as suspended |
+| node_resume | Manually resume a suspended node. | node_id<br>**allowed_groups:** root, exaadm | unmark one suspended node |
 
 ### Example 5: EXAStorage volume jobs
 
@@ -277,14 +279,92 @@ Example 4.1: get node list
 
 
 
-|  |  |  |  |
-| --- | --- | --- | --- |
 | Name | Description | Parameter | Returns |
+| --- | --- | --- | --- |
 | st_volume_list | List all existing volumes in the cluster. | none | List of dicts |
 
 
 ```"code-java"
->>> pprint.pprint(conn.job_exec('st_volume_list'))  {'result_code': 0,  'result_desc': 'Success',  'result_jobid': '11.97',  'result_name': 'OK',  'result_output': [{'app_io_enabled': True,                     'block_distribution': 'vertical',                     'block_size': 4096,                     'bytes_per_block': 4096,                     'group': 500,                     'hdd_type': 'disk1',                     'hdds_per_node': 1,                     'id': '0',                     'int_io_enabled': True,                     'labels': ['#Name#DataVolume1', 'pub:DB1_persistent'],                     'name': 'DataVolume1',                     'nodes_list': [{'id': 11, 'unrecovered_segments': 0}],                     'num_master_nodes': 1,                     'owner': 500,                     'permissions': 'rwx------',                     'priority': 10,                     'redundancy': 1,                     'segments': [{'end_block': '2621439',                                   'index': '0',                                   'nid': 0,                                   'partitions': [],                                   'phys_nid': 11,                                   'sid': '0',                                   'start_block': '0',                                   'state': 'ONLINE',                                   'type': 'MASTER',                                   'vid': '0'}],                     'shared': True,                     'size': '10 GiB',                     'snapshots': [],                     'state': 'ONLINE',                     'stripe_size': 262144,                     'type': 'MASTER',                     'unlock_conditions': [],                     'use_crc': True,                     'users': [[30, False]],                     'volume_nodes': [11]},                    {'app_io_enabled': True,                     'block_distribution': 'vertical',                     'block_size': 4096,                     'bytes_per_block': 4096,                     'group': 500,                     'hdd_type': 'disk1',                     'hdds_per_node': 1,                     'id': '1',                     'int_io_enabled': True,                     'labels': ['temporary', 'pub:DB1_temporary'],                     'name': 'v0001',                     'nodes_list': [{'id': 11, 'unrecovered_segments': 0}],                     'num_master_nodes': 1,                     'owner': 500,                     'permissions': 'rwx------',                     'priority': 10,                     'redundancy': 1,                     'segments': [{'end_block': '262143',                                   'index': '0',                                   'nid': 0,                                   'partitions': [],                                   'phys_nid': 11,                                   'sid': '0',                                   'start_block': '0',                                   'state': 'ONLINE',                                   'type': 'MASTER',                                   'vid': '1'}],                     'shared': True,                     'size': '1 GiB',                     'snapshots': [],                     'state': 'ONLINE',                     'stripe_size': 262144,                     'type': 'MASTER',                     'unlock_conditions': [],                     'use_crc': True,                     'users': [[30, False]],                     'volume_nodes': [11]}]} 
+>>> pprint.pprint(conn.job_exec('st_volume_list'))
+
+{'result_code': 0,
+ 'result_desc': 'Success',
+ 'result_jobid': '11.97',
+ 'result_name': 'OK',
+ 'result_output': [{'app_io_enabled': True,
+                    'block_distribution': 'vertical',
+                    'block_size': 4096,
+                    'bytes_per_block': 4096,
+                    'group': 500,
+                    'hdd_type': 'disk1',
+                    'hdds_per_node': 1,
+                    'id': '0',
+                    'int_io_enabled': True,
+                    'labels': ['#Name#DataVolume1', 'pub:DB1_persistent'],
+                    'name': 'DataVolume1',
+                    'nodes_list': [{'id': 11, 'unrecovered_segments': 0}],
+                    'num_master_nodes': 1,
+                    'owner': 500,
+                    'permissions': 'rwx------',
+                    'priority': 10,
+                    'redundancy': 1,
+                    'segments': [{'end_block': '2621439',
+                                  'index': '0',
+                                  'nid': 0,
+                                  'partitions': [],
+                                  'phys_nid': 11,
+                                  'sid': '0',
+                                  'start_block': '0',
+                                  'state': 'ONLINE',
+                                  'type': 'MASTER',
+                                  'vid': '0'}],
+                    'shared': True,
+                    'size': '10 GiB',
+                    'snapshots': [],
+                    'state': 'ONLINE',
+                    'stripe_size': 262144,
+                    'type': 'MASTER',
+                    'unlock_conditions': [],
+                    'use_crc': True,
+                    'users': [[30, False]],
+                    'volume_nodes': [11]},
+                   {'app_io_enabled': True,
+                    'block_distribution': 'vertical',
+                    'block_size': 4096,
+                    'bytes_per_block': 4096,
+                    'group': 500,
+                    'hdd_type': 'disk1',
+                    'hdds_per_node': 1,
+                    'id': '1',
+                    'int_io_enabled': True,
+                    'labels': ['temporary', 'pub:DB1_temporary'],
+                    'name': 'v0001',
+                    'nodes_list': [{'id': 11, 'unrecovered_segments': 0}],
+                    'num_master_nodes': 1,
+                    'owner': 500,
+                    'permissions': 'rwx------',
+                    'priority': 10,
+                    'redundancy': 1,
+                    'segments': [{'end_block': '262143',
+                                  'index': '0',
+                                  'nid': 0,
+                                  'partitions': [],
+                                  'phys_nid': 11,
+                                  'sid': '0',
+                                  'start_block': '0',
+                                  'state': 'ONLINE',
+                                  'type': 'MASTER',
+                                  'vid': '1'}],
+                    'shared': True,
+                    'size': '1 GiB',
+                    'snapshots': [],
+                    'state': 'ONLINE',
+                    'stripe_size': 262144,
+                    'type': 'MASTER',
+                    'unlock_conditions': [],
+                    'use_crc': True,
+                    'users': [[30, False]],
+                    'volume_nodes': [11]}]}
 ```
  Example 5.2: Get information about volume with id "vid"
 
