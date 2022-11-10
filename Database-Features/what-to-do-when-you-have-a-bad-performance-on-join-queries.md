@@ -50,10 +50,10 @@ alter session set query_cache='off';
 SELECT *  
 FROM T1  
 join T2  
-on **T2.Bx = T1.B**  
+on T2.Bx = T1.B  
 and T2.A = T1.A  
 join T3  
-on **T3.B = T2.B**  
+on T3.B = T2.B  
 and T3.A = T2.A  
 and T3.C = T1.C;  
   
@@ -67,9 +67,8 @@ where session_id = current_session;
 
 
 
-|  |  |  |  |  |  |  |
-| --- | --- | --- | --- | --- | --- | --- |
 | **PART_ID** | **PART_NAME** | **PART_INFO** | **OBJECT_SCHEMA** | **OBJECT_NAME** | **OBJECT_ROWS** | **OUT_ROWS** |
+| --- | --- | --- | --- | --- | --- | --- |
 | 1 | COMPILE / EXECUTE |   |   |   |   |   |
 | 2 | PUSHDOWN |   |   |   |   |   |
 | 3 | SCAN |   | TEST | A | 4356367676 | 9664506 |
