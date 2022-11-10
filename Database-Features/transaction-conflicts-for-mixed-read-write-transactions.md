@@ -67,7 +67,17 @@ However, although this solves the particular scenario of Example 1, transaction 
 
 This example is similar to Example 1, except tr1 performs a rollback on STG.JOBS after reading from it. This resolves Example 1's problem (not shown in the table below). However, another transaction (tr2) does an insert on a staging table used by tr1 (STG.ETL_PRODUCTS), which results in a simliar transaction collision.
 
-
+| Transaction 1 (tr1) | Transaction 2 (tr2) | Transaction 3 (tr3) | Comment |
+|---|---|---|---|
+|```select * from STG.JOBS;```   |   |   |   |
+|```rollback;```   |   |   |job cached (ETL-Tool or Lua ELT-Script)   |
+|```/* the insert takes a while */```   |   |   |   |
+|   |   |   |   |
+|   |   |   |   |
+|   |   |   |   |
+|   |   |   |   |
+|   |   |   |   |
+|   |   |   |   |
 
 | Transaction 1 (tr1) | Transaction 2 (tr2) | Transaction 3 (tr3) | Comment |
 | 
