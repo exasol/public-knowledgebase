@@ -142,13 +142,13 @@ When tr1a runs, separate transactions are generated to INSERT the data. In the e
 |```select * from JOBS;```   |   |   |   |   |
 |```rollback;```   |   |   |   |   |
 |```export (SELECT * FROM STG.ETL_PRODUCTS) into exa at this table CORE.PRODUCT;```   |**Transaction tr1b:**<br>```insert into CORE.PRODUCTS values (...);```   |   |   |   |
-|```--the select takes a while```   |   |   |   |   |
+|```--the select takes a while```   |```--the insert takes a while```   |   |   |   |
 |   |   |   |   |   |
 |   |   |   |   |   |
 |   |   |   |   |   |
 |   |   |   |   |   |
 |   |   |   |   |   |
-|   |   |   |   |   |
+|export (SELECT * FROM STG.ETL_STOCKS) into exa at this table CORE.STOCKS;   |Transaction tr1c:<br>INSERT into CORE.STOCKS values (...);   |   |   |   |
 
 | Transaction 1 (tr1a) | Transactions Resulting from EXPORT | Transaction 2 (tr2) | Transaction 3 (tr3) | Comment |
 | 
