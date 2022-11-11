@@ -29,7 +29,7 @@ The operations performed by each transaction are shown in the following table:
 |```/* the insert takes a while */```   |   |   |   |
 |   |```insert into STG.JOBS values (...);```   |   |tr1 &lt; tr2, because tr2 writes to a table that was read by tr1   |
 |   |```commit;```   |   |   |
-|   |   |```commit;```   |Starts a new transaction --&gt; tr2 &lt; tr3, since tr3 was started after tr2 ended (automatic scheduling).<br>We now have the relations tr1 &lt; tr2 &lt; tr3, which implies tr1 &lt; tr3   |
+|   |   |```commit;```   |Starts a new transaction --&gt; tr2 &lt; tr3, since tr3 was started after tr2 ended (automatic scheduling).<br />We now have the relations tr1 &lt; tr2 &lt; tr3, which implies tr1 &lt; tr3   |
 |   |   |```select * from CORE.STOCKS;```   |   |
 |   |   |```select * from CORE.PRODUCTS;```   |This statement ends up in **WAIT FOR COMMIT**, waiting for tr1 to finish writing CORE.PRODUCTS   |
 |```insert into CORE.STOCKS select * from STG.ETL_STOCKS;```   |   |   |This statement ends up in a **forced ROLLBACK** because the resulting relation tr1 &gt; tr3 on writing CORE.STOCKS is in conflict to the transitory relation tr1 &lt; tr3   |  
@@ -75,7 +75,7 @@ This example is similar to Example 1, except tr1 performs a rollback on STG.JOBS
 |```/* the insert takes a while */```   |   |   |   |
 |   |```insert into STG.ETL_PRODUCTS values (...);```   |   |tr1 &lt; tr2   |
 |   |```commit;```   |   |   |
-|   |   |```commit;```   |Starts a new transaction --&gt; tr2 &lt; tr3, since tr3 was started after tr2 ended (automatic scheduling).<br>We now have the relations tr1 &lt; tr2 &lt; tr3 which implies tr1 &lt; tr3   |
+|   |   |```commit;```   |Starts a new transaction --&gt; tr2 &lt; tr3, since tr3 was started after tr2 ended (automatic scheduling).<br />We now have the relations tr1 &lt; tr2 &lt; tr3 which implies tr1 &lt; tr3   |
 |   |   |```select * from CORE.STOCKS;```   |   |
 |   |   |```select * from CORE.PRODUCTS;```   |This statement ends up in **WAIT FOR COMMIT**, waiting for tr1 to finish writing to CORE.PRODUCTS.   |
 |```insert into CORE.STOCKS select * from STG.ETL_STOCKS;```   |   |   |This statement ends up in a **forced ROLLBACK**, because the resulting relation tr1 &gt; tr3 on writing CORE.STOCKS is in conflict to the transitory relation tr1 &lt; tr3   |
@@ -111,7 +111,7 @@ This example is similar to Examples 1 and 2, except tr1 locks all target tables 
 |```--the insert takes a while```   |   |   |   |
 |   |```insert into STG.ETL_PRODUCTS values (...);```   |   |tr1 &lt; tr2   |
 |   |```commit;```   |   |   |
-|   |   |```commit;```   |Starts a new transaction --&gt; tr2 &lt; tr3, since tr3 was started after tr2 ended (automatic scheduling).<br>We now have the relations tr1 &lt; tr2 &lt; tr3 which implies tr1 &lt; tr3   |
+|   |   |```commit;```   |Starts a new transaction --&gt; tr2 &lt; tr3, since tr3 was started after tr2 ended (automatic scheduling).<br />We now have the relations tr1 &lt; tr2 &lt; tr3 which implies tr1 &lt; tr3   |
 |   |   |```select * from CORE.STOCKS;```   |This statement ends up in **WAIT FOR COMMIT**, waiting for tr1 to finish writing CORE.STOCKS   |
 |```insert into CORE.STOCKS select * from STG.ETL_STOCKS;```   |   |   |**Fine**, because no relation via CORE.STOCKS with tr3 (tr1 already has a write-lock on CORE.STOCKS)   |
 
@@ -141,14 +141,14 @@ When tr1a runs, separate transactions are generated to INSERT the data. In the e
 |---|---|---|---|---|
 |```select * from JOBS;```   |   |   |   |   |
 |```rollback;```   |   |   |   |Job cached (ETL-Tool or Lua ELT-Script)   |
-|```export (SELECT * FROM STG.ETL_PRODUCTS) into exa at this table CORE.PRODUCT;```   |**Transaction tr1b:**<br>```insert into CORE.PRODUCTS values (...);```   |   |   |Using the EXPORT causes a new transaction --&gt; tr1a has no read lock on ETL_PRODUCTS   |
+|```export (SELECT * FROM STG.ETL_PRODUCTS) into exa at this table CORE.PRODUCT;```   |**Transaction tr1b:**<br />```insert into CORE.PRODUCTS values (...);```   |   |   |Using the EXPORT causes a new transaction --&gt; tr1a has no read lock on ETL_PRODUCTS   |
 |```--the select takes a while```   |```--the insert takes a while```   |   |   |   |
 |   |   |```insert into STG.ETL_PRODUCTS values (...);```   |   |tr1a &lt; tr2; no relation to tr1b   |
 |   |   |```commit;```   |   |   |
-|   |   |   |```commit;```   |Starts a new transaction --&gt; tr2 &lt; tr3, since tr3 was started after tr2 ended (automatic scheduling). <br>We now have the relations tr1a &lt; tr2 &lt; tr3, which implies tr1a &lt; tr3   |
+|   |   |   |```commit;```   |Starts a new transaction --&gt; tr2 &lt; tr3, since tr3 was started after tr2 ended (automatic scheduling). <br />We now have the relations tr1a &lt; tr2 &lt; tr3, which implies tr1a &lt; tr3   |
 |   |   |   |```select * from CORE.STOCKS;```   |   |
-|   |```commit;```<br>**tr1b completed**   |   |```select * from CORE.PRODUCTS;```   |The result of this SELECT statement depends on when the automatic commit for tr1b occurs:<br>-&gt; tr1b commit occurs before SELECT =&gt; relation tr1b &lt; tr3, and the new version of data is read<br>-&gt; SELECT occurs before tr1b commit =&gt; relation tr1b &gt; tr3 and old version of data is read<br><br>There is no wait for commit in either case.   |
-|```export (SELECT * FROM STG.ETL_STOCKS) into exa at this table CORE.STOCKS;```   |**Transaction tr1c:**<br>```INSERT into CORE.STOCKS values (...);```   |   |   |**Fine,** because tr3 &lt; tr1c   |
+|   |```commit;```<br />**tr1b completed**   |   |```select * from CORE.PRODUCTS;```   |The result of this SELECT statement depends on when the automatic commit for tr1b occurs:<br />-&gt; tr1b commit occurs before SELECT =&gt; relation tr1b &lt; tr3, and the new version of data is read<br />-&gt; SELECT occurs before tr1b commit =&gt; relation tr1b &gt; tr3 and old version of data is read<br /><br />There is no wait for commit in either case.   |
+|```export (SELECT * FROM STG.ETL_STOCKS) into exa at this table CORE.STOCKS;```   |**Transaction tr1c:**<br />```INSERT into CORE.STOCKS values (...);```   |   |   |**Fine,** because tr3 &lt; tr1c   |
 
 **Advantage of this approach**: There are several advantages:
 
