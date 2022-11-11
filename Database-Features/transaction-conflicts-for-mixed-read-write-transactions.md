@@ -27,12 +27,12 @@ The operations performed by each transaction are shown in the following table:
 |```select * from STG.JOBS;```   |   |   |   |
 |```insert into CORE.PRODUCTS select * from STG.ETL_PRODUCTS;```   |   |   |   |
 |```/* the insert takes a while */```   |   |   |   |
-|   |```insert into STG.JOBS values (...);```   |   |tr1 < tr2, because tr2 writes to a table that was read by tr1   |
+|   |```insert into STG.JOBS values (...);```   |   |tr1 &lt; tr2, because tr2 writes to a table that was read by tr1   |
 |   |```commit;```   |   |   |
-|   |   |```commit;```   |Starts a new transaction --> tr2 < tr3, since tr3 was started after tr2 ended (automatic scheduling).<br>We now have the relations tr1 < tr2 < tr3, which implies tr1 < tr3   |
+|   |   |```commit;```   |Starts a new transaction --&gt; tr2 &lt; tr3, since tr3 was started after tr2 ended (automatic scheduling).<br>We now have the relations tr1 &lt; tr2 &lt; tr3, which implies tr1 &lt; tr3   |
 |   |   |```select * from CORE.STOCKS;```   |   |
 |   |   |```select * from CORE.PRODUCTS;```   |This statement ends up in **WAIT FOR COMMIT**, waiting for tr1 to finish writing CORE.PRODUCTS   |
-|```insert into CORE.STOCKS select * from STG.ETL_STOCKS;```   |   |   |This statement ends up in a **forced ROLLBACK** because the resulting relation tr1 > tr3 on writing CORE.STOCKS is in conflict to the transitory relation tr1 < tr3   |  
+|```insert into CORE.STOCKS select * from STG.ETL_STOCKS;```   |   |   |This statement ends up in a **forced ROLLBACK** because the resulting relation tr1 &gt; tr3 on writing CORE.STOCKS is in conflict to the transitory relation tr1 &lt; tr3   |  
 
 The relations between the transactions are based on the chronological operations:
 
@@ -40,7 +40,7 @@ The relations between the transactions are based on the chronological operations
 * tr3 is automatically scheduled to run after tr2 has completed, and has a relation to tr2.
 * Because tr2 and tr3 are related, it is implied that tr3 is also related to tr1.
 
-The core concept of serialization - that all related transactions run as if they were sequential - means that the data in the database must be written and read as if the three transactions were run one after another: tr1 => tr2 => tr3.
+The core concept of serialization - that all related transactions run as if they were sequential - means that the data in the database must be written and read as if the three transactions were run one after another: tr1 =&gt; tr2 =&gt; tr3.
 
 The principle conflict in this example is caused when tr1 tries to write to CORE.STOCKS after tr3 has read from it. If we focus only CORE.STOCKS, the relations between tr1 and tr3 mean that the changes to the table should occur sequentially as follows: 
 
@@ -73,12 +73,12 @@ This example is similar to Example 1, except tr1 performs a rollback on STG.JOBS
 |```rollback;```   |   |   |job cached (ETL-Tool or Lua ELT-Script)   |
 |```insert into CORE.PRODUCTS select * from STG.ETL_PRODUCTS;```   |   |   |   |
 |```/* the insert takes a while */```   |   |   |   |
-|   |```insert into STG.ETL_PRODUCTS values (...);```   |   |tr1 < tr2   |
+|   |```insert into STG.ETL_PRODUCTS values (...);```   |   |tr1 &lt; tr2   |
 |   |```commit;```   |   |   |
-|   |   |```commit;```   |Starts a new transaction --> tr2 < tr3, since tr3 was started after tr2 ended (automatic scheduling).<br>We now have the relations tr1 < tr2 < tr3 which implies tr1 < tr3   |
+|   |   |```commit;```   |Starts a new transaction --&gt; tr2 &lt; tr3, since tr3 was started after tr2 ended (automatic scheduling).<br>We now have the relations tr1 &lt; tr2 &lt; tr3 which implies tr1 &lt; tr3   |
 |   |   |```select * from CORE.STOCKS;```   |   |
 |   |   |```select * from CORE.PRODUCTS;```   |This statement ends up in **WAIT FOR COMMIT**, waiting for tr1 to finish writing to CORE.PRODUCTS.   |
-|```insert into CORE.STOCKS select * from STG.ETL_STOCKS;```   |   |   |This statement ends up in a **forced ROLLBACK**, because the resulting relation tr1 > tr3 on writing CORE.STOCKS is in conflict to the transitory relation tr1 < tr3   |
+|```insert into CORE.STOCKS select * from STG.ETL_STOCKS;```   |   |   |This statement ends up in a **forced ROLLBACK**, because the resulting relation tr1 &gt; tr3 on writing CORE.STOCKS is in conflict to the transitory relation tr1 &lt; tr3   |
 
 As you can see, despite the rollback on STG.JOBS, a conflict still occurs. This is because tr1 is a mix of read and write statements. Such mixed transactions can have unpredictable results due to other transactions that might run in parallel. Therefore a simple rollback is not a sufficient solution for avoiding conflicts.
 
@@ -109,9 +109,9 @@ This example is similar to Examples 1 and 2, except tr1 locks all target tables 
 |```delete from CORE.STOCKS where FALSE;```   |   |   |   |
 |```insert into CORE.PRODUCTS select * from STG.ETL_PRODUCTS;```   |   |   |   |
 |```--the insert takes a while```   |   |   |   |
-|   |```insert into STG.ETL_PRODUCTS values (...);```   |   |tr1 < tr2   |
+|   |```insert into STG.ETL_PRODUCTS values (...);```   |   |tr1 &lt; tr2   |
 |   |```commit;```   |   |   |
-|   |   |```commit;```   |Starts a new transaction --> tr2 < tr3, since tr3 was started after tr2 ended (automatic scheduling).<br>We now have the relations tr1 < tr2 < tr3 which implies tr1 < tr3   |
+|   |   |```commit;```   |Starts a new transaction --&gt; tr2 &lt; tr3, since tr3 was started after tr2 ended (automatic scheduling).<br>We now have the relations tr1 &lt; tr2 &lt; tr3 which implies tr1 &lt; tr3   |
 |   |   |```select * from CORE.STOCKS;```   |This statement ends up in **WAIT FOR COMMIT**, waiting for tr1 to finish writing CORE.STOCKS   |
 |```insert into CORE.STOCKS select * from STG.ETL_STOCKS;```   |   |   |**Fine**, because no relation via CORE.STOCKS with tr3 (tr1 already has a write-lock on CORE.STOCKS)   |
 
@@ -141,14 +141,14 @@ When tr1a runs, separate transactions are generated to INSERT the data. In the e
 |---|---|---|---|---|
 |```select * from JOBS;```   |   |   |   |   |
 |```rollback;```   |   |   |   |Job cached (ETL-Tool or Lua ELT-Script)   |
-|```export (SELECT * FROM STG.ETL_PRODUCTS) into exa at this table CORE.PRODUCT;```   |**Transaction tr1b:**<br>```insert into CORE.PRODUCTS values (...);```   |   |   |Using the EXPORT causes a new transaction --> tr1a has no read lock on ETL_PRODUCTS   |
+|```export (SELECT * FROM STG.ETL_PRODUCTS) into exa at this table CORE.PRODUCT;```   |**Transaction tr1b:**<br>```insert into CORE.PRODUCTS values (...);```   |   |   |Using the EXPORT causes a new transaction --&gt; tr1a has no read lock on ETL_PRODUCTS   |
 |```--the select takes a while```   |```--the insert takes a while```   |   |   |   |
-|   |   |```insert into STG.ETL_PRODUCTS values (...);```   |   |tr1a < tr2; no relation to tr1b   |
+|   |   |```insert into STG.ETL_PRODUCTS values (...);```   |   |tr1a &lt; tr2; no relation to tr1b   |
 |   |   |```commit;```   |   |   |
-|   |   |   |```commit;```   |Starts a new transaction --> tr2 < tr3, since tr3 was started after tr2 ended (automatic scheduling). <br>We now have the relations tr1a < tr2 < tr3, which implies tr1a < tr3   |
+|   |   |   |```commit;```   |Starts a new transaction --&gt; tr2 &lt; tr3, since tr3 was started after tr2 ended (automatic scheduling). <br>We now have the relations tr1a &lt; tr2 &lt; tr3, which implies tr1a &lt; tr3   |
 |   |   |   |```select * from CORE.STOCKS;```   |   |
-|   |```commit;```<br>**tr1b completed**   |   |```select * from CORE.PRODUCTS;```   |The result of this SELECT statement depends on when the automatic commit for tr1b occurs:<br>-> tr1b commit occurs before SELECT => relation tr1b < tr3, and the new version of data is read<br>-> SELECT occurs before tr1b commit => relation tr1b > tr3 and old version of data is read<br><br>There is no wait for commit in either case.   |
-|```export (SELECT * FROM STG.ETL_STOCKS) into exa at this table CORE.STOCKS;```   |**Transaction tr1c:**<br>```INSERT into CORE.STOCKS values (...);```   |   |   |**Fine,** because tr3 < tr1c   |
+|   |```commit;```<br>**tr1b completed**   |   |```select * from CORE.PRODUCTS;```   |The result of this SELECT statement depends on when the automatic commit for tr1b occurs:<br>-&gt; tr1b commit occurs before SELECT =&gt; relation tr1b &lt; tr3, and the new version of data is read<br>-&gt; SELECT occurs before tr1b commit =&gt; relation tr1b &gt; tr3 and old version of data is read<br><br>There is no wait for commit in either case.   |
+|```export (SELECT * FROM STG.ETL_STOCKS) into exa at this table CORE.STOCKS;```   |**Transaction tr1c:**<br>```INSERT into CORE.STOCKS values (...);```   |   |   |**Fine,** because tr3 &lt; tr1c   |
 
 **Advantage of this approach**: There are several advantages:
 
