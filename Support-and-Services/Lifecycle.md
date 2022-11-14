@@ -12,7 +12,8 @@ Exasol 6.1	2018-11-20	2020-12-31	out of support since 2020-12-31
 Exasol 6.2	2019-07-24	2021-12-31	out of support since 2021-12-31
 Exasol 7.0	2020-09-11	2022-12-31	extended to 2022-12-31
 Exasol 7.1	2021-08-03	2024-06-30	extended to 2024-06-30
-Client Platform Support
+
+## Client Platform Support
 
 This section explains which platforms and platform versions are supported for the following clients:
 
@@ -20,8 +21,7 @@ This section explains which platforms and platform versions are supported for th
     Exaplus SQL client (command line interface)
     SDK (native C++ call level interface)
 
-
-Backward and Forward Compatibility
+### Backward and Forward Compatibility
 
 We strongly recommend you to always using the latest driver version, regardless of the database version. For example we recommend using the 7.1 drivers even if you have the 7.0 Exasol database installed.
 
@@ -30,6 +30,7 @@ The drivers (ODBC, JDBC, ADO.NET) listed on our downloads page are fully backwar
 Due to the backwards compatibility we only release driver updates for the latest released version (major or minor).
 
 The end of Exasol Support for a particular platform is usually bound at least to their individual full/mainstream support end.
+
 Operating System	Clients Version	End of Support by Exasol
 	Remarks
 Linux	
