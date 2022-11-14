@@ -9,7 +9,7 @@ The only people who are able to connect to your cluster are members of the Suppo
 
 If Exasol Support has access to your cluster with a VPN connection, like that which is needed for [Monitoring Services](https://exasol.my.site.com/s/article/Monitoring-of-an-Exasol-Database?language=en_US), the following describes the process that Exasol Support uses to connect to your cluster.
 
-![Cluster Connection](/cluster_connection.png)
+![Cluster Connection](https://github.com/bailbot/Public-Knowledgebase/blob/main/General%20Information/Support-and-Services/cluster_connection.png)
 
 1. Exasol's Engineers must connect to their Exasol VPN before they are able to access any support hosts. This authentication is done using their Active Directory Credentials. This ensures that even when Engineers are working from home, the connection to your cluster and any data is secure. 
 2. Exasol Support can connect to your support host (jump server) using 2-factor authentication: AD password + yubikey
