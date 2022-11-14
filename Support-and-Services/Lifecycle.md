@@ -3,7 +3,7 @@
 This page summarizes End-of-Life (EOL) information for the Exasol database, as well as supported platforms and platform versions for drivers and clients.
 
 ## Exasol Releases
-You can find the latest drivers here: https://downloads.exasol.com/clients-and-drivers
+You can find the latest database release and drivers here: https://downloads.exasol.com
 
 Each release (minor or major) is fully supported for at least two years. This time is extended until two later versions (minor or major) are released.
 A release includes all components listed in the below download links.
