@@ -48,16 +48,18 @@ The end of Exasol Support for a particular platform is usually bound at least to
 |Ubuntu 20.04 LTS| 7.1|2024-03 or later||
 |Ubuntu 18.04 LTS|	7.1|	2022-03 or later||
 |**Mac**|	
+|OS X 12 (12.0.1)| tbd||
+|OS X 11 (11.6.1)| tbd||
 |OS X 10.15|	7.1|	tbd|	SDK not supported|
-|OS X 10.14|	7.1|	tbd|	SDK not supported|
 |**BSD**|	
-|FreeBSD 12.1|	7.1|	2022-03 or later||
+|FreeBSD 12.2|	7.1|	2022-03 or later||
 |FreeBSD 11.4|	7.1|	2021-09	||
 |**Windows**|	
 |Server 2019|	7.1|	2022-03 or later||
 |Server 2016|	7.1|	2022-03 or later||	
 |Server 2012 R2|	7.1	2022-03 or later||	
 |Server 2008 R2|	6.2	2018-12-31||	
+|Windows 11|	7.1|	tbd||	
 |Windows 10|	7.1|	tbd||	
 |Windows 7 SP1|	6.2|	2020-01-14||	
 
