@@ -7,9 +7,9 @@ The '' or NULL column appears to be a boolean.
 
 Changing this to the desired data type using: CAST( '' AS VARCHAR(18)) results in exactly the same error.
 
-Running the statement separately shows that the CAST is ignored. It appears to happen when querying on virtual schema's. Doing the same on regular schema's or without referring to objects does not result in the CAST being ignored.
+Running the statement separately shows that the CAST is ignored. It appears to happen when querying on virtual schemas. Doing the same on regular schema's or without referring to objects does not result in the CAST being ignored.
 
-Is there a way to make my join work without creating additional objects?
+Is there a way to make my query work without creating additional objects?
 
 ## Answer
 I could reproduce the error with an Exasol virtual schema dialect. For this dialect I found the following two potential workarounds:  
@@ -41,7 +41,5 @@ from
 
 
 Solving this issue is not trivial. As you can see in the pushdown results of EXPLAIN VIRTUAL, the Exasol compiler removes the cast in the query. This is an optimization that happens quite early and before the handling of virtual schemas. For queries without virtual schemas this reduces the execution time and is no issue. In the virtual schema scenario, the pushdown contains a null_literal without datatype. The remote database of the virtual schema then returns a NULL with an arbitrary JDBC Type. This can vary based on the dialect. For the Exasol virtual schema dialect this is Boolean. In theory, the Exasol compiler can reinsert the cast to the desired type. But while this is possible in your scenario, it is not possible for complex expressions. For that, the compiler needs exact types from the JDBC driver.
-
-Thus, in a nutshell, this is https://community.exasol.com/t5/ideas/1-1-type-reporting-switch-in-jdbc-driver-migrated/idi-p/4829. Feel free to vote on the issue ;).
 
 I hope the workarounds are sufficient for the time being until we have this feature in the JDBC driver.

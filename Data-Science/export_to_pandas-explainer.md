@@ -26,9 +26,9 @@ pd = pandas.DataFrame(stmt.fetchall())
 
 You may also use stmt.columns()to access information about result data types, if necessary.
 
-https://github.com/badoo/pyexasol/blob/master/docs/REFERENCE.md#columns
+https://github.com/exasol/pyexasol/blob/master/docs/REFERENCE.md#columns
 
-.export_to_pandas()is advised for medium to large data sets with ~100k+ rows. In this case "spin-up" time becomes insignificant compared to savings on transport protocol and reduced deserialisation overhead.
+.export_to_pandas() is advised for medium to large data sets with ~100k+ rows. In this case "spin-up" time becomes insignificant compared to savings on transport protocol and reduced deserialisation overhead.
 
  
 
