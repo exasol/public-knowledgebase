@@ -3,6 +3,7 @@
 This page summarizes End-of-Life (EOL) information for the Exasol database, as well as supported platforms and platform versions for drivers and clients.
 
 ## Exasol Releases
+You can find the latest drivers here: https://downloads.exasol.com/clients-and-drivers
 
 Each release (minor or major) is fully supported for at least two years. This time is extended until two later versions (minor or major) are released.
 A release includes all components listed in the below download links.
@@ -12,7 +13,6 @@ A release includes all components listed in the below download links.
 |  Exasol 6.2 |  2019-07-24 |  2021-12-31 |  out of support since 2021-12-31 |
 |  Exasol 7.0 |  2020-09-11 |  2022-12-31 |  extended to 2022-12-31|
 |  Exasol 7.1 |  2021-08-03 |  2024-06-30 |  extended to 2024-06-30 |
-
 
 ## Client Platform Support
 
@@ -29,7 +29,6 @@ We strongly recommend you to always using the latest driver version, regardless 
 The drivers (ODBC, JDBC, ADO.NET) listed on our downloads page are fully backward compatible, i.e. a driver with a specific version is compatible with all database versions with the same or earlier versions. There might be exceptions in rare cases to the backwards compatibility where some old platforms might not be supported by the newest driver anymore. In this case the last supported driver version is mentioned in the remarks column. You can also use an older driver version to connect to a newer database version, however, some of the features may require a minimum driver version and might thus not be available with the old driver.
 
 Due to the backwards compatibility we only release driver updates for the latest released version (major or minor).
-
 The end of Exasol Support for a particular platform is usually bound at least to their individual full/mainstream support end.
 
 |Operating System|	Clients Version|	End of Support by Exasol|	Remarks|
