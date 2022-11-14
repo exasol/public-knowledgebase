@@ -5,21 +5,22 @@ This page summarizes End-of-Life (EOL) information for the Exasol database, as w
 ## Exasol Releases
 
 Each release (minor or major) is fully supported for at least two years. This time is extended until two later versions (minor or major) are released.
-
 A release includes all components listed in the below download links.
-Exasol 6.0	2017-03-16	2020-09-30	out of support since 2020-09-30
-Exasol 6.1	2018-11-20	2020-12-31	out of support since 2020-12-31
-Exasol 6.2	2019-07-24	2021-12-31	out of support since 2021-12-31
-Exasol 7.0	2020-09-11	2022-12-31	extended to 2022-12-31
-Exasol 7.1	2021-08-03	2024-06-30	extended to 2024-06-30
+
+|  Release | Release Date  | End of Life   |  Remnarks  | 
+|---|---|---|---|
+|  Exasol 6.2 |  2019-07-24 |  2021-12-31 |  out of support since 2021-12-31 |
+|  Exasol 7.0 |  2020-09-11 |  2022-12-31 |  extended to 2022-12-31|
+|  Exasol 7.1 |  2021-08-03 |  2024-06-30 |  extended to 2024-06-30 |
+
 
 ## Client Platform Support
 
 This section explains which platforms and platform versions are supported for the following clients:
 
-    ODBC, JDBC, ADO.NET drivers
-    Exaplus SQL client (command line interface)
-    SDK (native C++ call level interface)
+   * ODBC, JDBC, ADO.NET drivers
+   * Exaplus SQL client (command line interface)
+   * SDK (native C++ call level interface)
 
 ### Backward and Forward Compatibility
 
@@ -31,13 +32,9 @@ Due to the backwards compatibility we only release driver updates for the latest
 
 The end of Exasol Support for a particular platform is usually bound at least to their individual full/mainstream support end.
 
-Operating System	Clients Version	End of Support by Exasol
-	Remarks
+Operating System	Clients Version	End of Support by Exasol	Remarks
 Linux	
-	
-	
-Centos 8	7.1	2022-03 or later
-	incl. RHEL 8
+Centos 8	7.1	2022-03 or later incl. RHEL 8
 Centos 7	6.2	2020-12	incl. RHEL 7
 CentOS 6	6.1	2017-06	incl. RHEL 6
 Debian 10	7.1	~2022	
@@ -47,34 +44,21 @@ SLES 12	7.1	2022-03 or later
 SLES 11	6.2	2019-03	
 openSUSE Leap 42.2	6.2	2018-01	
 Ubuntu 18.04 LTS	7.1	2022-03 or later
-	
-Ubuntu 16.04 LTS	6.2	2020-03	
 Mac	
-	
-	
 OS X 10.15	7.1	tbd	SDK not supported
 OS X 10.14	7.1	tbd	SDK not supported
-OS X 10.12, 10.13
-	6.1	2018-12	SDK not supported
 BSD	
-	
-	
 FreeBSD 12.1	7.1	2022-03 or later
-	
 FreeBSD 11.4	7.1	2021-09	
-FreeBSD 11	6.2	2019-12	
-FreeBSD 10.3	6.2	2019-12	
 Windows	
-	
-	
 Server 2019	7.1	2022-03 or later
-	
 Server 2016	7.1	2022-03 or later	
 Server 2012 R2	7.1	2022-03 or later	
 Server 2008 R2	6.2	2018-12-31	
 Windows 10	7.1	tbd	
 Windows 7 SP1	6.2	2020-01-14	
-ADO.NET driver support for Visual Studio, SQL Server and .NET versions.
+
+## ADO.NET driver support for Visual Studio, SQL Server and .NET versions.
 Product	End of Exasol Support	Supported .NET Framework versions	Remarks
 Visual Studio 2019	2022-03 or later	3.5 - 4.8	supported since 6.2.6 and 7.0.0
 Visual Studio 2017 Version 15.9	2022-03 or later	3.5 – 4.7.1	
