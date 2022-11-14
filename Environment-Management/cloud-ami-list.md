@@ -1,8 +1,7 @@
 # List of Available Cloud AMIs
 
 ## Question
-if I´m not mistaken then currently when we use https://cloudtools.exasol.com/ to create a new exasol cluster we will
-receive a json / yaml / jinja that only contains the current ( or at least just one ) version / AMI / Image.
+If I'm not mistaken then currently when we use https://cloudtools.exasol.com/ to create a new Exasol cluster we will receive a json / yaml / jinja that only contains the current ( or at least just one ) version / AMI / Image.
 Apart from the slightly tedious way of regularly checking and saving AMI- /Image-ids that are exposed in this way, is there a simple way to just choose which version one wants to deploy / spin up ? Or a list of AMIs/Images currently available ?
 
 ## Answer
