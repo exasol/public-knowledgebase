@@ -5,7 +5,7 @@ Exasol Support helps take care of your database so you can focus on the business
 
 This overview shows the possible combinations of Support Level / Service and Platform: 
 
-![Platform Support](/platformsupport.png)
+![Platform Support](https://github.com/bailbot/Public-Knowledgebase/blob/main/General%20Information/Support-and-Services/platformsupport.png)
 
 ### For SaaS Support please visit: 
 https://exasol.com/saas/
