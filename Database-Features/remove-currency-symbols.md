@@ -2,11 +2,10 @@
 
 ## Question
 I wonder how I can get rid of currency symbols in the exasol database (except using the function TRIM).
-
+![Expected Output](https://github.com/bailbot/Public-Knowledgebase/blob/main/Database-Features/remove-currency-symbols.png)
 As you can see, it works fine for display purposes.
 Apparently, as soon as I perfom calculations with the referring column, the following error message occurs:
-
-Moritz_1-1592914619155.png
+![SQL Error](https://github.com/bailbot/Public-Knowledgebase/blob/main/Database-Features/remove-currency-symbols-sqlerror.png)
 Do you guys know a quick and easy solution for this?
 It would be much appreciated!
 
