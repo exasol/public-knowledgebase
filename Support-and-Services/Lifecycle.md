@@ -32,31 +32,32 @@ Due to the backwards compatibility we only release driver updates for the latest
 
 The end of Exasol Support for a particular platform is usually bound at least to their individual full/mainstream support end.
 
-Operating System	Clients Version	End of Support by Exasol	Remarks
-Linux	
-Centos 8	7.1	2022-03 or later incl. RHEL 8
-Centos 7	6.2	2020-12	incl. RHEL 7
-CentOS 6	6.1	2017-06	incl. RHEL 6
-Debian 10	7.1	~2022	
-Debian 8	6.2	2020-06	
-SLES 15	7.1	2022-03 or later	
-SLES 12	7.1	2022-03 or later	
-SLES 11	6.2	2019-03	
-openSUSE Leap 42.2	6.2	2018-01	
-Ubuntu 18.04 LTS	7.1	2022-03 or later
-Mac	
-OS X 10.15	7.1	tbd	SDK not supported
-OS X 10.14	7.1	tbd	SDK not supported
-BSD	
-FreeBSD 12.1	7.1	2022-03 or later
-FreeBSD 11.4	7.1	2021-09	
-Windows	
-Server 2019	7.1	2022-03 or later
-Server 2016	7.1	2022-03 or later	
-Server 2012 R2	7.1	2022-03 or later	
-Server 2008 R2	6.2	2018-12-31	
-Windows 10	7.1	tbd	
-Windows 7 SP1	6.2	2020-01-14	
+|Operating System|	Clients Version|	End of Support by Exasol|	Remarks|
+|---|---|---|---|
+|**Linux**	|
+|Centos 8|	7.1|	2022-03 or later |incl. RHEL 8|
+|Centos 7|	6.2|	2020-12	|incl. RHEL 7|
+|CentOS 6|	6.1|	2017-06	|incl. RHEL 6|
+|Debian 10|	7.1|	~2022|	|
+|Debian 8|	6.2|	2020-06||	
+|SLES 15|	7.1|	2022-03 or later||	
+|SLES 12|	7.1|	2022-03 or later||	
+|SLES 11|	6.2|	2019-03||	
+|openSUSE Leap 42.2|	6.2|	2018-01	||
+|Ubuntu 18.04 LTS|	7.1|	2022-03 or later||
+|**Mac**|	
+|OS X 10.15|	7.1|	tbd|	SDK not supported|
+|OS X 10.14|	7.1|	tbd|	SDK not supported|
+|**BSD**|	
+|FreeBSD 12.1|	7.1|	2022-03 or later||
+|FreeBSD 11.4|	7.1|	2021-09	||
+|**Windows**|	
+|Server 2019|	7.1|	2022-03 or later||
+|Server 2016|	7.1|	2022-03 or later||	
+|Server 2012 R2|	7.1	2022-03 or later||	
+|Server 2008 R2|	6.2	2018-12-31||	
+|Windows 10|	7.1|	tbd||	
+|Windows 7 SP1|	6.2|	2020-01-14||	
 
 ## ADO.NET driver support for Visual Studio, SQL Server and .NET versions.
 Product	End of Exasol Support	Supported .NET Framework versions	Remarks
