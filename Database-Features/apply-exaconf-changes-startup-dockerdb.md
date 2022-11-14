@@ -1,4 +1,4 @@
-# How to Apply EXAConfg Changes on Startup in DockerDB
+# How to Apply EXAConf Changes on Startup in DockerDB
 
 ## Question
 I am trying to "manipulate" exasol docker image to start a container with enabled auditing, expanded storage and ram, also different nameserver list, etc. I've tried to create a specific entrypoint.sh as it was suggested here. Main problem is that it runs ok, but one has to restart the container in order for changes to take place. Is there easier way to enable and change parameters from EXAConf and use them on a first startup? Another suggestion in mentioned post was exa/etc/rc.local, can somebody give me some instructions on how that works?

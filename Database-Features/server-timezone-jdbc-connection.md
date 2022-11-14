@@ -10,5 +10,5 @@ Is there a way that I can set outside my function or without hardcoding the time
 ## Answer
 Do you use a new JDBC-Connection To MySQL in the UDF? You could then overwrite the server-timezone with the JDBC-param to your own timezone, thereby preventing the conversion:
 
-&serverTimezone=\<YOURTIMEZONE>
+&serverTimezone=&lt;YOURTIMEZONE&gt;
 Then all you would need to do is, to query the local timezone in same function and use it in there, so the function works in any timezone then.

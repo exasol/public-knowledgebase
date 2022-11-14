@@ -5,7 +5,7 @@ Is there a simple solution to manipulate string parameter when calling Export to
 
 Here's an example of what I am trying to get:
 ```
-EXPORT <table_name 
+EXPORT <table_name> 
 INTO LOCAL CSV FILE 'C:\exportfile_<current_timestamp>.csv'
 ```
 ## Answer
@@ -26,5 +26,5 @@ pwd="exasol"
 
 echo -e "EXPORT INTO LOCAL CSV FILE"  
 timestamp=`date +%s`  
-./exaplus -c $host:$port -u $user -p $pwd -sql "EXPORT <SCHEMA>.<TABLEINTO LOCAL CSV FILE '/tmp/exportfile_$timestamp.csv';
+./exaplus -c $host:$port -u $user -p $pwd -sql "EXPORT <SCHEMA>.<TABLE> INTO LOCAL CSV FILE '/tmp/exportfile_$timestamp.csv';
 ```

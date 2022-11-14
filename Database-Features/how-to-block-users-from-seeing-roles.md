@@ -13,7 +13,7 @@ When a user who doesn't have SELECT ANY DICTIONARY runs SELECT * FROM EXA_ALL_RO
 [Code: 0, SQL State: 43100] While preprocessing SQL with "ALLSCRIPTS"."PP_HIDE_TABLES": 43000:"You must be a DBA or have SELECT ANY DICTIONARY to run this query" caught in script "ALLSCRIPTS"."PP_HIDE_TABLES" at line 18 (Session: 1673753318205978533)
 
 This is an extremely simple script and would need to be expanded for other cases/tables/roles, etc)
-
+```
 --/
 CREATE OR REPLACE LUA SCRIPT "ALLSCRIPTS"."PP_HIDE_TABLES" () RETURNS ROWCOUNT AS
     sql_text = sqlparsing.getsqltext()
@@ -55,3 +55,4 @@ CREATE OR REPLACE LUA SCRIPT "ALLSCRIPTS"."PP_HIDE_TABLES" () RETURNS ROWCOUNT A
 /
 
 alter system set sql_preprocessor_script = "ALLSCRIPTS"."PP_HIDE_TABLES";
+```

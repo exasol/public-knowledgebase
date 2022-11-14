@@ -19,7 +19,8 @@ Only "problem" with the exa_dba_audit_sql is:
 - you´d have to have it activated ( which is a good thing to have in any case ) and
 - you´d have to parse the SQL_TEXT column for your TABLE_NAMEs - other than that it would be count(*) for the QUERY_COUNT ( executions , not unique queries ) and max(START_TIME) for the LAST_QUERY_DATE.
 
-``` select  
+``` 
+select  
 table_name as TABLE_NAME,count(*) as QUERY_COUNT,CAST(max(start_time) as DATE) as LAST_QUERY_DATE  
  from exa_dba_audit_sql a inner join exa_dba_tables b on INSTR(upper(SQL_TEXT),b.table_name)>0  
  where start_time>=CURRENT_DATE - 365  

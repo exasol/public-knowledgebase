@@ -1,7 +1,7 @@
 # Total Number of IN(...) List Elements is Too Large
 
 ## Question
-Has anyone faced this type of error in Exasol? Is there any limit for IN(\<elements>)
+Has anyone faced this type of error in Exasol? Is there any limit for IN(&lt;elements&gt;)
 
 [0A000] Feature not supported: The total number of IN(...) list elements (200015) is too large (current IN list size: 83)
 
