@@ -5,7 +5,7 @@ Exasol Support helps take care of your database so you can focus on the business
 
 This overview shows the possible combinations of Support Level / Service and Platform: 
 
-![Platform Support](/platformsupport.png)
+![Platform Support](/General Information/Support Information/platformsupport.png)
 
 ### For SaaS Support please visit: 
 https://exasol.com/saas/
