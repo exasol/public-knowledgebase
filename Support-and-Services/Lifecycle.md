@@ -35,6 +35,7 @@ The end of Exasol Support for a particular platform is usually bound at least to
 |Operating System|	Clients Version|	End of Support by Exasol|	Remarks|
 |---|---|---|---|
 |**Linux**	|
+|CentOS 8 Stream|7.1| tbd| |
 |Centos 8|	7.1|	2022-03 or later |incl. RHEL 8|
 |Centos 7|	6.2|	2020-12	|incl. RHEL 7|
 |CentOS 6|	6.1|	2017-06	|incl. RHEL 6|
@@ -43,7 +44,8 @@ The end of Exasol Support for a particular platform is usually bound at least to
 |SLES 15|	7.1|	2022-03 or later||	
 |SLES 12|	7.1|	2022-03 or later||	
 |SLES 11|	6.2|	2019-03||	
-|openSUSE Leap 42.2|	6.2|	2018-01	||
+|openSUSE Leap 15.2|	7.1|	2022-01	||
+|Ubuntu 20.04 LTS| 7.1|2024-03 or later||
 |Ubuntu 18.04 LTS|	7.1|	2022-03 or later||
 |**Mac**|	
 |OS X 10.15|	7.1|	tbd|	SDK not supported|
