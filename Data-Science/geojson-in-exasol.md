@@ -17,7 +17,7 @@ polyon in geojson) from the json? We get the following error for which i cannot 
 import into geo_import from local CSV file 'custom.geo.json' column separator = '0x01' column delimiter = '0x02';
 
 create or replace view geojson as
-select JSON_EXTRACT(v, '$.features[*].properties.name', '$.features[*].geometry')
+select JSON_EXTRACT(v, '\$.features[*].properties.name', '\$.features[*].geometry')
 emits (name varchar(2000000), geojson varchar(2000000)) from geo_import;
 select * from geojson limit 10;
 
