@@ -1,8 +1,5 @@
 # What is a Qualified Issue?
 
-
-## What is a Qualified Issue?
-
 A qualified issue includes the following information:
 
 The description clearly depicts the issue and, if applicable, which activity led to the occurrence of the issue.

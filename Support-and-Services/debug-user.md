@@ -8,13 +8,13 @@ If an analysis of system dictionaries is required for trouble shooting or correc
 
 You can use the below SQL Statements to create the user with the necessary permissions. Once the user is created, please share the password with Exasol support in a secure way.
 
-- Exasol versions < 6.1:
+- Exasol versions &lt; 6.1:
 ```
     CREATE USER exa_debug IDENTIFIED BY "secure password";
     GRANT CREATE SESSION TO exa_debug;
     GRANT SELECT ANY DICTIONARY TO exa_debug;
 ```
-- Exasol versions >= 6.1:
+- Exasol versions &gt;= 6.1:
 ```
     CREATE USER exa_debug IDENTIFIED BY "secure password";
     GRANT CREATE SESSION TO exa_debug;
@@ -25,6 +25,6 @@ You can use the below SQL Statements to create the user with the necessary permi
 
 [Access to data](https://docs.exasol.com/db/latest/planning/support.htm) 
 
-[Overview of Professional Services](https://exasol.my.site.com/s/?language=en_US)
+[Overview of Professional Services](https://www.exasol.com/product-overview/customer-support/)
 
 
