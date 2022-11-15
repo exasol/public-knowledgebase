@@ -1,25 +1,39 @@
 # Exasol Knowledge Base
 
 ## Welcome
+Welcome to the Exasol Knowledge Base (KB)! This repository contains files and information needed to create a KB article.
 
-Welcome to the Exasol Knowledge Base! This repository contains source files for Exasol's knowledge base. The files in this repository are used to create the knowledg ebase, which is accessible at [Exasol.com](https://Exasol.com).
+Exasol KB articles must be created using Markdown (.md) format. If you are new to Markdown, see [Markdown Guide's Getting Started section](https://www.markdownguide.org/getting-started/). There are also many programs that will convert, say, Microsoft Word (.docx) files to Markdown files.
 
-If you wish to contribute to the knowledge base, feel free to fork the repository and make a pull request with your changes.
+Your final article will be converted to HTML and rendered on the [Exasol Knowledge Base website](https://exasol.my.site.com). Please use only [basic Markdown syntax](https://www.markdownguide.org/basic-syntax/). 
 
-When creating new files, please:
-
-- Use the appropriate template. The following section in this readme lists Exasol's templates and provides information on selecting the right template.
-- Place all images in the respective 'images' folder and ensure that the image size does not exceed 1 MB.
-- Use styles listed in the Exasol Styles section of this readme.
+__Note__: Using other flavors of Markdown may not work as expected when rendered on Exasol's website. Even some basic syntax does not work as expected. For example, do not use [Blockquotes](https://www.markdownguide.org/basic-syntax/#blockquotes-1) ( \> ).
 
 ## Templates
+You can choose one of the following templates:
+- [Question and Answer](Templates\QuestionAndAnswer.md): Pose a quick question with a specific answer.
+- [Solution to a Problem](Templates\SolutionToAProblem.md): Provide workarounds for bugs or new shortcuts that you would like to share with others.
+- [Tutorial](Templates\Tutorial.md): A quick tutorial for a specific task.
+- [EXplanation](Templates\Explanation.md): More information about a task or concept.
 
-When you create a file, choose one of the following templates:
+## Catagories
+The knowledge base provides five catagories:
+- Connect With Exasol
+- Data Science
+- Database Features
+- Environment Management
+- Support and Services
 
-- [Question and Answer](QuestionAndAnswer.md): Pose a quick question with a specific answer.
-- [Solution to a Problem](SolutionToAProblem.md): Provide workarounds for bugs or new shortcuts that you would like to share with others.
-- [Tutorial](Tutorial.md): A quick tutorial for a specific task.
-- [EXplanation](Explanation.md): More information about a task or concept.
+## Create a File
+1. Access the GitHub repository at [exasol\Public-Knowledgebase](https://github.com/exasol/Public-Knowledgebase).
+1. In GitHub, click __Fork__ and create a new branch.
+1. Select the apporpriate template in the [Templates](/Templates) folder and copy the content.
+1. Using your tool's commands, create a new file and copy the template's content into that file.  
+1. Save the file in the appropirate category folder.
+1. Write the article using styles listed in the Exasol Styles section of this readme and instructions in the template.
+1. Each category folder contains a subfolder called __images__. If you have images, place them in your chosen category's __images__ folder. Make sure the size of each image does not exceed 1 MB.
+1. Once you are happy with the article, use your tool to commit and push the changes.
+1. In GitHub, click __Pull request__, __New pull request__, and then click __Create pull request__.
 
 ## Exasol Styles
 
@@ -28,7 +42,6 @@ Exasol's official style guide is the [Google Style Guide](https://developers.goo
 Some Exasol styles do differ from Google and Microsoft, and Exasol is in the process of changing styles to more align with Google. Please scan the following style guide for information on Exasol specific styles.
 
 ### Links
-
 - [Text formatting-summary](https://developers.google.com/style/text-formatting): Provides Google formatting notes for markdown documents.
 
 - [Google Style Guide](https://developers.google.com/style)
@@ -117,6 +130,3 @@ Use with SaaS when changing subscriptions. For example: "When you upgrade from S
 ### update
 
 The process of installing intermediate releases such as bug fixes. For example, Exasol 7.0 to Exasol 7.1 or Exasol 7.1 to Exasol 7.1.1. products.
-If you wish to contribute to the knowledgebase, feel free to fork the repository and make a pull request with your changes. 
-
-When creating new articles, please put all images in the respective 'images' folder and ensure that the image size does not exceed 1 MB. 
