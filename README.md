@@ -24,7 +24,7 @@ The knowledge base provides five catagories:
 - Environment Management
 - Support and Services
 
-## Create a File
+## Create a KB Article
 1. Access the GitHub repository at [exasol\Public-Knowledgebase](https://github.com/exasol/Public-Knowledgebase).
 1. In GitHub, click __Fork__ and create a new branch.
 1. Select the apporpriate template in the [Templates](/Templates) folder and copy the content.
