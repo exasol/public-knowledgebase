@@ -12,8 +12,8 @@ On Oracle if the data type is NUMBER then in Exasol it gets VARCHAR datatype, bu
 
 If you want to return a DECIMAL type for these types you can set the property like so:
 
-> ALTER VIRTUAL SCHEMA <your-schema-name-goes-here> SET ORACLE_CAST_NUMBER_TO_DECIMAL_WITH_PRECISION_AND_SCALE='36,20';
+> ALTER VIRTUAL SCHEMA &lt;your-schema-name-goes-here&gt; SET ORACLE_CAST_NUMBER_TO_DECIMAL_WITH_PRECISION_AND_SCALE='36,20';
 
 You´ll also have to refresh the virtual schema afterwards with:
 
-> alter virtual schema <your-schema-name-goes-here> refresh;
+> alter virtual schema &lt;your-schema-name-goes-here&gt; refresh;
