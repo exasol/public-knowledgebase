@@ -21,10 +21,10 @@ This expression is evaluated as follows:
 
 |path step   |result   |
 |---|---|
-|```$```   |```{ "name": "Bob", "age": 37, "address":{"street":"Example Street 5","city":"Berlin"},```<br>```"phone":[{"type":"home","number":"030555555"},{"type":"mobile","number":"017777777"}],```<br>```"email":["bob@example.com","bobberlin@example.com"] }```   |
+|```$```   |```{ "name": "Bob", "age": 37, "address":{"street":"Example Street 5","city":"Berlin"},```<br />```"phone":[{"type":"home","number":"030555555"},{"type":"mobile","number":"017777777"}],```<br />```"email":["bob@example.com","bobberlin@example.com"] }```   |
 |```$.phone```   |```[{"type":"home","number":"030555555"},{"type":"mobile","number":"017777777"}]```   |
-|```$.phone[*]```   |```{"type":"home","number":"030555555"}```<br>```{"type":"mobile","number":"017777777"}```   |
-|```$.phone[*].number```|```"030555555"```<br>```"017777777"``` |
+|```$.phone[*]```   |```{"type":"home","number":"030555555"}```<br />```{"type":"mobile","number":"017777777"}```   |
+|```$.phone[*].number```|```"030555555"```<br />```"017777777"``` |
 
 ## Solution
 
@@ -86,7 +86,7 @@ The following table shows some more valid path expressions:
 |```$.address```   |```{"street":"Example Street 5","city":"Berlin"}```   |
 |```$.address.city```   |```"Berlin"```   |
 |```$.email```   |```["bob@example.com","bobberlin@example.com"```]   |
-|```$.email[*]```   |```"bob@example.com"```<br> ```"bobberlin@example.com"```   |
+|```$.email[*]```   |```"bob@example.com"```<br /> ```"bobberlin@example.com"```   |
 
 This query converts the JSON data into column values:
 

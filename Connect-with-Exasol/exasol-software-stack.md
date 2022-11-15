@@ -3,5 +3,5 @@ EXASuite is an integrated, self-contained software bundle provided by Exasol. Th
 
 Exasol Clients and Drivers include the EXAplus database client and the drivers provided by Exasol (eg. ODBC, JDBC, ADO.NET).
 
-![](images/EXASOL.png)
+![Software layer](images/EXASOL.png)
 

@@ -41,7 +41,7 @@ So - the CONFLICT_SESSION_ID above is session 1678224233621028864. This is the 
 
 The SESSION_ID above is 1678224389846990848 and is the session that is actually waiting for the commit. This is tr3 in our table. So now we have the following information:
 
-|Transaction 1 (tr1)<br>Session ID: 1678224233621028864   |Transaction 2 (tr2)<br>Session ID: ???   |Transaction 3 (tr3)<br>Session ID: 1678224389846990848   |Comments   |
+|Transaction 1 (tr1)<br />Session ID: 1678224233621028864   |Transaction 2 (tr2)<br />Session ID: ???   |Transaction 3 (tr3)<br />Session ID: 1678224389846990848   |Comments   |
 |---|---|---|---|
 
 
@@ -64,9 +64,9 @@ SELECT * FROM EXA_DBA_AUDIT_SQL WHERE SESSION_ID = 1678224389846990848;
 ```
 Since our query is still running, we can assume that the start time of the query is the exact moment that the conflict started, which in this case is 2020-09-18 18:38:17.851 (as seen from EXA_DBA_TRANSACTION_CONFLICTS). We know that TEST.T1 is the conflict object, as seen from EXA_DBA_TRANSACTION_CONFLICTS. So, let's add this information to our table:
 
-|Transaction 1 (tr1)<br>Session ID: 1678224233621028864   |Transaction 2 (tr2)<br>Session ID: ???   |Transaction 3 (tr3)<br>Session ID: 1678224389846990848   |Comments   |
+|Transaction 1 (tr1)<br />Session ID: 1678224233621028864   |Transaction 2 (tr2)<br />Session ID: ???   |Transaction 3 (tr3)<br />Session ID: 1678224389846990848   |Comments   |
 |---|---|---|---|
-|   |   |Start-time: 2020-09-18 18:38:17.851<br>Query:<br>```select * from test.t1; ```   |Reads the object TEST.T1<br>Experiences a WAIT FOR COMMIT.<br>Conflict objects: TEST.T1   |
+|   |   |Start-time: 2020-09-18 18:38:17.851<br />Query:<br />```select * from test.t1; ```   |Reads the object TEST.T1<br />Experiences a WAIT FOR COMMIT.<br />Conflict objects: TEST.T1   |
 
 Important to note - in this example, the query is a simple select on TEST.T1, but the query that experiences the WAIT FOR COMMIT can be much more complicated, involving both some system tables, views, etc. Querying some system tables internally are similar to querying the actual table, so they can also cause conflicts. For more information: <https://community.exasol.com/t5/database-features/filter-on-system-tables-and-transaction-conflicts/ta-p/1232>
 
@@ -103,10 +103,10 @@ AND START_TIME < '2020-09-18 18:38:17.851'  ORDER BY START_TIME ASC;
 
 In this example, there was only one query which was ran. Let's add all of the queries into our table now. It makes sense to document every query and the times in the table so you don't lose track:
 
-|Transaction 1 (tr1)<br>Session ID: 1678224233621028864   |Transaction 2 (tr2)<br>Session ID: ???   |Transaction 3 (tr3)<br>Session ID: 1678224389846990848   |Comments   |
+|Transaction 1 (tr1)<br />Session ID: 1678224233621028864   |Transaction 2 (tr2)<br />Session ID: ???   |Transaction 3 (tr3)<br />Session ID: 1678224389846990848   |Comments   |
 |---|---|---|---|
-|Start-time: 2020-09-18 18:37:37.532<br>Query:<br>```INSERT INTO TEST.T1 SELECT * FROM TEST.T2;```   |   |   |   |
-|   |   |Start-time: 2020-09-18 18:38:17.851<br>Query:<br>```select * from test.t1;```   |Reads the object TEST.T1<br>Experiences a WAIT FOR COMMIT.<br>Conflict objects: TEST.T1    |
+|Start-time: 2020-09-18 18:37:37.532<br />Query:<br />```INSERT INTO TEST.T1 SELECT * FROM TEST.T2;```   |   |   |   |
+|   |   |Start-time: 2020-09-18 18:38:17.851<br />Query:<br />```select * from test.t1;```   |Reads the object TEST.T1<br />Experiences a WAIT FOR COMMIT.<br />Conflict objects: TEST.T1    |
 
 ## Step 4 - Identify written/read objects
 
@@ -135,10 +135,10 @@ I can further verify that these objects are tables by querying EXA_ALL_OBJECTS:
 
 If you notice that some of these objects are VIEWS, then you can query EXA_DBA_DEPENDENCIES_RECURSIVE to determine the underlying objects in the named views. So, let's add this information to the table:
 
-|Transaction 1 (tr1)<br>Session ID: 1678224233621028864   |Transaction 2 (tr2)<br>Session ID: ???   |Transaction 3 (tr3)<br>Session ID: 1678224389846990848   |Comments   |
+|Transaction 1 (tr1)<br />Session ID: 1678224233621028864   |Transaction 2 (tr2)<br />Session ID: ???   |Transaction 3 (tr3)<br />Session ID: 1678224389846990848   |Comments   |
 |---|---|---|---|
-|Start-time: 2020-09-18 18:37:37.532<br>Query:<br>```INSERT INTO TEST.T1 SELECT * FROM TEST.T2;```   |   |   |Reads the object TEST.T2<br>Writes the object TEST.T1   |
-|   |   |Start-time: 2020-09-18 18:38:17.851<br>Query:<br>```select * from test.t1;```   |Reads the object TEST.T1<br>Experiences a WAIT FOR COMMIT.<br>Conflict objects: TEST.T1    |
+|Start-time: 2020-09-18 18:37:37.532<br />Query:<br />```INSERT INTO TEST.T1 SELECT * FROM TEST.T2;```   |   |   |Reads the object TEST.T2<br />Writes the object TEST.T1   |
+|   |   |Start-time: 2020-09-18 18:38:17.851<br />Query:<br />```select * from test.t1;```   |Reads the object TEST.T1<br />Experiences a WAIT FOR COMMIT.<br />Conflict objects: TEST.T1    |
 
 ## Step 5 - Identify sessions which write an object that was read in tr1
 
@@ -181,13 +181,13 @@ FROM EXA_DBA_AUDIT_SQL  WHERE SESSION_ID  = 1678224357205278720;
 
 So, this session performed a COMMIT, followed by an INSERT + COMMIT. Let's document this then. 
 
-|Transaction 1 (tr1)<br>Session ID: 1678224233621028864   |Transaction 2 (tr2)<br>Session ID: 1678224357205278720   |Transaction 3 (tr3)<br>Session ID: 1678224389846990848   |Comments   |
+|Transaction 1 (tr1)<br />Session ID: 1678224233621028864   |Transaction 2 (tr2)<br />Session ID: 1678224357205278720   |Transaction 3 (tr3)<br />Session ID: 1678224389846990848   |Comments   |
 |---|---|---|---|
-|Start-time: 2020-09-18 18:37:37.532<br>Query:<br>```INSERT INTO TEST.T1 SELECT * FROM TEST.T2;```   |   |   |Reads the object TEST.T2<br>Writes the object TEST.T1   |
-|   |Start-time: 2020-09-18 18:37:46.688<br>Query:<br>```COMMIT;```   |   |   |
-|   |Start-time: 2020-09-18 18:38:07.016<br>Query:<br>```insert into test.t2 values (4);```   |   |Writes the object TEST.T2<br>tr1 < tr2, because tr2 writes to a table that was read by tr1   |
-|   |Start-time: 2020-09-18 18:38:07.036<br>Query:<br>```COMMIT /* AUTO */ ```   |   |--autocommit ends the transaction   |
-|   |   |Start-time: 2020-09-18 18:38:17.851<br>Query:<br>```select * from test.t1;```   |Starts a new transaction --> tr2 < tr3, since tr3 was started after tr2 ended (automatic scheduling).<br>We now have the relations tr1 < tr2 < tr3, which implies tr1 < tr3.<br>Reads the object TEST.T1<br>**Experiences a WAIT FOR COMMIT.**<br>Conflict objects: TEST.T1    |
+|Start-time: 2020-09-18 18:37:37.532<br />Query:<br />```INSERT INTO TEST.T1 SELECT * FROM TEST.T2;```   |   |   |Reads the object TEST.T2<br />Writes the object TEST.T1   |
+|   |Start-time: 2020-09-18 18:37:46.688<br />Query:<br />```COMMIT;```   |   |   |
+|   |Start-time: 2020-09-18 18:38:07.016<br />Query:<br />```insert into test.t2 values (4);```   |   |Writes the object TEST.T2<br />tr1 &lt; tr2, because tr2 writes to a table that was read by tr1   |
+|   |Start-time: 2020-09-18 18:38:07.036<br />Query:<br />```COMMIT /* AUTO */ ```   |   |--autocommit ends the transaction   |
+|   |   |Start-time: 2020-09-18 18:38:17.851<br />Query:<br />```select * from test.t1;```   |Starts a new transaction --&gt; tr2 &lt; tr3, since tr3 was started after tr2 ended (automatic scheduling).<br />We now have the relations tr1 &lt; tr2 &lt; tr3, which implies tr1 &lt; tr3.<br />Reads the object TEST.T1<br />**Experiences a WAIT FOR COMMIT.**<br />Conflict objects: TEST.T1    |
 
 ## Step 7 - Summarize Conflict
 

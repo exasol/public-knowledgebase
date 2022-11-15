@@ -170,7 +170,7 @@ Example 3.1: Add a remote archive volume to cluster
 
 | Name | Description | Parameters |
 | --- | --- | --- |
-| remote_volume_add | Add a remote volume | vol_type, url <br>**optional**: remote_volume_name, username, password, labels, options, owner, allowed_users<br>**substitutes:** remote_volume_id <br>**allowed_groups:** root, exaadm, exastoradm <br>**notes**: <br>--> 'ID' is assigned automatically if omitted (10000 + next free ID) <br>--> 'ID' must be >= 10000 if specified<br>--> 'name' may be empty (for backwards compat.) and is generated from 'ID' in that case (*"r%04i" % ('ID' - 10000*))<br>--> if 'owner' is omitted, the requesting user becomes the owner |
+| remote_volume_add | Add a remote volume | vol_type, url <br />**optional**: remote_volume_name, username, password, labels, options, owner, allowed_users<br />**substitutes:** remote_volume_id <br />**allowed_groups:** root, exaadm, exastoradm <br />**notes**: <br />--&gt; 'ID' is assigned automatically if omitted (10000 + next free ID) <br />--&gt; 'ID' must be >= 10000 if specified<br />--&gt; 'name' may be empty (for backwards compat.) and is generated from 'ID' in that case (*"r%04i" % ('ID' - 10000*))<br />--&gt; if 'owner' is omitted, the requesting user becomes the owner |
 
 
 ```"code-java"
@@ -203,7 +203,7 @@ Example 3.3: Connection state of the given remote volume
 |  |  |  |  |
 | --- | --- | --- | --- |
 | Name | Description | Parameter | Returns |
-| remote_volume_state | Return the connection state of the given remote volume, online / Unmounted / Connection problem | remote_volume_name <br>substitutes: remote_volume_id | List of the connection state of the given remote volume on all nodes |
+| remote_volume_state | Return the connection state of the given remote volume, online / Unmounted / Connection problem | remote_volume_name <br />substitutes: remote_volume_id | List of the connection state of the given remote volume on all nodes |
 
 
 ```"code-java"
@@ -267,11 +267,11 @@ Example 4.1: get node list
 
 |  |  |  |  |
 | --- | --- | --- | --- |
-| node_add | Add a node to the cluster | priv_net<br>**optional**: id, name, pub_net, space_warn_threshold, bg_rec_limit<br>**allowed_groups:** root, exaadm | int node_id |
-| node_remove | Remove a node from the cluster | node_id<br>**optional**: force<br>**allowed_groups:** root, exaadm | None |
+| node_add | Add a node to the cluster | priv_net<br />**optional**: id, name, pub_net, space_warn_threshold, bg_rec_limit<br />**allowed_groups:** root, exaadm | int node_id |
+| node_remove | Remove a node from the cluster | node_id<br />**optional**: force<br />**allowed_groups:** root, exaadm | None |
 | node_info | Single node info with extended information (Cored, platform, load, state) | None | See the output of cosnodeinfo |
-| node_suspend | Suspend node, i. e. mark it as "permanently offline". | node_id<br>**allowed_groups:** root, exaadm | mark one node as suspended |
-| node_resume | Manually resume a suspended node. | node_id<br>**allowed_groups:** root, exaadm | unmark one suspended node |
+| node_suspend | Suspend node, i. e. mark it as "permanently offline". | node_id<br />**allowed_groups:** root, exaadm | mark one node as suspended |
+| node_resume | Manually resume a suspended node. | node_id<br />**allowed_groups:** root, exaadm | unmark one suspended node |
 
 ### Example 5: EXAStorage volume jobs
 
@@ -438,9 +438,9 @@ Example 4.1: get node list
 | st_volume_move_node | Move nodes of specified volume | vid, src_nodes, dst_nodes |
 | st_volume_increase_redundancy | Increase volume redundancy by delta value | vid, delta, nodes |
 | st_volume_decrease_redundancy | decrease volume redundancy by delta value | vid, delta, nodes |
-| st_volume_lock | Lock a volume | vid<br>optional: vname |
-| st_volume_lock | Unlock a volume | vid<br>optional: vname |
-| st_volume_clear_data | Clear data on (a part of) the given volume | vid, num__bytes, node_ids<br>optional: vname |
+| st_volume_lock | Lock a volume | vid<br />optional: vname |
+| st_volume_lock | Unlock a volume | vid<br />optional: vname |
+| st_volume_clear_data | Clear data on (a part of) the given volume | vid, num__bytes, node_ids<br />optional: vname |
 
 ### Example 6: Working with backups
 
@@ -513,12 +513,12 @@ Example 6.3: list backups
 | Name | description | Parameters |
 | --- | --- | --- |
 | db_backups_delete | Delete given backups of given database | db_name, backup list (as returned by 'db_backup_list()') |
-| db_backup_change_expiration | Change expiration time of the given backup files |backup volume ID <br>backup_files: Prefix of the backup files, like exa_db1/id_1/level_0) <br>expire_time : Timestamp in seconds since the Epoch on which the backup should expire.|
+| db_backup_change_expiration | Change expiration time of the given backup files |backup volume ID <br />backup_files: Prefix of the backup files, like exa_db1/id_1/level_0) <br />expire_time : Timestamp in seconds since the Epoch on which the backup should expire.|
 | db_backup_delete_unusable | Delete all unusable backups for a given database | db_name |
 | db_restore | Restore a given database from given backup | db_name, backup ID, restore type ('blocking' | 'nonblocking' | 'virtual access') |
-| db_backup_add_schedule | Add a backup schedule to an existing database | db_name, backup_name, volume, level, expire, minute, hour, day, month, weekday, enabled <br>**notes**: <br>--> 'level' must be int <br>--> 'expire' is string (use common/util.str2sec to convert) <br>--> 'backup_name' is string (unique within a DB)|
+| db_backup_add_schedule | Add a backup schedule to an existing database | db_name, backup_name, volume, level, expire, minute, hour, day, month, weekday, enabled <br />**notes**: <br />--&gt; 'level' must be int <br />--&gt; 'expire' is string (use common/util.str2sec to convert) <br />--&gt; 'backup_name' is string (unique within a DB)|
 | db_backup_remove_schedule | Remove an existing backup schedule |  db_name, backup_name |
-| db_backup_modify_schedule | Modify an existing backup schedule |  db_name, backup_name <br>**optional:** <br>hour, minute, day, month, weekday, enabled |
+| db_backup_modify_schedule | Modify an existing backup schedule |  db_name, backup_name <br />**optional:** <br />hour, minute, day, month, weekday, enabled |
 
 ## Additional References
 
