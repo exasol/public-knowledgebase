@@ -1,4 +1,4 @@
-# Debug User for Exasol Support 
+# Debug User for Exasol Support  
 
 
 ## Background
