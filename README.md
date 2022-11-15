@@ -1,10 +1,10 @@
-# Exasol Knowledgebase
+# Exasol Knowledge Base
 
 ## Welcome
 
-Welcome to the Exasol Knowledgebase! This repository contains source files for Exasol's knowledgebase. The files in this repository are used to create the Knowledgebase, which is accessible at [Exasol.com](https://Exasol.com).
+Welcome to the Exasol Knowledge Base! This repository contains source files for Exasol's knowledge base. The files in this repository are used to create the knowledg ebase, which is accessible at [Exasol.com](https://Exasol.com).
 
-If you wish to contribute to the knowledgebase, feel free to fork the repository and make a pull request with your changes.
+If you wish to contribute to the knowledge base, feel free to fork the repository and make a pull request with your changes.
 
 When creating new files, please:
 
@@ -16,7 +16,7 @@ When creating new files, please:
 
 When you create a file, choose one of the following templates:
 
-- [Question and Answer](QuestionAndAnswer.md): Pose a quick question with specific answer.
+- [Question and Answer](QuestionAndAnswer.md): Pose a quick question with a specific answer.
 - [Solution to a Problem](SolutionToAProblem.md): Provide workarounds for bugs or new shortcuts that you would like to share with others.
 - [Tutorial](Tutorial.md): A quick tutorial for a specific task.
 - [EXplanation](Explanation.md): More information about a task or concept.
