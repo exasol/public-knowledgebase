@@ -1,5 +1,5 @@
 # Database Metadata Backup Concept 
-## SOL: Metadata Backup
+## Article: Metadata Backup
 
 ## Background
 
@@ -104,7 +104,7 @@ Run backup.sh
 ```"code-java"
 ./backup.sh or bash backup.sh
 ```
-## SOL: Metadata Restore
+## Article: Metadata Restore
 
 ## Background
 

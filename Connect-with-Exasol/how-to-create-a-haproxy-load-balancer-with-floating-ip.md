@@ -44,7 +44,7 @@ This How to describes the installation of two HAproxy instances (Master 10.0.1.2
 ```
 [root@ip-10-0-1-207]# yum install -y openssl-devel kernel-devel kernel-headers gcc && wget http://www.keepalived.org/software/keepalived-1.3.2.tar.gz && tar xf keepalived* && cd keepalived-1.3.2 && mkdir /opt/keepalived && ./configure --prefix=/opt/keepalived && make && make install
 ```
-Use the steps below when keepalived has been compiled from source. We also need to the init script (attached to this SOL) and sysconfig file of keepalived.
+Use the steps below when keepalived has been compiled from source. We also need to the init script (attached to this article) and sysconfig file of keepalived.
 
 
 ```
