@@ -1,7 +1,7 @@
 # Pagination 
 ## Background
 
-## What is pagination?
+## What is pagination? 
 
 Many times, a frontend enters the challenge of presenting a very large result set to its user. A choice then has to be made between trying to do exactly that – load and display all data at once – and risking to run out of memory, taking "forever" to do so or overwhelming the unsuspecting user.
 

@@ -26,7 +26,7 @@ When you check the conflict in EXA_DBA_TRANSACTION_CONFLICTS, it shows the confl
 
 | **Time** | **Session S1** | **Session S2** | **Note** |
 |---|---|---|---|
-|T1   |```@set autocommit off;```<br>```CREATE OR REPLACE TABLE TEST.T2 LIKE TEST.T1;```   |   |read locks table TEST.T1   |
+|T1   |```@set autocommit off;```<br />```CREATE OR REPLACE TABLE TEST.T2 LIKE TEST.T1;```   |   |read locks table TEST.T1   |
 |T2   |   |```INSERT INTO TEST.T1 SELECT * FROM TEST.T3;```   |write locks TEST.T1   |
 |T3   |   |```/* EXAConnection.commit() */ commit;```   |   |
 |T4   |```INSERT INTO TEST.T1 values(1);```   |   |attempts to write lock table TEST.T1 which causes transaction conflict   |
