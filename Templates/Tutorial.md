@@ -30,4 +30,3 @@ Replace this text with additional information that may be relevant for the custo
 
 Replace this text with helpful links to other information. Otherwise, delete this section and the Additional References section title.
 
-_We're happy to get your experiences and feedback on this article below!_
