@@ -34,27 +34,12 @@ The knowledge base provides five catagories:
 1. Each category folder contains a subfolder called __images__. If you have images, place them in your chosen category's __images__ folder. Make sure the size of each image does not exceed 1 MB.
 1. Once you are happy with the article, use your tool to commit and push the changes.
 1. In GitHub, click __Pull request__, __New pull request__, and then click __Create pull request__.
-=======
-##
 
-## Welcome
-
-Welcome to the Exasol Knowledgebase! This repository contains source files for Exasol's knowledgebase. The files in this repository are used to create the Knowledgebase, which is accessible at [Exasol.com](https://exasol.com/). If you wish to contribute to the knowledgebase, feel free to fork the repository and make a pull request with your changes.
-
-When creating new articles, please:
-
-- Use the appropriate template. The following section in this readme lists Exasol's article templates and provides information on selecting the right template.
-- Place all images in the respective 'images' folder and ensure that the image size does not exceed 1 MB.
-- Use styles listed in the Exasol Styles section of this readme.
-
-## Templates
-
-When you start an article, choose one of the following templates:
-
-- [Question and Answer](QuestionAndAnswer.md):  Pose a quick question with a specific answer.
-- [Solution to a Problem](SolutionToAProblem.md): Provide workarounds for bugs or new shortcuts that you would like to share with others.
-- [Tutorial](Tutorial.md): A quick tutorial for a specific task.
-- [EXplanation](Explanation.md): More information about a task or concept.
+## Limitations
+Please keep in mind the following limitations when creating or modifying KB articles:
+1. Images must not be larger than 1 MB.
+2. Do not include the < or > symbol in your Markdown. If you need to use the symbols, use "\&lt;" or "\%gt;" instead to represent those characters
+3. Use \<br /> instead of \<br>
 
 ## Exasol Styles
 
