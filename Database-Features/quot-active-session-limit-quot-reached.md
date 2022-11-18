@@ -44,7 +44,7 @@ However, it would be wise to begin reviewing why the sessions are staying active
 
 ### 1.1. Find idle sessions with open transactions
 
-We recommend to use [this query](https://community.exasol.com/t5/database-features/how-to-determine-idle-sessions-with-open-transactions/ta-p/1238) to find idle sessions with open transactions.
+We recommend to use [this query](https://exasol.my.site.com/s/article/How-to-determine-idle-sessions-with-open-transactions-Except-Snapshot-Executions?language=en_US) to find idle sessions with open transactions.
 
 ### 1.2. Investigate resultsets or prepared statements which are open
 
@@ -96,5 +96,5 @@ For example: If 100 queries in parallel use 100% of the CPU resources it will no
 
 ## Additional References
 
-* [Identify idle sessions with open transactions](https://community.exasol.com/t5/database-features/how-to-determine-idle-sessions-with-open-transactions/ta-p/1238)
+* [Identify idle sessions with open transactions](https://exasol.my.site.com/s/article/How-to-determine-idle-sessions-with-open-transactions-Except-Snapshot-Executions?language=en_US)
 * [Session Management](https://docs.exasol.com/database_concepts/session_management.htm)
