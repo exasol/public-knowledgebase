@@ -11,10 +11,10 @@ __Note__: Using other flavors of Markdown may not work as expected when rendered
 
 ## Templates
 You can choose one of the following templates:
-- [Question and Answer](Templates\QuestionAndAnswer.md): Pose a quick question with a specific answer.
-- [Solution to a Problem](Templates\SolutionToAProblem.md): Provide workarounds for bugs or new shortcuts that you would like to share with others.
-- [Tutorial](Templates\Tutorial.md): A quick tutorial for a specific task.
-- [EXplanation](Templates\Explanation.md): More information about a task or concept.
+- [Question and Answer](Templates/QuestionAndAnswer.md): Pose a quick question with a specific answer.
+- [Solution to a Problem](Templates/SolutionToAProblem.md): Provide workarounds for bugs or new shortcuts that you would like to share with others.
+- [Tutorial](Templates/Tutorial.md): A quick tutorial for a specific task.
+- [EXplanation](Templates/Explanation.md): More information about a task or concept.
 
 ## Catagories
 The knowledge base provides five catagories:
