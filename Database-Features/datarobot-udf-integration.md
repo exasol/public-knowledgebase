@@ -1,7 +1,7 @@
 # DataRobot UDF Integration
 
 I created a UDF that allows you to make prediction calls to DataRobot from within Exasol via Python. The only painful part is having to construct a JSON data structure to pass to DataRobot. I'm currently accomplishing that via string concatenation like so:
-![DataRobot UDF Integration](https://github.com/bailbot/Public-Knowledgebase/blob/main/Database-Features/datarobot-udf-integration.png)
+![DataRobot UDF Integration](images/datarobot-udf-integration.png)
 ```
 CREATE OR REPLACE PYTHON SCALAR SCRIPT "UDF_DataRobot" (deployment_id VARCHAR(100), explanations DECIMAL(2,0), json VARCHAR(5000)) EMITS ("PredictionJSON" VARCHAR(5000)) AS
 #####################################################################
