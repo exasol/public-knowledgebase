@@ -12,4 +12,3 @@ Replace this text with an in-depth explanation of the topic.
 
 Replace this text with helpful links to other information. Otherwise, delete this section and the Additional References section title.
 
-_We're happy to get your experiences and feedback on this article below!_
