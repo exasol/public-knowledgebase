@@ -30,7 +30,7 @@ Import command parameters:
 |What typically happens|Solution|
 |-|-|
 |Encoding is different to what you expected|Use the encoding parameter (e.g. ENCODING='Latin-1')|
-|Fields are not separated with commas|Use the column separator parameter (e.g. COLUMN SEPARATOR='|')|
+|Fields are not separated with commas|Use the column separator parameter (e.g. COLUMN SEPARATOR='\|')|
 |The file has been created on Windows|Use the row separator parameter (ROW SEPARATOR='CRLF')|
 |Date or timestamp format differ from you database settings|Change the database settings (e.g. ALTER SESSION SET NLS_DATE_FORMAT='DD.MM.YYYY') or use the format parameter (e.g. FORMAT='DD.MM.YYYY'); especially if there are different formats within one file!|
 |The file has a header (e.g. with general file information or column names)|Use the skip parameter to skip the number of lines (e.g. SKIP=1 to skip only the first line)|
