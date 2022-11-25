@@ -4,6 +4,16 @@
 
 Exasol's current Monitoring Service is built on a Nagios setup based on the legacy XML-RPC API. The new Monitoring Service is a generic implementation no longer dependent on an external API. Instead, locally installed monitoring agents on each Exasol node collects relevant monitoring information.
 
+The advantages of the new monitoring service are:
+
+- no single point of failure
+- easy and secure connectivity
+- fast deployment
+- scalable architecture
+- modern stack
+- web GUI (planned for future use)
+- ready to be used with the new v8 release (ETA 2023 - Q1/Q2)
+
 ## Explanation
 
 ### What are the monitoring agents?
@@ -70,8 +80,13 @@ The current and new monitoring solutions will run in parallel for 4 weeks starti
 ### When can it be installed?
 
 Release date: 09.01.2023
+Retire date of existing monitoring service: 31.03.2023
 
-Requirements:
+#### Rollout
+
+Exasol Support will get in touch by the release date with you and plan the rollout.
+
+#### Requirements
 
 - Firewall settings must be adjusted so that the host harvester.exasol.com can be reached via the aforementioned ports.
 - A session is scheduled to install the new monitoring agents.
