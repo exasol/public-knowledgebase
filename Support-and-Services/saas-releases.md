@@ -1,6 +1,6 @@
 # SaaS Release Notes
 
-This page contains the release notes for [Exasol SaaS](cloud.exasol.com).
+This page contains the release notes for [Exasol SaaS](https://cloud.exasol.com).
 
 For further information please also visit related pages for Exasol SaaS:
 * [SaaS Documentation](https://docs.exasol.com/saas)
