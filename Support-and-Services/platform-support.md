@@ -8,7 +8,7 @@ This overview shows the possible combinations of Support Level / Service and Pla
 ![Platform Support](images/platformsupport.png)
 
 ### For SaaS Support please visit:
-https://cloud.exasol.com/terms-of-service
+https://cloud.exasol.com/support-policy
  
 
 ### Do you need to run a non-store or marketplace version?
