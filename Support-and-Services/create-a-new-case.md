@@ -1,4 +1,4 @@
-# Do you want to report the issue or need support from Exasol? 
+# Create a new case
 
 As a customer, you can report the issue via email, web form, or phone call. 
 
@@ -12,8 +12,8 @@ As a customer, you can report the issue via email, web form, or phone call.
 
 >**NOTE**
 >
->•	Please make sure you are sending email from approved Email before you report your issue by sending Email to  service@exasol.com.  
->•	A case created through email will be treated as a "Question" with priority "Normal".
+>- Please make sure you are sending email from approved Email before you report your issue by sending Email to  service@exasol.com.  
+>- A case created through email will be treated as a "Question" with priority "Normal".
 
 - Phone call: We at Exasol also provide support through phone calls. You can call (415) 363-5510 (Toll America), +49 911 2399 110 (Toll Europe/Rest of the World). Here Exasol support agent will create a case requesting issue-related information. 
 
