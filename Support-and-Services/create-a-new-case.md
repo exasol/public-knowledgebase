@@ -19,7 +19,11 @@ As a customer, you can report the issue via email, web form, or phone call.
 
 ## Webform: 
 
-If you create a case via the web form, make sure that you provide valid information about the issue in the fields. Even though the case is created via the web form, communication about the case is done via email. The fields in the web form vary depending on the type of case you select in the web form, and sometimes depending on the category you select. There are three different types of cases: 
+If you create a case via the web form, make sure that you provide valid information about the issue in the fields. Even though the case is created via the web form, communication about the case is done via email. The fields in the web form vary depending on the type of case you select in the web form, and sometimes depending on the category you select. Below is the example webform for the selected type of 'incident'.
+
+![Incident_webform](images/Incident_webform.png)
+
+There are three different types of cases: 
 
 -	Incident: An interruption of a service/database.
 -	Service Request: Any service request e.g installation or updates.
