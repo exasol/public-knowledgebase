@@ -73,7 +73,8 @@ Data is stored at Exasol on an on-premise system. As with our current monitoring
    - 9092
    - 10016
    - 10019
-2. Exasol will install the Monitoring Agents on the existing Exasol clusters.
+   All cluster instances must be able to resolve the hostname harvester.exasol.com.
+2. Exasol will install the Monitoring Agents on the existing Exasol clusters. A downtime of the database is not required.
 
 The current and new monitoring solutions will run in parallel starting from 09.01.2023 - 31.03.2023. This transitional phase will be used to find and fix any issues you encounter using the new Monitoring Service. After 4 weeks the old monitoring solution will be decommissioned.
 
@@ -89,7 +90,7 @@ Exasol Support will get in touch by the release date with you and plan the rollo
 #### Requirements
 
 - Firewall settings must be adjusted so that the host harvester.exasol.com can be reached via the aforementioned ports.
-- A session is scheduled to install the new monitoring agents.
+- A session is scheduled to install the new monitoring agents if no VPN between Exasol and your environment is existing.
 
 ## Additional References
 
