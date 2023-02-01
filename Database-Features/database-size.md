@@ -9,7 +9,7 @@ The database size can be calculated on the basis of the following system diction
 
 The dictionary lists all tables and schemas. Please note, the size of an object of the type 'SCHEMA' will be calculated as a sum of the sizes of all the objects in this schema. For views, functions, etc., the size represents the corresponding text size.
 
-**RAW_OBJECT_SIZE**specifies the logical object size based on both data types and content. This size is comparable with the size of a CSV-file containing the same data. The value is calculated as a sum of sizes of stored data:
+**RAW_OBJECT_SIZE**specifies the logical object size based on both data types and content. The value is calculated as a sum of sizes of stored data:
 
 * fixed size type: determined by the [size of the type](https://docs.exasol.com/sql_references/data_types/data_type_size.htm#OtherTypes) * number of rows
 * variable size type (varchar) –› estimated for performance reasons.
