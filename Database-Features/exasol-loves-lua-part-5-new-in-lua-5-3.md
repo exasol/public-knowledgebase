@@ -1,5 +1,5 @@
 # Exasol loves Lua (part 5) - New in Lua 5.3 
-This article picks up where [part 4 of the series](https://community.exasol.com/t5/database-features/exasol-loves-lua-part-4-new-in-lua-5-2/ta-p/2436 "Exasol") left off. We covered the changes from 5.1 to 5.2 already, so today we are going to look at what [changed with 5.3](http://www.lua.org/manual/5.3/readme.html "Lua") and as last time we will focus on the changes relevant in the context of [Exasol Lua scripts](https://docs.exasol.com/database_concepts/scripting/general_script_language.htm "General").
+This article picks up where [part 4 of the series](exasol-loves-lua-part-4-new-in-lua-5-2.md "Exasol") left off. We covered the changes from 5.1 to 5.2 already, so today we are going to look at what [changed with 5.3](http://www.lua.org/manual/5.3/readme.html "Lua") and as last time we will focus on the changes relevant in the context of [Exasol Lua scripts](https://docs.exasol.com/database_concepts/scripting/general_script_language.htm "General").
 
 ## New features
 
