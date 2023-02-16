@@ -62,6 +62,25 @@ Encrypted data is sent using four ports:
 - A port for the metrics harvester.exasol.com:9092 (plus data ports 10016 and 10019).
 - A port for Rsyslog harvester.exasol.com:1514.
 
+Encryption:
+
+- Agents are shipped with built-in certificates in order to connect to harvester.exasol.com
+- harvester.exasol.com uses official certificates signed by digicert.com (openssl s_client -servername harvester.exasol.com -connect harvester.exasol.com:443)
+- The agent certificates are valid for one year from the date of the installation
+- The agent certificate expiry is monitored by Exasol
+- The agent certificate expiry is reset back to one year each time a new agent release is installed
+
+Certificates:
+
+Monitoring agent certificates used by the Exasol monitoring agents (can be downloaded from here https://letsencrypt.org/certificates/):
+
+* https://letsencrypt.org/certs/isrgrootx1.pem
+* https://letsencrypt.org/certs/lets-encrypt-r3.pem
+* https://letsencrypt.org/certs/isrg-root-x1-cross-signed.pem
+* https://letsencrypt.org/certs/lets-encrypt-r3-cross-signed.pem
+
+On top of that each Exasol cluster is using a unique user + password combination in order to authenticate at harvester.exasol.com only if certificates + user + password do match monitoring data will flow into our monitoring platform.
+
 ### How is data stored?
 
 Data is stored at Exasol on an on-premise system. As with our current monitoring solution, the data itself is unencrypted but the underlying hard disk is encrypted.
