@@ -46,6 +46,7 @@ This solution will export the bigquery data into a CSV file stored in Google Clo
 * This service account needs to have the permission to read the files from the bucket that you will specify. Please grant access to the bucket for the service account beforehand, otherwise you will receive an ACCESS DENIED error.
 * The script is using Python3, so you need to have PYTHON3 running in the database (for versions > 6.2.0, this is delivered with the database).
 * You need to either create a new script language container that contains the [Google Cloud python library](https://googleapis.dev/python/bigquery/latest/index.html) or upload it to BucketFS. We recommend creating a new script language container from this Github project: <https://github.com/exasol/script-languages-release>.
+Since release 1.1.0 of Standard Script Language Containers ([link](https://github.com/exasol/script-languages-release/releases/tag/1.1.0)) and at least DB versions 7.0.17 and 7.1.7 ([link](https://exasol.my.site.com/s/article/Changelog-content-14476?language=en_US)) Google Cloud python library is available by default.
 
 ### Step 1 - Create Connection
 
@@ -58,7 +59,7 @@ create connection google_cloud_storage to 'https://<bucket-name>.storage.googlea
 ```
 ### Step 2 - Create Scripts
 
-Run the commands found in the [import_from_bigquery.sql](https://community.exasol.com/xmovd78325/attachments/xmovd78325/Connect/23/3/import_from_bigquery.sql) statement to create the scripts that are needed. These are stored in the ETL schema, but can be replaced and use any schema. 
+Run the commands found in the [import_from_bigquery.sql](https://raw.githubusercontent.com/exasol/exa-toolbox/master/utilities/import_from_bigquery.sql) statement to create the scripts that are needed. These are stored in the ETL schema, but can be replaced and use any schema. 
 
 ### Step 3 - Execute Scripts
 
@@ -73,9 +74,9 @@ The parameters are:
 * connection_name_to_cloud_storage - the name of the database connection to Google Cloud Storage. In this example, it is GOOGLE_CLOUD_STORAGE
 * file_name_in_cloud_storage - the file name that will be created in Google Cloud Storage
 * bigquery_dataset - the name of the dataset in Google Bigquery
-* bigquery_table - the name of the table in Google Bigquery that the data should be exported to
+* bigquery_table - the name of the table in Google Bigquery that the data should be imported from
 * exasol_schema - the name of the Exasol schema that the table is in
-* exasol_table - the name of the Exasol table that should be exported
+* exasol_table - the name of the Exasol table to which data should be imported to
 
 In my example, the call looks like this:
 
@@ -107,7 +108,8 @@ As Google's documentation states, the JDBC driver is not designed for large volu
 * You will also need to have a Bigquery Service account. It is very likely that you already have this, because you needed it to establish the original JDBC connection to bigquery that we tested in the first place. You need to follow step 1 and 2 from this link: <https://docs.exasol.com/loading_data/connect_databases/google_bigquery.htm>
 * This service account needs to have the permission to read the files from the bucket that you will specify. Please grant access to the bucket for the service account beforehand, otherwise you will receive an ACCESS DENIED error.
 * The script is using Python3, so you need to have PYTHON3 running in the database (for versions > 6.2.0, this is delivered with the database).
-* You need to either create a new script language container that contains the [Google Cloud python library](https://googleapis.dev/python/bigquery/latest/index.html) or upload it to BucketFS. We recommend creating a new script language container from this Github project: <https://github.com/exasol/script-languages-release>, but the script below also has the steps to import the .whl file from BucketFS, like described here: <https://docs.exasol.com/database_concepts/udf_scripts/expand_script_using_bucketfs.htm>
+* You need to either create a new script language container that contains the [Google Cloud python library](https://googleapis.dev/python/bigquery/latest/index.html) or upload it to BucketFS. We recommend creating a new script language container from this Github project: <https://github.com/exasol/script-languages-release>.
+Since release 1.1.0 of Standard Script Language Containers ([link](https://github.com/exasol/script-languages-release/releases/tag/1.1.0)) and at least DB versions 7.0.17 and 7.1.7 ([link](https://exasol.my.site.com/s/article/Changelog-content-14476?language=en_US)) Google Cloud python library is available by default.
 
 ## Step 1 - Create Connection
 
@@ -120,7 +122,7 @@ create connection google_cloud_storage to 'https://<bucket-name>.storage.googlea
 ```
 ## Step 2 - Create Scripts
 
-Run the commands found in the [export_to_bigquery.sql](https://community.exasol.com/xmovd78325/attachments/xmovd78325/Connect/23/4/export_to_bigquery.sql) statement to create the scripts that are needed. These are stored in the ETL schema, but can be replaced and use any schema. 
+Run the commands found in the [export_to_bigquery.sql](https://raw.githubusercontent.com/exasol/exa-toolbox/master/utilities/export_to_bigquery.sql) statement to create the scripts that are needed. These are stored in the ETL schema, but can be replaced and use any schema. 
 
 ## Step 3 - Execute Scripts
 
@@ -158,9 +160,8 @@ execute script ETL.bigquery_export('GOOGLE_CLOUD_STORAGE','test_1.csv','DATASET1
 * [CREATE CONNECTION statement](https://docs.exasol.com/sql/create_connection.htm)
 * [Loading Data into Google Cloud Storage](https://docs.exasol.com/loading_data/load_data_google_cloud_storage_buckets.htm)
 * [Loading Data with Bigquery](https://docs.exasol.com/loading_data/connect_databases/google_bigquery.htm)
-
-## Downloads
-[export_to_bigquery.zip](https://github.com/exasol/Public-Knowledgebase/files/9936311/export_to_bigquery.zip)
-[import_from_bigquery.zip](https://github.com/exasol/Public-Knowledgebase/files/9936312/import_from_bigquery.zip)
+* [CHANGELOG: Updated Script Language Container](https://exasol.my.site.com/s/article/Changelog-content-14476?language=en_US)
+* [import_from_bigquery.sql](https://raw.githubusercontent.com/exasol/exa-toolbox/master/utilities/import_from_bigquery.sql)
+* [export_to_bigquery.sql](https://raw.githubusercontent.com/exasol/exa-toolbox/master/utilities/export_to_bigquery.sql)
 
 
