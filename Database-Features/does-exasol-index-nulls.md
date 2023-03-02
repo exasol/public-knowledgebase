@@ -13,5 +13,5 @@ The NULLs of the index have rather few application scenarios as filters and join
 
 <https://www.exasol.com/support/browse/EXASOL-2197>
 
-<https://community.exasol.com/t5/database-features/null-in-exasol/ta-p/363>
+<https://exasol.my.site.com/s/article/NULL-in-Exasol>
 

@@ -29,7 +29,7 @@ SELECT * FROM EXA_DBA_TRANSACTION_CONFLICTS WHERE SESSION_ID = <Session ID>;
 
 In many cases, it is worth it to investigate the exact cause of the conflict in order to better understand the cause and prevent it in the future. For WAIT FOR COMMIT on write/write scenarios (meaning two sessions writing to the same table at the same time), the only involved sessions are the SESSION_ID and CONFLICT_SESSION_ID found in EXA_DBA_TRANSACTION_CONFLICTS. Therefore, no other work is needed to investigate the exact cause of these conflicts.
 
-For [complex read/write scenarios](https://community.exasol.com/t5/database-features/transaction-conflicts-for-mixed-read-write-transactions/ta-p/2143), it is much more complicated to investigate and is only possible by using [Auditing](https://docs.exasol.com/database_concepts/auditing.htm) or analyzing the [database logs](https://docs.exasol.com/administration/on-premise/support/logs_files_for_sql_server_processes.htm) (via Exasol Support). To investigate transaction conflicts using auditing, you can view [this article](https://community.exasol.com/t5/internal-database-features/internal-investigating-transaction-conflicts-using-auditing/ta-p/2177).
+For [complex read/write scenarios](https://exasol.my.site.com/s/article/Transaction-Conflicts-for-Mixed-Read-Write-Transactions), it is much more complicated to investigate and is only possible by using [Auditing](https://docs.exasol.com/database_concepts/auditing.htm) or analyzing the [database logs](https://docs.exasol.com/administration/on-premise/support/logs_files_for_sql_server_processes.htm) (via Exasol Support). To investigate transaction conflicts using auditing, you can view [this article](https://community.exasol.com/t5/internal-database-features/internal-investigating-transaction-conflicts-using-auditing/ta-p/2177).
 
 ## Recommendation
 
@@ -53,15 +53,15 @@ SELECT * FROM EXA_DBA_SESSIONS WHERE SESSION_ID = <conflict session Id>;
 ```
 If the conflict session is simply left open (STATUS='IDLE') and not doing anything, waiting for the session may not be an option and may need to be killed. 
 
-In general, you can use the query found in [this article](https://community.exasol.com/t5/database-features/how-to-determine-idle-sessions-with-open-transactions/ta-p/1238) to determine which sessions are idle and have open transactions. 
+In general, you can use the query found in [this article](https://exasol.my.site.com/s/article/How-to-determine-idle-sessions-with-open-transactions-Except-Snapshot-Executions) to determine which sessions are idle and have open transactions. 
 
 Exasol recommends to keep autocommit on and not leave transactions open for too long. 
 
 ## Additional References
 
 * <https://docs.exasol.com/database_concepts/transaction_management.htm>
-* <https://community.exasol.com/t5/database-features/transaction-system/ta-p/1522>
-* <https://community.exasol.com/t5/database-features/filter-on-system-tables-and-transaction-conflicts/ta-p/1232>
-* <https://community.exasol.com/t5/database-features/transaction-conflicts-for-mixed-read-write-transactions/ta-p/2143>
-* <https://community.exasol.com/t5/database-features/how-to-determine-idle-sessions-with-open-transactions/ta-p/1238>
+* <https://exasol.my.site.com/s/article/Transaction-System>
+* <https://exasol.my.site.com/s/article/Filter-on-system-tables-and-transaction-conflicts>
+* <https://exasol.my.site.com/s/article/Transaction-Conflicts-for-Mixed-Read-Write-Transactions>
+* <https://exasol.my.site.com/s/article/How-to-determine-idle-sessions-with-open-transactions-Except-Snapshot-Executions>
 * <https://community.exasol.com/t5/internal-database-features/internal-investigating-transaction-conflicts-using-auditing/ta-p/2177>

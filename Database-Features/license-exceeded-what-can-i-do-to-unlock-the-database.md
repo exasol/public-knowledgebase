@@ -49,7 +49,7 @@ Please note, it is important to clear sufficient data so we are back below 100% 
 
 ## 2. License update
 
-A second solution might be to update the License. This can take some time, therefore if you are already in negotiations with Exasol, please tell Exasol Support (see some details [here](https://community.exasol.com/t5/support/ct-p/Support "Exasol")).
+A second solution might be to update the License. This can take some time, therefore if you are already in negotiations with Exasol, please tell Exasol Support (see some details [here](https://www.exasol.com/product-overview/customer-support/ "Exasol")).
 
 If you are holding a Raw data license, you may want to change the new one without disruption. To do so, please follow the steps below:
 

@@ -147,7 +147,7 @@ Details and limitations:
 
 <https://docs.exasol.com/sql_references/functions/alphabeticallistfunctions/json_value.htm>
 
-<https://community.exasol.com/t5/data-science/parsing-json-data-with-python/ta-p/1247>
+<https://exasol.my.site.com/s/article/Parsing-JSON-data-with-python>
 
 <https://community.exasol.com/t5/discussion-forum/sneakpreview-on-version-7-json-functions/m-p/1710>
 

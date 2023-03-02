@@ -59,5 +59,5 @@ execute script partest;
 ```
 ## Additional References
 
-<https://community.exasol.com/t5/data-science/using-udf-s-to-implement-generic-analytic-functions-with-support/ta-p/499>
+<https://exasol.my.site.com/s/article/Using-UDf-s-to-implement-generic-analytic-functions-with-support-for-complex-windowing>
 

@@ -66,7 +66,7 @@ select st_distance(ST_Transform(a.geo, 2163), ST_Transform(b.geo, 2163))
 We import the data in three steps:
 
 1. Loading the full GeoJSON string into a VARCHAR(2000000) column in a table. (mind that this does not work if the GeoJSON is larger than two million characters)
-2. Parsing the GeoJSON using the json_table UDF script (see [querying-and-converting-json-data-with-the-json-table-udf](https://community.exasol.com/t5/database-features/querying-and-converting-json-data-with-the-json-table-udf/ta-p/1800); this UDF script emits a table with one row for each geo-object)
+2. Parsing the GeoJSON using the json_table UDF script (see [querying-and-converting-json-data-with-the-json-table-udf](https://exasol.my.site.com/s/article/Querying-and-Converting-JSON-Data-with-the-JSON-TABLE-UDF); this UDF script emits a table with one row for each geo-object)
 3. Converting each GeoJSON object into a GEOMETRY value using the ST_geomFromGeoJSON UDF script (attached to this solution)
 
 After these steps, we have all countries from the GeoJSON file in a GEOMETRY column. An alternative approach is developing a UDF script that loads the GeoJSON from a server (e.g., by using the Python package requests or paramiko) and parsing and iterating over the GeoJSON objects within the script. For each object, a WKT string is emitted, which can later be converted into a GEOMETRY value. This way, there are no limit on the characters. For our approach, the whole GeoJSON must not be larger than 2,000,000 characters:
@@ -77,7 +77,7 @@ create or replace table geo_import(v varchar(2000000));
 import into geo_import from local csv file 'D:\custom.geo.json' 
 column separator = '0x01' column delimiter = '0x02'; -- dummy separaters / delimiters to import a whole line as one column value
 
--- json_table (can be found in https://community.exasol.com/t5/database-features/querying-and-converting-json-data-with-the-json-table-udf/ta-p/1800) emits a row for each country with two columns name and geojson
+-- json_table (can be found in https://exasol.my.site.com/s/article/Querying-and-Converting-JSON-Data-with-the-JSON-TABLE-UDF) emits a row for each country with two columns name and geojson
 create or replace view geojson as 
  select json_table(v, '$.features[*].properties.name', '$.features[*].geometry') 
  emits (name varchar(2000000), geojson varchar(2000000)) from geo_import;

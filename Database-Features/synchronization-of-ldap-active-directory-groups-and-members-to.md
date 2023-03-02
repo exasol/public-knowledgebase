@@ -31,7 +31,7 @@ identified by 'abc';
 ```
 You can find more LDAP connection and authentication help here:
 
-[Manual LDAP test](https://community.exasol.com/t5/database-features/manual-ldap-connection-test/ta-p/1679)       [Force create user when connection fails](https://community.exasol.com/t5/database-features/ldap-error-can-t-contact-ldap-server-use-force-option-to-create/ta-p/1888)      [LDAP authentication fails on distinguished-name](https://community.exasol.com/t5/connect-with-exasol/ldap-authentication-failed-for-distinguished-names-containing/ta-p/836) 
+[Manual LDAP test](https://exasol.my.site.com/s/article/Manual-LDAP-Connection-Test)       [Force create user when connection fails](https://exasol.my.site.com/s/article/LDAP-error-Can-t-contact-LDAP-server-use-FORCE-option-to-create-user)      [LDAP authentication fails on distinguished-name](https://exasol.my.site.com/s/article/LDAP-Authentication-Failed-for-Distinguished-Names-containing-Spaces) 
 
 ## How to Synchronize AD users and groups
 
@@ -98,7 +98,7 @@ EXECUTE SCRIPT EXA_TOOLBOX."SYNC_AD_GROUPS_TO_DB_ROLES_AND_USERS"('LDAP_SERVER',
 EXECUTE SCRIPT EXA_TOOLBOX."SYNC_AD_GROUPS_TO_DB_ROLES_AND_USERS"('LDAP_SERVER','memberOf','sAMAccountName', 'DEBUG');
 ```
 
-If you would like to automate this, you can trigger this script via cron job. You can read more about scheduling database queries [here](https://community.exasol.com/t5/connect-with-exasol/scheduling-database-jobs/ta-p/1586).
+If you would like to automate this, you can trigger this script via cron job. You can read more about scheduling database queries [here](https://exasol.my.site.com/s/article/Scheduling-Database-Jobs).
 
 ## Additional Notes
 
@@ -108,8 +108,8 @@ This script can be used as a starting point and may require some modification to
 
 * [Hiding Access Keys](https://docs.exasol.com/6.2/database_concepts/udf_scripts/hide_access_keys_passwords.htm)
 * [Setting up LDAP](https://docs.exasol.com/6.2/sql/create_user.htm?Highlight=ldap#Authenti3)
-* [LDAP Connection Test](https://community.exasol.com/t5/database-features/manual-ldap-connection-test/ta-p/1679)
-* [Scheduling Database Jobs](https://community.exasol.com/t5/connect-with-exasol/scheduling-database-jobs/ta-p/1586)
-* [Manual LDAP test](https://community.exasol.com/t5/database-features/manual-ldap-connection-test/ta-p/1679)
-* [Force create user when connection fails](https://community.exasol.com/t5/database-features/ldap-error-can-t-contact-ldap-server-use-force-option-to-create/ta-p/1888)
-* [LDAP authentication fails on distinguished-name](https://community.exasol.com/t5/connect-with-exasol/ldap-authentication-failed-for-distinguished-names-containing/ta-p/836)
+* [LDAP Connection Test](https://exasol.my.site.com/s/article/Manual-LDAP-Connection-Test)
+* [Scheduling Database Jobs](https://exasol.my.site.com/s/article/Scheduling-Database-Jobs)
+* [Manual LDAP test](https://exasol.my.site.com/s/article/Manual-LDAP-Connection-Test)
+* [Force create user when connection fails](https://exasol.my.site.com/s/article/LDAP-error-Can-t-contact-LDAP-server-use-FORCE-option-to-create-user)
+* [LDAP authentication fails on distinguished-name](https://exasol.my.site.com/s/article/LDAP-Authentication-Failed-for-Distinguished-Names-containing-Spaces)

@@ -55,7 +55,7 @@ This requires an ODBC DSN (named "solo" in this example)
 ## Step 4. Write decision tree to Exasol
 
 1. We will use a bucket called binary to store the decision forest
-2. Detailed information on EXABucket FS and buckets can be found in <https://community.exasol.com/t5/environment-management/how-to-create-an-exabucketfs-service-and-bucket/ta-p/1515>**
+2. Detailed information on EXABucket FS and buckets can be found in <https://exasol.my.site.com/s/article/How-to-create-an-EXABucketFS-service-and-bucket>**
 3. This item does not apply to Exasol 6+ and is only left in for archival purposes. **Important Deprecation Notice:**  In Version 5 it is not possible to store binary data in EXASOL database. One possibility is to serialize the decision forest and store it in a table. SInce VARCHAR type in EXASOL is limited to 2 million characters, the resulting string should not exceed 2 million characters.    
 ```"code-java"
 curl -v -X PUT -T rf.dat http://w:<write_pw>@<ip of one cluster node>:<port>/binary/rf.dat

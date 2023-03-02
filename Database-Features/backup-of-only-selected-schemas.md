@@ -13,4 +13,4 @@ It is - however - possible to restore only some data by starting a backup in a v
 Please consider Virtual Access on Database Backup
 
 * [Virtual Access on Database Backup in Documentation](https://docs.exasol.com/administration/on-premise/backup_restore/virtual_access_on_backup.htm)
-* [Virtual-access on database backups in Community](https://community.exasol.com/t5/database-features/virtual-access-on-database-backups/ta-p/813)
+* [Virtual-access on database backups in Community](https://exasol.my.site.com/s/article/Virtual-access-on-database-backups)

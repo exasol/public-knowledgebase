@@ -44,9 +44,9 @@ The system table SYS.EXA_SYSTEM_EVENTS records the start and stop events, but it
 
 ## Additional References
 
-<https://community.exasol.com/t5/database-features/how-to-calculate-the-backup-duration-from-the-system-events/ta-p/1446>
+<https://exasol.my.site.com/s/article/How-to-calculate-the-backup-duration-from-the-system-events-table>
 
-<https://community.exasol.com/t5/environment-management/synchronising-backups-between-clusters/ta-p/1423>
+<https://exasol.my.site.com/s/article/Synchronising-backups-between-clusters>
 
 <https://community.exasol.com/t5/environment-management/exasolution-backup-restore-processes-for-use-with-amazon-aws-s3/ta-p/1354>
 
