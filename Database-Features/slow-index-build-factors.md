@@ -1,7 +1,7 @@
 # Slow Index Build Factors 
 ## Overview
 
-This article draws on past questions from our user base and is an extension of articles such as [Performance Best Practices](https://docs.exasol.com/performance/best_practices.htm), and [Indexes](https://exasol.my.site.com/s/article/Indexes). We will explain how slow index builds occur and provide tips on how to avoid them. To keep this article within scope, we are not covering in much detail JOINs or Best Practices. You can find more in our [Community](https://community.exasol.com/).
+This article draws on past questions from our user base and is an extension of articles such as [Performance Best Practices](https://docs.exasol.com/performance/best_practices.htm), and [Indexes](https://exasol.my.site.com/s/article/Indexes). We will explain how slow index builds occur and provide tips on how to avoid them. To keep this article within scope, we are not covering in much detail JOINs or Best Practices. You can find more in our [Knowledge base](https://exasol.my.site.com/s/).
 
 ## Question:
 

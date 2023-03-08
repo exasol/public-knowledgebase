@@ -1,7 +1,7 @@
 # AWS Remote support VPN 
 ## Background
 
-For certain Support Packages, such as [Monitoring](https://community.exasol.com/t5/Overview-of-Professional/Monitoring-24x7/ta-p/110), Exasol will need VPN Access to the cluster to provide these services. 
+For certain Support Packages, such as [Monitoring](https://www.exasol.com/product-overview/customer-support/), Exasol will need VPN Access to the cluster to provide these services. 
 
 ## Prerequisites
 
@@ -48,4 +48,4 @@ Click **Create VPN Connection**
 
 ## Additional References
 
-* [Overview of Professional Services](https://community.exasol.com/t5/Overview-of-Professional/tkb-p/ServiceOverview)
+* [Overview of Professional Services](https://www.exasol.com/product-overview/customer-support/)

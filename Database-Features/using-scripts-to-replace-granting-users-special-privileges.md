@@ -80,7 +80,7 @@ You can test the connection, by running this query as the SYS user:
 ```sql
 select * from (IMPORT FROM EXA AT SYS_CONN statement 'select current_date');
 ```
-Notice the SQL part IMPORT FROM EXA. This means we are using the built-in Exasol driver to connect. You can find examples here [import.](https://docs.exasol.com/7.0/sql/import.htm) The results of the above query should return a column named CURRENT_DATE with the current data as the value. For more information on connections, see [create_connection](https://docs.exasol.com/sql/create_connection.htm?Highlight=connection), [alter_connection](https://docs.exasol.com/sql/alter_connection.htm). You can see existing connections in the EXA_DBA_CONNECTIONS table, see [exa_dba_connections.](https://docs.exasol.com/7.0/sql_references/system_tables/metadata/exa_dba_connections.htm)As loading data requires a connection, you can find more connection examples here [loading_data/load_data_from_externalsources.](https://docs.exasol.com/7.0/loading_data/load_data_from_externalsources.htm)
+Notice the SQL part IMPORT FROM EXA. This means we are using the built-in Exasol driver to connect. You can find examples here [import](https://docs.exasol.com/7.0/sql/import.htm). The results of the above query should return a column named CURRENT_DATE with the current data as the value. For more information on connections, see [create_connection](https://docs.exasol.com/sql/create_connection.htm), [alter_connection](https://docs.exasol.com/sql/alter_connection.htm). You can see existing connections in the EXA_DBA_CONNECTIONS table, see [exa_dba_connections](https://docs.exasol.com/7.0/sql_references/system_tables/metadata/exa_dba_connections.htm). As loading data requires a connection, you can find more connection examples here [loading_data/load_data_from_externalsources](https://docs.exasol.com/7.0/loading_data/load_data_from_externalsources.htm).
 
 ### Create Schema
 
@@ -422,7 +422,7 @@ When concluding your development testing, be sure and execute either "DROP USER 
 
 [Lua Connections](https://docs.exasol.com/database_concepts/udf_scripts/lua.htm#AccessingConnectionDefinitions) 
 
-[General Connection info](https://docs.exasol.com/sql/create_connection.htm?Highlight=connection) 
+[General Connection info](https://docs.exasol.com/sql/create_connection.htm) 
 
 [Scripting Basics](https://docs.exasol.com/database_concepts/scripting.htm) 
 

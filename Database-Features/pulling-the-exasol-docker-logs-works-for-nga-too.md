@@ -241,12 +241,12 @@ Download the logs to your local computer.
 
 ![](images/63_download.png)
 
-We are done. From here, if you have JIRA access, you can attach the logs to the JIRA ticket.
+We are done. From here, if you have ticketing system access, you can attach the logs to the ticket.
 
 ## Additional Notes
 
-In case you were not aware, you can find out more about Exasol with Docker or NGA by searching our community site:[Community.](https://community.exasol.com/)  
-It's the best place to find quick answers and discover additional content. Those with a current Exasol license can open a Jira "Question" ticket to address content you did not find in our community. The site is: [JIra.](https://www.exasol.com/support/secure/Dashboard.jspa)  
+In case you were not aware, you can find out more about Exasol with Docker or NGA by searching our Knowledge base: [link](https://exasol.my.site.com/s/). 
+It's the best place to find quick answers and discover additional content. Those with a current Exasol license can open a "Question" ticket to address content you did not find in our community. The site is: [Exasol Help Center](https://exasol.my.site.com/s/create-new-case).
   
 
 
@@ -254,5 +254,4 @@ It's the best place to find quick answers and discover additional content. Those
 
 [Docker-guide](https://exasol.my.site.com/s/article/Docker-Guide)   
 [Docker_and_BucketFS](https://exasol.my.site.com/s/article/Exasol-on-Docker-How-to-Create-a-BucketFS-and-Buckets-Inside)   
-[NGA_disk_enlargement](https://community.exasol.com/t5/internal-environment-management/internal-how-to-enlarge-exastorage-disks-on-nga-lvm-based/ta-p/3215) 
 

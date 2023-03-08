@@ -20,7 +20,7 @@ As an example, we only demonstrate geocoding and reverse geocoding.
 ## Prerequisites
 
 * You should create a bucket and make sure the database has access to this bucket. You can find further information on doing this [here](https://docs.exasol.com/database_concepts/bucketfs/bucketfs.htm)
-* The database must have access to the internet and have a DNS name configured ([instructions](https://docs.exasol.com/administration/on-premise/manage_network/configure_network_access.htm?Highlight=dns#SystemNetworkSettings))
+* The database must have access to the internet and have a DNS name configured ([instructions](https://docs.exasol.com/administration/on-premise/manage_network/configure_network_access.htm#SystemNetworkSettings))
 
 ## How to use ArcGIS Rest API in a UDF
 

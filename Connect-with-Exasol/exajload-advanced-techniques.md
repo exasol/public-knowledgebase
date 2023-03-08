@@ -1,7 +1,7 @@
 # EXAjload: advanced techniques 
 ## Background
 
-[EXAjload](https://docs.exasol.com/loading_data/file_formats.htm?Highlight=exajload) is a standard tool for bulk data loading. Its documentation is brief, but the tool is more powerful than you might think.
+[EXAjload](https://docs.exasol.com/loading_data/file_formats.htm) is a standard tool for bulk data loading. Its documentation is brief, but the tool is more powerful than you might think.
 
 It is possible to:
 

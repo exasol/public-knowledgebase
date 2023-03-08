@@ -15,7 +15,7 @@ Before we go into detail, a few things to keep in mind:
 
 #### Environment build
 
-Our demonstration is using the SALES table from [https://github.com/exasol/database-migration/tree/master/test/testing_files/retail_mini.](https://github.com/exasol/database-migration/tree/master/test/testing_files/retail_mini)
+Our demonstration is using the SALES table from [https://github.com/exasol/database-migration/tree/master/test/testing_files/retail_mini](https://github.com/exasol/database-migration/tree/master/test/testing_files/retail_mini).
 
 
 ```markup

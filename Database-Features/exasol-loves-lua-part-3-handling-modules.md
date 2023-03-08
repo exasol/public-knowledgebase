@@ -61,7 +61,7 @@ I am assuming here that you want to install the package globally. If you want it
 
 ### LuaRocks Installation on MacOS
 
-The easiest path to a [MacOS LuaRocks installation](https://github.com/luarocks/luarocks/wiki/Installation-instructions-for-macOS "Lua") is using [Homebrew.](https://brew.sh/ "Homebrew") Assuming you already have Homebrew installed, the setup is as simple as this:
+The easiest path to a [MacOS LuaRocks installation](https://github.com/luarocks/luarocks/wiki/Installation-instructions-for-macOS "Lua") is using [Homebrew](https://brew.sh/ "Homebrew"). Assuming you already have Homebrew installed, the setup is as simple as this:
 
 
 ```markup

@@ -34,7 +34,7 @@ to
 -maxProcessHeapMemory=8192 
 ```
 Be aware that changing this parameter means every connection *can* now use up to 8192 MB. Your allocated resources will determine whether this is an appropriate action to take. You can make this change via EXAoperation (changing "Extra DB Parameters" in ExaSolution) which would also fix other queries affected by the bug. This requires a short downtime. Here is the link which explains in detail how it can be done.  
-[https://docs.exasol.com/administration/on-premise/manage_database/edit_database.htm](https://docs.exasol.com/administration/on-premise/manage_database/edit_database.htm?Highlight=database%20parameters)
+[https://docs.exasol.com/administration/on-premise/manage_database/edit_database.htm](https://docs.exasol.com/administration/on-premise/manage_database/edit_database.htm)
 
 **Scenario:**  If the 32 GB system heap memory limit is reached, the topmost consuming SQL sessions are terminated and deliver the error message "*system* running out of heap memory". The workaround is to increase the maxSystemHeapMemory, like this:
 
@@ -43,7 +43,7 @@ Be aware that changing this parameter means every connection *can* now use up to
 -maxSystemHeapMemory=65536
 ```
  Here is the link which explains in detail how it can be done.  
-[https://docs.exasol.com/administration/on-premise/manage_database/edit_database.htm](https://docs.exasol.com/administration/on-premise/manage_database/edit_database.htm?Highlight=database%20parameters)
+[https://docs.exasol.com/administration/on-premise/manage_database/edit_database.htm](https://docs.exasol.com/administration/on-premise/manage_database/edit_database.htm)
 
 ## Additional References
 

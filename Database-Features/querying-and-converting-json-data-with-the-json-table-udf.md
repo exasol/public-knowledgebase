@@ -149,5 +149,5 @@ Details and limitations:
 
 <https://exasol.my.site.com/s/article/Parsing-JSON-data-with-python>
 
-<https://community.exasol.com/t5/discussion-forum/sneakpreview-on-version-7-json-functions/m-p/1710>
+<https://docs.exasol.com/db/latest/sql_references/functions/json.htm>
 

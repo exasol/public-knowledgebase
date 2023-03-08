@@ -107,7 +107,7 @@ With an in-memory database, the most important data should always fit in the RAM
 
 ### NET diagram
 
-If data is distributed to different Nodes, it is important to set the distribution key and use replication border (see: <https://docs.exasol.com/performance/best_practices.htm?Highlight=Best>) to avoid too many global operations. Global operations like global joins and global aggregations cannot be avoided completely. Therefore the network traffic should be monitored.
+If data is distributed to different Nodes, it is important to set the distribution key and use replication border (see: <https://docs.exasol.com/performance/best_practices.htm>) to avoid too many global operations. Global operations like global joins and global aggregations cannot be avoided completely. Therefore the network traffic should be monitored.
 
 **Data sources:** Table EXA_MONITOR_DAILY - NET_AVG, NET_MAX
 

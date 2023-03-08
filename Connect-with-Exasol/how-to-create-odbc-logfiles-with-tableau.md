@@ -45,5 +45,3 @@ For all ODBC logfile options, please refer to the user manual.
 
 <https://exasol.my.site.com/s/article/How-to-use-Exasol-as-a-Linked-Server-in-SQL-Server>
 
-<https://community.exasol.com/t5/discussion-forum/exasol-data-in-microsoft-power-apps/m-p/1066>
-

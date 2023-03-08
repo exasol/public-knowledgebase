@@ -219,8 +219,8 @@ There are also some conflicts which are difficult to reproduce because the objec
 
 ## Additional References
 
-* <https://docs.exasol.com/database_concepts/transaction_management.htm>
-* <https://exasol.my.site.com/s/article/Transaction-System>
-* [https://community.exasol.com/t5/database-features/filter-on-system-tables-and-transaction-conflicts/...](https://exasol.my.site.com/s/article/Filter-on-system-tables-and-transaction-conflicts)
-* [https://community.exasol.com/t5/database-features/transaction-conflicts-for-mixed-read-write-transac...](https://exasol.my.site.com/s/article/Transaction-Conflicts-for-Mixed-Read-Write-Transactions)
-* <https://community.exasol.com/t5/internal-database-features/internal-resolving-transaction-conflicts/ta-p/2169>
+* [Transaction Management](https://docs.exasol.com/database_concepts/transaction_management.htm)
+* [Transaction System](https://exasol.my.site.com/s/article/Transaction-System)
+* [Filter on system tables and transaction conflicts](https://exasol.my.site.com/s/article/Filter-on-system-tables-and-transaction-conflicts)
+* [Transaction Conflicts for Mixed Read/Write Transactions](https://exasol.my.site.com/s/article/Transaction-Conflicts-for-Mixed-Read-Write-Transactions)
+* [Resolving Transaction Conflicts](https://exasol.my.site.com/s/article/Resolving-Transaction-Conflicts)

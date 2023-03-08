@@ -24,7 +24,7 @@ pd = pandas.DataFrame(stmt.fetchall())
 
  
 
-You may also use stmt.columns()to access information about result data types, if necessary.
+You may also use `stmt.columns()` to access information about result data types, if necessary.
 
 https://github.com/exasol/pyexasol/blob/master/docs/REFERENCE.md#columns
 

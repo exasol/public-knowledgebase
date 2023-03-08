@@ -45,7 +45,7 @@ To resolve the limit exceeded on your license, you have 2 options:
 
 The first solution is to clear some large data (DROP or DELETE database tables). When this is done, connect as SYS (or DBA) and perform "FLUSH STATISTICS TASKS;" on the database to trigger the check; the (de)activation of the "Restricted Mode" takes about 3 to 5 minutes.
 
-Please note, it is important to clear sufficient data so we are back below 100% of the license. Additionally, you can check the[ EXA_DB_SIZE_LAST_DAY](https://docs.exasol.com/sql_references/system_tables/statistical/exa_db_size_last_day.htm)table to view information on database sizes.
+Please note, it is important to clear sufficient data so we are back below 100% of the license. Additionally, you can check the [EXA_DB_SIZE_LAST_DAY](https://docs.exasol.com/sql_references/system_tables/statistical/exa_db_size_last_day.htm) table to view information on database sizes.
 
 ## 2. License update
 

@@ -48,5 +48,3 @@ The system table SYS.EXA_SYSTEM_EVENTS records the start and stop events, but it
 
 <https://exasol.my.site.com/s/article/Synchronising-backups-between-clusters>
 
-<https://community.exasol.com/t5/environment-management/exasolution-backup-restore-processes-for-use-with-amazon-aws-s3/ta-p/1354>
-
