@@ -1,7 +1,7 @@
 # Pulling the Exasol Docker logs...works for NGA, too 
 ## Background
 
-Exasol runs on Docker. Many times, troubleshooting issues with the database requires generating EXACluster Debug Information. Exasol on Docker does not have a UI menu available to generate the logs but uses the command line to instruct Exasol on pulling the logs. This article is an extension of [how-to-get-debug-information-and-log-files-from-docker-based](https://community.exasol.com/t5/environment-management/how-to-get-debug-information-and-log-files-from-docker-based/ta-p/2366) 
+Exasol runs on Docker. Many times, troubleshooting issues with the database requires generating EXACluster Debug Information. Exasol on Docker does not have a UI menu available to generate the logs but uses the command line to instruct Exasol on pulling the logs. This article is an extension of [how-to-get-debug-information-and-log-files-from-docker-based](https://exasol.my.site.com/s/article/How-to-get-debug-information-and-log-files-from-docker-based-systems?language=en_US) 
 
 In order to reproduce our results, we list this article's specifications and additional information regarding log generation.
 
@@ -252,7 +252,5 @@ It's the best place to find quick answers and discover additional content. Those
 
 ## Additional References
 
-[Docker-guide](https://community.exasol.com/t5/environment-management/docker-guide/ta-p/1906)   
-[Docker_and_BucketFS](https://community.exasol.com/t5/environment-management/exasol-on-docker-how-to-create-a-bucketfs-and-buckets-inside/ta-p/2368)   
-[NGA_disk_enlargement](https://community.exasol.com/t5/internal-environment-management/internal-how-to-enlarge-exastorage-disks-on-nga-lvm-based/ta-p/3215) 
-
+[Docker-guide](https://exasol.my.site.com/s/article/Docker-Guide?language=en_US)   
+[Docker_and_BucketFS](https://exasol.my.site.com/s/article/Exasol-on-Docker-How-to-Create-a-BucketFS-and-Buckets-Inside?language=en_US)   
