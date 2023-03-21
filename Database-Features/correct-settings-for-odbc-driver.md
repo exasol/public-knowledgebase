@@ -43,7 +43,7 @@ The table was created via JDBC, with EXAplus/JDBC/Java there had not been any Un
 
 ## Additional References
 
-[Unicode-support-in-exasol](https://community.exasol.com/t5/database-features/unicode-support-in-exasol/ta-p/775) 
+[Unicode-support-in-exasol](https://exasol.my.site.com/s/article/Unicode-Support-in-Exasol) 
 
-[How-to-use-exasol-as-a-linked-server-in-sql-server](https://community.exasol.com/t5/connect-with-exasol/how-to-use-exasol-as-a-linked-server-in-sql-server/ta-p/362) 
+[How-to-use-exasol-as-a-linked-server-in-sql-server](https://exasol.my.site.com/s/article/How-to-use-Exasol-as-a-Linked-Server-in-SQL-Server) 
 

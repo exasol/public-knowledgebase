@@ -33,5 +33,3 @@ group by ma.market_id, ma.city;
 ```
 
 Mind that the optimizer is constantly improved, so a trick like that to improve the execution plan might not be required any more in later versions.
-
-

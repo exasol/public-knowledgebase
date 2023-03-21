@@ -26,4 +26,4 @@ The script itself: [create_table_ddl.sql](https://raw.githubusercontent.com/exa
 
 [Lua Scripts](https://docs.exasol.com/database_concepts/scripting.htm)
 
-[Create DDL for Database](https://community.exasol.com/t5/database-features/create-ddl-for-the-entire-database/ta-p/1417)
+[Create DDL for Database](https://exasol.my.site.com/s/article/Create-DDL-for-the-entire-Database)

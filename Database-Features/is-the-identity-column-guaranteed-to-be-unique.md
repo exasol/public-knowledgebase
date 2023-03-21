@@ -55,7 +55,7 @@ commit;
 
  <https://docs.exasol.com/sql_references/data_types/identitycolumns.htm>
 
-<https://docs.exasol.com/sql/alter_table(column).htm?Highlight=identity>
+<https://docs.exasol.com/sql/alter_table(column).htm>
 
-<https://docs.exasol.com/sql_references/metadata/metadata_system_tables.htm?Highlight=identity>
+<https://docs.exasol.com/sql_references/metadata/metadata_system_tables.htm>
 

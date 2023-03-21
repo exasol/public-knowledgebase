@@ -3,7 +3,7 @@
 
 This article will describe how to resolve the issue when you are using version 7.1 of the Exasol driver and your existing connections no longer work. This article is relevant for driver version 7.1.0+ and database versions 7.1.0+, 7.0.10+, and 6.2.15+. Other database and driver combinations are not affected.
 
-[exasol-7-1-connection-security-changes](https://community.exasol.com/t5/product-news/exasol-7-1-connection-security-changes/ba-p/6831)   
+[exasol-7-1-connection-security-changes](https://www.exasol.com/resource/exasol-7-1-connection-security-changes/)   
 Here is the original changelog documentation: [EXASOL-2936](https://www.exasol.com/support/browse/EXASOL-2936 "Explanation") 
 
 ## Diagnosis
@@ -44,7 +44,9 @@ To re-establish connection to your database using the latest driver, there are 3
 
 The error message provides you a fingerprint that you can append to your hostname when connecting to the database. The fingerprint looks like: `2747B64E34414C293091FF37F428CC8D795B64B7159E50EDD7EA507B58D4FAEA`. You can also see this fingerprint in Exaoperation (if your DB is on version 7.1 or newer):
 
-![](images/exaNico_0-1630057772662.png)In your client or driver, change the server or host field to follow this format: &lt;ip address&gt;/&lt;fingerprint&gt;:8563
+![](images/exaNico_0-1630057772662.png)
+
+In your client or driver, change the server or host field to follow this format: &lt;ip address&gt;/&lt;fingerprint&gt;:8563
 
 For example: `192.168.56.101/2747B64E34414C293091FF37F428CC8D795B64B7159E50EDD7EA507B58D4FAEA:8563`
 
@@ -72,7 +74,7 @@ If you are able to use a CA-signed certificate, it can be uploaded to Exaoperat
 
 ## Additional References
 
-* [exasol-7-1-connection-security-changes](https://community.exasol.com/t5/product-news/exasol-7-1-connection-security-changes/ba-p/6831)
+* [exasol-7-1-connection-security-changes](https://www.exasol.com/resource/exasol-7-1-connection-security-changes/)
 * [Upload TLS Certificate](https://docs.exasol.com/administration/on-premise/access_management/tls_certificate.htm)
 * [ODBC Documentation](https://docs.exasol.com/connect_exasol/drivers/odbc/using_odbc.htm)
 * [JDBC Documentation](https://docs.exasol.com/connect_exasol/drivers/jdbc.htm)

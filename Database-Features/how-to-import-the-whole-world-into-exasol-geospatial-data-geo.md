@@ -1,7 +1,7 @@
 # How to import the whole world into Exasol - Geospatial Data, Geo Indexes, Geo Joins and GeoJSON 
 ## Background
 
-[Geospatial data](https://docs.exasol.com/sql_references/geospatialdata.htm)can be stored and analyzed in the Exasol database using the GEOMETRY datatype.
+[Geospatial data](https://docs.exasol.com/sql_references/geospatialdata.htm) can be stored and analyzed in the Exasol database using the GEOMETRY datatype.
 
 In this solution, we will show you some examples of how to import geo spatial data from a CSV and from a GeoJSON file and use SQL functions to perform analytics and geo joins.
 
@@ -37,7 +37,7 @@ GEOMETRY columns can be filled with strings using the well-known text representa
 
 ### Importing geodata from CSV files
 
-Often, geodata is present in CSV files or in colunms of tables that are imported from different database systems in form of latitude and longitude values. On<https://openflights.org/data.html#airport>, you can download a CSV file containing international airport data. We are using the extended version of this file, which consists of more than 12,000 international airports and train stations. In the first two fields of the file, there is the id and the name of the airport; in columns 7 and 8, we find its latitude and longitude coordinates:
+Often, geodata is present in CSV files or in colunms of tables that are imported from different database systems in form of latitude and longitude values. On <https://openflights.org/data.html#airport>, you can download a CSV file containing international airport data. We are using the extended version of this file, which consists of more than 12,000 international airports and train stations. In the first two fields of the file, there is the id and the name of the airport; in columns 7 and 8, we find its latitude and longitude coordinates:
 
 
 ```"code-sql"
@@ -61,12 +61,12 @@ select st_distance(ST_Transform(a.geo, 2163), ST_Transform(b.geo, 2163))
 ```
 ### Importing data from GeoJSON
 
-[GeoJSON](https://tools.ietf.org/html/rfc7946)is an often-used format for storing and exchanging geodata. On[https://geojson-maps.ash.ms](https://geojson-maps.ash.ms/), you can download countries as geodata. When you generate a custom JSON file on this site, the file consists of one JSON object, a so-called FeatureCollection, which contains multiple polygons and multi-polygons, one for each country.
+[GeoJSON](https://tools.ietf.org/html/rfc7946) is an often-used format for storing and exchanging geodata. On [https://geojson-maps.ash.ms](https://geojson-maps.ash.ms/), you can download countries as geodata. When you generate a custom JSON file on this site, the file consists of one JSON object, a so-called FeatureCollection, which contains multiple polygons and multi-polygons, one for each country.
 
 We import the data in three steps:
 
 1. Loading the full GeoJSON string into a VARCHAR(2000000) column in a table. (mind that this does not work if the GeoJSON is larger than two million characters)
-2. Parsing the GeoJSON using the json_table UDF script (see [querying-and-converting-json-data-with-the-json-table-udf](https://community.exasol.com/t5/database-features/querying-and-converting-json-data-with-the-json-table-udf/ta-p/1800); this UDF script emits a table with one row for each geo-object)
+2. Parsing the GeoJSON using the json_table UDF script (see [querying-and-converting-json-data-with-the-json-table-udf](https://exasol.my.site.com/s/article/Querying-and-Converting-JSON-Data-with-the-JSON-TABLE-UDF); this UDF script emits a table with one row for each geo-object)
 3. Converting each GeoJSON object into a GEOMETRY value using the ST_geomFromGeoJSON UDF script (attached to this solution)
 
 After these steps, we have all countries from the GeoJSON file in a GEOMETRY column. An alternative approach is developing a UDF script that loads the GeoJSON from a server (e.g., by using the Python package requests or paramiko) and parsing and iterating over the GeoJSON objects within the script. For each object, a WKT string is emitted, which can later be converted into a GEOMETRY value. This way, there are no limit on the characters. For our approach, the whole GeoJSON must not be larger than 2,000,000 characters:
@@ -77,12 +77,12 @@ create or replace table geo_import(v varchar(2000000));
 import into geo_import from local csv file 'D:\custom.geo.json' 
 column separator = '0x01' column delimiter = '0x02'; -- dummy separaters / delimiters to import a whole line as one column value
 
--- json_table (can be found in https://community.exasol.com/t5/database-features/querying-and-converting-json-data-with-the-json-table-udf/ta-p/1800) emits a row for each country with two columns name and geojson
+-- json_table (can be found in https://exasol.my.site.com/s/article/Querying-and-Converting-JSON-Data-with-the-JSON-TABLE-UDF) emits a row for each country with two columns name and geojson
 create or replace view geojson as 
  select json_table(v, '$.features[*].properties.name', '$.features[*].geometry') 
  emits (name varchar(2000000), geojson varchar(2000000)) from geo_import;
 
--- ST_GeomFromGeoJSON is attached to https://community.exasol.com/t5/database-features/how-to-import-the-whole-world-into-exasol-geospati...
+-- ST_GeomFromGeoJSON is attached to https://docs.exasol.com/db/latest/sql_references/geospatialdata/import_geospatial_data_from_csv.htm
 create or replace table countries as 
  select name, cast(ST_GeomFromGeoJSON(geojson) as geometry(4326)) as geo from geojson;
 
@@ -97,7 +97,7 @@ The following query performs a geo-join between the two tables, countries and ai
 select a.* from countries c join airports a on st_contains(c.geo, a.geo)  
  where c.name = 'Italy'; 
 ```
-You can use[profiling](https://docs.exasol.com/database_concepts/profiling.htm)to see that an geo-index is created automatically and that this geo-index is used to execute the geo-join:
+You can use [profiling](https://docs.exasol.com/database_concepts/profiling.htm) to see that an geo-index is created automatically and that this geo-index is used to execute the geo-join:
 
 
 ```"code-sql"

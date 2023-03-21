@@ -32,7 +32,7 @@ min.io is an S3-compatible storage service (see <https://min.io>) that can be us
 ```
 6. Redeploy your min.io server with the patch
 7. In the Exasol ExaOperation interface for adding a remote archive volume
-	* Set the Archive URL to[https://backups.minio.yourdomain.com](https://backups.minio.yourdomain.com/)
+	* Set the Archive URL to [https://backups.minio.yourdomain.com](https://backups.minio.yourdomain.com/)
 	* Specify the access and secret keys in the username/password fields
 	* Specify an Option ofs3(and any other applicable options)
 
@@ -40,4 +40,4 @@ min.io is an S3-compatible storage service (see <https://min.io>) that can be us
 
 * <https://min.io>
 * <https://github.com/minio>
-* <https://docs.exasol.com/6.2/administration/aws/manage_storage/create_remote_archive_volume.htm>
+* <https://docs.exasol.com/db/latest/administration/aws/manage_storage/create_remote_archive_volume.htm>

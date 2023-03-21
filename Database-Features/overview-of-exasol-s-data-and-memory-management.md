@@ -89,7 +89,7 @@ Please refer to the user manual or column comments for details on the columns.
 | Temporary Volume Size | EXAStorage -&gt; (Labels: &lt;dbname&gt;_temporary) -&gt; Size | 
 | Exists Slave Segment? | EXAStorage -&gt; persistent -&gt; Redundancy | Gives total number of copies: 1 == no redundancy |
 | Free Disk Space | EXAStorage -&gt; Space on Disks -&gt; sum(sum:free) | 
-| Free database (disk) space | See [how-to-monitor-free-database-disk-space](https://community.exasol.com/t5/environment-management/how-to-monitor-free-database-disk-space/ta-p/1364) | 
+| Free database (disk) space | See [how-to-monitor-free-database-disk-space](https://exasol.my.site.com/s/article/How-to-monitor-free-database-disk-space) | 
 
 ![](images/storage.png)
 

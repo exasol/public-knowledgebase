@@ -13,7 +13,7 @@ table.unpack = table.unpack or _G.unpack
 ```
 This trick makes use of the fact that `table.unpack` is not set in Lua 5.1, so that the first part of the `or` evaluates to `nil` that means the second part will be used as the value for the assignment.
 
-Also if you have read the [third part](https://community.exasol.com/t5/database-features/exasol-loves-lua-part-3-handling-modules/ta-p/2134 "Exasol") of this series about handling modules, you already know that `package.loaders` has been renamed to `package.searchers`, a lot more fitting name, since this table contains functions that search for package loaders, not the loaders themselves.
+Also if you have read the [third part](https://exasol.my.site.com/s/article/Exasol-loves-Lua-part-3-Handling-modules "Exasol") of this series about handling modules, you already know that `package.loaders` has been renamed to `package.searchers`, a lot more fitting name, since this table contains functions that search for package loaders, not the loaders themselves.
 
 ### Other moved / renamed  methods
 
@@ -50,7 +50,7 @@ One word about Lua file handling in Exasol before we look at the new features. R
 
 ### Chunk and modules loading
 
-A "chunk" in Lua terms is a piece of code. You can load it at runtime from files, strings, or provider functions. Modules are code blocks contained in packages that adhere to a set of conventions that lets Lua load them in a standardized way. Check the previous article [Exasol loves Lua (part 3) - Handling modules](https://community.exasol.com/t5/database-features/exasol-loves-lua-part-3-handling-modules/ta-p/2134 "Exasol") from the same series for more background on this topic.
+A "chunk" in Lua terms is a piece of code. You can load it at runtime from files, strings, or provider functions. Modules are code blocks contained in packages that adhere to a set of conventions that lets Lua load them in a standardized way. Check the previous article [Exasol loves Lua (part 3) - Handling modules](https://exasol.my.site.com/s/article/Exasol-loves-Lua-part-3-Handling-modules "Exasol") from the same series for more background on this topic.
 
 * When loading chunks you can now explicitly choose between text and binary import thanks to a new parameter: `load[file]([<filename> [, <mode> [, <environment>]]])`   
 Both functions allow loading code into your running program.

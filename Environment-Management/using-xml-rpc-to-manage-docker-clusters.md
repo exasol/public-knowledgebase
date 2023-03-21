@@ -526,5 +526,5 @@ Example 6.3: list backups
 
 <https://github.com/exasol/exaoperation-xmlrpc>
 
-You can find another article about deploying a exasol database as an docker image in <https://community.exasol.com/t5/environment-management/how-to-deploy-a-single-node-exasol-database-as-a-docker-image/ta-p/921>
+You can find another article about deploying a exasol database as an docker image in <https://exasol.my.site.com/s/article/How-to-deploy-a-single-node-Exasol-database-as-a-Docker-image-for-testing-purposes>
 

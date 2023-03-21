@@ -32,4 +32,4 @@ You can find a complete list of the available system tables on [our documentatio
 ## Additional References
 
 * [List of System Tables](https://docs.exasol.com/sql_references/metadata/metadata_system_tables.htm#Metadata_System_Tables)
-* [EXA_STATISTICS](https://community.exasol.com/t5/database-features/exa-statistics/ta-p/1413)
+* [EXA_STATISTICS](https://exasol.my.site.com/s/article/EXA-STATISTICS)

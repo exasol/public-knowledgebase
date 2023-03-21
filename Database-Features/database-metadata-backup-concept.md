@@ -167,7 +167,7 @@ Run restore.sh
 ## Additional References
 
 * <https://www.exasol.com/support/secure/attachment/78805/metadatabackup_v20190418.tar.gz>
-* <https://community.exasol.com/t5/database-features/create-ddl-for-the-entire-database/ta-p/1417>
+* <https://exasol.my.site.com/s/article/Create-DDL-for-the-entire-Database>
 * <https://www.exasol.com/support/browse/IDEA-371>
 
 ## Downloads

@@ -10,7 +10,7 @@ The SQL Server JDBC driver needs to be configured in Exaoperation. There are two
 * Official Microsoft JDBC Driver
 * JTDS Driver (open source)
 
-Both of these drivers can be used to connect Exasol and SQL Server. The JTDS Driver generally has better performance over the official SQL Server driver, but your results may vary based on the specific use case. You can find more details in the [Best Practices for IMPORT/EXPORT with SQL Server](https://community.exasol.com/t5/connect-with-exasol/best-practices-for-import-export-with-sql-server/ta-p/215) article.
+Both of these drivers can be used to connect Exasol and SQL Server. The JTDS Driver generally has better performance over the official SQL Server driver, but your results may vary based on the specific use case. You can find more details in the [Best Practices for IMPORT/EXPORT with SQL Server](https://exasol.my.site.com/s/article/Best-Practices-for-IMPORT-EXPORT-with-SQL-Server) article.
 
 You will find instructions to setup and configure the drivers in our [documentation](https://docs.exasol.com/loading_data/connect_databases/sql_server.htm)
 
@@ -126,5 +126,5 @@ Internal failure: access denied ("java.lang.RuntimePermission" "loadLibrary.mssq
 ```
 ## Additional References
 
-* [SQL Server IMPORT/EXPORT Best Practices](https://community.exasol.com/t5/connect-with-exasol/best-practices-for-import-export-with-sql-server/ta-p/215)
+* [SQL Server IMPORT/EXPORT Best Practices](https://exasol.my.site.com/s/article/Best-Practices-for-IMPORT-EXPORT-with-SQL-Server)
 * [Set up SQL Server driver](https://docs.exasol.com/loading_data/connect_databases/sql_server.htm)
