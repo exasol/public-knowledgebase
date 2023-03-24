@@ -173,4 +173,4 @@ SELECT count(*)-count(col) AS NULLCOUNT FROM tab;
 * [IS NULL Predicate](https://docs.exasol.com/sql_references/predicates/is_not_null.htm)
 * [Exasol Functions](https://docs.exasol.com/sql_references/functions/all_functions.htm)
 * [Data Types](https://docs.exasol.com/sql_references/data_types/datatypesoverview.htm)
-* [NULL in UDF's and Lua Scripts](https://community.exasol.com/t5/Database-Features/NULL-in-UDFs-and-Lua-Scripts/ta-p/364)
+* [NULL in UDF's and Lua Scripts](https://exasol.my.site.com/s/article/NULL-in-UDFs-and-Lua-Scripts)

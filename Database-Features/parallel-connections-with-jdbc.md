@@ -21,10 +21,10 @@ You need a statement that produces a large result set. The result set can be the
 Like when reading data, using this interfaces only makes sense if you want to insert large amounts of data. You can simply insert rows into a table in EXASOL using a prepared insert statement. The data coming through the parallel connections will be put together by the server into the right table.
 
 **How to establish parallel connections?**  
-First you need a normal JDBC connection. On this you can use the methodEnterParallel()to start operating with subconnections. You will receive connection strings for all new parallel connections you can start now. Start the subconnections with auto commit off. After this you can start reading or sending data, nearly like in a normal connection.
+First you need a normal JDBC connection. On this you can use the `methodEnterParallel()` to start operating with subconnections. You will receive connection strings for all new parallel connections you can start now. Start the subconnections with auto commit off. After this you can start reading or sending data, nearly like in a normal connection.
 
-**Attention**: You can specify the maximum number of subconnections inEnterParallel(). This number may be reduced by the server because only one subconnection is allowed per database node.  
-You have to establish the subconnections by using all connection strings received fromGetWorkerHosts(). Subconnections can only be used after all connections have been established.
+**Attention**: You can specify the maximum number of subconnections `inEnterParallel()`. This number may be reduced by the server because only one subconnection is allowed per database node.  
+You have to establish the subconnections by using all connection strings received `fromGetWorkerHosts()`. Subconnections can only be used after all connections have been established.
 
 **What about transactions in parallel mode?**  
 Start the subconnections with auto commit off.  

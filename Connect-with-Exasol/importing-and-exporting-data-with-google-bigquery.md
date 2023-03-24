@@ -13,7 +13,7 @@ Before you are able to begin loading data, you need to do the following:
 
 * Download the [Bigquery JDBC Driver](https://cloud.google.com/bigquery/providers/simba-drivers)
 * Set up BucketFS and the accompanying buckets. Ensure that the database has access to these buckets. [More information](https://docs.exasol.com/database_concepts/bucketfs/bucketfs.htm)
-* Create a Google Service Account and the accompanying private key (as a JSON file), as described [here](https://docs.exasol.com/loading_data/connect_databases/google_bigquery.htm?Highlight=bigquery) in step 1
+* Create a Google Service Account and the accompanying private key (as a JSON file), as described [here](https://docs.exasol.com/loading_data/connect_databases/google_bigquery.htm) in step 1
 
 ## How to IMPORT Data from Google Bigquery
 

@@ -42,7 +42,7 @@ The user count between the Google Analytics UI and the data exported to Bigquery
 
 ## Step 3 - Connecting Exasol with BigQuery
 
-The data is available in BigQuery, now we would of course also like to import it into Exasol. There are many ways to import this data into [Exasol](https://community.exasol.com/t5/connect-with-exasol/importing-and-exporting-data-with-google-bigquery/ta-p/1385 "Exasol") (API, Google Cloud Storage, Python script). The easiest and most comfortable way is to setup the Simba JDBC driver.  
+The data is available in BigQuery, now we would of course also like to import it into Exasol. There are many ways to import this data into [Exasol](https://exasol.my.site.com/s/article/Importing-and-Exporting-Data-with-Google-Bigquery "Exasol") (API, Google Cloud Storage, Python script). The easiest and most comfortable way is to setup the Simba JDBC driver.  
 On the documentation page "[Google BigQuery](https://docs.exasol.com/loading_data/connect_databases/google_bigquery.htm)" there is already an excellent explanation how to configure the Simba Driver correctly in Exasol.  
 The JDBC driver leverage the BigQuery interface to ingest or export data between Google BigQuery and the existing Exasol environment.
 
@@ -154,7 +154,7 @@ Check your iat and exp values in the JWT claim." }.​
 * [ODBC and JDBC drivers for BigQuery](https://cloud.google.com/bigquery/providers/simba-drivers/ "ODBC")
 * [Big Query Virtual Schema](https://github.com/exasol/bigquery-virtual-schema "Big")
 * [Loading Data from Google BigQuery](https://docs.exasol.com/loading_data/connect_databases/google_bigquery.htm "Loading")
-* [Importing and Exporting Data with Google BigQuery](https://community.exasol.com/t5/connect-with-exasol/importing-and-exporting-data-with-google-bigquery/ta-p/1385 "Importing")
+* [Importing and Exporting Data with Google BigQuery](https://exasol.my.site.com/s/article/Importing-and-Exporting-Data-with-Google-Bigquery "Importing")
 * [database-migration Script](https://github.com/exasol/database-migration/blob/master/bigquery_to_exasol.sql "database-migration")
 
 I'm happy to get your experiences and feedback on this article! 

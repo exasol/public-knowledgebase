@@ -100,7 +100,7 @@ The SQL Server -&gt; EXA export using a Linked Server could only be estimated be
 The above methods all rely on prepared statements, which is not compatible with Exasol's Lua scripting. If you need to trigger script execution remotely from the SQL Server, you need to use the RPC functionality:
 
 1. In the properties of your linked server (your Exasol), go to the page 'Server Options' and enable the 'RPC Out' feature
-2. You can now use[SQL Server's EXECUTE](https://technet.microsoft.com/en-us/library/ms188332(v=SQL.110).aspx)command to run arbitrary statements on the linked server**and**receive the results for further local processing:
+2. You can now use [SQL Server's EXECUTE](https://technet.microsoft.com/en-us/library/ms188332(v=SQL.110).aspx) command to run arbitrary statements on the linked server**and**receive the results for further local processing:
 
 
 ```"code-java"

@@ -237,7 +237,7 @@ from (select r_stddev_reduce(avg, square_diff, num)
 				 (select 5 as m)     -- here we provide the average
 			group by floor(random() * (select count(*) from big) / 10000)));
 ```
-Clearly, providing the average manually in the query is not nice. It is possible to combine several MAP-REDUCE computations, hence we simply can replace(select 5 as m)by the MAP-REDUCE computation above as a subselect:
+Clearly, providing the average manually in the query is not nice. It is possible to combine several MAP-REDUCE computations, hence we simply can replace `(select 5 as m)` by the MAP-REDUCE computation above as a subselect:
 
 
 ```"code-sql"

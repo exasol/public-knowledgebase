@@ -84,7 +84,7 @@ There are the following prerequisites to run the script:
 * "SELECT ANY DICTIONARY" privilege to access some of data dictionary views.
 * Access to all direct and indirect dependencies of the view.
 
-If your model contains any of the above and it turns out to be relevant for reproduction of a problem, you might have to revert to "Skip all that" above. The "Copy Database" script in [create-ddl-for-the-entire-database](https://community.exasol.com/t5/database-features/create-ddl-for-the-entire-database/ta-p/1417) may be of use then.
+If your model contains any of the above and it turns out to be relevant for reproduction of a problem, you might have to revert to "Skip all that" above. The "Copy Database" script in [create-ddl-for-the-entire-database](https://exasol.my.site.com/s/article/Create-DDL-for-the-entire-Database) may be of use then.
 
  ## Additional References
 
@@ -92,4 +92,4 @@ The script itself: [create_view_ddl.sql](https://raw.githubusercontent.com/exas
 
 <https://www.exasol.com/support/browse/IDEA-359>
 
-[create-ddl-for-the-entire-database](https://community.exasol.com/t5/database-features/create-ddl-for-the-entire-database/ta-p/1417)
+[create-ddl-for-the-entire-database](https://exasol.my.site.com/s/article/Create-DDL-for-the-entire-Database)

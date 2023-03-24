@@ -80,7 +80,7 @@ total 492
 ```
 ## Step 5
 
-You can access this folder from the host system. If you used the article <https://community.exasol.com/t5/environment-management/how-to-deploy-a-single-node-exasol-database-as-a-docker-image/ta-p/921> then all of your configuration and log files are stored in  the $CONTAINER_EXA (/root/container_exa) folder.
+You can access this folder from the host system. If you used the article <https://exasol.my.site.com/s/article/How-to-deploy-a-single-node-Exasol-database-as-a-Docker-image-for-testing-purposes> then all of your configuration and log files are stored in  the $CONTAINER_EXA (/root/container_exa) folder.
 
 
 ```python
@@ -89,5 +89,5 @@ exacluster_debuginfo_2020_10_26-11_20_01.tar.gz
 ```
 ## Additional References
 
-<https://community.exasol.com/t5/environment-management/how-to-deploy-a-single-node-exasol-database-as-a-docker-image/ta-p/921>
+<https://exasol.my.site.com/s/article/How-to-deploy-a-single-node-Exasol-database-as-a-Docker-image-for-testing-purposes>
 

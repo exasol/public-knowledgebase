@@ -5,7 +5,7 @@ This article guides you through the steps required to configure the automatic ti
 
 ## Prerequisites
 
-If the time shift is greater than one hour it is required to set the time at first manually, which is described in [Manually setting time via EXAoperation](https://community.exasol.com/t5/environment-management/manually-setting-time-via-exaoperation/ta-p/1432).  
+If the time shift is greater than one hour it is required to set the time at first manually, which is described in [Manually setting time via EXAoperation](https://exasol.my.site.com/s/article/Manually-setting-time-via-EXAoperation).  
 There is no downtime need if the time shift is less than one hour.
 
  Please note that:
@@ -33,7 +33,7 @@ Check the gap between the currently configured time and the actual time
 
 ![](images/1.1.2_check_timezone.PNG)
 
-Make a rough estimation of the mismatch. If the mismatch is greater than one hour please set the time manually, which is described in [Manually setting time via EXAoperation](https://community.exasol.com/t5/environment-management/manually-setting-time-via-exaoperation/ta-p/1432).
+Make a rough estimation of the mismatch. If the mismatch is greater than one hour please set the time manually, which is described in [Manually setting time via EXAoperation](https://exasol.my.site.com/s/article/Manually-setting-time-via-EXAoperation).
 
 ## 1.2 Configure NTP Server
 

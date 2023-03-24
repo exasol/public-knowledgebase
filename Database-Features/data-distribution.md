@@ -49,7 +49,7 @@ REORGANIZE (TABLE| SCHEMA| DATABASE)
 Please note the following:
 
 * the reorganization will be performed in any case table-wise. If you reorganize a schema or your complete database, each table will be committed automatically.
-* reorganize sets a write-lock on the corresponding table (see [transaction-system](https://community.exasol.com/t5/database-features/transaction-system/ta-p/1522)for more details on Exasol's transaction management)
+* reorganize sets a write-lock on the corresponding table (see [transaction-system](https://exasol.my.site.com/s/article/Transaction-System) for more details on Exasol's transaction management)
 * reorganize re-creates all the indices
 * reorganize uses a large amount of RAM for re-distributing of data and re-creating the indexes. Is the RAM not sufficient, data will be swapped on the disk. Please ensure, that your persistent data volume has enough free space.
 

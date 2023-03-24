@@ -14,17 +14,23 @@ Usually, when there is such an ODBC installation issue, you would see an error m
 The setup routines for the EXASolution Driver ODBC driver could not be loaded due to system error code 126:   
 The specified module could not be found. ((C:\Program Files\Exasol\EXASolution-x\ODBC\EXAODBCConfig.dll)
 ```
-![](images/exaPeggy_0-1632227123426.png)On German Windows System:
+![](images/exaPeggy_0-1632227123426.png)
+
+On German Windows System:
 
 
 ```
 Die Setup-Routinen für den EXASolution Driver ODBC-Treiber konnten nicht geladen werden. Systemfehlercode 126:   
 Das angegebene Modul wurde nicht gefunden. (C:\Program Files\Exasol\EXASolution-x\ODBC\EXAODBCConfig.dll)
 ```
-![](images/exaPeggy_0-1632232104172.png)The module`(C:\Program Files\Exasol\EXASolution-x\ODBC\EXAODBCConfig.dll)`is available:  
+![](images/exaPeggy_0-1632232104172.png)
+
+The module `(C:\Program Files\Exasol\EXASolution-x\ODBC\EXAODBCConfig.dll)` is available:  
 
 
-![](images/exaPeggy_1-1632227250448.png)## Explanation
+![](images/exaPeggy_1-1632227250448.png)
+
+## Explanation
 
 The issue lies in the VC++ 2019 Redistributable which is embedded in the Exasol ODBC x64 driver installer. In short, the embedded VC++ Redistributable DOES NOT get installed successfully by the Exasol ODBC driver installer.
 

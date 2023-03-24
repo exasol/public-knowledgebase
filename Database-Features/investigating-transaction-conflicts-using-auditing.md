@@ -1,7 +1,7 @@
 # Investigating Transaction Conflicts using Auditing 
 ## Background
 
-Investigating [read/write transaction conflicts](https://community.exasol.com/t5/database-features/transaction-conflicts-for-mixed-read-write-transactions/ta-p/2143) is only possible by:
+Investigating [read/write transaction conflicts](https://exasol.my.site.com/s/article/Transaction-Conflicts-for-Mixed-Read-Write-Transactions) is only possible by:
 
 * sending the [database logs](https://docs.exasol.com/administration/on-premise/support/logs_files_for_sql_server_processes.htm) to Exasol Support
 * Analyzing [auditing](https://docs.exasol.com/database_concepts/auditing.htm) to determine the order of events
@@ -17,7 +17,7 @@ This article describes how to investigate these read/write conflicts. These type
 
 ## Step 1 - Find the Conflict
 
-As mentioned in [this article](https://community.exasol.com/t5/database-features/transaction-conflicts-for-mixed-read-write-transactions/ta-p/2143), WAIT FOR COMMITs on SELECT statements involve three transactions at any given time. To explain the conflict, we need to identify each of these sessions. The examples used here are a simplified method, but serve to guide you on these investigations. 
+As mentioned in [this article](https://exasol.my.site.com/s/article/Transaction-Conflicts-for-Mixed-Read-Write-Transactions), WAIT FOR COMMITs on SELECT statements involve three transactions at any given time. To explain the conflict, we need to identify each of these sessions. The examples used here are a simplified method, but serve to guide you on these investigations. 
 
 The conflicts are visible both in EXA_DBA_SESSIONS and in EXA_DBA_TRANSACTION_CONFLICTS:
 
@@ -35,7 +35,7 @@ select * from EXA_DBA_TRANSACTION_CONFLICTS WHERE TO_DATE(START_TIME) = CURRENT_
 ```
 ![](images/exa-Nico_1-1600945520523.png)
 
-Based on the information, I can already begin to reconstruct the conflict. From a terminology perspective, we will refer to tr1, tr2, and tr3 to correspond with the table in example 1 of [this article](https://community.exasol.com/t5/database-features/transaction-conflicts-for-mixed-read-write-transactions/ta-p/2143).
+Based on the information, I can already begin to reconstruct the conflict. From a terminology perspective, we will refer to tr1, tr2, and tr3 to correspond with the table in example 1 of [this article](https://exasol.my.site.com/s/article/Transaction-Conflicts-for-Mixed-Read-Write-Transactions).
 
 So - the CONFLICT_SESSION_ID above is session 1678224233621028864. This is the same session which is mentioned in the "Waiting for session..." ACTIVITY in EXA_DBA_SESSIONS. This is the session which needs to perform the commit to resolve the conflict. Therefore, we can mark this session as "tr1" in our table. 
 
@@ -68,7 +68,7 @@ Since our query is still running, we can assume that the start time of the query
 |---|---|---|---|
 |   |   |Start-time: 2020-09-18 18:38:17.851<br />Query:<br />```select * from test.t1; ```   |Reads the object TEST.T1<br />Experiences a WAIT FOR COMMIT.<br />Conflict objects: TEST.T1   |
 
-Important to note - in this example, the query is a simple select on TEST.T1, but the query that experiences the WAIT FOR COMMIT can be much more complicated, involving both some system tables, views, etc. Querying some system tables internally are similar to querying the actual table, so they can also cause conflicts. For more information: <https://community.exasol.com/t5/database-features/filter-on-system-tables-and-transaction-conflicts/ta-p/1232>
+Important to note - in this example, the query is a simple select on TEST.T1, but the query that experiences the WAIT FOR COMMIT can be much more complicated, involving both some system tables, views, etc. Querying some system tables internally are similar to querying the actual table, so they can also cause conflicts. For more information: <https://exasol.my.site.com/s/article/Filter-on-system-tables-and-transaction-conflicts>
 
 ## Step 3: Analyze Transaction 1
 
@@ -219,8 +219,8 @@ There are also some conflicts which are difficult to reproduce because the objec
 
 ## Additional References
 
-* <https://docs.exasol.com/database_concepts/transaction_management.htm>
-* <https://community.exasol.com/t5/database-features/transaction-system/ta-p/1522>
-* [https://community.exasol.com/t5/database-features/filter-on-system-tables-and-transaction-conflicts/...](https://community.exasol.com/t5/database-features/filter-on-system-tables-and-transaction-conflicts/ta-p/1232)
-* [https://community.exasol.com/t5/database-features/transaction-conflicts-for-mixed-read-write-transac...](https://community.exasol.com/t5/database-features/transaction-conflicts-for-mixed-read-write-transactions/ta-p/2143)
-* <https://community.exasol.com/t5/internal-database-features/internal-resolving-transaction-conflicts/ta-p/2169>
+* [Transaction Management](https://docs.exasol.com/database_concepts/transaction_management.htm)
+* [Transaction System](https://exasol.my.site.com/s/article/Transaction-System)
+* [Filter on system tables and transaction conflicts](https://exasol.my.site.com/s/article/Filter-on-system-tables-and-transaction-conflicts)
+* [Transaction Conflicts for Mixed Read/Write Transactions](https://exasol.my.site.com/s/article/Transaction-Conflicts-for-Mixed-Read-Write-Transactions)
+* [Resolving Transaction Conflicts](https://exasol.my.site.com/s/article/Resolving-Transaction-Conflicts)

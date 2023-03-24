@@ -17,8 +17,8 @@ The following script can be used to prepare table DDLs and IMPORT commands to mo
 
 However, the DDL part of the above script maybe improved even further:
 
-* Dependency-aware view DDL generation (with no need for manual addition of FORCE) is already addressed in the following article: [How to create DDL for Exasol support](https://community.exasol.com/t5/database-features/how-to-create-ddl-for-exasol-support/ta-p/1734) (for exactly one view).
-* DDL for grants are covered by the following article: [Create DDL for the entire Database](https://community.exasol.com/t5/database-features/create-ddl-for-the-entire-database/ta-p/1417)
+* Dependency-aware view DDL generation (with no need for manual addition of FORCE) is already addressed in the following article: [How to create DDL for Exasol support](https://exasol.my.site.com/s/article/How-to-create-DDL-for-Exasol-support) (for exactly one view).
+* DDL for grants are covered by the following article: [Create DDL for the entire Database](https://exasol.my.site.com/s/article/Create-DDL-for-the-entire-Database)
 
 So the output of the three script above may be picked up or modified to tailor particular needs.
 
@@ -51,7 +51,7 @@ SELECT
 
 [Github: Exasol to Exasol Migration](https://github.com/exasol/database-migration/blob/master/exasol_to_exasol.sql)
 
-[How to create DDL for Exasol support](https://community.exasol.com/t5/database-features/how-to-create-ddl-for-exasol-support/ta-p/1734)
+[How to create DDL for Exasol support](https://exasol.my.site.com/s/article/How-to-create-DDL-for-Exasol-support)
 
-[Create DDL for the entire Database](https://community.exasol.com/t5/database-features/create-ddl-for-the-entire-database/ta-p/1417)
+[Create DDL for the entire Database](https://exasol.my.site.com/s/article/Create-DDL-for-the-entire-Database)
 

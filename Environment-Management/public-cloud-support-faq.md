@@ -14,7 +14,7 @@ Please navigate to the Support section and press "Get Cluster Information".
 
 <https://docs.exasol.com/cloud_platforms/cloud_deployment.htm>
 
-<https://docs.exasol.com/get_started/publicdemo/setupguide.htm?Highlight=public%20cloud>
+<https://docs.exasol.com/get_started/publicdemo/setupguide.htm>
 
-<https://docs.exasol.com/cloud_platforms/exacloud.htm?Highlight=public%20cloud>
+<https://docs.exasol.com/cloud_platforms/exacloud.htm>
 

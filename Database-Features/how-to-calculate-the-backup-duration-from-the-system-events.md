@@ -33,5 +33,5 @@ order by
 ```
 ## Additional References
 
-<https://community.exasol.com/t5/database-features/analyzing-disk-i-o-and-concurrency-based-on-last-day-data/ta-p/1239>
+<https://exasol.my.site.com/s/article/Analyzing-disk-I-O-and-concurrency-based-on-last-day-data>
 

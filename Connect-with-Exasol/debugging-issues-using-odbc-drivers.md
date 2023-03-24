@@ -58,7 +58,7 @@ In non-Windows environments, you do not configure the ODBC Data Source using the
 
 The logfile is stored in that path on the local machine. The local machine is the same machine that you are applying these settings on. This could be your desktop or a server somewhere if you are connected via SSH. 
 
-Where you modify these properties depends on the tool/application, but it is most often found in the place where you manage your data sources. To do this in Tableau, see [this article](https://community.exasol.com/t5/connect-with-exasol/how-to-create-odbc-logfiles-with-tableau/ta-p/1244). Your connection string should look something like this once it is added:
+Where you modify these properties depends on the tool/application, but it is most often found in the place where you manage your data sources. To do this in Tableau, see [this article](https://exasol.my.site.com/s/article/How-to-create-ODBC-Logfiles-with-Tableau). Your connection string should look something like this once it is added:
 
 
 ```markup
@@ -83,7 +83,7 @@ Finally, send the ODBC logfile to Exasol Support with information about the tool
 
 ## Additional References
 
-* [Create ODBC Logfiles with Tableau](https://community.exasol.com/t5/connect-with-exasol/how-to-create-odbc-logfiles-with-tableau/ta-p/1244)
+* [Create ODBC Logfiles with Tableau](https://exasol.my.site.com/s/article/How-to-create-ODBC-Logfiles-with-Tableau)
 * [ODBC Driver Documentation](https://docs.exasol.com/connect_exasol/drivers/odbc.htm)
 * [Configuring ODBC Driver in Windows](https://docs.exasol.com/connect_exasol/drivers/odbc/odbc_windows.htm)
 * [ODBC Connection Strings](https://docs.exasol.com/connect_exasol/drivers/odbc/using_odbc.htm#ConnectingthroughConnectionStrings)

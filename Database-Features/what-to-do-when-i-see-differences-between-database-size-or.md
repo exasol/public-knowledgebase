@@ -106,7 +106,7 @@ The simplest solution is to restart the database. In the long term, this may not
 
 Thus, we recommend running the above on a regular basis.
 
-If it reaches say ~ **5-10%** then, you may, look for **READ**-transactions that are open for a long time since this is in most cases the cause of the problem (please refer to [how-to-determine-idle-sessions-with-open-transactions](https://community.exasol.com/t5/database-features/how-to-determine-idle-sessions-with-open-transactions/ta-p/1238)).  
+If it reaches say ~ **5-10%** then, you may, look for **READ**-transactions that are open for a long time since this is in most cases the cause of the problem (please refer to [how-to-determine-idle-sessions-with-open-transactions](https://exasol.my.site.com/s/article/How-to-determine-idle-sessions-with-open-transactions-Except-Snapshot-Executions)).  
 A small phantom percentage (<5%) is normal, a large one is also normal but for short periods of time (if create or replace, reorganize, partition by, distribute by, recompress statements are run on large tables).
 
 Example:
@@ -156,5 +156,5 @@ This example depicts that an old version of Table Test.T at 2020-10-21 13:58:08
 
 ## Additional References
 
-* [how-to-determine-idle-sessions-with-open-transactions](https://community.exasol.com/t5/database-features/how-to-determine-idle-sessions-with-open-transactions/ta-p/1238)
+* [how-to-determine-idle-sessions-with-open-transactions](https://exasol.my.site.com/s/article/How-to-determine-idle-sessions-with-open-transactions-Except-Snapshot-Executions)
 * <https://docs.exasol.com/database_concepts/transaction_management.htm>

@@ -150,7 +150,9 @@ In the end, what we get looks something like this for a 10x10 grid. Depending on
   
 ## Step 4 -  Fitting the grid to the polygon
 
-![](images/2020-06-19-11_54_44-Presentation2.png)Lastly we face the challenge to fit our grid to our polygon outline. In other words: we need to get rid of all orange areas. We achieve this by using the following query:
+![](images/2020-06-19-11_54_44-Presentation2.png)
+
+Lastly we face the challenge to fit our grid to our polygon outline. In other words: we need to get rid of all orange areas. We achieve this by using the following query:
 
 
 ```markup

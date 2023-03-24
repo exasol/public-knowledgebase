@@ -40,5 +40,5 @@ Scenario: License Upgrade with DB RAM expansion
 
 ## Additional References
 
-<https://docs.exasol.com/administration/on-premise/manage_software/activate_license.htm?Highlight=license>
+<https://docs.exasol.com/administration/on-premise/manage_software/activate_license.htm>
 

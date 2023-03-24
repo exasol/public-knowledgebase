@@ -37,7 +37,7 @@ So if you need JSON support or TCP sockets, you don't need to install anything y
 
 ## How to get packages from the Lua community
 
-As we discussed in the [previous article of this series](https://community.exasol.com/t5/database-features/exasol-loves-lua-part-2-why-remote-logging-matters-and-how-to-do/ta-p/2075 "Lua") about Exasol's remotelog module , [LuaRocks](https://luarocks.org/ "LuaRocks") is the established way to get Lua modules.
+As we discussed in the [previous article of this series](https://exasol.my.site.com/s/article/Exasol-loves-Lua-part-2-Why-remote-logging-matters-and-how-to-do-it "Lua") about Exasol's remotelog module , [LuaRocks](https://luarocks.org/ "LuaRocks") is the established way to get Lua modules.
 
 If you haven't done that yet, I recommend you [install LuaRocks](https://github.com/luarocks/luarocks/wiki/Download "Downloading").
 
@@ -61,7 +61,7 @@ I am assuming here that you want to install the package globally. If you want it
 
 ### LuaRocks Installation on MacOS
 
-The easiest path to a [MacOS LuaRocks installation](https://github.com/luarocks/luarocks/wiki/Installation-instructions-for-macOS "Lua") is using [Homebrew.](https://brew.sh/ "Homebrew") Assuming you already have Homebrew installed, the setup is as simple as this:
+The easiest path to a [MacOS LuaRocks installation](https://github.com/luarocks/luarocks/wiki/Installation-instructions-for-macOS "Lua") is using [Homebrew](https://brew.sh/ "Homebrew"). Assuming you already have Homebrew installed, the setup is as simple as this:
 
 
 ```markup

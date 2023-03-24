@@ -66,7 +66,9 @@ Let's pick a  good recognizable name and then press "Create"
 
 This will open another pop-up menu:
 
-![](images/exa-Pieterjan_2-1621602126955.png)Here we get the option to download an express setup installer or a default installer.
+![](images/exa-Pieterjan_2-1621602126955.png)
+
+Here we get the option to download an express setup installer or a default installer.
 
 The express setup installer takes care of everything.
 
