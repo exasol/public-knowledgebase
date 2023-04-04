@@ -98,7 +98,7 @@ Data is stored at Exasol on an on-premise system. As with our current monitoring
 
     A downtime of the database is not required.
 
-The current and new monitoring solutions will run in parallel starting from 09.01.2023 - 31.03.2023. This transitional phase will be used to find and fix any issues you encounter using the new Monitoring Service. After 4 weeks the old monitoring solution will be decommissioned.
+The current and new monitoring solutions will run in parallel starting from 09.01.2023 - 31.03.2023.
 
 ### When can it be installed?
 
