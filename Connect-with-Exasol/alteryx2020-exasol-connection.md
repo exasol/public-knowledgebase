@@ -1,7 +1,7 @@
 # How to Connect Alteryx 2020.1 and Later to Exasol 7.1
 
 ## Question
-Has anyone been successful connecting Alteryx 2020.1 (or later) to Exasol 7.1?  My associate is getting an "unable to create socket" exception even though ODBC Driver Manager connects successfully.
+Has anyone been successful connecting Alteryx 2020.1 (or later) to Exasol 7.1?  My associate is getting an "unable to create socket" exception even though ODBC Driver Manager connects successfully. 
 
 ## Answer
 There is an undocumented flag which resolves windows ODBC connection issues from tools like Excel and Alteryx in version 7.1

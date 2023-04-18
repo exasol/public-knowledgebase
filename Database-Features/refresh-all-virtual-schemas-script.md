@@ -1,7 +1,7 @@
 # Refresh All Virtual Schemas Script
 
 One question in the recent Ask-Me-Anything (AMA) session on virtual schemas the question was asked, when virtual schemas objects (available tables etc.) are refreshed and how to refresh them without issuing the "ALTER VIRTUAL SCHEMA x REFRESH" statement manually.
-- First answer: The virtual schema objects are not automatically refreshed, you have to use the ALTER VIRTUAL SCHEMA command
+- First answer: The virtual schema objects are not automatically refreshed, you have to use the ALTER VIRTUAL SCHEMA command 
 - Second answer: I have crafted a simple LUA script which does that for you for all schemas. Adapt the schema where this script should be stored (and/or name the script as you like), execute the SQL and you can then update all objects by just calling the procedure.
 ```
     CREATE LUA SCRIPT "<SCRIPT SCHEMA>.TOOLS_UPDATE_VIRTUAL_SCHEMAS" () RETURNS TABLE AS

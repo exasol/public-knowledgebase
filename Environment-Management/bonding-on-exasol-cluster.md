@@ -1,11 +1,11 @@
 # Bonding on Exasol Cluster 
 ## Background
 
-This quick HOWTO will show how to create bonding interfaces on your nodes for the private and public networks.
+This quick HOWTO will show how to create bonding interfaces on your nodes for the private and public networks. 
 
 ## Prerequisites
 
-You need a working License Sever and at least a server/vm with two or more NICs per network, each in the same VLAN.
+You need a working License Sever and at least a server/vm with two or more NICs per network, each in the same VLAN. 
 
 ## How to add bonding on an Exasol Cluster
 

@@ -1,7 +1,7 @@
 # Exasol loves Lua (part 1) - how to use Eclipse IDE support for writing Lua 
 ## Blog snapshot
 
-In this first part of a series of blogs, you will learn:
+In this first part of a series of blogs, you will learn: 
 
 * How to set up Lua Development Tools in Eclipse
 * How to get coding support and what each function does

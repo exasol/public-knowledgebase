@@ -7,7 +7,7 @@ In general it is sufficient to migrate the data from an existing Exasol cluster.
 
 Imagine an existing Exasol cluster reached its end-of-service date and the data will be migrated to a new Exasol cluster. If data (without indexes) is migrated to another Exasol cluster, the indexes will be created and maintained automatically. Indexes are created 'on-demand' - as soon as they are required for the execution of a query.
 
-For example if the data is migrated to the new Exasol cluster during a downtime on a weekend there will be (nearly) no indexes until the execution of queries begins. On Monday morning the users execute their queries and Exasol will create any necessary index if it does not exist. This index creation leads to additional workload on the new cluster. If this additional resource consumption should be avoided the indexes can be included in the migration.
+For example if the data is migrated to the new Exasol cluster during a downtime on a weekend there will be (nearly) no indexes until the execution of queries begins. On Monday morning the users execute their queries and Exasol will create any necessary index if it does not exist. This index creation leads to additional workload on the new cluster. If this additional resource consumption should be avoided the indexes can be included in the migration. 
 
 ## How-To Migrate Tables with Indices from one Exa Cluster to another
 

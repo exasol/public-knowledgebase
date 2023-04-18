@@ -7,7 +7,7 @@
 * **Show you how to use remotelog in Lua with Exasol**
 * **Walk through how to set it up - and show you how it will take the hassle out of remote coding**
 
-Until you add logging, scripts running inside of a database are the proverbial black box. You know the input, you know what output you expect and in between is where dark magic happens. Or light magic. Depending on the use case obviously.
+Until you add logging, scripts running inside of a database are the proverbial black box. You know the input, you know what output you expect and in between is where dark magic happens. Or light magic. Depending on the use case obviously. 
 
 As much as I like the "Use the *source*, young Padwan" approach combined with proper unit testing, in complex scenarios there always comes the point where you would like to keep tabs on what's going on inside your scripts. Thus turning the black box a few shades more into the grey. Pun intended — debugging can be very painful at times.
 

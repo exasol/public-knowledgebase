@@ -1,7 +1,7 @@
 # What to do when Bind Variables for Prepared Statements does not work 
 ## Problem
 
-Bind Variables in prepared statements for executing a script does not work.
+Bind Variables in prepared statements for executing a script does not work. 
 
 ## Diagnosis
 

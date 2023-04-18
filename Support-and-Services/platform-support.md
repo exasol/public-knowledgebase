@@ -13,7 +13,7 @@ https://cloud.exasol.com/support-policy
 
 ### Do you need to run a non-store or marketplace version?
 
-We are happy to provide you with a tailored solution to fulfill this requirement. 
+We are happy to provide you with a tailored solution to fulfill this requirement.  
 
  
 

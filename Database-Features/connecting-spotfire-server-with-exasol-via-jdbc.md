@@ -5,7 +5,7 @@ This article describes a way how to connect Spotfire to Exasol.
 
 ## Prerequisites
 
-Download the EXASOL JDBC driver and extract the exajdbc.jar
+Download the EXASOL JDBC driver and extract the exajdbc.jar 
 
 ## How to connect Spotfire to Exasol
 

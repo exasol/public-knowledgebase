@@ -5,7 +5,7 @@ The datadog-agent has one dependency which is '/bin/sh'. It is safe to just inst
 
 ### Installation
 
-For CentOS 7.x just run on each machine (as user root):
+For CentOS 7.x just run on each machine (as user root): 
 
 
 ```

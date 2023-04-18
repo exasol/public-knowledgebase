@@ -5,7 +5,7 @@ Users may report that they are not able to install Exasol ODBC drivers on Window
 
 ## Diagnosis
 
-Usually, when there is such an ODBC installation issue, you would see an error message such as:  
+Usually, when there is such an ODBC installation issue, you would see an error message such as:   
   
 
 

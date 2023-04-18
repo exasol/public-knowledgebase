@@ -5,7 +5,7 @@ Fast response times are key to user satisfaction. Slow queries mean that you see
 
 Bad query performance can occur if no or the wrong distribution key is defined. Then table rows are distributed at random across the nodes. 
 
-Let us assume the following example:
+Let us assume the following example: 
 
 
 ```

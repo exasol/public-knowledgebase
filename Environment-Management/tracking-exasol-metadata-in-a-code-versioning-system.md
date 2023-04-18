@@ -3,7 +3,7 @@ In a recent user group, I described our solution to keeping track of Exasol met
 
 ## Background
 
-First of all, by "Exasol metadata" I mean: table, view, function, script and schema DDL, users, roles, permissions, connections, system parameters, etc
+First of all, by "Exasol metadata" I mean: table, view, function, script and schema DDL, users, roles, permissions, connections, system parameters, etc 
 
 The problems we are trying to solve are:
 

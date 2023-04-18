@@ -6,7 +6,7 @@ CSV is a very common format for inter platform data transfer. Unfortunately, it 
 Exasol import command defaults:
 
 * UTF-8
-* comma between the fields
+* comma between the fields 
 * Linux linefeed (LF)
 * date and timestamp format as in your database
 * fields with special characters are enclosed with double quotes ("), if this character is part of a field it has to be doubled ("")

@@ -3,7 +3,7 @@
 
 ### Parallel data exchange between EXASOL and Microsoft Azure Blob Storage
 
-You have an Exasol database and want to read data from Microsoft Azure Blob Storage. Beginning with Version 7.0, Exasol supports IMPORT and EXPORT from Azure Blog Storage. You can find more information [here](https://docs.exasol.com/loading_data/load_data_azure_blob.htm)
+You have an Exasol database and want to read data from Microsoft Azure Blob Storage. Beginning with Version 7.0, Exasol supports IMPORT and EXPORT from Azure Blog Storage. You can find more information [here](https://docs.exasol.com/loading_data/load_data_azure_blob.htm) 
 
 ## Prerequisites
 

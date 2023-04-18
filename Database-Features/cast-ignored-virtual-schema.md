@@ -3,7 +3,7 @@
 ## Question
 I'm running two select statements on virtual schema's. Since they're joined in a union and don't all have the same columns, I need a column with '' or NULL values. This results in an error: SQL Error [0A000]: Feature not supported: datatypes are not compatible for Union (Session: 1715323572262273024)
 
-The '' or NULL column appears to be a boolean.
+The '' or NULL column appears to be a boolean. 
 
 Changing this to the desired data type using: CAST( '' AS VARCHAR(18)) results in exactly the same error.
 

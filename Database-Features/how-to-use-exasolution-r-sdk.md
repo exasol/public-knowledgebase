@@ -16,7 +16,7 @@ The attached files can be used to setup your Exasol database for the example:
 
 1. Run [01_DDL.sql](https://www.exasol.com/support/secure/attachment/45767/45767_01_DDL.sql "01_DDL.sql")   (Creates a schema, a table for train data set and a table for test data set)
 2. Place csv files ([train.csv](https://www.exasol.com/support/secure/attachment/33596/33596_train.csv "train.csv")   and [test.csv](https://www.exasol.com/support/secure/attachment/33595/33595_test.csv "test.csv")   ) at an appropriate place and change the path to those files in [02_IMPORT.sql](https://www.exasol.com/support/secure/attachment/45766/45766_02_IMPORT.sql "02_IMPORT.sql")
-3. Run [02_IMPORT.sql](https://www.exasol.com/support/secure/attachment/45766/45766_02_IMPORT.sql "02_IMPORT.sql")   (Imports the train and test data set)
+3. Run [02_IMPORT.sql](https://www.exasol.com/support/secure/attachment/45766/45766_02_IMPORT.sql "02_IMPORT.sql")   (Imports the train and test data set) 
 
 ## How to use ExaSolution R SDK
 

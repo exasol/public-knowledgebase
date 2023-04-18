@@ -1,7 +1,7 @@
 # Exasol GEOMETRY to GeoJSON 
 ## Description
 
-Tableau doesn't yet support Exasol GEOMETRY data types or functions. A workaround is to save the data in GeoJSON format. The following script will convert GEOMETRY data for POINT and POLYGON geometry types into GeoJSON that you can copy and paste into a .json file.
+Tableau doesn't yet support Exasol GEOMETRY data types or functions. A workaround is to save the data in GeoJSON format. The following script will convert GEOMETRY data for POINT and POLYGON geometry types into GeoJSON that you can copy and paste into a .json file. 
 
 
 ```python

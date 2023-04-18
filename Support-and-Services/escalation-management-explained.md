@@ -18,4 +18,4 @@ The tracking is done within our ticketing system. Required stakeholders are adde
 
 ## Resolution
 
-After successful resolution of the escalation, we will invite you to a "lesson learned" session to continuously improve our service.
+After successful resolution of the escalation, we will invite you to a "lesson learned" session to continuously improve our service. 

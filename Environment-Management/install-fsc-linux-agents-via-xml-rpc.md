@@ -1,7 +1,7 @@
 # Install FSC Linux Agents via XML-RPC 
 ## Background
 
-Installation of FSC Linux Agents via XML-RPC
+Installation of FSC Linux Agents via XML-RPC 
 
 ## Prerequisites
 

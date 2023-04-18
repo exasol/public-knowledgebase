@@ -3,7 +3,7 @@
 
 #### What does a preprocessor script do?
 
-A preprocessor script is hooked before Exasol's SQL parser. This allows it to intercept and modify any SQL text sent to the database (or executed within a procedure script) before passing it on to the actual parser.
+A preprocessor script is hooked before Exasol's SQL parser. This allows it to intercept and modify any SQL text sent to the database (or executed within a procedure script) before passing it on to the actual parser. 
 
 #### What can I do with it?
 

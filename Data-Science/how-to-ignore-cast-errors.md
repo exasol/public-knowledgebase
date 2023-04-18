@@ -2,7 +2,7 @@
 
 ## Question
 I was trying to cast a string to number but got an error since the field contained some non-numeric characters or where null.
-I had to extract the integer through regular expression to get it to work. Is there any other way to use regular cast and just ignore all unsucceful tries?
+I had to extract the integer through regular expression to get it to work. Is there any other way to use regular cast and just ignore all unsucceful tries? 
 
 >TO_NUMBER(REGEXP_SUBSTR(strNumber,'[0-9]*'))
 ## Answer

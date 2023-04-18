@@ -7,7 +7,7 @@ ConfD is the Exasol configuration and administration daemon that runs on all nod
 
 ## Deep Dive
 
-ConfD is an evolved version of EXAoperation and newly designed for cloud environments. It adapts with the new architecture and implementation in a few ways.
+ConfD is an evolved version of EXAoperation and newly designed for cloud environments. It adapts with the new architecture and implementation in a few ways. 
 
 ### Asynchronous scheduling
 

@@ -3,7 +3,7 @@
 
 Exasol supports 100 active slots by default in use by the database. Exasol's Session Management is described in detail in [our documentation](https://docs.exasol.com/database_concepts/session_management.htm). 
 
-Due to this concept, there could be the case where all of these slots are in use by sessions, forcing additional incoming queries to wait. 
+Due to this concept, there could be the case where all of these slots are in use by sessions, forcing additional incoming queries to wait.  
 
 ## Diagnosis
 

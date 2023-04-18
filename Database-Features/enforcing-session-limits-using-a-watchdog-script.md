@@ -8,7 +8,7 @@ The simplest way to do this is to monitor the EXA_ALL_SESSIONS system table to i
 ## How to Implement
 
 The attached (Lua) script implements such a watchdog and can be run (execute script) by a scheduled process.  
-In its current form, it introduces three criteria for "bad" sessions:
+In its current form, it introduces three criteria for "bad" sessions: 
 
 * Sessions that use up too much TEMP_DB_RAM
 * Sessions that have been active for too long

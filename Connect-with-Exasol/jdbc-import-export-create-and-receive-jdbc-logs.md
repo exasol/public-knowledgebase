@@ -5,7 +5,7 @@ If you run IMPORT/EXPORT commands with another DBMS, sometimes you may need to g
 
 ## Prerequisites
 
-A JDBC connection must be created to your source.  
+A JDBC connection must be created to your source.   
 
 ## How to create JDBC Logs
 

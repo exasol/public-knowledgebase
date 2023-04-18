@@ -1,7 +1,7 @@
 # Add a new license server 
 ## Background
 
-This is a test example done on VirtualBox, please change your hardware settings as required to perform this operation.
+This is a test example done on VirtualBox, please change your hardware settings as required to perform this operation. 
 
 This will show the basics only, not the full configuration process, we'll keep the documentation updated.
 

@@ -7,7 +7,7 @@ I have been asked to connect a PHP program to an Exasol database which is not on
 
 I have tried a lot syntax either using PHP PDO built in class or PHP odbc_connect() built-in function but nothing worked.
 
-Do you guys have once conncted a php program to Exasol ? How did you do that ?
+Do you guys have once conncted a php program to Exasol ? How did you do that ? 
 
 ## Answer
 Accessing Exasol from PHP is more or less straight forward:

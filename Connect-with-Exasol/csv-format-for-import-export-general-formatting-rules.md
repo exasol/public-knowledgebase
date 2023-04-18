@@ -1,7 +1,7 @@
 # CSV format for IMPORT/EXPORT: General formatting rules 
 ## General formatting rules
 
-To ensure a proper import of your data there are some rules that have to be considered when creating the csv file.
+To ensure a proper import of your data there are some rules that have to be considered when creating the csv file. 
 
 * NULL (data field with no content) has to be converted to "" (empty string)
 * Double quotes in a text field have to be masked with double quotes ("Example" -> ""Example"")  

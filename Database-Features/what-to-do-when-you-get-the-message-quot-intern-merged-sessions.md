@@ -2,7 +2,7 @@
 ## Scope
 
 Intern merged sessions is due to a performance optimization where some transactions may get merged internally into some kind of super transaction in order to minimize the memory footprint of the server processes (object server).   
-This article will describe what you can do when you see the note "intern merged sessions". 
+This article will describe what you can do when you see the note "intern merged sessions".  
 
 ## Diagnosis
 

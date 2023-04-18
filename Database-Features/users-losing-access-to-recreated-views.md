@@ -1,7 +1,7 @@
 # Users Losing Access to Re-Created Views
 
 ## Question
-I created a role on my database for reporting purposes. 
+I created a role on my database for reporting purposes.  
 
 > CREATE ROLE REPORTING;
 

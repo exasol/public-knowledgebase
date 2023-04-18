@@ -5,7 +5,7 @@ How do I export CSV files properly from Microsoft SQL Server? Choose one option 
 
 Note: This tool should be included in your SQL Server installation
 
-* Open the wizard
+* Open the wizard 
 * Select your data source and the database you want to export
 * Continue with ***Next***
 * Select ***Flat File Destination*** as your destination and browse to the desired file path for your csv file. It is necessary to use *.csv as your file extension  

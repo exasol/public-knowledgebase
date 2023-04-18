@@ -8,7 +8,7 @@ Table data is also split into columns and multiple data blocks per column, such 
 
 ## Workaround: UNION ALL
 
-Exasol 5 introduced a powerful optimization that can be used for **manual partitioning**:
+Exasol 5 introduced a powerful optimization that can be used for **manual partitioning**: 
 
 #### UNION ALL branch elimination using column statistics
 

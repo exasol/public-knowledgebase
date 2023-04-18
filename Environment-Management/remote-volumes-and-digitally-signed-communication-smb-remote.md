@@ -8,7 +8,7 @@ This article describes how to improve the speed of your SMB share with disabling
 * creating backups takes unusual long
 * performance of the remote archive volumes are poor (only a few MiB/s)
 * remote share is a Microsoft Windows server
-* no performance problems by using "smbclient" on other Linux clients
+* no performance problems by using "smbclient" on other Linux clients 
 
 ## Explanation
 

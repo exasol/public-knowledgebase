@@ -5,7 +5,7 @@
 
 Upload Plugin.Administration.Zabbix-3.0.10-1.0.0-2018-09-25.pkg to EXAoperation
 
-* Login to EXAoperation (User privilege Administrator)
+* Login to EXAoperation (User privilege Administrator) 
 * Upload pkg **Configuration>Software>Versions>Browse>Submit**
 
 ## Step 2

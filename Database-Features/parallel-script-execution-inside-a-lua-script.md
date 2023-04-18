@@ -5,7 +5,7 @@ The only working solution is using the IMPORT command over JDBC to connect to yo
 
 ## Prerequisites
 
-You are using an enterprise version of Exasol, not the single node community edition. 
+You are using an enterprise version of Exasol, not the single node community edition.  
 
 ## How to run Import in parallel using JDBC and LUA
 

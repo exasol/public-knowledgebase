@@ -1,7 +1,7 @@
 # Analyzing text differences 
 ## Background
 
-Sometimes there are texts stored in the database and you want to find out if and where those texts differ.
+Sometimes there are texts stored in the database and you want to find out if and where those texts differ. 
 
 While a best practice would be to create a UDF in a language you are comfortable with, using available libraries for diff creation, this article presents a fully home-made solution written in Lua.
 

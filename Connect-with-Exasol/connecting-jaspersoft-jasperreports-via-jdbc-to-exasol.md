@@ -11,7 +11,7 @@ In JasperReports, choose "Oracle" as database dialect when connecting via generi
 
 ## Step 3
 
-Please verify that the following parameters are NOT set to the following values (especially in that combination):
+Please verify that the following parameters are NOT set to the following values (especially in that combination): 
 
 
 ```"noformat

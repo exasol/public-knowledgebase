@@ -3,7 +3,7 @@ We want to show you how to export CSV files from Oracle DB. Use one of the follo
 
 ## Option 1: Using the Oracle SQL Developer
 
-* Connect to the database you want to export  
+* Connect to the database you want to export   
 
 ![](images/Oracle1.png)
 

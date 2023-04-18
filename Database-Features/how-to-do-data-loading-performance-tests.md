@@ -7,7 +7,7 @@
 
 One of EXASOL’s main differentiation criteria is its unprecedented loading performance, which is typically far superior to other DWHs. In order to achieve maximum performance, some fundamentals and best practices should be taken into consideration.
 
-EXASOL is a shared-nothing database, running on multiple nodes. Ideally, those nodes’ individual capabilities to open connections to remote sources are best utilized by a “pull” approach on data loading: EXASOLs native bulk loader (“EXAloader”) makes this easy to do. It is triggered by a straight forward SQL command and hides most complexity arising from parallel loading from the user. For the complete syntax see the EXASOL manual section 2.2.2 ‘IMPORT’ .
+EXASOL is a shared-nothing database, running on multiple nodes. Ideally, those nodes’ individual capabilities to open connections to remote sources are best utilized by a “pull” approach on data loading: EXASOLs native bulk loader (“EXAloader”) makes this easy to do. It is triggered by a straight forward SQL command and hides most complexity arising from parallel loading from the user. For the complete syntax see the EXASOL manual section 2.2.2 ‘IMPORT’ . 
 
 
 ```"code

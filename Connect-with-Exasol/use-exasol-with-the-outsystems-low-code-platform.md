@@ -1,7 +1,7 @@
 # Use Exasol with the OutSystems low-code platform 
 ## Background
 
-The *Exasol database connector for OutSystems* component allows the OutSystems low-code application development platform to natively connect to the Exasol high-performance analytical database.  
+The *Exasol database connector for OutSystems* component allows the OutSystems low-code application development platform to natively connect to the Exasol high-performance analytical database.   
 
 
 Using Exasol with OutSystems enables companies to speed up their digital automation strategy and quickly implement low-code data driven business applications using Analytics, Artificial Intelligence, Predictive Modelling and Machine Learning techniques. 

@@ -14,7 +14,7 @@ Navigate to "EXAStorage" in the menu and click on "Shutdown Storage Service"
 
 **3. Hot-plug disk device(s):**
 
-This has to be done using your virtualization software. In the case of using physical hardware, add the new disks, boot the node and wait until the boot process finishes (this is necessary to continue).
+This has to be done using your virtualization software. In the case of using physical hardware, add the new disks, boot the node and wait until the boot process finishes (this is necessary to continue). 
 
 **4. Open the disk overview for a node in EXAoperation:** 
 

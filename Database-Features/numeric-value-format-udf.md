@@ -1,7 +1,7 @@
 # How to See All Currently Running Scripts
 
 ## Question
-I have a Python UDF that will take a numeric value and apply an Excel like number format to produce a nicely formatted string value. This works really well, but performance is not optimal. Can anyone think of a more efficient way of doing this?  
+I have a Python UDF that will take a numeric value and apply an Excel like number format to produce a nicely formatted string value. This works really well, but performance is not optimal. Can anyone think of a more efficient way of doing this?   
 ```
 CREATE OR REPLACE PYTHON SCALAR SCRIPT DASHBOARDS."UDF_FormatValue" ("Value" DECIMAL(32,6), "Format" VARCHAR(100) UTF8) RETURNS VARCHAR(255) UTF8 AS
 #==============================================

@@ -1,7 +1,7 @@
 # Schemas Object Size Questions
 
 ## Question
-We are building a SaaS solution, where we plan to put each customers data in separate schema. Over time this will hopefulle mount to a lot of schemas.
+We are building a SaaS solution, where we plan to put each customers data in separate schema. Over time this will hopefulle mount to a lot of schemas. 
 
 In order to cover the bases I would love your take on the implications of this approach:
   1. Is there a limit - fixed or practical - on the number of schemas an instance can handle (10.000, 100.000, 1.000.000)?

@@ -5,7 +5,7 @@
 * Data is missing / not fitered correctly
 * We need to use cumbersome expressions for filtering or joining
 
-All this may be caused by a lack of discipline in database design and/or data cleansing.
+All this may be caused by a lack of discipline in database design and/or data cleansing. 
 
 ## Explanation
 

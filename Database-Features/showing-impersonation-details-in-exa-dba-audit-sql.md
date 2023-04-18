@@ -1,7 +1,7 @@
 # Showing Impersonation Details in EXA_DBA_AUDIT_SQL 
 ## Background
 
-Impersonation is a new feature in Exasol 6.1. It allows for switching to a different effective user during a session. Use this to impersonate another user identity.
+Impersonation is a new feature in Exasol 6.1. It allows for switching to a different effective user during a session. Use this to impersonate another user identity. 
 
 ## Explanation
 

@@ -10,7 +10,7 @@ The ticket contains the following information:
 
 - Affected database
 
-- Affected cluster
+- Affected cluster 
 
 - Session ID affected (if applicable)
 

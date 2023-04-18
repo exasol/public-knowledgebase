@@ -5,7 +5,7 @@ This article picks up where [part 4 of the series](exasol-loves-lua-part-4-new-i
 
 ### Basic UTF-8 Support
 
-Where 5.2 and earlier only handled strings with 8 bits per character, 5.3 introduced basic UTF-8 support. "Basic" meaning that the [standard library only handles the UTF-8 encoding](http://www.lua.org/manual/5.3/manual.html#6.5 "UTF-8"), but has no clue about character classes or what characters mean. So unlike recent Java libraries Lua does not support for example things like checking if a UTF-8 character is any kind of white space.
+Where 5.2 and earlier only handled strings with 8 bits per character, 5.3 introduced basic UTF-8 support. "Basic" meaning that the [standard library only handles the UTF-8 encoding](http://www.lua.org/manual/5.3/manual.html#6.5 "UTF-8"), but has no clue about character classes or what characters mean. So unlike recent Java libraries Lua does not support for example things like checking if a UTF-8 character is any kind of white space. 
 
 ### Integers
 

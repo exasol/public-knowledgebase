@@ -12,7 +12,7 @@ The default bucket service contains a Container Image. The default bucket and bu
 * TCP Listener Ports (Check your Firewall settings, Listener Port can only be used once)
 	+ HTTP Port: TCP Port e.g. 8080
 	+ HTTPS Port: TCP Port e.g. 8443
-* Description: For the bucket service
+* Description: For the bucket service 
 * Click on "Add"  
    ![](images/1.png)
 

@@ -3,7 +3,7 @@
 
 ## Background
 
-In this article we're introducing Azure Data Factory Functions For Exasol.
+In this article we're introducing Azure Data Factory Functions For Exasol. 
 
 ## Explanation
 

@@ -1,7 +1,7 @@
 # Working with Exasol geospatial data in Power BI 
 ## Background
 
-This post is a short guide on using geospatial data in Power BI.
+This post is a short guide on using geospatial data in Power BI. 
 
 In particular we will:
 

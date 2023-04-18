@@ -23,7 +23,7 @@ https://localhost:8000
 
 ## Setup an Index to store data
 
-* From the web UI go to
+* From the web UI go to 
 	+ Settings
 	+ Indexes
 * New Index

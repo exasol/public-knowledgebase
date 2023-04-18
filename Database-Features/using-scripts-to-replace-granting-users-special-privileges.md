@@ -1,7 +1,7 @@
 # Using scripts to replace granting users special privileges 
 ## Scope
 
-Database Best Practices almost always emphasize the least privileged access principle, and we abide by it. Exasol takes security and permissions very seriously and assigning which users receive elevated privileges can, at times, be confusing. For example, in Exasol, scripts and UDFs are executed using the privileges of the invoker running the script, not the script owner. Does the invoker have the needed privileges to execute the queries inside the script?
+Database Best Practices almost always emphasize the least privileged access principle, and we abide by it. Exasol takes security and permissions very seriously and assigning which users receive elevated privileges can, at times, be confusing. For example, in Exasol, scripts and UDFs are executed using the privileges of the invoker running the script, not the script owner. Does the invoker have the needed privileges to execute the queries inside the script? 
 
 ### Terminology
 

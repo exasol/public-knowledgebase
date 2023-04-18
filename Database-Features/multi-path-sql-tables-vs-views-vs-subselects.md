@@ -1,7 +1,7 @@
 # Multi-path SQL: Tables vs. Views vs. Subselects 
 ## Background
 
-Often, an analysis will be complex enough that it is very hard or cumbersome to express in a single SQL statement. To get around this, there are usually several approaches:
+Often, an analysis will be complex enough that it is very hard or cumbersome to express in a single SQL statement. To get around this, there are usually several approaches: 
 
 * Temporary Tables
 * Views

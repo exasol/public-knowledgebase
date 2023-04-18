@@ -3,7 +3,7 @@
 
 How is a ODBC data type mapped to EXASOL data type?
 
-How is a EXASOL data type mapped to ODBC data type?
+How is a EXASOL data type mapped to ODBC data type? 
 
 ## Answer
 

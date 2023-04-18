@@ -1,7 +1,7 @@
 # Unable to Connect to PostgreSQL
 
 ## Question
-We just moved our Google Cloud environment to Frankfurt, and I am trying to restablish the setup.
+We just moved our Google Cloud environment to Frankfurt, and I am trying to restablish the setup. 
 
 One of the things is to let Exasol access a postgres database.
 

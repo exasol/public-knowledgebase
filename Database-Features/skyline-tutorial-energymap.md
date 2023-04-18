@@ -1,7 +1,7 @@
 # Skyline Tutorial: Energymap 
 ## Background
 
-This solution contains a basic tutorial for Exasol's Skyline feature.
+This solution contains a basic tutorial for Exasol's Skyline feature. 
 
 ## Task description and pre-requisites
 

@@ -5,7 +5,7 @@ While loading data from one Exasol database into another database, you may get c
 
 ## Diagnosis
 
-If you run an IMPORT FROM EXA command, you are affected by this problem if you see an error message which looks like:
+If you run an IMPORT FROM EXA command, you are affected by this problem if you see an error message which looks like: 
 
 
 ```markup

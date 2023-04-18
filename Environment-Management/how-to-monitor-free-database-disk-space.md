@@ -1,7 +1,7 @@
 # How to monitor free database disk space 
 ## Background
 
-In this article, you can find how to calculate the available database disk space.
+In this article, you can find how to calculate the available database disk space. 
 
 ## Prerequisites
 

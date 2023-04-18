@@ -3,7 +3,7 @@ We want to show you how to export CSV files from IBM DB2. Use one of the followi
 
 ## Option 1: Using the IBM command line processor
 
-* Connect to the database you want to export.   
+* Connect to the database you want to export.    
 ![](images/DB2_1.png)
 * Use the ***EXPORT TO***-command combined with a ***SELECT*** query to export a table  
 (Documentation:<https://www.ibm.com/support/knowledgecenter/SSEPGG_9.8.0/com.ibm.db2.luw.admin.cmd.doc/doc/r0008303.html>)

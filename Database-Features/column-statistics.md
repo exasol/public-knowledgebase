@@ -5,7 +5,7 @@ Exasol database automatically computes and stores column statistics on demand, 
 
 The computation of column statistics performs a complete column scan. Therefore it might be expensive, especially for large tables and/or tables not having all data in memory. This means that a query doing statistics computation may experience a significant slow down compared to the next execution.
 
-Column statistics are maintained as part of DML statements. They are recomputed if a significant amount of data has been changed since the last computation.
+Column statistics are maintained as part of DML statements. They are recomputed if a significant amount of data has been changed since the last computation. 
 
 ## Explanation
 

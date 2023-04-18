@@ -1,7 +1,7 @@
 # MERGE Statement 
 ## Background
 
-MERGE is designed to use a small UPDATE table to affect a larger FACT table.
+MERGE is designed to use a small UPDATE table to affect a larger FACT table. 
 
 ## Explanation
 

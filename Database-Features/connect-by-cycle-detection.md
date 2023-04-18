@@ -7,7 +7,7 @@ As documented (see <https://docs.exasol.com/sql/select.htm>) the connect by cycl
 
 ### Example for cycle detection
 
-Here is a small example to explain the difference between Exasol and Oracle. Given this table:
+Here is a small example to explain the difference between Exasol and Oracle. Given this table: 
 
 
 ```"code-sql"

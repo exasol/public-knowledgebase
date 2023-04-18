@@ -3,7 +3,7 @@
 
 #### Backup stages
 
-The process of backup creation consists of several steps:
+The process of backup creation consists of several steps: 
 
 1. Protect  
 During backup creation, all the required reference backups will be protected against removal, e.g. during the creation of a level 1 backup, the corresponding level 0 backup cannot be removed.

@@ -9,7 +9,7 @@ cannot read workspace version 3 written by R 4.0.x; need R 3.5.0 or newer
 ```
 ## Diagnosis
 
-The workspace format changed with versions of R >= 3.5.0. You might serialize with the newer version 3 format while Exasol requires the previous format 2.
+The workspace format changed with versions of R >= 3.5.0. You might serialize with the newer version 3 format while Exasol requires the previous format 2. 
 
 ## Explanation
 

@@ -1,7 +1,7 @@
 # Virtual Schema for SQL Server 
 ## Background
 
-Wouldn't it be great if we could execute a query in Exasol that reads your SQL Server database and presents the data as if it resided in Exasol? 
+Wouldn't it be great if we could execute a query in Exasol that reads your SQL Server database and presents the data as if it resided in Exasol?  
 
 The **SQLServer Virtual Schema** provides an abstraction layer that makes an external [Microsoft SQL Server](https://www.microsoft.com/en-us/sql-server/sql-server-2017) database accessible from an Exasol database through regular SQL commands. This article is an extension of our [Github documentation](https://github.com/exasol/sqlserver-virtual-schema/blob/main/doc/user_guide/sqlserver_user_guide.md) and is written for a SQL Server user who is new to Exasol, to have a step-by-step guide for finding the drivers, setting up the Virtual Schema framework, and ensuring we have a successful connection to SQL Server.
 

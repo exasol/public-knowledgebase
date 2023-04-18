@@ -9,7 +9,7 @@ For further information please also visit related pages for Exasol SaaS:
 
 ## November 08
 Platform Update
-* Fixed an issue where creating a database is sometimes stuck in the state "Creating" forever.
+* Fixed an issue where creating a database is sometimes stuck in the state "Creating" forever. 
 
 Database Update
 * We released Exasol 8.6.0 for SaaS. Please refer to the [8.6.0 release notes](https://docs.exasol.com/db/8.x/release_notes/8.6.0.htm) for a list of changes.

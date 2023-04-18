@@ -11,7 +11,7 @@ ALTER TABLE <table-name> DISTRIBUTE BY <column name(s)>
 ```
 If the chosen distribution key would lead to a considerable data unbalance, the database rejects such a distribution key. Of course, data inserted later could unbalance the table.
 
-You can remove the set distribution attributes with the help of
+You can remove the set distribution attributes with the help of 
 
 
 ```"code-sql"

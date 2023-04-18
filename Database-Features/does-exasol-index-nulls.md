@@ -1,7 +1,7 @@
 # Does Exasol index NULLS? 
 ## Question
 
-Does Exasol index Null values?
+Does Exasol index Null values? 
 
 ## Answer
 

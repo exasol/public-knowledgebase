@@ -3,7 +3,7 @@
 ## Question
 I am using an export statement to store the records of a table into multiple files. I noticed that the size of the files and also the number of records per file is not equal and varias quit a bit. In the EXASOL documentation I found the following [statement](https://docs.exasol.com/db/latest/sql/export.htm):
 
-> When specifying multiple files, the actual data distribution depends on several factors. It is also possible that some files are completely empty.
+> When specifying multiple files, the actual data distribution depends on several factors. It is also possible that some files are completely empty. 
 
 Is there any documentation on the "several factors" or what could I do to make sure that the number of records is more or less evenly distributed?
 

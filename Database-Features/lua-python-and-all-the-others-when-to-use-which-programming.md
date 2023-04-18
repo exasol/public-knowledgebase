@@ -7,7 +7,7 @@ Exasol comes with a variety of programming languages. Especially for new users, 
 
 This article focuses mainly on the possibilities of using programming languages inside the database.
 
-There are mainly three different usecases where you want to write code in a programming language inside the database: Scripting, UDFs and Functions.
+There are mainly three different usecases where you want to write code in a programming language inside the database: Scripting, UDFs and Functions. 
 
 ![](images/exa-Valerie_1-1590487368869.png)### Scripting
 

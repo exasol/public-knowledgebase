@@ -3,7 +3,7 @@
 
 ## Background
 
-When transferring data between SQL Server and Exasol, there are two different drivers you could choose from which requires different syntax. The following examples show how one can import data into Exasol from MS SQL Server and export data from Exasol into MS SQL Server.
+When transferring data between SQL Server and Exasol, there are two different drivers you could choose from which requires different syntax. The following examples show how one can import data into Exasol from MS SQL Server and export data from Exasol into MS SQL Server. 
 
 ## Explanation
 

@@ -3,7 +3,7 @@
 
 Exasol is designed for high-performance analytics and has certain requirements on the used hardware. General requirements and a minimal configuration are described in the article [system_requirements](https://docs.exasol.com/administration/on-premise/installation/system_requirements.htm). A list of standard and certified hardware is found [here](https://community.exasol.com/t5/certified-hardware-list/tkb-p/certified_HW)
 
-Exasol clusters are composed of one or more database nodes and at least one management node (called "license server"). Database nodes are the powerhouse of a cluster and operate both the Exasol Database instances as well as the EXAStorage volumes.
+Exasol clusters are composed of one or more database nodes and at least one management node (called "license server"). Database nodes are the powerhouse of a cluster and operate both the Exasol Database instances as well as the EXAStorage volumes.  
 
 Database nodes are expected to be equipped with homogeneous hardware. Exasol and EXAStorage are designed and optimized to distribute processing load and database payload equally across the cluster. Odd hardware (especially differences in RAM and disk sizes) may cause undesired effects from poor performance to service disruptions.
 

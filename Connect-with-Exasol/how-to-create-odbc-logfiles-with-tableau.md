@@ -5,7 +5,7 @@ You want to create an ODBC logfile from Tableau.
 
 ## Prerequisites
 
-* Create a copy of your Tableau workbook
+* Create a copy of your Tableau workbook 
 * Open your Tableau workbook copy with a text-editor (the format is XML)
 
 ## How to create ODBC Logfiles with Tableau

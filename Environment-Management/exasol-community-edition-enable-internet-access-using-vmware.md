@@ -13,7 +13,7 @@ If not already done, import the Exasol OVA file into VMWare by clicking on "Open
 
  Accept the "End User License Agreement" and the "Privacy Statement" and wait until the image has been successfully loaded.
 
-You will know when Exasol has been completely installed when you see a page that looks like this:
+You will know when Exasol has been completely installed when you see a page that looks like this: 
 
 ![](images/Annotation-2020-08-25-104412.png)
 

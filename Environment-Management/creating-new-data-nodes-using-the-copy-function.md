@@ -24,7 +24,7 @@ The example shows the creation of four new nodes using the configuration of "mas
 
 * Has the same configuration fields as Multiple Copy, but only for one node.
 
-The example shows the creation of one new nodes using the configuration of "master" node n0011
+The example shows the creation of one new nodes using the configuration of "master" node n0011 
 
 ![](images/single_copy_node.png)
 

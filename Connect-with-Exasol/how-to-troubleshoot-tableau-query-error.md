@@ -5,7 +5,7 @@ If I try to access a table from Tableau (ODBC) I get the following error:
 [EXASOL][EXASolution driver]'.' character is not allowed within quoted identifiers [line 16, column 32] (Session: 1707907005981458432)
 Fehlercode: 1E953F46
 
-I do not see any quoted column with a "."  in it. How can this issue be solved? 
+I do not see any quoted column with a "."  in it. How can this issue be solved?  
 
 ## Answer
 Check:

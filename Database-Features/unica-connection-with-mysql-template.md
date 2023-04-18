@@ -1,7 +1,7 @@
 # Unica: Connection with MySQL template 
 ## Problem
 
-IBM Unica Campaign with MySQL template
+IBM Unica Campaign with MySQL template 
 
 [EXASOL][EXASolution driver]syntax error, unexpected '<'[line x, column y] of [EXASOL][EXASolution driver]function or script ADDDATE not found[line x, column y]
 

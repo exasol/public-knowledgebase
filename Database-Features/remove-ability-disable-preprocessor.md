@@ -12,7 +12,7 @@ Preprocessor Scripts explained - Exasol
 
 
 ## Answer
-There is a way:
+There is a way: 
 
 You can set the parameter alterSystemProhibitsAlterSessionForPreprocessing to 1, preventing users (other than SYS) from altering the use of the session/system-wide preprocessor script. 
 

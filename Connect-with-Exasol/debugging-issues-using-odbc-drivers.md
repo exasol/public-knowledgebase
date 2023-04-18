@@ -5,7 +5,7 @@ Users may experience problems when working with Exasol ODBC drivers. This articl
 
 ## Diagnosis
 
-There can be various issues with drivers that need to be investigated, such as:
+There can be various issues with drivers that need to be investigated, such as: 
 
 * Driver performance
 * Data type mappings

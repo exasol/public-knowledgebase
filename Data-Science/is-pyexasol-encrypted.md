@@ -1,7 +1,7 @@
 # Is PyExasol Encrypted?
 
 ## Question
-My company has been switching from Teradata to Exasol and I am one of few working the database via Python. The question I have is about the Python driver PyExasol and how secure the connection is. With our Teradata Driver, all credentials were stored in two pre-encrypted key files that were handed over via a special connection syntax to the database for verification. 
+My company has been switching from Teradata to Exasol and I am one of few working the database via Python. The question I have is about the Python driver PyExasol and how secure the connection is. With our Teradata Driver, all credentials were stored in two pre-encrypted key files that were handed over via a special connection syntax to the database for verification.  
 
 From what I can see from in the Github documentation, this is not the case for PyExasol. It looks to me as if credentials have to be stored in a plain text file and the connection is completely unencrypted. This is less than ideal. 
 

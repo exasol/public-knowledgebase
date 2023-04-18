@@ -10,7 +10,7 @@ Internally, Exasol is using a highly tuned B-tree structure.
 
 #### Expression Index
 
-Assuming the join,
+Assuming the join, 
 
 
 ```"noformat

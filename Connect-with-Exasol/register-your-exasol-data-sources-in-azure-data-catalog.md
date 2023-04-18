@@ -5,7 +5,7 @@ In this tutorial, our main aim will be to demonstrate how to register Exasol dat
 
 Azure Data Catalog is a cloud service where users can register their data sources and their data sources' metadata. Users can also append additional metadata and annotations to the data objects they register. 
 
-Next to the functionality for registering and cataloging data sources Data Catalog also includes a powerful search option. The product's main aim is to increase data discoverability.
+Next to the functionality for registering and cataloging data sources Data Catalog also includes a powerful search option. The product's main aim is to increase data discoverability. 
 
   
 More info on Azure Data Catalog can be found here: 

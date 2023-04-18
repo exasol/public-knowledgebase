@@ -1,7 +1,7 @@
 # How to move a table in Exasol
 
 ## Question
-Is there any way that I can easily move a table from one Exasol Schema to another in the same server? 
+Is there any way that I can easily move a table from one Exasol Schema to another in the same server?  
 
 I want to avoid creating the table to another schema and copy there, since is a big table.
 

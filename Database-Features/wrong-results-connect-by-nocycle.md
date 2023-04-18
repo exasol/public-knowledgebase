@@ -1,7 +1,7 @@
 # Wrong Results for Connect by Nocycle
 
 ## Question
-I'm using Exasol 7.0.7 on Windows with Docker:
+I'm using Exasol 7.0.7 on Windows with Docker: 
 
 > docker run --name EXASOL -p 127.0.0.1:9563:8563 --detach --privileged --stop-timeout 120 exasol/docker-db:latest
 

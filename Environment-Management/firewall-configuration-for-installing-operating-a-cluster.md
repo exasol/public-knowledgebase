@@ -1,5 +1,5 @@
 # Firewall configuration for installing/operating a cluster 
-This article describes the way a firewall should be configured in preparation for Exasol installation and then for operating the cluster.
+This article describes the way a firewall should be configured in preparation for Exasol installation and then for operating the cluster. 
 
 #### Exasol installation
 

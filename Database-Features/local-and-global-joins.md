@@ -1,7 +1,7 @@
 # Local and Global Joins 
 ## Background
 
-In Exasol, there are two different types of joins: A local join and a global join. The type is not influenced by the SQL statement, but by the internal data distribution (see [here](https://exasol.my.site.com/s/article/Data-Distribution) for more information.
+In Exasol, there are two different types of joins: A local join and a global join. The type is not influenced by the SQL statement, but by the internal data distribution (see [here](https://exasol.my.site.com/s/article/Data-Distribution) for more information. 
 
 ## Explanation
 

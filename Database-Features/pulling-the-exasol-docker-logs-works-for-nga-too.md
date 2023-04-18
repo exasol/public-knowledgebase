@@ -3,7 +3,7 @@
 
 Exasol runs on Docker. Many times, troubleshooting issues with the database requires generating EXACluster Debug Information. Exasol on Docker does not have a UI menu available to generate the logs but uses the command line to instruct Exasol on pulling the logs. This article is an extension of [how-to-get-debug-information-and-log-files-from-docker-based](https://exasol.my.site.com/s/article/How-to-get-debug-information-and-log-files-from-docker-based-systems) 
 
-In order to reproduce our results, we list this article's specifications and additional information regarding log generation.
+In order to reproduce our results, we list this article's specifications and additional information regarding log generation. 
 
  - **Docker image:** Exasol 7.0.7
 

@@ -5,7 +5,7 @@ If you want to schedule the stop and start of the Exasol cluster in cloud enviro
 
 ## Prerequisites
 
-- SSH access to the license server
+- SSH access to the license server 
 
 - Latest CloudUI plugin installed (<https://www.exasol.com/portal/display/DOWNLOAD/Cloud+Plugins>)
 

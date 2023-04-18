@@ -8,7 +8,7 @@
 
 ## How to transform the following select to something supported in EXASOL?
 
-Note: The following transformation is an advanced topic. Understanding how to rewrite the query will need a considerable amount of time.
+Note: The following transformation is an advanced topic. Understanding how to rewrite the query will need a considerable amount of time. 
 
 
 ```"code-sql"

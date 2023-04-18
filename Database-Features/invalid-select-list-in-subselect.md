@@ -8,7 +8,7 @@ The following query doesn't work, although I don't see any reason why it shouldn
 > SELECT (SELECT a)  
 FROM VALUES (1) AS a(a);
 
-I'm getting this error:
+I'm getting this error: 
 
 > SQL Error [42000]: invalid select-list in subselect [line 1, column 17]
 

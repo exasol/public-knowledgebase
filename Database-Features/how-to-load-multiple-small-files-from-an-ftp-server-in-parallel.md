@@ -3,7 +3,7 @@
 
 #### This solution focuses on loading lots of small files from an FTP server in parallel.
 
-If you have CSV Files, you can just use our IMPORT to load these files in parallel
+If you have CSV Files, you can just use our IMPORT to load these files in parallel 
 
 
 ```"code-sql"

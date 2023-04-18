@@ -6,7 +6,7 @@ At this point you have two choices:
 
 1. Start drilling around to find each and every required view / table etc. This may be a lot of work and may end up with some communication round trips in case you overlooked a dependency or two.
 2. Skip all that and just send us the full DDL for all schemas in your database instance. Just let us sort out what is needed and what is not.  
-Both options are not optimal.
+Both options are not optimal. 
 
 ## Solution
 

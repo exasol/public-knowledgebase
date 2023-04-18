@@ -1,7 +1,7 @@
 # Manual LDAP Connection Test 
 ## Problem
 
-You have successfully created a LDAP user but the user cannot log in.
+You have successfully created a LDAP user but the user cannot log in. 
 
 There might be a configuration problem with your LDAP server, the distinguished name might be wrong or any other database independent problem.
 

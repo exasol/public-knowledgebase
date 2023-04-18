@@ -3,7 +3,7 @@
 
 Idle sessions with open transactions may have some negative implications:  
 First, there might be more transaction conflicts in parallel sessions, most likely if the idle session has an open write transaction.  
-Second, the database garbage collection might not be able to reclaim older object versions though increasing storage space usage and backup sizes.
+Second, the database garbage collection might not be able to reclaim older object versions though increasing storage space usage and backup sizes. 
 
 ## How to determine idle sessions with open transactions
 

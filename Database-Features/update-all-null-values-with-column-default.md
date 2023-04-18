@@ -5,7 +5,7 @@ We want to replace all NULL values within a certain table with the default value
 
 ## Solution
 
-A small metadata-driven procedure script (Lua) that issues the required update statements.  
+A small metadata-driven procedure script (Lua) that issues the required update statements.   
 (See Attachment)
 
 ## Notes...

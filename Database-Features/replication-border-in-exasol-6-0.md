@@ -1,7 +1,7 @@
 # Replication border in Exasol 6.0 
 ## Question
 
-What is a smart table replication and how can the replication border be modified?
+What is a smart table replication and how can the replication border be modified? 
 
 ## Answer
 

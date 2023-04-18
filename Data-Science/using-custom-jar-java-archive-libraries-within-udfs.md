@@ -1,7 +1,7 @@
 # Using custom JAR (Java Archive) libraries within UDFs 
 ## Background
 
-If you have your own jar that you want to use in a Java UDF, this solution shows you how to do this. 
+If you have your own jar that you want to use in a Java UDF, this solution shows you how to do this.  
 
 ## Prerequisites
 

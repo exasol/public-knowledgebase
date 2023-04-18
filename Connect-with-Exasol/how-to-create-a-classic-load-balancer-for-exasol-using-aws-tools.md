@@ -9,7 +9,7 @@ When your load balancer is created, it receives a public DNS name that clients c
 
 In this how to we're using a simple 2+1 cluster in a private subnet (2 active node + 1 spare node). As this how to makes the database connectable from the internet, we recommend to enforce protocol encryption for all database connections (Database parameter "-forceProtocolEncryption=1").
 
-EXA <-> EXA export and import is not supported.
+EXA <-> EXA export and import is not supported. 
 
 
 ## How to create a classic Load Balancer for Exasol using AWS tools

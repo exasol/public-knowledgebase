@@ -6,7 +6,7 @@
 * **How you bundle modules with your scripts**
 * **The responsibilities of a module distributor**
 
-Every good software developer knows that splitting complex software into modules is necessary to achieve good code quality. Lua is no exception to this rule.
+Every good software developer knows that splitting complex software into modules is necessary to achieve good code quality. Lua is no exception to this rule. 
 
 Code reuse also dictates modularization. And of course you don't want to constantly have to reinvent the wheel for basic tasks like consuming a web service. There are modules made by other developers, ready and tested for that purpose.
 

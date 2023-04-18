@@ -6,7 +6,7 @@ One way to work with geocoding is to use a GIS (geographic information system) s
 The following website shows different use cases when such a service might be useful:  
 [https://developers.arcgis.com](https://developers.arcgis.com/)
 
-In this tutorial, we would like to show you how to use the ArcGIS REST API from Python:  
+In this tutorial, we would like to show you how to use the ArcGIS REST API from Python:   
 <http://resources.arcgis.com/en/help/arcgis-rest-api>
 
 In practice, you might face the following challenges:

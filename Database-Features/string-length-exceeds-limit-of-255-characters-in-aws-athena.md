@@ -1,7 +1,7 @@
 # String length exceeds limit of 255 characters in AWS-ATHENA 
 ## Scope
 
-You might face the exception `String data right truncation. String length exceeds limit of 255 characters` in AWS_ATHENA. This article will show you how to resolve this issue.
+You might face the exception `String data right truncation. String length exceeds limit of 255 characters` in AWS_ATHENA. This article will show you how to resolve this issue. 
 
 ## Diagnosis
 

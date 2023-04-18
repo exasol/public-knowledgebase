@@ -1,7 +1,7 @@
 # Statistics export for support 
 ## Problem
 
-The scripts attached to this issue can be used to gather and export database usage statistics for databases in versions 6.x and 7.x.
+The scripts attached to this issue can be used to gather and export database usage statistics for databases in versions 6.x and 7.x. 
 
 ## Solution
 

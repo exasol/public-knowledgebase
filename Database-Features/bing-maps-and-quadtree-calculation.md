@@ -3,7 +3,7 @@
 
 The following is an implementation of the processes and formula described at Microsoft help page [Bing Maps Tile System](https://msdn.microsoft.com/en-us/library/bb259689.aspx).
 
-The functions can be used to
+The functions can be used to 
 
 * Transform **global GPS coordinates** (WGS 84 / lat+long) into **bing maps pixel coordinates**
 * Transform pixel coordinates into **map tile coordinates**

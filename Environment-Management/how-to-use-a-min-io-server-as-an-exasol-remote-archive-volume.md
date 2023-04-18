@@ -1,7 +1,7 @@
 # How to use a min.io server as an Exasol remote archive volume 
 ## Background
 
-min.io is an S3-compatible storage service (see <https://min.io>) that can be used as a backup destination (remote archive volume) for on-premise Exasol setups. Unfortunately, as of Exasol 6.2, there remains a minor incompatibility that requires patching the min.io server in order for Exasol to correctly recognize it. The steps below walk you through making your min.io service Exasol-compatible.
+min.io is an S3-compatible storage service (see <https://min.io>) that can be used as a backup destination (remote archive volume) for on-premise Exasol setups. Unfortunately, as of Exasol 6.2, there remains a minor incompatibility that requires patching the min.io server in order for Exasol to correctly recognize it. The steps below walk you through making your min.io service Exasol-compatible. 
 
 ## Prerequisites
 

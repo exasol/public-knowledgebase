@@ -1,7 +1,7 @@
 # Migration guide: SQL Server/  Azure SQL Database to Exasol 
 ## Migration Guide
 
-This article adresses some common topics when migrating from SQL Server to Exasol. It focuses on topics that arise when you have already loaded a few tables over. If you haven't already, have a look at [connecting to SQL Server from Exasol](https://docs.exasol.com/loading_data/connect_databases/sql_server.htm "Exasol") and the [database migration script](https://github.com/EXASOL/database-migration#sql-server "Exasol") for yor very first steps of loading data over.
+This article adresses some common topics when migrating from SQL Server to Exasol. It focuses on topics that arise when you have already loaded a few tables over. If you haven't already, have a look at [connecting to SQL Server from Exasol](https://docs.exasol.com/loading_data/connect_databases/sql_server.htm "Exasol") and the [database migration script](https://github.com/EXASOL/database-migration#sql-server "Exasol") for yor very first steps of loading data over. 
 
 
 |Topic   |SQL Server   |Exasol   |

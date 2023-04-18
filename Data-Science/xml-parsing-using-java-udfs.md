@@ -4,7 +4,7 @@
 This solution describes how to use the Java DOM Parser to parse an XML-Text stored in an EXASOL database. The solution will result in a Java-UDF that can be used to structure the content of a XML-Text. Documentation on the DOM Parser can be found here:  
 <http://www.tutorialspoint.com/java_xml/java_dom_parse_document.htm>
 
-The general approach is:
+The general approach is: 
 
 1. Implementation and tests (pure Java, Maven)
 2. Deployment (EXABucketFS)

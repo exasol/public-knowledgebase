@@ -10,7 +10,7 @@ AWS Key Pair:
 
 You have a Key Pair created. AWS uses public-key cryptography to secure the log-in information for your instance. For more information on how to create a Key Pair, see [Amazon EC2 Key Pairs](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html) in the AWS documentation.
 
-Subscription on AWS Marketplace:
+Subscription on AWS Marketplace: 
 
 You must have subscribed to one of the following Exasol subscriptions on AWS Marketplace:
 

@@ -3,7 +3,7 @@ In this article, we explain to you the reason behind the error message unblock 
 
 ## Scope
 
-When connecting to external network services from a database (e.g. via IMPORT/EXPORT commands or scripts), a user may get an error message to unblock with 'mysqladmin flush-hosts'.
+When connecting to external network services from a database (e.g. via IMPORT/EXPORT commands or scripts), a user may get an error message to unblock with 'mysqladmin flush-hosts'. 
 
 ## Diagnosis
 

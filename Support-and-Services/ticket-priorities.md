@@ -11,7 +11,7 @@ Examples:
 - The connection to the database is not possible, or the database service is not available.
 - The database does not start due any disk space issue.
 - The database does not start after an update.
-- The VPN Tunnel does not function, and a database connection is therefore not possible.
+- The VPN Tunnel does not function, and a database connection is therefore not possible. 
 
  
 ## Major

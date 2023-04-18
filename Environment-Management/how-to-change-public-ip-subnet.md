@@ -1,7 +1,7 @@
 # How to change public IP subnet 
 ## Background
 
-That article guides you through the procedure to change the network for a cluster without tagged VLAN. It's strongly recommended to contact Exasol support if you have tagged VLAN.
+That article guides you through the procedure to change the network for a cluster without tagged VLAN. It's strongly recommended to contact Exasol support if you have tagged VLAN. 
 
 ## Prerequisites
 

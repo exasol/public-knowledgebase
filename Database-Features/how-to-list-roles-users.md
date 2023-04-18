@@ -1,7 +1,7 @@
 # How to List All Roles and Users
 
 ## Question
-I'd like to see a list of all Exasol Roles and Users in the same table.
+I'd like to see a list of all Exasol Roles and Users in the same table. 
 
 ## Answer
 There are a few ways to do this.  The first is:

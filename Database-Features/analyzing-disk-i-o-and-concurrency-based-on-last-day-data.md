@@ -1,7 +1,7 @@
 # Analyzing disk I/O and concurrency based on *_last_day data 
 ## Background
 
-System performance data about disk I/O and concurrency is sought. 
+System performance data about disk I/O and concurrency is sought.  
 
 ## How to analyze disk I/O and concurrency using *_last_day table data
 

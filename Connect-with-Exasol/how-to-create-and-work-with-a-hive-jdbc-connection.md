@@ -5,7 +5,7 @@ You have an Exasol database and want to connect it via JDBC to Hive for using EX
 
 ## Prerequisites
 
-Choose one of the following drivers:
+Choose one of the following drivers: 
 
 * Cloudera Hive JDBC driver:  
 [https://www.cloudera.com/downloads/connectors/hive/jdbc/2-6-5.html](https://www.cloudera.com/downloads/connectors/hive/jdbc/2-6-5.html "Follow")

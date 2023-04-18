@@ -1,7 +1,7 @@
 # Network Requirements for Hadoop Connectivity 
 ## Background
 
-Hadoop ETL UDFs are the main way to load data from Hadoop into Exasol (HCatalog tables on HDFS). In order to deploy the ETL UDFs, you need to set up the connectivity between Exasol and Hadoop. This article describes the network requirements to do this.
+Hadoop ETL UDFs are the main way to load data from Hadoop into Exasol (HCatalog tables on HDFS). In order to deploy the ETL UDFs, you need to set up the connectivity between Exasol and Hadoop. This article describes the network requirements to do this. 
 
 For a full description of using Hadoop ETL UDFs, refer to the Hadoop ETL UDFs document on github: <https://github.com/EXASOL/hadoop-etl-udfs/blob/master/README.md>
 

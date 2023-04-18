@@ -5,7 +5,7 @@ For certain Support Packages, such as [Monitoring](https://www.exasol.com/produc
 
 ## Prerequisites
 
-To complete these steps, you will need access to GCP and have the permissions to do these actions
+To complete these steps, you will need access to GCP and have the permissions to do these actions 
 
 ## How to create the VPN
 

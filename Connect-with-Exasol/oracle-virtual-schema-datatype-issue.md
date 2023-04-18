@@ -5,7 +5,7 @@ I have created a view on an Oracle database (date, varchar2 and number data type
 
 On Exasol I have created a virtual schema and I can see this view as a table. The problem is that all the fields except that date have varchar data type.
 
-How can this be solved?
+How can this be solved? 
 
 ## Answer
 On Oracle if the data type is NUMBER then in Exasol it gets VARCHAR datatype, but if it's NUMBER(2) then in Exasol it gets DECIMAL data type.

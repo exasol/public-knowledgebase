@@ -3,7 +3,7 @@ This article describes how to prepare the network for Exasol installation.
 
 ![](images/Network_simple_1.png) 
 
-The schema above shows a basic network setup needed for Exasol to run properly. In addition to this, failsafety and link bonding can also be used.
+The schema above shows a basic network setup needed for Exasol to run properly. In addition to this, failsafety and link bonding can also be used. 
 
 #### Cluster Internal Communication Network (CICN) or "Private Network"
 

@@ -1,7 +1,7 @@
 # NULL in UDFs and Lua Scripts 
 ## Background
 
-When programming in Lua, it is important to understand the different meanings of nil and NULL. Nil is the "unknown type" in the context of Lua whereas null and NULL represent the SQL NULL. The NULL constant is not part of standard Lua and was added by us so the user can do NULL comparisons of result data.
+When programming in Lua, it is important to understand the different meanings of nil and NULL. Nil is the "unknown type" in the context of Lua whereas null and NULL represent the SQL NULL. The NULL constant is not part of standard Lua and was added by us so the user can do NULL comparisons of result data. 
 
 ## Explanation
 

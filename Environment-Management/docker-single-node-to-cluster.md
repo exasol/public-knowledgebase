@@ -1,7 +1,7 @@
 # Docker: Single node to Cluster 
 ## Background
 
-Below example shows enlarging docker single node system to two nodes cluster.
+Below example shows enlarging docker single node system to two nodes cluster. 
 
 ## Prerequisites
 

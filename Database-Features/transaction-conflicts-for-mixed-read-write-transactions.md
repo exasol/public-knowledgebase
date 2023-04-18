@@ -3,7 +3,7 @@
 
 Exasol's transaction isolation level is **serializable**, which means that each transaction is carried out as if it was part of a sequence (even though transactions can run in parallel). It is vital to read about and understand [Exasol's Transaction System](https://exasol.my.site.com/s/article/Transaction-System) before continuing with this article. 
 
-Serialization helps ensure data consistency, but can also lead to some issues, such as: 
+Serialization helps ensure data consistency, but can also lead to some issues, such as:  
 
 * Transactions that must wait for a commit by an earlier transaction before they can continue (more details [here](https://exasol.my.site.com/s/article/WAIT-FOR-COMMIT-on-SELECT-statement))
 * Transaction collisions for mixed read/write transactions, which result in a forced rollback of a transaction

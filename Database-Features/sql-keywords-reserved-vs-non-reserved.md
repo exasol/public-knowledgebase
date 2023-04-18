@@ -1,7 +1,7 @@
 # SQL keywords: reserved vs. non-reserved 
 Whether you are a user of Exasol or a software developer working on a SQL client, keywords are an important concept to know.
 
-SQL key words are part of the syntax of SQL statements — the smallest building blocks if you will. `SELECT` for example is a keyword that everyone knows...
+SQL key words are part of the syntax of SQL statements — the smallest building blocks if you will. `SELECT` for example is a keyword that everyone knows... 
 
 ## What this article covers
 

@@ -5,7 +5,7 @@ The Exasol database is enforced by limits when the License (RAW-based or RAM-bas
 
 ## Diagnosis
 
-When the limits are reached, you will see the following in the Exaoperation logs or by checking the EXA_SYSTEM_EVENTS table:
+When the limits are reached, you will see the following in the Exaoperation logs or by checking the EXA_SYSTEM_EVENTS table: 
 
 Warning Message:
 

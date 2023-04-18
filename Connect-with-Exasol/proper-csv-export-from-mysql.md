@@ -5,7 +5,7 @@ As of the time of this article's last update, MySQL had moved from 5.7 to 8.0. W
 
 ## Prerequisites
 
-Check the version of MySQL you are using. You can simply log in from the command line and see the pertinent version information.
+Check the version of MySQL you are using. You can simply log in from the command line and see the pertinent version information. 
 
 ![](images/1.png)
 

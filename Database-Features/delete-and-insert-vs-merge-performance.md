@@ -4,7 +4,7 @@
 Scenario: Merge data from a (small) source table into a (big) target table.
 
 The source contains only a few rows (below 10.000, mostly about 1000).  
-The target contains some million records.  
+The target contains some million records.   
 
 **Solution1:**
 

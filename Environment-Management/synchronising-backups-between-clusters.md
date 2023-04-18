@@ -28,5 +28,5 @@ nocompression
 ```
 must be used.
 
-Prior to version 6.0, it was not possible to use this approach for creating backups cross-wise.
+Prior to version 6.0, it was not possible to use this approach for creating backups cross-wise. 
 

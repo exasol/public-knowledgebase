@@ -1,7 +1,7 @@
 # Export_To_Pandas Explainer
 
 ## Question
-I was wondering if I am using PyExasol's export_to_pandas function wrong, or if I should be using something else. The thing I noticed is:
+I was wondering if I am using PyExasol's export_to_pandas function wrong, or if I should be using something else. The thing I noticed is: 
 
 export_to_pandas appears to use an export to csv and reimport to transfer data into a python pandas dataframe. This leads to certain problems:
 

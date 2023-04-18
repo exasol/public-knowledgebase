@@ -1,7 +1,7 @@
 # Overview of Exasol's data and memory management 
 ## Question
 
-With Exasol's automated disk and memory management, it its not always easy to answer questions like
+With Exasol's automated disk and memory management, it its not always easy to answer questions like 
 
 * How much data is stored in the database?
 * How much disk space do I use?

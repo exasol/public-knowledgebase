@@ -7,7 +7,7 @@ You might face the exception “**data exception - invalid character value for c
 
 * trying to process a number value
 * given as varchar/string
-* which includes numeric characters only and a group separator and/or decimal character.
+* which includes numeric characters only and a group separator and/or decimal character. 
 
 ## Diagnosis
 

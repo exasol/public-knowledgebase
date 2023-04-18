@@ -9,7 +9,7 @@ I would like to explain how to connect Exasol with Google Analytics 360 using a 
 
 ## Prerequisites
 
-Before we are able to begin loading data, you need to do the following preparation:
+Before we are able to begin loading data, you need to do the following preparation: 
 
 * You need a [Google Analytics 360 account](https://marketingplatform.google.com/about/analytics-360/ "Google")
 * You need a [Google Cloud Account](https://console.cloud.google.com "Google") and a [Google Service Account key](https://cloud.google.com/iam/docs/creating-managing-service-account-keys "Google")

@@ -8,7 +8,7 @@ For database instances that are running with one or more reserve nodes, it is po
 3. Start up the database instance(s)
 4. Move the data node to the reserve node
 
-At the end of the procedure, the node that was previously the reserve node is active.
+At the end of the procedure, the node that was previously the reserve node is active. 
 
 ## Prerequisites
 

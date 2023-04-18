@@ -5,7 +5,7 @@ When creating Python UDF's, you may depend on external libraries to accomplish s
 
 ## Diagnosis
 
-If the Python library you are trying to import is not installed by default, you will receive an error message like this:
+If the Python library you are trying to import is not installed by default, you will receive an error message like this: 
 
 
 ```markup

@@ -3,7 +3,7 @@
 
 [Geospatial data](https://docs.exasol.com/sql_references/geospatialdata.htm) can be stored and analyzed in the Exasol database using the GEOMETRY datatype.
 
-In this solution, we will show you some examples of how to import geo spatial data from a CSV and from a GeoJSON file and use SQL functions to perform analytics and geo joins.
+In this solution, we will show you some examples of how to import geo spatial data from a CSV and from a GeoJSON file and use SQL functions to perform analytics and geo joins. 
 
 ## Spacial Reference Systems
 

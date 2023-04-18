@@ -8,7 +8,7 @@ This solution is a Lua script to do the same task and generates the DDL for each
 
 There are parameters to influence the output style. Documentation on the parameters and some known restrictions can be found at the beginning of the script. The latest release covers all supported database versions. Please see the header of the script for more information on what is supported and the current limitations.
 
-PARAMETERS:   
+PARAMETERS:    
 -
 
 

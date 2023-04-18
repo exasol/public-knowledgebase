@@ -1,7 +1,7 @@
 # Virtual-access on database backups 
 ## Background
 
-You can access to database backups virtually. The scenario will be like this:
+You can access to database backups virtually. The scenario will be like this: 
 
 * Extract tables/data from backup
 * In case the database is configured to use all available memory, the DB RAM needs to be decreased before creating a VR instance. If your system has enough free memory available proceed with step 2

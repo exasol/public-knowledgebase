@@ -7,7 +7,7 @@ Now my idea was to turn off AUTOCOMMIT in Lua - but how? Does anybody know if th
 
 > query([[SET AUTOCOMMIT OFF]]);
 
-The code above does not work.
+The code above does not work. 
 
 ## Answer
 AUTOCOMMIT settings are done at the client layer - either by the JDBC connection or by your SQL client.

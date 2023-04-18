@@ -1,7 +1,7 @@
 # Using Virtual Schema on a REST API 
 ## Background
 
-When looking at Exasol Virtual Schemas in our [Documentation](https://docs.exasol.com/database_concepts/virtual_schemas.htm) the first sentence states:
+When looking at Exasol Virtual Schemas in our [Documentation](https://docs.exasol.com/database_concepts/virtual_schemas.htm) the first sentence states: 
 
 *Exasol Virtual Schemas are an abstraction layer that makes external data sources accessible in our data analytics platform through regular SQL commands.*
 

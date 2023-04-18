@@ -1,7 +1,7 @@
 # Is the IDENTITY Column guaranteed to be unique? 
 ## Question
 
-Is the IDENTITY Column guaranteed to be unique?
+Is the IDENTITY Column guaranteed to be unique? 
 
 ## Answer
 

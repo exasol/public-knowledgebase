@@ -1,7 +1,7 @@
 # GeoJSON in Exasol
 
 ## Question
-We are on EXASOL v7 and we are desperatly trying to import geojson-data in our database.
+We are on EXASOL v7 and we are desperatly trying to import geojson-data in our database. 
 Unfortunatly the Solution described for the JSON_TABLE UDF (https://docs.exasol.com/sql_references/geospatialdata/import_geospatial_data_from_csv.htm) is not working for us.
 The newest version of the script is download from github and placed in "EXA_TOOLBOX". I get the following - not very telling - error:
 

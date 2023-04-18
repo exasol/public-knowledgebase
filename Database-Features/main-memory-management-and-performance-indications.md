@@ -1,7 +1,7 @@
 # Main Memory Management and Performance Indications 
 ## Background
 
-You always get the highest performance if the data to be analyzed fits into main memory available to the database (your license).
+You always get the highest performance if the data to be analyzed fits into main memory available to the database (your license). 
 
 ## Explanation
 

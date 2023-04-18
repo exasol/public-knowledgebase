@@ -1,7 +1,7 @@
 # LUA Scripts Exception Handling
 
 ## Question
-We want to migrate to Apache Airflow. Airflow invokes existing lua scripts via ExasolOperator. 
+We want to migrate to Apache Airflow. Airflow invokes existing lua scripts via ExasolOperator.  
 
 The problem is that the existing lua scripts surpress all errors via pcall and Airflow will mark failed lua script execution as success.
 

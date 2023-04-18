@@ -3,7 +3,7 @@
 
 When connecting to external network services from a database (e.g. via IMPORT/EXPORT commands or scripts), a user may not know if such a connection is at least possible. This may be due to
 
-1. firewalls that block or abort connections,
+1. firewalls that block or abort connections, 
 2. missing network routes,
 3. temporary network issues,
 4. missing DNS entries, etc.

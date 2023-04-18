@@ -25,4 +25,4 @@ Thus, for geometry types ST_DISTANCE returns the minimum 2D Cartesian (planar) d
 
 The best approach would be to implement the Haversine distance as UDF in case you need it or to select a spatial reference system of choice that is most accurate for the area of investigation.
 
-SRID: 26986 for example is a reference system that is most accurate for the area of Massachusetts, similar systems exist for Britain,... which provide high accuracy for local regions.
+SRID: 26986 for example is a reference system that is most accurate for the area of Massachusetts, similar systems exist for Britain,... which provide high accuracy for local regions. 

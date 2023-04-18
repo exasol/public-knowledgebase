@@ -1,7 +1,7 @@
 # Replication border in Exasol 6.1 
 ## Question
 
-What is a replicated table and how can the replication border be modified?
+What is a replicated table and how can the replication border be modified? 
 
 ## Answer
 

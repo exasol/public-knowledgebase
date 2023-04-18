@@ -6,7 +6,7 @@
 ## Answer
 
 You can find the "Cluster Info" in the administration tool EXAoperation (Support / Get cluster information).  
-Please navigate to the Support section and press "Get Cluster Information".
+Please navigate to the Support section and press "Get Cluster Information".  
 
 ![](images/clusterinfo.png)
 

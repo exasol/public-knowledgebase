@@ -9,7 +9,7 @@ In rare cases it can happen that you might receive SQL errors like the following
 
 "[EXASOL][EXASolution driver]syntax error, unexpected UPDATE_, expecting UNION_ or EXCEPT_ or MINUS_ or INTERSECT_ "
 
-The root cause for that problem can most likely be found in the structure of your data tables, views or queries.
+The root cause for that problem can most likely be found in the structure of your data tables, views or queries. 
 
 **You should generally avoid using so-called "identifiers" ([SQL reserved words](https://docs.exasol.com/sql_references/metadata/metadata_system_tables.htm#EXA_SQL_KEYWORDS))** **as column names (e.g. DATE, TIMESTAMP, UPDATE, BEGIN, END, CHECK, TRUE, FALSE, etc.)** when creating your tables/views or setting aliases in SQL queries.
 

@@ -3,7 +3,7 @@ You might face the exception `Can not handle type: 126` in LUA scripts. This ar
 
 ## Diagnosis
 
-While reading from a Hashtype value of a result rom a query in a LUA script, you might see the following error message:
+While reading from a Hashtype value of a result rom a query in a LUA script, you might see the following error message: 
 
 
 ```sql

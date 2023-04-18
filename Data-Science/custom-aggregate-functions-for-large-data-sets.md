@@ -1,7 +1,7 @@
 # Custom aggregate functions for large data sets 
 ## Background
 
-This article demonstrates some basic principles for parallel programming within UDFs.
+This article demonstrates some basic principles for parallel programming within UDFs. 
 
 The task for this tutorial is to create UDF replacements for the internal functions AVG and STDDEV in the R language using UDFs that run inside the data base. Clearly, we don't expect stellar performance here, especially when compared to Exasol's built in versions. On the other hand, the provided solutions provide a blueprint for custom aggregate functions for customers.
 

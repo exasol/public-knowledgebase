@@ -3,7 +3,7 @@
 
 It is possible to read data from Google BiqQuery to Exasol using IMPORT FROM JDBC command. Steps to configure the connection are described in documentation: [Loading Data from Google BigQuery](https://docs.exasol.com/db/latest/loading_data/connect_sources/google_bigquery.htm).
 
-However, with default settings for Simba BigQuery JDBC driver starting from version 1.3.0.1001 IMPORT FROM JDBC command might fail with error like
+However, with default settings for Simba BigQuery JDBC driver starting from version 1.3.0.1001 IMPORT FROM JDBC command might fail with error like 
 
 
 ```"c-mrkdwn__pre"

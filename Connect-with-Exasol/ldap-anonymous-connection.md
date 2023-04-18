@@ -5,7 +5,7 @@ I have read the documentation about authenticating database users with LDAP:
 
 https://docs.exasol.com/sql/create_user.htm
 
-I couldn't see any technical user for exasol configured here, so I assume that exasol is making an anonymous LDAP connection to ask for user authentication.
+I couldn't see any technical user for exasol configured here, so I assume that exasol is making an anonymous LDAP connection to ask for user authentication. 
 
 Is that true?
 

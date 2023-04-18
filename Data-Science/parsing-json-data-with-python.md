@@ -5,7 +5,7 @@ This solution is an example of how to load and parse [JSON](https://en.wikipedia
 
 ## Prerequisites
 
-First of all, we create a small script to load data from a URL:
+First of all, we create a small script to load data from a URL: 
 
 
 ```"code-java"

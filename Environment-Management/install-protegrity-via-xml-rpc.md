@@ -1,7 +1,7 @@
 # Install Protegrity via XML-RPC 
 ## Background
 
-Installation of Protegrity via XML-RPC
+Installation of Protegrity via XML-RPC 
 
 ## Prerequisites
 

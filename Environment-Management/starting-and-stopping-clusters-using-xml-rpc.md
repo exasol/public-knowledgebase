@@ -3,7 +3,7 @@
 
 This article depicts the steps required to start a cluster when all nodes are powered off and how to shut a cluster down using the EXAoperation XML-RPC interface.
 
-The python snippets are mere examples for the usage of the XML-RPC function calls and provided as-is. Please refer to the EXAoperation manual for details and further information on XML-RPC.
+The python snippets are mere examples for the usage of the XML-RPC function calls and provided as-is. Please refer to the EXAoperation manual for details and further information on XML-RPC. 
 
 ### Alphabetical list of referenced XML-RPC calls
 

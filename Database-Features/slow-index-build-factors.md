@@ -5,7 +5,7 @@ This article draws on past questions from our user base and is an extension of a
 
 ## Question:
 
-On a single-node cluster, a table with two columns (with a certain range of values) seems to take about a minute per 100M rows to create an index. Why is this causing some SELECTs to timeout when they auto-create the index for large tables (hundreds of millions of rows)?
+On a single-node cluster, a table with two columns (with a certain range of values) seems to take about a minute per 100M rows to create an index. Why is this causing some SELECTs to timeout when they auto-create the index for large tables (hundreds of millions of rows)? 
 
 ### Terminology
 

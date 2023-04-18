@@ -3,7 +3,7 @@
 
  In order for the Exasol Database to use a JDBC Driver in IMPORT or EXPORT commands, the JDBC Driver must support the following methods.
 
-If the JDBC driver does not, you might get an error message like:
+If the JDBC driver does not, you might get an error message like: 
 
 
 ```markup

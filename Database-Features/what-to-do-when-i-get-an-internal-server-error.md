@@ -1,7 +1,7 @@
 # What to do, when I get an Internal Server Error 
 ## Scope
 
-When executing a query, you might receive an internal server error. This article will show you what information you need to investigate it.
+When executing a query, you might receive an internal server error. This article will show you what information you need to investigate it. 
 
 ## Diagnosis
 

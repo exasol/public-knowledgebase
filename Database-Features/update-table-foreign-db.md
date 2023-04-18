@@ -1,7 +1,7 @@
 # Can You Update a Table in a Foreign Database?
 
 ## Question
-Here's another question I couldn't find in the documentation.
+Here's another question I couldn't find in the documentation. 
 
 Is it possible to "update" or "delete" the connected database via a connection (via OCI or JDBC). So far I only found information about import and export.
 

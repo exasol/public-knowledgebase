@@ -1,5 +1,5 @@
 # Install DELL OMSA 8.1 via XML-RPC 
-This article describes how to install Dell's OpenManage Server Administration solution via XML-RPC.
+This article describes how to install Dell's OpenManage Server Administration solution via XML-RPC. 
 
 #### 1. Upload "Plugin.Administration.DELL-OpenManage-8.1.0.pkg" to EXAoperation
 

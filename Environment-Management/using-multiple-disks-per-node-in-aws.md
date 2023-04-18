@@ -11,7 +11,7 @@ Example: Instance type m4.10xlarge
 
 ### Step-by-step instructions:
 
-a. Stop database instances  
+a. Stop database instances   
 b. Stop EXAStorage service  
 c. Set **Install** flag for all data nodes by selecting all the nodes from the **Nodes** tab, then select **Set Install Flag** from the **Actions** tab and click **Execute**  
 d. Edit Disks of each node by going to **Nodes - n0011- Disks** and add additional disks

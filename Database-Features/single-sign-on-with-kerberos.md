@@ -1,7 +1,7 @@
 # Single Sign-On with Kerberos 
 * ## Background
 
- This how-to describes the necessary steps to use Kerberos based single sign-on (SSO) in Exasol.
+ This how-to describes the necessary steps to use Kerberos based single sign-on (SSO) in Exasol. 
 
  ### EXAoperation
 

@@ -9,7 +9,7 @@ EXAplus is primarily designed to be an interactive tool, so it tries to communic
 
 ## Solution
 
-Add the commandline switch '-pipe' to Exaplus
+Add the commandline switch '-pipe' to Exaplus 
 
 This switch will put Exaplus CLI into non-interactive mode, among others disabling the login dialog (user/password) and tab-completion (which usually is a bad idea on automated input).
 

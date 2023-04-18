@@ -1,7 +1,7 @@
 # Resource Management 
 ## Background
 
-Exasol provides fully automatic resource management, that distributes all available resources among all active queries within the database.  
+Exasol provides fully automatic resource management, that distributes all available resources among all active queries within the database.   
 Within Exasol there are four different resources available and the performance statistics can be found in EXA_STATISTICS.EXA_DBA_PROFILE_LAST_DAY or in EXA_STATISTICS.EXA_MONITOR_LAST_DAY:
 
 1. CPU

@@ -1,7 +1,7 @@
 # Scheduling Database Jobs 
 ## Question
 
-I want to run a query or job regularly, without having to do this manually. How can I schedule these to run automatically?
+I want to run a query or job regularly, without having to do this manually. How can I schedule these to run automatically? 
 
 ## Answer
 

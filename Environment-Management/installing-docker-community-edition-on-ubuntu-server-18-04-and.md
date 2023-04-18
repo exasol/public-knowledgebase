@@ -3,7 +3,7 @@ Docker is a PaaS "Platform as a Service" product that uses OS-level virtualizati
 
 **NOTE:** This method was tested on Ubuntu Server 18.04 (Bionic Beaver) and 20.04 ( Focal Fossa)
 
-1. Update your Packages list:
+1. Update your Packages list: 
 
 
 ```

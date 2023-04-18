@@ -4,7 +4,7 @@ In order to get debug information and log files, the tool "exasupport" can be us
 
 ## Step 1
 
-Launch a *Bash* terminal within a container:
+Launch a *Bash* terminal within a container: 
 
 
 ```python

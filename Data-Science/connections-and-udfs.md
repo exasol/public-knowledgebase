@@ -1,7 +1,7 @@
 # Connections and UDFs 
 ## Scope
 
-When you are working with UDF's, you may want to access some credentials to connect to other sources, such as API's, S3 buckets, other databases, etc.  It's dangerous to write these in Plain Text within the context of the script, because anyone who can use the script is then also able to see the credentials that you hard-coded into the script. To solve this problem, you can save your credentials in [CONNECTION](https://docs.exasol.com/sql/create_connection.htm) objects. This is further described [here](https://docs.exasol.com/database_concepts/udf_scripts/hide_access_keys_passwords.htm). However, this requires some additional permissions. 
+When you are working with UDF's, you may want to access some credentials to connect to other sources, such as API's, S3 buckets, other databases, etc.  It's dangerous to write these in Plain Text within the context of the script, because anyone who can use the script is then also able to see the credentials that you hard-coded into the script. To solve this problem, you can save your credentials in [CONNECTION](https://docs.exasol.com/sql/create_connection.htm) objects. This is further described [here](https://docs.exasol.com/database_concepts/udf_scripts/hide_access_keys_passwords.htm). However, this requires some additional permissions.  
 
 ## Diagnosis
 
