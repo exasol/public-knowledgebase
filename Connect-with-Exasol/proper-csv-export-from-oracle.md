@@ -65,5 +65,5 @@ o You are not able to access the exported csv file until you stopped the spooler
 o ***SQLcl*** automatically masks double quotes (“Example” -> “”Example””)  
 o ***SQLcl*** automatically converts NULL to “” (empty string)
 
-
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 
 

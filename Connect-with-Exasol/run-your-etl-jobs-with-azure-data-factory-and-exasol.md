@@ -268,3 +268,4 @@ As you can see the setup and workflows for using the Exasol database in Azure Da
 
 We hope you've enjoyed reading this article.
 
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

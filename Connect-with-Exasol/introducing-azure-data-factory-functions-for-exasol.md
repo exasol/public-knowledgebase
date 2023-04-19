@@ -27,3 +27,4 @@ And a user guide is available here:
 
 We hope you get great use out of this product.
 
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

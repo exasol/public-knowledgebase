@@ -59,3 +59,5 @@ import into(schema_name varchar(128), object_name varchar(128), object_type varc
 import into(schema_name varchar(128), object_name varchar(128), object_type varchar(15), object_comment varchar(2000))     
  from jdbc driver = 'HiveSimba' at hive_conn table exa_syscat;  
 ```
+
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

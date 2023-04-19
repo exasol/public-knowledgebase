@@ -50,3 +50,5 @@ EnableSession=1;
 
 * [Loading Data from Google BigQuery](https://docs.exasol.com/db/latest/loading_data/connect_sources/google_bigquery.htm)
 * <https://storage.googleapis.com/simba-bq-release/jdbc/release-notes_1.3.0.1001.txt>
+
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

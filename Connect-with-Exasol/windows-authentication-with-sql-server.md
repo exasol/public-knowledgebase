@@ -128,3 +128,5 @@ Internal failure: access denied ("java.lang.RuntimePermission" "loadLibrary.mssq
 
 * [SQL Server IMPORT/EXPORT Best Practices](https://exasol.my.site.com/s/article/Best-Practices-for-IMPORT-EXPORT-with-SQL-Server)
 * [Set up SQL Server driver](https://docs.exasol.com/loading_data/connect_databases/sql_server.htm)
+
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

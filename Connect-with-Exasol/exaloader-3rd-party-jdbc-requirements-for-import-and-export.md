@@ -77,3 +77,5 @@ In order to use a JDBC driver that doesn't support all required functions, you c
 * [JDBC Driver Installation](https://docs.exasol.com/loading_data/connect_databases/import_data_using_jdbc.htm)
 * [IMPORT](https://docs.exasol.com/sql/import.htm)
 * [EXPORT](https://docs.exasol.com/sql/export.htm)
+
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

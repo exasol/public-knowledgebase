@@ -61,3 +61,5 @@ IMPORT INTO TABLE1 FROM JDBC AT EXA_DB_JDBC STATEMENT '...';
 * [List of default ports](https://docs.exasol.com/administration/on-premise/installation/prepareenvironment/cluster_network_access.htm#DefaultPorts)
 * [IMPORT syntax](https://docs.exasol.com/sql/import.htm)
 * [Loading Data Best Practices](https://docs.exasol.com/loading_data/best_practice.htm)
+
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

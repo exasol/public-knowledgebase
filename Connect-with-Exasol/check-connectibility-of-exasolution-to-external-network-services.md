@@ -49,3 +49,5 @@ def run(ctx):
 
 SELECT python_connect('192.168.2.1', '80') res FROM dual;
 ```
+
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

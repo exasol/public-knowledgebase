@@ -5,3 +5,4 @@ Exasol Clients and Drivers include the EXAplus database client and the drivers p
 
 ![Software layer](images/EXASOL.png)
 
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

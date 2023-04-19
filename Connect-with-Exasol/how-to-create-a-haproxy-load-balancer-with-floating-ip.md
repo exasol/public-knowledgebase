@@ -260,4 +260,4 @@ echo "$(date) I'm backup nothing to do"
 ## Downloads
 [keepalived_initd.zip](https://github.com/exasol/Public-Knowledgebase/files/9936059/keepalived_initd.zip)
 
-
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

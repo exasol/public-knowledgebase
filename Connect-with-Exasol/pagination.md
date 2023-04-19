@@ -58,3 +58,4 @@ The best solution in terms of user experience would be to place some kind of app
 More logic can be added to reduce TEMP usage and calculation times:  
 Invent 'super-pages' to calculate only parts of the result set – when they are required (or asynchronously when the user is getting close to the next super-page). As long as the middleware stays within the same transaction, the consistency aspect of (3.1) is no longer an issue.
 
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

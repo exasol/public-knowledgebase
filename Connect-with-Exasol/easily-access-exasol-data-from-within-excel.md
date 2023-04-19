@@ -155,3 +155,4 @@ The results should swiftly load in to your worksheet:
 
 And you've successfully imported data using PowerQuery with an SQL query!
 
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

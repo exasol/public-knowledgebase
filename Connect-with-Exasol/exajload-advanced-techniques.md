@@ -121,3 +121,4 @@ You may have any number of **-presql** and **-postsql** statements. Just make su
 ## Downloads
 [users.zip](https://github.com/exasol/Public-Knowledgebase/files/9935962/users.zip)
 
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

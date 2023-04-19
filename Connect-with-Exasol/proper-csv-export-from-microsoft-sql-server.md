@@ -88,5 +88,5 @@ From WideWorldImporters.Dimension.Customer"
 queryout "C:\Test.csv" -c -t"," -r"\n" -q -S HW1729 –T
 * Start the export by pressing Enter
 
-
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 
 

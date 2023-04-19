@@ -87,3 +87,5 @@ Finally, send the ODBC logfile to Exasol Support with information about the tool
 * [ODBC Driver Documentation](https://docs.exasol.com/connect_exasol/drivers/odbc.htm)
 * [Configuring ODBC Driver in Windows](https://docs.exasol.com/connect_exasol/drivers/odbc/odbc_windows.htm)
 * [ODBC Connection Strings](https://docs.exasol.com/connect_exasol/drivers/odbc/using_odbc.htm#ConnectingthroughConnectionStrings)
+
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

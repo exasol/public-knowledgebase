@@ -111,3 +111,5 @@ EXECUTE ('execute script sr_test.LuaTest(1,2,3)') AT LOCALVM
 * [IMPORT](https://docs.exasol.com/sql/import.htm)
 * [EXPORT](https://docs.exasol.com/sql/export.htm)
 * [SQL Server Documentation](https://docs.microsoft.com/en-us/sql/sql-server/?view=sql-server-ver15)
+
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

@@ -159,3 +159,4 @@ Check your iat and exp values in the JWT claim." }.​
 
 I'm happy to get your experiences and feedback on this article! 
 
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

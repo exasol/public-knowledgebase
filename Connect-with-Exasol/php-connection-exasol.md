@@ -26,3 +26,5 @@ while(odbc_fetch_row($result)){
 ?>
 ```
 The "my_dsn" is an ODBC registration on my host, the exasol system is running on a VirtualBox ( so not strictly "not on the same host", but since the DSN on your PHP server would cover the connection string locality shouldn´t be an issue).
+
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

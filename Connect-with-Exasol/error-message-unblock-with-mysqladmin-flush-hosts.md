@@ -49,3 +49,5 @@ You can find out what causes these faulty connections in the MySQL error log fil
 * <https://dev.mysql.com/doc/refman/8.0/en/flush.html>
 * <https://try2explore.com/questions/12547909>
 * <https://www.xperttimer.de/faq/ich-erhalte-den-fehler-host-is-blocked-because-of-many-connection-errors-unblock-with-mysqladmin-flush-hosts> (written in German)
+
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

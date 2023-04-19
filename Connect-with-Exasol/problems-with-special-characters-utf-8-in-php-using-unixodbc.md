@@ -16,3 +16,5 @@ You can use the EXA ODBC connection string attribute CHARACTERDISPLAYSIZE=4 to s
 ## Additional References
 
 * [Exasol ODBC Documentation](https://docs.exasol.com/connect_exasol/drivers/odbc/using_odbc.htm)
+
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

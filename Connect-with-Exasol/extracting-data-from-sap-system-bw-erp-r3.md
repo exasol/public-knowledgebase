@@ -16,3 +16,5 @@ Link to product home page: <https://theobald-software.com/de/exasolution-destina
 *Xtract Universal supports an **incremental delta load process**, that is, the limiting of the download to the data content that has been changed or added since the last download.* 
 
 ![](images/Theobald.png)
+
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

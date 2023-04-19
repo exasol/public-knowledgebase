@@ -15,3 +15,4 @@ e.g.
 
 See a detailed desciption in the Exasol User Manual.
 
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

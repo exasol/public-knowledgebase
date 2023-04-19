@@ -17,3 +17,4 @@ For a full description of using Hadoop ETL UDFs, refer to the Hadoop ETL UDFs do
 
 **Kerberos**: If your Hadoop uses Kerberos authentication, the UDFs will authenticate using a keytab file. Each Exasol node needs access to the Kerberos KDC (key distribution center), running on port **88**. The KDC is configured in the kerberos config file, which is used for the authentication.
 
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

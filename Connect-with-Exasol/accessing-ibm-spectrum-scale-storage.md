@@ -114,3 +114,4 @@ SELECT * FROM FILES_VS_TEST.LINES LIMIT 10;
 
 By following the steps shown in this guide, you can easily import Avro, Parquet or Orc formatted data from IBM Spectrum Scale object storage. Similarly, you can use [Virtual Schema S3 Document Files](https://github.com/exasol/s3-document-files-virtual-schema) integration to create a Virtual Schema over JSON or JSONLine files stored in Spectrum Scale.
 
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

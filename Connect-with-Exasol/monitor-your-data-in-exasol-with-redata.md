@@ -40,3 +40,4 @@ The difference to our regular data quality monitoring is, that this type of appr
 *Finally, if you're curious about Redata, do try it out -- and definitely feel free to suggest (or contribute) changes to improve the Exasol integration, or the Redata functionality in general!  
 You can find me on the Redata Slack (see [invite link in README](https://github.com/redata-team/redata#community) ), or here of course.*
 
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 
