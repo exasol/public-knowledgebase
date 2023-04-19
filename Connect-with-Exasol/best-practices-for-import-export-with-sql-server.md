@@ -128,3 +128,5 @@ Please note, that usage of the newly created connection requires either a system
 * [SQL Server JDBC Documentation](https://docs.microsoft.com/en-us/sql/connect/jdbc/microsoft-jdbc-driver-for-sql-server?view=sql-server-ver15)
 * [IMPORT](https://docs.exasol.com/sql/import.htm)
 * [EXPORT](https://docs.exasol.com/sql/export.htm)
+
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

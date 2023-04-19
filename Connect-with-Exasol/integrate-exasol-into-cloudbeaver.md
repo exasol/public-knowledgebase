@@ -501,4 +501,4 @@ Other relevant sites/information:
 ## Downloads
 [CloudBeaverWithExasolDocker.zip](https://github.com/exasol/Public-Knowledgebase/files/9936349/CloudBeaverWithExasolDocker.zip)
 
-
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

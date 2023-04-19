@@ -164,4 +164,4 @@ execute script ETL.bigquery_export('GOOGLE_CLOUD_STORAGE','test_1.csv','DATASET1
 * [import_from_bigquery.sql](https://raw.githubusercontent.com/exasol/exa-toolbox/master/utilities/import_from_bigquery.sql)
 * [export_to_bigquery.sql](https://raw.githubusercontent.com/exasol/exa-toolbox/master/utilities/export_to_bigquery.sql)
 
-
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

@@ -22,3 +22,5 @@ Then, the connection string I used to succesfully connect via PowerBI was in the
 > 192.168.56.117/E625D0BDD8A975CBC7001B842EAEFB56CDCC664459AE21BFAFCA13D9495D4D77:8563
 
 so hostname / fingerprint : port
+
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

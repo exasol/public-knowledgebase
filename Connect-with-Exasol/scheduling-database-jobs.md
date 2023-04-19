@@ -37,3 +37,5 @@ Now I can set up the cron job to use this file instead of a single command:
 
 * [Beginner's Guide to Cron](https://ostechnix.com/a-beginners-guide-to-cron-jobs/)
 * [Exaplus CLI](https://docs.exasol.com/connect_exasol/sql_clients/exaplus_cli/exaplus_cli.htm)
+
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

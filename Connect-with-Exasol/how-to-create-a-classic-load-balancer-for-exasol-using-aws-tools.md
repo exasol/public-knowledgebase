@@ -50,5 +50,5 @@ EXA <-> EXA export and import is not supported.
 
 ### 10. Review and Create Classic Load Balancer (it will take some time for DNS entries to be propagated)
 
-
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 
 

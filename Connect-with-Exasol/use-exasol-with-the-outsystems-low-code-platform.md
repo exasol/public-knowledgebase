@@ -121,3 +121,5 @@ For more information or help visit [novioq.com](https://www.novioq.com/outsyste
 
 ## Downloads
 [Exasol-database-connector-for-OutSystems.pdf](https://github.com/exasol/Public-Knowledgebase/files/9936516/Exasol-database-connector-for-OutSystems.pdf)
+
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

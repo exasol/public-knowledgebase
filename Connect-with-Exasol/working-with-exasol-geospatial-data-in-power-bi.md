@@ -149,3 +149,4 @@ The wikipedia entry on Well Known Text:
 [TAXI_ZONES_202104201127.zip](https://github.com/exasol/Public-Knowledgebase/files/9936562/TAXI_ZONES_202104201127.zip)
 [create_table.zip](https://github.com/exasol/Public-Knowledgebase/files/9936568/create_table.zip)
 
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

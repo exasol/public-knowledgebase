@@ -27,3 +27,5 @@ In order to login into Exasol DB the user_1 have to use its ldap password, ie.
 Exasol then knows that user_1 should be authenticated using the configured ldap server and makes the call:
 
 > ldap_sasl_bind_s(LDAP, "cn=user_1,dc=authorization,dc=exasol,dc=com", LDAP_SASL_SIMPLE, ldap_password_for_user_1, ...);
+
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

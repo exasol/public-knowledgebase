@@ -39,3 +39,5 @@ If the reconnect was not successful, you can get one of the SQL states 40004, 40
 * <https://docs.exasol.com/administration/on-premise/manage_software/manage_jdbc.htm>
 * <https://docs.exasol.com/connect_exasol/drivers.htm>
 * <https://docs.exasol.com/connect_exasol/drivers/ado_net.htm>
+
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

@@ -108,3 +108,5 @@ select webtest_py('www.heise.de', 80, '/') from exa_loadavg order by 1,2;
 
 ## Downloads
 [webtest_py.zip](https://github.com/exasol/Public-Knowledgebase/files/9936499/webtest_py.zip)
+
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

@@ -39,3 +39,5 @@ Import command parameters:
 |Null is not an empty field but something like \N or _NULL_|Use the null parameter (e.g. NULL='\N')|
 |Invalid data for a target data type (e.g. date 0000-00-00)|Load the data into varchar, modify the values and change the data type afterwards|
 |Missing date part in a timestamp column (maybe because source used time data type)|Load the data into varchar, add the date part from another column or set it to a default by string concatenation and change the data type to timestamp afterwards|
+
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

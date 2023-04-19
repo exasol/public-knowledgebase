@@ -79,3 +79,5 @@ If you are able to use a CA-signed certificate, it can be uploaded to Exaoperat
 * [ODBC Documentation](https://docs.exasol.com/connect_exasol/drivers/odbc/using_odbc.htm)
 * [JDBC Documentation](https://docs.exasol.com/connect_exasol/drivers/jdbc.htm)
 * [ADO.NET Documentation](https://docs.exasol.com/connect_exasol/drivers/ado_net.htm)
+
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

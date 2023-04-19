@@ -54,3 +54,5 @@ Notes:
 
 * ***PSQL*** automatically converts NULL to "" (empty string)
 * ***PSQL*** automatically masks double quotes ("Example" -> ""Example"")
+
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

@@ -79,3 +79,4 @@ con.commit();
 ## Downloads
 [Bind_variables_not_working_example.zip](https://github.com/exasol/Public-Knowledgebase/files/9936528/Bind_variables_not_working_example.zip)
 
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

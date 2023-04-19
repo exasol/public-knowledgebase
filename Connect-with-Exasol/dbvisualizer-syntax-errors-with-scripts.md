@@ -32,3 +32,5 @@ You can disable "Parameterized SQL" in DBVIsualizer. Go to SQL Commander in the
 ## Additional References
 
 * [Connect to DbVisualizer](https://docs.exasol.com/connect_exasol/sql_clients/db_visualizer.htm)
+
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 
