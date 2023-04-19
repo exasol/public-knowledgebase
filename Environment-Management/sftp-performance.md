@@ -5,7 +5,7 @@ When using an SFTP server as the source or target in IMPORT/EXPORT statements or
 
 ## Diagnosis
 
-You can verify that an SFTP server is the source or target system by: 
+You can verify that an SFTP server is the source or target system by:
 
 1. In case of an IMPORT/EXPORT query: checking if the query or connection host has the syntax SFTP:// at the front
 2. In case of Backups, checking if the Archive URL contains SFTP://

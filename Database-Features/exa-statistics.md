@@ -1,7 +1,7 @@
 # EXA_STATISTICS 
 ## Background
 
-Each Exasol database includes two out-of-the-box schemas: SYS and EXA_STATISTICS. It is not possible to change these schemas manually, and the information visible in some system tables depend on the object and system privileges the user is assigned. It is also possible to grant access to every table in these schemas by granting the SELECT ANY DICTIONARY privilege to a user or role.  
+Each Exasol database includes two out-of-the-box schemas: SYS and EXA_STATISTICS. It is not possible to change these schemas manually, and the information visible in some system tables depend on the object and system privileges the user is assigned. It is also possible to grant access to every table in these schemas by granting the SELECT ANY DICTIONARY privilege to a user or role. 
 
 ## Explanation
 

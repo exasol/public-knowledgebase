@@ -1,7 +1,7 @@
 # Calculate Database RAM 
 ## Background
 
-This article describes the calculation of the optimal (maximum) DB RAM on a:  
+This article describes the calculation of the optimal (maximum) DB RAM on a:
 
 * 4+1 system with one database (dedicated environment)
 * 4+1 system with two databases (shared environment)

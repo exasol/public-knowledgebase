@@ -7,7 +7,7 @@
 
  The attached file provides a Lua script to do the same.
 
- Example call: 
+ Example call:
 
    
 ```"code-sql"

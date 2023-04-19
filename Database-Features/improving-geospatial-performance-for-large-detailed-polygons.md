@@ -13,7 +13,7 @@ In order to efficiently handle very large polygons it is advised to split them i
 
 ## How to
 
-If you want to code along, this is the polygon used for this example: 
+If you want to code along, this is the polygon used for this example:
 
 
 ```markup

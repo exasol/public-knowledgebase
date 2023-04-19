@@ -7,7 +7,7 @@ In this tutorial we are going to show you how to create a BucketFS and Buckets i
 
 * Access to the Docker host
 * Access to firewall/cloud management console to open port (in our example, **AWS** will be used)
-* Basic knowledge of the ***curl*** command 
+* Basic knowledge of the ***curl*** command
 
 ## How to create a BucketFS and Buckets inside it
 

@@ -2,7 +2,7 @@
 ## Question
 
 Is the ROWID always assigned in an ascending order?  
-Is it possible to determine the sequence of inserted records with the ROWID? 
+Is it possible to determine the sequence of inserted records with the ROWID?
 
 ## Answer
 

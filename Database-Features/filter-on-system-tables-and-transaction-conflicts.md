@@ -1,7 +1,7 @@
 # Filter on system tables and transaction conflicts 
 ## Background
 
-Transaction conflicts, WAIT FOR COMMIT or ROLLBACK, each of them is possible. When querying system tables, read locks are implicitly set as follows: 
+Transaction conflicts, WAIT FOR COMMIT or ROLLBACK, each of them is possible. When querying system tables, read locks are implicitly set as follows:
 
 
 ```"code-sql"

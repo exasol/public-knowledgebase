@@ -1,7 +1,7 @@
 # What happens when I JOIN DECIMAL datatypes of various sizes? 
 ## Question
 
-Knowing that JOINS on VARCHAR of various sizes can create an expression index, what about using datatype DECIMAL?  
+Knowing that JOINS on VARCHAR of various sizes can create an expression index, what about using datatype DECIMAL? 
 
 ## Answer
 

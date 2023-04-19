@@ -3,7 +3,7 @@
 
 Regular expressions do not recognize non-ascii national characters in class groups.
 
-Example: 
+Example:
 
 
 ```"noformat

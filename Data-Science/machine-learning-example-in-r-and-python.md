@@ -3,7 +3,7 @@
 
 Exasol's UDF scripts make it possible to run machine-learning algorithms directly in the database. The training of a random-forest model and using this model to make predictions on a dataset in the Exasol database can be done in three steps:
 
-1. During a learning phase, the model is created based on a training dataset (e.g. from a table within the Exasol database) 
+1. During a learning phase, the model is created based on a training dataset (e.g. from a table within the Exasol database)
 2. The model is put into BucketFS to make it accessible within UDF scripts
 3. A UDF script is used to make predictions.
 

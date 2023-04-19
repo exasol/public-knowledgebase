@@ -1,7 +1,7 @@
 # XML-parsing in retail using Python3 UDFs 
 ## Background
 
-Let's face it: XML is dead. 
+Let's face it: XML is dead.
 
 But just because new shiny alternatives like YAML or JSON are around does not mean we can abandon XML altogether. There are still companies [hiring Cobol developers](https://www.stepstone.de/5/job-search-simple.html?stf=freeText&ns=1&qs=%5B%5D&companyID=0&cityID=0&sourceOfTheSearchField=homepagemex%3Ageneral&searchOrigin=Homepage_top-search&ke=cobol&ws=&ra=30) you know...  
 So until the last 21 gun salute for XML has faded over the wide, misty graveyard of forgotten programming languages, we are going to keep on working with it. And as always, Exasol will support you doing your job in every possible way!

@@ -7,7 +7,7 @@ Sometimes Exasol exhibits unexpected behavior when executing queries. Analyzing 
 
 ## How to get a profiling data for Exasol support?
 
-Execute the following steps: 
+Execute the following steps:
 
 ## *Step 1*
 

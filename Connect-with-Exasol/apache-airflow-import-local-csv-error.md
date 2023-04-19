@@ -3,7 +3,7 @@
 ## Question
 I was trying this section https://docs.exasol.com/connect_exasol/workflow_management/apache_airflow.htm
 
-With one change , I was running an import statement in sql file. 
+With one change , I was running an import statement in sql file.
 
 test.sql file code:
 ```

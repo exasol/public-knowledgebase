@@ -3,7 +3,7 @@
 
 Multiuser compliance of a database system is ensured by its transaction system. A transaction consists of multiple SQL commands and is either completed with a COMMIT statement or aborted with a ROLLBACK statement.
 
-An effective Transaction Management System allows the following: 
+An effective Transaction Management System allows the following:
 
 * Every transaction returns a correct result!
 * All users can run their transactions in parallel!

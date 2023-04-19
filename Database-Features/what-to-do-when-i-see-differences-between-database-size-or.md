@@ -3,7 +3,7 @@
 
 Sometimes, the disk space used by the database may continue to increase, but there was not any data added to the database. This can cause the database to use 100% of the hard drive space and not be able to expand any further.  After a restart, the disk usage is back to normal.
 
-When running out of space, you may notice the following error message in Exaoperation: 
+When running out of space, you may notice the following error message in Exaoperation:
 
 
 

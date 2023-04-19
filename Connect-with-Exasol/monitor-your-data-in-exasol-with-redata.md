@@ -5,7 +5,7 @@ As described in the [README](https://github.com/redata-team/redata/blob/master/R
 
 **Overview**
 
-Redata runs scheduled checks that compute health metrics for your data, containing information like: 
+Redata runs scheduled checks that compute health metrics for your data, containing information like:
 
 * time since last record was added
 * number of records added in last (hour/day/week/month)

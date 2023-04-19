@@ -1,7 +1,7 @@
 # Query Wrapper Tool Suggestion
 
 ## Question
-I'd like to suggest a slight modification of the query-wrapper tool: 
+I'd like to suggest a slight modification of the query-wrapper tool:
 
 You are trying to fetch the job-id from the main-log table but without filtering on the script_name, this could lead to issues if you have several applications using the same logging table.
 ```

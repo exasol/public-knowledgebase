@@ -1,7 +1,7 @@
 # PowerBI Encryption/Fingerprint Issue in Exasol 7.1
 
 ## Question
-Since 7.1 there is the standard encryption/fingerprint setting in the exasol driver, when trying to set this in the PowerBI dialog for an Exasol datasource... 
+Since 7.1 there is the standard encryption/fingerprint setting in the exasol driver, when trying to set this in the PowerBI dialog for an Exasol datasource...
  
 > {"server":"XXX.XX.XX.XX..XX:8563\/9CXXXXXXXXXXXXXXXXXX80","encrypted":"Yes"}
  

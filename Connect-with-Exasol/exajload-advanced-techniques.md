@@ -3,7 +3,7 @@
 
 [EXAjload](https://docs.exasol.com/loading_data/file_formats.htm) is a standard tool for bulk data loading. Its documentation is brief, but the tool is more powerful than you might think.
 
-It is possible to: 
+It is possible to:
 
 * import data from STDOUT of other processes without creating a tmp file on disk;
 * import data from GZ-compressed streams;

@@ -1,7 +1,7 @@
 # Filter on DOUBLE columns 
 ## Background
 
-Filter on DOUBLE columns returns unexpected results.  
+Filter on DOUBLE columns returns unexpected results. 
 
 The DOUBLE values you see in EXAplus may differ from the actual database values due to the JDBC double handling and rendering.
 

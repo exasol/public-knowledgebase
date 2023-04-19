@@ -1,7 +1,7 @@
 # UDF Bucket Permissions
 
 ## Question
-I'm able to secure and upload/download jars using bucket permissions: 
+I'm able to secure and upload/download jars using bucket permissions:
 
 https://docs.exasol.com/database_concepts/bucketfs/file_access.htm
 

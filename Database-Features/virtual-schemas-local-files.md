@@ -3,7 +3,7 @@
 ## Question
 Can virtual schema write local files (temp files?)
 
-What are the limitations in terms of size? 
+What are the limitations in terms of size?
 
 Would they be wiped out with every invocation (new container)?
 

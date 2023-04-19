@@ -11,7 +11,7 @@ Apparently, as soon as I perfom calculations with the referring column, the foll
 ![SQL Error](images/remove-currency-symbols-sqlerror.png)
 
 Do you guys know a quick and easy solution for this?
-It would be much appreciated! 
+It would be much appreciated!
 
 ## Answer
 According to the header in your screenshot thats a CHAR / VARCHAR....not what I'd pick for something like an INCOME....

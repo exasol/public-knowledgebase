@@ -1,7 +1,7 @@
 # QUERY_CACHE Architecture
 
 ## Question
-I noticed in a few areas of the Performance Management training, for the purposes of learning and understanding the Profiling and Performance impacts, we were instructed to turn off the QUERY_CACHE setting for our session. 
+I noticed in a few areas of the Performance Management training, for the purposes of learning and understanding the Profiling and Performance impacts, we were instructed to turn off the QUERY_CACHE setting for our session.
 
 I am trying to understand the Query Cache setting from the architectural perspective. Can you confirm my depictions below and that I am paraphrasing the concept correctly?
 

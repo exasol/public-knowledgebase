@@ -11,7 +11,7 @@ There is an overview of all system tables in our documentation here: <https://do
 
 Let's focus on the statistical tables: <https://docs.exasol.com/sql_references/metadata/statistical_system_table.htm#Statistical_System_Tables>
 
-The tables that are important to us are here 
+The tables that are important to us are here
 
 * EXA_DB_SIZE_*
 * EXA_MONITOR_*

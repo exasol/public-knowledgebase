@@ -5,7 +5,7 @@ A user may report that they are not able to select views due to permission error
 
 ## Diagnosis
 
-Usually, when there are permission problems with views, you would see an error message such as: 
+Usually, when there are permission problems with views, you would see an error message such as:
 
 
 ```markup

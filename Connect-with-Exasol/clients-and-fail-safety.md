@@ -7,7 +7,7 @@ This article explains some of the fail safety mechanisms that clients can perfor
 
 ### Automatic reconnect
 
-In case the database is not available or temporarily shut down, client connections to this database are terminated. The interfaces have the ability to automatically reconnect to the system. 
+In case the database is not available or temporarily shut down, client connections to this database are terminated. The interfaces have the ability to automatically reconnect to the system.
 
 * For the Exasol JDBC driver, ADO.NET driver, ODBC driver, Client SDK:  
 The driver tries to get a new connection to the same session. If a transaction was open, the user gets an error like "Successfully reconnected, transaction was rolled back"

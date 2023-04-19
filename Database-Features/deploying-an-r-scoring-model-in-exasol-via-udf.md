@@ -3,7 +3,7 @@
 
 Below is an UDF script in R that executes a scoring model inside EXASOL. While example is using the flights dataset from R and applying a randomForest model, it may be used as a template for R models.
 
-It has already proven in a real case where a Neural Network-based scoring process on a multi-bilion dataset was transferred from an R Server into EXASOL, reducing the amount of time needed from approx. 1h to a few mins. 
+It has already proven in a real case where a Neural Network-based scoring process on a multi-bilion dataset was transferred from an R Server into EXASOL, reducing the amount of time needed from approx. 1h to a few mins.
 
 ## How to deploy an R scoring model in EXASOL via UDF
 

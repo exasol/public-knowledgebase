@@ -5,7 +5,7 @@ Many organizations - such as service providers - face the challenge to manage da
 
 * Separate Databases
 * Shared database, separate schemas
-* Shared database, shared schemas 
+* Shared database, shared schemas
 
 ## Approaches to manage Multi-Tenant data
 

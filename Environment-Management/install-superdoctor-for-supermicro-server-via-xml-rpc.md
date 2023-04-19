@@ -5,7 +5,7 @@
 
 Upload "Plugin.Administration.SuperDoctor-5.5.0-1.0.2-2018-08-21.pkg" to EXAoperation
 
-* Login to EXAoperation (User privilege Administrator) 
+* Login to EXAoperation (User privilege Administrator)
 * Upload pkg **Configuration>Software>Versions>Browse>Submit**
 
 ## Step 2

@@ -3,7 +3,7 @@
 
 When switching from EXAplus, you would like
 
-* to change the shortcut for executing the current statement 
+* to change the shortcut for executing the current statement
 * to do Auto completion
 * create LUA Scripts / UDFs
 * use of Favorites

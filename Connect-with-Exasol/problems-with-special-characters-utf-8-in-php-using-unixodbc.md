@@ -3,7 +3,7 @@
 
 * Strings read from EXA using PHP via ODBC are truncated.
 * PHP throws truncation errors while reading Strings from EXA via ODBC.
-* Unicode Strings cannot be displayed or are truncated. 
+* Unicode Strings cannot be displayed or are truncated.
 
 ## Diagnosis
 

@@ -6,7 +6,7 @@ The time is calculating by pulling information from EXA_SYSTEM_EVENTS table valu
 
 - Event type: Startup (up-time)
 
-- Event type: Shutdown (downtime) 
+- Event type: Shutdown (downtime)
 
 For scheduled maintenance tasks, the up-time must be recalculated as this scheduled maintenance will be shown as event type "Shutdown".
 

@@ -17,7 +17,7 @@ Informatica PowerCenter. Windows 2008R2.  Informatica has to be configured to u
 
 ## Step 1
 
-This could be done via ODBC connection string: 
+This could be done via ODBC connection string:
 
 
 ```"noformat

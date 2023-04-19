@@ -6,7 +6,7 @@ Those cases include:
 2. Replace global by local join (by enforcing a materialization of a subselect that is smaller than replication border [see [replication-border-in-exasol-6-1](https://community.exasol.com/t5/database-features/replication-border-in-exasol-6-1/ta-p/1727)] with local filters)
 3. Manual precalculation of multiple usages of subselects, views, CTEs
 
-Please be aware that materializations can cause a lot of temporary data if they are big which might result in block swapping and decrease thoughput. 
+Please be aware that materializations can cause a lot of temporary data if they are big which might result in block swapping and decrease thoughput.
 
 For example this query might not run optimal:
 

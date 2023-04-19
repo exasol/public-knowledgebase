@@ -3,7 +3,7 @@ Suddenly the privileges you assigned to a user are no longer in place. You end u
 
 ## Scope
 
-Having to reapply the same privileges to a user, after some job/workflow runs? 
+Having to reapply the same privileges to a user, after some job/workflow runs?
 
 ## Diagnosis
 

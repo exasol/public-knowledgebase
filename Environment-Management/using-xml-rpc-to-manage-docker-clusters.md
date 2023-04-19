@@ -17,7 +17,7 @@ Note: All of the examples tested with Exasol version 6.2.7 and python 2.7
 
 We need to create a connection and get a master IP before running any ConfD job via XML-RPC. You can find how to do it below:
 
-Import required modules and get the master IP: 
+Import required modules and get the master IP:
 
 
 ```"code-java"

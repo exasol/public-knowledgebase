@@ -1,7 +1,7 @@
 # Install Docker Community Edition on RHEL and CentOS 7 
 Docker is a PaaS "Platform as a Service" product that uses OS-level virtualization technology to deploy software in relatively small packages called containers that are completely isolated, have their own software, libraries, and even network. You can easily obtain our image via Github or Docker Hub. This tutorial below will show you how to install Docker on CentOS and other RHEL-based systems (however, the installed repo will vary).
 
-**NOTE:** This method was tested on CentOS 7.7 
+**NOTE:** This method was tested on CentOS 7.7
 
 1. Update your Packages list:
 

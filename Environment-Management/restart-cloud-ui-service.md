@@ -8,7 +8,7 @@ https://docs.exasol.com/administration/aws/plugin/cloud_ui_plugin.htm#Updatingth
 Although (as per ExaOperation) the update was successful, the Cloud UI is not available / working anymore ever since, displaying a 404 error message.
 
 ## Answer
-You can restart the Cloud UI service and Exaoperation. 
+You can restart the Cloud UI service and Exaoperation.
 
 In order to restart the Cloud UI service you can use one of these options below:
 

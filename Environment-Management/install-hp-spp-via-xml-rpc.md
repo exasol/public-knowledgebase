@@ -1,5 +1,5 @@
 # Install HP SPP via XML-RPC 
-This article describes the process of installing HP Service Pack for ProLiant solution using XML-RPC. 
+This article describes the process of installing HP Service Pack for ProLiant solution using XML-RPC.
 
 #### 1. Upload "Plugin.Administration.HP-SPP-2014.09.0-0.pkg" to EXAoperation
 

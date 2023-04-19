@@ -27,4 +27,4 @@ All data is in aggregated form, it **does not contain** any of the following:
 * User names
 * Schema names
 * Table names
-* SQL texts 
+* SQL texts

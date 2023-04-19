@@ -1,7 +1,7 @@
 # Unica: Unicode Strings like N'String' 
 ## Background
 
-Syntax error when using Unica Campaign with Unicode strings:   
+Syntax error when using Unica Campaign with Unicode strings:  
 Error:[42000]syntax error, unexpected simple_string_literal, expecting
 
 ## Explanation

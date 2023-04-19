@@ -5,7 +5,7 @@ If you create a user using LDAP, a simple connection check to the LDAP server is
 
 ## Diagnosis
 
-If you receive the following error, you may be affected: 
+If you receive the following error, you may be affected:
 
 
 ```

@@ -5,7 +5,7 @@ The solution described below uses the 'socket' package.
 
 Detailed documentation on the package can be found here: <http://w3.impa.br/~diego/software/luasocket/smtp.html>
 
-No further installation is needed since 'socket' is part of Exasol's distribution. 
+No further installation is needed since 'socket' is part of Exasol's distribution.
 
 ## Solution using a Lua Script
 

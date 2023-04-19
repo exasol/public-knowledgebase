@@ -5,7 +5,7 @@
 ```
 $ docker run --detach --network=host --privileged --name <container_name> -v $CONTAINER_EXA:/exa exasol/docker-db:6.2.8-d1 init-sc --node-id <node_id>
 ```
-2. Log in to your Docker container's BASH environment: 
+2. Log in to your Docker container's BASH environment:
 
 ```
 $ docker exec -it <container_name> /bin/bash

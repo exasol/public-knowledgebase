@@ -16,7 +16,7 @@ A release includes all components listed in the below download links.
 
 ## Client Platform Support
 
-This section explains which platforms and platform versions are supported for the following clients: 
+This section explains which platforms and platform versions are supported for the following clients:
 
    * ODBC, JDBC, ADO.NET drivers
    * Exaplus SQL client (command line interface)

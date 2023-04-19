@@ -1,5 +1,5 @@
 # Switching Ecryption on and off in Exasol 
-If you want to connect other systems (such as BI, ETL tools, other databases) to Exasol, an encrypted connection is very important. Depending on which type of connection you choose, for example, a driver or connector), you can switch the encryption between on and off in different ways. This article provides you with an overview of encryption for the most common connections. 
+If you want to connect other systems (such as BI, ETL tools, other databases) to Exasol, an encrypted connection is very important. Depending on which type of connection you choose, for example, a driver or connector), you can switch the encryption between on and off in different ways. This article provides you with an overview of encryption for the most common connections.
 
 ## Drivers
 

@@ -23,7 +23,7 @@ Replication: Table content will be held in RAM on each node for better performan
 
 Please note, that for a new table some data blocks will be reserved. Therefore, MEM_OBJECT_SIZE of empty or very small tables can be bigger than RAW_OBJECT_SIZE. This does not imply a bad data compression ratio.
 
-These system dictionaries provide you the total size of database objects in the cluster. 
+These system dictionaries provide you the total size of database objects in the cluster.
 
 ### Example: Objects in the schema 'EXAMPLES'
 

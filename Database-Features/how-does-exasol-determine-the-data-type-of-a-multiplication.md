@@ -11,7 +11,7 @@ Can numeric overflows occur?
 
 In operations with multiple operands (e.g. the operators +,-,/,*) the operands are implicitly converted to the biggest occurring data type (e.g. DOUBLE is bigger than DECIMAL) before executing the operation. This rule is also called numeric precedence.
 
-Numeric overflow can occur and result in a data exception - numeric value out of range. 
+Numeric overflow can occur and result in a data exception - numeric value out of range.
 
 The result for this specific calculation would be decimal (36,12).  
 Regularly the precision and scale were added.  

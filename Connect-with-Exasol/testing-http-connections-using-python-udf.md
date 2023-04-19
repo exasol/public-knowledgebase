@@ -5,7 +5,7 @@ As Exasol comes with its own operating system and users do rarely have access to
 
 ## How to test HTTP connections using python UDF
 
-The attached SQL file contains aSCALAR PYTHON SCRIPTthat does minimalistic network testing using the following steps: 
+The attached SQL file contains aSCALAR PYTHON SCRIPTthat does minimalistic network testing using the following steps:
 
 1. **Hostname lookup** using DNS (Domain Name Service)
 2. **TCP connect** to the resulting address

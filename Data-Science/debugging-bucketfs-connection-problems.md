@@ -5,7 +5,7 @@
 
 ## Diagnosis
 
-When referencing a file in BucketFS in any UDF script (including Virtual Schema adapter scripts), the user may get an error like this: 
+When referencing a file in BucketFS in any UDF script (including Virtual Schema adapter scripts), the user may get an error like this:
 
 
 ```markup

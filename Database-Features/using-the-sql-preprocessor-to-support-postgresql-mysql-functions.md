@@ -1,7 +1,7 @@
 # Using the SQL preprocessor to support PostgreSQL/MySQL functions (e.g. DATE ) 
 ## Background
 
-Some functions from other databases are not supported by Exasol. But with the powerful SQL preprocessor framework, you can easily extend the SQL language of Exasol. 
+Some functions from other databases are not supported by Exasol. But with the powerful SQL preprocessor framework, you can easily extend the SQL language of Exasol.
 
 ## Explanation
 

@@ -3,7 +3,7 @@
 
 #### 1. Upload "Plugin.Monitoring.collectd-5.5.0.pkg" to EXAoperation
 
-* Login to EXAoperation (User privilege Administrator) 
+* Login to EXAoperation (User privilege Administrator)
 * Upload pkg **Configuration>Software>Versions>Browse>Submit**
 
 #### 2. Connect to EXAoperation via XML-RPC (this example uses Python)

@@ -21,7 +21,7 @@ Edit the EXAConf file with your preferred text editor and add the following line
 ```
 EnableAuditing = yes
 ```
-The database section of your EXAConf file should look like this: 
+The database section of your EXAConf file should look like this:
 
 
 ```

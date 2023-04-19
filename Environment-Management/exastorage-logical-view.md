@@ -5,7 +5,7 @@ This article shows an overview of EXAStorage, which consists of the following: 
 
 * Volumes are partitioned into logical blocks
 * Blocks are distributed equally across all nodes/segments
-* Nodes may have segments of multiple volumes 
+* Nodes may have segments of multiple volumes
 
 #### Segments
 

@@ -1,7 +1,7 @@
 # How to replace a network card 
 ## Background
 
-There might be a need for you to replace the network interface cards (NIC), or you may need to upgrade the network interface cards of a database server or the management server. 
+There might be a need for you to replace the network interface cards (NIC), or you may need to upgrade the network interface cards of a database server or the management server.
 
 ## How to replace a network card
 

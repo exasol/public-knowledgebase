@@ -1,7 +1,7 @@
 # How to Find Invalid Views
 
 ## Question
-Hello. I would like to know how to verify if there are invalid views; in other words, how can I look for views based on non-existing objects? Thank you in advance. 
+Hello. I would like to know how to verify if there are invalid views; in other words, how can I look for views based on non-existing objects? Thank you in advance.
 
 ## Answer
 You can figure out whether views are invalid by looking at whether there are EXA_ALL_COLUMNS rows defined for them. An invalid view will either have no columns in that table or the column's STATUS field will be "OUTDATED".  However there are 2 scenarios where EXA_ALL_COLUMNS can be inaccurate:

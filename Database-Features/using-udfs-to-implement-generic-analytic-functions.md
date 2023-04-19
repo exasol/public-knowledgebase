@@ -4,7 +4,7 @@
 ### Analytic Functions
 
 Analytic functions allow to formulate certain queries like time series analysis, cumulative sums, moving averages etc. Without analytic functions these queries would require correlated subqueries or self joins and could be much less efficiently computed.  
-An analytic function divides the input into sorted partitions. Each ouptut row is computed on a window, that can be any continuous part of the partition. 
+An analytic function divides the input into sorted partitions. Each ouptut row is computed on a window, that can be any continuous part of the partition.
 
 ### Exasol's UDFs
 

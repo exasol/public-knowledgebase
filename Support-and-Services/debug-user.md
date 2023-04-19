@@ -3,7 +3,7 @@
 
 ## Background
 
-If an analysis of system dictionaries is required for trouble shooting or correction work, we usually login to the database by using a special database user, whose access privileges are limited to system dictionaries. Thus, direct access to the data tables of the database is not possible. 
+If an analysis of system dictionaries is required for trouble shooting or correction work, we usually login to the database by using a special database user, whose access privileges are limited to system dictionaries. Thus, direct access to the data tables of the database is not possible.
 ## Explanation
 
 You can use the below SQL Statements to create the user with the necessary permissions. Once the user is created, please share the password with Exasol support in a secure way.

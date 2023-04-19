@@ -1,5 +1,5 @@
 # Add an LDAP server for your Docker-based Exasol Database 
-With this article, you will learn how to add an LDAP server for your database: 
+With this article, you will learn how to add an LDAP server for your database:
 
 1. Log in to your Exasol container:
 

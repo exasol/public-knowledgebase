@@ -1,7 +1,7 @@
 # How to See All Currently Running Scripts
 
 ## Question
-Currently I am writing a python script to start off a script in Exasol using the Exasol Websocket (in order to fill in the lack of a scheduler in Exasol atm). 
+Currently I am writing a python script to start off a script in Exasol using the Exasol Websocket (in order to fill in the lack of a scheduler in Exasol atm).
 
 However, I would like to get some conditional logic involed saying please do not start the script when it is already running. Problem is that I cannot really find a system table that shows all currently running scripts. I can find the currently running sql statements, but the script executes a bunch of different sql statements (which are also variable, so i cannot just check if any of these statements is running). 
 

@@ -1,7 +1,7 @@
 # Privileges overview 
 ## Background
 
-This solution describes how to determine all granted system and object privileges per user.  
+This solution describes how to determine all granted system and object privileges per user. 
 
 ## Explanation
 

@@ -1,7 +1,7 @@
 # How to estimate duration of REORGANIZE DATABASE when enlarging a cluster 
 ## Background
 
-When you add new nodes to your database cluster (enlargement), those new nodes will not yet have any data. Furthermore, all distribution keys and indices have been invalidated on the first startup of the enlarged database. Therefore the table data needs redistribution, and all the indices must be rebuilt. 
+When you add new nodes to your database cluster (enlargement), those new nodes will not yet have any data. Furthermore, all distribution keys and indices have been invalidated on the first startup of the enlarged database. Therefore the table data needs redistribution, and all the indices must be rebuilt.
 
 ## Prerequisites
 

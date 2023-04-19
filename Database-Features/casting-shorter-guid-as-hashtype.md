@@ -3,7 +3,7 @@
 ## Question
 For readability and performance, I have some shorter GUID-style identifiers (slugs, whatever) containing [0-9][A-F] characters
 
-These cannot be inserted into HASHTYPE(16 BYTE) without padding. 
+These cannot be inserted into HASHTYPE(16 BYTE) without padding.
 ```
 -- failed  
 SELECT CAST(UCASE('550E8400E') AS HASHTYPE(16 BYTE)) STUDYID  

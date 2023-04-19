@@ -1,7 +1,7 @@
 # NULL in Exasol 
 ## Background
 
-Generally speaking, NULL is not a special value, but it represents an undefined value. Given this, comparing anything against NULL is not applicable.  Therefore, any comparison of the form "column = NULL" always returns NULL in Exasol, even if that column contains NULL values. Especially joins do not generate matches on rows where the join condition contains NULL values. 
+Generally speaking, NULL is not a special value, but it represents an undefined value. Given this, comparing anything against NULL is not applicable.  Therefore, any comparison of the form "column = NULL" always returns NULL in Exasol, even if that column contains NULL values. Especially joins do not generate matches on rows where the join condition contains NULL values.
 
 ## Explanation
 

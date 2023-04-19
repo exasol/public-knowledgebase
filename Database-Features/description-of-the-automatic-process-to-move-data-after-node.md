@@ -1,7 +1,7 @@
 # Description of the automatic process to move data after node failures 
 ## Background
 
-This article describes the automatic process to move data after node failures 
+This article describes the automatic process to move data after node failures
 
 ## Symptoms
 

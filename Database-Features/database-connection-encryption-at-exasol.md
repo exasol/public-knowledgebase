@@ -3,7 +3,7 @@
 
 This article will explain about the details on encryption at Exasol Database.
 
-It gives you answers for questions like : 
+It gives you answers for questions like :
 
 Is data transfer through client connection encrypted by default or not?
 

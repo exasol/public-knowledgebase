@@ -3,7 +3,7 @@
 
 "Linked Servers" in Microsoft SQL Server are what other database systems call "Database Links", "Database Gateway", "External Tables" or similar: It is a way to access contents from other systems to use in local processing. While other systems typically use ODBC or JDBC connectivity for this, Microsoft mainly supports its own OLEdb connectivity. Luckily, Microsoft also provides an "OLEdb to ODBC bridge".
 
-Using this, MS SQL Server can be configured to access data in Exasol, both for reading and for writing. 
+Using this, MS SQL Server can be configured to access data in Exasol, both for reading and for writing.
 
 ## Prerequisites
 

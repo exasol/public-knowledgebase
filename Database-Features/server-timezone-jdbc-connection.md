@@ -1,7 +1,7 @@
 # Server Timezone JDBC Connection
 
 ## Question
-I'm using a LUA function to pull data from a mysql database.  
+I'm using a LUA function to pull data from a mysql database. 
 
 MySQL database operates in UTC and Exasol Server is on America/New York . The function uses the mysql function from_unixtime() to convert from utc unixtime to utc datetime format but it looks like when I pull from the UDF, the datetime is already converted to the server timezone when I really I need to be storing UTC timestamps. 
 

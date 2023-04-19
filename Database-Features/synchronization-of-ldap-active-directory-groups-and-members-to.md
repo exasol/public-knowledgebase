@@ -1,7 +1,7 @@
 # Synchronization of LDAP / Active Directory Groups and Members to Exasol Database Users and Roles 
 ## Background
 
-With the help of the below scripts, you can set up an automatic synchronization of LDAP/AD Groups with Exasol users and roles.  
+With the help of the below scripts, you can set up an automatic synchronization of LDAP/AD Groups with Exasol users and roles. 
 
 ## Prerequisites
 

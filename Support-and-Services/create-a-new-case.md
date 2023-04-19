@@ -1,6 +1,6 @@
 # Create a new case
 
-As a customer, you can report the issue via email, web form, or phone call.  
+As a customer, you can report the issue via email, web form, or phone call. 
 
 - Webform: As a customer, you can also report issues by creating the case directly through the web form. Clicking on the link and providing valid input for all the respective fields will enable you to create a case. 
 

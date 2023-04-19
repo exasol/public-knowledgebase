@@ -2,13 +2,13 @@
 
 **Note:** $CONTAINER_EXA is a variable set before deploying an Exasol database container with persistent storage. For more information, please check [our Github repo](https://github.com/exasol/docker-db).
 
-1. Ensure that your Docker container is running with persistent storage. This means that your docker run command should contain a **-v** statement, like the example below: 
+1. Ensure that your Docker container is running with persistent storage. This means that your docker run command should contain a **-v** statement, like the example below:
 
 
 ```
 $ docker run --detach --network=host --privileged --name <container_name> -v $CONTAINER_EXA:/exa exasol/docker-db:6.1.5-d1 init-sc --node-id <node_id>
 ```
-2. Copy the new license file to the the $CONTAINER_EXA/etc/ folder: 
+2. Copy the new license file to the the $CONTAINER_EXA/etc/ folder:
 
 
 ```

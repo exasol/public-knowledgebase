@@ -3,7 +3,7 @@
 
 This is a basic tutorial on User Defined Functions. For details regarding the programming languages see our [documentation portal](https://docs.exasol.com) More technical insight is also given in the white paper ["Big Data Science - the future of analytics"](https://www.exasol.com/en/community/resources/resource/big-data-science-the-future-of-analytics/).
 
-We have to distinguish between UDFs and control scripts in the following ways: 
+We have to distinguish between UDFs and control scripts in the following ways:
 
 
 

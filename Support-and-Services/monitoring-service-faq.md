@@ -12,7 +12,7 @@ The advantages of the new monitoring service are:
 - scalable architecture
 - modern stack
 - web GUI (planned for future use)
-- ready to be used with the new v8 release (ETA 2023 - Q1/Q2) 
+- ready to be used with the new v8 release (ETA 2023 - Q1/Q2)
 
 ## Explanation
 

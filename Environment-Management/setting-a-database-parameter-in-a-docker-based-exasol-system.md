@@ -1,7 +1,7 @@
 # Setting a Database Parameter in a Docker-based Exasol system 
 With this article, you will learn how to add and change database parameters and their values.
 
-1. Log in to your Exasol container: 
+1. Log in to your Exasol container:
 
 
 ```

@@ -5,7 +5,7 @@ Sometimes, you want to set up a JDBC connection to your SQL Server database, but
 
 ## Prerequisites
 
-The SQL Server JDBC driver needs to be configured in Exaoperation. There are two popular SQL Server drivers available: 
+The SQL Server JDBC driver needs to be configured in Exaoperation. There are two popular SQL Server drivers available:
 
 * Official Microsoft JDBC Driver
 * JTDS Driver (open source)

@@ -1,7 +1,7 @@
 # How to Skip Non-Header Rows in Import
 
 ## Question
-I am trying to import the following pipe (|) separated variable file into an Exasol table: 
+I am trying to import the following pipe (|) separated variable file into an Exasol table:
 
 http://www.nasdaqtrader.com/dynamic/SymDir/nasdaqtraded.txt
 

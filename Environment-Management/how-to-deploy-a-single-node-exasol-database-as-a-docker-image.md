@@ -8,7 +8,7 @@ Currently, Exasol only supports Docker on Linux. It’s not possible to use Dock
 
 Docker installed Linux machine:
 
-In this article, we use Centos 7.6 virtual machine with the latest version of docker (currently Version 19.03). 
+In this article, we use Centos 7.6 virtual machine with the latest version of docker (currently Version 19.03).
 
 Privileged mode:
 

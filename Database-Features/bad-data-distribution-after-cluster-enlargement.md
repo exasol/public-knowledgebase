@@ -6,7 +6,7 @@
 
 ## Additional Notes
 
-This may be caused by the semantics of the cluster enlargement (REORGANIZE TABLE). Meaning, the step causing the problem is the Cluster enlargement to N+X nodes, including REORGANIZE of the fact tables. 
+This may be caused by the semantics of the cluster enlargement (REORGANIZE TABLE). Meaning, the step causing the problem is the Cluster enlargement to N+X nodes, including REORGANIZE of the fact tables.
 
 ## Prerequisites
 

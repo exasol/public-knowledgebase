@@ -5,7 +5,7 @@ The [DELETE](https://docs.exasol.com/sql/delete.htm) command can be used to remo
 
 ## Explanation
 
-The delete operation ensures the removal of data from tables. It works by simply marking the affected rows as deleted, without actually removing them physically from the table. This means that the data is still there, but it is simply ignored by the subsequent queries. From a performance perspective, the DELETE is normally very fast because no data is actually moved around. However, once a certain percentage (25%) of the table has been deleted, the DELETE will trigger a REORGANIZE.  
+The delete operation ensures the removal of data from tables. It works by simply marking the affected rows as deleted, without actually removing them physically from the table. This means that the data is still there, but it is simply ignored by the subsequent queries. From a performance perspective, the DELETE is normally very fast because no data is actually moved around. However, once a certain percentage (25%) of the table has been deleted, the DELETE will trigger a REORGANIZE. 
 
 This method ensures that most DELETE operations are very fast at the expense of some added space needed because the data blocks still exist on the disk, even though they are not accessible. However, once this 25% threshold is reached, the next DELETE will take longer because the data will be physically removed.
 

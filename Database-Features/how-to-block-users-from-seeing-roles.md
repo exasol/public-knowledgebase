@@ -4,7 +4,7 @@
 Users can currently see more senior or other roles than they have been granted.  Is this is a feature or a bug?
 
 ## Answer
-This is as designed but we have a preprocessor which can help. 
+This is as designed but we have a preprocessor which can help.
 
 It searches for the tables EXA_ALL_ROLES and EXA_ALL_TABLES within the SQL text sent by the user, and if it detects these strings, then it will check if the user has the SELECT ANY DICTIONARY privilege (which lets users see every statistics/sys table and is also granted to DBA) as a role.
 

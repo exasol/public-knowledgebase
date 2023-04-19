@@ -1,7 +1,7 @@
 # Easily Access Exasol data from within Excel 
 ##  Background
 
-This article will explain how to access the Exasol database from within Excel and extract data using a navigator and optionally a custom query. 
+This article will explain how to access the Exasol database from within Excel and extract data using a navigator and optionally a custom query.
 
 ## Table of Contents
 

@@ -1,7 +1,7 @@
 # Writing a DataFrame Syntax Error 
 
 ## Question
-Hi all, I am facing this issue attempting to write a DataFrame to a table using Exasol JDBC. 
+Hi all, I am facing this issue attempting to write a DataFrame to a table using Exasol JDBC.
 
 Upon running this statement,
 ```

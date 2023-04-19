@@ -1,7 +1,7 @@
 # JSON UDF Example
 An extended version for the following question I was asked recently:
 
-From something like this: 
+From something like this:
 
 |Column1 |Column2|
 |-|-|

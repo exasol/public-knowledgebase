@@ -5,7 +5,7 @@ As you may know, the Exasol database is enforced by limits when the License (RAW
 
 ## Diagnosis
 
-Exaoperation logs or EXA_SYSTEM_EVENTS table will tell you whether you have reached the License limits or not. A Warning message will look like this: 
+Exaoperation logs or EXA_SYSTEM_EVENTS table will tell you whether you have reached the License limits or not. A Warning message will look like this:
 
 
 ```html

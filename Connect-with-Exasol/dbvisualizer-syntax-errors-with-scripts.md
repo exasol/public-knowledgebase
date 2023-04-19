@@ -1,7 +1,7 @@
 # DbVisualizer: Syntax Errors with Scripts 
 ## Scope
 
-This article describes how to fix some syntax errors with Scripts when using DbVisualizer. 
+This article describes how to fix some syntax errors with Scripts when using DbVisualizer.
 
 ## Diagnosis
 

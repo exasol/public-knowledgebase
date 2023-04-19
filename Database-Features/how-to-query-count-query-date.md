@@ -1,7 +1,7 @@
 # How to Get a Query Count and Query Date
 
 ## Question
-To evaluate which tables can be decommissioned from our Schema, we'd like to identify how many times the tables were queried and when was the last query date.  
+To evaluate which tables can be decommissioned from our Schema, we'd like to identify how many times the tables were queried and when was the last query date. 
 
 I have looked at Satistical System Tables but was unable to find which command to generate below output: 
 |TABLE NAME|    	QUERY_COUNT| 	LAST_QUERY_DATE|

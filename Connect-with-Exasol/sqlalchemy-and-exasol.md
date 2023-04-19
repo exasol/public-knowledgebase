@@ -11,7 +11,7 @@ Quote from the [SQLAlchemy website](http://www.sqlalchemy.org/):
 > 
 >  
 
-It provides a database-independent layer of object management, combined with a database-specific layer ("dialect") for object persistence and data management. 
+It provides a database-independent layer of object management, combined with a database-specific layer ("dialect") for object persistence and data management.
 
 ## Explanation
 

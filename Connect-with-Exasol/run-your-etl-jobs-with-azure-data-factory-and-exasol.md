@@ -3,7 +3,7 @@
 
 This tutorial shows you how to use the Exasol database with the ETL Tool Azure Data Factory.
 
-We'll go over a few topics in this tutorial:  
+We'll go over a few topics in this tutorial: 
 
 - Enabling access to your Exasol database
 

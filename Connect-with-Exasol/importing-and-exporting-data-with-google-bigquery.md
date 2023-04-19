@@ -9,7 +9,7 @@ As Google's documentation states, the JDBC driver is not designed for large volu
 
 ## Prerequisites
 
-Before you are able to begin loading data, you need to do the following: 
+Before you are able to begin loading data, you need to do the following:
 
 * Download the [Bigquery JDBC Driver](https://cloud.google.com/bigquery/providers/simba-drivers)
 * Set up BucketFS and the accompanying buckets. Ensure that the database has access to these buckets. [More information](https://docs.exasol.com/database_concepts/bucketfs/bucketfs.htm)

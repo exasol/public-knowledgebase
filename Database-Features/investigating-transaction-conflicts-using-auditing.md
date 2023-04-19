@@ -6,7 +6,7 @@ Investigating [read/write transaction conflicts](https://exasol.my.site.com/s/ar
 * sending the [database logs](https://docs.exasol.com/administration/on-premise/support/logs_files_for_sql_server_processes.htm) to Exasol Support
 * Analyzing [auditing](https://docs.exasol.com/database_concepts/auditing.htm) to determine the order of events
 
-This article describes how to investigate these read/write conflicts. These types of conflicts manifest by receiving a WAIT FOR COMMIT on a simple SELECT statement.  
+This article describes how to investigate these read/write conflicts. These types of conflicts manifest by receiving a WAIT FOR COMMIT on a simple SELECT statement. 
 
 ## Prerequisites
 

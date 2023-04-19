@@ -1,7 +1,7 @@
 # Using LUA to display environment and session_id 
 ## Background
 
-Verifying the environment your DB client is accessing can sometimes be tricky. Where do I find what version of Exasol am I running? Which user am I running as? We have a solution canned up to get you started and introduce you to the power of LUA. 
+Verifying the environment your DB client is accessing can sometimes be tricky. Where do I find what version of Exasol am I running? Which user am I running as? We have a solution canned up to get you started and introduce you to the power of LUA.
 
 ## Prerequisites
 

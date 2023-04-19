@@ -25,7 +25,7 @@ This is likely a networking issue.  In VirtualBox you'll need to change the publ
 
 You can also test your ability to reach the outside network by going into EXAoperation>Configuration>Network, and adding in Google's free DNS servers 8.8.8.8 and 8.8.4.4, and then running this in your database client:
 ```
-create schema test; 
+create schema test;
 
 --/  
 CREATE OR REPLACE LUA SCALAR SCRIPT  

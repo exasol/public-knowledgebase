@@ -42,4 +42,4 @@ The script will return a line for every active database node and non-optimal set
 If the query returns FALSE for some nodes, then it is likely a CPU setting no longer follows best practices. In this case, review the following settings and set them to the recommended values as described above:
 
 * BIOS power management settings
-* CPU Scaling settings in EXAoperation or via cpupower command 
+* CPU Scaling settings in EXAoperation or via cpupower command

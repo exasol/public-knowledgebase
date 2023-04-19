@@ -5,7 +5,7 @@
 
 **The official project to implement Row Level Security via Virtual Schemas is described here: <https://github.com/exasol/row-level-security-lua>. We recommend to use the Github Project to implement your own Row Level Security. The below article is only an example of a custom connector and is not officially supported**
 
-This article describes how you could implement a custom Virtual Schema adapter to implement column level security in addition to row level security. . It consists of 4 parts: 
+This article describes how you could implement a custom Virtual Schema adapter to implement column level security in addition to row level security. . It consists of 4 parts:
 
 * Creating the Virtual Schema
 * Setting up permissions

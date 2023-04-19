@@ -3,7 +3,7 @@
 
 Why does the following error occur in Scripts and what does it mean:
 
-'[p]query function: number of open resultsets exceeds 250" caught in script' 
+'[p]query function: number of open resultsets exceeds 250" caught in script'
 
 ## Answer
 

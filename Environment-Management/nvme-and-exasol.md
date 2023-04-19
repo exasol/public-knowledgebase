@@ -6,7 +6,7 @@ On many machines, Nvme drives are not mounted by default before the OS installs.
 ## Answer
 Don't count on booting to NVME (we used SSD, shown as "/dev/sda" below) but it turns out that assigning the drive handles of NVME drives is quite predictable and supported.
 
-Here's what our config looked like for one node in one environment with a 4tb nvme ("0") and 500gb name ("1") 
+Here's what our config looked like for one node in one environment with a 4tb nvme ("0") and 500gb name ("1")
 
 |Name| Type| Size| RAID| Encryption Devices| Free SW| RAID State| Next Filesystem Check on Boot|  Mount Count| Expiration Date
 |-|-|-|-|-|-|-|-|-|-|

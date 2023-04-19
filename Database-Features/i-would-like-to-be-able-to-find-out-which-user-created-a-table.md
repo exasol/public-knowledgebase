@@ -5,7 +5,7 @@ I would like to be able to find out which user created a table.
 
 ## Answer
 
-If you have enabled audit-logging you can query it as follows: 
+If you have enabled audit-logging you can query it as follows:
 
 
 ```"code-java"

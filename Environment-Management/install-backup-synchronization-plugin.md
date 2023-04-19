@@ -5,7 +5,7 @@
 
 The backup synchronization process involves synchronization of data and metadata between clusters on different networks. This document provides you with the steps on how to install the Backup Synchronization plugin on two clusters using XML-RPC. XML-RPC lets you establish communication between the two clusters quickly and easily.
 
-Exasol’s XML-RPC support is implemented using the **xmlrpclib** (<http://docs.python.org/library/xmlrpclib.html>) library that is included with Python 2.2 and later. 
+Exasol’s XML-RPC support is implemented using the **xmlrpclib** (<http://docs.python.org/library/xmlrpclib.html>) library that is included with Python 2.2 and later.
 
 ## **Recommendations**
 

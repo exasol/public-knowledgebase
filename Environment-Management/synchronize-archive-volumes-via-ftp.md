@@ -16,7 +16,7 @@ In this section, you can replace the title of "How To ..." to something that fit
 
 ## Step 1: Create the UDF
 
-Open the attached file (backup_copy_ftp.sql) and create the script in the schema of your choice. Within the UDF, you should adjust these variables accordingly: 
+Open the attached file (backup_copy_ftp.sql) and create the script in the schema of your choice. Within the UDF, you should adjust these variables accordingly:
 
 
 ```markup

@@ -5,7 +5,7 @@ This article describes how the physical hardware must be configured prior to an 
 
 ### BIOS:
 
-* Disable EFI 
+* Disable EFI
 * Disable C-States (Maximum Performance)
 * Enable PXE on "CICN" Ethernet interfaces
 * Enable Hyperthreading

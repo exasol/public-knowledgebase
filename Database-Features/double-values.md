@@ -1,7 +1,7 @@
 # DOUBLE values 
 ## Problem
 
-Working with DOUBLE values sometimes results in inaccuracy. 
+Working with DOUBLE values sometimes results in inaccuracy.
 
 ## Diagnosis
 

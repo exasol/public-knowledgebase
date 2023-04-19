@@ -1,7 +1,7 @@
 # Resolving Transaction Conflicts 
 ## Problem
 
-Transaction Conflicts primarily occur due to Exasol's serializable transaction isolation level. These situations are described in detail in the links found in [Additional References](#h_860657361604480806672): 
+Transaction Conflicts primarily occur due to Exasol's serializable transaction isolation level. These situations are described in detail in the links found in [Additional References](#h_860657361604480806672):
 
 In the scenarios described above, different queries might fall into a WAIT FOR COMMIT and have to wait for another session to commit changes before the query can begin processing (including SELECT statements). This article will describe how to resolve these conflicts and investigate them. 
 

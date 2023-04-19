@@ -1,7 +1,7 @@
 # How to Split One Row Into Multiple
 
 ## Question
-I want to create a VIEW to show multiple rows for each source row. 
+I want to create a VIEW to show multiple rows for each source row.
 Example:
 I have a table of events. I have to split each event longer than 1 day to many rows representing each day of this event.
 

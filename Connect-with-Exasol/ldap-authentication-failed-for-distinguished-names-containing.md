@@ -5,7 +5,7 @@ Sometimes a user may encounter 'Authentication Failed' error when trying to logi
 
 ## Diagnosis
 
-An Authentication Failed error may look like one of the following screenshots: 
+An Authentication Failed error may look like one of the following screenshots:
 
 ![](images/exa-Vandana_0-1621342489198.png)  
 ![](images/exa-Vandana_1-1621342715904.png)

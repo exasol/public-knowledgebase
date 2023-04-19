@@ -5,7 +5,7 @@ In this article series, I am going to discuss a couple of the main changes that 
 
 ## Moved and renamed methods
 
-The first thing that you will stumble over is that the `unpack()` the function has to be moved to `table.unpack`. If you want code to be backward compatible, you can start your script with: 
+The first thing that you will stumble over is that the `unpack()` the function has to be moved to `table.unpack`. If you want code to be backward compatible, you can start your script with:
 
 
 ```java

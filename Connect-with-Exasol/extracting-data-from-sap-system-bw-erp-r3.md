@@ -13,6 +13,6 @@ Link to product home page: <https://theobald-software.com/de/exasolution-destina
 
 *The central server component constitutes the data hub between SAP and EXASolution applications. Extractions are created as well as accesses released and monitored for consumers via the Designer. Access is to one or more SAP ERP or SAP BW systems*
 
-*Xtract Universal supports an **incremental delta load process**, that is, the limiting of the download to the data content that has been changed or added since the last download.* 
+*Xtract Universal supports an **incremental delta load process**, that is, the limiting of the download to the data content that has been changed or added since the last download.*
 
 ![](images/Theobald.png)

@@ -3,7 +3,7 @@
 
 By default, an Exasol virtual machine (VM) is configured to use a host-only network. This configuration allows to access the database and the EXAoperation management interface locally from the host machine. Nevertheless, this configuration prevents the use of publically available hosts and services on the internet from the virtual machine. This How-To provides information about configuring Exasol to be able to access the internet and enables users to:
 
-* use DNS to access publicly reachable servers for making backups or in database IMPORT/EXPORT statements 
+* use DNS to access publicly reachable servers for making backups or in database IMPORT/EXPORT statements
 * use LDAP servers of your choice for database or EXAoperation accounts
 * use standard repositories for the installation of UDF packages
 * use the Exasol Version Check (only if this feature has not been disabled)

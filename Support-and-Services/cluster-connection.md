@@ -4,7 +4,7 @@
 
 ## General
 
-The only people who are able to connect to your cluster are members of the Support Team.  
+The only people who are able to connect to your cluster are members of the Support Team. 
 ## Remote On-Premise Access
 
 If Exasol Support has access to your cluster with a VPN connection, like that which is needed for [Monitoring Services](https://exasol.my.site.com/s/article/Monitoring-of-an-Exasol-Database?language=en_US), the following describes the process that Exasol Support uses to connect to your cluster.

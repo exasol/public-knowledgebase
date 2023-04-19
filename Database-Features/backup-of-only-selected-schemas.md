@@ -6,7 +6,7 @@ The backup "knows" nothing about schemas or other database objects.
 
 ## Solution
 
-It is - however - possible to restore only some data by starting a backup in a virtual access mode and transfer the requested data manually by using IMPORT/EXPORT commands. 
+It is - however - possible to restore only some data by starting a backup in a virtual access mode and transfer the requested data manually by using IMPORT/EXPORT commands.
 
 ## Additional References
 

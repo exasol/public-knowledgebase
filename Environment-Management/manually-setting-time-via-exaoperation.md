@@ -1,7 +1,7 @@
 # Manually setting time via EXAoperation 
 ## Background
 
-This article guides you through the procedure of setting the time on clusters manually as preparation of configuring NTP servers ([Configuring NTP servers via EXAoperation](https://exasol.my.site.com/s/article/Configuring-NTP-servers-via-EXAoperation)) 
+This article guides you through the procedure of setting the time on clusters manually as preparation of configuring NTP servers ([Configuring NTP servers via EXAoperation](https://exasol.my.site.com/s/article/Configuring-NTP-servers-via-EXAoperation))
 
 The cluster nodes constantly exchange configuration and vitality information and depend on proper time synchronization. While it is possible to manually set the time on EXASolution clusters, it is highly recommended to supply NTP servers for time synchronization.
 

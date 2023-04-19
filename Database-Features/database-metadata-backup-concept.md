@@ -5,7 +5,7 @@
 
 ## How it works
 
-The file contains several scripts which will copy the DDL for all objects in the database. It also contains the necessary scripts to restore the metadata. If the config file is set up correctly, "_backup._sh" performs the following tasks: 
+The file contains several scripts which will copy the DDL for all objects in the database. It also contains the necessary scripts to restore the metadata. If the config file is set up correctly, "_backup._sh" performs the following tasks:
 
 1. Creates the specified directory. This is where all of the files will be stored.
 2. Connects to the database using an Exaplus profile (must be created beforehand).

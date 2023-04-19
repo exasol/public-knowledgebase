@@ -3,7 +3,7 @@
 
 Sometimes databases growing too much on data.
 
-It is possible to set size limits for Exasol databases, so as to prevent databases from growing too much on data. This limit can be set for a database instance using database parameters. 
+It is possible to set size limits for Exasol databases, so as to prevent databases from growing too much on data. This limit can be set for a database instance using database parameters.
 
 ## Solution
 

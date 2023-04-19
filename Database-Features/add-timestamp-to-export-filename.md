@@ -3,7 +3,7 @@
 ## Question
 Is there a simple solution to manipulate string parameter when calling Export to csv function in such manner it automatically adds timestamp to filename? 
 
-Here's an example of what I am trying to get: 
+Here's an example of what I am trying to get:
 ```
 EXPORT <table_name> 
 INTO LOCAL CSV FILE 'C:\exportfile_<current_timestamp>.csv'

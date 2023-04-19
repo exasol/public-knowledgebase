@@ -1,7 +1,7 @@
 # Use Google Maps API with EXASOL 
 ## Background
 
-See <https://www.youtube.com/watch?v=C3eyqTw3HsQ> for a video demonstration of this process 
+See <https://www.youtube.com/watch?v=C3eyqTw3HsQ> for a video demonstration of this process
 
 ## Prerequisites
 

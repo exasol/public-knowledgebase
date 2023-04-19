@@ -1,7 +1,7 @@
 # Proper csv export from PostgreSQL 
 ## Background
 
-To export CSV files from PostgreSQL 
+To export CSV files from PostgreSQL
 
 ### Options to export csv fromPostgreSQL
 

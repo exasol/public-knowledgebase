@@ -1,7 +1,7 @@
 # SYS Schema 
 ## Background
 
-Exasol offers numerous system tables describing the metadata of the database and the current status of the system. This article will describe the contents of the SYS schema 
+Exasol offers numerous system tables describing the metadata of the database and the current status of the system. This article will describe the contents of the SYS schema
 
 ## Explanation
 

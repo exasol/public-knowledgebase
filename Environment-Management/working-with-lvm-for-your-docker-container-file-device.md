@@ -15,7 +15,7 @@ $ pvcreate /dev/vda
 ```
 $ vgcreate VG1 /dev/vda 
 ```
-3. Create a logical volume: 
+3. Create a logical volume:
 
 
 ```

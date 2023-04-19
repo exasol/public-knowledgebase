@@ -3,7 +3,7 @@
 
 ## Exasol's ROWNUM is not compatible with Oracle's ROWNUM!
 
-While ROWNUM in Oracle can be used to limit output data of almost arbitrary statements, EXASolution implements ROWNUM while sticking to the overall SQL semantics: Anything you put into the WHERE clause of a statement filters **input data**. To avoid confusion and seemingly wrong results, we only allow ROWNUM in situations where the result is in line with Oracle's semantic. 
+While ROWNUM in Oracle can be used to limit output data of almost arbitrary statements, EXASolution implements ROWNUM while sticking to the overall SQL semantics: Anything you put into the WHERE clause of a statement filters **input data**. To avoid confusion and seemingly wrong results, we only allow ROWNUM in situations where the result is in line with Oracle's semantic.
 
 ## Diagnosis
 

@@ -16,4 +16,4 @@ GROUP BY LOCAL.dudu -- does not work but should do the same as second
 I think it´s at least explainable if you think of it like this: "local" is a short-cut to allow you to reference expressions or "column definitions" that you use multiple times in the same query block - it pretty much just does "copy-and-paste" before the execution.
 
 In your case a copy-and-paste clashes with Exasol's ability to reference columns by pos-id in a group by - if you´d have a column_name instead of a literal this wouldn´t be an issue but as it stands you end up telling Exasol to use the 12345th column in
-your select list. 
+your select list.

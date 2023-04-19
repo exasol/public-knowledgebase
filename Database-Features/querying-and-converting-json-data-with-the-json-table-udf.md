@@ -1,7 +1,7 @@
 # Querying and Converting JSON Data with the JSON_TABLE UDF 
 ## Problem
 
-JSON data that is stored in EXASOL tables can be accessed through UDFs. JSON documents can be accessed through *path expressions*. 
+JSON data that is stored in EXASOL tables can be accessed through UDFs. JSON documents can be accessed through *path expressions*.
 
 To understand what path expressions are, let us have a look at the following JSON document:
 

@@ -5,7 +5,7 @@ Sometimes, you may want to look at exactly which queries were running at a speci
 
 ## Prerequisites
 
-* Auditing must be enabled. 
+* Auditing must be enabled.
 
 ## How to check system activity
 

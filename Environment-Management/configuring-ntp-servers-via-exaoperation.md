@@ -1,7 +1,7 @@
 # Configuring NTP servers via EXAoperation 
 ## Background
 
-This article guides you through the steps required to configure the automatic time synchronization via NTP servers on Exasol clusters. 
+This article guides you through the steps required to configure the automatic time synchronization via NTP servers on Exasol clusters.
 
 ## Prerequisites
 

@@ -6,7 +6,7 @@ After openJDK was successfully installed EXAplus still won't start with an error
 
 ```
 Can not find the Java Runtime Environment needed by EXAplus.  
-Trying to use system wide virtual machine (from registry) instead.   
+Trying to use system wide virtual machine (from registry) instead.  
 No 64 bit java virtual machine found in registry.
 ```
 ## Diagnosis
