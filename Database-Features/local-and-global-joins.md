@@ -55,3 +55,5 @@ Typically a local join can be executed much faster than a global join since no n
 * [Distribution Keys](https://docs.exasol.com/sql/alter_table(distribution_partitioning).htm)
 * [Profiling](https://docs.exasol.com/database_concepts/profiling.htm)
 * [Performance Guide](https://docs.exasol.com/performance/best_practices.htm#DistributionKeys)
+
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

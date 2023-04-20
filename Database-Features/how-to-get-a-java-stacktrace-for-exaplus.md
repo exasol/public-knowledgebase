@@ -48,3 +48,4 @@ jstack's output can also be redirected into a file:
 
 ## Step 5: Attach the generated stacktrace to your ticket with Exasol.
 
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

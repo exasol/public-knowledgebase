@@ -59,3 +59,5 @@ Please note the following:
 * [ALTER TABLE - DISTRIBUTE BY](https://docs-test.exasol.com/sql/alter_table(distribution_partitioning).htm)
 * [CREATE TABLE Syntax](https://docs-test.exasol.com/sql/create_table.htm)
 * [REORGANIZE Syntax](https://docs-test.exasol.com/sql/reorganize.htm)
+
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

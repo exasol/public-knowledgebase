@@ -32,3 +32,4 @@ Reboot the cluster node and wait until the boot process is finished.
 
 (e.g. EXAStorage -> n0011 -> Select unused disk devices -> "Add devices") Please note that already existing volumes cannot be used for this disk. However, the disk can be used for new data/archive volumes.
 
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

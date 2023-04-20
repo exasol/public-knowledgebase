@@ -13,3 +13,4 @@ Unica campaign sends Unicode strings like N'String' to the database. Exasol does
 
 [Problems-with-special-characters-utf-8-in-php-using-unixodbc](https://exasol.my.site.com/s/article/Problems-with-special-characters-UTF-8-in-php-using-unixODBC) 
 
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

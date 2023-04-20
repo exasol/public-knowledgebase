@@ -72,3 +72,4 @@ For monitoring the FSC agents go to <http://support.ts.fujitsu.com/content/Quick
 [snmpd-min-fsc.zip](https://github.com/exasol/Public-Knowledgebase/files/9922038/snmpd-min-fsc.zip)
 
 
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

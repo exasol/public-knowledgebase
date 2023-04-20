@@ -35,3 +35,5 @@ With this configuration, Exasol may get access to the following:
 ## Ad-Hoc Access
 
 If no default access policy is defined, but Exasol Support requires access to the customer's Exasol cluster for troubleshooting and/or debugging, this can be achieved by starting an ad-hoc remote screen session. Exasol Support will never ask for tools other than WebEx and/or Zoom.
+
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

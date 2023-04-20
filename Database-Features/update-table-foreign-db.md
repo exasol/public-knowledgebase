@@ -46,3 +46,5 @@ You may want to implement a simple ETL script, which is going to:
 Running a simple query in Oracle is very cheap. Running a simple query in Exasol is quite expensive due to all the multi-node syncronisation, distributed transaction management, etc. And the Exasol ends up doing nothing but connecting to external database, running query and waiting.
 
 It's not a problem if you have 1-5 parallel loads. But it might be a problem if you'll have 20+ parallel imports, and if you'll ever experience any slowdowns / locks / errors in Oracle.
+
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

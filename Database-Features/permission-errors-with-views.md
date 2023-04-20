@@ -61,3 +61,5 @@ ALTER SCHEMA <schema name> CHANGE OWNER <owner name>;
 ## Additional References
 
 * [Permissions](https://docs.exasol.com/database_concepts/privileges.htm)
+
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

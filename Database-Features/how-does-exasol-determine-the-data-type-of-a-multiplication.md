@@ -29,3 +29,5 @@ For sums the scale is taken from the factor with the highest precision.
 (12,0) + (15,9) = (22,9)
 (15,3) + (15,9) = (22,9)
 ```
+
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

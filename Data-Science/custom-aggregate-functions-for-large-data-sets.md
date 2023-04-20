@@ -258,3 +258,5 @@ In this solution we described basic principles for programming UDFs. With some c
 ## Additional References
 
 * [UDF Scripts](https://docs.exasol.com/database_concepts/udf_scripts.htm)
+
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

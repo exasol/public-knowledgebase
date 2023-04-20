@@ -59,3 +59,5 @@ select c_name with invalid primary key (c_custkey)
      from customer  where rownum < 11;
 -- Error, ROWNUM cannot be used in combination with this statement
 ```
+
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

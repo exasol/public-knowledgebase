@@ -261,3 +261,4 @@ SELECT * FROM EXA_SYSCAT;
 
 <https://docs.exasol.com/administration/on-premise/manage_storage/volumes.htm>
 
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

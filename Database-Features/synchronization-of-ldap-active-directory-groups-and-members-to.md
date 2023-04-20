@@ -113,3 +113,5 @@ This script can be used as a starting point and may require some modification to
 * [Manual LDAP test](https://exasol.my.site.com/s/article/Manual-LDAP-Connection-Test)
 * [Force create user when connection fails](https://exasol.my.site.com/s/article/LDAP-error-Can-t-contact-LDAP-server-use-FORCE-option-to-create-user)
 * [LDAP authentication fails on distinguished-name](https://exasol.my.site.com/s/article/LDAP-Authentication-Failed-for-Distinguished-Names-containing-Spaces)
+
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

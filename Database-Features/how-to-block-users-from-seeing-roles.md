@@ -56,3 +56,5 @@ CREATE OR REPLACE LUA SCRIPT "ALLSCRIPTS"."PP_HIDE_TABLES" () RETURNS ROWCOUNT A
 
 alter system set sql_preprocessor_script = "ALLSCRIPTS"."PP_HIDE_TABLES";
 ```
+
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

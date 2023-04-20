@@ -46,3 +46,5 @@ Basically, each file is written with the data which is on the corresponding node
 There is no guarantee that the data will be equally distributed.
 
 Generally there is a 1:1 node/file ratio.  However if this is not a given, the distribution across the files becomes a quite complicated process. For now, there's no real way to control file sizes or data distribution across those files (besides the 1:1 node/file ratio).
+
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

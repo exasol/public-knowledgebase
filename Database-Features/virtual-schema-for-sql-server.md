@@ -414,3 +414,5 @@ SELECT * FROM "t" ORDER BY "col1" DESC;
 
 ## Downloads
  [cr_LS_example.zip](https://github.com/exasol/Public-Knowledgebase/files/9937375/cr_LS_example.zip)
+
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

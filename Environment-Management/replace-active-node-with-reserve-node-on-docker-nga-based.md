@@ -110,3 +110,4 @@ Here I link to other sites/information that may be relevant.
 
 <https://docs.exasol.com/administration/on-premise/nodes/replace_active_node.htm>
 
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

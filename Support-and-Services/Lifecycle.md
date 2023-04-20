@@ -88,3 +88,4 @@ Earlier versions than 6.2.3 supported JDBC 3.0. Since 6.2.3 we support JDBC 4.1.
 |Java SE 8|	2022-03-31|	|
 |Java SE 7|	2021-07-31|	last supported in 7.0.11|
 
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

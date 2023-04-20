@@ -176,3 +176,5 @@ select rf.predict_wine_py(wine_id, fixed_acidity, volatile_acidity, citric_acid,
 [test.zip](https://github.com/exasol/Public-Knowledgebase/files/9936798/test.zip)
 [DDL_and_IMPORT.zip](https://github.com/exasol/Public-Knowledgebase/files/9936800/DDL_and_IMPORT.zip)
 [train.zip](https://github.com/exasol/Public-Knowledgebase/files/9936801/train.zip)
+
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

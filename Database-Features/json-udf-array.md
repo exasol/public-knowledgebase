@@ -36,3 +36,5 @@ SELECT
         )
         EMITS(col1 varchar (1)),col2 from tmp;
 ```
+
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

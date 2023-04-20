@@ -158,3 +158,5 @@ This example depicts that an old version of Table Test.T at 2020-10-21 13:58:08
 
 * [how-to-determine-idle-sessions-with-open-transactions](https://exasol.my.site.com/s/article/How-to-determine-idle-sessions-with-open-transactions-Except-Snapshot-Executions)
 * <https://docs.exasol.com/database_concepts/transaction_management.htm>
+
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

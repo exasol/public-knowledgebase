@@ -15,3 +15,4 @@ The NULLs of the index have rather few application scenarios as filters and join
 
 <https://exasol.my.site.com/s/article/NULL-in-Exasol>
 
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

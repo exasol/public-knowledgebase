@@ -230,3 +230,5 @@ The code of the generic analytic UDF with a small example is attached.
 
 * [Analytic Functions](https://docs.exasol.com/sql_references/functions/analyticfunctions.htm)
 * [UDF Scripts](https://docs.exasol.com/database_concepts/udf_scripts.htm)
+
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

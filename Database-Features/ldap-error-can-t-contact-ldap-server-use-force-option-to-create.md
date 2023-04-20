@@ -30,3 +30,5 @@ You should only use the FORCE option with caution to prevent confusion from user
 ## Additional References
 
 * [CREATE USER Syntax](https://docs.exasol.com/sql/create_user.htm)
+
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

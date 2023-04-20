@@ -27,4 +27,6 @@ All data is in aggregated form, it **does not contain** any of the following:
 * User names
 * Schema names
 * Table names
-* SQL texts
+* SQL texts 
+
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

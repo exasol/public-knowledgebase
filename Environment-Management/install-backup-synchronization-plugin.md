@@ -253,3 +253,5 @@ In case you want to deactivate this connection, you can follow the below sample 
 Sample Script to Deactivate Connection on EDU01nlist = server.getNodeList()
 pp([[node] + server.callPlugin(pname, node, 'DEACTIVATE', 'Connection1') for node in ['n0011','n0012']]) 
 ```
+
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

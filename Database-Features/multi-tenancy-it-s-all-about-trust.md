@@ -73,3 +73,5 @@ If you store sensitive customer data in your data warehouse, the security questi
 ## Additional References
 
 * [Planning Guide](https://docs.exasol.com/planning.htm)
+
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

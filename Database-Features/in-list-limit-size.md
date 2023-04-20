@@ -9,3 +9,5 @@ Has anyone faced this type of error in Exasol? Is there any limit for IN(&lt;ele
 Per default Exasol limits the number of IN list elements to 200000.
 This avoids queries that run out of memory.
 Note that since 6.0 the limit is not applied to a single IN list, but to the complete query.
+
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

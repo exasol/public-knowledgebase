@@ -186,3 +186,5 @@ This solution requires that the table storing the XML data is located in the cur
 [Data.zip](https://github.com/exasol/Public-Knowledgebase/files/9936895/Data.zip)
 [xmlexample-0.0.1-SNAPSHOT-jar-with-dependencies.jar.zip](https://github.com/exasol/Public-Knowledgebase/files/9936896/xmlexample-0.0.1-SNAPSHOT-jar-with-dependencies.jar.zip)
 [xmlexample.zip](https://github.com/exasol/Public-Knowledgebase/files/9936897/xmlexample.zip)
+
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

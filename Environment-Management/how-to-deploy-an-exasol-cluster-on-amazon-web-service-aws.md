@@ -176,3 +176,4 @@ After you have connected your choice of tool to Exasol, you can load your data i
 
 <https://docs.exasol.com/administration/aws.htm>
 
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

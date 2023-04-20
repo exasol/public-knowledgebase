@@ -118,3 +118,4 @@ group by iproc(),						-- the node no for data locality
 
 <https://exasol.my.site.com/s/article/How-to-create-an-EXABucketFS-service-and-bucket>
 
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

@@ -56,3 +56,4 @@ Make a rough estimation of the mismatch. If the mismatch is greater than one hou
 
 Now the cluster will synchronize the time with the configured NTP servers constantly.
 
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

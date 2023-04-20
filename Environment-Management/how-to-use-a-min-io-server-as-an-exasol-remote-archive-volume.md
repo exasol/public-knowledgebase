@@ -41,3 +41,5 @@ min.io is an S3-compatible storage service (see <https://min.io>) that can be us
 * <https://min.io>
 * <https://github.com/minio>
 * <https://docs.exasol.com/db/latest/administration/aws/manage_storage/create_remote_archive_volume.htm>
+
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

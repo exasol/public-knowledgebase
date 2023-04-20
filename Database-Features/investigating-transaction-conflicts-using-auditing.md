@@ -224,3 +224,5 @@ There are also some conflicts which are difficult to reproduce because the objec
 * [Filter on system tables and transaction conflicts](https://exasol.my.site.com/s/article/Filter-on-system-tables-and-transaction-conflicts)
 * [Transaction Conflicts for Mixed Read/Write Transactions](https://exasol.my.site.com/s/article/Transaction-Conflicts-for-Mixed-Read-Write-Transactions)
 * [Resolving Transaction Conflicts](https://exasol.my.site.com/s/article/Resolving-Transaction-Conflicts)
+
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

@@ -33,3 +33,5 @@ You can find a complete list of the available system tables on [our documentatio
 
 * [List of System Tables](https://docs.exasol.com/sql_references/metadata/metadata_system_tables.htm#Metadata_System_Tables)
 * [EXA_STATISTICS](https://exasol.my.site.com/s/article/EXA-STATISTICS)
+
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

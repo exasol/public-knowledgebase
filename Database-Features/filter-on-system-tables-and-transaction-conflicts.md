@@ -33,3 +33,4 @@ If filters that violate the constraints above (Type B) are used, we distinguish 
 
 [Transaction_management.htm](https://docs.exasol.com/database_concepts/transaction_management.htm) 
 
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

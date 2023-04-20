@@ -44,3 +44,5 @@ The Visual Studio redistributables for 32 and 64 bit can be downloaded from here
 
 * <https://docs.exasol.com/7.0/connect_exasol/drivers/odbc/odbc_windows.htm#KnownIssues> => 7.0
 * <https://docs.exasol.com/7.1/connect_exasol/drivers/odbc/odbc_windows.htm>[#KnownIssues](https://docs.exasol.com/7.0/connect_exasol/drivers/odbc/odbc_windows.htm#KnownIssues) => 7.1
+
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

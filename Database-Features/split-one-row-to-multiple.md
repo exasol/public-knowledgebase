@@ -31,3 +31,5 @@ SELECT 'event2',to_date('05.07.2021','DD.MM.YYYY'),to_date('06.07.2021','DD.MM.Y
 dim_date as (select to_date('20210101','YYYYMMDD') + (level-1) as dat from dual connect by level<=365)  
 select * from base inner join dim_date on dat between start_time and end_time;
 ```
+
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

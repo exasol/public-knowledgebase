@@ -36,3 +36,4 @@ Execute the following:
 
 Attach the generated CSV file to your support ticket.
 
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

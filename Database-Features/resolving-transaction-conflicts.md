@@ -65,3 +65,5 @@ Exasol recommends to keep autocommit on and not leave transactions open for too 
 * <https://exasol.my.site.com/s/article/Transaction-Conflicts-for-Mixed-Read-Write-Transactions>
 * <https://exasol.my.site.com/s/article/How-to-determine-idle-sessions-with-open-transactions-Except-Snapshot-Executions>
 * <https://exasol.my.site.com/s/article/Investigating-Transaction-Conflicts-using-Auditing>
+
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

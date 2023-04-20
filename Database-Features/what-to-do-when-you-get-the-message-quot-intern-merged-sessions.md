@@ -58,3 +58,5 @@ If it is not possible to determine the exact conflict from system tables when t
 * [Gathering Logs for SQL/Server Processes](https://docs.exasol.com/administration/on-premise/support/logs_files_for_sql_server_processes.htm)
 * [Transaction Conflicts in Mixed Read/Write Scenarios](https://exasol.my.site.com/s/article/Transaction-Conflicts-for-Mixed-Read-Write-Transactions)
 * [Exasol's Transaction Management System](https://docs.exasol.com/database_concepts/transaction_management.htm)
+
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

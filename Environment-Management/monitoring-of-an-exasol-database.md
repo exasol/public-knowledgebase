@@ -208,3 +208,5 @@ The database describes in the table EXA_USAGE_LAST_DAY exactly how many queries 
 ## Final conclusion
 
 This might have given you an insight how you can monitor an Exasol database in a long-term perspective. The statistical system tables DB_SIZE, MONITORING, SQL and USAGE already give you a good overview of what is happening on the system. However, there are many other system tables that are suitable for different monitoring scenarios. There are no limits to creativity here.
+
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

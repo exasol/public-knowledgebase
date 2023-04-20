@@ -24,3 +24,5 @@ To minimize the overhead on system table / metadata queries it is highly recomme
     ...
 
 Our engine will be able to apply such filters deep in our engine to get optimal performance.
+
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

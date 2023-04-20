@@ -47,3 +47,4 @@ The table was created via JDBC, with EXAplus/JDBC/Java there had not been any Un
 
 [How-to-use-exasol-as-a-linked-server-in-sql-server](https://exasol.my.site.com/s/article/How-to-use-Exasol-as-a-Linked-Server-in-SQL-Server) 
 
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

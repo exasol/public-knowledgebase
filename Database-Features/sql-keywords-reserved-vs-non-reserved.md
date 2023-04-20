@@ -46,3 +46,4 @@ So, the more precise answer is: only use keywords as identifiers if you are forc
 
 *Please let us know about your experiences and any feedback you have on this article below!*
 
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

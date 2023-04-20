@@ -69,3 +69,4 @@ CONTROL SET JOIN ORDER T2,T1;
 
 [Exasol memory management](https://exasol.my.site.com/s/article/Overview-of-Exasol-s-data-and-memory-management)
 
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

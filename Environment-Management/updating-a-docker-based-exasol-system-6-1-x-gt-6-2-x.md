@@ -88,3 +88,5 @@ $ docker logs <container_name> -f
 ```
 $ docker rm <container_name_old>
 ```
+
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

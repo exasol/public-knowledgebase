@@ -93,3 +93,5 @@ select rf.predict(Model_str, PIXEL0,PIXEL1,PIXEL2,PIXEL3,PIXEL4,PIXEL5,PIXEL6,PI
 | 1 |
 | 7 |
 
+
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

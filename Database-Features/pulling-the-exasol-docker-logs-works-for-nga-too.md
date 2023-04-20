@@ -254,3 +254,5 @@ It's the best place to find quick answers and discover additional content. Those
 
 [Docker-guide](https://exasol.my.site.com/s/article/Docker-Guide)   
 [Docker_and_BucketFS](https://exasol.my.site.com/s/article/Exasol-on-Docker-How-to-Create-a-BucketFS-and-Buckets-Inside)   
+
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

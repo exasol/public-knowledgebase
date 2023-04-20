@@ -13,3 +13,5 @@ The code above does not work.
 AUTOCOMMIT settings are done at the client layer - either by the JDBC connection or by your SQL client.
 
 A Lua script is executed at the database layer, therefore it cannot control this setting.
+
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

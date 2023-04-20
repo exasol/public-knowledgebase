@@ -142,3 +142,5 @@ sed -i -e s/'-enlargeCluster=1/'/g db1.cfg
 dwad_client setup DB1 db1.cfg 
 dwad_client start-wait DB1
 ```
+
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

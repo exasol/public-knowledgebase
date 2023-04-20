@@ -179,3 +179,5 @@ Using this method we were able to speed up the process in our NYC TAXI demo by 7
 * [Geospatial Documentation](https://docs.exasol.com/sql_references/geospatialdata/geospatialdata_overview.htm)
 * [Python3 Documentation](https://docs.exasol.com/database_concepts/udf_scripts/python3.htm)
 * [Github Project - NYC TAXI where this method was used](https://github.com/exasol/opendata-examples/tree/master/nyc_taxi)
+
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

@@ -430,3 +430,4 @@ When concluding your development testing, be sure and execute either "DROP USER 
 
 [Query and PQuery functionality](https://docs.exasol.com/database_concepts/scripting/db_interaction.htm) 
 
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

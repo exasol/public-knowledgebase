@@ -17,3 +17,5 @@ The ROWID pseudo column can only be used on **table** objects, not on views or s
 ## Additional References
 
 * [ROWID Syntax](https://docs.exasol.com/sql_references/functions/alphabeticallistfunctions/rowid.htm)
+
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

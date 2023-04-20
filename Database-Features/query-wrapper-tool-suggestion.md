@@ -19,3 +19,5 @@ Exasol's transaction system will prevent this scenario, as the initial INSERT in
 That transaction system is also the main reason why the query wrapper goes through so much pain to collect log messages locally before actually inserting them into the detail log table.
 
 Current implementation makes pretty sure that the generated RUN_ID is unique across any and all concurrent calls to the query_wrappper.
+
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 
