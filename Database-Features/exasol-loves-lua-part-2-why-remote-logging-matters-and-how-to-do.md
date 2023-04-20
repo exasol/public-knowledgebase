@@ -225,3 +225,4 @@ And the result of this is:
 
 In my next blog I will demonstrate how to bundle existing modules directly into a single script using a tool called `amalg`
 
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

@@ -50,3 +50,5 @@ OR
 * Use custom IP addresses from e.g. subnet VLAN "CSCN"  
 OR
 * Create a dedicated LOM Subnet/VLAN
+
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

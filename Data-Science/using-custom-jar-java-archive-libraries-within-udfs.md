@@ -114,3 +114,5 @@ Now you can run your UDF and the JAR file that you uploaded to BucketFS will be 
 ## Downloads
 [java_udf.zip](https://github.com/exasol/Public-Knowledgebase/files/9936845/java_udf.zip)
 [my-app-1.0-SNAPSHOT.jar.zip](https://github.com/exasol/Public-Knowledgebase/files/9936846/my-app-1.0-SNAPSHOT.jar.zip)
+
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

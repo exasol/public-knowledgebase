@@ -274,3 +274,4 @@ Lua is a compact but powerful and speedy programming language built right into E
 
 In the next articles of our "Exasol loves Lua" series we will dive deeper into unit testing and mocking with Lua, remote logging from Lua Scripts and installing standard modules.
 
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

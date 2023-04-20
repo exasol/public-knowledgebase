@@ -36,3 +36,4 @@ The suggestion is therefore: **use the MERGE command**
 Cleaning the source from duplicates is mandatory since the on-condition within the merge-statement needs a unique source rowset.  
 Otherwise the exception "Unable to get a stable set of rows in the source tables" will be thrown.
 
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

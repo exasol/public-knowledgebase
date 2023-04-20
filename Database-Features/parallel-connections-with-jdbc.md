@@ -35,3 +35,5 @@ In the example a main connection reads the connection strings for the subconnect
 
 ## Downloads
 [ParallelConnectionsExample.zip](https://github.com/exasol/Public-Knowledgebase/files/9937141/ParallelConnectionsExample.zip)
+
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

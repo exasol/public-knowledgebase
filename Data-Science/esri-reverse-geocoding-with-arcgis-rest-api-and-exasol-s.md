@@ -59,3 +59,5 @@ For better performance when working with large datasets, we recommend batch geoc
 ## Downloads
 [arcgis_demo.zip](https://github.com/exasol/Public-Knowledgebase/files/9936768/arcgis_demo.zip)
 [arcgis_cities.zip](https://github.com/exasol/Public-Knowledgebase/files/9936769/arcgis_cities.zip)
+
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

@@ -9,3 +9,5 @@ DBVisualizer and DBeaver can both do this.
 In DBVisualizer you can open the schema, click on Tables, and then click on the References tab.  This will provide a chart that you can save as an EMF file.
 
 The same can be done in DBeaver by again opening your schema, clicking on Tables, and then selecting the ER Diagram tab.
+
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

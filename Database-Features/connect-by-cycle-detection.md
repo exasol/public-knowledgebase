@@ -207,3 +207,4 @@ Result:
 | -A-B-D | 0 | 1 | 3 | 0 |
 | -A-C-E | 0 | 0 | 3 | 1 |
 
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

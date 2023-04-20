@@ -33,3 +33,5 @@ group by ma.market_id, ma.city;
 ```
 
 Mind that the optimizer is constantly improved, so a trick like that to improve the execution plan might not be required any more in later versions.
+
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

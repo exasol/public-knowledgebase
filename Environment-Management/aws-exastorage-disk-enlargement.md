@@ -23,3 +23,4 @@ Enlarge EXAStorage disk(s) after changing disk size of the EC2 instances
 
 <https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-modify-volume.html>
 
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

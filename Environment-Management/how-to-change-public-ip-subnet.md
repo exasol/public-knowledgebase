@@ -161,3 +161,5 @@ System is ready to receive client connections.
 System started successfully in partition 44. User 0 requests startup of system. 
 User 0 requests new system setup.
 ```
+
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

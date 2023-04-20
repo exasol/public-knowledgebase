@@ -83,3 +83,4 @@ You should get an output similar to this:
 ```
 Check the parameters and see if it corresponds to your requested license parameters.
 
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

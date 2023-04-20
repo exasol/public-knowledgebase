@@ -150,3 +150,5 @@ create or replace view <del>statement_messages</del><add>l_message</add> as<del>
 		LP.process_number</del> <del>as</del><add>*</add> <del>session_id,
 ...
 ```
+
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

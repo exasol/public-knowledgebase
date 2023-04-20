@@ -82,3 +82,5 @@ SELECT count(*), iproc() FROM mytable GROUP BY iproc() ORDER BY 2;
 * [Data Types](https://docs.exasol.com/sql_references/data_types/datatypesoverview.htm)
 * [Data Type Sizes](https://docs.exasol.com/sql_references/data_types/data_type_size.htm)
 * [Distribution Keys](https://docs.exasol.com/sql/alter_table(distribution_partitioning).htm)
+
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

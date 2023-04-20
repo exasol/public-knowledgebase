@@ -7,3 +7,5 @@ If I recall correctly there was a threshold in place that indexes would be rebui
 Automatic index rebuilds occur upon DELETE (over 25% rows marked as deleted triggers the rebuild, you can see DELETE_PERCENTAGE in exa_dba_tables) and upon UPDATE (over 15% rows affected by an update triggers the rebuild).
 
 INSERT doesn't trigger index rebuild. 
+
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

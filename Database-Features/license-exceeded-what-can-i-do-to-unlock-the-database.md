@@ -69,3 +69,4 @@ Here you link to other sites/information that may be relevant.
 
 <https://docs.exasol.com/sql_references/system_tables/statistical/exa_system_events.htm>
 
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

@@ -124,3 +124,4 @@ If you wish you also choose to export small amounts of table or view data (the a
 ## Downloads
 [exasol-bitbucket-backup.zip](https://github.com/exasol/Public-Knowledgebase/files/9928339/exasol-bitbucket-backup.zip)
 
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

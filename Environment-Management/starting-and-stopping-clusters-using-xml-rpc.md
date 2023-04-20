@@ -238,3 +238,4 @@ for ls in license_servers:
 ```
 The last call triggers the shutdown of the license server(s) and therefore terminate all EXAoperation instances.
 
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

@@ -32,3 +32,5 @@ execute script create_db_DDL(true, true, false);
 ## Additional References
 
 * The script itself is found on Github: [create_db_ddl.sql](https://raw.githubusercontent.com/exasol/exa-toolbox/master/utilities/create_db_ddl.sql)
+
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

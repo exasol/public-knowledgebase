@@ -14,3 +14,5 @@ On the client-side, the corresponding database driver (f.e. JDBC, ODBC or Client
 ## Additional References
 
 * [SQL Identifiers](https://docs.exasol.com/sql_references/basiclanguageelements.htm#SQLIdentifier)
+
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

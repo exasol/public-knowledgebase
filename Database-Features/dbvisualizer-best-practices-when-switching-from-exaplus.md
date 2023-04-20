@@ -67,3 +67,4 @@ In the current version, DbVisualizer uses the platforms linefeed convention, i.e
 
 3) Restart DbVisualizer. 
 
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

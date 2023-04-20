@@ -124,3 +124,5 @@ EXPORT:
 * Delete VR instance
 * Delete EXAStorage DATA volume of the VR instance
 * Afterward, increase DB RAM for production
+
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

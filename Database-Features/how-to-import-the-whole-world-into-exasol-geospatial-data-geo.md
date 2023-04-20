@@ -117,3 +117,4 @@ The SQL client DBeaver is able to show geospatial data on a map. On a result tab
 
 ![](images/geo.png)
 
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

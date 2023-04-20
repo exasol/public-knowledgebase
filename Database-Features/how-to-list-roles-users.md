@@ -13,3 +13,5 @@ You could also draw from a few other tables:
 > select role_name as roles_and_users from exa_all_roles  
 union all  
 select user_name from exa_dba_users;
+
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

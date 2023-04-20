@@ -26,3 +26,5 @@ The scripts *3rdLevelStats_leq_DBv70_Hourly.sql* and *3rdLevelStatistics_geq_DB
 * The size of the generated CSV's vary and could be quite large - make sure that there is enough space on the directory that you are saving them to.
 * The "days" parameter is using EXAplus syntax, which may have to be modified for other clients.
 * The scripts use EXPORT to LOCAL CSV, which requires clients using the Exasol JDBC driver (ODBC, ADO.NET etc. would not work).
+
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

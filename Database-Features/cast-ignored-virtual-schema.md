@@ -43,3 +43,5 @@ from
 Solving this issue is not trivial. As you can see in the pushdown results of EXPLAIN VIRTUAL, the Exasol compiler removes the cast in the query. This is an optimization that happens quite early and before the handling of virtual schemas. For queries without virtual schemas this reduces the execution time and is no issue. In the virtual schema scenario, the pushdown contains a null_literal without datatype. The remote database of the virtual schema then returns a NULL with an arbitrary JDBC Type. This can vary based on the dialect. For the Exasol virtual schema dialect this is Boolean. In theory, the Exasol compiler can reinsert the cast to the desired type. But while this is possible in your scenario, it is not possible for complex expressions. For that, the compiler needs exact types from the JDBC driver.
 
 I hope the workarounds are sufficient for the time being until we have this feature in the JDBC driver.
+
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

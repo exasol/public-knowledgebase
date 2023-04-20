@@ -12,3 +12,5 @@ I'm using OSX (Mac), I had to change the docker daemon configuration and [add a 
 
 Now, the this request works (with own apiKex):
 > with urllib.request.urlopen("http://free.currencyconverterapi.com/api/v5/convert?q=EUR_USD&compact=ultra&apiKey=d7ae34bdee893bbda7d2") as url: 
+
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

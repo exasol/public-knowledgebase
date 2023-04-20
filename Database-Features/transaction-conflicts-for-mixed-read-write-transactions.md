@@ -172,3 +172,5 @@ The advantage of this option is that it is possible to fully roll back the trans
 * [Wait for Commit on SELECT Statements](https://exasol.my.site.com/s/article/WAIT-FOR-COMMIT-on-SELECT-statement)
 
 "
+
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

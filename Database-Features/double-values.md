@@ -28,3 +28,5 @@ SELECT cast(1 as DECIMAL(17,16)) - cast(1E-16 as DECIMAL(17,16)) AS exact;
 
 * [NumericDataTypes](https://docs.exasol.com/sql_references/data_types/datatypedetails.htm#NumericDataTypes "NumericDataTypes")
 * [Typeof (Exasol versions 7.1+)](https://docs.exasol.com/sql_references/functions/alphabeticallistfunctions/typeof.htm "Typeof")
+
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

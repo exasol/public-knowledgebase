@@ -26,3 +26,5 @@ The replication borders can be modified through **extra database parameters** in
 ## Additional References
 
 * [replication-border-in-exasol-6-1](https://exasol.my.site.com/s/article/Replication-border-in-Exasol-6-1)
+
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

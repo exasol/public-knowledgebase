@@ -40,3 +40,5 @@ To complete these steps, you will need access to GCP and have the permissions to
 ## Additional References
 
 * [Overview of Professional Services](https://www.exasol.com/product-overview/customer-support/)
+
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

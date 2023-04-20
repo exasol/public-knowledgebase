@@ -40,3 +40,5 @@ Once we have investigated, we will let you know of any potential workarounds and
 ## Additional References
 
 * [Gathering Logs for Support](https://docs.exasol.com/administration/on-premise/support/get_debug_information.htm)
+
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

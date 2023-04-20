@@ -96,3 +96,5 @@ $ resize2fs /dev/VG1/lvol0
 $ truncate --size=+10GB /exa/data/storage/dev.1 
 $ cshdd --enlarge -n 11 -h /exa/data/storage/dev.1
 ```
+
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

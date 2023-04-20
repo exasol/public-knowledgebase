@@ -48,3 +48,5 @@ execute script loopscript_query_local() with output; -- This will work because t
 
 execute script loopscript_query_global(); -- this will produce the same error because res_global is storing more than 250 result sets
 ```
+
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

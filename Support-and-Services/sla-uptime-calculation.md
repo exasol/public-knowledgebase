@@ -10,3 +10,4 @@ The time is calculating by pulling information from EXA_SYSTEM_EVENTS table valu
 
 For scheduled maintenance tasks, the up-time must be recalculated as this scheduled maintenance will be shown as event type "Shutdown".
 
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

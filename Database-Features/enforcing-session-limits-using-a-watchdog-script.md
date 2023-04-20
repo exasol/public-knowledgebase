@@ -37,3 +37,5 @@ The script will check all current sessions against the given limits and will cal
 
 ## Downloads
 [session_watchdog.zip](https://github.com/exasol/Public-Knowledgebase/files/9937010/session_watchdog.zip)
+
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

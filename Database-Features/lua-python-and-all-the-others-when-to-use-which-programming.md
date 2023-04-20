@@ -34,3 +34,5 @@ Links to our documentation on:
 * [Scripts](https://docs.exasol.com/database_concepts/scripting.htm "Scripts")
 * [UDFs](https://docs.exasol.com/database_concepts/udf_scripts.htm "UDFs")
 * [Functions](https://docs.exasol.com/sql/create_function.htm "Functions")
+
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

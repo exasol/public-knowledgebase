@@ -18,3 +18,5 @@ FROM DUAL
 A workaround to try:
 
 > (CAST(RPAD(PROCESSINGID,32,'0') AS HASHTYPE(16 BYTE))
+
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

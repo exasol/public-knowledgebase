@@ -16,3 +16,5 @@ d02_data|Data|400 GiB|None|AES 256|/dev/nvme1n1|370.6 GiB|None|3/-1|-
 d03_storage|Storage|Rest (3726 GiB)|None|AES 256|/dev/nvme0n1|0.0 GiB|None|-|-
 
 If you have root or loaded Centos separately on the system you will see that the device names shown here map to the physical.  You don't need to add "p" (partition) notation to the device name, Exasol takes care of that.  Remember to "Add Unused Drives" in ExaStorage.
+
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

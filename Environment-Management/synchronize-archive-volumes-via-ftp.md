@@ -45,3 +45,4 @@ If a synchronization attempt fails, you must cleanup the target volume manually
 ## Downloads
 [backup_copy_ftp.zip](https://github.com/exasol/Public-Knowledgebase/files/9927383/backup_copy_ftp.zip)
 
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

@@ -109,3 +109,5 @@ To list the contents of the bucket:
 ```
 $ curl http://r:newread@<docker_host_ip>:6932/newbucketfs-bucket/
 ```
+
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

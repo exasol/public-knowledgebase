@@ -41,3 +41,4 @@ Exasol can be deployed as a Docker container for testing purposes. Using Docker,
 | [Get Debug Information (Extended version); works for NGA, too](https://exasol.my.site.com/s/article/Pulling-the-Exasol-Docker-logs-works-for-NGA-too) | This article includes extra steps for those not familiar with Docker or NGA |
  
 
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

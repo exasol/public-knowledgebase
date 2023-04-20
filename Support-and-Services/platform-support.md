@@ -29,3 +29,4 @@ Please refer to our Cloud Documentation on our Docs Page. There you also will fi
 
 If you need more information, just get in touch — we're happy to help! 
 
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

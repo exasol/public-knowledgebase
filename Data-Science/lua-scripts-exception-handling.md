@@ -57,3 +57,5 @@ Questions:
     - *Please note* if autocommit is switched to on, the database will perform a commit after script termination independent of a successful execution (same behavior as for any other statement)  
 - error() function behavior is independent from being executed in a script directly or encapsulated in a function within a script  
     - I think there is some "try / catch" logic possible within Lua (pcall), but I have rarely seen this in use within Exasol procedure scripts
+
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

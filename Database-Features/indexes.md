@@ -62,3 +62,4 @@ If a distribution key is set on the table and the index contains all columns of 
 
 [Does-Exasol-index-nulls](https://exasol.my.site.com/s/article/Does-Exasol-index-NULLS??search-action-id=2672652107&search-result-uid=1243) 
 
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

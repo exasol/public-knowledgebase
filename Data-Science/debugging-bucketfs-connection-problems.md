@@ -101,3 +101,5 @@ If you are able to see the file in the results, then you are also able to use th
 ## Additional References
 
 * <https://docs.exasol.com/database_concepts/bucketfs/bucketfs.htm>
+
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

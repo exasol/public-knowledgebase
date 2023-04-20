@@ -49,3 +49,5 @@ GRANT ACCESS ON <CONNECTION_NAME> FOR <SCHEMA_NAME>.<SCRIPT_NAME> TO <USER>;
 * [Access Connection Definitions in Java](https://docs.exasol.com/database_concepts/udf_scripts/java.htm#AccessingConnectionDefinitions)
 * [Access Connection Definitions in Python](https://docs.exasol.com/database_concepts/udf_scripts/python.htm#AccessingConnectionDefinitions)
 * [Access Connection Definitions in Python 3](https://docs.exasol.com/database_concepts/udf_scripts/python3.htm#AccessingConnectionDefinitions)
+
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

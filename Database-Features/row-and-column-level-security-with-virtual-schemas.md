@@ -130,3 +130,5 @@ With this framework, you can specify as many restrictions on as many tables as y
 ## Downloads
 [RLS-CLS-Demo_V2.zip](https://github.com/exasol/Public-Knowledgebase/files/9937198/RLS-CLS-Demo_V2.zip)
 [data_schema_customer.zip](https://github.com/exasol/Public-Knowledgebase/files/9937199/data_schema_customer.zip)
+
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

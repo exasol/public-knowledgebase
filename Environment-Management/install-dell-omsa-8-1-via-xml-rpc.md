@@ -58,3 +58,5 @@ This article describes how to install Dell's OpenManage Server Administration so
 
 ## Downloads
 [snmpd.zip](https://github.com/exasol/Public-Knowledgebase/files/9921941/snmpd.zip)
+
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

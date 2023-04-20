@@ -236,3 +236,5 @@ The code of the generic analytic UDF with a small example is attached.
 
 ## Downloads
 [af_udf.zip](https://github.com/exasol/Public-Knowledgebase/files/9937355/af_udf.zip)
+
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

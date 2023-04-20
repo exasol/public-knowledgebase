@@ -76,3 +76,5 @@ SELECT RAW_OBJECT_SIZE_AVG/NULLIFZERO(MEM_OBJECT_SIZE_AVG) AS COMPRESSION_RATIO,
 ## Additional References
 
 * [Statistical Tables](https://docs.exasol.com/sql_references/metadata/statistical_system_table.htm)
+
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

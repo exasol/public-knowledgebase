@@ -84,3 +84,4 @@ ERRORS INTO error_table (CURRENT_TIMESTAMP) REJECT LIMIT 10;
 
 <https://docs.exasol.com/loading_data/load_data_from_externalsources.htm>
 
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

@@ -41,3 +41,5 @@ Transport
 	* The test system will be delivered by a forwarding agent. Please make sure that the consignment can be accepted at the appointed date and that the place of location is at ground level or can be reached via a sufficiently sized elevator. Please name a contact person for the forwarding agent.
 2. Pick Up
 	* The test system will be picked up by a forwarding agent. Please make sure that the system is ready for pick up at the appointed date.
+
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

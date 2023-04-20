@@ -28,3 +28,5 @@ echo -e "EXPORT INTO LOCAL CSV FILE"
 timestamp=`date +%s`  
 ./exaplus -c $host:$port -u $user -p $pwd -sql "EXPORT <SCHEMA>.<TABLE> INTO LOCAL CSV FILE '/tmp/exportfile_$timestamp.csv';
 ```
+
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

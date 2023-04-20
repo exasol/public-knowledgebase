@@ -17,3 +17,5 @@ I think it´s at least explainable if you think of it like this: "local" is a sh
 
 In your case a copy-and-paste clashes with Exasol's ability to reference columns by pos-id in a group by - if you´d have a column_name instead of a literal this wouldn´t be an issue but as it stands you end up telling Exasol to use the 12345th column in
 your select list. 
+
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

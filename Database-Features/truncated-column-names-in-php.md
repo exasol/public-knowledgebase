@@ -11,3 +11,4 @@ Compile PHP from source code after editing file ...&lt;php-dir&gt;/ext/odbc/php_
 
 In "struct odbc_result_value", increase size of "char name[32]" to your needs.
 
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

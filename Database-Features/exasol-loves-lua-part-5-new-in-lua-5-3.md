@@ -163,3 +163,5 @@ Other articles will cover unit testing, mocking and LDoc. Stay tuned!
 ## Bibliography
 
 * [IER2016], "Programming in Lua, Forth Edition", *Roberto Ierusalimschy,* Lua.Org ISBN [978-85-903798-6-7](https://isbnsearch.org/isbn/9788590379867)
+
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

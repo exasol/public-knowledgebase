@@ -43,3 +43,5 @@ If the query returns FALSE for some nodes, then it is likely a CPU setting no lo
 
 * BIOS power management settings
 * CPU Scaling settings in EXAoperation or via cpupower command 
+
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

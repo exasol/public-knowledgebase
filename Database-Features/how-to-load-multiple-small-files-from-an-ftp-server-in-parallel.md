@@ -97,3 +97,4 @@ Of course, you rarely want to get the result on the screen, but typically embed 
 
 <https://docs.exasol.com/database_concepts/udf_scripts.htm>
 
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

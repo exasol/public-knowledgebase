@@ -185,3 +185,4 @@ Allowed groups:['root', 'exaadm', 'exadbadm']
 
 Executing ConfD jobs is a new approach to configure and manage Exasol Clusters. It's safer and with asynchronous mode, it's more effective both on client and server-side. Obviously, with detailed job files, it's also easier to troubleshoot; it's strongly recommended to start to use them.
 
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

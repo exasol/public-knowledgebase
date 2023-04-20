@@ -25,3 +25,4 @@ and a.ERROR_TEXT is null order by START_TIME desc;
 
 https://docs.exasol.com/sql/flush_statistics.htm 
 
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

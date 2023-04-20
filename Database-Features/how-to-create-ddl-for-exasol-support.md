@@ -93,3 +93,5 @@ The script itself: [create_view_ddl.sql](https://raw.githubusercontent.com/exas
 <https://www.exasol.com/support/browse/IDEA-359>
 
 [create-ddl-for-the-entire-database](https://exasol.my.site.com/s/article/Create-DDL-for-the-entire-Database)
+
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

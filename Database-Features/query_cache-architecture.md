@@ -15,3 +15,5 @@ Just to explain that again first: We turn off the query cache in the Performance
 Your understanding is largely correct. Only that there's no CPU caching directly involved from the database layer. The query cache is a small part of the memory allocated for the cluster nodes with the DB RAM setting upon database configuration.
 
 If a query runs for the first time, it has to load data blocks into memory and process them there. Then a result set is produced. This result set is then stored in the query cache - if it is sufficiently small and the query is deterministic, delivering the same result set for every subsequent call. Going forward, that result set is just shown again from the query cache for every call of that same statement, without having to access and process data blocks again - neither from memory nor from disk. Should the table content be modified by DML afterwards, the query cache is automatically invalidated and data blocks have to be accessed again once for those queries.
+
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

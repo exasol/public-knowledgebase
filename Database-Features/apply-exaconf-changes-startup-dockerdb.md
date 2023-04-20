@@ -17,3 +17,5 @@ That way you can set up your container at the start without your own entry point
 - This script is supposed to work on single-node systems, on multi-node systems it should work as well, but there you usually set up the EXAConf and the environment beforehand anyway.
 
 Generally with rc.local you can hook into any stage of the boot process and do things.
+
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

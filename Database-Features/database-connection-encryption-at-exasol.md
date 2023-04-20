@@ -62,3 +62,4 @@ However, the above paragraph (prior to version 7.1) stands not entirely true for
 
 Bug related to this topic: [EXASOL-2649](https://www.exasol.com/support/browse/EXASOL-2649)
 
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

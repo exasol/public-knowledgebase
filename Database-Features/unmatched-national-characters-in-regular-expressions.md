@@ -25,3 +25,4 @@ Here, "Ll" denotes the property (L)etter, (l)owercase.
 
 A list of classes (or character properties) defined by the Unicode standard can be found in Table 12 of document <http://www.unicode.org/reports/tr44/#Property_Values>
 
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

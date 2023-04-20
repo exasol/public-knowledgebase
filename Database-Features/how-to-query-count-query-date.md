@@ -27,3 +27,5 @@ table_name as TABLE_NAME,count(*) as QUERY_COUNT,CAST(max(start_time) as DATE) a
 group by table_name  
 ;
 ```
+
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

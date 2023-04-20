@@ -20,3 +20,4 @@ Open the "Local Group Policy Editor" on your Windows server and goto "Windows Se
 
 <https://docs.exasol.com/administration/on-premise/manage_storage/create_remote_archive_volume.htm>
 
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

@@ -154,3 +154,5 @@ You can find all of these examples in the attached file. 
 * [UDF Script Signature Generator](https://docs.exasol.com/database_concepts/udf_script_signature_generator.html)
 * [Expanding Script Languages Using BucketFS](https://docs.exasol.com/database_concepts/udf_scripts/expand_script_using_bucketfs.htm)
 * [BucketFS](https://docs.exasol.com/database_concepts/bucketfs/bucketfs.htm)
+
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

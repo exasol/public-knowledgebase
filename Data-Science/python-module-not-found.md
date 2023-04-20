@@ -56,3 +56,5 @@ You can find more in-depth instructions in the [Readme](https://github.com/exaso
 
 * [Script Langauges in Github](https://github.com/exasol/script-languages-release)
 * [Script Languages Documentation](https://docs.exasol.com/database_concepts/udf_scripts/adding_new_packages_script_languages.htm)
+
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

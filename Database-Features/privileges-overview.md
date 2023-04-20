@@ -243,3 +243,4 @@ with k1 as (
 
 <https://docs.exasol.com/sql/grant.htm>
 
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

@@ -137,3 +137,5 @@ PARTITION BY generator_type;
 
 ## Downloads
 [energymap.zip](https://github.com/exasol/Public-Knowledgebase/files/9937292/energymap.zip)
+
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

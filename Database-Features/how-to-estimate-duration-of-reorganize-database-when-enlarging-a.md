@@ -58,3 +58,5 @@ As long as the REORGANIZE is not finished, we recommend avoiding running queries
 
 ## Attachements
 [REORGANIZE_files.zip](https://github.com/exasol/Public-Knowledgebase/files/9849888/REORGANIZE_files.zip)
+
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

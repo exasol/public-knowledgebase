@@ -21,3 +21,5 @@ You may find more details here: https://github.com/exasol/websocket-api/blob/mas
 Also, you may add connection option "debug=True" for "pyexasol.connect()" and see JSON requests and responses.
 
 "encryption=True" enables TLS encryption for all the communication happening after authorisation. Normally it does not require any extra setup. 
+
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

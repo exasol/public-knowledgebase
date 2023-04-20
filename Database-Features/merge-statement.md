@@ -141,3 +141,5 @@ JOIN NYC_TAXI.TAXI_ZONES zd ON ST_within(t.dropoff_geom, zd.polygon) = true
 ## Additional References
 
 * [MERGE Syntax](https://docs.exasol.com/sql/merge.htm)
+
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

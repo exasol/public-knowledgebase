@@ -14,3 +14,5 @@ Please consider Virtual Access on Database Backup
 
 * [Virtual Access on Database Backup in Documentation](https://docs.exasol.com/administration/on-premise/backup_restore/virtual_access_on_backup.htm)
 * [Virtual-access on database backups in Community](https://exasol.my.site.com/s/article/Virtual-access-on-database-backups)
+
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

@@ -39,3 +39,4 @@ In addition, joining on expressions can negatively affect the accuracy of estima
 **It is highly recommended to keep datatypes and data within a column strict:**  
 When storing a certain type of data (monetary amounts, points in time, attributes, ...) make sure that the same physical storage is used in all places. This includes the choice of data types as well as fixing upper/lower case, abbreviations, etc.
 
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

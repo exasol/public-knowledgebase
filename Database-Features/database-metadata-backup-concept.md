@@ -172,3 +172,5 @@ Run restore.sh
 
 ## Downloads
 [metadatabackup_v20190418.tar.zip](https://github.com/exasol/Public-Knowledgebase/files/9936966/metadatabackup_v20190418.tar.zip)
+
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

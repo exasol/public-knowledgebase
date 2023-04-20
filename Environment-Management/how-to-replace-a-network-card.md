@@ -22,3 +22,5 @@ To replace a NIC in an Exasol cluster, you do not need to reinstall Exasol, but 
 * [Start/Stop Database](https://docs.exasol.com/administration/on-premise/manage_database/start_stop_db.htm)
 * [Stop and Start Nodes](https://docs.exasol.com/administration/on-premise/nodes/stop_start_nodes.htm)
 * [Node Management](https://docs.exasol.com/administration/on-premise/manage_nodes.htm)
+
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

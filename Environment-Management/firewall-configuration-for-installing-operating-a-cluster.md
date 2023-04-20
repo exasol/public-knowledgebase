@@ -19,3 +19,5 @@ This article describes the way a firewall should be configured in preparation fo
 	+ NTP (TCP/UDP 123)
 	+ DNS (TCP/UDP 53)
 	+ optional: LDAP (TCP/UDP 389)
+
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

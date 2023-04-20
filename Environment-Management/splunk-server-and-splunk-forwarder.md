@@ -137,3 +137,5 @@ vim /opt/splunkforwarder/etc/apps/Splunk_TA_nix/default/inputs.conf
 /opt/splunkforwarder/bin/splunk stop 
 /opt/splunkforwarder/bin/splunk start
 ```
+
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

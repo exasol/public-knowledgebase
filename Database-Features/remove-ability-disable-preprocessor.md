@@ -23,3 +23,5 @@ You can add this parameter into Exaoperation:
 You can find more about editing a database here: https://docs.exasol.com/administration/on-premise/manage_database/edit_database.htm
 
 The preprocessor script will return an error if a query uses a prohibited back-end resources. This would still work within the preprocessor because queries within a preprocessor script are not subject to the preprocessor itself.
+
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

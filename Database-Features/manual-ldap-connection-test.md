@@ -14,3 +14,5 @@ Here is a simple example:
 ```
 ldapsearch -v -x -D "uid=Ben,ou=People,dc=myserv,dc=com" -w my_password -H ldap://my_ldap_server.com
 ```
+
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

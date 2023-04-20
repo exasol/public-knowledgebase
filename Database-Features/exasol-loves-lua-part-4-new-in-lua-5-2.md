@@ -86,3 +86,4 @@ There are a couple of changes in the C API, but since most Exasol users will nev
 
 Since Exasol 7.1 will feature Lua 5.4, I will cover the relevant changes introduced in 5.3 and 5.4 in two upcoming articles.
 
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

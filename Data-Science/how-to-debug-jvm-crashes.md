@@ -9,3 +9,5 @@ You can use Java remote debugging to debug any Java UDF.  Have a look here for v
 
 You can also use the python udf listener and redirect your script output:
 https://docs.exasol.com/db/latest/database_concepts/virtual_schema/logging.htm
+
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

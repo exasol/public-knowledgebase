@@ -27,3 +27,5 @@ Please consider
 
 * becoming an EXASOL Certified Performance Expert by attending our Performance Training: see ["Exasol Performance Management" course on Exacademy](https://exacademy.exasol.com/courses/course-v1:Exasol+PERF+X/about)
 * Index creation: [Indexes](https://exasol.my.site.com/s/article/Indexes)
+
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

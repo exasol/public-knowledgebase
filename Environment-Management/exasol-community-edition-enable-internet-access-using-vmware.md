@@ -71,3 +71,5 @@ Network settings on virtual machines can be very tricky. Even after performing t
 * [VMWare Documentation](https://docs.vmware.com/en/VMware-Workstation-Pro/index.html)
 * [Community Edition Installation](https://docs.exasol.com/get_started/tryexasol/communityedition.htm)
 * [Enable networking for Virtualbox](https://exasol.my.site.com/s/article/Enable-internet-access-for-Exasol-Community-Edition)
+
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

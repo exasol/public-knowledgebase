@@ -21,3 +21,4 @@ The serialize function in R allows you to specify the workspace version, see [he
 
 ***serialize(model1, ascii = TRUE, connection = NULL, version=2)***
 
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

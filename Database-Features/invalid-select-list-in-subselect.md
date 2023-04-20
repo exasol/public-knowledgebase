@@ -29,3 +29,5 @@ References in WHERE conditions (with some restrictions) work:
 INSERT INTO T1 VALUES(1);  
 INSERT INTO T1 VALUES(4);  
 SELECT (SELECT c1 FROM T1 WHERE T1.c1=T2.c2) FROM VALUES(1) AS T2(c2); 
+
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

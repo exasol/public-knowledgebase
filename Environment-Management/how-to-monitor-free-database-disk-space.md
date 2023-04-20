@@ -107,3 +107,4 @@ Please check the EXAoperation user manual for a full description of how to use t
 
 [https://www.exasol.com/portal/display/DOWNLOAD/6.0](https://www.exasol.com/portal/display/DOWNLOAD/5.0)
 
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

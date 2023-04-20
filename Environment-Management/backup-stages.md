@@ -48,3 +48,4 @@ The system table SYS.EXA_SYSTEM_EVENTS records the start and stop events, but it
 
 <https://exasol.my.site.com/s/article/Synchronising-backups-between-clusters>
 
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

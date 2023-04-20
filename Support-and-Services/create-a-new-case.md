@@ -50,3 +50,5 @@ Email serves as a communication channel between Exasol and the customer once the
 -	After case creation: Once a case is created through any channel, you will receive a case creation confirmation email. A link to upload the log files will also be sent with the case creation confirmation email.  
 -	Case-related communication: to communicate with Exasol support, you can simply reply to case-related emails. Please do not delete any details in the email so that there are no issues in the case assignment. 
 -	Close case: Once the case is closed, you as a customer will be informed about the status by email. Additionally, you will get the opportunity to rate the processing of the case here.
+
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

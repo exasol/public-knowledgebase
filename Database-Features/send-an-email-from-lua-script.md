@@ -57,3 +57,5 @@ Provide Parameters for all parts of a mail like
 * receiver(s)
 * subject
 * text
+
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

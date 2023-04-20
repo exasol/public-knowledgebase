@@ -103,3 +103,4 @@ The script to load data from a URL in this simple example is limited to a maximu
 
 <https://docs.exasol.com/db/latest/sql_references/functions/json.htm>
 
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

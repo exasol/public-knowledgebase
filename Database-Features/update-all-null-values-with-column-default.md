@@ -78,3 +78,4 @@ This returns:
 | **COLUMN_NAME** | **COLUMN_TYPE** | **COLUMN_DEFAULT** | **UPDATE_RESULT** |
 | INVOICE_DATE | DATE | TO_DATE('2017-01-01','YYYY-MM-DD') | 2 rows updated |
 
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

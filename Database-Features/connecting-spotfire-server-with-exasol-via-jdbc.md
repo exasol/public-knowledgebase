@@ -82,3 +82,4 @@ Check the logs if the XML config for EXASOL was validated correctly
 
 Use the Information Designer tool in the Spotfire Analyst to create a new Data Source
 
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

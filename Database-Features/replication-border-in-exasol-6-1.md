@@ -20,3 +20,5 @@ The replication borders can be modified through **extra database parameters** in
 ```"code-java"
 -soft_replicationborder_in_numrows=<numrows> [default is 100000 rows]
 ```
+
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

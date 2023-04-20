@@ -193,3 +193,4 @@ AND temperature > 25.0;
 
 Because we are using openweathers free plan rate limits apply. No more then 60 requests can be made each minute. If the rate limit is exceeded an error will be returned. Further more as free users we are not permitted to use other more powerful APIs openweather is offering. But for demo purposes that's fine.
 
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

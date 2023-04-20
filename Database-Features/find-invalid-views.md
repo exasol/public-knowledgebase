@@ -24,3 +24,5 @@ ORDER BY view_schema, view_name​
 ```
 2. For every view that is listed you need to access it by (for example) running DESC schema.view. If this DESC fails the view is invalid and vice versa.
 3. You can either collect the list of invalid views by keeping track of which DESC commands fail or you can later run the SQL in #1 above. All views the statement now returns will be invalid (assuming no other DDL has run in the meantime).
+
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

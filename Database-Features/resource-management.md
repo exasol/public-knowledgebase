@@ -24,3 +24,4 @@ This concept is designed to provide an optimal throughput for mixed workloads (S
 
 Time slice allocation, especially entering PAUSED mode requires pre-emptive action by the affected process. Therefore the 20 seconds are not always an exact measure, but require query execution to reach certain checkpoints. Those checkpoints are very frequent for regular execution, but recently it was detected that for example, an 'active' prepared statement that is actually waiting for more client data does**not**enter such a checkpoint until a data packet arrives. Until this is improved on the database side, we recommend closing prepared statements whenever the application realizes it will have to wait for more data.
 
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

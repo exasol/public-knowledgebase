@@ -12,3 +12,5 @@ Do you use a new JDBC-Connection To MySQL in the UDF? You could then overwrite t
 
 &serverTimezone=&lt;YOURTIMEZONE&gt;
 Then all you would need to do is, to query the local timezone in same function and use it in there, so the function works in any timezone then.
+
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

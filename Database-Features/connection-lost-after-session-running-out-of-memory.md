@@ -53,3 +53,4 @@ Be aware that changing this parameter means every connection *can* now use up to
 
 <https://www.exasol.com/support/browse/EXASOL-2512>
 
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

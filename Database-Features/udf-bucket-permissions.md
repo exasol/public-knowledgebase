@@ -15,3 +15,5 @@ IDENTIFIED BY 'readpw';
 
 GRANT CONNECTION my_bucket_access TO my_user
 ```
+
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

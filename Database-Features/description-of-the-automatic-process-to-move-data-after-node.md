@@ -27,3 +27,5 @@ Thus, this process only moves data under the following circumstances:
 2. **the database has been restarted automatically**: If a database has been started manually, the current configuration is accepted *as is*.
 3. **exactly one volume node is offline**: If all volume nodes are online, the database nodes should be moved instead to match the volume nodes (this requires a user-triggered database restart). If more than one volume node is offline, the operation will not be started, either (and a monitoring error message will be logged).
 4. **data can be accessed locally by database after moving data**: If data from the offline volume node can only be moved to a database node, which is not responsible for the management of the appropriate volume node data, the operation will not be started, either (and a monitoring error message will be logged).
+
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

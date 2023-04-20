@@ -99,3 +99,5 @@ GROUP BY b.name, c.name;
 
 * [CREATE VIEW Syntax](https://docs.exasol.com/sql/create_view.htm)
 * [SELECT syntax](https://docs.exasol.com/sql/select.htm)
+
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

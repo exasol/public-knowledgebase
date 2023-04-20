@@ -252,3 +252,4 @@ If there are multiple &lt;order_expr&gt;s for a single KEEP DENSE_RANK FIRST/LAS
 
 <https://www.exasol.com/support/browse/IDEA-65>
 
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

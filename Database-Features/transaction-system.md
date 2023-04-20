@@ -95,3 +95,5 @@ In the case of a WAIT FOR COMMIT, the responsible session is shown here.
 * New transactions are automatically scheduled after finished transactions
 * Exasol's TMS affects objects created for query execution (e.g. Indices)
 	+ If a transaction including a query that creates an index is rolled back, the index creation is rolled back, too
+
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

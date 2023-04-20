@@ -38,3 +38,5 @@ import into tj from local CSV file 'C:\Users\fs\Desktop\custom.geo.json' column 
 select JSON_EXTRACT(x, '$.features[*]#.properties.name', '$.features[*]#.geometry.json()')
 emits (name varchar(2000000), geojson varchar(2000000)) from tj;
 ```
+
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

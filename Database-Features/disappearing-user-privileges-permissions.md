@@ -87,3 +87,4 @@ REVOKE IMPERSONATION ON SYS FROM EXAMPLE_USER_ROLE;
 
 [Using-scripts-to-replace-granting-users-special-privileges](https://exasol.my.site.com/s/article/Using-scripts-to-replace-granting-users-special-privileges) 
 
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

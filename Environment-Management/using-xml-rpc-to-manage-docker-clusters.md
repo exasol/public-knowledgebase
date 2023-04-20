@@ -528,3 +528,4 @@ Example 6.3: list backups
 
 You can find another article about deploying a exasol database as an docker image in <https://exasol.my.site.com/s/article/How-to-deploy-a-single-node-Exasol-database-as-a-Docker-image-for-testing-purposes>
 
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 
