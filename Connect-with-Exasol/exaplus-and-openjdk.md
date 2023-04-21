@@ -54,3 +54,5 @@ Example:
 ```
 "c:\Program Files\Java\openJDK8\bin\java.exe" -jar "c:\Program Files (x86)\EXASOL\EXASolution-6.0\EXAplus\exaplusgui.jar"
 ```
+
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

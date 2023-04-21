@@ -10,9 +10,9 @@ Exasol can be deployed as a Docker container for testing purposes. Using Docker,
 |  |  |
 | --- | --- |
 | **Article** | **Description** |
-| [Install Docker on Ubuntu](https://community.exasol.com/t5/environment-management/installing-docker-community-edition-on-ubuntu-server-18-04-and/ta-p/1278) | This article describes how to install the Docker Community Edition on Ubuntu Server 18.04 and 20.04 |
-| [Install Docker on Redhat & CentOS](https://community.exasol.com/t5/environment-management/install-docker-community-edition-on-rhel-and-centos-7/ta-p/1279) | This article describes how to install the Docker Community Edition on RHEL and CentOS 7 |
-| [Deploy a single-node database](https://community.exasol.com/t5/environment-management/how-to-deploy-a-single-node-exasol-database-as-a-docker-image/ta-p/921) | This article describes how to deploy a single-node database on Docker |
+| [Install Docker on Ubuntu](https://exasol.my.site.com/s/article/Installing-Docker-Community-Edition-on-Ubuntu-Server-18-04-and-20-04) | This article describes how to install the Docker Community Edition on Ubuntu Server 18.04 and 20.04 |
+| [Install Docker on Redhat & CentOS](https://exasol.my.site.com/s/article/Install-Docker-Community-Edition-on-RHEL-and-CentOS-7) | This article describes how to install the Docker Community Edition on RHEL and CentOS 7 |
+| [Deploy a single-node database](https://exasol.my.site.com/s/article/How-to-deploy-a-single-node-Exasol-database-as-a-Docker-image-for-testing-purposes) | This article describes how to deploy a single-node database on Docker |
 
 
 
@@ -22,14 +22,14 @@ Exasol can be deployed as a Docker container for testing purposes. Using Docker,
 |  |  |
 | --- | --- |
 | **Article** | **Description** |
-| [Single Node to Cluster](https://community.exasol.com/t5/environment-management/docker-single-node-to-cluster/ta-p/1572) | This article shows you how to enlarge your single-node docker installation to two nodes |
-| [Using XMLRPC to Manage your Cluster](https://community.exasol.com/t5/environment-management/using-xml-rpc-to-manage-docker-clusters/ta-p/1298) | This article shows you how you can use the XMLRPC interface to manage and perform actions on your cluster |
-| [Using LVM for your Docker Container](https://community.exasol.com/t5/environment-management/working-with-lvm-for-your-docker-container/ta-p/1287) | This article shows you how to set up LVM storage in your docker container |
-| [Configure Database Parameters](https://community.exasol.com/t5/environment-management/setting-a-database-parameter-in-a-docker-based-exasol-system/ta-p/1353) | This article shows you how to configure Database Parameters for Docker installations |
-| [Change Docker License](https://community.exasol.com/t5/environment-management/changing-the-license-file-on-a-docker-based-exasol-system/ta-p/1341) | This article shows you how to add or change your license file in Docker installations |
-| [Add an LDAP Server](https://community.exasol.com/t5/environment-management/add-an-ldap-server-for-your-docker-based-exasol-database/ta-p/1359) | This article describes how to add an LDAP server for LDAP Authentication in the database |
-| [Performing Updates](https://community.exasol.com/t5/environment-management/updating-a-docker-based-exasol-system-6-1-x-gt-6-2-x/ta-p/1372) | This article describes how to update Docker installations from 6.1.x to 6.2.x |
-| [BucketFS Management](https://community.exasol.com/t5/environment-management/exasol-on-docker-how-to-create-a-bucketfs-and-buckets-inside/ta-p/2368) | This article shows you how to configure and set up BucketFS |
+| [Single Node to Cluster](https://exasol.my.site.com/s/article/Docker-Single-node-to-Cluster) | This article shows you how to enlarge your single-node docker installation to two nodes |
+| [Using XMLRPC to Manage your Cluster](https://exasol.my.site.com/s/article/Using-XML-RPC-to-manage-Docker-clusters) | This article shows you how you can use the XMLRPC interface to manage and perform actions on your cluster |
+| [Using LVM for your Docker Container](https://exasol.my.site.com/s/article/Working-with-LVM-for-your-Docker-Container-file-device) | This article shows you how to set up LVM storage in your docker container |
+| [Configure Database Parameters](https://exasol.my.site.com/s/article/Setting-a-Database-Parameter-in-a-Docker-based-Exasol-system) | This article shows you how to configure Database Parameters for Docker installations |
+| [Change Docker License](https://exasol.my.site.com/s/article/Changing-the-license-file-on-a-Docker-based-Exasol-system) | This article shows you how to add or change your license file in Docker installations |
+| [Add an LDAP Server](https://exasol.my.site.com/s/article/Add-an-LDAP-server-for-your-Docker-based-Exasol-Database) | This article describes how to add an LDAP server for LDAP Authentication in the database |
+| [Performing Updates](https://exasol.my.site.com/s/article/Updating-a-Docker-based-Exasol-System-6-1-X-6-2-X) | This article describes how to update Docker installations from 6.1.x to 6.2.x |
+| [BucketFS Management](https://exasol.my.site.com/s/article/Exasol-on-Docker-How-to-Create-a-BucketFS-and-Buckets-Inside) | This article shows you how to configure and set up BucketFS |
 
 ## Troubleshooting
 
@@ -37,7 +37,8 @@ Exasol can be deployed as a Docker container for testing purposes. Using Docker,
 |  |  |
 | --- | --- |
 | **Article** | **Description** |
-| [Get Debug Information](https://community.exasol.com/t5/environment-management/how-to-get-debug-information-and-log-files-from-docker-based/ta-p/2366) | This article describes how to get debug information for Docker installations |
-| [Get Debug Information (Extended version); works for NGA, too](https://community.exasol.com/t5/database-features/pulling-the-exasol-docker-logs-works-for-nga-too/ta-p/3662) | This article includes extra steps for those not familiar with Docker or NGA |
+| [Get Debug Information](https://exasol.my.site.com/s/article/How-to-get-debug-information-and-log-files-from-docker-based-systems) | This article describes how to get debug information for Docker installations |
+| [Get Debug Information (Extended version); works for NGA, too](https://exasol.my.site.com/s/article/Pulling-the-Exasol-Docker-logs-works-for-NGA-too) | This article includes extra steps for those not familiar with Docker or NGA |
  
 
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

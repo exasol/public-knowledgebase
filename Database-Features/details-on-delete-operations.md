@@ -53,3 +53,5 @@ When many deletes are expected, an explicit reorganize of the affected tables sh
 
 * [DELETE Syntax](https://docs.exasol.com/sql/delete.htm)
 * [REORGANIZE Syntax](https://docs.exasol.com/sql/reorganize.htm)
+
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

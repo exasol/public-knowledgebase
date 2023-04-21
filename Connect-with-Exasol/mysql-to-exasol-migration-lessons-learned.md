@@ -76,3 +76,4 @@ Hopefully, this will be useful for others making the same transition:
 
 Of course the greatest lesson learned was that Exasol is *incredibly* fast at handling large datasets compared to MySQL! 
 
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

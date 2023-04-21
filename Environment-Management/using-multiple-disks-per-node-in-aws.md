@@ -32,3 +32,4 @@ l. Recreate data volume(s)
 m. Recreate database (optional)  
 n. Restore database backup (optional)
 
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

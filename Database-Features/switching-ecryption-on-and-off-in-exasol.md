@@ -32,3 +32,4 @@ Additionally, you can check if encryption is on or off using the system tables i
 
 ![](images/image-2020-09-03-16-38-02-135.png)
 
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

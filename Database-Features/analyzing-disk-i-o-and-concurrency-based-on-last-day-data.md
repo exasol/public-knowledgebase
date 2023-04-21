@@ -152,5 +152,6 @@ order by 1
 
 <https://www.exasol.com/support/browse/EXASOL-2373>
 
-<https://docs.exasol.com/sql_references/metadata/statistical_system_table.htm?Highlight=concurrency>
+<https://docs.exasol.com/sql_references/metadata/statistical_system_table.htm>
 
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

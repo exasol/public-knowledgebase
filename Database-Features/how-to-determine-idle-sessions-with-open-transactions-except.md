@@ -48,3 +48,4 @@ The sessions 1505061190568112648 and 1505059543549212162 in the example have bee
 
 <https://www.exasol.com/support/browse/EXASOL-1330>
 
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

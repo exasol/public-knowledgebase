@@ -21,3 +21,4 @@ The exasol dialect for SQLAlchemy is [available on GitHub](https://github.com/bl
 
 The readme on GitHub should contain enough information to get you started.
 
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

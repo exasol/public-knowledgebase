@@ -83,7 +83,8 @@ REVOKE IMPERSONATION ON SYS FROM EXAMPLE_USER_ROLE;
 ```
 ## Additional References
 
-[Privileges-overview](https://community.exasol.com/t5/database-features/privileges-overview/ta-p/1498 "privileges-overview") 
+[Privileges-overview](https://exasol.my.site.com/s/article/Privileges-overview "privileges-overview") 
 
-[Using-scripts-to-replace-granting-users-special-privileges](https://community.exasol.com/t5/database-features/using-scripts-to-replace-granting-users-special-privileges/ta-p/6056) 
+[Using-scripts-to-replace-granting-users-special-privileges](https://exasol.my.site.com/s/article/Using-scripts-to-replace-granting-users-special-privileges) 
 
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

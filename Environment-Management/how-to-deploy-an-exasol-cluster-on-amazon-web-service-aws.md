@@ -107,7 +107,7 @@ If you want to keep the **Public IP** address set to **false**, then you need to
 * Click **Create Stack** to continue deploying Exasol in the CloudFormation Console.   
 You can view the stack you created under **AWS CloudFormation > Stacks**, with the status CREATE_IN_PROGRESS. Once the stack is created successfully, the status is changed to CREATE_COMPLETE. Additionally, you can monitor the progress in the Events tab for the stack.
 
-For more information about the stack parameters, please check the table here <https://docs.exasol.com/cloud_platforms/aws/installation_cf_template.htm?Highlight=Template%20Parameters>
+For more information about the stack parameters, please check the table here <https://docs.exasol.com/cloud_platforms/aws/installation_cf_template.htm>
 
 After filling the required parameters, we click **Create Stack** to continue deploying Exasol in the CloudFormation Console.   
 We can view the stack created under **AWS CloudFormation > Stacks**, with the status CREATE_IN_PROGRESS. Once the stack is created successfully, the status is changed to CREATE_COMPLETE.
@@ -159,11 +159,11 @@ In this case (a 2+1 cluster deployment), we use the Public IP address of the da
 
 After installing Exasol on AWS, you can do the following:
 
-* [Install drivers required to connect to other tools.](https://docs.exasol.com/connect_exasol/drivers.htm)
-* [Connect SQL clients to Exasol.](https://docs.exasol.com/connect_exasol/sql_clients.htm)
-* [Connect Business Intelligence tools (BI tools) to Exasol.](https://docs.exasol.com/connect_exasol/bi_tools.htm)
-* [Connect Data Integration - ETL tool to Exasol.](https://docs.exasol.com/connect_exasol/data_integration_etl.htm)
-* [Connect Data Warehouse Automation tools to Exasol.](https://docs.exasol.com/connect_exasol/data_warehouse_automation.htm)
+* [Install drivers required to connect to other tools](https://docs.exasol.com/connect_exasol/drivers.htm).
+* [Connect SQL clients to Exasol](https://docs.exasol.com/connect_exasol/sql_clients.htm).
+* [Connect Business Intelligence tools (BI tools) to Exasol](https://docs.exasol.com/connect_exasol/bi_tools.htm).
+* [Connect Data Integration - ETL tool to Exasol](https://docs.exasol.com/connect_exasol/data_integration_etl.htm).
+* [Connect Data Warehouse Automation tools to Exasol](https://docs.exasol.com/connect_exasol/data_warehouse_automation.htm).
 
 ### Load Data
 
@@ -176,3 +176,4 @@ After you have connected your choice of tool to Exasol, you can load your data i
 
 <https://docs.exasol.com/administration/aws.htm>
 
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

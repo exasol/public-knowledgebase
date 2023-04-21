@@ -47,6 +47,6 @@ Whenever your data size passes critical limit margins at 85%, 105% and 100%, you
 
 ## Additional References
 
-For more information on managing data inserting restrictions and license limits, please consult[this article](https://www.exasol.com/portal/display/DOC/Licenses).
+For more information on managing data inserting restrictions and license limits, please consult [this article](https://www.exasol.com/portal/display/DOC/Licenses).
 
-  
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

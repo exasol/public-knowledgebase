@@ -1,7 +1,7 @@
 # EXAjload: advanced techniques 
 ## Background
 
-[EXAjload](https://docs.exasol.com/loading_data/file_formats.htm?Highlight=exajload) is a standard tool for bulk data loading. Its documentation is brief, but the tool is more powerful than you might think.
+[EXAjload](https://docs.exasol.com/loading_data/file_formats.htm) is a standard tool for bulk data loading. Its documentation is brief, but the tool is more powerful than you might think.
 
 It is possible to:
 
@@ -121,3 +121,4 @@ You may have any number of **-presql** and **-postsql** statements. Just make su
 ## Downloads
 [users.zip](https://github.com/exasol/Public-Knowledgebase/files/9935962/users.zip)
 
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

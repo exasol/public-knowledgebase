@@ -5,7 +5,7 @@ When you add new nodes to your database cluster (enlargement), those new nodes w
 
 ## Prerequisites
 
-The general recommendation to accomplish this is the REORGANIZE DATABASE command. It redistributes tables and rebuilds all indices. Each processed table is committed immediately so transaction dependencies are minimized. You can find more information about the REORGANIZE command here [reorganize.](https://docs.exasol.com/sql/reorganize.htm)
+The general recommendation to accomplish this is the REORGANIZE DATABASE command. It redistributes tables and rebuilds all indices. Each processed table is committed immediately so transaction dependencies are minimized. You can find more information about the REORGANIZE command here [reorganize](https://docs.exasol.com/sql/reorganize.htm).
 
 ## How to estimate the duration of REORGANIZE DATABASE when enlarging a cluster
 
@@ -25,7 +25,7 @@ The first column is the overall duration of the REORGANIZE DATABASE in seconds. 
 
 Please note, that the actual duration may differ from the computed one, because of concurrency behavior or hardware specifics.
 
-If you have high-performance hardware (several hundred MB/s of HDD_READ_MAX and NET_MAX in EXA_MONITOR_DAILY), you may reduce the reorganize time by running three independent reorganize streams in parallel. This improves resource utilization of your database (mostly HDD_READ and NET) and speeds up the overall process. You may find more information about the EXA_MONITOR_DAILY table here [exa_monitor_daily.](https://docs.exasol.com/sql_references/system_tables/statistical/exa_monitor_daily.htm)
+If you have high-performance hardware (several hundred MB/s of HDD_READ_MAX and NET_MAX in EXA_MONITOR_DAILY), you may reduce the reorganize time by running three independent reorganize streams in parallel. This improves resource utilization of your database (mostly HDD_READ and NET) and speeds up the overall process. You may find more information about the EXA_MONITOR_DAILY table here [exa_monitor_daily](https://docs.exasol.com/sql_references/system_tables/statistical/exa_monitor_daily.htm).
 
 ## Step 3
 
@@ -58,3 +58,5 @@ As long as the REORGANIZE is not finished, we recommend avoiding running queries
 
 ## Attachements
 [REORGANIZE_files.zip](https://github.com/exasol/Public-Knowledgebase/files/9849888/REORGANIZE_files.zip)
+
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

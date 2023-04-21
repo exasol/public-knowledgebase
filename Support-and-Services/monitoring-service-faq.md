@@ -98,7 +98,7 @@ Data is stored at Exasol on an on-premise system. As with our current monitoring
 
     A downtime of the database is not required.
 
-The current and new monitoring solutions will run in parallel starting from 09.01.2023 - 31.03.2023. This transitional phase will be used to find and fix any issues you encounter using the new Monitoring Service. After 4 weeks the old monitoring solution will be decommissioned.
+The current and new monitoring solutions will run in parallel starting from 09.01.2023 - 31.03.2023.
 
 ### When can it be installed?
 
@@ -118,4 +118,6 @@ Exasol Support will get in touch by the release date with you and plan the rollo
 
 [Exasol On-premise](https://docs.exasol.com/db/latest/get_started/on-premise/exasol_on-premises.htm)
 
-[Exasol Cluster Nodes](https://docs.exasol.com/db/latest/administration/on-premise/architecture/cluster_nodes.htm?Highlight=clusters)
+[Exasol Cluster Nodes](https://docs.exasol.com/db/latest/administration/on-premise/architecture/cluster_nodes.htm)
+
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

@@ -103,3 +103,4 @@ SELECT ETYPE(sysdate, systimestamp, trunc(systimestamp));
 | 1 | TIMESTAMP | java.sql.Timestamp |
 | 2 | TIMESTAMP | java.sql.Timestamp |
 
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

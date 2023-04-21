@@ -64,3 +64,5 @@ alter session set SQL_PREPROCESSOR_SCRIPT = <MYSCHEMA>.POSTGRES2EXA;
 
 * [Preprocessor Scripts Documentation](https://docs.exasol.com/database_concepts/sql_preprocessor.htm)
 * [List of functions in Exasol](https://docs.exasol.com/sql_references/functions/all_functions.htm)
+
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

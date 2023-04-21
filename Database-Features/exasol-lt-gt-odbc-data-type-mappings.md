@@ -68,3 +68,4 @@ How is a EXASOL data type mapped to ODBC data type?
 
 ( * ) Exasol Version 7.0.0
 
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

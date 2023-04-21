@@ -173,16 +173,18 @@ This solution requires that the table storing the XML data is located in the cur
 
 ## Additional References
 
-<https://community.exasol.com/t5/database-features/examining-expression-types-using-udf/ta-p/1436>
+<https://exasol.my.site.com/s/article/Examining-expression-types-using-UDF>
 
-<https://community.exasol.com/t5/data-science/custom-aggregate-functions-for-large-data-sets/ta-p/1420>
+<https://exasol.my.site.com/s/article/Custom-aggregate-functions-for-large-data-sets>
 
-<https://community.exasol.com/t5/data-science/using-custom-jar-java-archive-libraries-within-udfs/ta-p/1113>
+<https://exasol.my.site.com/s/article/Using-custom-JAR-Java-Archive-libraries-within-UDFs>
 
-<https://community.exasol.com/t5/data-science/how-to-create-and-use-udfs/ta-p/501>
+<https://exasol.my.site.com/s/article/How-to-create-and-use-UDFs>
 
 ## Downloads
 [UDF.zip](https://github.com/exasol/Public-Knowledgebase/files/9936894/UDF.zip)
 [Data.zip](https://github.com/exasol/Public-Knowledgebase/files/9936895/Data.zip)
 [xmlexample-0.0.1-SNAPSHOT-jar-with-dependencies.jar.zip](https://github.com/exasol/Public-Knowledgebase/files/9936896/xmlexample-0.0.1-SNAPSHOT-jar-with-dependencies.jar.zip)
 [xmlexample.zip](https://github.com/exasol/Public-Knowledgebase/files/9936897/xmlexample.zip)
+
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

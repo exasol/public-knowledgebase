@@ -116,3 +116,5 @@ will be removed from */etc/snmp/snmpd.conf* and SNMPD will be restarted.
 >>> ret
 'Uninstalled'
 ```
+
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

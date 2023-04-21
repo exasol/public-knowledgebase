@@ -1,11 +1,11 @@
 # Transaction Conflicts for Mixed Read/Write Transactions 
 ## Background
 
-Exasol's transaction isolation level is **serializable**, which means that each transaction is carried out as if it was part of a sequence (even though transactions can run in parallel). It is vital to read about and understand [Exasol's Transaction System](https://community.exasol.com/t5/database-features/transaction-system/ta-p/1522) before continuing with this article. 
+Exasol's transaction isolation level is **serializable**, which means that each transaction is carried out as if it was part of a sequence (even though transactions can run in parallel). It is vital to read about and understand [Exasol's Transaction System](https://exasol.my.site.com/s/article/Transaction-System) before continuing with this article. 
 
 Serialization helps ensure data consistency, but can also lead to some issues, such as: 
 
-* Transactions that must wait for a commit by an earlier transaction before they can continue (more details [here](https://community.exasol.com/t5/database-features/wait-for-commit-on-select-statement/ta-p/1717))
+* Transactions that must wait for a commit by an earlier transaction before they can continue (more details [here](https://exasol.my.site.com/s/article/WAIT-FOR-COMMIT-on-SELECT-statement))
 * Transaction collisions for mixed read/write transactions, which result in a forced rollback of a transaction
 
 This section focuses on the second point – how collisions occur in mixed read/write transactions, and ways to prevent them. 
@@ -167,8 +167,10 @@ The advantage of this option is that it is possible to fully roll back the trans
 ## Additional References
 
 * [Exasol's Transaction System](https://docs.exasol.com/database_concepts/transaction_management.htm)
-* [System Tables and Transaction Conflicts](https://community.exasol.com/t5/database-features/filter-on-system-tables-and-transaction-conflicts/ta-p/1232)
-* [Determining Idle Sessions with Open Transactions](https://community.exasol.com/t5/database-features/how-to-determine-idle-sessions-with-open-transactions/ta-p/1238)
-* [Wait for Commit on SELECT Statements](https://community.exasol.com/t5/database-features/wait-for-commit-on-select-statement/ta-p/1717)
+* [System Tables and Transaction Conflicts](https://exasol.my.site.com/s/article/Filter-on-system-tables-and-transaction-conflicts)
+* [Determining Idle Sessions with Open Transactions](https://exasol.my.site.com/s/article/How-to-determine-idle-sessions-with-open-transactions-Except-Snapshot-Executions)
+* [Wait for Commit on SELECT Statements](https://exasol.my.site.com/s/article/WAIT-FOR-COMMIT-on-SELECT-statement)
 
 "
+
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

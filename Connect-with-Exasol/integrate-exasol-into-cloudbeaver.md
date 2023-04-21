@@ -16,7 +16,7 @@ This blog will show you how to:
 
 ## Prerequisites
 
-The first part of this article should be applicable to Windows/Linux (and probably MacOS); the prerequisites can be found in the [CloudBeaver wiki.](https://github.com/dbeaver/cloudbeaver/wiki/Build-and-deploy#prerequisites)
+The first part of this article should be applicable to Windows/Linux (and probably MacOS); the prerequisites can be found in the [CloudBeaver wiki](https://github.com/dbeaver/cloudbeaver/wiki/Build-and-deploy#prerequisites).
 
 However, for the second part we use Docker, which comes with more restrictions:
 
@@ -501,4 +501,4 @@ Other relevant sites/information:
 ## Downloads
 [CloudBeaverWithExasolDocker.zip](https://github.com/exasol/Public-Knowledgebase/files/9936349/CloudBeaverWithExasolDocker.zip)
 
-
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

@@ -42,21 +42,12 @@ FLUSH HOSTS;
 mysql -u root -p -e 'flush hosts'
 ```
 
-You can find out what causes these faulty connections in the MySQL error log file in the data directory. Now you can try to execute the command again.
-
-In case of such an error message:
-
-
-```"code-java"
-SQL Error [ETL-5]: JDBC-Client-Error: Connecting to 'jdbc:mysql://....com:3306' as user='user' failed: 
-Communications link failure The last packet sent successfully to the server was 0 milliseconds ago. 
-The driver has not received any packets from the server.
-```
-please refer to this Communications Link Failure with JDBC and MySQL (Case: No Connectivity issue) playbook: <https://community.exasol.com/t5/tkb/workflowpage/tkb-id/Connect/article-id/80> 
+You can find out what causes these faulty connections in the MySQL error log file in the data directory. Now you can try to execute the command again. 
 
 ## Additional References
 
-* <https://community.exasol.com/t5/tkb/workflowpage/tkb-id/Connect/article-id/80>
 * <https://dev.mysql.com/doc/refman/8.0/en/flush.html>
 * <https://try2explore.com/questions/12547909>
 * <https://www.xperttimer.de/faq/ich-erhalte-den-fehler-host-is-blocked-because-of-many-connection-errors-unblock-with-mysqladmin-flush-hosts> (written in German)
+
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

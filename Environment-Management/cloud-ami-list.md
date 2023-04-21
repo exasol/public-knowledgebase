@@ -26,3 +26,5 @@ aws ec2 describe-images --query Images[].Name --filters "Name=name,Values=Exasol
     "Exasol-R6.2.6-3-BYOL-d8a5fe21-f7ac-45fb-a03e-d2e768bd92ed-ami-091d8f7cf8181cffd.4"  
 ]
 ```
+
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

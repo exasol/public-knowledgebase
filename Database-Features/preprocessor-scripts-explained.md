@@ -125,4 +125,6 @@ Just make sure you don't put anything dangerous/secret into that schema
 
 * [Preprocessor Scripts Documentation](https://docs.exasol.com/database_concepts/sql_preprocessor.htm)
 * [List of functions in Exasol](https://docs.exasol.com/sql_references/functions/all_functions.htm)
-* <https://community.exasol.com/t5/database-features/using-the-sql-preprocessor-to-support-postgresql-mysql-functions/ta-p/1041>
+* <https://exasol.my.site.com/s/article/Using-the-SQL-preprocessor-to-support-PostgreSQL-MySQL-functions-e-g-DATE>
+
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

@@ -36,7 +36,7 @@ We use a heuristic to merged active transactions (that may be involved in potent
 
 ## Recommendation
 
-Once you know the conflict, the focus should be on avoiding the conflict by adapting the loading processes. You can learn more about preventing transaction conflicts in mixed read/write scenarios [here](https://community.exasol.com/t5/database-features/transaction-conflicts-for-mixed-read-write-transactions/ta-p/2143). It includes an explanation into the transaction system as well as some tips and tricks to avoid transaction conflicts.
+Once you know the conflict, the focus should be on avoiding the conflict by adapting the loading processes. You can learn more about preventing transaction conflicts in mixed read/write scenarios [here](https://exasol.my.site.com/s/article/Transaction-Conflicts-for-Mixed-Read-Write-Transactions). It includes an explanation into the transaction system as well as some tips and tricks to avoid transaction conflicts.
 
 Locking tables used in a transaction at the beginning of the transaction is a good approach to prevent unwanted transaction rollbacks. 
 To lock Tables Required for Transactions in Advance you can use:
@@ -50,11 +50,13 @@ Example:
 ```sql
 DELETE FROM TEST.T1 WHERE FALSE;
 ```
-If it is not possible to determine the exact conflict from system tables when the transaction is merged, if it happens regularly, if the best practices on avoiding transaction conflicts do not help and if you need further clarity on the exact conflict, [contact Exasol support](https://community.exasol.com/t5/support/ct-p/Support) and send the [session and server logs](https://docs.exasol.com/administration/on-premise/support/logs_files_for_sql_server_processes.htm) for the day that the conflict occurred. 
+If it is not possible to determine the exact conflict from system tables when the transaction is merged, if it happens regularly, if the best practices on avoiding transaction conflicts do not help and if you need further clarity on the exact conflict, [contact Exasol support](https://www.exasol.com/product-overview/customer-support/) and send the [session and server logs](https://docs.exasol.com/administration/on-premise/support/logs_files_for_sql_server_processes.htm) for the day that the conflict occurred. 
 
 ## Additional References
 
-* [Investigating Transaction Conflicts using Auditing](https://community.exasol.com/t5/database-features/investigating-transaction-conflicts-using-auditing/ta-p/2177)
+* [Investigating Transaction Conflicts using Auditing](https://exasol.my.site.com/s/article/Investigating-Transaction-Conflicts-using-Auditing)
 * [Gathering Logs for SQL/Server Processes](https://docs.exasol.com/administration/on-premise/support/logs_files_for_sql_server_processes.htm)
-* [Transaction Conflicts in Mixed Read/Write Scenarios](https://community.exasol.com/t5/database-features/transaction-conflicts-for-mixed-read-write-transactions/ta-p/2143)
+* [Transaction Conflicts in Mixed Read/Write Scenarios](https://exasol.my.site.com/s/article/Transaction-Conflicts-for-Mixed-Read-Write-Transactions)
 * [Exasol's Transaction Management System](https://docs.exasol.com/database_concepts/transaction_management.htm)
+
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

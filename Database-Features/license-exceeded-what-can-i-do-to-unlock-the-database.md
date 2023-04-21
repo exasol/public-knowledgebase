@@ -45,11 +45,11 @@ To resolve the limit exceeded on your license, you have 2 options:
 
 The first solution is to clear some large data (DROP or DELETE database tables). When this is done, connect as SYS (or DBA) and perform "FLUSH STATISTICS TASKS;" on the database to trigger the check; the (de)activation of the "Restricted Mode" takes about 3 to 5 minutes.
 
-Please note, it is important to clear sufficient data so we are back below 100% of the license. Additionally, you can check the[ EXA_DB_SIZE_LAST_DAY](https://docs.exasol.com/sql_references/system_tables/statistical/exa_db_size_last_day.htm)table to view information on database sizes.
+Please note, it is important to clear sufficient data so we are back below 100% of the license. Additionally, you can check the [EXA_DB_SIZE_LAST_DAY](https://docs.exasol.com/sql_references/system_tables/statistical/exa_db_size_last_day.htm) table to view information on database sizes.
 
 ## 2. License update
 
-A second solution might be to update the License. This can take some time, therefore if you are already in negotiations with Exasol, please tell Exasol Support (see some details [here](https://community.exasol.com/t5/support/ct-p/Support "Exasol")).
+A second solution might be to update the License. This can take some time, therefore if you are already in negotiations with Exasol, please tell Exasol Support (see some details [here](https://www.exasol.com/product-overview/customer-support/ "Exasol")).
 
 If you are holding a Raw data license, you may want to change the new one without disruption. To do so, please follow the steps below:
 
@@ -69,3 +69,4 @@ Here you link to other sites/information that may be relevant.
 
 <https://docs.exasol.com/sql_references/system_tables/statistical/exa_system_events.htm>
 
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

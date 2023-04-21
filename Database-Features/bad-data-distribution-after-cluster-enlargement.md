@@ -24,3 +24,4 @@ In the worst case, X==1 and any query asking for the latest data are performed o
 
 To avoid this, always put a distribution key on your fact tables, but **not** on a date column.
 
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

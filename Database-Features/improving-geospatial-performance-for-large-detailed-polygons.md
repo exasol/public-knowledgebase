@@ -150,7 +150,9 @@ In the end, what we get looks something like this for a 10x10 grid. Depending on
   
 ## Step 4 -  Fitting the grid to the polygon
 
-![](images/2020-06-19-11_54_44-Presentation2.png)Lastly we face the challenge to fit our grid to our polygon outline. In other words: we need to get rid of all orange areas. We achieve this by using the following query:
+![](images/2020-06-19-11_54_44-Presentation2.png)
+
+Lastly we face the challenge to fit our grid to our polygon outline. In other words: we need to get rid of all orange areas. We achieve this by using the following query:
 
 
 ```markup
@@ -177,3 +179,5 @@ Using this method we were able to speed up the process in our NYC TAXI demo by 7
 * [Geospatial Documentation](https://docs.exasol.com/sql_references/geospatialdata/geospatialdata_overview.htm)
 * [Python3 Documentation](https://docs.exasol.com/database_concepts/udf_scripts/python3.htm)
 * [Github Project - NYC TAXI where this method was used](https://github.com/exasol/opendata-examples/tree/master/nyc_taxi)
+
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

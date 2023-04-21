@@ -46,4 +46,4 @@ Add one or two DNS servers reachable from the VM (e.g. "8.8.8.8" for an environm
 
 Log out.
 
-
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

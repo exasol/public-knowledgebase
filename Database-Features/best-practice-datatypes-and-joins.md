@@ -9,7 +9,7 @@ All this may be caused by a lack of discipline in database design and/or data cl
 
 ## Explanation
 
-Since expression indexes (see <https://community.exasol.com/t5/database-features/indexes/ta-p/1512>) may occur when joining on different datatypes or joining on expressions we recommend having the same data types and homogenous data in the tables that are joined.
+Since expression indexes (see <https://exasol.my.site.com/s/article/Indexes>) may occur when joining on different datatypes or joining on expressions we recommend having the same data types and homogenous data in the tables that are joined.
 
 Let's assume we have two tables (T1 and T2) with two columns each (ID and COUNTRY_CODE). The COUNTRY_CODE is stored heterogeneous (e.g. 'USA' and 'usa' as COUNTRY_CODE for the United States of America).
 
@@ -39,3 +39,4 @@ In addition, joining on expressions can negatively affect the accuracy of estima
 **It is highly recommended to keep datatypes and data within a column strict:**  
 When storing a certain type of data (monetary amounts, points in time, attributes, ...) make sure that the same physical storage is used in all places. This includes the choice of data types as well as fixing upper/lower case, abbreviations, etc.
 
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

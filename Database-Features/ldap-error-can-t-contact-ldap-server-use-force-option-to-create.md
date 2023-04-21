@@ -13,7 +13,7 @@ ldap error: Can't contact LDAP server, use FORCE option to create user
 ```
 ## Solution
 
-1. Check with your LDAP team that the Exasol database can reach the LDAP server. You can find more information [here](https://community.exasol.com/t5/database-features/manual-ldap-connection-test/ta-p/1679)
+1. Check with your LDAP team that the Exasol database can reach the LDAP server. You can find more information [here](https://exasol.my.site.com/s/article/Manual-LDAP-Connection-Test)
 
 2. If you are sure that there is no problem with your LDAP server, you can always create the user with the FORCE option. In this case, the connection check will not be performed:
 
@@ -30,3 +30,5 @@ You should only use the FORCE option with caution to prevent confusion from user
 ## Additional References
 
 * [CREATE USER Syntax](https://docs.exasol.com/sql/create_user.htm)
+
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

@@ -20,3 +20,4 @@ The ticket contains the following information:
 
 For performance issues, we may need additional statistics for the entire database. In addition, if a particular query is running slower than expected, we will need [profiling information](https://docs.exasol.com/db/latest/administration/on-premise/support/profiling_information.htm) to investigate these.
 
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

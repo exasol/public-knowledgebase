@@ -9,7 +9,7 @@ When transferring data between SQL Server and Exasol, there are two different dr
 
 ## JTDS Driver
 
-For performance reasons, we recommend using the[**jTDS JDBC driver for SQL Server**](https://sourceforge.net/projects/jtds/). In versions 6.1 and 6.2, this is preinstalled. However, if you need to [install the driver in Exaoperation](https://docs.exasol.com/loading_data/connect_databases/import_data_using_jdbc.htm), you can download the driver and add it with this information:
+For performance reasons, we recommend using the [**jTDS JDBC driver for SQL Server**](https://sourceforge.net/projects/jtds/). In versions 6.1 and 6.2, this is preinstalled. However, if you need to [install the driver in Exaoperation](https://docs.exasol.com/loading_data/connect_databases/import_data_using_jdbc.htm), you can download the driver and add it with this information:
 
 * Main Class: net.sourceforge.jtds.jdbc.Driver
 * Prefix: jdbc:jtds:sqlserver:
@@ -128,3 +128,5 @@ Please note, that usage of the newly created connection requires either a system
 * [SQL Server JDBC Documentation](https://docs.microsoft.com/en-us/sql/connect/jdbc/microsoft-jdbc-driver-for-sql-server?view=sql-server-ver15)
 * [IMPORT](https://docs.exasol.com/sql/import.htm)
 * [EXPORT](https://docs.exasol.com/sql/export.htm)
+
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

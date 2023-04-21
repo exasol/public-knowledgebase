@@ -1,5 +1,5 @@
 # Tracking Exasol metadata in a code-versioning system 
-In a [recent user group](https://community.exasol.com/t5/rest-of-the-world/17-nov-2021-17-00-cet-grant-street-group-managing-exasol/td-p/7575), I described our solution to keeping track of Exasol metadata. This article is meant to provide more details of our implementation for those who may wish to adapt parts of it.
+In a recent user group, I described our solution to keeping track of Exasol metadata. This article is meant to provide more details of our implementation for those who may wish to adapt parts of it.
 
 ## Background
 
@@ -124,3 +124,4 @@ If you wish you also choose to export small amounts of table or view data (the a
 ## Downloads
 [exasol-bitbucket-backup.zip](https://github.com/exasol/Public-Knowledgebase/files/9928339/exasol-bitbucket-backup.zip)
 
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

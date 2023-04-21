@@ -327,3 +327,4 @@ The second CON-point is the reason we talked about storing the raw XML in a **VA
 ## Downloads
 [POSLog Spec.pdf](https://github.com/exasol/Public-Knowledgebase/files/9937391/POSLog.Spec.pdf)
 
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

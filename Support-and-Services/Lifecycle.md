@@ -11,7 +11,7 @@ A release includes all components listed in the below download links.
 |  Release | Release Date  | End of Life   |  Remarks  | 
 |---|---|---|---|
 |  Exasol 6.2 |  2019-07-24 |  2021-12-31 |  out of support since 2021-12-31 |
-|  Exasol 7.0 |  2020-09-11 |  2023-03-31 |  extended to 2023-03-31|
+|  Exasol 7.0 |  2020-09-11 |  2023-06-30 |  extended to 2023-06-30|
 |  Exasol 7.1 |  2021-08-03 |  2024-06-30 |  extended to 2024-06-30 |
 
 ## Client Platform Support
@@ -88,3 +88,4 @@ Earlier versions than 6.2.3 supported JDBC 3.0. Since 6.2.3 we support JDBC 4.1.
 |Java SE 8|	2022-03-31|	|
 |Java SE 7|	2021-07-31|	last supported in 7.0.11|
 
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

@@ -61,3 +61,5 @@ This article describes the process of installing HP Service Pack for ProLiant so
 
 ## Downloads
 [snmpd.zip](https://github.com/exasol/Public-Knowledgebase/files/9922058/snmpd.zip)
+
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

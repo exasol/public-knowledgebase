@@ -149,3 +149,4 @@ In order to change the existing schedule, the script can be reused.
 
 <https://docs.exasol.com/administration/google/plugin/cloud_ui_plugin.htm>
 
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

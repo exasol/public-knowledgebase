@@ -37,7 +37,7 @@ You will need:
 
 ## Step 1
 
-As always we suggest starting with our documentation, to at least familiarize yourself with what to expect. We can start here at [virtual_schemas](https://docs.exasol.com/database_concepts/virtual_schemas.htm?Highlight=virtual%20schema).
+As always we suggest starting with our documentation, to at least familiarize yourself with what to expect. We can start here at [virtual_schemas](https://docs.exasol.com/database_concepts/virtual_schemas.htm).
 
 ## Step 2
 
@@ -69,7 +69,7 @@ Our example accesses the Exasol UI with the URL <https://localhost:4443/>.
 
 **e.** Define the new driver.
 
-Here we see the JDBC driver settings box, you can find more information here at [sqlserver_user_guide.](https://github.com/exasol/sqlserver-virtual-schema/blob/main/doc/user_guide/sqlserver_user_guide.md)
+Here we see the JDBC driver settings box, you can find more information here at [sqlserver_user_guide](https://github.com/exasol/sqlserver-virtual-schema/blob/main/doc/user_guide/sqlserver_user_guide.md).
 
 ![](images/5_jdbc_settings.png)
 
@@ -414,3 +414,5 @@ SELECT * FROM "t" ORDER BY "col1" DESC;
 
 ## Downloads
  [cr_LS_example.zip](https://github.com/exasol/Public-Knowledgebase/files/9937375/cr_LS_example.zip)
+
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

@@ -74,5 +74,6 @@ To generate this message, Docker took the following steps:
 ```
 $ docker image pull <image_name>
 ```
-After you finish the steps above you are ready to continue with installing your Exasol system. You can do so by following the instructions at [How to Deploy a Single-Node Exasol Database as a Docker Image for Testing Purposes](https://community.exasol.com/t5/environment-management/how-to-deploy-a-single-node-exasol-database-as-a-docker-image/ta-p/921).
+After you finish the steps above you are ready to continue with installing your Exasol system. You can do so by following the instructions at [How to Deploy a Single-Node Exasol Database as a Docker Image for Testing Purposes](https://exasol.my.site.com/s/article/How-to-deploy-a-single-node-Exasol-database-as-a-Docker-image-for-testing-purposes).
 
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

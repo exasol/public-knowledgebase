@@ -114,7 +114,8 @@ group by iproc(),						-- the node no for data locality
 ```
 ### Additional references:
 
-<https://community.exasol.com/t5/database-features/how-to-use-exasolution-r-sdk/ta-p/1224>
+<https://exasol.my.site.com/s/article/How-to-use-EXASolution-R-SDK>
 
-<https://community.exasol.com/t5/environment-management/how-to-create-an-exabucketfs-service-and-bucket/ta-p/1515>
+<https://exasol.my.site.com/s/article/How-to-create-an-EXABucketFS-service-and-bucket>
 
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

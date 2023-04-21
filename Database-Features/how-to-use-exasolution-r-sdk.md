@@ -1,7 +1,7 @@
 # How to use EXASolution R SDK 
 ## Background
 
-Exasol R SDK offers functionality to interact with the Exasol database out of R programs. It extends the ORDBC and offers fast data transfer between Exasol and R (exa.readData()andexa.writeData()) and it makes it convenient to run parts of your R code in parallel in Exasol using R UDF functions behind the scenes (exa.createScript())
+Exasol R SDK offers functionality to interact with the Exasol database out of R programs. It extends the ORDBC and offers fast data transfer between Exasol and R (`exa.readData()` and `exa.writeData()`) and it makes it convenient to run parts of your R code in parallel in Exasol using R UDF functions behind the scenes (`exa.createScript()`)
 
 ## Example (Digit recognition)
 
@@ -22,7 +22,7 @@ The attached files can be used to setup your Exasol database for the example:
 
 ## R implementation (reading the data sets from an EXASolution database)
 
-The attached file [03_RandomForest.r](https://www.exasol.com/support/secure/attachment/45789/45789_03_RandomForest.r "03_RandomForest.r")shows how to useexa.readData()andexa.writeData()to interact with the database in R. As of Exasol 6.2.x, we needed to modify 1 line in 03_RandomForest.r in order to account for R version differences. Specifically, we are adding a parameter to the save command - version = 2. You are welcome to skip this modification and come back to revisit if you run into issues.
+The attached file [03_RandomForest.r](https://www.exasol.com/support/secure/attachment/45789/45789_03_RandomForest.r "03_RandomForest.r") shows how to use `exa.readData()` and `exa.writeData()` to interact with the database in R. As of Exasol 6.2.x, we needed to modify 1 line in 03_RandomForest.r in order to account for R version differences. Specifically, we are adding a parameter to the save command - version = 2. You are welcome to skip this modification and come back to revisit if you run into issues.
 
 Before:
 
@@ -55,7 +55,7 @@ This requires an ODBC DSN (named "solo" in this example)
 ## Step 4. Write decision tree to Exasol
 
 1. We will use a bucket called binary to store the decision forest
-2. Detailed information on EXABucket FS and buckets can be found in <https://community.exasol.com/t5/environment-management/how-to-create-an-exabucketfs-service-and-bucket/ta-p/1515>**
+2. Detailed information on EXABucket FS and buckets can be found in <https://exasol.my.site.com/s/article/How-to-create-an-EXABucketFS-service-and-bucket>**
 3. This item does not apply to Exasol 6+ and is only left in for archival purposes. **Important Deprecation Notice:**  In Version 5 it is not possible to store binary data in EXASOL database. One possibility is to serialize the decision forest and store it in a table. SInce VARCHAR type in EXASOL is limited to 2 million characters, the resulting string should not exceed 2 million characters.    
 ```"code-java"
 curl -v -X PUT -T rf.dat http://w:<write_pw>@<ip of one cluster node>:<port>/binary/rf.dat
@@ -68,7 +68,7 @@ The output is the predicted digit.
 
 1. Load forest from the bucket
 2. Create a dataframe for all input columns (pixels)
-3. Usepredict()and emit the predictions
+3. Use `predict()` and emit the predictions
 
 ## Step 6. Using UDF within EXASolution
 
@@ -93,3 +93,5 @@ select rf.predict(Model_str, PIXEL0,PIXEL1,PIXEL2,PIXEL3,PIXEL4,PIXEL5,PIXEL6,PI
 | 1 |
 | 7 |
 
+
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

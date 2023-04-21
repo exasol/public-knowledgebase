@@ -55,3 +55,4 @@ GRANT EXECUTE on SCRIPT RETAIL.WHOAMI to john;
 
 <https://docs.exasol.com/database_concepts/database_users_roles.htm>
 
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

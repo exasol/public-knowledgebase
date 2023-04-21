@@ -156,7 +156,7 @@ notify_backup "/usr/libexec/keepalived/notify.sh BACKUP"
 notify_fault "/usr/libexec/keepalived/notify.sh FAULT"  
 }   
 ```
-### 4. Keepalived will trigger a script when the HAproxy service fails on the current master, deploy the scripts (**notify.sh, master.sh, backup.sh**) on both instances ( (!)change owner to keepalived_script if using the latest version of keepalived)
+### 4. Keepalived will trigger a script when the HAproxy service fails on the current master, deploy the scripts (**notify.sh, master.sh, backup.sh**) on both instances ((!) change owner to keepalived_script if using the latest version of keepalived)
 
 
 ```
@@ -260,4 +260,4 @@ echo "$(date) I'm backup nothing to do"
 ## Downloads
 [keepalived_initd.zip](https://github.com/exasol/Public-Knowledgebase/files/9936059/keepalived_initd.zip)
 
-
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

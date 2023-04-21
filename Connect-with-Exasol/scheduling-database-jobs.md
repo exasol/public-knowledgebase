@@ -9,7 +9,7 @@ Exasol does not offer an in-database scheduler. There is a variety of 3rd party 
 
 One method is to install Exaplus CLI on a Linux environment, and set up a Cron Job which opens up Exaplus. You can find more information about Cron Jobs [here](https://ostechnix.com/a-beginners-guide-to-cron-jobs/). The cronjob will run every x minutes or hours, and will connect to the database via Exaplus. Within the Exaplus command, you can specify either a query to run, or a file containing multiple SQL Files. 
 
-You can specify your credentials directly in the command, but we recommend to use an [Exaplus Profile](https://docs.exasol.com/connect_exasol/sql_clients/exaplus_cli/exaplus_cli.htm?Highlight=profile) so that you only enter this information once and it is not visible to other users:
+You can specify your credentials directly in the command, but we recommend to use an [Exaplus Profile](https://docs.exasol.com/connect_exasol/sql_clients/exaplus_cli/exaplus_cli.htm) so that you only enter this information once and it is not visible to other users:
 
 
 ```markup
@@ -37,3 +37,5 @@ Now I can set up the cron job to use this file instead of a single command:
 
 * [Beginner's Guide to Cron](https://ostechnix.com/a-beginners-guide-to-cron-jobs/)
 * [Exaplus CLI](https://docs.exasol.com/connect_exasol/sql_clients/exaplus_cli/exaplus_cli.htm)
+
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

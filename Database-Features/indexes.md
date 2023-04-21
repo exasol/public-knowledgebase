@@ -44,7 +44,7 @@ In Version 5 system tables showing detailed information - including size - for a
 
 ## Index types
 
-In Exasol, there are two different types of indexes: GLOBAL and LOCAL indexes depending on the join type (see [Local-and-Global-joins](https://community.exasol.com/t5/database-features/local-and-global-joins/ta-p/1297)). Like tables, indices are stored in a distributed fashion across the cluster.
+In Exasol, there are two different types of indexes: GLOBAL and LOCAL indexes depending on the join type (see [Local-and-Global-joins](https://exasol.my.site.com/s/article/Local-and-Global-Joins)). Like tables, indices are stored in a distributed fashion across the cluster.
 
 #### LOCAL index
 
@@ -58,7 +58,8 @@ If a distribution key is set on the table and the index contains all columns of 
 
 ## Additional References
 
-[Local-and-Global-joins](https://community.exasol.com/t5/database-features/local-and-global-joins/ta-p/1297?search-action-id=2672626244&search-result-uid=1297 "This") 
+[Local-and-Global-joins](https://exasol.my.site.com/s/article/Local-and-Global-Joins?search-action-id=2672626244&search-result-uid=1297 "This") 
 
-[Does-Exasol-index-nulls](https://community.exasol.com/t5/database-features/does-exasol-index-nulls/ta-p/1243?search-action-id=2672652107&search-result-uid=1243) 
+[Does-Exasol-index-nulls](https://exasol.my.site.com/s/article/Does-Exasol-index-NULLS??search-action-id=2672652107&search-result-uid=1243) 
 
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

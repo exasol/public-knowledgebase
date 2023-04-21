@@ -40,3 +40,4 @@ Follow the steps described in the comments of the file [azure_blob.sql](https://
 
 <https://docs.exasol.com/loading_data/load_data_azure_blob.htm>
 
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

@@ -52,7 +52,7 @@ from sklearn.ensemble import RandomForestClassifier
 C = pyexasol.connect(dsn='localhost:8563', user='sys', password='exasol')
 train = C.export_to_pandas("SELECT * FROM RF.TRAIN") 
 ```
-The pandas dataframe train can be inspected withtrain.head(5)ortrain.describe(). Next, the labels (bad/normal/good) from the taste column need to be converted into integers (-1/0/1):
+The pandas dataframe train can be inspected with `train.head(5)` or `train.describe()`. Next, the labels (bad/normal/good) from the taste column need to be converted into integers (-1/0/1):
 
 
 ```"code-java"
@@ -63,7 +63,7 @@ labels = np.array(train['TASTE'])
 labels = labels.astype('int')
 features = train.drop('TASTE', axis=1)
 ```
-The arraylabelsjust contains the numeric labels for a all wines, e.g.[1, 0, 0, -1, 1, 1, ...].featureslooks like the originaltraindataframe but it does not contain the taste column. Next, the random-forest model can be trained and written into a file:
+The array `labels` just contains the numeric labels for a all wines, e.g. [1, 0, 0, -1, 1, 1, ...]. `features` looks like the original `train` dataframe but it does not contain the taste column. Next, the random-forest model can be trained and written into a file:
 
 
 ```"code-java"
@@ -170,9 +170,11 @@ select rf.predict_wine_py(wine_id, fixed_acidity, volatile_acidity, citric_acid,
 
 * [BucketFS Explorer](https://github.com/exasol/bucketfs-explorer)
 * [UDF Scripts](https://docs.exasol.com/database_concepts/udf_scripts.htm)
-* [Creating a UDF](https://community.exasol.com/t5/Data-Science/How-to-create-and-use-UDFs/ta-p/501)
+* [Creating a UDF](https://exasol.my.site.com/s/article/How-to-create-and-use-UDFs)
 
 ## Downloads
 [test.zip](https://github.com/exasol/Public-Knowledgebase/files/9936798/test.zip)
 [DDL_and_IMPORT.zip](https://github.com/exasol/Public-Knowledgebase/files/9936800/DDL_and_IMPORT.zip)
 [train.zip](https://github.com/exasol/Public-Knowledgebase/files/9936801/train.zip)
+
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

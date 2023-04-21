@@ -58,6 +58,8 @@ It**will**execute in any other case, including
 
 ## Additional References
 
-* [NULL in Exasol](https://community.exasol.com/t5/Database-Features/NULL-in-Exasol/ta-p/363)
+* [NULL in Exasol](https://exasol.my.site.com/s/article/NULL-in-Exasol)
 * [UDF Scripts](https://docs.exasol.com/database_concepts/udf_scripts.htm)
 * [Lua Scripting](https://docs.exasol.com/database_concepts/scripting.htm)
+
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

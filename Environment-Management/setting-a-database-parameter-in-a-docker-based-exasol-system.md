@@ -100,3 +100,4 @@ This will add the database parameters, but will not be persistent throughout reb
 
 ![](images/DWAD_PRINT.png)
 
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

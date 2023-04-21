@@ -66,7 +66,9 @@ Let's pick a  good recognizable name and then press "Create"
 
 This will open another pop-up menu:
 
-![](images/exa-Pieterjan_2-1621602126955.png)Here we get the option to download an express setup installer or a default installer.
+![](images/exa-Pieterjan_2-1621602126955.png)
+
+Here we get the option to download an express setup installer or a default installer.
 
 The express setup installer takes care of everything.
 
@@ -266,3 +268,4 @@ As you can see the setup and workflows for using the Exasol database in Azure Da
 
 We hope you've enjoyed reading this article.
 
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

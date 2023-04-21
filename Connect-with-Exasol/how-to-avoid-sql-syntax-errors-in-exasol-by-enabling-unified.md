@@ -82,3 +82,4 @@ All relevant steps are described in MicroStrategy Knowledge Base article [KB435
 
 **Install the latest Exasol JDBC driver** (or ODBC driver) **on each MicroStrategy Intelligence Server in the cluster** as described in chapter 4 of the MicroStrategy Knowledge Base article **[Exasol 6.x](https://community.microstrategy.com/s/article/Exasol-6-x?language=en_US)**. **Do not forget to restart the Intelligence Server** after installing the driver. You might also follow chapter 5 and 6 in the KB article.
 
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

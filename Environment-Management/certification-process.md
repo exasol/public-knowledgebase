@@ -49,3 +49,4 @@ The new certified hardware will be added to the list of certified [hardware](htt
 
 In the cases of a shared or virtual environment, Exasol recognizes errors as defined in our terms and conditions only if they are reproducible on the standard hardware. Moreover, as it is not possible for us to properly analyze performance issues in a shared environment, they may not be recognized as errors. Please be aware, the same applies to the incident management: Exasol operation engineers will handle incidents from the operating system level only.
 
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

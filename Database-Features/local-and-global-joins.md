@@ -1,7 +1,7 @@
 # Local and Global Joins 
 ## Background
 
-In Exasol, there are two different types of joins: A local join and a global join. The type is not influenced by the SQL statement, but by the internal data distribution (see [here](https://community.exasol.com/t5/database-features/data-distribution/ta-p/772) for more information.
+In Exasol, there are two different types of joins: A local join and a global join. The type is not influenced by the SQL statement, but by the internal data distribution (see [here](https://exasol.my.site.com/s/article/Data-Distribution) for more information.
 
 ## Explanation
 
@@ -17,7 +17,7 @@ A global join causes network traffic by finding matches and transferring needed 
 
 ## Local Join
 
-Using distribution keys (see [here](https://community.exasol.com/t5/database-features/data-distribution/ta-p/772)) on the join columns (CUSTOMER.CITY_ID and CITY.ID in the example) causes a local join.
+Using distribution keys (see [here](https://exasol.my.site.com/s/article/Data-Distribution)) on the join columns (CUSTOMER.CITY_ID and CITY.ID in the example) causes a local join.
 
 
 ```"code-sql"
@@ -51,7 +51,9 @@ Typically a local join can be executed much faster than a global join since no n
 
 ## Additional References
 
-* [Data Distribution](https://community.exasol.com/t5/database-features/data-distribution/ta-p/772)
+* [Data Distribution](https://exasol.my.site.com/s/article/Data-Distribution)
 * [Distribution Keys](https://docs.exasol.com/sql/alter_table(distribution_partitioning).htm)
 * [Profiling](https://docs.exasol.com/database_concepts/profiling.htm)
 * [Performance Guide](https://docs.exasol.com/performance/best_practices.htm#DistributionKeys)
+
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

@@ -7,7 +7,7 @@ When looking at Exasol Virtual Schemas in our [Documentation](https://docs.exaso
 
 Notice, how it sais "external **data sources**" and not "external databases". This is for a reason. As a matter of fact Virtual Schemas allow you to access **ANY** arbitrary data source through the standard interface of SQL. Up until now we provided Virtual Schema adapters for numerous relational database management systems. I took the concept a step further with this project. In this article I'll explain to you how Exasol Virtual Schemas enable you access a REST API via standard SQL and use it as if the API were a table in your database. This concept can be carried over to **any** API (public or private) and is of great use for data scientists and power users. Enjoy!
 
-If you want to learn more about the inner workings of Exasols Virtual Schema adapter please consult 's series on them: [How to build your own Virtual Schema Adapter.](https://www.exasol.com/en/resource/how-to-build-your-own-virtual-schema-adapter-part-1/)
+If you want to learn more about the inner workings of Exasols Virtual Schema adapter please consult 's series on them: [How to build your own Virtual Schema Adapter](https://www.exasol.com/en/resource/how-to-build-your-own-virtual-schema-adapter-part-1/).
 
 ## Explanation
 
@@ -193,3 +193,4 @@ AND temperature > 25.0;
 
 Because we are using openweathers free plan rate limits apply. No more then 60 requests can be made each minute. If the rate limit is exceeded an error will be returned. Further more as free users we are not permitted to use other more powerful APIs openweather is offering. But for demo purposes that's fine.
 
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

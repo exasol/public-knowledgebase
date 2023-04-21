@@ -1,7 +1,7 @@
 # Exasol Community Edition: Enable Internet Access using Vmware 
 ## Background
 
-Sometimes, you may want to enable internet access for your Community Edition, for example to load publicly accessible data sets. This article shows how to do this using VMWare. A [similar article](https://community.exasol.com/t5/database-features/enable-internet-access-for-exasol-community-edition/ta-p/1439) exists already for Virtualbox.
+Sometimes, you may want to enable internet access for your Community Edition, for example to load publicly accessible data sets. This article shows how to do this using VMWare. A [similar article](https://exasol.my.site.com/s/article/Enable-internet-access-for-Exasol-Community-Edition) exists already for Virtualbox.
 
 ## Prerequisites
 
@@ -70,4 +70,6 @@ Network settings on virtual machines can be very tricky. Even after performing t
 
 * [VMWare Documentation](https://docs.vmware.com/en/VMware-Workstation-Pro/index.html)
 * [Community Edition Installation](https://docs.exasol.com/get_started/tryexasol/communityedition.htm)
-* [Enable networking for Virtualbox](https://community.exasol.com/t5/database-features/enable-internet-access-for-exasol-community-edition/ta-p/1439)
+* [Enable networking for Virtualbox](https://exasol.my.site.com/s/article/Enable-internet-access-for-Exasol-Community-Edition)
+
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

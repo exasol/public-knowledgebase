@@ -86,5 +86,5 @@ server = xmlrpc('https://%s:%s@%s/cluster1/' % (user,password,server) , context 
 
 * Client Port (pepserver) is listening on TCP 15700
 
-
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 
 

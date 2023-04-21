@@ -13,7 +13,7 @@ Within Exasol there are four different resources available and the performance s
 
 ## Details
 
-Exasol attempts to use as many resources as possible by internal parallelization (multi-threading). If there is more than one active query the resource management distributes the available resources among those. By default, all queries are treated equally. By using priorities (see <https://docs.exasol.com/6.2/database_concepts/priorities.htm>) the resource distribution can be influenced.  
+Exasol attempts to use as many resources as possible by internal parallelization (multi-threading). If there is more than one active query the resource management distributes the available resources among those. By default, all queries are treated equally. By using consumer groups (see <https://docs.exasol.com/db/latest/database_concepts/resource_manager.htm>) the resource distribution can be influenced.  
 The resource management distinguishes between "short" and "long" queries:
 
 * Short: queries running less than 5 seconds
@@ -24,3 +24,4 @@ This concept is designed to provide an optimal throughput for mixed workloads (S
 
 Time slice allocation, especially entering PAUSED mode requires pre-emptive action by the affected process. Therefore the 20 seconds are not always an exact measure, but require query execution to reach certain checkpoints. Those checkpoints are very frequent for regular execution, but recently it was detected that for example, an 'active' prepared statement that is actually waiting for more client data does**not**enter such a checkpoint until a data packet arrives. Until this is improved on the database side, we recommend closing prepared statements whenever the application realizes it will have to wait for more data.
 
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

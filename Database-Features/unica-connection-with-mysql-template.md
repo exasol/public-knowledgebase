@@ -37,3 +37,5 @@ Activate this preprocessor script for all Unica session or system wide:
 ```"code-java"
 ALTER [SESSION|SYSTEM] SET sql_preprocessor_script=DATAMART.PPSCRIPT_MYSQL;
 ```
+
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

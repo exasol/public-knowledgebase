@@ -1,7 +1,7 @@
 # Parsing JSON data with python 
 ## Background
 
-This solution is an example of how to load and parse[JSON](https://en.wikipedia.org/wiki/JSON)data with a simple SQL Statement within EXASOL. In this case, the integrated python user-defined functions (UDFs) in combination with[the python JSON library](https://docs.python.org/2/library/json.html)are used. Additional JSON feature content can also be found here: <https://community.exasol.com/t5/discussion-forum/sneakpreview-on-version-7-json-functions/m-p/1710>.
+This solution is an example of how to load and parse [JSON](https://en.wikipedia.org/wiki/JSON) data with a simple SQL Statement within EXASOL. In this case, the integrated python user-defined functions (UDFs) in combination with [the python JSON library](https://docs.python.org/2/library/json.html) are used. Additional JSON feature content can also be found here: <https://docs.exasol.com/db/latest/sql_references/functions/json.htm>.
 
 ## Prerequisites
 
@@ -27,11 +27,11 @@ def run(ctx):
 /
 ```
 This script will give you a varchar(2000000) field called OUTPUT_DATA with the content of the file.  
-In this example we load JSON data from[the Canadian Recalls and Safety Alerts](http://open.canada.ca/data/en/dataset/d38de914-c94c-429b-8ab1-8776c31643e3)Dataset. You'll find the license[here](http://open.canada.ca/en/open-government-licence-canada).
+In this example we load JSON data from [the Canadian Recalls and Safety Alerts](http://open.canada.ca/data/en/dataset/d38de914-c94c-429b-8ab1-8776c31643e3) Dataset. You'll find the license [here](http://open.canada.ca/en/open-government-licence-canada).
 
 ## How to parse the JSON data.
 
-The following script is an example and was created to parse the JSON file of[the Canadian Recalls and Safety Alerts](http://open.canada.ca/data/en/dataset/d38de914-c94c-429b-8ab1-8776c31643e3).  
+The following script is an example and was created to parse the JSON file of [the Canadian Recalls and Safety Alerts](http://open.canada.ca/data/en/dataset/d38de914-c94c-429b-8ab1-8776c31643e3).  
 Please adjust it to your needs / your JSON file. In the EMITS section, you can define the output you want and in the run function, you define how the data is parsed.
 
 ## Step 1
@@ -101,5 +101,6 @@ The script to load data from a URL in this simple example is limited to a maximu
 
 <https://docs.exasol.com/database_concepts/udf_scripts/python.htm>
 
-<https://community.exasol.com/t5/discussion-forum/sneakpreview-on-version-7-json-functions/m-p/1710>
+<https://docs.exasol.com/db/latest/sql_references/functions/json.htm>
 
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

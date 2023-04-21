@@ -47,3 +47,5 @@ EXECUTE script test.test_hashtype() with output;
 ## Additional References
 
 * <https://docs.exasol.com/7.1/database_concepts/udf_scripts/lua.htm#Parameters>
+
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

@@ -118,3 +118,5 @@ We would in general not recommend this because it is way more time-consuming and
 If you want to do it, however, it's available on the publish page in the Data Catalog Portal. The process is very similar to using the publishing tool.
 
 ![](images/exaPieterjan_3-1638538888692.png)
+
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

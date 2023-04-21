@@ -213,7 +213,7 @@ FROM
 
 ### What to do with aggregated select (no GROUP BY)
 
-The case that KEEP DENSE RANK FIRST/LAST is used in an aggregated select without GROUP BY is a simpler special case of the case with GROUP BY. In that case we add aGROUP BY GROUPING SETS (), (&lt;order_expr&gt;)and join on only onfirst_last_selector=order_expr. Essentially everything is the same in that case, only we can omit&lt;group_by_cols&gt;whereever they were used.
+The case that KEEP DENSE RANK FIRST/LAST is used in an aggregated select without GROUP BY is a simpler special case of the case with GROUP BY. In that case we add a GROUP BY GROUPING SETS (), (&lt;order_expr&gt;) and join on only onfirst_last_selector=order_expr. Essentially everything is the same in that case, only we can omit&lt;group_by_cols&gt;whereever they were used.
 
 ### Transformation for multiple FIRST/LAST functions
 
@@ -223,7 +223,7 @@ However, we can do the same transformation for multiple KEEP DENSE_RANK FIRST/LA
 
 A few tweaks can be applied to the general case in some situations:
 
-* if multiple KEEP DENSE_RANK FIRST/LAST functions share the same &lt;order_expr&gt; their &lt;aggregate_function&gt;-values can be computed in the same subaggregate_select (and same GROUPING SET), but might still need a sepate LEFT JOIN for each
+* if multiple KEEP DENSE_RANK FIRST/LAST functions share the same &lt;order_expr&gt; their &lt;aggregate_function&gt; -values can be computed in the same subaggregate_select (and same GROUPING SET), but might still need a sepate LEFT JOIN for each
 * if they further have the same value of FIRST/LAST and have the same ORDER BY direction a single LEFT JOIN on this select is enough to get all the correct values.
 
 ### Example of a transformation with several FIRST/LAST
@@ -252,3 +252,4 @@ If there are multiple &lt;order_expr&gt;s for a single KEEP DENSE_RANK FIRST/LAS
 
 <https://www.exasol.com/support/browse/IDEA-65>
 
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

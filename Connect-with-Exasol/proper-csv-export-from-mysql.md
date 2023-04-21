@@ -169,3 +169,5 @@ SELECT CountryCode, IFNULL(IsOfficial, ''), Language, IFNULL(Percentage, '')
  ESCAPED BY '\"' 
  LINES TERMINATED BY '\n' FROM countrylanguage WHERE 1;
 ```
+
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

@@ -1,7 +1,7 @@
 # Pulling the Exasol Docker logs...works for NGA, too 
 ## Background
 
-Exasol runs on Docker. Many times, troubleshooting issues with the database requires generating EXACluster Debug Information. Exasol on Docker does not have a UI menu available to generate the logs but uses the command line to instruct Exasol on pulling the logs. This article is an extension of [how-to-get-debug-information-and-log-files-from-docker-based](https://community.exasol.com/t5/environment-management/how-to-get-debug-information-and-log-files-from-docker-based/ta-p/2366) 
+Exasol runs on Docker. Many times, troubleshooting issues with the database requires generating EXACluster Debug Information. Exasol on Docker does not have a UI menu available to generate the logs but uses the command line to instruct Exasol on pulling the logs. This article is an extension of [how-to-get-debug-information-and-log-files-from-docker-based](https://exasol.my.site.com/s/article/How-to-get-debug-information-and-log-files-from-docker-based-systems) 
 
 In order to reproduce our results, we list this article's specifications and additional information regarding log generation.
 
@@ -159,7 +159,7 @@ Build the command to generate the logs. Our example will generate the logs with 
 
 ## Section 3. Copy the logs from inside Docker to a server.
 
-If you are reading this section, you probably did not follow the article in setting up Exasol on Docker [deploy-exasol-docker](https://community.exasol.com/t5/environment-management/how-to-deploy-a-single-node-exasol-database-as-a-docker-image/ta-p/921). That's okay, I didn't either, hence this article. First, we address the generated logs residing inside the Docker container. You may remember from earlier steps, that our example is running a Docker container named, "exasoldb1". At this point in this exercise, the logs are inside "exasoldb1" and you can not access the logs outside of the container. 
+If you are reading this section, you probably did not follow the article in setting up Exasol on Docker [deploy-exasol-docker](https://exasol.my.site.com/s/article/How-to-deploy-a-single-node-Exasol-database-as-a-Docker-image-for-testing-purposes). That's okay, I didn't either, hence this article. First, we address the generated logs residing inside the Docker container. You may remember from earlier steps, that our example is running a Docker container named, "exasoldb1". At this point in this exercise, the logs are inside "exasoldb1" and you can not access the logs outside of the container. 
 
 What to do? Start by locating your logs. If they are NOT in the directory where you ran the get_support_Info command, try /exa/tmp/support/.
 
@@ -241,18 +241,18 @@ Download the logs to your local computer.
 
 ![](images/63_download.png)
 
-We are done. From here, if you have JIRA access, you can attach the logs to the JIRA ticket.
+We are done. From here, if you have ticketing system access, you can attach the logs to the ticket.
 
 ## Additional Notes
 
-In case you were not aware, you can find out more about Exasol with Docker or NGA by searching our community site:[Community.](https://community.exasol.com/)  
-It's the best place to find quick answers and discover additional content. Those with a current Exasol license can open a Jira "Question" ticket to address content you did not find in our community. The site is: [JIra.](https://www.exasol.com/support/secure/Dashboard.jspa)  
+In case you were not aware, you can find out more about Exasol with Docker or NGA by searching our Knowledge base: [link](https://exasol.my.site.com/s/). 
+It's the best place to find quick answers and discover additional content. Those with a current Exasol license can open a "Question" ticket to address content you did not find in our community. The site is: [Exasol Help Center](https://exasol.my.site.com/s/create-new-case).
   
 
 
 ## Additional References
 
-[Docker-guide](https://community.exasol.com/t5/environment-management/docker-guide/ta-p/1906)   
-[Docker_and_BucketFS](https://community.exasol.com/t5/environment-management/exasol-on-docker-how-to-create-a-bucketfs-and-buckets-inside/ta-p/2368)   
-[NGA_disk_enlargement](https://community.exasol.com/t5/internal-environment-management/internal-how-to-enlarge-exastorage-disks-on-nga-lvm-based/ta-p/3215) 
+[Docker-guide](https://exasol.my.site.com/s/article/Docker-Guide)   
+[Docker_and_BucketFS](https://exasol.my.site.com/s/article/Exasol-on-Docker-How-to-Create-a-BucketFS-and-Buckets-Inside)   
 
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

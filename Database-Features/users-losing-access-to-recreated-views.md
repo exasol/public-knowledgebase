@@ -14,3 +14,5 @@ I have no idea why this is the case. Do you guys have any ideas how to solve thi
 
 ## Answer
 When you re-create a view existing object privileges are dropped.
+
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

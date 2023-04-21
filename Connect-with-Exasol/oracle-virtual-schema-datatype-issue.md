@@ -17,3 +17,5 @@ If you want to return a DECIMAL type for these types you can set the property li
 You´ll also have to refresh the virtual schema afterwards with:
 
 > alter virtual schema &lt;your-schema-name-goes-here&gt; refresh;
+
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

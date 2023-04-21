@@ -28,3 +28,5 @@ server.callPlugin('Cloud.UIBackend-1.1.3', 'n0010', 'RESTART', '')
 2. If the XML-RPC call does not work please try to restart it from systemd. Login to the license (management) server via SSH and run "systemctl restart cloudui" command.
 
 After restarting the Cloud UI service please restart the Exaoperation service. You can do this via Exaoperation WEB UI in Exaoperation, then Restart.
+
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

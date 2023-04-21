@@ -32,3 +32,5 @@ When you use this connection, all String columns in Virtual Schema have size 100
 ## Additional References
 
 * <https://www.simba.com/products/Athena/doc/JDBC_InstallGuide/content/jdbc/ath/options/stringcolumnlength.htm>
+
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

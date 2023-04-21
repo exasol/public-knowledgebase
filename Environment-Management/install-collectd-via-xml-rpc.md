@@ -60,3 +60,5 @@
 
 ## Downloads
 [collectd.zip](https://github.com/exasol/Public-Knowledgebase/files/9920847/collectd.zip)
+
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

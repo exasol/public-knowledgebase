@@ -28,3 +28,4 @@ The example shows the creation of one new nodes using the configuration of "mast
 
 ![](images/single_copy_node.png)
 
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

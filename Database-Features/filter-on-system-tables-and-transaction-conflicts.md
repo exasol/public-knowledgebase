@@ -25,11 +25,12 @@ If filters that violate the constraints above (Type B) are used, we distinguish 
 
 ## Additional References
 
-[Transaction-conflicts-for-mixed-read-write-transactions](https://community.exasol.com/t5/database-features/transaction-conflicts-for-mixed-read-write-transactions/ta-p/2143) 
+[Transaction-conflicts-for-mixed-read-write-transactions](https://exasol.my.site.com/s/article/Transaction-Conflicts-for-Mixed-Read-Write-Transactions) 
 
 [EXASOL-2124](https://www.exasol.com/support/browse/EXASOL-2124) 
 
-[Transaction-system](https://community.exasol.com/t5/database-features/transaction-system/ta-p/1522) 
+[Transaction-system](https://exasol.my.site.com/s/article/Transaction-System) 
 
 [Transaction_management.htm](https://docs.exasol.com/database_concepts/transaction_management.htm) 
 
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

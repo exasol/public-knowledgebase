@@ -1,7 +1,7 @@
 # How to create and use UDFs 
 ## Background
 
-This is a basic tutorial on User Defined Functions. For details regarding the programming languages see our [documentation portal](https://docs.exasol.com) More technical insight is also given in the white paper["Big Data Science - the future of analytics"](https://www.exasol.com/en/community/resources/resource/big-data-science-the-future-of-analytics/).
+This is a basic tutorial on User Defined Functions. For details regarding the programming languages see our [documentation portal](https://docs.exasol.com) More technical insight is also given in the white paper ["Big Data Science - the future of analytics"](https://www.exasol.com/en/community/resources/resource/big-data-science-the-future-of-analytics/).
 
 We have to distinguish between UDFs and control scripts in the following ways:
 
@@ -154,3 +154,5 @@ You can find all of these examples in the attached file. 
 * [UDF Script Signature Generator](https://docs.exasol.com/database_concepts/udf_script_signature_generator.html)
 * [Expanding Script Languages Using BucketFS](https://docs.exasol.com/database_concepts/udf_scripts/expand_script_using_bucketfs.htm)
 * [BucketFS](https://docs.exasol.com/database_concepts/bucketfs/bucketfs.htm)
+
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

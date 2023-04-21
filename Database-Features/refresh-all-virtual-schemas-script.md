@@ -88,3 +88,5 @@ do
        exit(result_table, 'TYPE varchar(15), RESULTS varchar(4000)')
 end
 ```
+
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

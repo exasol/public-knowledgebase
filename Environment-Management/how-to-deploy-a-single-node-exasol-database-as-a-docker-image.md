@@ -140,7 +140,7 @@ Use the dev.1 file as an EXAStorage device for Exasol DB and mount the LVM disk 
 
 Configure the volume size for Exasol DB before starting the container. There are 3 types of volumes available for Exasol.
 
-Volumes in Exasol serve three different purposes. You can find detailed information in <https://docs.exasol.com/administration/on-premise/manage_storage/volumes.htm?Highlight=volumes>
+Volumes in Exasol serve three different purposes. You can find detailed information in <https://docs.exasol.com/administration/on-premise/manage_storage/volumes.htm>
 
 Since it’s recommended to use less disk space than the size of LVM disk (because Exasol will create a temporary volume and there should be a free disk space for it), we'll use 20 GiB space for the volume. The actual size of the volume increases or decreases depending on the data stored.
 
@@ -259,5 +259,6 @@ SELECT * FROM EXA_SYSCAT;
 
 <https://docs.docker.com/config/containers/resource_constraints/>
 
-<https://docs.exasol.com/administration/on-premise/manage_storage/volumes.htm?Highlight=volumes>
+<https://docs.exasol.com/administration/on-premise/manage_storage/volumes.htm>
 
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

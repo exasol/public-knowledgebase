@@ -55,3 +55,5 @@ else
 	goto exit
 end -- followed by actual script 
 ```
+
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

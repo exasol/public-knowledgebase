@@ -24,7 +24,7 @@ pd = pandas.DataFrame(stmt.fetchall())
 
  
 
-You may also use stmt.columns()to access information about result data types, if necessary.
+You may also use `stmt.columns()` to access information about result data types, if necessary.
 
 https://github.com/exasol/pyexasol/blob/master/docs/REFERENCE.md#columns
 
@@ -43,3 +43,5 @@ The main problem with Exasol vs. Pandas data types is related to fundamental lim
 So it is not possible to create a universal function to read any data from Exasol to Pandas and preserve data types. The current approach lets user to read any data at least in the form of "object" data type, and fix it later by providing data types explicitly or by transforming data frame.
 
 On the bright side, it's rarely an issue for typical users, and it's still easy to "fix" using a few lines of code and internal knowledge about your data.
+
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

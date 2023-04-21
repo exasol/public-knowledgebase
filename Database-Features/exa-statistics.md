@@ -12,7 +12,7 @@ schema-qualified name, EXA_STATISTICS.<table_name> (e.g. "SELECT * FROM EXA_STAT
 
 All timestamps of historical statistics are stored in the current database time zone (DBTIMEZONE).
 
-Statistics are updated periodically by a Server Process named "SQL LOGSERVER" ([more info here](https://community.exasol.com/t5/database-features/the-exasol-logserver/ta-p/1412)). To manually flush statistical data, the command "FLUSH STATISTICS" is available. All tables are subject to the [transaction system](https://docs.exasol.com/database_concepts/transaction_management.htm). Therefore it might be necessary to open a new transaction to see the up-to-date data.  
+Statistics are updated periodically by a Server Process named "SQL LOGSERVER" ([more info here](https://exasol.my.site.com/s/article/The-Exasol-Logserver)). To manually flush statistical data, the command "FLUSH STATISTICS" is available. All tables are subject to the [transaction system](https://docs.exasol.com/database_concepts/transaction_management.htm). Therefore it might be necessary to open a new transaction to see the up-to-date data.  
 Statistical system tables, except those tables that are critical to security (e.g. auditing data), can be accessed by all users.
 
 ## Statistical data classes
@@ -76,3 +76,5 @@ SELECT RAW_OBJECT_SIZE_AVG/NULLIFZERO(MEM_OBJECT_SIZE_AVG) AS COMPRESSION_RATIO,
 ## Additional References
 
 * [Statistical Tables](https://docs.exasol.com/sql_references/metadata/statistical_system_table.htm)
+
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

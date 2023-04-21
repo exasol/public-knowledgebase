@@ -1,7 +1,7 @@
 # When Exporting to Multiple Files, Can You Control the Number of Records Per File?
 
 ## Question
-I am using an export statement to store the records of a table into multiple files. I noticed that the size of the files and also the number of records per file is not equal and varias quit a bit. In the EXASOL documentation I found the following [statement:](https://docs.exasol.com/db/latest/sql/export.htm?Highlight=export%20multiple%20files)
+I am using an export statement to store the records of a table into multiple files. I noticed that the size of the files and also the number of records per file is not equal and varias quit a bit. In the EXASOL documentation I found the following [statement](https://docs.exasol.com/db/latest/sql/export.htm):
 
 > When specifying multiple files, the actual data distribution depends on several factors. It is also possible that some files are completely empty.
 
@@ -46,3 +46,5 @@ Basically, each file is written with the data which is on the corresponding node
 There is no guarantee that the data will be equally distributed.
 
 Generally there is a 1:1 node/file ratio.  However if this is not a given, the distribution across the files becomes a quite complicated process. For now, there's no real way to control file sizes or data distribution across those files (besides the 1:1 node/file ratio).
+
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

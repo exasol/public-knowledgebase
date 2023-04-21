@@ -30,3 +30,4 @@ must be used.
 
 Prior to version 6.0, it was not possible to use this approach for creating backups cross-wise.
 
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

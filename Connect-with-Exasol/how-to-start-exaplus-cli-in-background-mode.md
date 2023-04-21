@@ -16,3 +16,5 @@ This switch will put Exaplus CLI into non-interactive mode, among others disabli
 ## Additional References
 
 * [List of Exaplus Parameters](https://docs.exasol.com/connect_exasol/sql_clients/exaplus_cli/exaplus_cli.htm)
+
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

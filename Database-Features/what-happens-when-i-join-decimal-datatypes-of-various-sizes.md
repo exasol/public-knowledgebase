@@ -15,7 +15,7 @@ Before we go into detail, a few things to keep in mind:
 
 #### Environment build
 
-Our demonstration is using the SALES table from [https://github.com/exasol/database-migration/tree/master/test/testing_files/retail_mini.](https://github.com/exasol/database-migration/tree/master/test/testing_files/retail_mini)
+Our demonstration is using the SALES table from [https://github.com/exasol/database-migration/tree/master/test/testing_files/retail_mini](https://github.com/exasol/database-migration/tree/master/test/testing_files/retail_mini).
 
 
 ```markup
@@ -87,9 +87,10 @@ Reviewing the output, we see 4 indexes, 2 for each table and 0 indexes for the V
 
 ## Additional References
 
-<https://community.exasol.com/t5/database-features/local-and-global-joins/ta-p/1297>
+<https://exasol.my.site.com/s/article/Local-and-Global-Joins>
 
-<https://community.exasol.com/t5/database-features/best-practice-datatypes-and-joins/ta-p/1222>
+<https://exasol.my.site.com/s/article/Best-practice-Datatypes-and-Joins>
 
-<https://community.exasol.com/t5/database-features/null-in-exasol/ta-p/363>
+<https://exasol.my.site.com/s/article/NULL-in-Exasol>
 
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

@@ -33,5 +33,6 @@ order by
 ```
 ## Additional References
 
-<https://community.exasol.com/t5/database-features/analyzing-disk-i-o-and-concurrency-based-on-last-day-data/ta-p/1239>
+<https://exasol.my.site.com/s/article/Analyzing-disk-I-O-and-concurrency-based-on-last-day-data>
 
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

@@ -14,3 +14,5 @@ Check:
 This should tell you what Tableau is up to and give you an indication what you´re dealing with ( see column SQL_TEXT ).
 
 Prerequisite: Auditing is enabled on your database (as it should be).
+
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

@@ -112,3 +112,4 @@ When the fact table does not contain the partitioning information (date) directl
 
 <https://www.exasol.com/support/browse/EXASOL-1362> 
 
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

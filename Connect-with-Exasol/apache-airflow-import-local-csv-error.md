@@ -50,3 +50,5 @@ The question marks are parameters that are sent after the query is compiled.
 More info: java - Difference between Statement and PreparedStatement - Stack Overflow
 
 So it looks like Apache Airflow is executing every query as if it is a prepared statement. I'm not sure if you are able to influence it at all, but IMPORT FROM LOCAL CSV won't work with prepared statements, so that's why you go the error message
+
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

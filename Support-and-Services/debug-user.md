@@ -27,4 +27,4 @@ You can use the below SQL Statements to create the user with the necessary permi
 
 [Overview of Professional Services](https://www.exasol.com/product-overview/customer-support/)
 
-
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

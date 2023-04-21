@@ -81,3 +81,5 @@ Show plugin functions
 ...     status, ret = cluster.callPlugin('Administration.Zabbix-3.0.10-1.0.0', node, 'RESTART')
 ...     print node, status 
 ```
+
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

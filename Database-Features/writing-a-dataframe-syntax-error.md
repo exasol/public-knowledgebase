@@ -26,3 +26,5 @@ As for the setup that might be relevant, I am using Exasol JDBC driver 7.0.4, wi
 
 ## Answer
 Create the table in advance (using varchars) and then set create_table='false'.
+
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 
