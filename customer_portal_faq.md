@@ -1,6 +1,6 @@
 # Customer Portal FAQ
 
-Beginning May 2023, Exasol introduced a Customer Portal to enable an improved communicatoin channel between customers and support.  The Customer Portal allows you to:
+Beginning May 2023, Exasol introduced a Customer Portal to enable an improved communication channel between customers and support.  The Customer Portal allows you to:
 - Open, close, and work on cases
 - Send messages directly to Exasol
 - See an overview of all cases
