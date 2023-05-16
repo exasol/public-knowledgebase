@@ -47,7 +47,7 @@ Log files can be uploaded via the Log File Upload URL, and smaller files up to 2
 
 ## *How do I reset my password?*
 
-On the [login page](https://exasol.my.site.com/customers), click the **Forgot your password** button to reset your password. Your username is your email address and can be found on the initial welcome email. If you are already signed in and want to change your password, click your icon in the top-right corner and go to **Settings** > **Account** > **Change Password**.
+On the [login page](https://exasol.my.site.com/customers), click the **Forgot your password** button to reset your password. Your username is your email address and can be found on the initial welcome email. If you are already signed in and want to change your password, click your icon in the top-right corner and go to **Settings** &gt; **Account** &gt; **Change Password**.
 
 ## *How can I leave feedback on the new Customer Portal?*
 
