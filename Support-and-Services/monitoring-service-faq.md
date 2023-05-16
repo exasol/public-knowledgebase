@@ -81,6 +81,10 @@ Monitoring agent certificates used by the Exasol monitoring agents (can be downl
 
 On top of that each Exasol cluster is using a unique user + password combination in order to authenticate at harvester.exasol.com only if certificates + user + password do match monitoring data will flow into our monitoring platform.
 
+#### SOCKS5 Proxy support
+
+If direct internet access for the monitoring agents is not allowed data can be transferred through a SOCKS5 proxy (https://en.wikipedia.org/wiki/SOCKS#SOCKS5). The SOCKS5 proxy also needs to be able to resolve harvester.exasol.com and to access the below listed TCP ports.
+
 ### How is data stored?
 
 Data is stored at Exasol on an on-premise system. As with our current monitoring solution, the data itself is unencrypted but the underlying hard disk is encrypted.
