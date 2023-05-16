@@ -83,7 +83,7 @@ On top of that each Exasol cluster is using a unique user + password combination
 
 #### SOCKS5 Proxy support
 
-If direct internet access for the monitoring agents is not allowed data can be transferred through a SOCKS5 proxy (https://en.wikipedia.org/wiki/SOCKS#SOCKS5). The SOCKS5 proxy also needs to be able to resolve harvester.exasol.com and to access the below listed TCP ports.
+If direct internet access for the monitoring agents is not allowed, data can be transferred through a [SOCKS5 proxy](https://en.wikipedia.org/wiki/SOCKS#SOCKS5). The SOCKS5 proxy must be able to resolve harvester.exasol.com and to access the TCP ports listed below.
 
 ### How is data stored?
 
