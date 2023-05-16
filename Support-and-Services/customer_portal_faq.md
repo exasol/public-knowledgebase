@@ -20,9 +20,9 @@ The MyExasol User Manager can then open a case of type **Service Request**  and 
 You can contact support via email, phone, or online. The Customer Portal is an additional communication channel to support. The below table describes which communication methods you can use to reach us:
 | Support Channel | Method | Notes |
 | - | - | - |
-| Phone | Call one of the following numbers:<br> - Toll America: +1 415 363 5510<br>- Toll Europe/Rest of the World: +49 911 2399 110 | | 
+| Phone | Call one of the following numbers:<br /> - Toll America: +1 415 363 5510<br />- Toll Europe/Rest of the World: +49 911 2399 110 | | 
 | Customer Portal | Login to the [Portal](https://exasol.my.site.com/customers/s/) and create a case | | 
-| Email | Send an email to [service@exasol.com](mailto:service@exasol.com) | - The user's email address must be registered at Exasol<br>- Cases created by email are by default "Questions" and are therefore not SLA-relevant |
+| Email | Send an email to [service@exasol.com](mailto:service@exasol.com) | - The user's email address must be registered at Exasol<br />- Cases created by email are by default "Questions" and are therefore not SLA-relevant |
 | Web | Fill out the form [here](https://exasol.my.site.com/s/create-new-case?language=en_US) | - The user's email address must be registered with Exasol |
 
 ## *If I open a case in the portal, will I still receive emails?*
