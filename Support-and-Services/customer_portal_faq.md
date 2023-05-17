@@ -1,6 +1,6 @@
 # Customer Portal FAQ
 
-Beginning May 2023, Exasol introduced a Customer Portal to enable an improved communication channel between customers and support.  The Customer Portal allows you to:
+Beginning May 2023, Exasol introduced a [Customer Portal](https://exasol.my.site.com/customers/) to enable an improved communication channel between customers and support.  The Customer Portal allows you to:
 - Open, close, and work on cases
 - Send messages directly to Exasol
 - See an overview of all cases
@@ -48,6 +48,10 @@ Log files can be uploaded via the Log File Upload URL, and smaller files up to 2
 ## *How do I reset my password?*
 
 On the [login page](https://exasol.my.site.com/customers), click the **Forgot your password** button to reset your password. Your username is your email address and can be found on the initial welcome email. If you are already signed in and want to change your password, click your icon in the top-right corner and go to **Settings** &gt; **Account** &gt; **Change Password**.
+
+## *What is my username?*
+
+Your username is your email address followed by ".exasol". For example: joe.smith@company.com.exasol
 
 ## *How can I leave feedback on the new Customer Portal?*
 
