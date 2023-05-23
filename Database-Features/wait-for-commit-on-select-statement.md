@@ -49,8 +49,8 @@ However, things may get more complicated when the read/write operation is concen
 
 ## Additional References
 
-1. <https://exasol.my.site.com/s/article/Transaction-System>
-2. <https://exasol.my.site.com/s/article/Filter-on-system-tables-and-transaction-conflicts>
-3. <https://exasol.my.site.com/s/article/Investigating-Transaction-Conflicts-using-Auditing>
+1. [Transaction System](https://exasol.my.site.com/s/article/Transaction-System)
+2. [Filter on system tables and transaction conflicts](https://exasol.my.site.com/s/article/Filter-on-system-tables-and-transaction-conflicts)
+3. [Investigating Transaction Conflicts using Auditing](https://exasol.my.site.com/s/article/Investigating-Transaction-Conflicts-using-Auditing)
 
 *We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

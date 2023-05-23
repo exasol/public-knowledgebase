@@ -68,7 +68,10 @@ If you are connecting using a tool, it may not be possible to change the driver
 
 ### **Option 3. Use previous drivers**
 
- In case you don't want to change the client connection string and could not timely configure the certificate on the database side you might consider downgrading the driver from version 7.1 to the latest available driver of version 7.0 (see [DOWNLOAD/7.0](https://www.exasol.com/portal/display/DOWNLOAD/7.0) ) as a temporary workaround. ## Long-term solution
+ In case you don't want to change the client connection string and could not timely configure the certificate on the database side you might consider downgrading the driver from version 7.1 to the latest available driver of version 7.0 as a temporary workaround.
+ Please contact Exasol Support to get the latest 7.0 driever installers if you have active subscription.
+ 
+ ## Long-term solution
 
 If you are able to use a CA-signed certificate, it can be uploaded to Exaoperation as described in our [documentation](https://docs.exasol.com/administration/on-premise/access_management/tls_certificate.htm). The necessary certificate must also be provided to the client. 
 

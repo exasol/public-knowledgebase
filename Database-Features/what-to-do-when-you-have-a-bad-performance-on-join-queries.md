@@ -88,7 +88,7 @@ In our example, we can see that the row which matches the join is distributed on
 
 Global join T1, T2 requires, that appropriate data from T1 has to be redistributed to appropriate nodes. As table T1 is relatively big, it causes a lot of network traffic, which leads to performance degradation. 
 
-From the analyzed slow query, we see that A, B are the joined columns between table **T1**and table **T2**. Because the used distribution key on the tables doesn't fit with join columns, the global join will be used.
+From the analyzed slow query, we see that A, B are the joined columns between table **T1** and table **T2**. Because the used distribution key on the tables doesn't fit with join columns, the global join will be used.
 
 Because of this, table **T3** has to be redistributed to the appropriate nodes. As this is a big table, maybe not evenly distributed (which would amplify redistribution issue), it causes a lot of network traffic to redistribute it, which causes this overhead.
 

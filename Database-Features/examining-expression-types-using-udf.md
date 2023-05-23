@@ -10,13 +10,13 @@ This solution describes a method on how to retrieve type information without the
 ## Prerequisites
 
 The method described **does** need a CREATE statement, albeit a fixed one where the created script can be reused.  
-One of the**UDF Languages**is required, this example is using the **java** language.
+One of the **UDF Languages** is required, this example is using the **java** language.
 
 ## How to Deploy
 
 ## Step 1
 
-We will create a**SET/EMITS UDF script**with**variadic input**to gather and emit type information:
+We will create a **SET/EMITS UDF script** with **variadic input** to gather and emit type information:
 
 
 ```"code-java"

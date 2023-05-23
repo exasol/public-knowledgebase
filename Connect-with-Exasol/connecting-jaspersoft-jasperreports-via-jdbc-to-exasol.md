@@ -19,7 +19,7 @@ defaultAutoCommit = false rollbackOnReturn = true
 ```
 ## Additional Notes
 
-If both parameters are set like above, it is very likely that only rollbacks are sent after SELECTs (and never commits). Thus, indices that are created by these SELECTs automatically are never saved to the database and cannot be reused by other queries (see <https://exasol.my.site.com/s/article/Indexes>).
+If both parameters are set like above, it is very likely that only rollbacks are sent after SELECTs (and never commits). Thus, indices that are created by these SELECTs automatically are never saved to the database and cannot be reused by other queries (see [Indexes](https://exasol.my.site.com/s/article/Indexes)).
 
 ## Additional References
 
@@ -28,10 +28,10 @@ See also the following page for further information on these parameters:
 
 ## Additional References
 
-<https://exasol.my.site.com/s/article/Correct-settings-for-ODBC-driver>
+[Correct settings for ODBC driver](https://exasol.my.site.com/s/article/Correct-settings-for-ODBC-driver)
 
-<https://exasol.my.site.com/s/article/Check-connectibility-of-EXASolution-to-external-network-services>
+[Check connectibility of EXASolution to external network services](https://exasol.my.site.com/s/article/Check-connectibility-of-EXASolution-to-external-network-services)
 
-<https://exasol.my.site.com/s/article/JDBC-IMPORT-EXPORT-Create-and-receive-JDBC-logs>
+[JDBC IMPORT/EXPORT: Create and receive JDBC logs](https://exasol.my.site.com/s/article/JDBC-IMPORT-EXPORT-Create-and-receive-JDBC-logs)
 
 *We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

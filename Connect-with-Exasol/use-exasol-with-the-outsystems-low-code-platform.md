@@ -24,7 +24,7 @@ A Demo Application is available in the OutSystems Forge that describes how to us
 
 ## Prerequisites
 
-* Download the latest **Exasol ADO.NET Driver** from:[https://www.exasol.com/portal/display/DOWNLOAD](https://www.exasol.com/portal/display/DOWNLOAD/)/ and install it on your Windows Server where OutSystems is installed.
+* Download the latest **Exasol ADO.NET Driver** from: [Downloads](https://downloads.exasol.com/clients-and-drivers/adonet)/ and install it on your Windows Server where OutSystems is installed.
 * Download the file **ExasolDatabaseProvider.dll** from: <https://dev.azure.com/NovioQPublic/OutSystemsExasolConnector>.
 * To get a free evaluation licence, send us an email at:[support@novioq.com](mailto:support@novioq.com) with your **Windows Server Product ID**, which you can find in ****Settings > System > About****  
 ![](images/mohamedemam_0-1598946817431.png)

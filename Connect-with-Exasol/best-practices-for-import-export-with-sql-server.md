@@ -88,7 +88,7 @@ grant import,export to public;
 ```
 #### Basic Syntax
 
-Using**Microsoft's JDBC driver for SQL Server**, one could import/export data using the following commands:
+Using **Microsoft's JDBC driver for SQL Server**, one could import/export data using the following commands:
 
 
 ```"code-sql"
@@ -100,7 +100,7 @@ EXPORT table1 INTO JDBC DRIVER='MSSQL'
  AT 'jdbc:sqlserver://dbserver;databaseName=testdb'  
  USER 'user1' IDENTIFIED BY 'user1pw' TABLE table2; 
 ```
-A**connection**could also be created and used:
+A **connection** could also be created and used:
 
 
 ```"code-sql"

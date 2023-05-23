@@ -43,6 +43,6 @@ You can check this in the DISTINGUISHED_NAME of the EXA_DBA_USERS table.
 
 <https://docs.exasol.com/sql/create_user.htm#Authenti3>
 
-<https://exasol.my.site.com/s/article/Manual-LDAP-Connection-Test>
+[Manual LDAP Connection Test](https://exasol.my.site.com/s/article/Manual-LDAP-Connection-Test)
 
 *We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

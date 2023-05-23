@@ -101,10 +101,10 @@ All those data are provided by the EXAoperation XMLRPC interface since EXASuite 
 
 
 
-Please check the EXAoperation user manual for a full description of how to use those functions. You can find this manual on our user portal: [https://www.exasol.com/portal/display/DOWNLOAD/6.0](https://www.exasol.com/portal/display/DOWNLOAD/5.0)
+Please check the documentation for a full description of how to use those functions. You can find here: [XML-RPC Commandline](https://docs.exasol.com/db/latest/administration/on-premise/admin_interface/xml-rpc.htm)
 
 ## Additional References
 
-[https://www.exasol.com/portal/display/DOWNLOAD/6.0](https://www.exasol.com/portal/display/DOWNLOAD/5.0)
+[XML-RPC Commandline](https://docs.exasol.com/db/latest/administration/on-premise/admin_interface/xml-rpc.htm)
 
 *We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

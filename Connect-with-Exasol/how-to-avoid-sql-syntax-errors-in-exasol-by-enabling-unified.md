@@ -76,7 +76,7 @@ All relevant steps are described in MicroStrategy Knowledge Base article [KB435
 
 ## Step 3
 
-**Download the latest Exasol JDBC driver**(or ODBC driver) from the Exasol Download section **[V7.0](https://www.exasol.com/portal/display/DOWNLOAD/7.0)** or **[V6.2](https://www.exasol.com/portal/display/DOWNLOAD/6.2)** (according to your database version)
+**Download the latest Exasol JDBC driver**(or ODBC driver) from the Exasol Download section **https://downloads.exasol.com/clients-and-drivers**
 
 ## Step 4
 

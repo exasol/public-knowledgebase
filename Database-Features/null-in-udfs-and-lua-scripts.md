@@ -40,21 +40,21 @@ execute script null_nil_explanation with output;
 ```
 Please note that comparisons in Lua always yield true or false, so
 
-* both (nil==nil) and (null==null) are**true**
-* while (nil==null) is**false**.
+* both (nil==nil) and (null==null) are **true**
+* while (nil==null) is **false**.
 
-Neither nil nor null can be**concatenated**using '..'. While Lua knows about nil and tells you so in the error message, it can not distinguish between null and other types. Errors related to null values will usually contain a reference to a**user-defined type**.
+Neither nil nor null can be **concatenated** using '..'. While Lua knows about nil and tells you so in the error message, it can not distinguish between null and other types. Errors related to null values will usually contain a reference to a **user-defined type**.
 
-Please also note that**implicit boolean conversions**in Lua are not always intuitive:  
-if( X ) then ... endwill**not**execute the code block only whenX
+Please also note that **implicit boolean conversions** in Lua are not always intuitive:  
+if( X ) then ... end will **not** execute the code block only when X
 
-* contains the boolean value**false**
+* contains the boolean value **false**
 * is nil (does not exist)
 
-It**will**execute in any other case, including
+It **will** execute in any other case, including
 
 * an empty string
-* the (Lua) value**null**
+* the (Lua) value **null**
 
 ## Additional References
 

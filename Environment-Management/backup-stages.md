@@ -44,8 +44,8 @@ The system table SYS.EXA_SYSTEM_EVENTS records the start and stop events, but it
 
 ## Additional References
 
-<https://exasol.my.site.com/s/article/How-to-calculate-the-backup-duration-from-the-system-events-table>
+[How to calculate the backup duration from the system events table](https://exasol.my.site.com/s/article/How-to-calculate-the-backup-duration-from-the-system-events-table)
 
-<https://exasol.my.site.com/s/article/Synchronising-backups-between-clusters>
+[Synchronising backups between clusters](https://exasol.my.site.com/s/article/Synchronising-backups-between-clusters)
 
 *We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

@@ -11,7 +11,7 @@ While reading from a Hashtype value of a result rom a query in a LUA script, yo
 ```
 ## Explanation
 
-Exasol doesn't support Hash-Types in Lua-Scripts. See <https://docs.exasol.com/7.1/database_concepts/udf_scripts/lua.htm#Parameters>
+Exasol doesn't support Hash-Types in Lua-Scripts. See <https://docs.exasol.com/db/latest/database_concepts/udf_scripts/lua.htm#Parameters>
 
 Example:
 
@@ -46,6 +46,6 @@ EXECUTE script test.test_hashtype() with output;
 
 ## Additional References
 
-* <https://docs.exasol.com/7.1/database_concepts/udf_scripts/lua.htm#Parameters>
+* <https://docs.exasol.com/db/latest/database_concepts/udf_scripts/lua.htm#Parameters>
 
 *We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

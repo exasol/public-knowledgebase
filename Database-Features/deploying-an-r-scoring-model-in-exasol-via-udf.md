@@ -33,8 +33,8 @@ Later when the InDB scoring is started by the SELECT, the columns need to be ref
 
 R (Client side) - download code for:
 
-* EXASOL 6:[r_client_v6.R](https://www.exasol.com/support/secure/attachment/50966/50966_r_client_v6.R "r_client_v6.R")   (as shown here)
-* EXASOL 5:[r_client_v5.R](https://www.exasol.com/support/secure/attachment/50968/50968_r_client_v5.R "r_client_v5.R")
+* EXASOL 6:[r_client_v6.R](https://github.com/exasol/public-knowledgebase/blob/main/Database-Features/attachments/r_client_v6.R "r_client_v6.R")   (as shown here)
+* EXASOL 5:[r_client_v5.R](https://github.com/exasol/public-knowledgebase/blob/main/Database-Features/attachments/r_client_v5.R "r_client_v5.R")
 
 **r_client_v6.R**
 ```"code-java"
@@ -69,8 +69,8 @@ PUT(
 ```
 EXASOL (Server side) - download code for:
 
-* EXASOL 6:[flights_v6.sql](https://www.exasol.com/support/secure/attachment/50967/50967_flights_v6.sql "flights_v6.sql")   (as shown here)
-* EXASOL 5:[flights_v5.sql](https://www.exasol.com/support/secure/attachment/50969/50969_flights_v5.sql "flights_v5.sql")
+* EXASOL 6:[flights_v6.sql](https://github.com/exasol/public-knowledgebase/blob/main/Database-Features/attachments/flights_v6.sql "flights_v6.sql")   (as shown here)
+* EXASOL 5:[flights_v5.sql](https://github.com/exasol/public-knowledgebase/blob/main/Database-Features/attachments/flights_v5.sql "flights_v5.sql")
 
 **flights_v6.sql**
 ```"code-sql"
@@ -114,8 +114,8 @@ group by iproc(),						-- the node no for data locality
 ```
 ### Additional references:
 
-<https://exasol.my.site.com/s/article/How-to-use-EXASolution-R-SDK>
+[How to use EXASolution R SDK](https://exasol.my.site.com/s/article/How-to-use-EXASolution-R-SDK)
 
-<https://exasol.my.site.com/s/article/How-to-create-an-EXABucketFS-service-and-bucket>
+[How to create an EXABucketFS service and bucket](https://exasol.my.site.com/s/article/How-to-create-an-EXABucketFS-service-and-bucket)
 
 *We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 
