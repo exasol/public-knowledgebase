@@ -13,7 +13,8 @@ UI and Platform Update
 * Include user interface for uploading custom files to a deployment (available for Trial and Enterprise users only).
 * Use Google Recaptcha on account signup.
 * Improved response time for UI and database/cluster browsing rest API operations.
-* Removed Rest API compatibility with legacy Okta account IDs which were replaced in December 2022 but supported until now for compatibility.  The account ID you use in the Rest API should now begin 'org' and is obtainable in the SaaS UI.  Using an Okta ID in the rest API will now result in a 401 error.
+* Removed Rest API compatibility with legacy Okta account IDs which were replaced in December 2022 but supported until now for compatibility.  The account ID you use in the Rest API should now begin 'org' and is obtainable in the SaaS UI.  Using an Okta ID in the rest API will now result in a 401 error for some endpoints.
+* Fixed a bug where attempting to change the size of a deployment which is running could sometimes result in the deployment being stopped after the resize completes.
 
 
 ## May 17
@@ -21,6 +22,7 @@ Platform Update
 * Add the new 'bfssaas' bucketfs bucket to all existing and new deployments in Trial or with Enterprise subscriptions.
 * Add the capability to upload custom UDF files to a a deployment's bfssaas bucket via the SaaS rest API.
 * Further improved the SaaS API response times for a faster UI and rest API.
+* Minor bugfixes and improvements.
 
 
 ## April 18
@@ -31,6 +33,7 @@ UI and Platform Update
 * Added graphical visualisation of query results to SQL worksheets.
 * Improved the SaaS API response times for a faster UI and rest API.
 * Eliminated the problem where the SaaS rest API occasionally returns an error and requires a retry.
+* Minor bugfixes and improvements.
 
 
 ## March 17
@@ -45,6 +48,7 @@ Platform Update
 * General improvements of the reliability of database and cluster management operations.
 * Fix for problems experienced when XS deployments are put under heavy load.
 * Fixed an issue where some XS deployments failed to start due to AWS instance launch problems.
+* Minor bugfixes and improvements.
 
 
 ## March 01
@@ -68,6 +72,7 @@ UI Update to v1.212.0
 ## January 22
 Platform Update
 * Platform security improvements.
+* Minor bugfixes and improvements.
 
 
 ## January 10
