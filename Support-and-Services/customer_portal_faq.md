@@ -47,11 +47,15 @@ Log files can be uploaded via the Log File Upload URL, and smaller files up to 2
 
 ## *How do I reset my password?*
 
-On the [login page](https://exasol.my.site.com/customers), click the **Forgot your password** button to reset your password. Your username is your email address and can be found on the initial welcome email. If you are already signed in and want to change your password, click your icon in the top-right corner and go to **Settings** &gt; **Account** &gt; **Change Password**.
+On the [login page](https://exasol.my.site.com/customers), click the **Forgot your password** button to reset your password. Your username is your email address followed by ".exasol" and can be found on the initial welcome email. If you are already signed in and want to change your password, click your icon in the top-right corner and go to **Settings** &gt; **Account** &gt; **Change Password**.
 
 ## *What is my username?*
 
 Your username is your email address followed by ".exasol". For example: joe.smith@company.com.exasol
+
+## *I am an Exasol Partner. How can I create tickets on behalf of my end customers?*
+
+The system currently does not offer the possibility to open tickets on behalf of end customers. Until we introduce this feature, you have the possibility to request a separate login for the end customer account. All we need is a unique email address (not yet associated with any other login) that we can use to contact you. To request, simply open a Service Request Case with the category "Add Contact" and enter your Exasol Customer PIN.
 
 ## *How can I leave feedback on the new Customer Portal?*
 
