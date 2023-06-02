@@ -53,7 +53,7 @@ On the [login page](https://exasol.my.site.com/customers), click the **Forgot yo
 
 Your username is your email address followed by ".exasol". For example: joe.smith@company.com.exasol
 
-## *I am a Exasol Partner. How can I create tickets on behalf of my end customers?*
+## *I am an Exasol Partner. How can I create tickets on behalf of my end customers?*
 
 The system currently does not offer the possibility to open tickets on behalf of end customers. Until we introduce this feature, you have the possibility to request a separate login for the end customer account. All we need is a unique email address (not yet associated with any other login) that we can use to contact you. To request, simply open a Service Request Case with the category "Add Contact" and enter your Exasol Customer PIN.
 
