@@ -6,6 +6,11 @@ For further information please also visit related pages for Exasol SaaS:
 * [SaaS Documentation](https://docs.exasol.com/saas)
 * [Status Page (status.exasol.com)](https://status.exasol.com)
 
+## June 07
+Platform Update
+* Hotfix for internal platform problems.
+* Use Exasol DB version 8.18.1 for new database deployments.  See the release notes here:  https://docs.exasol.com/db/latest/release_notes/8.18.1.htm
+
 
 ## May 30
 UI and Platform Update
