@@ -1,17 +1,26 @@
  # V8 FAQ
- ## Migration/Upgrade	
+ ## General Information
  
- ### I am using V7.x. How can I upgrade?
- 
- Due to the to the new architecture in V8 including the separation of the database software from the operating system (Exasol will not deliver CentOS anymore), upgrading a v7.1 cluster to V8 using an update installation package is not feasible. 
- Instead, a reinstallation is required. 
- For details please refer to the documentation: https://docs.exasol.com/db/8.x/administration/aws/upgrade/migrate_71_v8.htm 
- 
- Our Support team is available to assist you throughout the entire process. 
- You have the choice to perform the upgrade procedure on your own or reach out to our support team for guidance. 
- To simplify the migration process, you can take advantage of our "V8 Migration Service." 
- This service is designed to facilitate a smooth and hassle-free transition to V8.  
-### What does the v8 Migration Service cover 
+ ### Exasol version 8 is build on a different architecture but fully supporting upgrades from older versions.
+The major difference to 7.x is that with v8, Exasol is decoupling the OS and database layer, not shipping anymore the underlying OS CentOS-7.
+
+### Documentation
+Documentation about v8 can be found on Exasol documentation page available at https://docs.exasol.com/home.htm - select Version 8 (latest) from the drop-down then navigate to the EXASOL DATABASE part.
+
+In general the upgrade procedure is done like shown below:
+- backup the 7.1 database to an external location
+- install new v8 database - get it from https://downloads.exasol.com/exasol-8 
+- restore backup 7.1 into the new 8.x database
+- upload your updated v8 license
+
+### Licensing
+Exasol v8 has a different licensing model as such the v7.x licenses cannot be used on v8 systems. Please get in touch with Exasol Support to retrieve a new v8 license.
+
+### New v8 installations
+Installation instructions can be found on the Exasol documentation page, for customer who booked "Cluster Administration Service" or "Platinum Support Level" - the Exasol Support will take care about the installation. For all others please get in touch with your Account Manager in order to get a quote.
+
+### Migration Service
+Exasol will help all customers to have a smooth transition to v8. Customer who booked "Platinum Support Level" and "Cluster Administration Service" will get this service complimentary and free or charge. For all others Exasol is offering a "v8 Migration Service", for details either get in touch with Support or with your Account Manager.
 
 The “v8 Migration Service” comprises supporting tasks for the upgrade and migration from a supported Exasol version to the latest v8 and includes the following services during the project phase:
 * Project Management throughout the whole migration
@@ -27,6 +36,17 @@ Cooperation and Customer Responsibility:
 ### How long can I use version 7.0 oder 7.1 before I have to upgrade to V8.0
 
 You can find the EOL dates for release here: https://exasol.my.site.com/s/article/Exasol-Life-Cycle-Policy?language=en_US
+
+### I am using V7.x. How can I upgrade?
+ 
+ Due to the to the new architecture in V8 including the separation of the database software from the operating system (Exasol will not deliver CentOS anymore), upgrading a v7.1 cluster to V8 using an update installation package is not feasible. 
+ Instead, a reinstallation is required. 
+ For details please refer to the documentation: https://docs.exasol.com/db/8.x/administration/aws/upgrade/migrate_71_v8.htm 
+ 
+ Our Support team is available to assist you throughout the entire process. 
+ You have the choice to perform the upgrade procedure on your own or reach out to our support team for guidance. 
+ To simplify the migration process, you can take advantage of our "V8 Migration Service." 
+ This service is designed to facilitate a smooth and hassle-free transition to V8.  
 
 ## OS Support
 
@@ -87,4 +107,7 @@ Feel free to reach out to your account manager, and our team of capable solution
 ### Does Exasol V8 will become available in the Cloud marketplaces
 
 Yes, we will publish v8 in the cloud marketplaces at a later point in time. Our primary goal is to launch V8 first on all platforms.
+
+## Contact Support
+Exasol Support can be contacted as described on this page https://exasol.my.site.com/s/?language=en_US 
 
