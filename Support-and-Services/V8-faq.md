@@ -7,7 +7,7 @@ Exasol 8 is already used in SaaS.
 Now Exasol 8 is available for AWS and on-premises.
 The on-premise version is also referred to as "as-Application" version as it can be installed on bare metal hardware as well as on top of a VM running a x86 Linux operating system.
 
-### What are the functional differences between the Cloud-versions and the on-premise ("as application") version
+### What are the functional differences between the Cloud-versions and the on-premise ("as application") version?
 
 #### Exasol 8 Cloud
 * Includes Storage/Compute decoupling based on cloud-provider based native object stores (AWS S3).
@@ -17,7 +17,7 @@ The on-premise version is also referred to as "as-Application" version as it can
 * Leverages block storage (like 7.x) and therefore does not support object-store based storage-compute decoupling
 * Single cluster only (multi-cluster architecture not supported)
 
-### Does Exasol 8 come with an administration application like ExaOperation
+### Does Exasol 8 come with an administration application like ExaOperation?
 
 As more and more customers automate installation and configuration, Exasol 8 does not come with an administration UI.
 V8 comes with powerful APIs and configuration/installation tools. Please have look at the Exasol 8 documentation (https://docs.exasol.com/db/latest/home.htm).
@@ -43,7 +43,7 @@ Due to the to the new architecture in Exasol 8, including the separation of the 
 In general, the migration procedure involves taking a backup of an existing database on version 7.1 and restoring this into a new installation running version 8. The downtime required for the update depends on several factors, such as the amount of data and nodes you have, network speed, and more. More information can be found in our [documentation](https://docs.exasol.com/db/latest/administration/aws/upgrade/migrate_71_v8.htm)
 
 ### Can I use my existing license for Exasol 8?
-Exasol Exasol 8 has a different licensing model, which means that the v7.x licenses cannot be used on v8 systems. Please get in touch with Exasol Support or your account manager to recieve a new Exasol 8 license.
+Version 7.x licenses are not compatible with Version 8. Please contact us to obtain a new license file specifically for Version 8.
 
 ### Will Exasol help us migrate to Exasol 8?
 Exasol will help all customers have a smooth transition to Exasol 8. Customers who have booked "Platinum Support Level" or "Cluster Administration Service" will get this service complimentary and free or charge. For all others, Exasol is offering a "Exasol 8 Migration Service".
@@ -66,7 +66,7 @@ For information about the Migration Service, contact your account manager.
 Installation instructions can be found on the [Exasol documentation page](https://docs.exasol.com/db/latest/home.htm). For customers who booked "Cluster Administration Service" or "Platinum Support Level", Exasol Support will take care about the installation. For all others please get in touch with your Account Manager in order to get a quote.
 
 
-### How long can I use version 7.0 or 7.1 before I have to upgrade to version V8.0
+### How long can I use version 7.0 or 7.1 before I have to upgrade to version V8.0?
 
 You can find the End-Of-Life dates for our releases here: https://exasol.my.site.com/s/article/Exasol-Life-Cycle-Policy?language=en_US
 
