@@ -5,7 +5,7 @@
 
 Exasol 8 is already used in SaaS.
 Now Exasol 8 is available for AWS and on-premises.
-The on-premise version is also referred to as "as-Application" version as it cannot only be installed on bare metal hardware but also on top of any VM running a x86 Linux operating system.
+The on-premise version is also referred to as "as-Application" version as it can be installed on bare metal hardware as well as on top of a VM running a x86 Linux operating system.
 
 ### What are the functional differences between the Cloud-versions and the on-premise ("as application") version
 
@@ -26,9 +26,9 @@ V8 comes with powerful APIs and configuration/installation tools. Please have lo
 
 SaaS already runs a version Exasol 8. SaaS also offers a free trial and there offers the most convenient way to test Exasol 8.
 
-Alternatively, you can could launch a new cluster on AWS using Exasol 8 or a single cluster based on the Exasol 8 Docker image.
+Alternatively, you can could launch a new cluster on AWS using Exasol 8 or a single node based on the Exasol 8 Docker image.
 
-Please first update test or staging environment as usual.
+Please first update test or staging environment, as usual.
 
 Feel free to reach out to your account manager, and our team of capable solutions engineers will be glad to provide assistance and support upon contact.
 
@@ -46,7 +46,7 @@ In general, the migration procedure involves taking a backup of an existing data
 Exasol Exasol 8 has a different licensing model, which means that the v7.x licenses cannot be used on v8 systems. Please get in touch with Exasol Support or your account manager to recieve a new Exasol 8 license.
 
 ### Will Exasol help us migrate to Exasol 8?
-Exasol will help all customers have a smooth transition to Exasol 8. Customers who have booked "Platinum Support Level" and "Cluster Administration Service" will get this service complimentary and free or charge. For all others, Exasol is offering a "Exasol 8 Migration Service".
+Exasol will help all customers have a smooth transition to Exasol 8. Customers who have booked "Platinum Support Level" or "Cluster Administration Service" will get this service complimentary and free or charge. For all others, Exasol is offering a "Exasol 8 Migration Service".
 
 The “Exasol 8 Migration Service” comprises supporting tasks for the upgrade and migration from a supported Exasol version to the latest v8 and includes the following services during the project phase:
 * Project Management throughout the whole migration
@@ -56,8 +56,8 @@ The “Exasol 8 Migration Service” comprises supporting tasks for the upgrade 
 * Exasol 8 Release Note mentioning supported OS (RedHat Enterprise Linux, and Ubuntu 22.04.2 LTS)
 
 Cooperation and Customer Responsibility:
-* provide as needed additional resources (e.g., external Backup space, additional clusters)
-* Commit to the commonly agreed project plan
+* Provide as needed additional resources (e.g., external Backup space, additional clusters)
+* Commit to the mutually agreed project plan
 
 For information about the Migration Service, contact your account manager.
 
@@ -66,9 +66,9 @@ For information about the Migration Service, contact your account manager.
 Installation instructions can be found on the [Exasol documentation page](https://docs.exasol.com/db/latest/home.htm). For customers who booked "Cluster Administration Service" or "Platinum Support Level", Exasol Support will take care about the installation. For all others please get in touch with your Account Manager in order to get a quote.
 
 
-### How long can I use version 7.0 oder 7.1 before I have to upgrade to version V8.0
+### How long can I use version 7.0 or 7.1 before I have to upgrade to version V8.0
 
-You can find the EOL dates for release here: https://exasol.my.site.com/s/article/Exasol-Life-Cycle-Policy?language=en_US
+You can find the End-Of-Life dates for our releases here: https://exasol.my.site.com/s/article/Exasol-Life-Cycle-Policy?language=en_US
 
 ## OS Support
 
@@ -82,19 +82,19 @@ We will handle the management of the operating system for the entire duration of
 
 To discuss the planning of the upgrade to Exasol 8 and our dedicated service offerings, please reach out to our customer service team via service@exasol.com  They will assist you with the necessary steps, provide further guidance and service offerings.
 
-### I have booked the platinum service, the cluster administration and/or cluster installation service. What does the separation of database software and operating system for me?
+### I have booked the platinum service, the cluster administration and/or cluster installation service. What does the separation of database software and operating system mean for me?
 
 Due to the separation of the operating system and database software, the Exasol 8 services do not cover the management of the operating system anymore.
 Please get in touch with your account manager or our customer support via service@exasol.com for more details.
 
-### Which operating system shall I use
+### Which operating system shall I use?
 
 We recommend Ubuntu 22.04 LTS and Redhat Enterprise Linux RHEL 9.x
 
 
 ## Deployment-specific questions
 
-### Does Exasol Exasol 8 will become available in the Cloud marketplaces
+### Will Exasol 8 become available in the Cloud marketplaces?
 
 Yes, we will publish Exasol 8 in the cloud marketplaces at a later point in time. Our primary goal is to launch Exasol 8 first on all platforms.
 
