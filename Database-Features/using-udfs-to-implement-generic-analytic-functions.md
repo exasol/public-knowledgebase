@@ -224,7 +224,7 @@ The code of the generic analytic UDF with a small example is attached.
 
 ## Additional References
 
-<https://exasol.my.site.com/s/article/Using-UDf-s-to-implement-generic-analytic-functions-with-support-for-complex-windowing>
+[Using UDf's to implement generic analytic functions with support for complex windowing](https://exasol.my.site.com/s/article/Using-UDf-s-to-implement-generic-analytic-functions-with-support-for-complex-windowing)
 
 <https://docs.exasol.com/sql_references/functions/analyticfunctions.htm>
 
@@ -232,7 +232,7 @@ The code of the generic analytic UDF with a small example is attached.
 
 <https://docs.exasol.com/database_concepts/udf_scripts/lua_examples.htm> (See Analytics section)
 
-<https://exasol.my.site.com/s/article/Custom-aggregate-functions-for-large-data-sets>
+[Custom aggregate functions for large data sets](https://exasol.my.site.com/s/article/Custom-aggregate-functions-for-large-data-sets)
 
 ## Downloads
 [af_udf.zip](https://github.com/exasol/Public-Knowledgebase/files/9937355/af_udf.zip)

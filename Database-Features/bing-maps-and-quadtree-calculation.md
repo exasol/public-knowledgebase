@@ -140,6 +140,6 @@ select tile2quad(pixel2tile(coords2pixel(49.45, 11.08, 10)), 10);
 
 ## Additional References
 
-<https://exasol.my.site.com/s/article/Use-Google-Maps-API-with-EXASOL>
+[Use Google Maps API with EXASOL](https://exasol.my.site.com/s/article/Use-Google-Maps-API-with-EXASOL)
 
 *We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

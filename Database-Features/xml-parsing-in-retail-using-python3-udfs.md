@@ -216,7 +216,7 @@ Contrary to the two UDFs above **xml_load()** is a `LUA` script. `LUA` scripts i
 
 We are using the **xml_load()** script to run the two scripts mentioned above and orchestrate our whole ELT process. The following things are achieved by executing **xml_load()**:
 
-1. The **XML_STAGING** and **XML_SOURCE**tables are truncated
+1. The **XML_STAGING** and **XML_SOURCE** tables are truncated
 2. One(!) connection to the FTP server is established querying the file list
 3. The result of that query is written into the **XML_SOURCE** table
 4. The **parse_my_xml()** statement is called in an `INSERT` statement. The emitted results of **parse_my_xml()** are written into **XML_STAGING**

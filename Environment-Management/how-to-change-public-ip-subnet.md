@@ -7,7 +7,7 @@ That article guides you through the procedure to change the network for a cluste
 
 1. This task requires a maintenance window of at least 30 minutes
 2. The tasks performed in EXAoperation require a user with at least "Administrator" privileges
-3. The network requirements are described in [system_requirements](https://docs-test.exasol.com/6.1/administration/on-premise/installation/system_requirements.htm)
+3. The network requirements are described in [system_requirements](https://docs.exasol.com/db/latest/administration/on-premise/installation/system_requirements.htm)
 4. This guide is **only** for the case that the subnet mask and the host addresses won't be changed
 
 ## Instructions

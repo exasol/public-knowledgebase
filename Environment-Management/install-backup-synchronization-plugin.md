@@ -134,7 +134,7 @@ To create a new user:
 
 An archive volume must be created on all the clusters (in this example, an archive volume must be created on EDU01 and EDU02) for storing the database backups. As a rule of thumb, for up to 1-3 nodes in a cluster which are also the source nodes, at least one archive node on the destination cluster is recommended.
 
-For more information on Archive volume creation, see [Create Archive Volume](https://www.exasol.com/portal/display/DOC/Create+Data+and+Archive+Volumes).
+For more information on Archive volume creation, see [Create Data and Archive Volumes](https://docs.exasol.com/db/latest/administration/on-premise/installation/install_hardware/create_data_archive_volume.htm).
 
 ### **Step 7:** **Create and Upload Configuration File**
 

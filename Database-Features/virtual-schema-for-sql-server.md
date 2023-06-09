@@ -367,7 +367,7 @@ select * from exa_syscat where object_name like '%VIRTUAL%';
 Before you leave, you should assign permissions to the connection and virtual schema to your Exasol users. We will provide an example after mentioning additional information can be found here at 
 
 * [Virtual Schema Privileges](https://docs.exasol.com/database_concepts/virtual_schema/virtual_schema_privilege.htm)
-* [Virtual Schemas](https://docs.exasol.com/6.1/database_concepts/virtual_schemas.htm)
+* [Virtual Schemas](https://docs.exasol.com/db/latest/database_concepts/virtual_schemas.htm)
 * [Details on Rights Management](https://docs.exasol.com/database_concepts/privileges/details_rights_management.htm)  -- see the paragraph for "SCHEMAS".
 
 One of the hidden facts about granting permissions is if a view contains a table from a virtual schema, access rights are necessary on the corresponding adapter script.

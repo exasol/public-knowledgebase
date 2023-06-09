@@ -11,17 +11,17 @@ Those scripts are using the Lua language, so basically you can do anything with 
 
 * Exasol's Lua library is stripped and can not be extended with binary libraries for security reasons
 * Preprocessor scripts do not take parameters; the "current" SQL text can be retrieved through a function call
-* Preprocessor scripts**can**execute statements using (p)query
+* Preprocessor scripts **can** execute statements using (p)query
 * Preprocessor scripts do not return any values; they "return" the modified SQL text through another function call
 * While often preprocessor scripts are enabled on system level, any user can disable this in his or her session (see (2) below)
-* Preprocessor scripts are executed in the**caller's context**and privileges. Also, if user can EXECUTE the script (which is a necessity), he/she can also READ it. Security by obscurity won't work.
+* Preprocessor scripts are executed in the **caller's context** and privileges. Also, if user can EXECUTE the script (which is a necessity), he/she can also READ it. Security by obscurity won't work.
 
 ##### Typical Use Cases
 
 * Compatibility layer for a frontend that produces SQL not suitable for Exasol
 * Macro magic: Expanding predefined keywords server-side
 * "human knows more" optimizations of queries and filters
-* Row-Level Security (    re-read the last two points above)
+* Row-Level Security (re-read the last two points above)
 
 #### Syntax and Semantics
 
@@ -29,7 +29,7 @@ Please see the Exasol User Manual (Section 3.8) for details.
 
 ## Prerequisites
 
-As a preprocessor script is a**schema object**, you will need to find or create a schema to create the script in:
+As a preprocessor script is a **schema object**, you will need to find or create a schema to create the script in:
 
 
 ```"code-sql"
@@ -37,7 +37,7 @@ create schema if not exists PREPROCESSOR;
 ```
 **Preconditions:**
 
-* CREATE SCHEMAprivilege**or**pre-existing schema
+* CREATE SCHEMA privilege **or** pre-existing schema
 
 ## How to work with Preprocessor Script?
 
@@ -68,8 +68,8 @@ as
 ```
 **Preconditions:**
 
-* CREATE SCRIPTprivilege
-* ownership of the schema**or**CREATE ANY SCRIPTprivilege
+* CREATE SCRIPT privilege
+* ownership of the schema **or** CREATE ANY SCRIPT privilege
 
 ## Step 3: Activate locally
 
@@ -94,11 +94,11 @@ alter system set sql_preprocessor_script = PREPROCESSOR.MY_PREPROCESSOR;
 ```
 **Preconditions:**
 
-* ALTER SYSTEMprivilege
+* ALTER SYSTEM privilege
 
 ## Step 6: No wait, we forgot something important!
 
-We just locked out (more or less) everyone else from the database: They don't haveEXECUTEpermissions on the script!
+We just locked out (more or less) everyone else from the database: They don't have EXECUTE permissions on the script!
 
 
 ```"code-sql"
@@ -106,7 +106,7 @@ grant EXECUTE on PREPROCESSOR.MY_PREPROCESSOR to public;
 ```
 **Preconditions:**
 
-* ownership of the schema**or**GRANT ANY OBJECT PRIVILEGEprivilege
+* ownership of the schema **or** GRANT ANY OBJECT PRIVILEGE privilege
 
 ## Additional Notes
 
@@ -125,6 +125,6 @@ Just make sure you don't put anything dangerous/secret into that schema
 
 * [Preprocessor Scripts Documentation](https://docs.exasol.com/database_concepts/sql_preprocessor.htm)
 * [List of functions in Exasol](https://docs.exasol.com/sql_references/functions/all_functions.htm)
-* <https://exasol.my.site.com/s/article/Using-the-SQL-preprocessor-to-support-PostgreSQL-MySQL-functions-e-g-DATE>
+* [Using the SQL preprocessor to support PostgreSQL/MySQL functions (e.g. DATE )](https://exasol.my.site.com/s/article/Using-the-SQL-preprocessor-to-support-PostgreSQL-MySQL-functions-e-g-DATE)
 
 *We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

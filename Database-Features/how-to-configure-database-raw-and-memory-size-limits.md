@@ -1,7 +1,7 @@
 # How to configure database raw and memory size limits 
 ## Problem
 
-Sometimes databases growing too much on data.
+Sometimes databases grow too much on data.
 
 It is possible to set size limits for Exasol databases, so as to prevent databases from growing too much on data. This limit can be set for a database instance using database parameters.
 
@@ -9,7 +9,7 @@ It is possible to set size limits for Exasol databases, so as to prevent databas
 
 ## Configuration setup
 
-You can configure local database limit setting the the following database parameters:
+You can configure local database limit setting the following database parameters:
 
 
 
@@ -34,7 +34,7 @@ When the Exasol database reaches 105% of the given size limit, no more data inse
 • MERGE  
 • SELECT INTO
 
-All such statements are rejected with a SQL exception alike the following:
+All such statements are rejected with a SQL exception like the following:
 
 
 ```
@@ -47,6 +47,6 @@ Whenever your data size passes critical limit margins at 85%, 105% and 100%, you
 
 ## Additional References
 
-For more information on managing data inserting restrictions and license limits, please consult [this article](https://www.exasol.com/portal/display/DOC/Licenses).
+For more information on managing data inserting restrictions and license limits, please consult [this article](https://docs.exasol.com/db/latest/administration/on-premise/licenses.htm).
 
 *We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

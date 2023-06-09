@@ -450,7 +450,7 @@ Example 6.1: start a new backup
 
 | Name | Description | Parameter | Returns |
 | --- | --- | --- | --- |
-| db_backup_start | Start a backup of the given database to the given volume | db_name, backup_volume_id, level, expire_time**substitutes**: dackup_volume_name | 
+| db_backup_start | Start a backup of the given database to the given volume | db_name, backup_volume_id, level, expire_time **substitutes**: dackup_volume_name | 
 
 
 ```"code-java"
@@ -526,6 +526,6 @@ Example 6.3: list backups
 
 <https://github.com/exasol/exaoperation-xmlrpc>
 
-You can find another article about deploying a exasol database as an docker image in <https://exasol.my.site.com/s/article/How-to-deploy-a-single-node-Exasol-database-as-a-Docker-image-for-testing-purposes>
+You can find another article about deploying a exasol database as an docker image in [How to deploy a single-node Exasol database as a Docker image for testing purposes](https://exasol.my.site.com/s/article/How-to-deploy-a-single-node-Exasol-database-as-a-Docker-image-for-testing-purposes)
 
 *We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

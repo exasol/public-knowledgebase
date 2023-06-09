@@ -35,7 +35,7 @@ create or replace table identity_test (id int identity, name varchar(20));
 --alter table identity_test add constraint it_pk PRIMARY KEY ("ID") enable;
 
 
--- Load the table with data using**IMPLICIT insert**on IDENTITY Column "ID"  
+-- Load the table with data using **IMPLICIT insert** on IDENTITY Column "ID"  
 
 insert into identity_test (name) values ('Zach'),('Cole'),('Daniel'); 
 commit; 

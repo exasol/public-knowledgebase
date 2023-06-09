@@ -13,7 +13,7 @@ You need a working Exasol Cluster with a working license server.
 
 ## Step 1
 
-Boot the server with the EXAsuite's ISO, (use the same version that you have already have installed, if you are planning to update the cluster then install the new version that you want). Remember to download the ISO from [Exasol Download Section - Downloads - EXASOL User Portal](https://www.exasol.com/portal/display/DOWNLOAD/Exasol+Download+Section)
+Boot the server with the EXAsuite's ISO, (use the same version that you have already have installed, if you are planning to update the cluster then install the new version that you want). Remember to download the ISO from [Exasol Download Section - Downloads - EXASOL User Portal](https://downloads.exasol.com/)
 
 ## Step 2
 

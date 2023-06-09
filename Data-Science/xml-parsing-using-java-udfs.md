@@ -173,13 +173,13 @@ This solution requires that the table storing the XML data is located in the cur
 
 ## Additional References
 
-<https://exasol.my.site.com/s/article/Examining-expression-types-using-UDF>
+[Examining expression types using UDF](https://exasol.my.site.com/s/article/Examining-expression-types-using-UDF)
 
-<https://exasol.my.site.com/s/article/Custom-aggregate-functions-for-large-data-sets>
+[Custom aggregate functions for large data sets](https://exasol.my.site.com/s/article/Custom-aggregate-functions-for-large-data-sets)
 
-<https://exasol.my.site.com/s/article/Using-custom-JAR-Java-Archive-libraries-within-UDFs>
+[Using custom JAR (Java Archive) libraries within UDFs](https://exasol.my.site.com/s/article/Using-custom-JAR-Java-Archive-libraries-within-UDFs)
 
-<https://exasol.my.site.com/s/article/How-to-create-and-use-UDFs>
+[How to create and use UDFs](https://exasol.my.site.com/s/article/How-to-create-and-use-UDFs)
 
 ## Downloads
 [UDF.zip](https://github.com/exasol/Public-Knowledgebase/files/9936894/UDF.zip)

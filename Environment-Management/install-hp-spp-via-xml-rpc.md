@@ -4,7 +4,7 @@ This article describes the process of installing HP Service Pack for ProLiant so
 #### 1. Upload "Plugin.Administration.HP-SPP-2014.09.0-0.pkg" to EXAoperation
 
 * Login to EXAoperation (User privilege Administrator)
-* Upload pkg**Configuration>Software>Versions>Browse>Submit**
+* Upload pkg **Configuration>Software>Versions>Browse>Submit**
 
 #### 2. Connect to EXAoperation via XML-RPC (this example uses Python)
 

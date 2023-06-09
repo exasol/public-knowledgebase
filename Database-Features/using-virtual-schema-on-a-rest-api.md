@@ -21,7 +21,7 @@ A Virtual Schema translates Exasol SQL to something, that the source can underst
 2. + 3. The database core sends the SQL to the Virtual Schema adapter.  
 4. The Virtual Schema adapter transforms the users SQL so that it can query the source using the API Handler.  
 5. The adapter returns the re-formatted SQL to the database core which executes it.  
-6. During execution the SQL statement uses the API Handler (which itself is a [UDF](https://docs.exasol.com/7.0/database_concepts/udf_scripts.htm)) to parametrize a `GET` request which is send to the REST API.  
+6. During execution the SQL statement uses the API Handler (which itself is a [UDF](https://docs.exasol.com/db/latest/database_concepts/udf_scripts.htm)) to parametrize a `GET` request which is send to the REST API.  
 7. The source returns a `JSON` object to the API Handler.  
 8. The API Handler takes the `JSON` object and emits a relational table structure.  
 9. The table / result set is returned to the database core.  
@@ -139,7 +139,7 @@ The creation of the Virtual Schema takes 4 arguments:
 
 Unfortunately there are very little free and public APIs out there. For this Example I went with <https://openweathermap.org/api>. In order to use the API you need an account with openweather. Please register at their site and get your API key - it's free for low volumes.
 
-Disclaimer: In a production environment, you should never put your `API_KEY` in plain text here. Instead create a [named connection](https://docs.exasol.com/7.0/sql/create_connection.htm). Otherwise the `API_KEY` will show up in your database logging.  
+Disclaimer: In a production environment, you should never put your `API_KEY` in plain text here. Instead create a [named connection](https://docs.exasol.com/db/latest/sql/create_connection.htm). Otherwise the `API_KEY` will show up in your database logging.  
   
 
 

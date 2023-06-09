@@ -87,10 +87,10 @@ Reviewing the output, we see 4 indexes, 2 for each table and 0 indexes for the V
 
 ## Additional References
 
-<https://exasol.my.site.com/s/article/Local-and-Global-Joins>
+[Local and Global Joins](https://exasol.my.site.com/s/article/Local-and-Global-Joins)
 
-<https://exasol.my.site.com/s/article/Best-practice-Datatypes-and-Joins>
+[Best practice: Datatypes and Joins](https://exasol.my.site.com/s/article/Best-practice-Datatypes-and-Joins)
 
-<https://exasol.my.site.com/s/article/NULL-in-Exasol>
+[NULL in Exasol](https://exasol.my.site.com/s/article/NULL-in-Exasol)
 
 *We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

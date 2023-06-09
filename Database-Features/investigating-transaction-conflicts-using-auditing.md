@@ -68,7 +68,7 @@ Since our query is still running, we can assume that the start time of the query
 |---|---|---|---|
 |   |   |Start-time: 2020-09-18 18:38:17.851<br />Query:<br />```select * from test.t1; ```   |Reads the object TEST.T1<br />Experiences a WAIT FOR COMMIT.<br />Conflict objects: TEST.T1   |
 
-Important to note - in this example, the query is a simple select on TEST.T1, but the query that experiences the WAIT FOR COMMIT can be much more complicated, involving both some system tables, views, etc. Querying some system tables internally are similar to querying the actual table, so they can also cause conflicts. For more information: <https://exasol.my.site.com/s/article/Filter-on-system-tables-and-transaction-conflicts>
+Important to note - in this example, the query is a simple select on TEST.T1, but the query that experiences the WAIT FOR COMMIT can be much more complicated, involving both some system tables, views, etc. Querying some system tables internally are similar to querying the actual table, so they can also cause conflicts. For more information: [Filter on system tables and transaction conflicts](https://exasol.my.site.com/s/article/Filter-on-system-tables-and-transaction-conflicts)
 
 ## Step 3: Analyze Transaction 1
 

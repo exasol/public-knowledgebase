@@ -76,7 +76,7 @@ If you choose to use the manual setup / default installer instead then there's j
 
 You'll also need to make sure to install the 64-bit Exasol ODBC driver and the Visual Studio 2015-19 C++ redistributables on the machine hosting this self-hosted integration runtime. Install the redistributables before the driver.
 
-(Driver here: <https://www.exasol.com/portal/display/DOWNLOAD/7.0> and redistributables here : <https://support.microsoft.com/en-us/topic/the-latest-supported-visual-c-downloads-2647da03-1eea-4433-9aff-95f26a218cc0> )
+(Driver here: <https://downloads.exasol.com/clients-and-drivers/odbc> and redistributables here : <https://support.microsoft.com/en-us/topic/the-latest-supported-visual-c-downloads-2647da03-1eea-4433-9aff-95f26a218cc0> )
 
 Next we'll set up a linked service using this integration runtime.
 

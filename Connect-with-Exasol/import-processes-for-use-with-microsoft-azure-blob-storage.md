@@ -26,9 +26,7 @@ You can make use of Lua scripting to generate the IMPORT SQL commands. Addition
 
 ## Additional Notes
 
-Follow the steps described in the comments of the file [azure_blob.sql](https://www.exasol.com/support/secure/attachment/78668/78668_azure_blob.sql "azure_blob.sql")
-
-.
+Follow the steps described in the comments of the file [azure_blob.sql](https://github.com/exasol/public-knowledgebase/blob/main/Connect-with-Exasol/attachments/azure_blob.sql "azure_blob.sql").
 
 ## Additional References
 

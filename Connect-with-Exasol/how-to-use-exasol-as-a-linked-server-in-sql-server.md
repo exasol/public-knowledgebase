@@ -7,7 +7,7 @@ Using this, MS SQL Server can be configured to access data in Exasol, both for r
 
 ## Prerequisites
 
-* The Exasol ODBC driver for windows, in the architecture (x86 / amd64) fitting the SQL Server installation. We recommend installing the latest available Exasol ODBC driver, even if it is a newer version than your Exasol database. All drivers are backward compatible. You can get them here: [Downloads](https://www.exasol.com/portal/display/DOWNLOAD)
+* The Exasol ODBC driver for windows, in the architecture (x86 / amd64) fitting the SQL Server installation. We recommend installing the latest available Exasol ODBC driver, even if it is a newer version than your Exasol database. All drivers are backward compatible. You can get them here: [Downloads](https://downloads.exasol.com/clients-and-drivers/odbc)
 * A properly configured ODBC data source (DSN), again with the correct architecture (x86 or 64).
 	+ Provide a default schema if schema name and user name are not equal. The following setup will be limited to accessing tables in that schema
 	+ on the advanced tab, check the "Show only current schema" option. This will limit all catalog queries to one schema, eliminating "more than one table" errors later.
@@ -100,7 +100,7 @@ The SQL Server -&gt; EXA export using a Linked Server could only be estimated be
 The above methods all rely on prepared statements, which is not compatible with Exasol's Lua scripting. If you need to trigger script execution remotely from the SQL Server, you need to use the RPC functionality:
 
 1. In the properties of your linked server (your Exasol), go to the page 'Server Options' and enable the 'RPC Out' feature
-2. You can now use [SQL Server's EXECUTE](https://technet.microsoft.com/en-us/library/ms188332(v=SQL.110).aspx) command to run arbitrary statements on the linked server**and**receive the results for further local processing:
+2. You can now use [SQL Server's EXECUTE](https://technet.microsoft.com/en-us/library/ms188332(v=SQL.110).aspx) command to run arbitrary statements on the linked server **and** receive the results for further local processing:
 
 
 ```"code-java"

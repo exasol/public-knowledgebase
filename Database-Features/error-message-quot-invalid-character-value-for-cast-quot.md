@@ -11,7 +11,7 @@ You might face the exception “**data exception - invalid character value for c
 
 ## Diagnosis
 
-A **data exception**error has occurred if you receive the following error messages:
+A **data exception** error has occurred if you receive the following error messages:
 
 ```
 [Code: 0, SQL State: 22018] data exception - invalid character value for cast; Value: …

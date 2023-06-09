@@ -43,6 +43,6 @@ For all ODBC logfile options, please refer to the user manual.
 
 <https://docs.exasol.com/connect_exasol/bi_tools/tableau.htm>
 
-<https://exasol.my.site.com/s/article/How-to-use-Exasol-as-a-Linked-Server-in-SQL-Server>
+[How to use Exasol as a Linked Server in SQL Server](https://exasol.my.site.com/s/article/How-to-use-Exasol-as-a-Linked-Server-in-SQL-Server)
 
 *We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

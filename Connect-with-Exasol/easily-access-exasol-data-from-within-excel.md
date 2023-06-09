@@ -23,7 +23,7 @@ You could also use a connection string if you prefer.
 
 As a prerequisite for the ODBC driver to function you'll need to install the "Microsoft Visual C++ Redistributable for Visual Studio 2015, 2017 and 2019". It can be found here : <https://support.microsoft.com/en-us/topic/the-latest-supported-visual-c-downloads-2647da03-1eea-4433-9aff-95f26a218cc0>
 
-The Exasol ODBC Driver installers can be found here: <https://www.exasol.com/portal/display/DOWNLOAD/7.0>
+The Exasol ODBC Driver installers can be found here: <https://downloads.exasol.com/clients-and-drivers/odbc>
 
 Which version of the driver and redistributables you need depends on the excel version you're using, but I generally recommend to install both the x86 and x64 versions of the redistributables and the ODBC drivers as to avoid any complications.
 

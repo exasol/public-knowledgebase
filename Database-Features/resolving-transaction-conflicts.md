@@ -60,10 +60,10 @@ Exasol recommends to keep autocommit on and not leave transactions open for too 
 ## Additional References
 
 * <https://docs.exasol.com/database_concepts/transaction_management.htm>
-* <https://exasol.my.site.com/s/article/Transaction-System>
-* <https://exasol.my.site.com/s/article/Filter-on-system-tables-and-transaction-conflicts>
-* <https://exasol.my.site.com/s/article/Transaction-Conflicts-for-Mixed-Read-Write-Transactions>
-* <https://exasol.my.site.com/s/article/How-to-determine-idle-sessions-with-open-transactions-Except-Snapshot-Executions>
-* <https://exasol.my.site.com/s/article/Investigating-Transaction-Conflicts-using-Auditing>
+* [Transaction System](https://exasol.my.site.com/s/article/Transaction-System)
+* [Filter on system tables and transaction conflicts](https://exasol.my.site.com/s/article/Filter-on-system-tables-and-transaction-conflicts)
+* [Transaction Conflicts for Mixed Read/Write Transactions](https://exasol.my.site.com/s/article/Transaction-Conflicts-for-Mixed-Read-Write-Transactions)
+* [How to determine idle sessions with open transactions (Except Snapshot Executions)](https://exasol.my.site.com/s/article/How-to-determine-idle-sessions-with-open-transactions-Except-Snapshot-Executions)
+* [Investigating Transaction Conflicts using Auditing](ttps://exasol.my.site.com/s/article/Investigating-Transaction-Conflicts-using-Auditing)
 
 *We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

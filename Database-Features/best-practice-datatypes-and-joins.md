@@ -9,7 +9,7 @@ All this may be caused by a lack of discipline in database design and/or data cl
 
 ## Explanation
 
-Since expression indexes (see <https://exasol.my.site.com/s/article/Indexes>) may occur when joining on different datatypes or joining on expressions we recommend having the same data types and homogenous data in the tables that are joined.
+Since expression indexes (see [Indexes](https://exasol.my.site.com/s/article/Indexes)) may occur when joining on different datatypes or joining on expressions we recommend having the same data types and homogenous data in the tables that are joined.
 
 Let's assume we have two tables (T1 and T2) with two columns each (ID and COUNTRY_CODE). The COUNTRY_CODE is stored heterogeneous (e.g. 'USA' and 'usa' as COUNTRY_CODE for the United States of America).
 

@@ -56,8 +56,8 @@ Please note the following:
 ## Additional References
 
 * [Performance Guide - Distribution](https://docs.exasol.com/performance/best_practices.htm#DistributionKeys)
-* [ALTER TABLE - DISTRIBUTE BY](https://docs-test.exasol.com/sql/alter_table(distribution_partitioning).htm)
-* [CREATE TABLE Syntax](https://docs-test.exasol.com/sql/create_table.htm)
-* [REORGANIZE Syntax](https://docs-test.exasol.com/sql/reorganize.htm)
+* [ALTER TABLE - DISTRIBUTE BY](https://docs.exasol.com/db/latest/sql/alter_table(distribution_partitioning).htm)
+* [CREATE TABLE Syntax](https://docs.exasol.com/db/latest/sql/create_table.htm)
+* [REORGANIZE Syntax](https://docs.exasol.com/db/latest/sql/reorganize.htm)
 
 *We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 
