@@ -6,6 +6,12 @@ For further information please also visit related pages for Exasol SaaS:
 * [SaaS Documentation](https://docs.exasol.com/saas)
 * [Status Page (status.exasol.com)](https://status.exasol.com)
 
+## June 14
+Platform Update
+* Fix for problems with the cluster auto stop feature
+* Fixes for internal solution management issues
+
+
 ## June 07
 Platform Update
 * Hotfix for internal platform problems.
