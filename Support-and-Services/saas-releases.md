@@ -7,10 +7,13 @@ For further information please also visit related pages for Exasol SaaS:
 * [Status Page (status.exasol.com)](https://status.exasol.com)
 
 ## June 14
-Platform Update
+UI and Platform Update
+* Improved dialogs for communication of credit status to free trial users.
+* Added the ability to apply for a free trial extension through the UI.
 * Fix for problems with the cluster auto stop feature.
 * Fixes for internal solution management issues.
 * Disabled the ability to edit entries in the network security list in the UI and Rest API.  Users are now required to remove existing entries and create new ones rather than modifying existing entries.
+* Prevent users from accidentally disabling browser cookies essential to the UI.
 
 
 ## June 07
