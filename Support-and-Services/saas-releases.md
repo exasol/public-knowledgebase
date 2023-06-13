@@ -8,8 +8,9 @@ For further information please also visit related pages for Exasol SaaS:
 
 ## June 14
 Platform Update
-* Fix for problems with the cluster auto stop feature
-* Fixes for internal solution management issues
+* Fix for problems with the cluster auto stop feature.
+* Fixes for internal solution management issues.
+* Disabled the ability to edit entries in the network security list in the UI and Rest API.  Users are now required to remove existing entries and create new ones rather than modifying existing entries.
 
 
 ## June 07
