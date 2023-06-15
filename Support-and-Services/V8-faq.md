@@ -1,7 +1,7 @@
- # V8 FAQ
-## V8 Fundamentals
+ # Exasol 8 FAQ
+## Exasol 8 Fundamentals
 
-### Where will Exasol version 8 be available?
+### Where will Exasol 8 be available?
 
 Exasol 8 is already used in SaaS.
 Now Exasol 8 is available for AWS and on-premises.
@@ -20,7 +20,7 @@ The on-premise version is also referred to as "as-Application" version as it can
 ### Does Exasol 8 come with an administration application like ExaOperation?
 
 As more and more customers automate installation and configuration, Exasol 8 does not come with an administration UI.
-V8 comes with powerful APIs and configuration/installation tools. Please have look at the Exasol 8 documentation (https://docs.exasol.com/db/latest/home.htm).
+Exasol 8 comes with powerful APIs and configuration/installation tools. Please have look at the Exasol 8 documentation (https://docs.exasol.com/db/latest/home.htm).
 
 ### How can I familiarize myself with version Exasol 8 before updating my databases? 
 
@@ -38,15 +38,15 @@ Our [documentation](https://docs.exasol.com/db/latest/home.htm) is the best plac
 ## Migrations
 ### How do I migrate from Exasol 7 to Exasol 8?
 
-Due to the to the new architecture in Exasol 8, including the separation of the database software from the operating system, upgrading a version 7.1 cluster to version 8 using an update installation package is not feasible. Instead, a new installation and migration is required.
+Due to the to the new architecture in Exasol 8, including the separation of the database software from the operating system, upgrading a version 7.1 cluster to Exasol 8 using an update installation package is not feasible. Instead, a new installation and migration is required.
 
-In general, the migration procedure involves taking a backup of an existing database on version 7.1 and restoring this into a new installation running version 8. The downtime required for the update depends on several factors, such as the amount of data and nodes you have, network speed, and more. More information can be found in our [documentation](https://docs.exasol.com/db/latest/administration/aws/upgrade/migrate_71_v8.htm)
+In general, the migration procedure involves taking a backup of an existing database on version 7.1 and restoring this into a new installation running Exasol 8. The downtime required for the update depends on several factors, such as the amount of data and nodes you have, network speed, and more. More information can be found in our [documentation](https://docs.exasol.com/db/latest/administration/aws/upgrade/migrate_71_v8.htm)
 
 ### Can I use my existing license for Exasol 8?
-Version 7.x licenses are not compatible with Version 8. Please contact us to obtain a new license file specifically for Version 8.
+Version 7.x licenses are not compatible with Exasol 8. Please contact us to obtain a new license file specifically for Version 8.
 
 ### Will Exasol help us migrate to Exasol 8?
-Exasol will help all customers have a smooth transition to Exasol 8. Customers who have booked "Platinum Support Level" or "Cluster Administration Service" will get this service complimentary and free or charge. For all others, Exasol is offering a "Exasol 8 Migration Service".
+Exasol will help all customers have a smooth transition to Exasol 8. Customers who have booked "Platinum Support Level" or "Cluster Administration Service" will get this service complimentary and free of charge. For all others, Exasol is offering an "Exasol 8 Migration Service".
 
 The “Exasol 8 Migration Service” comprises supporting tasks for the upgrade and migration from a supported Exasol version to the latest v8 and includes the following services during the project phase:
 * Project Management throughout the whole migration
@@ -63,10 +63,10 @@ For information about the Migration Service, contact your account manager.
 
 
 ### How do I install Exasol 8 on my own?
-Installation instructions can be found on the [Exasol documentation page](https://docs.exasol.com/db/latest/home.htm). For customers who booked "Cluster Administration Service" or "Platinum Support Level", Exasol Support will take care about the installation. For all others please get in touch with your Account Manager in order to get a quote.
+Installation instructions can be found on the [Exasol documentation page](https://docs.exasol.com/db/latest/home.htm). For customers who booked "Cluster Administration Service" or "Platinum Support Level", Exasol Support will take care about the installation. For all others please get in touch with your account manager in order to get a quote.
 
 
-### How long can I use version 7.0 or 7.1 before I have to upgrade to version V8.0?
+### How long can I use version 7.0 or 7.1 before I have to migrate to Exasol 8?
 
 You can find the End-Of-Life dates for our releases here: https://exasol.my.site.com/s/article/Exasol-Life-Cycle-Policy?language=en_US
 
