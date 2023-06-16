@@ -1,4 +1,4 @@
- # Exasol 8 FAQ
+ # V8 FAQ
 ## Exasol 8 Fundamentals
 
 ### Where will Exasol 8 be available?
