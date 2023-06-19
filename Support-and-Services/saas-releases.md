@@ -6,6 +6,13 @@ For further information please also visit related pages for Exasol SaaS:
 * [SaaS Documentation](https://docs.exasol.com/saas)
 * [Status Page (status.exasol.com)](https://status.exasol.com)
 
+
+## June 21
+Platform Update
+* Update IP address whitelist for Keboola partner integration
+* Use Exasol 8.19.0 when deploying new databases.  See the release notes here:  https://docs.exasol.com/db/latest/release_notes/8.19.0.htm
+
+
 ## June 14
 UI and Platform Update
 * Improved dialogs for communication of credit status to free trial users.
