@@ -33,14 +33,16 @@ The following information is collected:
 **Note**: Just like our current monitoring solution, Exasol does not collect any personal data.
 
 - Exasol database statistics  
-  - Schema EXA\_STATISTICS
-- Exasol cluster states  
+  - Schema "EXA_STATISTICS"
+    - Sessions (every 1 minute)
+    - Stats (every 30 minutes)
+- Exasol cluster states (every 4 minutes)
   - DB states + DB names
   - Volume states + names  
   - Node states + names
   - HDD states + names
   - Backup states + IDs
-- OS metrics  
+- OS metrics  (every 1 minute)
   - Hardware metrics/events  
   - Disk metrics  
   - CPU metrics  
@@ -49,18 +51,17 @@ The following information is collected:
   - Network metrics  
   - Network connection states  
   - Swap usage  
-  - DELL iDRAC 7/8/9 logs
-- Rsyslog  
+  - DELL iDRAC 7/8/9 logs (DELL OMSA required)
+- Rsyslog (log stream)
   - Exasol logs  
 
 ### How is data transferred?
 
-Once data is collected by the nodes inside the cluster, it is converted into the Influx line protocol and shipped to the Data Gateway. The connection uses SASL and SSL, or SSL only for Rsyslog messages. Data will be sent to the monitoring stack via the Internet.
+Once data is collected by the nodes inside the cluster, it is converted into the Influx line protocol and shipped to our Data Gateway (harvester.exasol.com). The connection uses SASL over SSL. Data will be sent to the monitoring stack via the Internet.
 
-Encrypted data is sent using four ports:
+Encrypted data is sent using three ports:
 
-- A port for the metrics harvester.exasol.com:9092 (plus data ports 10016 and 10019).
-- A port for Rsyslog harvester.exasol.com:1514.
+- A port for the metrics harvester.exasol.com:9092 (plus data ports 10016 and 10019)
 
 Encryption:
 
@@ -78,21 +79,23 @@ Monitoring agent certificates used by the Exasol monitoring agents (can be downl
 * https://letsencrypt.org/certs/lets-encrypt-r3.pem
 * https://letsencrypt.org/certs/isrg-root-x1-cross-signed.pem
 * https://letsencrypt.org/certs/lets-encrypt-r3-cross-signed.pem
+* Agent certificate lifetime 356 days, will be renewed with each new agent release
 
 On top of that each Exasol cluster is using a unique user + password combination in order to authenticate at harvester.exasol.com only if certificates + user + password do match monitoring data will flow into our monitoring platform.
 
 #### SOCKS5 Proxy support
 
-If direct internet access for the monitoring agents is not allowed, data can be transferred through a [SOCKS5 proxy](https://en.wikipedia.org/wiki/SOCKS#SOCKS5). The SOCKS5 proxy must be able to resolve harvester.exasol.com and to access the TCP ports listed below.
+If direct internet access for the monitoring agents is not allowed, data can be transferred through a [SOCKS5 proxy](https://en.wikipedia.org/wiki/SOCKS#SOCKS5). The SOCKS5 proxy must be able to resolve harvester.exasol.com and to access the TCP ports listed below. The monitoring agents installed on the Exasol hosts will then send their sensor data to one single port on the SOCKS5 proxy.
+
+The agent only supports SOCKS5, no other SOCKS protocols are supported.
 
 ### How is data stored?
 
-Data is stored at Exasol on an on-premise system. As with our current monitoring solution, the data itself is unencrypted but the underlying hard disk is encrypted.
+Data is stored at Exasol on an on-premise system. As with our current monitoring solution, the data itself is unencrypted but the underlying hard disks are encrypted.
 
 ### What’s next?
 
 1. Existing customers need to allow their Exasol clusters to connect to Exasol's host harvester.exasol.com via four public data gateway ports (TCP):
-   - 1514
    - 9092
    - 10016
    - 10019
