@@ -1,7 +1,7 @@
 # &quot;Active Session Limit&quot; Reached 
 ## Problem
 
-Exasol supports 100 active slots by default in use by the database. Exasol's Session Management is described in detail in [our documentation](https://docs.exasol.com/database_concepts/session_management.htm). 
+Exasol supports 100 active slots by default in use by the database. Exasol's Session Management is described in detail in [our documentation](https://docs.exasol.com/database_concepts/session_management.htm).
 
 Due to this concept, there could be the case where all of these slots are in use by sessions, forcing additional incoming queries to wait. 
 
@@ -24,10 +24,10 @@ Query queue limit of active sessions nearly reached,  running:
 
 A session occupies an active slot if it meets one of the following criteria:
 
-* Performing query execution
-* Has open transactions
-* Has open prepared statement
-* Has open resultset
+* Performs query execution
+* Has open transactions (since version 8 only write transactions count)
+* Has open prepared statement (doesn't count since version 7.1)
+* Has open result set
 * Has open sub-connection
 
 This "active session" is set to 100 for performance reasons. Since all queries share the cluster resources, the more concurrent queries are running, the fewer resources are available for each session. When this active slot limit is reached, it does not mean users cannot ever login or run queries.
@@ -55,6 +55,8 @@ In addition, you should investigate if sessions or clients are keeping resultset
 ### 2.1.  JDBC parameter "superconnection=1"
 
 If the message appears constantly and you are not able to login to check what is happening, you can use a special driver parameter to login as SYS. In your SQL client, you can set the JDBC parameter "superconnection=1", which will enable you to login as SYS, even if the active session limit is reached and your login is delayed.
+
+The parameter is also supported for ODBC and ADO.NET drivers. For valid values please refer to driver documentation: [Drivers](https://docs.exasol.com/db/latest/connect_exasol/drivers.htm).
 
 ### 2.2. Kill sessions
 
@@ -86,7 +88,7 @@ Once the situation is under control, you should investigate your processes and s
 * Why are queries running for a long time?
 * Is this increase a recent change? What has changed recently?
 
-If needed, Exasol Support can also assist in explaining which sessions were active and for which reasons. 
+If needed, Exasol Support can also assist in explaining which sessions were active and for which reasons.
 
 ## 3. Why not just increase the number of active sessions?
 
@@ -98,5 +100,6 @@ For example: If 100 queries in parallel use 100% of the CPU resources it will no
 
 * [Identify idle sessions with open transactions](https://exasol.my.site.com/s/article/How-to-determine-idle-sessions-with-open-transactions-Except-Snapshot-Executions?language=en_US)
 * [Session Management](https://docs.exasol.com/database_concepts/session_management.htm)
+* [Drivers](https://docs.exasol.com/db/latest/connect_exasol/drivers.htm)
 
 *We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 
