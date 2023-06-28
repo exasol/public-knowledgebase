@@ -12,7 +12,17 @@ A release includes all components listed in the below download links.
 |---|---|---|---|
 |  Exasol 6.2 |  2019-07-24 |  2021-12-31 |  out of support since 2021-12-31 |
 |  Exasol 7.0 |  2020-09-11 |  2023-06-30 |  extended to 2023-06-30|
-|  Exasol 7.1 |  2021-08-03 |  2024-06-30 |  extended to 2024-06-30 |
+|  Exasol 7.1 (Regular Support) |  2021-08-03 |  2024-06-30 |  extended to 2024-06-30 |
+|  Exasol 7.1 (Extended Support) | 2024-07-01 | 2024-12-31 | See below note |
+
+Extended Support for Exasol 7.1 includes:
+* OS patches (via 3rd party provider)
+* Major bug fixes
+* Security Fixes
+
+## Support for End of Life Versions
+If you continue to use an Exasol version after the End of Life date, Exasol support will help on a best-effort basis, however no SLAs or guarantees are applicable to these cases. For this reason, we strongly recommend to run supported versions.
+
 
 ## Client Platform Support
 
