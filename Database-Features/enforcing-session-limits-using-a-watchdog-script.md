@@ -1,13 +1,15 @@
 # Enforcing session limits using a watchdog script 
 ## Background
 
-While Exasol does not provide configurable limits on resource usage of single sessions, many administrators ask us how to impose such limits manually.
+While Exasol did not provide configurable limits on resource usage of single sessions, many administrators asked us how to impose such limits manually.
 
-The simplest way to do this is to monitor the EXA_ALL_SESSIONS system table to identify "bad" sessions based on some criteria, and subsequently kill/abort these sessions.
+The simplest way to do this was to monitor the EXA_ALL_SESSIONS system table to identify "bad" sessions based on some criteria, and subsequently kill/abort these sessions.
+
+Since version 7.1 the majority of the script's functionality could be achieved by Consumer Groups: [Resource Manager](https://docs.exasol.com/db/latest/database_concepts/resource_manager.htm).
 
 ## How to Implement
 
-The attached (Lua) script implements such a watchdog and can be run (execute script) by a scheduled process.  
+The linked (Lua) script implements such a watchdog and can be run (EXECUTE SCRIPT) by a scheduled process.
 In its current form, it introduces three criteria for "bad" sessions:
 
 * Sessions that use up too much TEMP_DB_RAM
@@ -35,7 +37,10 @@ The script will check all current sessions against the given limits and will cal
 * KILL STATEMENT <...> IN SESSION <...> when a session exceeds any of the given limits
 * KILL SESSION <...> when the limit is exceeded by more than 10 percent.
 
-## Downloads
-[session_watchdog.zip](https://github.com/exasol/Public-Knowledgebase/files/9937010/session_watchdog.zip)
+## Additional References
+
+The script itself: [session_watchdog.sql](https://raw.githubusercontent.com/exasol/exa-toolbox/master/utilities/session_watchdog.sql)
+
+[Resource Manager](https://docs.exasol.com/db/latest/database_concepts/resource_manager.htm)
 
 *We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 
