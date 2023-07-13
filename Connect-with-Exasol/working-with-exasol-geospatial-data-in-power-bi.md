@@ -93,7 +93,7 @@ Add 2 more custom columns:
 
 ![](images/exa-Pieterjan_2-1618845359830.png)
 
-We'll use `[GeographyRecord][Longitude]` and`[GeographyRecord][Latitude]` as the column formulas.
+We'll use `[GeographyRecord][Longitude]` and `[GeographyRecord][Latitude]` as the column formulas.
 
 Let's apply our changes and go back to the visualisation view.
 

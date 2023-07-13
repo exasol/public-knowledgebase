@@ -413,11 +413,13 @@ cloudbeaver with_exasol b24c1c55067a 51 minutes ago 2.64GB
 Now we can copy the resulting CloudBeaver runtime files from the image with:
 
 
-```"western"
-`id=$(docker create cloudbeaver:with_exasol)`   
-`docker cp $id:/``cloudbeaver/deploy/cloudbeaver` `- >` `~/cloudbeaver.``tar`  `docker rm -v $id`
 ```
- Nice — we've prepared the build environment, pulled the repository, added the Exasol driver, and built CloudBeaver all in one step.
+id=$(docker create cloudbeaver:with_exasol)
+docker cp $id:/cloudbeaver/deploy/cloudbeaver - > ~/cloudbeaver.tar
+docker rm -v $id
+```
+
+Nice — we've prepared the build environment, pulled the repository, added the Exasol driver, and built CloudBeaver all in one step.
 
 ## Multistage Dockerfile for build and runtime
 

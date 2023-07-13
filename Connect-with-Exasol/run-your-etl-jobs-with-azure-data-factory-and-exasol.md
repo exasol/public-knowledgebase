@@ -138,15 +138,17 @@ For this example I've added a very simple table to my database containing just a
 
 Here's the script:
 
-`CREATE SCHEMA adf;`  
-`ALTER SCHEMA adf CHANGE OWNER SYS;`
+```
+CREATE SCHEMA adf;
+ALTER SCHEMA adf CHANGE OWNER SYS;
 
-`-- "adf".PERSON definition`
+-- "adf".PERSON definition
 
-`CREATE TABLE "adf".PERSON (`  
-`FIRSTNAME VARCHAR(50) UTF8,`  
-`LASTNAME VARCHAR(50) UTF8`  
-`);`
+CREATE TABLE "adf".PERSON (
+FIRSTNAME VARCHAR(50) UTF8,
+LASTNAME VARCHAR(50) UTF8
+);
+```
 
 This is what our dataset should look like then:
 
