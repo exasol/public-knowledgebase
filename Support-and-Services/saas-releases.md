@@ -6,6 +6,10 @@ For further information please also visit related pages for Exasol SaaS:
 * [SaaS Documentation](https://docs.exasol.com/saas)
 * [Status Page (status.exasol.com)](https://status.exasol.com)
 
+## July 17
+UI Update
+* Fix for worksheets. `EXECUTE SCRIPT ...` statements are working now as expected. 
+
 
 ## June 21
 Platform Update
