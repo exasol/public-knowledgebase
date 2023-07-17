@@ -63,7 +63,7 @@ Let's configure the data source:
 
 `EXAHOST=192.168.56.117/E625D0BDD8A975CBC7001B842EAEFB56CDCC664459AE21BFAFCA13D9495D4D77`
 
-The format is`EXAHOST= hostname/fingerprint` when using a fingerprint or just `EXAHOST=hostname`.
+The format is `EXAHOST= hostname/fingerprint` when using a fingerprint or just `EXAHOST=hostname`.
 
  - The default name of the database is `EXA_DB`. 
  - Username and password of the database user. 
