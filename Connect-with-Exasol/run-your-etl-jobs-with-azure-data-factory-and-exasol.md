@@ -139,8 +139,8 @@ For this example I've added a very simple table to my database containing just a
 Here's the script:
 
 ```
-CREATE SCHEMA adf;
-ALTER SCHEMA adf CHANGE OWNER SYS;
+CREATE SCHEMA "adf";
+ALTER SCHEMA "adf" CHANGE OWNER SYS;
 
 -- "adf".PERSON definition
 
