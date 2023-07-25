@@ -42,9 +42,9 @@ Hopefully, this will be useful for others making the same transition:
 24. In Exasol `JOIN...USING()` join syntax can be significantly slower than `JOIN...ON` when there are a large number of such joins. So in general use the `ON` syntax (Note that it is on Exasol's road-map to address this issue). In MySQL there is no performance difference between the two syntaxes.
 25. In Exasol multiple `JOIN-USINGs` with the same column name generates a duplicate column error.
 	1. MySQL: `SELECT * FROM a JOIN b USING(id) JOIN c USING(id);`
-	2. Exasol: `SELECT * FROM a JOIN b ONa.id=b.idJOIN c ONa.id=c.id;`
+	2. Exasol: `SELECT * FROM a JOIN b ON a.id=b.idJOIN c ONa.id=c.id;`
 26. In Exasol selecting a column referenced in a `USING()` cannot include the table name. In MySQL it can.
-	1. MySQL: `SELECTa.idFROM a JOIN b USING(id)`
+	1. MySQL: `SELECT a.id FROM a JOIN b USING(id)`
 	2. Exasol: `SELECT id FROM a JOIN b USING(id)`
 27. In MySQL `a JOIN b` with no `ON` clause is implicitly a cross join. In Exasol you have to explicitly say `a CROSS JOIN b` otherwise you get a syntax error.
 28. In Exasol you can't have a sub-select inside of `ON` clause `JOIN` criteria. You have to rewrite the sub-query as a table and `JOIN` onto it.
@@ -64,7 +64,7 @@ Hopefully, this will be useful for others making the same transition:
 	1. MySQL: `DATE_FORMAT(NOW(),'%jth')`
 	2. Exasol: `CONCAT(TO_CHAR(NOW(),'DDD'),'th')`
 35. In `GROUP_CONCAT(DISTINCT a ORDER BY b)` Exasol collapses identical adjacent values of `a` *after* ordering by `b` while MySQL collapses all identical values of `a` regardless of the order.
-36. `REGEXPs` in Exasol assume a leading `^` and trailing `$` while MySQL's don't. So you need an explicit `'.*'` in Exasol to emulate that.
+36. `REGEXPs` in Exasol assume a leading `^` and trailing `$` while MySQL's does not. So you need an explicit `'.*'` in Exasol to emulate that.
 	1. MySQL: `...REGEXP 'abc'`
 	2. Exasol: `...REGXP_LIKE '.*abc.*'`
 37. Exasol doesn't support `SQL_CALC_FOUND_ROWS + FOUND_ROWS()` construct. Instead you can just include a column which does `COUNT(*) OVER () AS num_rows`
