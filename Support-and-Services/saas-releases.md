@@ -6,6 +6,12 @@ For further information please also visit related pages for Exasol SaaS:
 * [SaaS Documentation](https://docs.exasol.com/saas)
 * [Status Page (status.exasol.com)](https://status.exasol.com)
 
+## Aug 03
+UI Update
+* Fix worksheets not showing results in case that first statement was incorrect
+* Fix worksheets overwriting content from other worksheets
+* Show all scripts in worksheet sidebar
+
 ## July 17
 UI Update
 * Fix for worksheets. `EXECUTE SCRIPT ...` statements are working now as expected. 
