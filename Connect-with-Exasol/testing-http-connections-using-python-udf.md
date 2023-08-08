@@ -5,7 +5,7 @@ As Exasol comes with its own operating system and users do rarely have access to
 
 ## How to test HTTP connections using python UDF
 
-The attached SQL file contains aSCALAR PYTHON SCRIPTthat does minimalistic network testing using the following steps:
+The attached SQL file contains a `SCALAR PYTHON3 SCRIPT` that does minimalistic network testing using the following steps:
 
 1. **Hostname lookup** using DNS (Domain Name Service)
 2. **TCP connect** to the resulting address
@@ -17,96 +17,80 @@ The script will output some information, including the cluster node it ran on an
 
 ### 1 - Testing an internal web server on a random node
 
-
-```"code-sql"
-select webtest_py('192.168.103.212', 80, '/') order by 1,2; 
+```sql
+select webtest_py('192.168.0.186', 80, '/cluster1') order by 1,2;
 ```
 
-
-| NODE_IP | SECONDS | MESSAGE |
-| --- | --- | --- |
-| n0016.c0001.exacluster.local | 0.009 | Checking DNS for 192.168.103.212 |
-| n0016.c0001.exacluster.local | 0.009 | Name resolves to IPs['192.168.103.212'] |
-| n0016.c0001.exacluster.local | 0.009 | Trying to connect to 192.168.103.212, port 80 |
-| n0016.c0001.exacluster.local | 0.010 | Connected. |
-| n0016.c0001.exacluster.local | 0.010 | HTTP GET request sent |
-| n0016.c0001.exacluster.local | 0.011 | HTTP/1.1 200 OK |
-| n0016.c0001.exacluster.local | 0.011 | ...Date: Mon, 12 Oct 2015 14:37:19 GMT |
-| n0016.c0001.exacluster.local | 0.011 | ...Server: Apache/2.2.9 (Debian) mod_auth_kerb/5.3 DAV/2 SVN/1.5.1 PHP/5.2.6-1+lenny16 with Suhosin-Patch mod_ssl/2.2.9 OpenSSL/0.9.8g |
-| n0016.c0001.exacluster.local | 0.011 | ...Last-Modified: Mon, 16 Jun 2008 08:57:00 GMT |
-| n0016.c0001.exacluster.local | 0.011 | ...ETag: "50800c-128-44fc4cf7b6f00" |
-| n0016.c0001.exacluster.local | 0.011 | ...Accept-Ranges: bytes |
-| n0016.c0001.exacluster.local | 0.011 | ...Content-Length: 296 |
-| n0016.c0001.exacluster.local | 0.011 | ...Vary: Accept-Encoding |
-| n0016.c0001.exacluster.local | 0.011 | ...Content-Type: text/html |
-| n0016.c0001.exacluster.local | 0.011 | End of headers |
+|NODE_NAME_IP|MSG_NO|DURATION_SECONDS|MESSAGE|
+|------------|------|----------------|-------|
+|n0010.c0001.exacluster.local (27.1.0.10)|1|0.005|Checking DNS for 192.168.0.186|
+|n0010.c0001.exacluster.local (27.1.0.10)|2|0.002|Name resolves to IPs ['192.168.0.186']|
+|n0010.c0001.exacluster.local (27.1.0.10)|3|0.000|Trying to connect to 192.168.0.186, port 80|
+|n0010.c0001.exacluster.local (27.1.0.10)|4|0.001|Connected.|
+|n0010.c0001.exacluster.local (27.1.0.10)|5|0.008|HTTP GET request sent|
+|n0010.c0001.exacluster.local (27.1.0.10)|6|0.249|HTTP/1.1 200 Ok|
+|n0010.c0001.exacluster.local (27.1.0.10)|7|0.000|...Content-Length: 6534|
+|n0010.c0001.exacluster.local (27.1.0.10)|8|0.003|...X-XSS-Protection: 1;mode=block|
+|n0010.c0001.exacluster.local (27.1.0.10)|9|0.000|...X-Content-Type-Options: nosniff|
+|n0010.c0001.exacluster.local (27.1.0.10)|10|0.000|...Set-Cookie: __csrftoken__=494GPLCLKTI1NGZ9CPC993CCIM6P92E5; httponly; Path=/|
+|n0010.c0001.exacluster.local (27.1.0.10)|11|0.000|...Server: |
+|n0010.c0001.exacluster.local (27.1.0.10)|12|0.000|...Date: Wed, 02 Aug 2023 15:51:18 GMT|
+|n0010.c0001.exacluster.local (27.1.0.10)|13|0.000|...X-Frame-Options: SAMEORIGIN|
+|n0010.c0001.exacluster.local (27.1.0.10)|14|0.000|...Content-Type: text/html;charset=utf-8|
+|n0010.c0001.exacluster.local (27.1.0.10)|15|0.000|End of headers|
 
 ### 2 - Invalid page
 
-
-```"code-sql"
-select webtest_py('192.168.103.212', 80, '/xxx.html') order by 1,2; 
+```sql
+select webtest_py('192.168.0.186', 80, '/xxx.html') order by 1,2;
 ```
 
-
-| NODE_IP | SECONDS | MESSAGE |
-| --- | --- | --- |
-| n0016.c0001.exacluster.local | 0.002 | Checking DNS for 192.168.103.212 |
-| n0016.c0001.exacluster.local | 0.002 | Name resolves to IPs['192.168.103.212'] |
-| n0016.c0001.exacluster.local | 0.003 | Trying to connect to 192.168.103.212, port 80 |
-| n0016.c0001.exacluster.local | 0.003 | Connected. |
-| n0016.c0001.exacluster.local | 0.003 | HTTP GET request sent |
-| n0016.c0001.exacluster.local | 0.004 | HTTP/1.1 404 Not Found |
-| n0016.c0001.exacluster.local | 0.004 | ...Date: Mon, 12 Oct 2015 14:50:31 GMT |
-| n0016.c0001.exacluster.local | 0.005 | ...Server: Apache/2.2.9 (Debian) mod_auth_kerb/5.3 DAV/2 SVN/1.5.1 PHP/5.2.6-1+lenny16 with Suhosin-Patch mod_ssl/2.2.9 OpenSSL/0.9.8g |
-| n0016.c0001.exacluster.local | 0.005 | ...Vary: Accept-Encoding |
-| n0016.c0001.exacluster.local | 0.005 | ...Content-Length: 388 |
-| n0016.c0001.exacluster.local | 0.005 | ...Content-Type: text/html; charset=iso-8859-1 |
-| n0016.c0001.exacluster.local | 0.005 | End of headers |
+|NODE_NAME_IP|MSG_NO|DURATION_SECONDS|MESSAGE|
+|------------|------|----------------|-------|
+|n0010.c0001.exacluster.local (27.1.0.10)|1|0.005|Checking DNS for 192.168.0.186|
+|n0010.c0001.exacluster.local (27.1.0.10)|2|0.000|Name resolves to IPs ['192.168.0.186']|
+|n0010.c0001.exacluster.local (27.1.0.10)|3|0.000|Trying to connect to 192.168.0.186, port 80|
+|n0010.c0001.exacluster.local (27.1.0.10)|4|0.001|Connected.|
+|n0010.c0001.exacluster.local (27.1.0.10)|5|0.002|HTTP GET request sent|
+|n0010.c0001.exacluster.local (27.1.0.10)|6|0.000|HTTP/1.1 403 Forbidden|
+|n0010.c0001.exacluster.local (27.1.0.10)|7|0.000|...Date: Wed, 02 Aug 2023 15:56:06 GMT|
+|n0010.c0001.exacluster.local (27.1.0.10)|8|0.000|...Content-Length: 163|
+|n0010.c0001.exacluster.local (27.1.0.10)|9|0.000|...Content-Type: text/html; charset=utf-8|
+|n0010.c0001.exacluster.local (27.1.0.10)|10|0.000|...Server: |
+|n0010.c0001.exacluster.local (27.1.0.10)|11|0.000|End of headers|
 
 ### 3 - Trying wrong port:
 
-
-```"code-sql"
-select webtest_py('192.168.103.212', 20, '/') order by 1,2; 
+```sql
+select webtest_py('192.168.0.186', 30, '/') order by 1,2;
 ```
 
-
-| NODE_IP | SECONDS | MESSAGE |
-| --- | --- | --- |
-| n0016.c0001.exacluster.local | 0.013 | Checking DNS for 192.168.103.212 |
-| n0016.c0001.exacluster.local | 0.013 | Name resolves to IPs['192.168.103.212'] |
-| n0016.c0001.exacluster.local | 0.014 | Trying to connect to 192.168.103.212, port 20 |
-| n0016.c0001.exacluster.local | 0.014 | Failed:[Errno 111]Connection refused |
+|NODE_NAME_IP|MSG_NO|DURATION_SECONDS|MESSAGE|
+|------------|------|----------------|-------|
+|n0010.c0001.exacluster.local (27.1.0.10)|1|0.006|Checking DNS for 192.168.0.186|
+|n0010.c0001.exacluster.local (27.1.0.10)|2|0.000|Name resolves to IPs ['192.168.0.186']|
+|n0010.c0001.exacluster.local (27.1.0.10)|3|0.000|Trying to connect to 192.168.0.186, port 30|
+|n0010.c0001.exacluster.local (27.1.0.10)|4|0.000|Failed: [Errno 111] Connection refused|
 
 ### 4 - Firewall blocks external connection from all nodes:
 
-
-```"code-sql"
+```sql
 select webtest_py('www.heise.de', 80, '/') from exa_loadavg order by 1,2; 
 ```
 
+|NODE_NAME_IP|MSG_NO|DURATION_SECONDS|MESSAGE|
+|------------|------|----------------|-------|
+|n0011.c0001.exacluster.local (27.1.0.11)|1|0.003|Checking DNS for www.heise.de|
+|n0011.c0001.exacluster.local (27.1.0.11)|2|0.042|Name resolves to IPs ['193.99.144.85']|
+|n0011.c0001.exacluster.local (27.1.0.11)|3|0.000|Trying to connect to 193.99.144.85, port 80|
+|n0011.c0001.exacluster.local (27.1.0.11)|4|127.278|Failed: [Errno 110] Connection timed out|
+|n0012.c0001.exacluster.local (27.1.0.12)|1|0.002|Checking DNS for www.heise.de|
+|n0012.c0001.exacluster.local (27.1.0.12)|2|0.044|Name resolves to IPs ['193.99.144.85']|
+|n0012.c0001.exacluster.local (27.1.0.12)|3|0.000|Trying to connect to 193.99.144.85, port 80|
+|n0012.c0001.exacluster.local (27.1.0.12)|4|128.321|Failed: [Errno 110] Connection timed out|
 
-| NODE_IP | SECONDS | MESSAGE |
-| --- | --- | --- |
-| n0016.c0001.exacluster.local | 0.002 | Checking DNS for [www.heise.de](http://www.heise.de) |
-| n0016.c0001.exacluster.local | 0.003 | Name resolves to IPs['193.99.144.85'] |
-| n0016.c0001.exacluster.local | 0.004 | Trying to connect to 193.99.144.85, port 80 |
-| n0016.c0001.exacluster.local | 63.004 | Failed:[Errno 110]Connection timed out |
-| n0017.c0001.exacluster.local | 0.009 | Checking DNS for [www.heise.de](http://www.heise.de) |
-| n0017.c0001.exacluster.local | 0.011 | Name resolves to IPs['193.99.144.85'] |
-| n0017.c0001.exacluster.local | 0.011 | Trying to connect to 193.99.144.85, port 80 |
-| n0017.c0001.exacluster.local | 63.011 | Failed:[Errno 110]Connection timed out |
-| n0019.c0001.exacluster.local | 0.009 | Checking DNS for [www.heise.de](http://www.heise.de) |
-| n0019.c0001.exacluster.local | 0.011 | Name resolves to IPs['193.99.144.85'] |
-| n0019.c0001.exacluster.local | 0.011 | Trying to connect to 193.99.144.85, port 80 |
-| n0019.c0001.exacluster.local | 63.011 | Failed:[Errno 110]Connection timed out |
-| n0020.c0001.exacluster.local | 0.002 | Checking DNS for [www.heise.de](http://www.heise.de) |
-| n0020.c0001.exacluster.local | 0.003 | Name resolves to IPs['193.99.144.85'] |
-| n0020.c0001.exacluster.local | 0.004 | Trying to connect to 193.99.144.85, port 80 |
-| n0020.c0001.exacluster.local | 63.003 | Failed:[Errno 110]Connection timed out |
+## Additional References
 
-## Downloads
-[webtest_py.zip](https://github.com/exasol/Public-Knowledgebase/files/9936499/webtest_py.zip)
+The script itself: [webtest_py.sql](https://raw.githubusercontent.com/exasol/exa-toolbox/master/utilities/webtest_py.sql)
 
 *We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

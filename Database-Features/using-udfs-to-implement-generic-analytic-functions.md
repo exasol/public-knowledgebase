@@ -1,4 +1,4 @@
-# Using UDFs to implement generic analytic functions with support for complex windowing 
+# Using UDFs to implement generic analytic functions with support for complex windowing
 ## Background
 
 ### Analytic Functions
@@ -12,13 +12,13 @@ User-defined functions provide you the ability to program your own analyses, pro
 
 ## Using UDFs to implement generic analytic functions with support for complex windowing
 
-Exasol's SET EMITS UDF script is suited for generic analytic functions. A SET EMIT scripts run() method gets called once for every group, allowing you to iterate over the sorted tuples of the group. This is just what we need for the partitioning part of analytic functions.  
+Exasol's SET EMITS UDF script is suited for generic analytic functions. A SET EMIT script's `run()` method gets called once for every group, allowing you to iterate over the sorted tuples of the group. This is just what we need for the partitioning part of analytic functions.  
 So all we have to do in the UDF is handling the window and compute the analytic function over the given window.
 
 The function signature of our generic analytic function looks like this:
 
 
-```
+```sql
 CREATE LUA SET SCRIPT af (func varchar(40), arg double, lower_bound double, upper_bound double, groupkey varchar(200), val varchar(2000))  
 EMITS (res double, groupkey varchar(200), val varchar(2000)) AS 
 ```
@@ -27,19 +27,19 @@ Additionally, we added another column val, that is just emitted as given in the 
 In order to compute this analytic function call:
 
 
-```
+```sql
 SELECT SUM(x) OVER(PARTITION BY id ORDER BY x ROWS BETWEEN 2 PRECEDING AND CURRENT ROW), id, x FROM t; 
 ```
 We call our generic analytic function like this
 
 
-```
+```sql
 SELECT af('SUM', x, 2, 0, id, x order by x) FROM t GROUP BY id; 
 ```
 The following code is the run method of our analytic function:
 
 
-```
+```lua
 function run(ctx)
 
 local groupKey = ctx.groupkey
@@ -86,7 +86,7 @@ The three steps in this function are:
 
 ## Step 1
 
-Get and initialize a new Window object. This object does all the Window handlig for us. Of course we have to tell the window which analytic function to compute (useThisFunction).
+Get and initialize a new Window object. This object does all the Window handlig for us. Of course we have to tell the window which analytic function to compute (`useThisFunction`).
 
 ## Step 2
 
@@ -94,7 +94,7 @@ Then we have to initialize the window, before we emit any results. This is becau
 
 ## Step 3
 
-Finally we compute the window. As long as there is input data, we store this data in the window (updateWindow). When there is no more input data to read, we continue to compute the analytic function, as long there is data in the window (hasData).  
+Finally we compute the window. As long as there is input data, we store this data in the window (`updateWindow`). When there is no more input data to read, we continue to compute the analytic function, as long there is data in the window (`hasData`).  
 Our generic analytic function emits the computed result as well as the groupkey and a generic value that we are emiting as given in the input.
 
 ## Additional Notes
@@ -105,7 +105,7 @@ So if you want to write a new analytic function, all you have to do is to specif
 An analytic function to compute the geometric mean (n-th root of a product) looks like this:
 
 
-```
+```lua
 local af_geometric_mean = function(window)
     local root = 0
     local product = 1
@@ -121,17 +121,18 @@ end
 Furthermore you have to make sure the right function is called, when setting up the window:
 
 
-```
-... 
+```lua
+...
 elseif ctx.func=='GEOMETRIC_MEAN' then     
  w:useThisFunction(af_geometric_mean) 
-... 
+...
 ```
-Now lets use our new function:  
+Now let's use our new function:
+
 We want to compute a moving average over the GDP groth rate of Germany since 1991. We have a table with the GDP for every year and use LAG to compute the growth rate year by year:
 
 
-```
+```sql
 WITH country_growth AS (
   SELECT "year", 
          "gdp" / lag("gdp") OVER(PARTITION BY "country" ORDER BY "year") AS "growth", 
@@ -175,7 +176,7 @@ Result:
 Since the growth rate is a relative value, we need to use the geometric mean. We calculate the geometric mean for every year including the five previous years:
 
 
-```
+```sql
 WITH country_growth AS (
   SELECT "year", 
          "gdp" / lag("gdp") OVER(PARTITION BY "country" ORDER BY "year") AS "growth", 
@@ -219,22 +220,22 @@ Result:
 ```
 ### Integrating our UDF
 
-As you can see, a UDF is a powerfull tool that can help to implement arbitrary analytic functions. Furthermore you can transparently integrate the generic analytic function with the SQL preprocessor. For an example how to use the preprocessor seethe official documentation.  
-The code of the generic analytic UDF with a small example is attached.
+As you can see, a UDF is a powerful tool that can help to implement arbitrary analytic functions. Furthermore you can transparently integrate the generic analytic function with the SQL preprocessor. For an example how to use the preprocessor see the official documentation.  
+The code of the generic analytic UDF with a small example is linked.
 
 ## Additional References
 
-[Using UDf's to implement generic analytic functions with support for complex windowing](https://exasol.my.site.com/s/article/Using-UDf-s-to-implement-generic-analytic-functions-with-support-for-complex-windowing)
+* [Analytic Functions](https://docs.exasol.com/sql_references/functions/analyticfunctions.htm)
 
-<https://docs.exasol.com/sql_references/functions/analyticfunctions.htm>
+* [Advanced Analytics](https://docs.exasol.com/db/latest/advancedanalytics.htm)
 
-<https://docs.exasol.com/advanced_analytics/advancedanalytics.htm>
+* [UDF Examples -> Aggregate and Analytic Functions](https://docs.exasol.com/db/latest/database_concepts/udf_scripts/udf_examples.htm#AggregateandAnalyticFunctions)
 
-<https://docs.exasol.com/database_concepts/udf_scripts/lua_examples.htm> (See Analytics section)
+* [Custom aggregate functions for large data sets](https://exasol.my.site.com/s/article/Custom-aggregate-functions-for-large-data-sets)
 
-[Custom aggregate functions for large data sets](https://exasol.my.site.com/s/article/Custom-aggregate-functions-for-large-data-sets)
+* [SQL Preprocessor](https://docs.exasol.com/db/latest/database_concepts/sql_preprocessor.htm)
 
 ## Downloads
-[af_udf.zip](https://github.com/exasol/Public-Knowledgebase/files/9937355/af_udf.zip)
+* [af_udf.sql](https://github.com/exasol/public-knowledgebase/blob/main/Database-Features/attachments/af_udf.sql)
 
 *We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

@@ -20,31 +20,31 @@ As an example, we only demonstrate geocoding and reverse geocoding.
 ## Prerequisites
 
 * You should create a bucket and make sure the database has access to this bucket. You can find further information on doing this [here](https://docs.exasol.com/database_concepts/bucketfs/bucketfs.htm)
-* The database must have access to the internet and have a DNS name configured ([instructions](https://docs.exasol.com/administration/on-premise/manage_network/configure_network_access.htm#SystemNetworkSettings))
+* The database must have access to the internet and have a DNS name configured (see instructions for [version 7.1](https://docs.exasol.com/db/7.1/administration/on-premise/manage_network/configure_network_access.htm#SystemNetworkSettings) and [version 8](https://docs.exasol.com/db/latest/confd/jobs/general_settings.htm))
 
 ## How to use ArcGIS Rest API in a UDF
 
 ## Step 1 - Install Python Package Requests (optional)
 
-In Version 6.2, the Python package "Requests" already comes in the standard language container shipped with the database. However, if you are using a nonstandard container or an earlier version, you may need to install the Python package beforehand. You can confirm this is the case by running the examples below. If you get an error message stating "No module named Requests", then the package needs to be installed. You can find more information on how to do this [here].(https://docs.exasol.com/database_concepts/udf_scripts/expand_script_using_bucketfs.htm#PythonLibraries)
+Since version 6.2, the Python package "requests" already comes in the standard language container shipped with the database. However, if you are using a nonstandard container or an earlier version, you may need to install the Python package beforehand. You can confirm this is the case by running the examples below. If you get an error message stating "No module named requests", then the package needs to be installed. You can find more information on how to do this [here](https://docs.exasol.com/db/latest/database_concepts/udf_scripts/adding_new_packages_script_languages.htm).
 
 ## Step 2 - Adapt arcgis_demo.sql (optional)
 
 If you do not have the proper packages installed (see step 1) - you may need to update each UDF with code like this:
 
 
-```
+```python
 import sys 
 import glob   
 sys.path.extend(glob.glob('/path/to/bucket/*'))
 ```
 ## Step 3: Run arcgis_cities
 
-Run the attached script "arcgis_cities.sql" to create the data that you will use in the example.
+Run the linked script `arcgis_cities.sql` to create the data that you will use in the example.
 
 ## Step 4: Run arcgis_demo
 
-Run the attached demo to get the geo information for the cities specified!
+Run the linked demo to get the geo information for the cities specified!
 
 ## Additional Notes
 
@@ -53,11 +53,12 @@ For better performance when working with large datasets, we recommend batch geoc
 ## Additional References
 
 * [BucketFS](https://docs.exasol.com/database_concepts/bucketfs/bucketfs.htm)
-* [Expanding Script Languages](https://docs.exasol.com/database_concepts/udf_scripts/expand_script_using_bucketfs.htm)
+* [Expanding Script Languages](https://docs.exasol.com/db/latest/database_concepts/udf_scripts/adding_new_packages_script_languages.htm)
 * [ArcGIS](https://www.arcgis.com/index.html)
 
 ## Downloads
-[arcgis_demo.zip](https://github.com/exasol/Public-Knowledgebase/files/9936768/arcgis_demo.zip)
-[arcgis_cities.zip](https://github.com/exasol/Public-Knowledgebase/files/9936769/arcgis_cities.zip)
+
+* [arcgis_cities.sql](https://github.com/exasol/public-knowledgebase/blob/main/Data-Science/attachments/arcgis_cities.sql)
+* [arcgis_demo.sql](https://github.com/exasol/public-knowledgebase/blob/main/Data-Science/attachments/arcgis_demo.sql)
 
 *We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

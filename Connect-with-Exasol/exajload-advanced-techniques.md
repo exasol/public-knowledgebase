@@ -15,7 +15,7 @@ It is possible to:
 In order to run the examples below, let's create a basic test environment.
 
 1. Download and install [Exasol JDBC driver](https://docs.exasol.com/connect_exasol/drivers/jdbc.htm).  
-2. Download file **users.csv** attached to this article (see below).  
+2. Download file **exajload_users.csv** linked to this article (see below).
 3. Create test schema and table.
 
 
@@ -41,7 +41,7 @@ Example:
 
 
 ```markup
-cat users.csv | head -n 100 | ./exajload \
+cat exajload_users.csv | head -n 100 | ./exajload \
 -c 'localhost:8563' \
 -u 'SYS' \
 -P 'exasol' \
@@ -65,7 +65,7 @@ Example:
 
 
 ```markup
-cat users.csv | head -n 200 | gzip -c | ./exajload \
+cat exajload_users.csv | head -n 200 | gzip -c | ./exajload \
 -c 'localhost:8563' \
 -u 'SYS' \
 -P 'exasol' \
@@ -93,7 +93,7 @@ Example:
 -P 'exasol' \
 -s 'exa_test' \
 -presql 'TRUNCATE TABLE users' \
--sql 'IMPORT INTO users FROM LOCAL CSV FILE '\''users.csv'\'' ROW SEPARATOR = '\''LF'\'''
+-sql 'IMPORT INTO users FROM LOCAL CSV FILE '\''exajload_users.csv'\'' ROW SEPARATOR = '\''LF'\'''
 ```
 You may roughly measure the performance benefit by adding **time** command at the beginning.
 
@@ -113,12 +113,12 @@ Example:
 -P 'exasol' \
 -s 'exa_test' \
 -presql 'TRUNCATE TABLE users' \
--sql 'IMPORT INTO users FROM LOCAL CSV FILE '\''users.csv'\'' ROW SEPARATOR = '\''LF'\''' \
+-sql 'IMPORT INTO users FROM LOCAL CSV FILE '\''exajload_users.csv'\'' ROW SEPARATOR = '\''LF'\''' \
 -postsql 'COMMIT'
 ```
 You may have any number of **-presql** and **-postsql** statements. Just make sure you always have COMMIT at the end.
 
 ## Downloads
-[users.zip](https://github.com/exasol/Public-Knowledgebase/files/9935962/users.zip)
+* [exajload_users.csv](https://github.com/exasol/public-knowledgebase/blob/main/Connect-with-Exasol/attachments/exajload_users.csv)
 
 *We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

@@ -1,7 +1,7 @@
 # Skyline Tutorial: Energymap 
 ## Background
 
-This solution contains a basic tutorial for Exasol's Skyline feature.
+This article contains a basic tutorial for Exasol's Skyline feature.
 
 ## Task description and pre-requisites
 
@@ -10,12 +10,12 @@ As an analytical task for this tutorial, we assume finding "the most interesting
 The data used here is derived from data publicly available at [http://www.energymap.info](http://www.energymap.info/)  
 It contains information about power stations in Germany with a focus on renewable energy. The original data contains many attributes. For the sake of clarity, we removed columns that we considered not interesting for our purposes here.
 
-Before starting, please download the accompanying file "energymap.csv" found at the the end of the article.
+Before starting, please download the accompanying file `"energymap.csv"` found at the the end of the article.
 
 Let's begin by starting up EXAplus (or any SQL editor), connecting to some test database (maybe the Community Edition) and preparing the data for this tutorial.
 
 
-```"code-sql"
+```sql
 create schema energymap_tutorial;
 
 CREATE TABLE ENERGYMAP (
@@ -30,13 +30,13 @@ CREATE TABLE ENERGYMAP (
 );
 ```
 
-```"code-sql"
+```sql
 import into energymap from local csv file '[Path to where you put]/energymap.csv';
 ```
 Before experimenting it is usually a good idea to turn off the query cache, as otherwise, performance may appear too good sometimes.
 
 
-```"code-sql"
+```sql
 alter session set query_cache='off';
 ```
 ## Common approaches in SQL to achieve the task
@@ -44,13 +44,13 @@ alter session set query_cache='off';
 As our location is roughly at GPS coordinates (49,10), as a first shot in the dark, we could try to check, if there is a power station at this position.
 
 
-```"code-sql"
+```sql
 select * from energymap where st_x(gpscoord) = 49 and st_y(gpscoord) = 10; 
 ```
 Well, it is no big surprise that we didn't get an answer. Let's consider all stations within a certain distance to the location of interest:
 
 
-```"code-sql"
+```sql
 select asset_key,generator_type,location,nominal_output, st_distance('POINT(49 10)', gpscoord) as dist 
 from energymap em where gpscoord is not null and local.dist < 3 
 order by nominal_output desc; 
@@ -61,17 +61,17 @@ Probably we could somehow model the trade-off between nominal output and distanc
 Let's give it a try:
 
 
-```"code-sql"
+```sql
 select asset_key,generator_type,location,nominal_output, st_distance('POINT(49 10)', em.gpscoord) as dist 
 from energymap em where gpscoord is not null 
 order by nominal_output + 100000/(1+10*local.dist) desc limit 10; 
 ```
-Hint: In the result set viewer, you can choose to order the table by the column "NOMINAL_OUTPUT" Then you see that the above scoring function only selected power stations that either are very weak and very close or very powerful but far away.
+Hint: In the result set viewer, you can choose to order the table by the column "NOMINAL_OUTPUT". Then you see that the above scoring function only selected power stations that either are very weak and very close or very powerful but far away.
 
 Let's tune the scoring function to also include some power stations that are a little closer (and maybe not so powerful):
 
 
-```"code-sql"
+```sql
 select asset_key,generator_type,location,nominal_output, st_distance('POINT(49 10)', em.gpscoord) as dist 
 from energymap em  where gpscoord is not null 
 order by nominal_output * 10000/(1+10*local.dist) desc limit 10; 
@@ -83,22 +83,22 @@ Even worse, by arbitrarily limiting the result set to 10 elements, we cannot be 
 
 ## Using Skyline to achieve the task
 
-All the problems mentioned before can be avoided by considering only the Pareto Optimal power stations (see<http://en.wikipedia.org/wiki/Multi-objective_optimization):>We like to only see those stations for which no other station exists that is closer and more powerful.
+All the problems mentioned before can be avoided by considering only the Pareto Optimal power stations (see <http://en.wikipedia.org/wiki/Multi-objective_optimization>): We would like to only see those stations for which no other station exists that is closer and more powerful.
 
-Exasol's Skyline feature implements this kind of query semantics. Via the SQL clause PREFERRING we can specify the trade-off between distance and nominal output. By connecting these attributes with PLUS we specify that both are of equal importance for us.
+Exasol's Skyline feature implements this kind of query semantics. Via the SQL clause `PREFERRING` we can specify the trade-off between distance and nominal output. By connecting these attributes with PLUS we specify that both are of equal importance for us.
 
 
-```"code-sql"
+```sql
 select asset_key,generator_type,location,nominal_output, st_distance('POINT(49 10)', gpscoord) as dist 
 from energymap where gpscoord is not null  
 PREFERRING LOW local.dist PLUS HIGH nominal_output; 
 ```
-Now, we get a result set of only 17 elements. Please note that this is the complete and exact solution. We did not have to specify a LIMIT clause and order by some scoring function. These 17 elements are all elements that are interesting for our task as we defined it above. This means that for every station not in the result set, there exists a station in the result set that is either closer or more powerful and no worse in any way.
+Now, we get a result set of only 17 elements. Please note that this is the complete and exact article. We did not have to specify a LIMIT clause and order by some scoring function. These 17 elements are all elements that are interesting for our task as we defined it above. This means that for every station not in the result set, there exists a station in the result set that is either closer or more powerful and no worse in any way.
 
 By ordering the result set according to the column DIST or the column NOMINAL_OUTPUT the trade-off between distance and nominal output can easily be verified: The farther way a stations the higher its output. Please note that – theoretically – we could also use standard SQL to achieve the same result. But when trying to evaluate the "translation" of the Skyline query to standard SQL, you will find that it takes an enormous amount of time even for this very small data set:
 
 
-```"code-sql"
+```sql
 select asset_key,generator_type,location,nominal_output, st_distance('POINT(49 10)', gpscoord) as dist_o from energymap em_o
 where em_o.gpscoord is not null
 and not exists(
@@ -110,10 +110,10 @@ Note: If you lose patience, you can kill the query
 
 ## Looking further: Partitions
 
-In addition to finding the "globally" optimal solutions, Skyline supports the computations of "locally" optimal solutions. Here, users can specify partitions (similar to GROUP BY groups in standard SQL). Then, the optima are computed on a per partition basis. Hence, a tuple is only removed from the result set, if there is a better alternative*in its partition*. For instance:
+In addition to finding the "globally" optimal articles, Skyline supports the computations of "locally" optimal articles. Here, users can specify partitions (similar to `GROUP BY` groups in standard SQL). Then, the optima are computed on a per partition basis. Hence, a tuple is only removed from the result set, if there is a better alternative*in its partition*. For instance:
 
 
-```"code-sql"
+```sql
 select asset_key,generator_type,location,nominal_output, st_distance('POINT(49 10)', gpscoord) as dist 
 from energymap where gpscoord is not null 
 PREFERRING HIGH local.dist PLUS LOW nominal_output 
@@ -123,17 +123,17 @@ PARTITION BY generator_type;
 
 ### Skyline provides:
 
-1. An efficient implementation for computing "the best" solutions according to the specified multi-attribute ordering
+1. An efficient implementation for computing "the best" articles according to the specified multi-attribute ordering
 2. A convenient syntax for defining orderings which among other things supports using arbitrary scalar expressions inside definitions of complex multi-attribute orderings
-3. The specification of partitions for finding best solutions "locally"
+3. The specification of partitions for finding best articles "locally"
 
 ## Additional References
 
-* <https://docs.exasol.com/sql/import.htm>
-* <https://docs.exasol.com/advanced_analytics/skyline.htm>
-* <https://docs.exasol.com/sql_references/functions/analyticfunctions.htm>
-* <https://docs.exasol.com/sql_references/geospatialdata/import_geospatial_data_from_csv.htm>
-* <https://docs.exasol.com/advanced_analytics/geocoding_with_udfs.htm>
+* [IMPORT](https://docs.exasol.com/sql/import.htm)
+* [Skyline](https://docs.exasol.com/advanced_analytics/skyline.htm)
+* [Analytic Functions](https://docs.exasol.com/sql_references/functions/analyticfunctions.htm)
+* [Import Geospatial Data from CSV and GeoJSON File](https://docs.exasol.com/sql_references/geospatialdata/import_geospatial_data_from_csv.htm)
+* [Geocoding with UDFs](https://docs.exasol.com/advanced_analytics/geocoding_with_udfs.htm)
 
 ## Downloads
 [energymap.zip](https://github.com/exasol/Public-Knowledgebase/files/9937292/energymap.zip)

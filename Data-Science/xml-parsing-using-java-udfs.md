@@ -1,25 +1,25 @@
 # XML-parsing using Java UDFs 
 ## Background
 
-This solution describes how to use the Java DOM Parser to parse an XML-Text stored in an EXASOL database. The solution will result in a Java-UDF that can be used to structure the content of a XML-Text. Documentation on the DOM Parser can be found here:  
+This article describes how to use the Java DOM Parser to parse an XML-Text stored in an Exasol database. The article will result in a Java-UDF that can be used to structure the content of a XML-Text. Documentation on the DOM Parser can be found here:  
 <http://www.tutorialspoint.com/java_xml/java_dom_parse_document.htm>
 
 The general approach is:
 
 1. Implementation and tests (pure Java, Maven)
-2. Deployment (EXABucketFS)
-3. UDF implementation (EXASOL-SQL, Java)
-4. Usage (EXASOL-SQL)
+2. Deployment (BucketFS)
+3. UDF implementation (SQL, Java)
+4. Usage (SQL)
 
 ### Important notes
 
-The solution uses a maven-assemble-plugin to create a single jar including all dependencies. Otherwise, it would be necessary to deploy all dependencies (including DOM Parser, ...) manually to the EXASOL cluster.
+The article uses a maven-assemble-plugin to create a single jar including all dependencies. Otherwise, it would be necessary to deploy all dependencies (including DOM Parser, ...) manually to the Exasol cluster.
 
 ## Prerequisites
 
-This solution was created by using the following tools and features:
+This article was created by using the following tools and features:
 
-1. EXASOL database > V6, advanced edition
+1. Exasol database > V6
 2. JDK
 3. Eclipse (Mars)
 4. Maven, including the maven-assembly-plugin (<http://maven.apache.org/plugins/maven-assembly-plugin/>)
@@ -32,46 +32,44 @@ This solution was created by using the following tools and features:
 
 Within the attached xmlexample.zip file you will find 8 files:
 
-1. City.java (Represents a "row" in a CITIES table. Members: ID and Name)
-2. DomParserExample.java (XML-parsing implemenation)
-3. DomParserExampleTest.java (XML-parsing test)
-4. ProcessXML.java (run method, according to EXASOL java UDF run method)
-5. Data.java(Emulates a table)
-6. Iterator.java (Used for JUnit tests for ProcessXML, implements ExaIterator)
-7. Metadata.java (Used for JUnit tests for ProcessXML, implements ExaMetadata)
-8. ProcessXMLTest.java (JUnit test for the run method)
+1. `City.java` (Represents a "row" in a `CITIES` table. Members: `ID` and `Name`)
+2. `DomParserExample.java` (XML-parsing implemenation)
+3. `DomParserExampleTest.java` (XML-parsing test)
+4. `ProcessXML.java` (`run` method, according to Exasol Java UDF `run` method)
+5. `Data.java` (Emulates a table)
+6. `Iterator.java` (Used for JUnit tests for ProcessXML, implements `ExaIterator`)
+7. `Metadata.java` (Used for JUnit tests for ProcessXML, implements `ExaMetadata`)
+8. `ProcessXMLTest.java` (JUnit test for the `run` method)
 
-In addition, the pom.xml for maven is attached as part of xmlexample.zip 
-
-. The POM file includes JUnit, and maven-assembly-plugin (used to create a single jar including all dependencies).
+In addition, the `pom.xml` for maven is attached as part of xmlexample.zip. The POM file includes JUnit, and maven-assembly-plugin (used to create a single jar including all dependencies).
 
 ### Maven project in Eclipse:
 
 ## Step 2. Building the sources
 
-1. "cd" to the workspace of the maven project
-2. run "mvn clean package assembly:single"  
-The jar with all dependencies can be found in the "target"-folder. Name: "xmlexample-0.0.1-SNAPSHOT-jar-with-dependencies.jar"
+1. `"cd"` to the workspace of the maven project
+2. run `"mvn clean package assembly:single"`  
+The jar with all dependencies can be found in the "target"-folder. Name: `"xmlexample-0.0.1-SNAPSHOT-jar-with-dependencies.jar"`
 
-You can find a precompiled jar attached to this solution. xmlexample-0.0.1-SNAPSHOT-jar-with-dependencies.jar 
+You can find a precompiled jar attached to this article. xmlexample-0.0.1-SNAPSHOT-jar-with-dependencies.jar 
 
-## Step 3. Deploying jar to EXASOL cluster
+## Step 3. Deploying jar to Exasol cluster
 
 Look in our documentation that describes how to install jar libraries in the cluster.  
-For this solution, the fat jar was deployed to an EXABucket named "jars" using the following curl© command:
+For this article, the fat jar was deployed to a Bucket named "jars" using the following curl© command:
 
 
-```"code
+```
 curl -X PUT -T xmlexample-0.0.1-SNAPSHOT-jar-with-dependencies.jar   
  http://w:<w_pwd>@<db_node>:<EXABucketFS_port>/jars/xmlexample-0.0.1-SNAPSHOT-jar-with-dependencies.jar 
 ```
 ## Step 4. UDF and usage
 
-The attached file Data.sql creates a table for storing the XML-Text and inserts two rows (including two rows for the CITIES table, each).   
+The linked file `xmlexample_Data.sql` creates a table for storing the XML-Text and inserts two rows (including two rows for the CITIES table, each).   
 **Please note**: This approach requires the XML texts to have less than 2 million characters.
 
 
-```"code
+```sql
 -- Data.sql
 
 create schema xmlparsing;
@@ -106,11 +104,11 @@ insert into myXML values
 
 commit;
 ```
-The attached file UDF.sql   describes how to create a UDF that imports the installed jar library and uses the XML-parsing functionality.  
-In addition, the UDF function is used to insert data into an EXASOL table.
+The linked file `xmlexample_UDF.sql` describes how to create a UDF that imports the installed jar library and uses the XML-parsing functionality.  
+In addition, the UDF function is used to insert data into an Exasol table.
 
 
-```"code
+```sql
 -- UDF.sql
 
 create or replace java scalar script processXML(xml varchar(2000000)) 
@@ -139,15 +137,15 @@ For ETL matters you typically want to change two different things:
 1. Use the IMPORT statement instead of INSERT ... SELECT
 2. Load XML file from a server
 
-For 1. we will demonstrate how to use the existing UDF for an ETL UDF. 2. It will not be demonstrated to keep this solution as simple as possible, but the existing code could easily be extended to connect to a server (e.g. FTP) to retrieve the XML file.
+For 1. we will demonstrate how to use the existing UDF for an ETL UDF. As for 2. - it will not be demonstrated to keep this article as simple as possible, but the existing code could easily be extended to connect to a server (e.g. FTP) to retrieve the XML file.
 
 ### IMPORT FROM UDF
 
-The delivered source code already includes the method "generateSqlForImportSpec(...)" which is mandatory for ETL UDFs.  
+The delivered source code already includes the method `"generateSqlForImportSpec(...)"` which is mandatory for ETL UDFs.  
 Class ProcessXML.java:
 
 
-```"code
+```java
 // ...
 public static String generateSqlForImportSpec(ExaMetadata meta, ExaImportSpecification importSpec)  {
     	  Map<String, String> params = importSpec.getParameters();
@@ -167,24 +165,22 @@ public static String generateSqlForImportSpec(ExaMetadata meta, ExaImportSpecifi
 ```
 ## Additional Notes
 
-This callback function is called by the EXASOL engine if you use the UDF within an IMPORT statement and generates an appropriate SELECT statement for the IMPORT.
+This callback function is called by the Exasol engine if you use the UDF within an IMPORT statement and generates an appropriate SELECT statement for the IMPORT.
 
-This solution requires that the table storing the XML data is located in the currently opened schema, but could be extended with a property "SCHEMA_NAME" easily.
+This article requires that the table storing the XML data is located in the currently opened schema, but could be extended with a property "SCHEMA_NAME" easily.
 
 ## Additional References
 
-[Examining expression types using UDF](https://exasol.my.site.com/s/article/Examining-expression-types-using-UDF)
-
-[Custom aggregate functions for large data sets](https://exasol.my.site.com/s/article/Custom-aggregate-functions-for-large-data-sets)
-
-[Using custom JAR (Java Archive) libraries within UDFs](https://exasol.my.site.com/s/article/Using-custom-JAR-Java-Archive-libraries-within-UDFs)
-
-[How to create and use UDFs](https://exasol.my.site.com/s/article/How-to-create-and-use-UDFs)
+* [Examining expression types using UDF](https://exasol.my.site.com/s/article/Examining-expression-types-using-UDF)
+* [Custom aggregate functions for large data sets](https://exasol.my.site.com/s/article/Custom-aggregate-functions-for-large-data-sets)
+* [Using custom JAR (Java Archive) libraries within UDFs](https://exasol.my.site.com/s/article/Using-custom-JAR-Java-Archive-libraries-within-UDFs)
+* [How to create and use UDFs](https://exasol.my.site.com/s/article/How-to-create-and-use-UDFs)
 
 ## Downloads
-[UDF.zip](https://github.com/exasol/Public-Knowledgebase/files/9936894/UDF.zip)
-[Data.zip](https://github.com/exasol/Public-Knowledgebase/files/9936895/Data.zip)
-[xmlexample-0.0.1-SNAPSHOT-jar-with-dependencies.jar.zip](https://github.com/exasol/Public-Knowledgebase/files/9936896/xmlexample-0.0.1-SNAPSHOT-jar-with-dependencies.jar.zip)
-[xmlexample.zip](https://github.com/exasol/Public-Knowledgebase/files/9936897/xmlexample.zip)
+
+* [xmlexample_Data.sql](https://github.com/exasol/public-knowledgebase/blob/main/Data-Science/attachments/xmlexample_Data.sql)
+* [xmlexample_UDF.sql](https://github.com/exasol/public-knowledgebase/blob/main/Data-Science/attachments/xmlexample_UDF.sql)
+* [xmlexample-0.0.1-SNAPSHOT-jar-with-dependencies.jar.zip](https://github.com/exasol/Public-Knowledgebase/files/9936896/xmlexample-0.0.1-SNAPSHOT-jar-with-dependencies.jar.zip)
+* [xmlexample.zip](https://github.com/exasol/Public-Knowledgebase/files/9936897/xmlexample.zip)
 
 *We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+    xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.exasol</groupId>
+    <artifactId>drivers.exasol</artifactId>
+    <version>1.0.0</version>
+    
+    <parent>
+        <groupId>io.cloudbeaver</groupId>
+        <artifactId>drivers</artifactId>
+        <version>1.0.0</version>
+        <relativePath>../</relativePath>
+    </parent>
+    
+    <properties>
+        <deps.output.dir>exasol</deps.output.dir>
+    </properties>
+
+    <organization>
+        <name>EXASOL AG</name>
+        <url>http://www.exasol.com/</url>
+    </organization>
+
+    <licenses>
+        <license>
+            <name>EXAClient License</name>
+            <url>LICENSE-exasol-jdbc.txt</url>
+            <comments>The license file is stored in the jar-file</comments>
+        </license>
+    </licenses>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.exasol</groupId>
+            <artifactId>exasol-jdbc</artifactId>
+            <version>7.0.7</version>
+        </dependency>
+    </dependencies>
+
+</project>

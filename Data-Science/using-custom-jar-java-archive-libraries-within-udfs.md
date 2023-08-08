@@ -1,7 +1,7 @@
 # Using custom JAR (Java Archive) libraries within UDFs 
 ## Background
 
-If you have your own jar that you want to use in a Java UDF, this solution shows you how to do this. 
+If you have your own jar that you want to use in a Java UDF, this article shows you how to do this. 
 
 ## Prerequisites
 
@@ -18,7 +18,7 @@ First we need to upload the JAR file to BucketFS. We can do this either with the
 If you decide to use CURL, you can use the following command:
 
 
-```markup
+```
 curl --user w -v -X PUT -T my-app-1.0-SNAPSHOT.jar  http://<ip_address>:<BucketFS port>/<bucket_name>/my-app-1.0-SNAPSHOT.jar 
 ```
 ## Step 2: Verify that the file is accessible
@@ -26,7 +26,7 @@ curl --user w -v -X PUT -T my-app-1.0-SNAPSHOT.jar  http://<ip_address>:<BucketF
 You can use the LS script to verify that the file is accessible by the database:
 
 
-```
+```python
 --/
 CREATE PYTHON SCALAR SCRIPT ls(my_path VARCHAR(100))
 EMITS (files VARCHAR(100)) AS
@@ -51,14 +51,15 @@ def run(c):
 Once the script is created, you can run the following command to ensure that the database is able to see the file. In this example, the bucket is test1:
 
 
-```markup
+```sql
 SELECT ls('/buckets/bucketfs1/test1'); 
 ```
 You should see the file in the results:
 
 
-```markup
-FILES --------------------- 
+```
+FILES
+--------------------- 
 my-app-1.0-SNAPSHOT.jar
 ```
 If you don't see the file listed, it means something went wrong. You can check the following:
@@ -73,7 +74,7 @@ If you don't see the file listed, it means something went wrong. You can check t
 You can create your UDF using the code below:
 
 
-```markup
+```java
 --/
 CREATE OR REPLACE JAVA SCALAR SCRIPT HELLOWORLD() RETURNS VARCHAR(200) AS 
 // Tested using Exasol 6.2.5
@@ -92,7 +93,7 @@ class HELLOWORLD {
 
 SELECT HELLOWORLD();
 ```
-Most importantly, **you must edit your UDF to show the correct path to your file.**In my example above, the file resides in /buckets/bucketfs1/test1. Just replace the path to the file with the path to your own UDF. It should match the one you used in your LS script from step 2.
+Most importantly, **you must edit your UDF to show the correct path to your file**. In my example above, the file resides in `/buckets/bucketfs1/test1`. Just replace the path to the file with the path to your own UDF. It should match the one you used in your LS script from step 2.
 
 ## Step 4: Run your UDF
 
@@ -101,7 +102,7 @@ Now you can run your UDF and the JAR file that you uploaded to BucketFS will be 
 ## Additional Notes
 
 * Although this example is very simple, if you want to reference any custom JAR file within a UDF, you can follow these steps. Most importantly, you can tell your UDF to use the jar file by inserting the below line at the beginning of your UDF. You could even have a UDF which *only* references a JAR file and does nothing else, like we do for Virtual Schema Adapters.
-```markup
+```
 %jar /buckets/<bucketfs_name>/<bucket_name>/<file_name>.jar; 
 ```
 
@@ -112,7 +113,8 @@ Now you can run your UDF and the JAR file that you uploaded to BucketFS will be 
 * [Details for Java UDFs](https://docs.exasol.com/database_concepts/udf_scripts/java.htm)
 
 ## Downloads
-[java_udf.zip](https://github.com/exasol/Public-Knowledgebase/files/9936845/java_udf.zip)
-[my-app-1.0-SNAPSHOT.jar.zip](https://github.com/exasol/Public-Knowledgebase/files/9936846/my-app-1.0-SNAPSHOT.jar.zip)
+
+* [java_udf.sql](https://github.com/exasol/public-knowledgebase/blob/main/Data-Science/attachments/java_udf.sql)
+* [my-app-1.0-SNAPSHOT.jar.zip](https://github.com/exasol/Public-Knowledgebase/files/9936846/my-app-1.0-SNAPSHOT.jar.zip)
 
 *We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

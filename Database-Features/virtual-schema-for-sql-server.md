@@ -222,7 +222,7 @@ Install the Adapter script.
 **a.** First you need to create the schema that will contain the Adapter script. Our example creates and uses the schema SCHEMA_FOR_VS_SCRIPT.
 
 
-```markup
+```sql
 CREATE SCHEMA SCHEMA_FOR_VS_SCRIPT;
 ```
 You can find more information about it at [sqlserver_user_guide](https://github.com/exasol/sqlserver-virtual-schema/blob/main/doc/user_guide/sqlserver_user_guide.md).
@@ -230,7 +230,7 @@ You can find more information about it at [sqlserver_user_guide](https://github
 The `CREATE SCHEMA` command will also open the new schema. You can also explicitly open it with the `OPEN SCHEMA` command, as follows:
 
 
-```markup
+```sql
 OPEN SCHEMA SCHEMA_FOR_VS_SCRIPT;
 ```
 **b.** Create the Adapter Script by executing the "CREATE JAVA ADAPTER SCRIPT" command.
@@ -244,7 +244,7 @@ This command requires:
 We build the command as follows:
 
 
-```
+```sql
 CREATE OR REPLACE JAVA ADAPTER SCRIPT SCHEMA_FOR_VS_SCRIPT.ADAPTER_SCRIPT_SQLSERVER AS 
  %scriptclass com.exasol.adapter.RequestDispatcher; 
  %jar /buckets/<BFS service>/<bucket>/<SQL_Server_Virtual_Schema_JAR_filename>; 
@@ -254,7 +254,7 @@ CREATE OR REPLACE JAVA ADAPTER SCRIPT SCHEMA_FOR_VS_SCRIPT.ADAPTER_SCRIPT_SQLSER
 In our case, it looks like:
 
 
-```
+```sql
 CREATE OR REPLACE JAVA ADAPTER SCRIPT SCHEMA_FOR_VS_SCRIPT.ADAPTER_SCRIPT_SQLSERVER AS  
  %scriptclass com.exasol.adapter.RequestDispatcher;  
  %jar /buckets/bucketfs1/jars/virtual-schema-dist-9.0.1-sqlserver-2.0.0.jar;  
@@ -278,7 +278,7 @@ This command requires:
 We build the command as follows:
 
 
-```
+```sql
 CREATE OR REPLACE CONNECTION SQLSERVER_JDBC_CONNECTION  
 TO 'jdbc:sqlserver://<server name>:<port>'  
 USER '<user>'  
@@ -287,7 +287,7 @@ IDENTIFIED BY '<password>';
 In our case, it looks like:
 
 
-```
+```sql
 CREATE OR REPLACE CONNECTION SQLSERVER_JDBC_CONNECTION  
 TO 'jdbc:sqlserver://192.168.1.158:1433'  
 USER 'sa'  
@@ -299,7 +299,7 @@ The optional changes you can make are:
 2. Change the IP address from 192.168.1.158 to your SQL Server computer IP address or DNS name.
 3. Change the credentials for "USER" and "IDENTIFIED BY". For example, the "USER" is "sa". You probably want to connect with a login appropriate for your use case. FYI this connection we are building is by definition, READ-ONLY to SQL Server. We can't run any DML like inserts or deletes using the SQL Server Virtual Schema.
 
-**b.** Review work so far, as a lot has happened. The "LS" script is attached to this article.
+**b.** Review work so far, as a lot has happened. The "LS" script is linked to this article.
 
 **i.**  The BucketFS bucket "jars" contains both virtual schema jar and jdbc.jar.
 
@@ -314,7 +314,7 @@ The optional changes you can make are:
 Create the Virtual Schema. We present the generic example first, followed by our example's use case.
 
 
-```markup
+```sql
 CREATE VIRTUAL SCHEMA <virtual schema name>
     USING SCHEMA_FOR_VS_SCRIPT.ADAPTER_SCRIPT_SQLSERVER
     WITH
@@ -325,7 +325,7 @@ CREATE VIRTUAL SCHEMA <virtual schema name>
 Here is our example's use case:
 
 
-```markup
+```sql
 CREATE VIRTUAL SCHEMA SQLSERVER_DBO
     USING SCHEMA_FOR_VS_SCRIPT.ADAPTER_SCRIPT_SQLSERVER
     WITH
@@ -347,19 +347,19 @@ Before testing our SQL Server Virtual Schema, let's look under the hood to see w
 **a.** Run this query to see the basic Virtual Schema information inside Exasol. You should see your new SQL Server schema name under the column SCHEMA_NAME and the new Adapter script under ADAPTER_SCRIPT. 
 
 
-```markup
+```sql
 select * from exa_dba_virtual_schemas;
 ```
 **b.**  Show the Virtual Schema properties. Our example should show the SCHEMA_NAME as "SQLSERVER_DBO", followed by the PROPERTY_NAME and PROPERTY_VALUE.
 
 
-```markup
+```sql
 select * from exa_dba_virtual_schema_properties;
 ```
 **c.** Take your pick of what you want to look at. This query will pull up all the tables and views devoted to Virtual Schemas.
 
 
-```markup
+```sql
 select * from exa_syscat where object_name like '%VIRTUAL%';
 ```
 ## Step 12.
@@ -373,7 +373,7 @@ Before you leave, you should assign permissions to the connection and virtual sc
 One of the hidden facts about granting permissions is if a view contains a table from a virtual schema, access rights are necessary on the corresponding adapter script.
 
 
-```markup
+```sql
 OPEN SCHEMA RETAIL;
 DROP USER IF EXISTS USER1 CASCADE;
 CREATE USER USER1 IDENTIFIED BY "abc";
@@ -399,7 +399,7 @@ IMPERSONATE USER1;
  The final test is to query SQL Server. Our example will run a native SQL Server query against a test database named, "john", with schema "dbo" and table "t".
 
 
-```markup
+```sql
 SELECT * FROM "t" ORDER BY "col1" DESC;
 ```
 ![](images/final_results.png)
@@ -413,6 +413,7 @@ SELECT * FROM "t" ORDER BY "col1" DESC;
 * [Supported Data Sources](https://docs.exasol.com/database_concepts/virtual_schema/supported_data_sources.htm)
 
 ## Downloads
- [cr_LS_example.zip](https://github.com/exasol/Public-Knowledgebase/files/9937375/cr_LS_example.zip)
+ 
+* The LS (BUCKETFS_LS) scirpt itself: [bucketfs_ls.sql](https://raw.githubusercontent.com/exasol/exa-toolbox/master/utilities/bucketfs_ls.sql)
 
 *We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

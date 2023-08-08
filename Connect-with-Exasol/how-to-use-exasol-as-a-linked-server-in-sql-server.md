@@ -42,7 +42,7 @@ In the tree view, you can now 'drill down' to table and view level on the remote
 In queries/views you will be able to access the Exasol database objects using two different methods:
 
 * Three-dots-notation &lt;link-name&gt;...&lt;object_name&gt; will allow you to use objects in native SQL, SQL Server will exchange data with Exasol as necessary (see Limitations below).
-```markup
+```sql
 SELECT * FROM EXASOL_TEST...SUPPLIER;
 ```
 * OPENQUERY (see <http://msdn.microsoft.com/en-us/library/ms188427.aspx>).
@@ -51,7 +51,7 @@ To execute LUA scripts stored in Exasol from SQL Server do the following steps:
 
 * Edit the properties of the linked server. Set the parameter "RPC out" to True in the section "Server Options". This enables the execution of remote procedure calls.
 * Use the following command to trigger the execution of LUA Scripts
-```markup
+```sql
  EXEC('EXECUTE SCRIPT my_schema.my_lua_script') AT <link-name>;
 ```
 
@@ -68,30 +68,10 @@ To execute LUA scripts stored in Exasol from SQL Server do the following steps:
 
 The following measurements are done on a single machine, using SQL Server 2017 Express and a local VM running a single-node Exasol 6.2.4. The benchmark consists of transferring the 1 million row SUPPLIER table of the TPC-H scenario between both systems, the target table always truncated before the run.
 
-
-|  |  |
-| --- | --- |
-|  **SQL Server** | **Exasol** |
-| SQL Server -&gt; Exasol | 
-```markup
-insert into EXASOL_TEST...SUPPLIER select * from Test.dbo.SUPPLIER
-```
- Duration: 600 seconds (estimated) | 
-```markup
-IMPORT INTO TEST.SUPPLIER FROM JDBC AT  
- 'jdbc:jtds:sqlserver://<ip address>;databaseName=Test'  
- user 'sa' identified by *** TABLE SUPPLIER;
-```
- Duration: 52 seconds |
-| Exasol -&gt; SQL Server | 
-```markup
-insert into Test.dbo.SUPPLIER select * from EXASOL_TEST...SUPPLIER;
-```
- Duration: 108 seconds | 
-```markup
-export tpc.supplier into JDBC at CONN_SQLEXPRESS -- same as above, but in a connection object table SUPPLIER;
-```
- Duration: 68 seconds |
+|   |  **SQL Server** | **Exasol** |
+| --- | --- | --- |
+| SQL Server -&gt; Exasol | `insert into EXASOL_TEST...SUPPLIER select * from Test.dbo.SUPPLIER` <br/> Duration: 600 seconds (estimated)| `IMPORT INTO TEST.SUPPLIER FROM JDBC AT 'jdbc:jtds:sqlserver://<ip address>;databaseName=Test' user 'sa' identified by *** TABLE SUPPLIER;` <br/> Duration: 52 seconds |
+| Exasol -&gt; SQL Server | `insert into Test.dbo.SUPPLIER select * from EXASOL_TEST...SUPPLIER;` <br/> Duration: 108 seconds | `export tpc.supplier into JDBC at CONN_SQLEXPRESS /*same as above, but in a connection object*/ table SUPPLIER;` <br/> Duration: 68 seconds |
 
 The SQL Server -&gt; EXA export using a Linked Server could only be estimated because of the 30-second timeout.
 
@@ -103,7 +83,7 @@ The above methods all rely on prepared statements, which is not compatible with 
 2. You can now use [SQL Server's EXECUTE](https://technet.microsoft.com/en-us/library/ms188332(v=SQL.110).aspx) command to run arbitrary statements on the linked server **and** receive the results for further local processing:
 
 
-```"code-java"
+```sql
 EXECUTE ('execute script sr_test.LuaTest(1,2,3)') AT LOCALVM
 ```
 ## Additional References
