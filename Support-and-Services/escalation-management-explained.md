@@ -3,6 +3,13 @@
 ## What is Escalation Management?
 The escalation management process describes and defines the steps and roles involved in an escalation. The cause of an escalation can be either technical (e.g., database outage, software error) or non-technical (e.g., complaint). 
 
+## How do I trigger an escalation?
+You can trigger an escalation by using the "Escalate Case" button in the customer portal and adding a message about the details of your escalation. By escalating a case, your case and message is sent directly to Exasol's Support Management. Afterwards, they will reach out to you personally to discuss the next steps.
+
+![Escalation Button](images/escalation_button.jpeg)
+
+**For critical incidents outside of German Business hours, please call the Hotline at +49 911 2399 110 or +1 415-363-5510.**
+
 ## What roles are involved?
 Customer side - Exasol assigns several customer-authorized touch points during the customer onboarding phase and assigns roles to them. The customer role relevant for escalation is the "Incident Manager".
 
