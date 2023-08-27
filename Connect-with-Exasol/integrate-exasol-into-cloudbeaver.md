@@ -69,19 +69,11 @@ mkdir exasol
 And add the new project file (pom.xml) there.
 
 
-```
+```xml
 <?xml version="1.0" encoding="UTF-8"?>  
 <project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"  
 xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">  
-  
-<repositories>  
- <repository>  
-  <id>exasol-maven-repo</id>  
-  <name>Exasol Repository</name>  
-  <url>https://maven.exasol.com/artifactory/exasol-releases</url>  
- </repository>  
-</repositories>  
-  
+
 <modelVersion>4.0.0</modelVersion>  
   
 <groupId>com.exasol</groupId>  
@@ -115,32 +107,18 @@ xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLS
 ```
 This project file is just an empty container, and its only purpose is to create the dependency to the Exasol JDBC driver.
 
-The header of this file is common to all driver project files. However, as the Exasol JDBC driver is not stored on the Maven standard repository, we need to add the Exasol Maven repository. Otherwise the build will not be able to locate the JDBC driver package during the build.
-
-
-```
-<repositories>  
- <repository>  
-  <id>exasol-maven-repo</id>  
-  <name>Exasol Repository</name>  
-  <url>https://maven.exasol.com/artifactory/exasol-releases</url>  
- </repository>  
-</repositories>
-```
 Then we declare the ArtifactId, which will be used later in the Bundles list of the server configuration.
 
 
-```
-...  
-  
+```xml
+...
 <artifactId>drivers.exasol</artifactId>  
-  
-…
+...
 ```
 Ultimately we add the dependency to the Exasol JDBC driver:
 
 
-```
+```xml
 <dependencies>  
  <dependency>  
   <groupId>com.exasol</groupId>  
@@ -177,7 +155,7 @@ tree
 Next, we need to create the dependency to the new driver, in the drivers project file (~/cloudbeaver/server/drivers/pom.xml):
 
 
-```
+```xml
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  
 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">  
   
@@ -213,7 +191,7 @@ And finally, we add the new driver to the server, by adding the reference to the
 ~/cloudbeaver/server/bundles/io.cloudbeaver.resources.drivers.base/plugin.xml
 
 
-```
+```xml
 <?xml version="1.0" encoding="UTF-8"?>  
   
 <plugin>  
@@ -342,7 +320,7 @@ Now we have all packages installed and can clone the CloudBeaver repository from
 
 
 ```
-RUN git clone <https://github.com/dbeaver/cloudbeaver.git>
+RUN git clone https://github.com/dbeaver/cloudbeaver.git
 ```
   
 After that, we have to do the manual modifications, described in the first part of the article, via some command line tricks.
@@ -400,11 +378,10 @@ Now we can build our Docker image, on the command line:
 docker build -t cloudbeaver:with_exasol .
 ```
 
-```
-  
 After finishing, we will find the image with:  
-  
-docker images:  
+
+```  
+docker images:
   
 REPOSITORY       TAG     IMAGE ID     CREATED       SIZE  
 cloudbeaver with_exasol b24c1c55067a 51 minutes ago 2.64GB  
@@ -469,14 +446,12 @@ docker run --name cloudbeaver --rm -ti -p 8080:8978 -v /var/cloudbeaver/workspac
 
 Finally I want to show how I tested the app with Exasol’s integration-test-docker-environment.
 
-The latter is used to run integration tests on the script-language containers, but is very handy for testing a sample Exasol database, because it spawns a database and pumps in data with just one command.
+The latter is used to run integration tests on the script language containers, but is very handy for testing a sample Exasol database, because it spawns a database and pumps in data with just one command.
 
 First clone the repository:
 
-
-```
 <https://github.com/exasol/integration-test-docker-environment.git>
-```
+
 and then spawn the test database at port 8888 with:
 
 
@@ -501,6 +476,8 @@ Other relevant sites/information:
 * [Docker](https://www.docker.com/)
 
 ## Downloads
-[CloudBeaverWithExasolDocker.zip](https://github.com/exasol/Public-Knowledgebase/files/9936349/CloudBeaverWithExasolDocker.zip)
+
+* [Dockerfile](https://github.com/exasol/public-knowledgebase/blob/main/Connect-with-Exasol/attachments/container_complete/Dockerfile)
+* [pom.xml](https://github.com/exasol/public-knowledgebase/blob/main/Connect-with-Exasol/attachments/container_complete/pom.xml)
 
 *We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

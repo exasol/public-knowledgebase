@@ -15,7 +15,7 @@ Here are two examples to easily check the network connectivity of an Exasol data
 #### Lua
 
 
-```"code-sql"
+```lua
 CREATE OR REPLACE LUA SCALAR SCRIPT lua_connect(hostname varchar(4096), port varchar(4096)) 
  RETURNS varchar(4096) 
  AS 
@@ -33,7 +33,7 @@ SELECT lua_connect('192.168.2.1', '80') res FROM dual;
 #### Python
 
 
-```"code-sql"
+```python
 CREATE OR REPLACE PYTHON3 SCALAR SCRIPT
 python_connect(hostname varchar(4096), port varchar(4096))
 RETURNS varchar(4096)

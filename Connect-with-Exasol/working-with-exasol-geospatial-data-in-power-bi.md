@@ -136,6 +136,7 @@ For more information on all topics I'd advise you to read the links under additi
 
 Exasol's SQL reference section on geospatial data:  
 [https://docs.exasol.com/sql_references/geospatialdata/geospatialdata_overview.htm](https://docs.exasol.com/sql_references/geospatialdata/geospatialdata_overview.htm?tocpath=SQL%20Reference%7CGeospatial%20Data%7C_____0)  
+
 A how to on icon-map by the author himself:  
 <https://powerbi.jamesdales.com/how-to-use-icon-map/>
 
@@ -146,7 +147,9 @@ The wikipedia entry on Well Known Text:
 <https://en.wikipedia.org/wiki/Well-known_text_representation_of_geometry>
 
 ## Downloads
-[TAXI_ZONES_202104201127.zip](https://github.com/exasol/Public-Knowledgebase/files/9936562/TAXI_ZONES_202104201127.zip)
-[create_table.zip](https://github.com/exasol/Public-Knowledgebase/files/9936568/create_table.zip)
+
+Definition (DDL) for `NYC_TAXI.TAXI_ZONES` table: [geo_create_table.sql](https://github.com/exasol/public-knowledgebase/blob/main/Connect-with-Exasol/attachments/geo_create_table.sql)
+
+Script to populate `NYC_TAXI.TAXI_ZONES` table: [TAXI_ZONES_202104201127.zip](https://github.com/exasol/Public-Knowledgebase/files/9936562/TAXI_ZONES_202104201127.zip)
 
 *We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

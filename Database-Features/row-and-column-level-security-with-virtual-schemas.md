@@ -5,7 +5,7 @@
 
 **The official project to implement Row Level Security via Virtual Schemas is described here: <https://github.com/exasol/row-level-security-lua>. We recommend to use the Github Project to implement your own Row Level Security. The below article is only an example of a custom connector and is not officially supported**
 
-This article describes how you could implement a custom Virtual Schema adapter to implement column level security in addition to row level security. . It consists of 4 parts:
+This article describes how you could implement a custom Virtual Schema adapter to implement column level security in addition to row level security. It consists of 4 parts:
 
 * Creating the Virtual Schema
 * Setting up permissions
@@ -24,17 +24,17 @@ At the same time, there are also bank employees that are not working for a parti
 
 To prepare for this demo, you will need to download these 2 files:
 
-* data_schema_customer.csv
+* RLS-CLS-data_schema_customer.csv
 * RLS-CLS-Demo_V2.sql
 
-Open the SQL File and change the IMPORT statement so that it matches your path. Within this file, we will create our users, table, virtual schema adapter script, roles, and import our data. (Lines 1-80)
+Open the SQL File and change the IMPORT statement so that it matches your path. Within this file, we will create our users, table, virtual schema adapter script, roles, and import our data (lines 1-80).
 
 ## Creating the Virtual Schema
 
-We are using a Virtual Schema Adapter called "RLS_ADAPTER". This adapter is specifically created to work with the tables which we are creating, namely ADAPTER_SCHEMA.RESTRICTION_ROWS and ADAPTER_SCHEMA.RESTRICTION_COLUMNS. All of our RLS and CLS Information is stored in this table. When querying the virtual schema, this information is read to determine which data to return. Once we create our Adapter script (found in the SQL file above) and connection back to the database, we can create our virtual schema. This information is also in lines 81-230 of our SQL file.
+We are using a Virtual Schema Adapter called `"RLS_ADAPTER"`. This adapter is specifically created to work with the tables which we are creating, namely `ADAPTER_SCHEMA.RESTRICTION_ROWS` and `ADAPTER_SCHEMA.RESTRICTION_COLUMNS`. All of our RLS and CLS Information is stored in this table. When querying the virtual schema, this information is read to determine which data to return. Once we create our Adapter script (found in the SQL file above) and connection back to the database, we can create our virtual schema. This information is also in lines 81-230 of our SQL file.
 
 
-```"code-java"
+```sql
 CREATE VIRTUAL SCHEMA SECURED_BANK USING adapter_schema.rls_adapter 
  with table_schema='OUR_BANK' META_CONNECTION='SELF_CONNECTION';  
 ```
@@ -59,7 +59,7 @@ Now that the Virtual Schema is set up, our 3 users can begin running queries aga
 To test this, you can impersonate any of these users to see what information they see. Steve, for example, will only see limited information in Institute 1, while the other 2 will see limited information for the entire company.  
 
 
-```"code-java"
+```sql
 -- Regional manager
 impersonate MONICA;
 select current_user;
@@ -85,7 +85,7 @@ where last_name like 'St%';
 Since everything is role-based, this framework is extremely flexible. It is very easy to add further restrictions or new users to this concept. For example, if I want to add a new user to this concept, I only need to grant the accompanying roles to our new user:
 
 
-```"code-java"
+```sql
 -----------------
 -- new Intern
 -----------------
@@ -113,7 +113,7 @@ where last_name like 'St%'
 Or if I need to add more restrictions, such as limiting the visibility of e-mail addresses, I can just add a new entry into our RESTRICTIONS_COLUMNS table:
 
 
-```"code-java"
+```sql
 INSERT INTO ADAPTER_SCHEMA.RESTRICTIONS_COLUMNS VALUES  
  ('CLS_DETAILS_SECURED','CUSTOMER','EMAIL'); 
 ```
@@ -123,12 +123,12 @@ With this framework, you can specify as many restrictions on as many tables as y
 
 ## Additional References:
 
-* <https://github.com/exasol/row-level-security>
-* <https://docs.exasol.com/database_concepts/virtual_schemas.htm>
-* <https://docs.exasol.com/database_concepts/privileges.htm>
+* <https://github.com/exasol/row-level-security-lua>
+* [Virtual Schemas](https://docs.exasol.com/database_concepts/virtual_schemas.htm)
+* [Privileges](https://docs.exasol.com/database_concepts/privileges.htm)
 
 ## Downloads
-[RLS-CLS-Demo_V2.zip](https://github.com/exasol/Public-Knowledgebase/files/9937198/RLS-CLS-Demo_V2.zip)
-[data_schema_customer.zip](https://github.com/exasol/Public-Knowledgebase/files/9937199/data_schema_customer.zip)
+* [RLS-CLS-data_schema_customer.csv](https://github.com/exasol/public-knowledgebase/blob/main/Database-Features/attachments/RLS-CLS-data_schema_customer.csv)
+* [RLS-CLS-Demo_V2.sql](https://github.com/exasol/public-knowledgebase/blob/main/Database-Features/attachments/RLS-CLS-Demo_V2.sql)
 
 *We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

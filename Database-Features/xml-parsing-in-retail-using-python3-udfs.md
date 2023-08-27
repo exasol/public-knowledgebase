@@ -10,8 +10,8 @@ In this demo I am going to show a full ELT process, loading retail XML files in 
 
 ## Prerequisites
 
-You need an Exasol database to follow along. Some FTP sever would be beneficial too, because we are going to load the XML files we are ingesting into the database from FTP.  
-FTP is just a example here. Since we are using Python3 as our scripting language it does not matter if  our files live on S3, FTP, SFTP, SCP, HTTP, HTTPS, SMB, NFS, CIFS or [punch cards](https://en.wikipedia.org/wiki/Punched_card) we can read from literally any source system.
+You need an Exasol database to follow along. Some FTP server would be beneficial too, because we are going to load the XML files we are ingesting into the database from FTP.  
+FTP is just a example here. Since we are using Python3 as our scripting language it does not matter if our files live on S3, FTP, SFTP, SCP, HTTP, HTTPS, SMB, NFS, CIFS or [punch cards](https://en.wikipedia.org/wiki/Punched_card) we can read from literally any source system.
 
 You can get the demo XML file this code is tailored to from: <https://gist.github.com/tsusanto/a4ce99390ac25fc239e518f53f092869> ([Mirror](https://drive.exasol.com/f/da5737db758c46f1b727/?dl=1))
 
@@ -34,14 +34,18 @@ As with any programmatical problem there are infinite ways to solve it. Below is
 1. We have a FTP server storing our XML files. In order to access it, we need a `username`, `password`, `directory` and `host-ip`.
 2. On Exasol we run a script called **xml_load()**. It is a LUA script and is used to orchestrate the ELT process. In order to start our ELT process we just type  
 
-```markup
+```sql
 EXECUTE SCRIPT schema.xml_load('host-ip', 'directory', 'username', 'password');
 ```
 and watch the magic happen.
+
 3. When we call the outer script wrapper a series of SQL statements is executed.
-	1. The wrapper script writes the outputs of the **ftp_meta_load()** UDF into the **XML_SOURCE** table.
-	2. The **parse_my_xml()** uses the information from **XML_SOURCE** to write the data contained in the XML-files to the **XML_STAGING** table.
-	3. The wrapper script distributes the data from **XML_STAGING** onto the different PROD tables.
+
+	a. The wrapper script writes the outputs of the **ftp_meta_load()** UDF into the **XML_SOURCE** table.
+	
+	b. The **parse_my_xml()** uses the information from **XML_SOURCE** to write the data contained in the XML-files to the **XML_STAGING** table.
+	
+	c. The wrapper script distributes the data from **XML_STAGING** onto the different PROD tables.
 
 ## How the ftp_meta_load() UDF works
 
@@ -200,7 +204,7 @@ To now get the information we desire, we need to write code like this:
 ```python
 ITEM_ID = safe_list_get(line_item.xpath("x:Sale/x:ItemID", namespaces=namespaces), 0)
 ```
-Notice how each of the element names are preceded by `x:`. this is because `lxml` does not allow the usage of unnamed default namespaces. Either you use namespaces in your code or you don't. Since the poslog XML we use comes with namespaces preconfigured we need to come up with a name for our default namespace. Since we are at Exasol the name of our default namespace is `x` .
+Notice how each of the element names are preceded by `x:`. this is because `lxml` does not allow the usage of unnamed default namespaces. Either you use namespaces in your code or you don't. Since the poslog XML we use comes with namespaces preconfigured we need to come up with a name for our default namespace. Since we are at Exasol the name of our default namespace is `x`.
 
 lxml's `xpath()` returns a list containing values or `None` if no value was found. This is unfortunate, because whenever we find a value, there will never be more then one item in the list. However writing `result[0]` is unsafe. If no item in the given `XPATH` was found, this would evaluate to `None[0]` causing an `IndexError`. I therefore implemented a couple of methods like `safe_list_get()` which handle occurring `None`/`Null` values gracefully and replace `None` with an empty string (which will eventually be replaced by `NULL` when returned to Exasol from the UDF context).
 
@@ -212,19 +216,19 @@ Please refer to the [GitHub](https://github.com/exasol/xml-parsing-demo) reposit
 
 ## How the xml_load() script works
 
-Contrary to the two UDFs above **xml_load()** is a `LUA` script. `LUA` scripts in Exasol can serve as UDFs (creating them as `scalar` or `set` scripts) but they can also be created as `SCRIPT` (without the `scalar` or `set` keyword) making them stored procedures which are able to control SQL statements.
+Contrary to the two UDFs above **xml_load()** is a `LUA` script. `LUA` scripts in Exasol can serve as UDFs (creating them as `scalar` or `set` scripts) but they can also be created as `SCRIPT` (without the `scalar` or `set` keyword) making them stored procedures which are able to run SQL statements.
 
 We are using the **xml_load()** script to run the two scripts mentioned above and orchestrate our whole ELT process. The following things are achieved by executing **xml_load()**:
 
 1. The **XML_STAGING** and **XML_SOURCE** tables are truncated
 2. One(!) connection to the FTP server is established querying the file list
 3. The result of that query is written into the **XML_SOURCE** table
-4. The **parse_my_xml()** statement is called in an `INSERT` statement. The emitted results of **parse_my_xml()** are written into **XML_STAGING**
+4. The **parse_my_xml()** statement is called in an `INSERT` statement. The emitted results of **parse_my_xml()** are written into **XML_STAGING** table
 5. The loaded XML files are marked as loaded with the current timestamp in **XML_SOURCE** providing rudimental delta-load capibilities
 6. **XML_STAGING** is distributed into different productive tables. Type conversions are applied on the fly and sometimes handled implicitly
 
 
-```markup
+```lua
 CREATE OR REPLACE SCRIPT xml_load(schema, ftp_host, ftp_dir, ftp_user, ftp_password) RETURNS ROWCOUNT AS
 -- Clean up staging
 query([[TRUNCATE TABLE ::s.XML_STAGING]], {s = schema});
@@ -296,33 +300,39 @@ EXECUTE SCRIPT xml_load(
 ```
 ## Additional Notes -  Could we have done something differently?
 
-As with every coding challenge there are endless ways of solving it. Some of these ways make more sense then others. Let's look at a few different approaches to what we just discussed.
+As with every coding challenge there are endless ways of solving it. Some of these ways make more sense than others. Let's look at a few different approaches to what we just discussed.
 
 ### You could store the XML in a VARCHAR(2000000) column and parse it from there
 
 We could write the **xml_load()** UDF in a way that emits the raw XML text to the **XML_SOURCE** table. The **parse_my_xml()** UDF would use the this VARCHAR() column for parsing.
 
-**PRO:**- When parsing you do not have to rely on a stable FTP connection
+**PRO:**
+
+- When parsing you do not have to rely on a stable FTP connection
 
 **CON:**
 
 - You need more space in your staging layer because you are storing all XML raw text before processing it  
 - You are limited to the VARCHAR() character limit which is currently two million
 
-By itself this approach does not make much sense because it uses up more space and limits the size of XML files you can handle. However in combination with the approach below this becomes way more powerful.
+By itself this approach does not make much sense because it uses up more space and limits the size of XML files you can handle. However, in combination with the approach below this becomes way more powerful.
 
 ### Write data into different staging tables for each prod table
 
-Currently we are writing all the information we pull from our XML into the **XML_STAGING** table. In order to be left with sensible data we need to completely denormalize it. Data duplication is the name of the game here. Because of the staging table having all future production table data it becomes very wide and clunky to work with (e.g. differentiating . In order to be able to write to multiple, individual staging tables we need to split our **parse_my_xml()** UDF as well, because a UDF can only emit **one** set of values which is emitted to **one** SQL context, inserting into **one** table. This would leave us with:
+Currently we are writing all the information we pull from our XML into the **XML_STAGING** table. In order to be left with sensible data we need to completely denormalize it. Data duplication is the name of the game here. Because of the staging table having all future production table data it becomes very wide and clunky to work with (e.g. differentiating). In order to be able to write to multiple, individual staging tables we need to split our **parse_my_xml()** UDF as well, because a UDF can only emit **one** set of values which is emitted to **one** SQL context, inserting into **one** table. This would leave us with:
 
 ![](images/2021-03-03-10_33_55.png)
 
-**PRO**-Easy namespace management and clearer/parallel development process because parsing UDFs and staging tables are kept separate
+**PRO**
 
-**CON**- XML has to be parsed multiple times (for each staging table)  
+-Easy namespace management and clearer/parallel development process because parsing UDFs and staging tables are kept separate
+
+**CON**
+
+- XML has to be parsed multiple times (for each staging table)  
 - If you read directly from FTP your load on the FTP server will be multiplied by the number of staging/tables you are filling.
 
-The second CON-point is the reason we talked about storing the raw XML in a **VARCHAR()** column earlier. You would still need to parse the XML multiple times but you would do so within the perimeter of your database and not cause excess network traffic. Depending on the complexity of your XML files, the power of your FTP server, your development process and your general architecture different approaches might suite you.
+The second CON-point is the reason we talked about storing the raw XML in a **VARCHAR()** column earlier. You would still need to parse the XML multiple times but you would do so within the perimeter of your database and not cause excess network traffic. Depending on the complexity of your XML files, the power of your FTP server, your development process and your general architecture different approaches might suit you.
 
 ## Downloads
 [POSLog Spec.pdf](https://github.com/exasol/Public-Knowledgebase/files/9937391/POSLog.Spec.pdf)
