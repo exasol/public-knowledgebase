@@ -43,11 +43,10 @@ FROM
 ORDER BY
     MEASURE_TIME DESC;
 ```
-Huge phantom percentage (>5%) for longer periods of time is not normal.
+
+Huge phantom percentage (>5%) for longer periods of time and especially consistent upwards trend are not normal.
 
 Example:
-
-
 
 | MEASURE_TIME | COMMIT_SIZE | MEM_SIZE | MULTICOPY_SIZE | PHANTOM_SIZE | PHANTOM_% |
 | --- | --- | --- | --- | --- | --- |
