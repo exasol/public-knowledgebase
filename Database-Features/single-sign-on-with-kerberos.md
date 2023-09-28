@@ -3,10 +3,10 @@
 
  This how-to describes the necessary steps to use Kerberos based single sign-on (SSO) in Exasol.
 
- ### EXAoperation
+ ### EXAoperation (Exasol 7.x)
 
- The configuration of EXAoperation is explained in the Operational Manual:  
-<https://docs.exasol.com/administration/on-premise/user_management/kerberos_single_sign-on.htm>
+ The configuration of EXAoperation is explained in the Exasol documentation:  
+<https://docs.exasol.com/db/7.1/administration/on-premise/access_management/kerberos_sso.htm>
 
  ## Prerequisites
 
