@@ -45,7 +45,7 @@ We'll follow the [CloudBeaver wiki page](https://github.com/dbeaver/cloudbeaver/
 Here we need to clone the CloudBeaver repository, using git clone:
 
 
-```"western"
+```shell
 git clone https://github.com/dbeaver/cloudbeaver.git
 ```
   
@@ -100,7 +100,7 @@ xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLS
  <dependency>  
   <groupId>com.exasol</groupId>  
   <artifactId>exasol-jdbc</artifactId>  
-  <version>7.0.7</version>  
+  <version>7.1.20</version>  
  </dependency>  
 </dependencies>  
 </project>
@@ -123,7 +123,7 @@ Ultimately we add the dependency to the Exasol JDBC driver:
  <dependency>  
   <groupId>com.exasol</groupId>  
   <artifactId>exasol-jdbc</artifactId>  
-  <version>7.0.7</version>  
+  <version>7.1.20</version>  
  </dependency>  
 </dependencies>
 ```

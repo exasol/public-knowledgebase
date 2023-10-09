@@ -5,28 +5,27 @@ As you may know, the Exasol database is enforced by limits when the License (RAW
 
 ## Diagnosis
 
-Exaoperation logs or EXA_SYSTEM_EVENTS table will tell you whether you have reached the License limits or not. A Warning message will look like this:
+Exaoperation logs or `EXA_SYSTEM_EVENTS` table will tell you whether you have reached the License limits or not. A Warning message will look like this:
 
 
-```html
+```
 License Warning: Databases raw sizes of 87.0 GiB is close to the license limit of 100.0 GiB (86.5%). 
 At 105% databases will no longer permit data insertion.
 ```
 And the Error message as:
 
 
-```html
+```
 License exceeded: Databases raw sizes of 53.0 GiB exceed license limit of 50.0 GiB (106.2%). 
 Databases no longer permit data insertion.
 ```
-Querying the EXA_SYSTEM_EVENTS table you will see the below messages (within others) when the "Write Restricted Mode" is enabled and when it is disabled:
+Querying the `EXA_SYSTEM_EVENTS` table you will see the below messages (within others) when the "Write Restricted Mode" is enabled and when it is disabled:
 
+| CLUSTER_NAME | MEASURE_TIME | EVENT_TYPE | DBMS_VERSION | NODES | DB_RAM_SIZE | PARAMETERS |
+| --- | --- | --- | --- | --- | --- | --- |
+| MAIN | 2021-07-12 08:30:02 | LICENSE_OK | 7.0.11 | 4 | 600.0 | |
+| MAIN | 2021-07-10 14:02:59 | LICENSE_EXCEEDED | 7.0.11 | 4 | 600.0 | |
 
-```sql
-CLUSTER_NAME MEASURE_TIME        EVENT_TYPE       DBMS_VERSION NODES DB_RAM_SIZE PARAMETERS
-MAIN         2021-07-12 08:30:02 LICENSE_OK       7.0.11       4     600.0
-MAIN         2021-07-10 14:02:59 LICENSE_EXCEEDED 7.0.11       4     600.0
-```
 ## Explanation
 
 Exasol provides 2 different licenses: "Raw data License" (default one) and "Database RAM License". For further details follow [this](https://docs.exasol.com/administration/on-premise/licenses.htm "Licenses") link. We have already mentioned that there are certain limitations enforced on the license and a periodic check is done by Exasol on the size of the data. In this article, we will talk only about the case your Exasol License is a "Raw data License".
@@ -43,10 +42,14 @@ There are 2 options to achieve this goal, the first one is to fill up the databa
 
 This solution will trigger the "Write Restricted Mode" by updating the cluster with a smaller license. Please ensure the temporarily license Raw data value is at least 105% of the current raw size of the database. 
 
-In order to update the license, you can follow the instructions on this [link](https://docs.exasol.com/administration/on-premise/manage_software/activate_license.htm "License"). However, you may want to change the new one without disruption or without the need to restart the database. To do so, you just need to skip step -4- from the instructions. The full procedure will look like this:
+In order to update the license, you can follow the instructions on this links:
+
+* [Version 8, Upload a License](https://docs.exasol.com/db/latest/administration/on-premise/manage_license/upload_license.htm)
+* [Version 7.1, Activate License](https://docs.exasol.com/db/7.1/administration/on-premise/manage_software/activate_license.htm)
+
+However, you may want to change the new one without disruption or without the need to restart the database. To do so, you just need to skip step -4- (DB restart) from the instructions (for version 7.1). The full procedure will look like this:
 
 
-```html
 1) Check "EXA_SYSTEM_EVENTS" or EXAOperation logs for the messages.
 
 2) Upload the "temporary" license with a smaller RAW allowance) into EXAOperation.
@@ -56,8 +59,8 @@ In order to update the license, you can follow the instructions on this [link](h
 4) Wait for 3 to 5 minutes. 
 The activation of the new license takes about 3 to 5 minutes, then the "Write Protected Mode" will be activated and all of the commands including INSERT and CREATE AS SELECT will stop working.
 
-5) Check again "EXA_SYSTEM_EVENTS" or EXAOperation logs for the correspondent messages
-```
+5) Check again "EXA_SYSTEM_EVENTS" or EXAOperation logs for the corresponding messages
+
 ## Revert to "Normal Mode"
 
 To revert back the License, you must follow the same procedure described above with the "real" License instead of the "temporary" on step (2).
@@ -66,8 +69,12 @@ To revert back the License, you must follow the same procedure described above w
 
 Here you link to other sites/information that may be relevant.
 
-<https://docs.exasol.com/planning/licensing.htm>
+* [Licenses](https://docs.exasol.com/planning/licensing.htm)
 
-<https://docs.exasol.com/sql_references/system_tables/statistical/exa_system_events.htm>
+* [EXA_SYSTEM_EVENTS](https://docs.exasol.com/sql_references/system_tables/statistical/exa_system_events.htm)
+
+* [Version 8, Upload a License](https://docs.exasol.com/db/latest/administration/on-premise/manage_license/upload_license.htm)
+
+* [Version 7.1, Activate License](https://docs.exasol.com/db/7.1/administration/on-premise/manage_software/activate_license.htm)
 
 *We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

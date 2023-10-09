@@ -26,13 +26,13 @@ Normally, the reorganize operation is an expensive operation. This is because it
 * Reorganize is triggered by default when a quarter of the rows are deleted. This may lead to a perceived decrease in performance when it happens, particularly for small deletes (i.e. deleting a couple of rows takes a long time). To alleviate this problem, it is possible to trigger the reorganize operation explicitly:
 
 
-```"code-sql"
+```sql
 reorganize table t 
 ```
 * By default the reorganize command will not trigger a table reorganize if the number of rows marked as deleted is smaller than 12.5% - in this case, the system recognizes that the number of deleted rows is too small and a reorganize is likely to only incur unnecessary performance penalties. To trigger a reorganize even, in this case, it needs to be explicitly enforced:
 
 
-```"code-sql"
+```sql
 reorganize table t enforce
 ```
 ### Delete versus Reorganize

@@ -19,7 +19,7 @@ In this section, you can replace the title of "How To ..." to something that fit
 Open the attached file (backup_copy_ftp.sql) and create the script in the schema of your choice. Within the UDF, you should adjust these variables accordingly:
 
 
-```markup
+```python
 LOCAL_URL    = 'ftp://ExaoperationUser:EXAoperationPW@%s/SourceArchiveVolumeID' 
 REMOTE_URL   = 'ftp://EXAoperationUser:EXAoperationPW@%s/TargetArchiveVolumeID' 
 REMOTE_NODES = [ 'IP node 11', 'IP node 12', 'IP node 13']
@@ -29,7 +29,7 @@ REMOTE_NODES = [ 'IP node 11', 'IP node 12', 'IP node 13']
 Once the script is created, you can run it like this:
 
 
-```markup
+```sql
 SELECT syncBackups(IPROC) FROM EXA_LOADAVG;
 ```
 If needed, you can run this script regularly. 

@@ -15,7 +15,7 @@ Exasol 5 introduced a powerful optimization that can be used for **manual partit
 As an example, given the following view and statement:
 
 
-```"code-sql"
+```sql
 create view union_all as (
         select * from sales_2011
     UNION ALL
@@ -45,7 +45,7 @@ The mentioned optimization can take place if the **following conditions** are me
 Example:
 
 
-```"code-sql"
+```sql
 -- slow variant => not all columns included
 SELECT *
 FROM ( 

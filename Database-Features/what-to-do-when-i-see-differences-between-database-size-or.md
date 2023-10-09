@@ -6,10 +6,9 @@ Sometimes, the disk space used by the database may continue to increase, but the
 When running out of space, you may notice the following error message in Exaoperation:
 
 
-
-|  |
-| --- |
-| 2021-04-30 10:35:38.005042 Error cluster1 DB: demo, persistent - **usage: 98.57%**, free: 72.75 GiB, max: 5090.38 GiB |
+```
+2021-04-30 10:35:38.005042 Error cluster1 DB: demo, persistent - **usage: 98.57%**, free: 72.75 GiB, max: 5090.38 GiB
+```
 
 The difference between the size of the database in Exaoperation and the sum of all objects may be considerable. In this example, the database size in Exaoperation, but the sum of all objects is actually only around 1,3 TiB when we ran the below query. 
 

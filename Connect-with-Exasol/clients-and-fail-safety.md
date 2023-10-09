@@ -1,4 +1,5 @@
 # Clients and Fail Safety 
+
 ## Background
 
 This article explains some of the fail safety mechanisms that clients can perform. 
@@ -35,9 +36,11 @@ If the reconnect was not successful, you can get one of the SQL states 40004, 40
 
 ## Additional References
 
-* <https://docs.exasol.com/connect_exasol/drivers/odbc/using_odbc.htm>
-* <https://docs.exasol.com/administration/on-premise/manage_software/manage_jdbc.htm>
-* <https://docs.exasol.com/connect_exasol/drivers.htm>
-* <https://docs.exasol.com/connect_exasol/drivers/ado_net.htm>
+* [Drivers](https://docs.exasol.com/connect_exasol/drivers.htm)
+* [Using the ODBC Driver](https://docs.exasol.com/connect_exasol/drivers/odbc/using_odbc.htm)
+* [ADO.NET Data Provider](https://docs.exasol.com/db/latest/connect_exasol/drivers/ado_net.htm)
+* [JDBC Driver](https://docs.exasol.com/db/latest/connect_exasol/drivers/jdbc.htm)
+* [Deployments with EXAOperation, Manage JDBC Drivers](https://docs.exasol.com/db/7.1/administration/on-premise/manage_software/manage_jdbc.htm)
+* [Deployments without EXAOperation, Add JDBC Drivers](https://docs.exasol.com/db/latest/administration/on-premise/manage_drivers/add_jdbc_driver.htm)
 
 *We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

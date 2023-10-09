@@ -1,15 +1,12 @@
-# How to create and use UDFs 
+# How to create and use UDFs
 ## Background
 
 This is a basic tutorial on User Defined Functions. For details regarding the programming languages see our [documentation portal](https://docs.exasol.com) More technical insight is also given in the white paper ["Big Data Science - the future of analytics"](https://www.exasol.com/en/community/resources/resource/big-data-science-the-future-of-analytics/).
 
 We have to distinguish between UDFs and control scripts in the following ways:
 
-
-
-|  |  |
+| Control Scripts (Lua) | User Defined Functions (UDFs) |
 | --- | --- |
-| **Control Scripts (Lua)** | **User Defined Functions (UDFs)** |
 | for control jobs | for operations on data sets |
 | written in Lua | written in SQL, Lua, Java, Python, R, or any other defined language |
 | executed via SQL statement: 'EXECUTE SCRIPT ...' | executed within SQL 'SELECT' statement, e.g. 'SELECT udf(col1, col2) FROM tbl1;' |
@@ -39,7 +36,7 @@ You can use the [script signature generator](https://docs.exasol.com/database_co
 Write your script in the database - we'll do a simple one for this example:
 
 
-```markup
+```r
 --/ 
 create or replace R scalar script Rsquare(x int) returns int as  
 run <- function(ctx) {     
@@ -52,7 +49,7 @@ run <- function(ctx) {
 Test out your script by running it like below:
 
 
-```markup
+```sql
 select Rsquare(3); 
 ```
 You should get '9' as the result. 
@@ -70,11 +67,13 @@ Tables are stored in EXASOL row-wise distributed across a cluster's nodes. A UDF
 A scalar UDF computes on one input row per UDF instance and returns one output row. It is automatically executed in massively parallel in the Exasol cluster. The example below demonstrates this:
 
 
-```markup
+```sql
 create or replace table t (x int, y int);  
 insert into t values(1,1),(1,2),(4,2);  
 select * from t; 
+```
 
+```lua
 --/ 
 CREATE OR REPLACE LUA SCALAR SCRIPT my_maximum (a DOUBLE, b DOUBLE) RETURNS DOUBLE AS  
 function run(ctx)     
@@ -88,7 +87,9 @@ function run(ctx)
  end 
 end 
 /  
+```
 
+```sql
 SELECT x, y, my_maximum(x, y) from t;
 ```
 ## Aggregate UDFs
@@ -98,7 +99,7 @@ An aggregate UDF consumes multiple input tuples, i.e. the whole columns of the t
 The number of UDF instances to be started is handled by the GROUP BY clause. Without a GROUP BY clause one instance is started which runs on one node, not in parallel. A GROUP BY clause that results in multiple groups causes multiple UDF instances, which are then computed massively parallel in Exasol. Please see the following example:
 
 
-```markup
+```lua
 --/ 
 CREATE OR REPLACE LUA SET SCRIPT my_average (a DOUBLE) RETURNS DOUBLE AS  
 function run(ctx)     
@@ -115,7 +116,9 @@ function run(ctx)
  end 
 end 
 /  
+```
 
+```sql
 SELECT my_average(x), my_average(y) from t;
 ```
 ## Analytical UDFs
@@ -125,7 +128,7 @@ These consume as input values multiple data tuples (rows), and they also return 
 In the following example, a running sum is computed. Notice that the simple algorithm iterates through the entire input set within one instance (repeat loop).
 
 
-```markup
+```lua
 --/
 CREATE OR REPLACE LUA SET SCRIPT my_sum ( a DOUBLE) 
   EMITS (count DOUBLE, val DOUBLE, sum DOUBLE) AS
@@ -142,8 +145,10 @@ CREATE OR REPLACE LUA SET SCRIPT my_sum ( a DOUBLE)
       until not ctx.next()
   end
 /
- 
- SELECT my_sum(x ORDER BY x) from t;
+```
+
+```sql
+SELECT my_sum(x ORDER BY x) from t;
 ```
 You can find all of these examples in the attached file. 
 

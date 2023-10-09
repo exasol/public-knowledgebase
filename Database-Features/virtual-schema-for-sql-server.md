@@ -206,7 +206,7 @@ Upload the SQL Server Virtual Schema jar file from the previous step to the "ja
 For this, we are going to build and execute another `curl` command as in **Step 5,** but using the SQL Server Virtual Schema jar filename this time, as follows:
 
 
-```markup
+```
 curl -v -X PUT -T virtual-schema-dist-9.0.1-sqlserver-2.0.0.jar http://w:abc@192.168.1.158:8080/jars/virtual-schema-dist-9.0.1-sqlserver-2.0.0.jar
 ```
 Here is the output showing the upload was successful.
@@ -414,6 +414,6 @@ SELECT * FROM "t" ORDER BY "col1" DESC;
 
 ## Downloads
  
-* The LS (BUCKETFS_LS) scirpt itself: [bucketfs_ls.sql](https://raw.githubusercontent.com/exasol/exa-toolbox/master/utilities/bucketfs_ls.sql)
+* The LS (BUCKETFS_LS) script itself: [bucketfs_ls.sql](https://raw.githubusercontent.com/exasol/exa-toolbox/master/utilities/bucketfs_ls.sql)
 
 *We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

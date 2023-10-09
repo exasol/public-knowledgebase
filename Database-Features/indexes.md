@@ -13,7 +13,7 @@ Internally, Exasol is using a highly tuned B-tree structure.
 Assuming the join,
 
 
-```"noformat
+```sql
 ... A join B on round(A.x) = B.x ...
 ```
 an index might have to be built on table A, based on the given expression. Such an index will NOT be stored persistently but will be dropped after query execution. It follows that this index will have to be rebuilt every time a join of this type is being performed.
@@ -58,8 +58,8 @@ If a distribution key is set on the table and the index contains all columns of 
 
 ## Additional References
 
-[Local-and-Global-joins](https://exasol.my.site.com/s/article/Local-and-Global-Joins?search-action-id=2672626244&search-result-uid=1297 "This") 
+[Local-and-Global-joins](https://exasol.my.site.com/s/article/Local-and-Global-Joins)
 
-[Does-Exasol-index-nulls](https://exasol.my.site.com/s/article/Does-Exasol-index-NULLS??search-action-id=2672652107&search-result-uid=1243) 
+[Does-Exasol-index-nulls](https://exasol.my.site.com/s/article/Does-Exasol-index-NULLS)
 
 *We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

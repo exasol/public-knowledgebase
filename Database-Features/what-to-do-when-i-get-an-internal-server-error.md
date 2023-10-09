@@ -8,11 +8,11 @@ When executing a query, you might receive an internal server error. This article
 An Internal Server error has occurred if you receive one of the following error messages:
 
 
-```markup
+```
 [40005] Successfully reconnected after internal server error, transaction was rolled back.
 ```
 
-```markup
+```
 [42000] Internal server error. Please report this. Transaction has been rolled back. 
 ```
 ## Explanation
@@ -39,6 +39,6 @@ Once we have investigated, we will let you know of any potential workarounds and
 
 ## Additional References
 
-* [Gathering Logs for Support](https://docs.exasol.com/administration/on-premise/support/get_debug_information.htm)
+* [Gathering Logs for Support](https://docs.exasol.com/db/latest/administration/on-premise/support.htm)
 
 *We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

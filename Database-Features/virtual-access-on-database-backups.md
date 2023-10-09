@@ -26,13 +26,13 @@ In this example:
 * The database is running on 4 active nodes and has 112GiB DB RAM
 
 
-```python
+```
 Amount of active nodes * 4GiB = DB RAM VR instance:  4 * 4GiB = 16GiB DB RAM VR instance
 ```
 ## How to virtual-access on database backups
 
 **Step 1: Reducing the DB RAM to allocate RAM for the VR instance**
-```markup
+```
 DB RAM - DB RAM VR instance = reduced DB RAM: 112GiB - 16GiB = 96GiB
 ```
 **Step 1.1: Shutdown database**  
@@ -105,7 +105,7 @@ Click on EXAStorage and then click on "Add Volume":
 
 IMPORT:
 
-```"code-sql"
+```sql
     CREATE OR REPLACE TABLE SCHEMA.TABLE AS     
     SELECT *     
     FROM ( import from EXA at 'CONNECTION-STRING:PORT' 
@@ -113,7 +113,7 @@ IMPORT:
 ```
 EXPORT:
 
-```"code-sql"
+```sql
     EXPORT SCHEMA.TABLE     
     INTO EXA at 'CONNECTION-STRING:PORT' 
     USER "myuser" IDENTIFIED BY "mypass" 

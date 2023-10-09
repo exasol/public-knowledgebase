@@ -24,9 +24,8 @@ select session_id, user_name, error_code, error_text from exa_dba_audit_sessions
 ```
 
 
-|  |  |  |  |
-| --- | --- | --- | --- |
 | SESSION_ID | USER_NAME | ERROR_CODE | ERROR_TEXT |
+| --- | --- | --- | --- |
 | (null) | user1 | 08004 | Connection exception - authentication failed. |
 
 ## Recommendation
@@ -34,14 +33,14 @@ select session_id, user_name, error_code, error_text from exa_dba_audit_sessions
 Please recreate the LDAP user with double quotes ( “ “ ) to handle the spaces. For example :
 
 
-```markup
+```sql
 CREATE USER firstname_lastname IDENTIFIED AT LDAP AS 'cn="firstname lastname”,dc=authorization,dc=exasol,dc=com'; 
 ```
 You can check this in the DISTINGUISHED_NAME of the EXA_DBA_USERS table.
 
 ## Additional References
 
-<https://docs.exasol.com/sql/create_user.htm#Authenti3>
+[Authentication using LDAP](https://docs.exasol.com/db/latest/sql/create_user.htm#AuthenticationusingLDAP)
 
 [Manual LDAP Connection Test](https://exasol.my.site.com/s/article/Manual-LDAP-Connection-Test)
 

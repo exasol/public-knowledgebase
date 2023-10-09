@@ -14,9 +14,8 @@ The tables below list the **default** ports of network services and DBMSs with w
 
 
 
-|  |  |  |  |  |
+| Protocol | Port | Source | Destination | Description |
 | --- | --- | --- | --- | --- |
-| **Protocol** | **Port** | **Source** | **Destination** | **Description** |
 | TCP | 8563 | EXASOL Client | EXASOL database nodes | EXASOL server port |
 | TCP | Range from 20000 to 21000 | EXASOL database nodes (source) | EXASOL database nodes (target) | EXASOL sub connection ports (for EXA-to-EXA loading) |
 
@@ -24,9 +23,8 @@ The tables below list the **default** ports of network services and DBMSs with w
 
 
 
-|  |  |  |  |  |
+| Protocol | Port | Source | Destination | Description |
 | --- | --- | --- | --- | --- |
-| **Protocol** | **Port** | **Source** | **Destination** | **Description** |
 | TCP | 8563 | EXASOL database nodes | EXASOL database client | EXASOL database client connection port |
 | TCP | Range from 20000 to 21000 | EXASOL database nodes (source) | EXASOL database nodes (target) | EXASOL subconnection ports (for EXA-to-EXA loading) |
 | TCP | 20 | EXASOL database nodes | FTP server | FTP data port for IMPORT/EXPORT |

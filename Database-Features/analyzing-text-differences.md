@@ -12,7 +12,7 @@ The solution consists of two implementation scripts (scripting scripts / stored 
 ### I1 - Myers' Diff Algorithm and a tokenizer
 
 
-```"code-sql"
+```sql
 /**
 	Internal diff functionality. To be used by scripts that know what to do.
 */
@@ -22,7 +22,7 @@ create or replace script diff_internal as
 ### I2 - Implementation returning a html-like add/del diff
 
 
-```"code-sql"
+```sql
 /**
 	Basic text diff functionality.
 	Only contains one function that will return a textual representation
@@ -35,7 +35,7 @@ create or replace script text_diff() as
 ### E1 - Diff script taking two strings to compare
 
 
-```"code-sql"
+```sql
 /**
 	Basic diff example operating on given clear text input.
 	Supported compare modes see diff_INTERNAL.
@@ -49,7 +49,7 @@ as
 ### E2 - Diff script taking two view IDs, reading view texts from the database
 
 
-```"code-sql"
+```sql
 /**
 	Example usage of TEXT_DIFF script to compare two views.
 	Views must be passed as VIEW_OBJECT_ID from EXA_ALL_VIEWS.
@@ -66,7 +66,7 @@ as
 ### 1 - Compare two strings on a char-by char basis
 
 
-```"code-sql"
+```sql
 execute script do_diff( 'ABCABBA', 'CBABAC', 'char' ) WITH OUTPUT; 
 ```
 Result:
@@ -78,7 +78,7 @@ Result:
 ### 2 - Compare two strings on a word-by-word basis
 
 
-```"code-sql"
+```sql
 execute script do_diff(  
  'The quick brown fox jumps over the lazy dog.',  
  'The lazy fox jumps over the quick brown dog.',  
@@ -108,7 +108,7 @@ Yes... output formatting for mode 'word' could be much better.
 ### 3 - Use sql tokenizer for the brown fox example
 
 
-```"code-sql"
+```sql
 execute script do_diff(  
  'The quick brown fox jumps over the "lazy" dog.',  
  'The lazy fox jumps over the "quick brown" dog.',  
@@ -129,7 +129,7 @@ However as you can see,
 ### 4 - Differences in database objects (views)
 
 
-```"code-sql"
+```sql
 select VIEW_NAME, VIEW_OBJECT_ID
 from exa_all_views
 where view_schema = 'SR9000';
@@ -140,7 +140,7 @@ execute script view_diff( 80438886402, 84919013378, 'sql' ) with output;
 Result:
 
 
-```
+```sql
 create or replace view <del>statement_messages</del><add>l_message</add> as<del>
 	</del><add> 
 	</add>select<del>

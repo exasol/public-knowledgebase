@@ -1,4 +1,7 @@
 # Querying and Converting JSON Data with the JSON_TABLE UDF 
+
+_The functionality below was superceded by built-in [JSON Functions](https://docs.exasol.com/db/latest/sql_references/functions/json.htm)_
+
 ## Problem
 
 JSON data that is stored in EXASOL tables can be accessed through UDFs. JSON documents can be accessed through *path expressions*.
@@ -6,7 +9,7 @@ JSON data that is stored in EXASOL tables can be accessed through UDFs. JSON do
 To understand what path expressions are, let us have a look at the following JSON document:
 
 
-```"code
+```json
 { "name": "Bob", "age": 37, "address":{"street":"Example Street 5","city":"Berlin"}, "phone":[{"type":"home","number":"030555555"},{"type":"mobile","number":"017777777"}], "email":["bob@example.com","bobberlin@example.com"] } 
 ```
 The JSON document contains five fields: “name” (a string), “age” (an integer), “address” (a document), “phone” (an array containing documents) and “email” (an array containing strings).
@@ -14,7 +17,7 @@ The JSON document contains five fields: “name” (a string), “age” (an int
 Path expressions start with a dollar sign ($) representing the root document. The dot operator (.) is used to select a field of a document, the star in box brackets ([*]) selects and unnests all elements of an array. The following path expression finds all phone numbers:
 
 
-```"code
+```
 $.phone[*].number 
 ```
 This expression is evaluated as follows:
@@ -28,28 +31,28 @@ This expression is evaluated as follows:
 
 ## Solution
 
-This solution presents a generic Python UDF json_table to access field values in JSON documents through *path expressions*.
+This article presents a generic Python UDF `json_table` to access field values in JSON documents through *path expressions*.
 
-The json_table function has the following form:
+The `json_table` function has the following form:
 
 
-```"code
+```sql
 select json_table(  
  <json string or column>,  
  <path expression>,  
  <path expression>,  ... 
  ) emits (<column_name> <data_type>, <column_name> <data_type>, ...) 
 ```
-The JSON_TABLE UDF attached to this solution takes a VARCHAR containing JSON data as a first parameter and one or more path expressions:
+The `JSON_TABLE` UDF linked to this article takes a VARCHAR containing JSON data as a first parameter and one or more path expressions:
 
 
-```"code
-create or replace python scalar script json_table(...) emits(...) as 
+```sql
+create or replace python3 scalar script json_table(...) emits(...) as 
 ```
 The function can be called in a SELECT query. The EMITS clause has to be used to define the output column names and their data types.
 
 
-```"code
+```sql
 SELECT json_table('{ "name": "Bob", "age": 37, "address":{"street":"Example Street 5","city":"Berlin"},  
 "phone":[{"type":"home","number":"030555555"},{"type":"mobile","number":"017777777"}], 
 "email":["bob@example.com","bobberlin@example.com"]}','$.phone[*].number') EMITS (phone VARCHAR(50)); 
@@ -57,15 +60,17 @@ SELECT json_table('{ "name": "Bob", "age": 37, "address":{"street":"Example Stre
 When the JSON data is stored in a table, the first parameter of JSON_TABLE contains the column name:
 
 
-```"code
+```sql
 CREATE TABLE example_table (column_a INT, json_data VARCHAR(2000000)); 
+
 -- INSERT INTO example_table VALUES (1, '{ "name": "Bob",…'); (as above) 
+
 SELECT json_table(json_data,'$.phone[*].number') EMITS (phone VARCHAR(50)) FROM example_table; 
 ```
-It is possible to use both the json_table UDF and normal columns of the table within the SELECT clause:
+It is possible to use both the `json_table` UDF and normal columns of the table within the SELECT clause:
 
 
-```"code
+```sql
 SELECT column_a, json_table(json_data,'$.phone[*].number') EMITS (phone VARCHAR(50)) 
 FROM example_table; 
 ```
@@ -91,7 +96,7 @@ The following table shows some more valid path expressions:
 This query converts the JSON data into column values:
 
 
-```"code
+```sql
 SELECT json_table(json_data,'$.name', '$.age', '$.address.city') 
 EMITS (name VARCHAR(500), age INT, city VARCHAR(500)) 
 FROM example_table; 
@@ -105,7 +110,7 @@ FROM example_table;
 When unnesting an array, the values from different levels stay the same for every array element:
 
 
-```"code
+```sql
 SELECT json_table(json_data,'$.name', '$.age', '$.address.city', '$.email[*]') 
 EMITS (name VARCHAR(500), age INT, city VARCHAR(500), email VARCHAR(500)) 
 FROM example_table; 
@@ -120,7 +125,7 @@ FROM example_table;
 The result of unnesting more than one array is the cross product of those arrays:
 
 
-```"code
+```sql
 SELECT json_table(json_data,'$.name', '$.age', '$.address.city', '$.email[*]', '$.phone[*].type', '$.phone[*].number') 
 EMITS (name VARCHAR(500), age INT, city VARCHAR(500), email VARCHAR(500), phone_type VARCHAR(50), phone_number VARCHAR(50)) 
 FROM example_table; 
@@ -143,12 +148,9 @@ Details and limitations:
 
 ## Additional References
 
-<https://docs.exasol.com/advanced_analytics/accessing_json_data_udfs.htm>
-
-<https://docs.exasol.com/sql_references/functions/alphabeticallistfunctions/json_value.htm>
-
-[Parsing JSON data with python](https://exasol.my.site.com/s/article/Parsing-JSON-data-with-python)
-
-<https://docs.exasol.com/db/latest/sql_references/functions/json.htm>
+* [JSON_TABLE UDF definition](https://github.com/exasol/public-knowledgebase/blob/main/Database-Features/attachments/JSON_TABLE.sql)
+* [JSON_VALUE](https://docs.exasol.com/sql_references/functions/alphabeticallistfunctions/json_value.htm)
+* [Parsing JSON data with python](https://exasol.my.site.com/s/article/Parsing-JSON-data-with-python)
+* [JSON Functions](https://docs.exasol.com/db/latest/sql_references/functions/json.htm)
 
 *We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

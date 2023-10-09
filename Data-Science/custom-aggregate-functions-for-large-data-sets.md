@@ -3,7 +3,7 @@
 
 This article demonstrates some basic principles for parallel programming within UDFs.
 
-The task for this tutorial is to create UDF replacements for the internal functions AVG and STDDEV in the R language using UDFs that run inside the data base. Clearly, we don't expect stellar performance here, especially when compared to Exasol's built in versions. On the other hand, the provided solutions provide a blueprint for custom aggregate functions for customers.
+The task for this tutorial is to create UDF replacements for the internal functions AVG and STDDEV in the R language using UDFs that run inside the data base. Clearly, we don't expect stellar performance here, especially when compared to Exasol's built in versions. On the other hand, the described solutions provide a blueprint for custom aggregate functions for customers.
 
 The primary goals for our versions of AVG and STDDEV are:  
 Goal 1: The UDFs should be robust enough to handle large data sets  
@@ -32,20 +32,20 @@ As a rule of thumb: With SET-RETURNS and SET-EMITS scripts, one should aim for m
 ## Step 1: Preparing some data
 
 
-```"code-sql"
+```sql
 create schema r_stats; 
 ```
 table n9 is a little helper for generating some test data.
 
 
-```"code-sql"
+```sql
 create or replace table n9(x double); 
 insert into n9 values 1,2,3,4,5,6,7,8,9; 
 ```
 Table big contains nearly 390 million rows
 
 
-```"code-sql"
+```sql
 create or replace table big(x double); 
 insert into big select a.x from n9 a,n9,n9,n9,n9,n9,n9,n9,n9; 
 ```
@@ -54,7 +54,7 @@ insert into big select a.x from n9 a,n9,n9,n9,n9,n9,n9,n9,n9;
 In our first attempt, we try to strictly follow the Exasol documentation which has an example like this:
 
 
-```"code-sql"
+```r
 --/  
 CREATE or replace R SET SCRIPT r_stats(input_number DOUBLE) 
 EMITS (avg DOUBLE, stddev DOUBLE) 
@@ -68,13 +68,13 @@ run <- function(ctx) { # fetch all records from this group into a single vector
 For small tables, this function is good enough.
 
 
-```"code-sql"
+```sql
 select r_stats(a.x) from n9 a, n9; 
 ```
 For larger tables, it fails withVM error: ...
 
 
-```"code-sql"
+```sql
 select r_stats(x) from big; 
 ```
 Clearly, the problem is that insider_stats(), we tried to read all the data at once which exceeded the resources available to the script instance.
@@ -89,7 +89,7 @@ For functions like AVG and STDDEV it is possible to avoid the problem above by f
 Then in SQL, a queries of the form
 
 
-```"code-sql"
+```sql
    SELECT reduce(...)    
    FROM (select map(...)          
    FROM ...          
@@ -102,7 +102,7 @@ is used to create the Map-Reduce processes. Map() functions correspond to the UD
 First, let's focus on computing the AVG in MAP-REDUCE style The map() function is called many times in parallel. By later using appropriate GROUP BY clause, we will limit the size of the input data and therefore here we can simply read all data at once in this function
 
 
-```"code-sql"
+```r
 --/  
 CREATE or replace R SET SCRIPT r_avg_map(input_number DOUBLE) 
 EMITS (avg DOUBLE, weight DOUBLE) 
@@ -117,7 +117,7 @@ run <- function(ctx)
 Our version of the reduce() function is called only once (other approaches are possible as well). This means, that there is no enforced limit on the size of the input data which means that we must loop over the data in small pieces. It is very important to avoid reading all the data at once.
 
 
-```"code-sql"
+```r
 --/
 CREATE or replace R SET SCRIPT r_avg_reduce(tmp_avg DOUBLE, weight DOUBLE )
 EMITS (avg DOUBLE) AS
@@ -135,25 +135,25 @@ run <- function(ctx)
 With map() and reduce() functions in place, we now have to create a SQL query which combines both and also has a proper GROUP BY clause in order to achieve good parallelism and not to exceed the resource limits, especially in the map() functions. By the rule of thumb above we aim to create groups of sizes about 10000 to 100000 elements. So for our queries on the table BIG, we aim to create a group by clause which produces around
 
 
-```"code-sql"
+```sql
 select count(*) / 10000 from big; 
 ```
 (=38742.0489) different groups of nearly identical size. This is achieved by using a dynamic group by clause like
 
 
-```"code-sql"
+```sql
     floor(random() * 38742.0489)  
 ```
 The statement
 
 
-```"code-sql"
+```sql
 select count(*) from (select 1 from big group by floor(random() * 38742.0489)); 
 ```
 shows the number of group created and the statement
 
 
-```"code-sql"
+```sql
 select (select count(*) from big)/38742.0489 as desired_group_size,        
 avg(c) as actual_group_size, 
 stddev(c) actual_group_size_stddev from 
@@ -163,7 +163,7 @@ shows the statistics of the group size.
 The desired value (38742.0489 above) also can be computed on the fly, yielding the following query for Map-Reduce style AVG computation:
 
 
-```"code-sql"
+```sql
 select r_avg_reduce(m,w) from (select r_avg_map(x)       
 from big       
 group by floor(random() * (select count(*) / 10000 from big))) as p(m,w); 
@@ -171,7 +171,7 @@ group by floor(random() * (select count(*) / 10000 from big))) as p(m,w);
 On a (small and old) test cluster this took around 16 seconds As expected, this is really slow, compared to the 0.6 seconds of the internal AVG function:
 
 
-```"code-sql"
+```sql
 select avg(x) from big; 
 ```
 On the other hand, this is interpreted and slow generic R vs. extremely optimized C++, hence, a performance difference of two orders of magnitude is not really a big surprise.
@@ -187,7 +187,7 @@ Now after computing the AVG function let's tackle STDDEV, again using MAP-REDUCE
 Again, we start with the map() function. Later, via GROUP BY, we will guarantee that the input size is not too large, so we can program it rather carelessly:
 
 
-```"code-sql"
+```r
 --/
 CREATE or replace R SET SCRIPT r_stddev_map(n DOUBLE, avg double)
 EMITS (avg DOUBLE, square_diff DOUBLE, num DOUBLE) AS
@@ -200,7 +200,7 @@ run <- function(ctx)
 Again the reduce function is more complicated as the input size is not limited.
 
 
-```"code-sql"
+```r
 --/
 CREATE or replace R SET SCRIPT r_stddev_reduce(avg DOUBLE, square_diff DOUBLE, num double)
 EMITS (avg DOUBLE, square_diff DOUBLE, num DOUBLE) AS
@@ -222,14 +222,14 @@ run <- function(ctx)
 When calling the above map() and reduce() functions, we have to provide some value for the average. This can be achieved by joining a scalar value to the BIG table:
 
 
-```"code-sql"
+```sql
 select x,m from n9,(select 5 as m); 
 ```
 actually, our map() and reduce() functions only compute the sum inside the formula above, the remainder of the formula for STDDEV is evaluated in standard SQL.  
 Here is the call to compute STDDEV when the average (which for table BIG is 5) is known before:
 
 
-```"code-sql"
+```sql
 select avg, sqrt(square_diff / (num -1))
 from (select r_stddev_reduce(avg, square_diff, num)
 	  from (select r_stddev_map(x, m)
@@ -240,7 +240,7 @@ from (select r_stddev_reduce(avg, square_diff, num)
 Clearly, providing the average manually in the query is not nice. It is possible to combine several MAP-REDUCE computations, hence we simply can replace `(select 5 as m)` by the MAP-REDUCE computation above as a subselect:
 
 
-```"code-sql"
+```sql
 select avg, sqrt(square_diff/(num-1))
 from (select r_stddev_reduce(avg, square_diff, num)
       from (select r_stddev_map(x,m)
@@ -253,7 +253,7 @@ from (select r_stddev_reduce(avg, square_diff, num)
 ```
 ## Additional Notes
 
-In this solution we described basic principles for programming UDFs. With some care it is straightforward to create powerful distributed and parallel in database computations using just a few lines of R. Regarding performance, these computations cannot compete with highly optimized built-in functions of Exasol but it is well in the range of what could be desired from a parallel programming environment for languages like R, Python, or Java at a scale these languages are not inherently designed for and with the ease of simple scripting.
+In this article we described basic principles for programming UDFs. With some care it is straightforward to create powerful distributed and parallel in database computations using just a few lines of R. Regarding performance, these computations cannot compete with highly optimized built-in functions of Exasol but it is well in the range of what could be desired from a parallel programming environment for languages like R, Python, or Java at a scale these languages are not inherently designed for and with the ease of simple scripting.
 
 ## Additional References
 

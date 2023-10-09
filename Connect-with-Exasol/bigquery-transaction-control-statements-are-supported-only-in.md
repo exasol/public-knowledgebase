@@ -6,7 +6,7 @@ It is possible to read data from Google BiqQuery to Exasol using IMPORT FROM JDB
 However, with default settings for Simba BigQuery JDBC driver starting from version 1.3.0.1001 IMPORT FROM JDBC command might fail with error like
 
 
-```"c-mrkdwn__pre"
+```
 SQL Error [ETL-5]: JDBC-Client-Error: Failed to receive MetaData:  
 [Simba][BigQueryJDBCDriver](100032) Error executing query job.  
 Message: Transaction control statements are supported only in scripts or sessions  
@@ -17,7 +17,7 @@ Message: Transaction control statements are supported only in scripts or session
 The error is caused by the following change in the Simba BigQuery JDBC driver:
 
 
-```"c-mrkdwn__pre"
+```
 [GBQJ-566] Transaction API support     
 The connector now supports JDBC transaction APIs. BigQuery supports     
 multi-statement transactions inside a single query, or across multiple     

@@ -6,7 +6,7 @@ In Exasol, the data is automatically evenly distributed among each node. This di
 The following command defines the data distribution by setting some columns as key and the table distribution and distributes the rows accordingly.
 
 
-```"code-sql"
+```sql
 ALTER TABLE <table-name> DISTRIBUTE BY <column name(s)> 
 ```
 If the chosen distribution key would lead to a considerable data unbalance, the database rejects such a distribution key. Of course, data inserted later could unbalance the table.
@@ -14,13 +14,13 @@ If the chosen distribution key would lead to a considerable data unbalance, the 
 You can remove the set distribution attributes with the help of
 
 
-```"code-sql"
+```sql
 ALTER TABLE <name> DROP DISTRIBUTION KEYS;
 ```
 You can also set a distribution key also directly at the creation time of a table within the corresponding DDL-Statement. Inserted data will be automatically distributed according to the attributes set, thus there is no need to redistribute data later.
 
 
-```"code-sql"
+```sql
 CREATE TABLE test1 (     c_id INT,     c_name varchar(40),     c_birthday date,     DISTRIBUTE BY c_id );   
 ```
 ## Best Practices
@@ -43,7 +43,7 @@ The command REORGANIZE adjusts the data distribution taking into account new nod
 You need to start this command only after a cluster enlargement, otherwise, the distribution will be maintained automatically.
 
 
-```"code-sql"
+```sql
 REORGANIZE (TABLE| SCHEMA| DATABASE) 
 ```
 Please note the following:

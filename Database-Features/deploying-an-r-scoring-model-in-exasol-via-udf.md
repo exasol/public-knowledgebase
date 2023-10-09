@@ -18,7 +18,7 @@ the library needed for scoring must be present (here: library(randomForest)
 the column names in the data.frame used in the UDF must resemble those of the data frame used for building the model. Typically these can be extracted from the model, but for other kinds of models the location needs to be adapted:
 
 
-```markup
+```r
 if (length(m) == 0) {
 	...
 	# get the predictors names
@@ -37,7 +37,7 @@ R (Client side) - download code for:
 * EXASOL 5:[r_client_v5.R](https://github.com/exasol/public-knowledgebase/blob/main/Database-Features/attachments/r_client_v5.R "r_client_v5.R")
 
 **r_client_v6.R**
-```"code-java"
+```r
 # build a model for testing
 
 # see www.github.com/exasol/r-exasol
@@ -73,7 +73,7 @@ EXASOL (Server side) - download code for:
 * EXASOL 5:[flights_v5.sql](https://github.com/exasol/public-knowledgebase/blob/main/Database-Features/attachments/flights_v5.sql "flights_v5.sql")
 
 **flights_v6.sql**
-```"code-sql"
+```r
 -- deploying the model
 
 open schema R;
@@ -105,7 +105,11 @@ create or replace r set script pred_randomForest(...) emits (predict varchar(200
 		ctx$emit(predict(m, inp_df[, 2:n]))
 	}
 /
+```
+
+```sql
 create connection sys_bucketfs to 'bucketfs:bfsdefault/bucket1' identified by 'readpw';
+
 select pred_randomForest('/buckets/bfsdefault/bucket1/model1',	-- EXABucketFS path
                        "dep_time", "dep_delay")			-- predictors
 from FLIGHTS

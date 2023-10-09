@@ -10,24 +10,24 @@ When the limits are reached, you will see the following in the Exaoperation logs
 Warning Message:
 
 
-```html
+```
 License Warning: Databases raw sizes of 87.0 GiB is close to the license limit of 100.0 GiB (86.5%). 
 At 105% databases will no longer permit data insertion.
 ```
 Error Message:
 
 
-```html
+```
 License exceeded: Databases raw sizes of 53.0 GiB exceed license limit of 50.0 GiB (106.2%). 
 Databases no longer permit data insertion.
 ```
 EXA_SYSTEM_EVENTS Messages:
 
 
-```sql
+```
 CLUSTER_NAME MEASURE_TIME        EVENT_TYPE       DBMS_VERSION NODES DB_RAM_SIZE PARAMETERS
-MAIN         2021-05-18 14:02:59 LICENSE_OK       7.0.9        3     100.0       -forceProtocolEncryption=1
-MAIN         2021-05-17 13:34:02 LICENSE_EXCEEDED 7.0.9        3     100.0       -forceProtocolEncryption=1
+MAIN         2021-05-18 14:02:59 LICENSE_OK       7.0.9        3     100.0       
+MAIN         2021-05-17 13:34:02 LICENSE_EXCEEDED 7.0.9        3     100.0       
 ```
 ## Explanation
 
@@ -53,20 +53,22 @@ A second solution might be to update the License. This can take some time, there
 
 If you are holding a Raw data license, you may want to change the new one without disruption. To do so, please follow the steps below:
 
-
-```html
 1) Check "EXA_SYSTEM_EVENTS" or EXAOperation logs for the messages  
-2) Upload the "new" license (with a bigger RAW allowance), into EXAOperation following the below link (Note: Skip step #4 to not perform the restart): https://docs.exasol.com/administration/on-premise/manage_software/activate_license.htm  
+2) Upload the "new" license (with a bigger RAW allowance), into EXAOperation following the below link (Note: Skip step #4 to not perform the restart): [Version 7.1, Activate License](https://docs.exasol.com/db/7.1/administration/on-premise/manage_software/activate_license.htm). If your deployment doesn't have EXAOperation please follow [Version 8, Upload a License](https://docs.exasol.com/db/latest/administration/on-premise/manage_license/upload_license.htm).
 3) Connect to the database as SYS or a DBA user and run "FLUSH STATISTICS TASKS;".  
 4) After some time (the (de)activation of the new license takes some time (about 3 to 5 minutes)), the Normal operational mode will be restored and all of the commands including INSERT and CREATE AS SELECT will start working again.  
 5) Check again "EXA_SYSTEM_EVENTS" or EXAOperation logs for the correspondent messages
-```
+
 ## Additional References
 
 Here you link to other sites/information that may be relevant.
 
-<https://docs.exasol.com/planning/licensing.htm>
+* [Licenses](https://docs.exasol.com/planning/licensing.htm)
 
-<https://docs.exasol.com/sql_references/system_tables/statistical/exa_system_events.htm>
+* [EXA_SYSTEM_EVENTS](https://docs.exasol.com/sql_references/system_tables/statistical/exa_system_events.htm)
+
+* [Version 8, Upload a License](https://docs.exasol.com/db/latest/administration/on-premise/manage_license/upload_license.htm)
+
+* [Version 7.1, Activate License](https://docs.exasol.com/db/7.1/administration/on-premise/manage_software/activate_license.htm)
 
 *We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

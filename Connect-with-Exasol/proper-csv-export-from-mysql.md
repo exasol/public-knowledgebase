@@ -73,7 +73,7 @@ Use ***SQL Query - SELECT … INTO…:***
 For additional information about this query see below the paragraph, "option 2" under the section, ***How to export a CSV using MySQL Server 5.7***
 
 
-```"noformat
+```sql
 SELECT CITY_ID, IFNULL(CITY, ''), IFNULL(Country_ID,0), IFNULL(IF(last_update = '0000-00-00', '', last_update), '') 
  INTO OUTFILE 'C:/users/joas/downloads/city4.csv' 
  FIELDS TERMINATED BY ',' 
@@ -129,7 +129,7 @@ Use ***SQL Query - SELECT … INTO…:***
 Example:
 
 
-```"code
+```sql
 SELECT ID, IFNULL(Name, ''), IFNULL(CountryCode, '') IFNULL(IF(FoundingDate = '0000-00-00', '', FoundingDate),'') 
  INTO OUTFILE 'C:/ProgramData/MySQL/MySQL Server 5.7/Uploads/city.csv' 
  FIELDS TERMINATED BY ',' 
@@ -149,7 +149,7 @@ To export multiple tables at once just combine the customized SQL statements.
 Example:
 
 
-```"code
+```sql
 SELECT ID, IFNULL(Name, ''), IFNULL(CountryCode, '') IFNULL(IF(FoundingDate = '0000-00-00', '', FoundingDate),'') 
  INTO OUTFILE 'C:/ProgramData/MySQL/MySQL Server 5.7/Uploads/city.csv' 
  FIELDS TERMINATED BY ',' 

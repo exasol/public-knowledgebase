@@ -16,7 +16,7 @@ Verifying the environment your DB client is accessing can sometimes be tricky. W
 Create the LUA script
 
 
-```markup
+```lua
 --/
 CREATE OR REPLACE LUA SCRIPT "WHOAMI" () RETURNS ROWCOUNT AS
 output("Database Name:"..tostring(exa.meta.database_name))
@@ -34,7 +34,7 @@ St
 Execute the script to display your environment info and session_id. Please note the suffix "with OUTPUT", which is required to see the scripts output.
 
 
-```markup
+```sql
 EXECUTE SCRIPT  WHOAMI() with OUTPUT;
 ```
 ## Additional Notes
@@ -44,15 +44,15 @@ Once the script has been created, any user can execute it providing they have be
 Example:
 
 
-```markup
+```sql
 GRANT EXECUTE on SCRIPT RETAIL.WHOAMI to john;
 ```
 ## Additional References
 
-<https://docs.exasol.com/database_concepts/udf_scripts/lua.htm>
+* [Lua](https://docs.exasol.com/database_concepts/udf_scripts/lua.htm)
 
-<https://docs.exasol.com/database_concepts/scripting/db_interaction.htm>
+* [Database Interaction](https://docs.exasol.com/database_concepts/scripting/db_interaction.htm)
 
-<https://docs.exasol.com/database_concepts/database_users_roles.htm>
+* [Database Users and Roles](https://docs.exasol.com/database_concepts/database_users_roles.htm)
 
 *We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

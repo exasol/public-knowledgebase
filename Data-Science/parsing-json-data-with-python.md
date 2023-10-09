@@ -1,22 +1,22 @@
 # Parsing JSON data with python 
 ## Background
 
-This solution is an example of how to load and parse [JSON](https://en.wikipedia.org/wiki/JSON) data with a simple SQL Statement within EXASOL. In this case, the integrated python user-defined functions (UDFs) in combination with [the python JSON library](https://docs.python.org/2/library/json.html) are used. Additional JSON feature content can also be found here: <https://docs.exasol.com/db/latest/sql_references/functions/json.htm>.
+This article is an example of how to load and parse [JSON](https://en.wikipedia.org/wiki/JSON) data with a simple SQL Statement within EXASOL. In this case, the integrated python user-defined functions (UDFs) in combination with [the python JSON library](https://docs.python.org/3/library/json.html) are used. Additional JSON feature content can also be found here: [JSON Functions](https://docs.exasol.com/db/latest/sql_references/functions/json.htm).
 
 ## Prerequisites
 
 First of all, we create a small script to load data from a URL:
 
 
-```"code-java"
+```python
 --small script to load data from an url and optionally split the data based on newlines
 --/
-create or replace python scalar script load_data_from_http
+create or replace python3 scalar script load_data_from_http
 (url varchar(500),split_on_newline boolean) emits (output_data varchar(2000000)) as
 def run(ctx):
-	import urllib2
-	response = urllib2.urlopen(ctx.url)
-	data = response.read()
+	from urllib.request import urlopen
+	response = urlopen(ctx.url)
+	data = response.read().decode('utf-8')
 	if ctx.split_on_newline == True:
 		lines = data.split('\n')
 		for line in lines:
@@ -29,21 +29,21 @@ def run(ctx):
 This script will give you a varchar(2000000) field called OUTPUT_DATA with the content of the file.  
 In this example we load JSON data from [the Canadian Recalls and Safety Alerts](http://open.canada.ca/data/en/dataset/d38de914-c94c-429b-8ab1-8776c31643e3) Dataset. You'll find the license [here](http://open.canada.ca/en/open-government-licence-canada).
 
-## How to parse the JSON data.
+## How to parse the JSON data
 
 The following script is an example and was created to parse the JSON file of [the Canadian Recalls and Safety Alerts](http://open.canada.ca/data/en/dataset/d38de914-c94c-429b-8ab1-8776c31643e3).  
 Please adjust it to your needs / your JSON file. In the EMITS section, you can define the output you want and in the run function, you define how the data is parsed.
 
 ## Step 1
 
-With ctx.emit you'll add a row to the result of this function.
+With `ctx.emit` you'll add a row to the result of this function.
 
 
-```"code-java"
+```python
 --this is an example script to parse JSON (INPUT). Please adjust it to your json-format
 --try/except to handle missing values and emit null instead
 --/
-create or replace python scalar script json_parsing_recalls("INPUT" varchar(2000000)) 
+create or replace python3 scalar script json_parsing_recalls("INPUT" varchar(2000000)) 
 emits (recallid varchar(50), title varchar(1000), category varchar(100), date_published int, url varchar(100)) as
 import json
 def run(ctx):
@@ -77,7 +77,7 @@ def run(ctx):
 Now you can use both scripts also nested to load and parse the data. The inner select first loads the data and the outer select parses the output.
 
 
-```"code-sql"
+```sql
 select json_parsing_recalls(OUTPUT_DATA) from (
 	--select statement that reads the data from the url (in this case from canadian open data)
 	-- data source: http://open.canada.ca/data/en/dataset/d38de914-c94c-429b-8ab1-8776c31643e3
@@ -95,12 +95,12 @@ The script to load data from a URL in this simple example is limited to a maximu
 
 ## Additional References
 
-<https://docs.exasol.com/sql_references/functions/alphabeticallistfunctions/json_value.htm>
+* [JSON_VALUE](https://docs.exasol.com/sql_references/functions/alphabeticallistfunctions/json_value.htm)
 
-<https://docs.exasol.com/sql_references/functions/json_path_expressions.htm>
+* [JSON Path Expressions](https://docs.exasol.com/sql_references/functions/json_path_expressions.htm)
 
-<https://docs.exasol.com/database_concepts/udf_scripts/python.htm>
+* [Python 3](https://docs.exasol.com/db/latest/database_concepts/udf_scripts/python3.htm)
 
-<https://docs.exasol.com/db/latest/sql_references/functions/json.htm>
+* [JSON Functions](https://docs.exasol.com/db/latest/sql_references/functions/json.htm)
 
 *We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

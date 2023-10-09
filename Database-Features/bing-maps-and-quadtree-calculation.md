@@ -31,7 +31,7 @@ This is a straightforward implementation of the given Mercator-like projection o
 Like in the original article, latitude, and longitude are clipped at ~85 (resp. 180) degrees in both directions.
 
 
-```"code
+```sql
 create function coords2pixel(latitude double, longitude double, detail int)
 	returns varchar(100)
 is
@@ -60,7 +60,7 @@ As we know that each map tile has a size of 256x256 pixels, transforming pixel c
 We use **regular expressions** with lookahead and look behind qualifiers for **string parsing** and divide each coordinate by 256:
 
 
-```"code
+```sql
 create function pixel2tile(pixel varchar(100))
 	returns varchar(100)
 is
@@ -86,7 +86,7 @@ The overall process of interleaving coordinates using three different number sys
 This makes the conversion routine itself rather short:
 
 
-```"code
+```sql
 create or replace function tile2quad(tile varchar(100), detail int)
 	returns varchar(30)
 is
@@ -111,7 +111,7 @@ end;
 We now have a set of cascading functions that can transform GPS coordinates into Bing map tile identifiers. Let us check out Nuremberg (49.45N, 11.08E) at detail level 3:
 
 
-```"code
+```sql
 select coords2pixel(49.45, 11.08, 3);
 --> '1087/699'
 
@@ -126,7 +126,7 @@ And indeed, according to the [image](https://msdn.microsoft.com/dynimg/IC96238.j
 Short version for a smaller map tile with more details:
 
 
-```"code
+```sql
 select tile2quad(pixel2tile(coords2pixel(49.45, 11.08, 10)), 10); 
 --> '1202033313' 
 ```

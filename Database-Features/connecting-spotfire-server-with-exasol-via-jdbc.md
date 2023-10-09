@@ -30,7 +30,7 @@ Go to the Configuration tab and create a new Data Source Template
 In the Add data source template enter EXASOL as name and copy paste the following template:
 
 
-```"code-java"
+```xml
 <jdbc-type-settings>
 <type-name>EXASOL</type-name>
 <driver>com.exasol.jdbc.EXADriver</driver>

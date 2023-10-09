@@ -10,13 +10,13 @@ Due to this concept, there could be the case where all of these slots are in use
 When all of the active slots are in use, you will see the following in the Exaoperation logs:
 
 
-```markup
+```
 Limit of active sessions has been reached.
 ```
 There are also messages that describe when you are getting close to this limit, however these messages are simply warnings and do not necessarily require any action:
 
 
-```markup
+```
 Query queue limit of active sessions nearly reached,  running: 
 <<active_sessions>> of 100 (+ <<blocked_sessions>> WAIT FOR COMMIT) are in use. 
 ```
@@ -67,13 +67,13 @@ With this parameter, you can run queries on EXA_DBA_SESSIONS (such as the one me
 To check which sessions are running queries:
 
 
-```markup
+```sql
 SELECT COUNT(*) FROM EXA_DBA_SESSIONS WHERE STATUS = 'EXECUTE SQL';
 ```
 If this number is significantly under 100, then some of the other sessions are occupying an active slot for one of the other above mentioned reasons. You may try to kill all sessions, or just the idle sessions. To easily kill these sessions, you can use this query:
 
 
-```markup
+```sql
 -- Will kill every session
 SELECT 'KILL SESSION ' || SESSION_ID || ';' STMT FROM EXA_DBA_SESSIONS WHERE SESSION_ID NOT IN (4,CURRENT_SESSION);
 

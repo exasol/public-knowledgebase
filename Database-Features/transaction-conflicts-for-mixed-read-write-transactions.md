@@ -87,7 +87,7 @@ As you can see, despite the rollback on STG.JOBS, a conflict still occurs. This 
 Another approach to preserve serializability is to "reserve" tables that a transaction requires during its processing. In Exasol, this can be done by using the following command: 
 
 
-```markup
+```sql
 delete from <table> where FALSE;
 ```
 This command does nothing to the table, but if executed at the beginning of the transaction, means that the table is already associated with the transaction. 

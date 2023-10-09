@@ -73,7 +73,7 @@ pickle.dump(clf, open('D:/clf.dat', 'wb'))
 ```
 ## Step 2: Putting the model into BucketFS
 
-The easiest way to work with Exasol's BucketFS is using the BucketFS explorer. After logging in with the Exaoperation credentials, a BucketFS service and a bucket can be created. In this new bucket, we move the model file (`rf.rds` for R, `clf.dat` for Python 3).
+The easiest way to work with Exasol's BucketFS is using the `bucketfs-client` application. After logging in with the Exaoperation credentials, a BucketFS service and a bucket can be created. In this new bucket, we move the model file (`rf.rds` for R, `clf.dat` for Python 3).
 
 ## Step 3: Creating a UDF script for prediction
 
@@ -168,7 +168,7 @@ select rf.predict_wine_py(wine_id, fixed_acidity, volatile_acidity, citric_acid,
 ```
 ## Additional References
 
-* [BucketFS Explorer](https://github.com/exasol/bucketfs-explorer)
+* ["bucketfs-client" application](https://github.com/exasol/bucketfs-client/blob/main/doc/user_guide/user_guide.md)
 * [UDF Scripts](https://docs.exasol.com/database_concepts/udf_scripts.htm)
 * [Creating a UDF](https://exasol.my.site.com/s/article/How-to-create-and-use-UDFs)
 

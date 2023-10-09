@@ -10,7 +10,7 @@ If a value is to be tested against NULL, the comparison operator has to be repla
 The following sample table will be used in all the examples on this page to demonstrate NULL handling.
 
 
-```markup
+```sql
 CREATE OR REPLACE TABLE testnull
 (
     num decimal(18, 0),
@@ -46,7 +46,7 @@ The following basic rules apply to operations with NULL values:
 * Operations with NULL values return a NULL value.
 
 
-```markup
+```sql
 SELECT
     num+1 num,
     case boo    when true then 'TRUE'
@@ -75,7 +75,7 @@ Exasol does **not distinguish** between NULL and an empty string (''). The same 
 Concatenation ('||', CONCAT) with a NULL value does not yield a NULL value, but the remaining operand(s). Only when all operands are NULL, the result also is NULL.
 
 
-```"code-sql"
+```sql
 SELECT 'str: '||str A FROM testnull; 
 ```
 
@@ -110,7 +110,7 @@ Returns the integer 0 when number is NULL. Otherwise, number itself is returned.
 The equivalent CASE-expression is:
 
 
-```markup
+```sql
 CASE WHEN number is NULL THEN 0 ELSE number END
 ```
 #### [NULLIFZERO(number)](https://docs.exasol.com/sql_references/functions/alphabeticallistfunctions/nullifzero.htm)
@@ -120,7 +120,7 @@ Returns NULL when number has the value 0. Otherwise, number is returned. This fu
 The equivalent CASE-expression is:
 
 
-```markup
+```sql
 CASE WHEN number=0 THEN NULL 
 ELSE number END
 ```
@@ -131,19 +131,19 @@ This function is not primarily designed for NULL handling, it will return the fi
 The equivalent CASE-expression would have to fall back on the corresponding NULL-Predicate:
 
 
-```markup
+```sql
 CASE WHEN expr=val1 THEN ret1 WHEN expr is NULL then ... ELSE default END
 ```
 If no comparison against NULL is required, the following expression also is equivalent:
 
 
-```markup
+```sql
 CASE expr WHEN val1 THEN ret1 WHEN val2 THEN ... ELSE default END
 ```
 Now we can make some different comparisons to our table:
 
 
-```markup
+```sql
 SELECT
     num,
     zeroifnull(num) + 1 num1,
@@ -165,7 +165,7 @@ FROM testnull;
 #### Count the number of NULL-Values
 
 
-```"code-sql"
+```sql
 SELECT count(*)-count(col) AS NULLCOUNT FROM tab;
 ```
 ## Additional References

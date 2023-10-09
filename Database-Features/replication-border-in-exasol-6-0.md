@@ -19,7 +19,7 @@ A table will be replicated if none of the thresholds below are reached. The tabl
 The replication borders can be modified through **extra database parameters** in the web interface:
 
 
-```"code-java"
+```
 -soft_replicationborder_in_numrows=<numrows> [default is 100000 rows] 
 -soft_replicationborder_in_kb=<kb> [default is 1000000 -> 1GB]
 ```

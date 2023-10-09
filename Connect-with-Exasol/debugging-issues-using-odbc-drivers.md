@@ -61,7 +61,7 @@ The logfile is stored in that path on the local machine. The local machine is th
 Where you modify these properties depends on the tool/application, but it is most often found in the place where you manage your data sources. To do this in Tableau, see [this article](https://exasol.my.site.com/s/article/How-to-create-ODBC-Logfiles-with-Tableau). Your connection string should look something like this once it is added:
 
 
-```markup
+```
 DSN=exa_test;UID=sys;PWD=exasol;EXASCHEMA=MY_SCHEMA;EXALOGFILE=/tmp/odbc_logs.txt;LOGMODE=VERBOSE
 ```
 You can also modify the DSN in the .odbc.ini, which you configured during the installation of the ODBC driver.  

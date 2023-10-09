@@ -36,7 +36,7 @@ To send XML-RPC requests to EXAoperation, please connect to the EXAoperation HTT
 The code examples in this article are written in Python (tested in versions 2.7 and 3.4).
 
 
-```"code-java"
+```python
 import sys
 
 if sys.version_info[0] > 2:
@@ -61,7 +61,7 @@ License servers are the only nodes able to boot from the local hard disk. All ot
 Physically Power-on the license server and wait until the EXAoperation interfaces are connectible.
 
 
-```"code-java"
+```python
 cluster_url = "https://user:password@license-server/cluster1"
 
 while True:
@@ -78,14 +78,14 @@ while True:
 Please note that The option to power-on the database nodes using startupNode() is only usable if the nodes are equipped with an out-of-band management interface (like HP iLO or Dell iDRAC) and if this interface is configured in EXAoperation. Virtualized environments (such as vSphere) provide means to automate the startup of servers on a sideband channel.
 
 
-```"code-java"
+```python
 for node in cluster.getNodeList():     
  cluster.startupNode(node) 
 ```
 The function getNodeList returns the list of database nodes currently configured in EXAoperation but it does not provide information about the availability in the cluster. You may check if a node is online by querying the node's hardware inventory.
 
 
-```"code-java"
+```python
 for node in cluster.getNodeList():
     if 'dmidecode' in cluster.getHardwareInformation(node):
         print("node {} is online\n".format(node))
@@ -95,7 +95,7 @@ for node in cluster.getNodeList():
 The boot process itself can be monitored by following the messages in an appropriate logservice. Look for messages like 'Boot process finished after XXX seconds' for every node.
 
 
-```"code-java"
+```python
 logservice_url = "https://user:password@license-server/cluster1/logservice1"
 logservice = ServerProxy(logservice_url)
 logservice.logEntries()
@@ -109,7 +109,7 @@ EXAStorage provides volumes as persistence layer for EXASolution databases. This
 The startEXAStorage function returns 'OK' on success or an exception in case of a failure.
 
 
-```"code-java"
+```python
 cluster_url = "https://user:password@license-server/cluster1"
 storage_url = "https://user:password@license-server/cluster1/storage"
 
@@ -125,7 +125,7 @@ cluster.getServiceState()
 The getServiceState call returns a list of all cluster services. Ensure that all of them indicate the runtime state 'OK' before you proceed.
 
 
-```"code-java"
+```python
 [['Loggingd', 'OK'], ['Lockd', 'OK'], ['Storaged', 'OK'], ['DWAd', 'OK']] 
 ```
 ##### 4. Start the EXASolution instances
@@ -133,7 +133,7 @@ The getServiceState call returns a list of all cluster services. Ensure that all
 Iterate over the EXASolution instances and start them:
 
 
-```"code-java"
+```python
 for db in cluster.getDatabaseList():
     instance_url = "https://user:password@license-server/cluster1/db_{}".format(db)
     instance = ServerProxy(instance_url)
@@ -151,7 +151,7 @@ Again, you may monitor the database startup process by following an appropriate 
 Some third-party plugins for EXAoperation may require further attention. This example shows how to conditionally start the VMware tools Daemon.
 
 
-```"code-java"
+```python
 plugin = 'Administration.vmware-tools'
 
 # Restart the service on the license server
@@ -170,7 +170,7 @@ The shutdown of a cluster includes all actions taken for the startup in reverse 
 Example
 
 
-```"code-java"
+```python
 license_server_id = "n0010"
 exaoperation_master = cluster.getEXAoperationMaster()
 
@@ -185,7 +185,7 @@ If the license server is not the EXAoperation master node, please log into EXAop
 Iterate over the EXASolution instances, review their operational state and stop them.
 
 
-```"code-java"
+```python
 for db in cluster.getDatabaseList():
     instance_url = "https://user:password@license-server/cluster1/db_{}".format(db)
     instance = ServerProxy(instance_url)
@@ -209,7 +209,7 @@ for db in cluster.getDatabaseList():
 Please assure yourself that all databases are shut down properly before stopping EXAStorage!
 
 
-```"code-java"
+```python
 cluster_url = "https://user:password@license-server/cluster1"
 storage_url = "https://user:password@license-server/cluster1/storage"
 
@@ -222,13 +222,13 @@ cluster.getServiceState()
 The state of the Storaged will switch to 'not running':
 
 
-```"code-java"
+```python
 [['Loggingd', 'OK'], ['Lockd', 'OK'], ['Storaged', 'not running'], ['DWAd', 'OK']] 
 ```
 ##### 3. Shutdown of the cluster nodes and of the license server(s) at last
 
 
-```"code-java"
+```python
 for node in cluster.getNodeList():
     cluster.shutdownNode(node)
 

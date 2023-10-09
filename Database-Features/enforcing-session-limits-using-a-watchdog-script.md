@@ -19,7 +19,7 @@ In its current form, it introduces three criteria for "bad" sessions:
 The configuration is embedded in the top of the script, where different limits can be set for different users (sorry, no roles yet):
 
 
-```"noformat
+```lua
 	local USER_LIMITS = {
 		USER1 = { query_timeout = 300, temp_ram = 3000, idle_timeout = 1800 },
 		USER2  = { query_timeout = 150, idle_timeout = 300 },

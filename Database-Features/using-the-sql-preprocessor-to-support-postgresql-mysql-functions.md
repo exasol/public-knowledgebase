@@ -8,7 +8,7 @@ Some functions from other databases are not supported by Exasol. But with the po
 The following simple example shows how the DATE function from postgreSQL/ MySQL is mapped to TO_DATE:
 
 
-```"code-sql"
+```lua
 --/
 CREATE OR REPLACE LUA SCRIPT "POSTGRES2EXA" () RETURNS ROWCOUNT AS
 
@@ -24,6 +24,7 @@ newsqltext = TRANSFORMATIONS.transformDatetoDate(sqltext)
 sqlparsing.setsqltext(newsqltext)
 
 /
+
 --/
 CREATE OR REPLACE LUA SCRIPT "TRANSFORMATIONS" () RETURNS ROWCOUNT AS
 
@@ -54,12 +55,14 @@ end
 
 /
 ```
+
 To activate the preprocessor script for the current session, please use the following command:
 
 
-```"code-sql"
+```sql
 alter session set SQL_PREPROCESSOR_SCRIPT = <MYSCHEMA>.POSTGRES2EXA;
 ```
+
 ## Additional References
 
 * [Preprocessor Scripts Documentation](https://docs.exasol.com/database_concepts/sql_preprocessor.htm)

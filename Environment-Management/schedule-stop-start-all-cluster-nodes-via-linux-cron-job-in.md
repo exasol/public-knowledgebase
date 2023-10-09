@@ -30,7 +30,7 @@ Login to the license server via root user.
 Create a bash script in the license server.
 
 
-```python
+```
 #/bin/bash
 
 # ----------------------------------
@@ -126,7 +126,7 @@ Give executable permission to the script via **chmod** command. (e.g. chmod +x {
 The script also can be cloned from GitHub:
 
 
-```markup
+```
 git clone https://gist.github.com/08f6c2f8c59ebd347304cf5dcc266c5c.git
 ```
 ## Step 3

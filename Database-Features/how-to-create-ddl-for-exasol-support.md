@@ -15,7 +15,7 @@ The attachment of this article contains a procedure script (Lua) that can create
  ## Example Call
 
   **Script call**  
-```"code-sql"
+```sql
 --DDL created by user SYS at 2017-11-14 09:44:59.554000
 
 --========================================--
@@ -68,7 +68,8 @@ CREATE VIEW "DUT"."TRUNK"
 		where func(j) > lua_scalar()
 	);
 ```
-   ## Caution
+
+## Caution
 
  This script is work in progress and has only seen minimal testing so far.
 

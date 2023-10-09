@@ -38,11 +38,13 @@ git uses "branches" to keep track of related changes in text files. Each branch 
 
 At the beginning of the job run you'll need to open a git branch:
 
-`git clone <your-git/bitbucket-repo> <local-dir>`
+```
+git clone <your-git/bitbucket-repo> <local-dir>
 
-`cd <local-dir>`
+cd <local-dir>
 
-`git checkout -B <branch-name>`
+git checkout -B <branch-name>
+```
 
 The branch name should probably contain today's date and some some indication of the branch's purpose e.g "2021-11-17-USER-PERMISSIONS"
 
@@ -60,30 +62,36 @@ Either way the end point of this step should be a set of text files in your loca
 
 It's possible there have been no metadata updates since the last capture so you'll need to first look for changes so that you don't send out empty branches for review:
 
-`git status -s`
+```
+git status -s
+```
 
 If that doesn't return any output then there have been no changes and so you can exit your job.
 
 If there is output then you'll need to commit the changes to git:
 
-`git add --all`
+```
+git add --all
 
-`git commit -m "Exasol metadata backup: <branch-name>"`
+git commit -m "Exasol metadata backup: <branch-name>"
 
-`git push origin <branch-name>`
+git push origin <branch-name>
+```
 
 At this point you can delete your local git checkout directory if you wish
 
-`cd ../`
+```
+cd ../
 
-`rm -rf <local-dir>`
+rm -rf <local-dir>
+```
 
 ### Step 5: Send out BitBucket pull request for review
 
 Different code-versioning systems have different ways of triggering requests for review. In BitBucket's case it can be done via their API:
 
 
-```bash
+```shell
 curl "https://bitbucket-url/rest/api/1.0/projects/your-proj/repos/your-repo/pull-requests" \
     --user "$user:$password" \
     --header "Content-Type: application/json" \

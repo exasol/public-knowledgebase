@@ -8,7 +8,7 @@ Details about backups are stored in the table EXA_SYSTEM_EVENTS. This table show
 You can use the below query to calculate the duration of backups. 
 
 
-```"code
+```sql
 with intermediate as
 (
     select s.*

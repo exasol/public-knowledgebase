@@ -6,7 +6,7 @@ I am trying to import the following pipe (|) separated variable file into an Exa
 http://www.nasdaqtrader.com/dynamic/SymDir/nasdaqtraded.txt
 
 I used the following SQL to create the destination table and import the contents of the file into the table.
-```
+```sql
 create table nasdaq_traded (  
 nasdaq_traded char(1)  
        ,symbol varchar(10)  
@@ -31,7 +31,9 @@ import into stocks_data.nasdaq_traded
 ```
 When I ran the above SQL the following error is returned:
 
-> [Code: 0, SQL State: 42636]  ETL-2101: Error while parsing row=9437 (starting from 0) [CSV Parser found incorrect number of columns. Expected: [12], found [6] columns in file 'nasdaqtraded.txt'] (Session: 1685652005867552768)
+```
+[Code: 0, SQL State: 42636]  ETL-2101: Error while parsing row=9437 (starting from 0) [CSV Parser found incorrect number of columns. Expected: [12], found [6] columns in file 'nasdaqtraded.txt'] (Session: 1685652005867552768)
+```
 
 The reason for the error is that the last line of the file is a footer row that contains the file creation time. See the sample of the file showing the top 4 and bottom four rows of the file below:
 
@@ -50,7 +52,7 @@ I know the "skip" operator can be used to ignore a specified number of rows at t
 
 ## Answer
 This is one way to make it work:
-```
+```sql
 import into nasdaq_traded  
 from csv at 'http://www.nasdaqtrader.com/dynamic/SymDir/' file 'nasdaqtraded.txt' (1..12)  
 row separator = 'CRLF'  

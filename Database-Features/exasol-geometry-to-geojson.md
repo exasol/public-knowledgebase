@@ -3,11 +3,8 @@
 
 Tableau doesn't yet support Exasol GEOMETRY data types or functions. A workaround is to save the data in GeoJSON format. The following script will convert GEOMETRY data for POINT and POLYGON geometry types into GeoJSON that you can copy and paste into a .json file.
 
-
 ```python
-
-
-CREATE OR REPLACE PYTHON SCALAR SCRIPT DASHBOARDS."UDF_GeoToJSON" ("ID" VARCHAR(1000), "Geometry" VARCHAR(2000000), "Properties" VARCHAR(10000)) RETURNS VARCHAR(2000000) AS
+CREATE OR REPLACE PYTHON3 SCALAR SCRIPT DASHBOARDS."UDF_GeoToJSON" ("ID" VARCHAR(1000), "Geometry" VARCHAR(2000000), "Properties" VARCHAR(10000)) RETURNS VARCHAR(2000000) AS
 #==============================================
 # Description:  This script converts geometry data in Exasol into GeoJSON features. A comma is added to the end o every result, which will need to be removed from the last record.
 #               Copy / paste the results to a text file. Add this as a header to the file: {"type": "FeatureCollection","features": [

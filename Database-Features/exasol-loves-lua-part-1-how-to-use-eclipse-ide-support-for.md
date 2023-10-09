@@ -22,7 +22,7 @@ Before we can start, there are two things that you need on your machine: a Lua i
 On a Debian-based Linux you can for example install this using the following command:
 
 
-```bash
+```shell
 sudo apt install lua5.1 luarocks 
 ```
 In case you are wondering why I picked version 5.1 here, that is because it works with older versions of Exasol too, like 6.2 and 7.0.
@@ -219,8 +219,8 @@ Now that MoreUnit is configured, open the file "`remotelog.lua`" in the editor. 
 
 When you want to work in TDD, your workflow becomes:
 
-|  |   |
-|---|---|
+| Phase | Description |
+| --- | --- |
 |**Red**      |1. Create a test file<br />2. Create a test<br />3. Press [CTRL] + [F11] to run it and verify that it fails (which it should since you did not touch the implementation yet!)<br />4. Press [CTRL] + [J] to jump to the implementation<br />5. Implement the new functionality   |
 |**Green**   |1. Press [CTRL] +[J] to jump back to the test<br />2. The test should now succeed   |
 |**Clean**   |1. Press [CTRL] +[J] to jump to the implementation<br />2. Refactor until you are satisfied with the code quality<br />3. Press [CTRL] +[J] to jump back to the unit test<br />4. Rerun the test with [CTRL] +[F11]   |

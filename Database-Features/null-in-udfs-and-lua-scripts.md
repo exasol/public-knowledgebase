@@ -11,10 +11,12 @@ The following example shows the different meaning of nil and NULL in the context
 * nil means that the referenced column doesn't exist
 
 
-```markup
+```sql
 create table null_nil_test (COL1 INT);
 insert into null_nil_test values NULL;
+```
 
+```lua
 --/
 create or replace lua script null_nil_explanation as
 
@@ -35,7 +37,9 @@ if null ~= nil then --null is not equal to nil
 	output('null is not equal to nil')
 end
 /
+```
 
+```sql
 execute script null_nil_explanation with output;
 ```
 Please note that comparisons in Lua always yield true or false, so

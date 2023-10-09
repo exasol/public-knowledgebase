@@ -18,7 +18,7 @@ Before we go into detail, a few things to keep in mind:
 Our demonstration is using the SALES table from [https://github.com/exasol/database-migration/tree/master/test/testing_files/retail_mini](https://github.com/exasol/database-migration/tree/master/test/testing_files/retail_mini).
 
 
-```markup
+```sql
 create or replace table dec_small (dec_5 decimal(5,0), dec_9 decimal(9,0));
 create or replace table dec_large ( dec_18 decimal(18,0), dec_28 decimal(28,0));
 create or replace table int_tbl (int_1 integer);
@@ -32,7 +32,7 @@ insert into var_tbl(var_9)  select int_1 from int_tbl;
 #### Run JOINs and generate statistics
 
 
-```markup
+```sql
 select * from dec_small join dec_large on dec_small.dec_5 = dec_large.dec_18; -- builds local index DEC_18
 select * from dec_small join dec_large on dec_small.dec_5 = dec_large.dec_28; -- builds local index DEC_28
 select * from dec_small join dec_large on dec_small.dec_9 = dec_large.dec_18; -- builds local index DEC_18
@@ -46,7 +46,7 @@ select * from dec_small join var_tbl on dec_small.dec_9 = var_tbl.var_9; -- from
 #### Externalize and show the statistics.
 
 
-```markup
+```sql
 flush statistics;
 
 select stmt_id
@@ -69,7 +69,7 @@ The most interesting line in the output is the expression index creation - which
  Next, let's look at the indices created.
 
 
-```markup
+```sql
 select edi.index_schema
       ,edos.object_name
       ,edi.remarks

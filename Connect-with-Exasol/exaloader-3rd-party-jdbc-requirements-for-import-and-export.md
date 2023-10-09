@@ -5,10 +5,10 @@
 
 If the JDBC driver does not, you might get an error message like:
 
-
-```markup
-[42636] ETL-5402: JDBC-Client-Error: Exception while disconnecting: Method not supported (Session: 1484043015261801495) 
 ```
+[42636] ETL-5402: JDBC-Client-Error: Exception while disconnecting: Method not supported (Session: 1484043015261801495)
+```
+
 ## Explanation
 
 When IMPORTing data from JDBC sources, EXAloader requires that the following methods are implemented by the JDBC driver.

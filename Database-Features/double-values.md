@@ -10,7 +10,7 @@ Those inaccuracies are not unexpected when dealing with DOUBLEs. As DOUBLE is an
 You can verify the data type of your column by creating a table using the query and viewing the data types for the newly-created column, for example: 
 
 
-```"code-java"
+```sql
 CREATE TABLE TEST AS SELECT ROUND(((71222-65504)/65504*100) ,1); -- Creates a DOUBLE
 ```
 ## Solution
@@ -18,9 +18,10 @@ CREATE TABLE TEST AS SELECT ROUND(((71222-65504)/65504*100) ,1); -- Creates a DO
 You can use an exact numeric type, like DECIMAL to remove inaccuracies. Such as the example below:
 
 
-```"code-sql"
+```sql
 SELECT ROUND(CAST((71222-65504)/65504*100 AS DECIMAL(16,3)) ,1); 
 > 8.7 
+
 SELECT cast(1 as DECIMAL(17,16)) - cast(1E-16 as DECIMAL(17,16)) AS exact; 
 > 0.9999999999999999
 ```

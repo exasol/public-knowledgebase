@@ -47,7 +47,7 @@ create or replace CONNECTION JDBC_SQLSERVER TO 'jdbc:sqlserver://<server host>:<
 For example, my connection string is:
 
 
-```markup
+```sql
 CREATE OR REPLACE CONNECTION JDBC_SQLSERVER to 'jdbc:sqlserver://192.168.56.113:1433;
  DatabaseName=TEST;
  domain=WINDEV2101EVAL;
@@ -60,7 +60,7 @@ Note: Depending on your SQL Server settings, additional parameters may be needed
 For the User field, do not include the domain before your username. If your user looks like 'AD\user', then you will receive an error like:
 
 
-```markup
+```
 [Code: 0, SQL State: ETL-5]  JDBC-Client-Error: 
 Connecting to 'jdbc:sqlserver://192.168.56.113:1433;
 DatabaseName=TEST;domain=WINDEV2101EVAL;IntegratedSecurity=True;
@@ -72,7 +72,7 @@ The login is from an untrusted domain and cannot be used with Integrated authent
 You can test your connection now and verify that it works:
 
 
-```markup
+```sql
 import from jdbc at sqlserver_jdbc statement 'select 1';
 ```
 ## Windows Authentication with JTDS driver
@@ -87,7 +87,7 @@ Once the driver is installed, you need to create the JDBC connection. The connec
 A full connection string would look like:
 
 
-```markup
+```sql
 create or replace CONNECTION JTDS_SQLSERVER TO 'jdbc:jtds:sqlserver://<server host>:<port>;
  DatabaseName=<name>;
  domain=<domain>;
@@ -97,7 +97,7 @@ create or replace CONNECTION JTDS_SQLSERVER TO 'jdbc:jtds:sqlserver://<server ho
 For example, my connection string is:
 
 
-```markup
+```sql
 CREATE OR REPLACE CONNECTION JTDS_SQLSERVER to 'jdbc:jtds:sqlserver://192.168.56.113:1433;
  DatabaseName=TEST;
  domain=WINDEV2101EVAL;
@@ -119,7 +119,7 @@ import from jdbc at jtds_sqlserver statement 'select 1';
 If you receive the following error message, then the Security Manager needs to be disabled for your JDBC connection in EXAoperation:
 
 
-```markup
+```
 [Code: 0, SQL State: ETL-5]  JDBC-Client-Error: 
 Internal failure: access denied ("java.lang.RuntimePermission" "loadLibrary.mssql-jdbc_auth-9.2.1.x64.dll") 
 (Session: 1694589929857417216)

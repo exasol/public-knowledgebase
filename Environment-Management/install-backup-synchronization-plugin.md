@@ -21,8 +21,10 @@ You can follow the below steps to install the backup synchronization plugin on c
 Any older plugin installed on the clusters must be uninstalled before you can install the latest plugin. The following sample script deactivates and uninstalls the older plugins on the two clusters *EDU01* and *EDU02*.      
 
 
-```"code
-Sample Script Sample Script to Uninstall Plugin on EDU001from xmlrpclib import Server as xmlrpc
+```python
+# Sample Script Sample Script to Uninstall Plugin on EDU001
+
+from xmlrpclib import Server as xmlrpc
 import ssl
 from pprint import pprint as pp
 from base64 import b64encode
@@ -44,8 +46,10 @@ pp([[node] + server.callPlugin(pname, node, 'UNINSTALL', '') for node in nlist])
 exit() 
 ```
 
-```"code
-Sample Script to Uninstall Plugin on EDU02from xmlrpclib import Server as xmlrpc
+```python
+# Sample Script to Uninstall Plugin on EDU02
+
+from xmlrpclib import Server as xmlrpc
 import ssl
 from pprint import pprint as pp
 from base64 import b64encode
@@ -87,8 +91,10 @@ The lasted plugin must be uploaded through EXAoperation on all clusters (in this
 After the latest plugin is uploaded through EXAoperation (refer to step 3), you must install it on both the clusters (EDU01 and EDU02). The following sample scripts will install the latest plugins on the clusters. 
 
 
-```"code
-Sample Script to Install Plugin on EDU01nlist = server.getNodeList()
+```python
+# Sample Script to Install Plugin on EDU01
+
+nlist = server.getNodeList()
 pp(server.showPluginFunctions(pname))
 {'ACTIVATE': 'Activate plugin.',
 'DEACTIVATE': 'Deactivate plugin.',
@@ -104,8 +110,10 @@ pp([[node] + server.callPlugin(pname, node, 'INSTALL', '') for node in nlist])
 pp([[node] + server.callPlugin(pname, node, 'STATUS', '') for node in nlist])  
 ```
 
-```"code
-Sample Script to Install Plugin on EDU02nlist = server.getNodeList()
+```python
+# Sample Script to Install Plugin on EDU02
+
+nlist = server.getNodeList()
 pp([[node] + server.callPlugin(pname, node, 'INSTALL', '') for node in nlist])
 pp([[node] + server.callPlugin(pname, node, 'STATUS', '') for node in nlist])
 ```
@@ -151,8 +159,9 @@ The configuration file enables you to establish a connection between two cluster
 The following are sample configuration files for the clusters: 
 
 
-```"code
-Sample Configuration File for EDU01 #Filename on SupportHost: /home/ssh/client.cfg
+```python
+# Sample Configuration File for EDU01
+# Filename on SupportHost: /home/ssh/client.cfg
 Connection1
 {
 DATABASE_NAME = exa_db1
@@ -165,8 +174,10 @@ SSH = client
 } 
 ```
 
-```"code
-Sample Configuration File for EDU02#Filename on SupportHost: /home/ssh/server.cfg
+```python
+# Sample Configuration File for EDU02
+# Filename on SupportHost: /home/ssh/server.cfg
+
 Connection1
 {
 Verbose = true
@@ -181,14 +192,18 @@ SSH = server
 The configuration files created must be uploaded to the clusters. The following sample scripts can be used to upload the configuration files: 
 
 
-```"code
-Sample Script to Upload Configuration File on EDU01nlist = server.getNodeList()
+```python
+# Sample Script to Upload Configuration File on EDU01
+
+nlist = server.getNodeList()
 config = b64encode(open('/home/ssh/client.cfg').read())
 pp([[node] + server.callPlugin(pname, node, 'UPLOAD_CONFIG', config) for node in nlist])
 ```
 
-```"code
-Sample Script to Upload Configuration File on EDU02nlist = server.getNodeList()
+```python
+# Sample Script to Upload Configuration File on EDU02
+
+nlist = server.getNodeList()
 config = b64encode(open('/home/ssh/server.cfg').read())
 pp([[node] + server.callPlugin(pname, node, 'UPLOAD_CONFIG', config) for node in nlist]) 
 ```
@@ -197,8 +212,10 @@ pp([[node] + server.callPlugin(pname, node, 'UPLOAD_CONFIG', config) for node in
 SSH key can be used to establish secure connections between the clusters. The following sample script generates the SSH key on the client machine with respect to the connection specified in the configuration file. 
 
 
-```"code
-SSH Keygen Sample Scriptnlist = server.getNodeList()
+```python
+# SSH Keygen Sample Script
+
+nlist = server.getNodeList()
 pp(server.showPluginFunctions(pname))
 pp([[node] + server.callPlugin(pname, node, 'SSHKEY', 'Connection1') for node in nlist]) 
 >>> pp([[node] + server.callPlugin(pname, node, 'SSHKEY', 'Connection1') for node in nlist]) 
@@ -223,8 +240,10 @@ The public key generated for the node must be uploaded to the remote server to b
 The sample script below uploads SSH key for the specific connection to the remote server (in this example, the SSH key is uploaded to EDU02). 
 
 
-```"code
-Sample Script to Upload SSH Key on EDU02nlist = server.getNodeList()
+```python
+# Sample Script to Upload SSH Key on EDU02
+
+nlist = server.getNodeList()
 # Upload KEY
 key = b64encode(open('/home/ssh/Connection1_ssh_key_file.key').read ())
 pp([[node] + server.callPlugin(pname, node, 'UPLOAD_KEY', key) for node in nlist])
@@ -236,8 +255,10 @@ pp([[node] + server.callPlugin(pname, node, 'SSHKEY', 'Connection1') for node in
 Once you have uploaded the SSH key file, the connections on the clusters must be activated to be able to establish a secure connection between them. 
 
 
-```"code
-Sample Script to Activate Connection on EDU01nlist = server.getNodeList()
+```python
+# Sample Script to Activate Connection on EDU01
+
+nlist = server.getNodeList()
 # Upload KEY
 key = b64encode(open('/home/ssh/Connection1_ssh_key_file.key').read ())
 pp([[node] + server.callPlugin(pname, node, 'UPLOAD_KEY', key) for node in nlist])
@@ -249,8 +270,10 @@ pp([[node] + server.callPlugin(pname, node, 'ACTIVATE', 'Connection1') for node 
 In case you want to deactivate this connection, you can follow the below sample script:
 
 
-```"code
-Sample Script to Deactivate Connection on EDU01nlist = server.getNodeList()
+```python
+# Sample Script to Deactivate Connection on EDU01
+
+nlist = server.getNodeList()
 pp([[node] + server.callPlugin(pname, node, 'DEACTIVATE', 'Connection1') for node in ['n0011','n0012']]) 
 ```
 

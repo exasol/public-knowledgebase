@@ -1,4 +1,5 @@
 # What to do, when you have a bad Performance on Join Queries 
+
 ## Scope
 
 Fast response times are key to user satisfaction. Slow queries mean that you see overhead instead of the information you requested. **This is especially important for questions that are executed very often.**
@@ -8,7 +9,7 @@ Bad query performance can occur if no or the wrong distribution key is defined.
 Let us assume the following example:
 
 
-```
+```sql
 create or replace table T1(A varchar(2), B varchar(2), C varchar(2),   
                   distribute by A,B,C);  
 create or replace table T2(A varchar(2), B varchar(2), Bx varchar(2),   
@@ -19,7 +20,7 @@ create or replace table T3(A varchar(2), B varchar(2), C varchar(2),
 With the following slow running query which joins the 3 tables: 
 
 
-```
+```sql
 SELECT *  
 FROM T1  
 join T2  
@@ -40,7 +41,7 @@ Follow the below steps to run a test of the problematic statement with profiling
 2. Copy the problematic SQL query into the following statement, and execute it:
 
 
-```
+```sql
 set autocommit on;  
 alter session set profile='on';  
 alter session set query_cache='off';  
@@ -63,9 +64,8 @@ select *
 from EXA_STATISTICS.EXA_USER_PROFILE_LAST_DAY  
 where session_id = current_session;
 ```
+
 ### Result:
-
-
 
 | **PART_ID** | **PART_NAME** | **PART_INFO** | **OBJECT_SCHEMA** | **OBJECT_NAME** | **OBJECT_ROWS** | **OUT_ROWS** |
 | --- | --- | --- | --- | --- | --- | --- |
@@ -110,8 +110,8 @@ As a general rule: **A single distribution column is optimal**, because more joi
 
 ## Additional References
 
-* <https://docs.exasol.com/performance/best_practices.htm#DistributionKeys>
-* <https://docs.exasol.com/sql/alter_table(distribution_partitioning).htm>
-* <https://docs.exasol.com/administration/on-premise/support/profiling_information.htm>
+* [Best Practices - ](https://docs.exasol.com/db/latest/performance/best_practices.htm#DistributionKeys)
+* [ALTER TABLE (Distribution/Partitioning)](https://docs.exasol.com/sql/alter_table(distribution_partitioning).htm)
+* [Profiling Information](https://docs.exasol.com/administration/on-premise/support/profiling_information.htm)
 
 *We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

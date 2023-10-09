@@ -15,7 +15,7 @@ b. **Automated (XML-RPC)**
 The XML/RPC interface also provides a function to download these statistics. The following is a minimal parameterized example in python:
 
 
-```"code-java"
+```python
 s = xmlrpclib.ServerProxy(httpstring + '/cluster1') 
 t = xmlrpclib.ServerProxy(httpstring + '/cluster1/' + urllib.quote_plus('db_' + dbname)) 
 data = base64.b64decode(t.getDatabaseStatistics(dbuser, dbpass, startdate, enddate)) 

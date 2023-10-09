@@ -14,7 +14,7 @@ MERGE is designed to use a small UPDATE table to affect a larger FACT table.
 * delete rows from the FACT table according to conditions based on both tables
 
 
-```markup
+```sql
 MERGE INTO customers c
 USING new_customers n
 ON
@@ -37,7 +37,7 @@ UPDATE/DELETE rows that violate primary key or other logical constraints that ne
 INSERT actions generally are not desired in this scenario, most cases can even be replaced with corresponding UPDATE TABLE statements using EXISTS or IN(SELECT) constructs. The advantage of MERGE here is the possibility to update the target table with the data from the source table:
 
 
-```markup
+```sql
 MERGE INTO new_customers n
 USING customer c
 ON( c.customer_no=n.customer_no )
@@ -72,7 +72,7 @@ All untouched rows (status-column is still default value) had no match in yester
 The result you can now feed to 'Merge, the standard edition' and update your FACT table with that.
 
 
-```markup
+```sql
 MERGE INTO new_customer n
 USING customer c
 ON
@@ -97,7 +97,7 @@ Result: * Rows, that have been deleted since the previous day, did not exist in 
 Sometimes the update table must be generated dynamically. A sub-select can be used for this purpose.
 
 
-```markup
+```sql
 MERGE INTO NYC_TAXI_STAGE.TRIP_LOCATION_ID_MAP insert_target
 USING   (SELECT  DISTINCT t.id,
                 zd.location_id dropoff,
@@ -117,19 +117,19 @@ Notes:
 
 * Aliases inside and outside of the sub-select are in separated namespaces. Even if both occurrences of TRIP_LOCATION_ID_MAP would have the same alias  
  
-```
+```sql
 MERGE INTO NYC_TAXI_STAGE.TRIP_LOCATION_ID_MAP m ...  
 JOIN NYC_TAXI_STAGE.TRIP_LOCATION_ID_MAP m ...
 ```
  Both aliases are still necessary in order for the compiler to address both tables.
 * In the statement above 
-```
+```sql
 JOIN NYC_TAXI.TAXI_ZONES zp ON ST_within(t.pickup_geom, zp.polygon) = true  
 JOIN NYC_TAXI.TAXI_ZONES zd ON ST_within(t.dropoff_geom, zd.polygon) = true
 ```
  can have multiple cases where the join condition is **True** (these conditions check if a geographical point is inside an area but the areas overlap which means that a point sometimes in in two areas). This would cause the UPDATE to fail because in order to do an update based on a JOIN condition there must be only on case in which the condition evaluates to **True**. To fix this, a SELECT DISTINCT t.id is used to make sure that only one row remains after all joins are evaluated.
 * You might have noticed that 
-```
+```sql
  JOIN NYC_TAXI_STAGE.TRIP_LOCATION_ID_MAP m ON m.trip_id = t.id 
 ```
  and 

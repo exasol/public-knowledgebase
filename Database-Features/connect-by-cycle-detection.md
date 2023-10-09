@@ -1,7 +1,7 @@
 # CONNECT BY Cycle Detection 
 ## Problem
 
-As documented (see <https://docs.exasol.com/sql/select.htm>) the connect by cycle detection works different than Oracles implementation. We recommend to change your logic accordingly, however if you want to reduce Exasol results so that they match the Oracle results you can do this using this guide.
+As documented (see [SELECT](https://docs.exasol.com/sql/select.htm)) the connect by cycle detection works different than Oracles implementation. We recommend to change your logic accordingly. However, if you want to reduce Exasol results so that they match the Oracle results you can do it using this guide.
 
 ## Diagnosis
 
@@ -10,7 +10,13 @@ As documented (see <https://docs.exasol.com/sql/select.htm>) the connect by cycl
 Here is a small example to explain the difference between Exasol and Oracle. Given this table:
 
 
-```"code-sql"
+```sql
+create table employees(
+name varchar(100)
+, id decimal
+, manages decimal
+);
+
 insert into employees values ('B', 1, 2);
 insert into employees values ('E', 3, 4);
 insert into employees values ('C', 4, 2);
@@ -20,11 +26,12 @@ insert into employees values ('A', 2, 3);
 insert into employees values ('D', 100, 1);
 insert into employees values ('F', 99, NULL);
 ```
-You want to get the chain of command for Peters manager. Peter is directly managed by a 3rd line manager who is beneath the CEO. However in this company the 3rd line manager is also managed by the 1st line manager, which generates a cycle.  
+
+You want to get the chain of command for Peter's manager (Peter has name 'F'). Peter is directly managed by a 3rd line manager who is beneath the CEO. However in this company the 3rd line manager is also managed by the 1st line manager, which generates a cycle.  
 When you run this query in Exasol you get the following result:
 
 
-```"code-sql"
+```sql
 SELECT sys_connect_by_path(name,'-') MANAGER_PATH, 
 CONNECT_BY_ISCYCLE ISCYCLE, 
 CONNECT_BY_ISLEAF ISLEAF, 
@@ -66,12 +73,13 @@ The cycle is detected in row .5.1.3, because row 3 has a child (row 4) which has
 
 ## Solution
 
-**This Solution describes: how to emulate Oracles behaviour in Exasol**  
+**This article describes: how to emulate Oracle's behaviour in Exasol**  
+
 If you want the same behaviour in Exasol you have to backtrack two levels from the cycle and remove everything that is a child of the row that oracle marks as cycle.  
 For doing this you can use the following pattern. Your query has these parts:
 
 
-```
+```sql
 SELECT <original SELECT list> 
 FROM <original TABLE OR VIEW/subselect> 
 <original CONNECT BY clause> 
@@ -80,7 +88,7 @@ FROM <original TABLE OR VIEW/subselect>
 Apply this pattern:
 
 
-```"code-sql"
+```sql
 WITH base_table AS (
   SELECT ROW_NUMBER() OVER(ORDER BY rowid) AS row_num, 
   <original SELECT list>
@@ -116,7 +124,7 @@ FROM ora_like_cb
 Applied to our example query the resulting query is:
 
 
-```"code-sql"
+```sql
 WITH base_table AS (
   SELECT ROW_NUMBER() OVER(ORDER BY rowid) AS row_num, name, id, manages
   FROM employees
@@ -162,7 +170,7 @@ The result is the same as in Oracle:
 If you also want CONNECT_BY_ISCYLE to work like in Oracle, you have to extend the pattern by another CTE ora_cycle:
 
 
-```"code-sql"
+```sql
 WITH base_table AS (
   SELECT ROW_NUMBER() OVER(ORDER BY rowid) AS row_num, name, id, manages
   FROM employees

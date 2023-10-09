@@ -20,14 +20,14 @@ Informatica PowerCenter. Windows 2008R2.  Informatica has to be configured to u
 This could be done via ODBC connection string:
 
 
-```"noformat
+```
 AnsiArgEncoding=CP_UTF8;AnsiDataEncoding=CP_UTF8;UnicodeArgEncoding=CP_UTF8;UnicodeDataEncoding=CP_UTF8 
 ```
 Alternatively, the Windows registry can be used to apply this setting on the system level for the Informatica Windows server.  
 For an exemplary ODBC DSN "myexaodbcdsn", the following REG file would do the job:
 
 
-```"noformat
+```
 Windows Registry Editor Version 5.00
 
 [HKEY_LOCAL_MACHINE\SOFTWARE\ODBC\ODBC.INI\myexaodbcdsn]

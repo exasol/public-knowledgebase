@@ -46,7 +46,7 @@ If you haven't done that yet, I recommend you [install LuaRocks](https://github.
 Make sure that the LuaRocks module path is in the `LUA_PATH`. The `luarocks` command line utility can help you with this task by displaying the exports that you need to set.
 
 
-```java
+```
 luarocks path​
 ```
 You probably want those path changes to be persistent, so depending on your OS you will have to set the environment variables in a place that is read at OS or user session start.
@@ -54,7 +54,7 @@ You probably want those path changes to be persistent, so depending on your OS y
 After that installing a package is a simple matter of issuing the following command:
 
 
-```java
+```
 sudo luarocks install <package-name>
 ```
 I am assuming here that you want to install the package globally. If you want it to be visible only for your user or you do not have administrative privileges, you simply add the `--local` switch.
@@ -64,7 +64,7 @@ I am assuming here that you want to install the package globally. If you want it
 The easiest path to a [MacOS LuaRocks installation](https://github.com/luarocks/luarocks/wiki/Installation-instructions-for-macOS "Lua") is using [Homebrew](https://brew.sh/ "Homebrew"). Assuming you already have Homebrew installed, the setup is as simple as this:
 
 
-```markup
+```
 brew update 
 brew install luarocks
 ```
@@ -97,7 +97,7 @@ To do so, it makes clever use of the transparency of Lua's module loading mechan
 Let's look at an example below. I indented the code for better readability. Amalg does not do that.
 
 
-```java
+```lua
 do
     local _ENV = _ENV
     package.preload["remotelog"] = function( ... )
@@ -118,7 +118,7 @@ That being said, there is a tweak that is necessary in all Exasol versions prior
 That means you need to prepend all bundled Lua scripts in Exasol up to and including 7.0 with the following lines:
 
 
-```java
+```lua
 table.insert(package.loaders,
     function (module_name)
         local loader = package.preload[module_name]
@@ -142,24 +142,24 @@ Let's focus on a typical case when creating Lua scripts. For demonstration purpo
 
 1. Install the `amalg` Lua rock  
 
-```java
+```
 sudo luarocks install amalg​
 ```
 2. If you haven't already, install the `remotelog` package from LuaRocks.  
 
-```java
+```
 sudo luarocks install remotelog​
 ```
 3. Create a minimal script `main.lua` that logs the Lua version number via `remotelog`.  
 
-```java
+```lua
 log = require("remotelog") 
 log.connect("172.17.0.1", 3000) 
 log.info(_VERSION)​
 ```
 4. Create the bundle.  
 
-```java
+```
 amalg.lua -o bundle.lua -s main.lua remotelog
 ```
  The `-o` switch defines the output file, `-s` includes a regular Lua script and the last parameter names a Lua module that should be bundled. Here you can list as many modules as you want. It is required though, that the module is in the `LUA_PATH`.  
@@ -174,7 +174,7 @@ The last piece of the puzzle is creating a Lua script in Exasol that uses the bu
 Here is a concrete example.
 
 
-```java
+```lua
 CREATE LUA SCRIPT "BUNDLE" () AS
     table.insert(_G.package.loaders,
         function (module_name)

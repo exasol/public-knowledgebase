@@ -5,7 +5,9 @@ I'm facing troubles when turning AUTOCOMMIT OFF - my Lua script is called via JD
 
 Now my idea was to turn off AUTOCOMMIT in Lua - but how? Does anybody know if this is possible and if so, please let me know how.
 
-> query([[SET AUTOCOMMIT OFF]]);
+```lua
+query([[SET AUTOCOMMIT OFF]]);
+```
 
 The code above does not work.
 

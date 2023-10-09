@@ -7,7 +7,7 @@ Charges that may apply for the load balancer can be found here: <https://aws.ama
 
 When your load balancer is created, it receives a public DNS name that clients can use to send requests. The DNS servers resolve the DNS name of your load balancer to the public IP addresses of the load balancer nodes for your load balancer. Each load balancer node is connected to the back-end instances using private IP addresses.
 
-In this how to we're using a simple 2+1 cluster in a private subnet (2 active node + 1 spare node). As this how to makes the database connectable from the internet, we recommend to enforce protocol encryption for all database connections (Database parameter "-forceProtocolEncryption=1").
+In this How-to we're using a simple 2+1 cluster in a private subnet (2 active node + 1 spare node). As this How-to makes the database connectable from the internet, we recommend to enforce protocol encryption for all database connections (Database parameter `"-forceProtocolEncryption=1"`). Since version 8 this parameter is not necessary as by default DB accepts only TLS-encrypted connections (no ChaCha20 or unencrypted): [CHANGELOG: Database accepts only TLS connections](https://exasol.my.site.com/s/article/Changelog-content-16927?language=en_US).
 
 EXA <-> EXA export and import is not supported.
 
@@ -50,5 +50,9 @@ EXA <-> EXA export and import is not supported.
 
 ### 10. Review and Create Classic Load Balancer (it will take some time for DNS entries to be propagated)
 
-*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 
+## Additional References
 
+* [How to create a HAproxy Load Balancer with floating IP](https://exasol.my.site.com/s/article/How-to-create-a-HAproxy-Load-Balancer-with-floating-IP)
+* [CHANGELOG: Database accepts only TLS connections](https://exasol.my.site.com/s/article/Changelog-content-16927?language=en_US)
+
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

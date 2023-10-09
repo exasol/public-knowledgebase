@@ -5,8 +5,15 @@ With the help of the below scripts, you can set up an automatic synchronization 
 
 ## Prerequisites
 
- You must first configure the database to accept LDAP authentication. To do this, go to EXAoperation and [shut down](https://docs.exasol.com/administration/on-premise/manage_database/start_stop_db.htm#DatabaseShutdown) the database in question. Once the database is shut down, you can edit the database and add the LDAP server in the field "LDAP Server URLs". The URL must start with ldap:// or ldaps://. Afterward, start the database back up. You can find more information [here](https://docs.exasol.com/sql/create_user.htm), which points to [edit_database](https://docs.exasol.com/administration/on-premise/manage_database/edit_database.htm). Afterward, add the distinguished name of the corresponding LDAP (Active Directory) group as a comment on all database roles you want to synchronize with LDAP:
-```markup
+You must first configure the database to accept LDAP authentication. To do this, go to EXAoperation and [shut down](https://docs.exasol.com/db/7.1/administration/on-premise/manage_database/stop_db.htm) the database in question. Once the database is shut down, you can edit the database and add the LDAP server in the field "LDAP Server URLs". The URL must start with ldap:// or ldaps://. Afterward, start the database back up. You can find more information [here](https://docs.exasol.com/db/7.1/sql/create_user.htm), which points to [Edit a Database](https://docs.exasol.com/db/7.1/administration/on-premise/manage_database/edit_database.htm). The previous links were for deployments with EXAOperation. For deployments without EXAOperation please use the following links:
+
+* [Stop a Database](https://docs.exasol.com/db/latest/administration/on-premise/manage_database/stop_db.htm)
+* [CREATE USER](https://docs.exasol.com/db/latest/sql/create_user.htm)
+* [Add an LDAP Server](https://docs.exasol.com/db/latest/administration/on-premise/manage_database/add_ldap_server.htm)
+
+
+Afterward, add the distinguished name of the corresponding LDAP (Active Directory) group as a comment on all database roles you want to synchronize with LDAP:
+```sql
 CREATE ROLE "EXAMPLE-READONLY";  
 COMMENT ON ROLE "EXAMPLE-READONLY" IS 'cn=example-readonly,ou=groups,dc=ldap,dc=example,dc=org';   
 CREATE ROLE "EXAMPLE-ADMIN";  
@@ -15,7 +22,7 @@ COMMENT ON ROLE "EXAMPLE-ADMIN" IS 'cn=example-admin,ou=groups,dc=ldap,dc=exampl
 Finally, create a CONNECTION with your LDAP information. In this connection, you should configure the LDAP server (beginning with ldap:// or ldaps://), the user that will connect to the LDAP server and pull the information for the groups, and that user's password. The specified user should be able to read the properties of users and groups. You may need assistance from your Active Directory team to provide the appropriate user and password for building the connection. 
 
 
-```markup
+```sql
 CREATE CONNECTION LDAP_SERVER TO 'ldap://<ldap_url>' 
 user 'cn=admin,dc=ldap,dc=example,dc=org' 
 identified by 'mysecretpassword'; 
@@ -31,7 +38,9 @@ identified by 'abc';
 ```
 You can find more LDAP connection and authentication help here:
 
-[Manual LDAP test](https://exasol.my.site.com/s/article/Manual-LDAP-Connection-Test)       [Force create user when connection fails](https://exasol.my.site.com/s/article/LDAP-error-Can-t-contact-LDAP-server-use-FORCE-option-to-create-user)      [LDAP authentication fails on distinguished-name](https://exasol.my.site.com/s/article/LDAP-Authentication-Failed-for-Distinguished-Names-containing-Spaces) 
+* [Manual LDAP test](https://exasol.my.site.com/s/article/Manual-LDAP-Connection-Test)
+* [Force create user when connection fails](https://exasol.my.site.com/s/article/LDAP-error-Can-t-contact-LDAP-server-use-FORCE-option-to-create-user)
+* [LDAP authentication fails on distinguished-name](https://exasol.my.site.com/s/article/LDAP-Authentication-Failed-for-Distinguished-Names-containing-Spaces) 
 
 ## How to Synchronize AD users and groups
 

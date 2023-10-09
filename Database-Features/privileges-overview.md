@@ -1,7 +1,7 @@
 # Privileges overview 
 ## Background
 
-This solution describes how to determine all granted system and object privileges per user. 
+This article describes how to determine all granted system and object privileges per user. 
 
 ## Explanation
 
@@ -13,7 +13,7 @@ The following SQL statement will return:
 * system privileges
 
 
-```"code
+```sql
 with all_granted_roles as (
 	with k1 as (
 		select
@@ -71,7 +71,7 @@ select user_name, granted_role, privilege, null, null
 If you get an error message, such as "CONNECT BY loop in user data", you may need to edit the SQL slightly:
 
 
-```"code
+```sql
 with all_granted_roles as (
 	with k1 as (
 		select
@@ -97,7 +97,7 @@ with all_granted_roles as (
 Here is the SQL to determine all granted system and object privileges per user and role:
 
 
-```"code-java"
+```sql
 with all_granted_roles as (
 	with k1 as (
 		select
@@ -165,7 +165,7 @@ The same result could be obtained with a Lua UDF, which is really fast:
 
 
 
-```"lia-code-sample
+```lua
 CREATE OR REPLACE LUA SET SCRIPT compute_all_granted_roles_ext (grantee varchar(128)
 ,granted_role varchar(128)
 ,user_name varchar(128))
@@ -218,7 +218,7 @@ end
 The beginning of the SQL will now look like
 
 
-```"lia-code-sample
+```sql
 with all_granted_roles as (
 with k1 as (
   select grantee, granted_role,
@@ -239,8 +239,8 @@ with k1 as (
 ```
 ## Additional References
 
-<https://docs.exasol.com/database_concepts/privileges.htm>
+[Privileges](https://docs.exasol.com/database_concepts/privileges.htm)
 
-<https://docs.exasol.com/sql/grant.htm>
+[GRANT](https://docs.exasol.com/sql/grant.htm)
 
 *We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

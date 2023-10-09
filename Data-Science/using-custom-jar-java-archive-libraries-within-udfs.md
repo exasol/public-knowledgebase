@@ -17,10 +17,15 @@ First we need to upload the JAR file to BucketFS. We can do this either with the
 
 If you decide to use CURL, you can use the following command:
 
-
 ```
 curl --user w -v -X PUT -T my-app-1.0-SNAPSHOT.jar  http://<ip_address>:<BucketFS port>/<bucket_name>/my-app-1.0-SNAPSHOT.jar 
 ```
+
+There are other options as well: 
+
+* ["bucketfs-client" application](https://github.com/exasol/bucketfs-client/blob/main/doc/user_guide/user_guide.md)
+* ["bucketfs-python" library](https://exasol.github.io/bucketfs-python/user_guide/user_guide.html)
+
 ## Step 2: Verify that the file is accessible
 
 You can use the LS script to verify that the file is accessible by the database:
@@ -28,7 +33,7 @@ You can use the LS script to verify that the file is accessible by the database:
 
 ```python
 --/
-CREATE PYTHON SCALAR SCRIPT ls(my_path VARCHAR(100))
+CREATE PYTHON3 SCALAR SCRIPT ls(my_path VARCHAR(100))
 EMITS (files VARCHAR(100)) AS
 import subprocess
 
@@ -38,7 +43,8 @@ def run(c):
 		stdout = subprocess.PIPE,
 		stderr = subprocess.STDOUT,
 		close_fds = True,
-		shell = True)
+		shell = True,
+		encoding = 'utf8')
 	  out, err = p.communicate()
 	  for line in out.strip().split('\n'):
 	    c.emit(line)
@@ -46,7 +52,7 @@ def run(c):
 	  if p is not None:
 	    try: p.kill()
 	    except: pass
-/ 
+/
 ```
 Once the script is created, you can run the following command to ensure that the database is able to see the file. In this example, the bucket is test1:
 
@@ -111,6 +117,8 @@ Now you can run your UDF and the JAR file that you uploaded to BucketFS will be 
 * [BucketFS Instructions](https://docs.exasol.com/database_concepts/bucketfs/bucketfs.htm)
 * [About UDFs](https://docs.exasol.com/database_concepts/udf_scripts.htm)
 * [Details for Java UDFs](https://docs.exasol.com/database_concepts/udf_scripts/java.htm)
+* ["bucketfs-client" application](https://github.com/exasol/bucketfs-client/blob/main/doc/user_guide/user_guide.md)
+* ["bucketfs-python" library](https://exasol.github.io/bucketfs-python/user_guide/user_guide.html)
 
 ## Downloads
 

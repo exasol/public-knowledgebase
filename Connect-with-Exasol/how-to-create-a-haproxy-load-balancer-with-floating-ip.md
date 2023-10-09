@@ -3,7 +3,7 @@
 
 An Internet-facing load balancer has a publicly available IP Address, so it can route requests from clients over the Internet to the EC2 instances that are registered with the load balancer. We use this approach make your EXASOL DB connectable from the internet using a single static EIP.
 
-In this how to we're using a simple 2+1 cluster in a private subnet (2 active node + 1 spare node). As this how to makes the database connectable from the internet, we recommend to enforce protocol encryption for all database connections (Database parameter "-forceProtocolEncryption=1").
+In this How-to we're using a simple 2+1 cluster in a private subnet (2 active node + 1 spare node). As this How-to makes the database connectable from the internet, we recommend to enforce protocol encryption for all database connections (Database parameter `"-forceProtocolEncryption=1"`). Since version 8 this parameter is not necessary as by default DB accepts only TLS-encrypted connections (no ChaCha20 or unencrypted): [CHANGELOG: Database accepts only TLS connections](https://exasol.my.site.com/s/article/Changelog-content-16927?language=en_US).
 
 EXA<->EXA export and import is not supported.
 
@@ -17,7 +17,7 @@ EXA<->EXA export and import is not supported.
 
 ## How to create a HAproxy Load Balancer with floating IP
 
-This How to describes the installation of two HAproxy instances (Master 10.0.1.207 and Slave 10.0.1.190, the EXASOL nodes use 10.0.1.11,10.0.1.12,10.0.1.13).
+This How-to describes the installation of two HAproxy instances (Master 10.0.1.207 and Slave 10.0.1.190, the EXASOL nodes use 10.0.1.11,10.0.1.12,10.0.1.13).
 
 ## Installation
 
@@ -259,5 +259,9 @@ echo "$(date) I'm backup nothing to do"
 
 ## Downloads
 [keepalived_initd.zip](https://github.com/exasol/Public-Knowledgebase/files/9936059/keepalived_initd.zip)
+
+## Additional References
+
+* [CHANGELOG: Database accepts only TLS connections](https://exasol.my.site.com/s/article/Changelog-content-16927?language=en_US)
 
 *We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

@@ -12,7 +12,7 @@ System performance data about disk I/O and concurrency is sought. 
 To check for I/O spikes based on hourly data:
 
 
-```"code-sql"
+```sql
 select
     trunc(measure_time, 'HH') as interval_hour,
     sum( nproc() * 30 * hdd_read_user_avg)/1024 as total_GB_READ,
@@ -43,7 +43,7 @@ Getting a nice overview per hour for
 * average (MB/sec/node) and total (GB/cluster) HDD_READ caused by SQL
 
 
-```"code-sql"
+```sql
 with k1 as (
     -- preselected statements. Add type filter (COMMAND_NAME) or user filter (sessions/auditing) when required
 	select session_id, stmt_id, start_time, stop_time, hdd_read, temp_db_ram_peak, seconds_between(stop_time, start_time) as stmt_duration
@@ -152,6 +152,6 @@ order by 1
 
 <https://www.exasol.com/support/browse/EXASOL-2373>
 
-<https://docs.exasol.com/sql_references/metadata/statistical_system_table.htm>
+[Statistical System Tables](https://docs.exasol.com/sql_references/metadata/statistical_system_table.htm)
 
 *We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

@@ -18,11 +18,11 @@ ldap error: Can't contact LDAP server, use FORCE option to create user
 2. If you are sure that there is no problem with your LDAP server, you can always create the user with the FORCE option. In this case, the connection check will not be performed:
 
 
-```
+```sql
 CREATE USER myuser IDENTIFIED AT LDAP AS 'uid=me,ou=people,dc=ex,dc=de' FORCE; 
 ```
 Please note that if there are problems with connecting to the LDAP server, the user will receive this error during login:
-```markup
+```
 Connection exception - authentication failed.
 ```
 You should only use the FORCE option with caution to prevent confusion from users trying to login.

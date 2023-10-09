@@ -70,8 +70,8 @@ The following measurements are done on a single machine, using SQL Server 2017 E
 
 |   |  **SQL Server** | **Exasol** |
 | --- | --- | --- |
-| SQL Server -&gt; Exasol | `insert into EXASOL_TEST...SUPPLIER select * from Test.dbo.SUPPLIER` <br/> Duration: 600 seconds (estimated)| `IMPORT INTO TEST.SUPPLIER FROM JDBC AT 'jdbc:jtds:sqlserver://<ip address>;databaseName=Test' user 'sa' identified by *** TABLE SUPPLIER;` <br/> Duration: 52 seconds |
-| Exasol -&gt; SQL Server | `insert into Test.dbo.SUPPLIER select * from EXASOL_TEST...SUPPLIER;` <br/> Duration: 108 seconds | `export tpc.supplier into JDBC at CONN_SQLEXPRESS /*same as above, but in a connection object*/ table SUPPLIER;` <br/> Duration: 68 seconds |
+| SQL Server -&gt; Exasol | `insert into EXASOL_TEST...SUPPLIER select * from Test.dbo.SUPPLIER` <br /> Duration: 600 seconds (estimated)| `IMPORT INTO TEST.SUPPLIER FROM JDBC AT 'jdbc:jtds:sqlserver://<ip address>;databaseName=Test' user 'sa' identified by *** TABLE SUPPLIER;` <br /> Duration: 52 seconds |
+| Exasol -&gt; SQL Server | `insert into Test.dbo.SUPPLIER select * from EXASOL_TEST...SUPPLIER;` <br /> Duration: 108 seconds | `export tpc.supplier into JDBC at CONN_SQLEXPRESS /*same as above, but in a connection object*/ table SUPPLIER;` <br /> Duration: 68 seconds |
 
 The SQL Server -&gt; EXA export using a Linked Server could only be estimated because of the 30-second timeout.
 

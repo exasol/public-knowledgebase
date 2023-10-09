@@ -7,10 +7,10 @@
 
 When referencing a file in BucketFS in any UDF script (including Virtual Schema adapter scripts), the user may get an error like this:
 
-
-```markup
+```
 FileNotFoundError: [Errno 2] No such file or directory: '<invalid path>' " caught in script...
 ```
+
 ## Explanation
 
 BucketFS is a separate file-system with it's own access control. Creating a bucket and then uploading files does not automatically mean that users in the database are able to access these files. This has to be given to users as well, like all other permissions. 
@@ -29,9 +29,11 @@ When confronted with this problem, we recommend the following steps to help reso
 Within the UDF, you should check that the file is both written completely correct (file name, for example), and that it is referenced correctly. If a file is stored in BucketFS, you should reference this file using the following method:
 
 
-```markup
+```
 /buckets/<bucketfs_name>/<bucket_name>/<file name>  
+```
 For example: 
+```
 /buckets/bucketfs1/bucket1/my_file.jar
 ```
 If you are unsure of the path you need to write, you can verify it in Exaoperation by clicking on EXABuckets -> click your bucket and view the UDF path:
@@ -45,7 +47,7 @@ In the above screenshot, you can tell if the bucket is **public** or not. A Pub
 If the bucket **is not public,**then you also need to create a connection to the bucket to grant the database users access to the bucket. You can do this with a normal CONNECTION object in the database, like below:
 
 
-```
+```sql
 CREATE CONNECTION my_bucket_access TO 'bucketfs:<bucketfs name>/<bucket name>' IDENTIFIED BY 'readpw';   
 --example  
 CREATE CONNECTION my_bucket_access TO 'bucketfs:bfsdefault/bucket1' IDENTIFIED BY 'readpw';
@@ -53,7 +55,7 @@ CREATE CONNECTION my_bucket_access TO 'bucketfs:bfsdefault/bucket1' IDENTIFIED B
 Then, you need to grant this connection to either a user or role that needs this access, similar to any other CONNECTION object:
 
 
-```markup
+```sql
 GRANT CONNECTION my_bucket_access TO my_user; 
 GRANT CONNECTION my_bucket_access TO public;
 ```
@@ -64,9 +66,9 @@ Granting the connection to PUBLIC will allow every database user to read the fil
 You can use the below script to check exactly what your user is able to see in BucketFS from the database. It functions similar to the ls command on Linux systems:
 
 
-```markup
+```python
 --/
-CREATE PYTHON SCALAR SCRIPT ls(my_path VARCHAR(100))
+CREATE PYTHON3 SCALAR SCRIPT ls(my_path VARCHAR(100))
 EMITS (files VARCHAR(100)) AS
 import subprocess
 
@@ -76,7 +78,8 @@ def run(c):
 		stdout = subprocess.PIPE,
 		stderr = subprocess.STDOUT,
 		close_fds = True,
-		shell = True)
+		shell = True,
+		encoding = 'utf8')
 	  out, err = p.communicate()
 	  for line in out.strip().split('\n'):
 	    c.emit(line)
@@ -91,7 +94,7 @@ SELECT ls('/buckets/bfsdefault/bucket1');
 You can traverse the file system by starting with /buckets and checking which BucketFS's you are able to see, and then can dig deeper into the specific file. For example:
 
 
-```markup
+```sql
 SELECT ls('/buckets');  
 SELECT ls('/buckets/bfsdefault');  
 SELECT ls('/buckets/bfsdefault/bucket1');
@@ -100,6 +103,6 @@ If you are able to see the file in the results, then you are also able to use th
 
 ## Additional References
 
-* <https://docs.exasol.com/database_concepts/bucketfs/bucketfs.htm>
+* [BucketFS](https://docs.exasol.com/database_concepts/bucketfs/bucketfs.htm)
 
 *We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

@@ -47,7 +47,7 @@ In order to create the Virtual Schema you need to create the adapter script and 
 ### openweather-virtual-schema
 
 
-```markup
+```python
 --/
 CREATE OR REPLACE PYTHON3 ADAPTER SCRIPT openweather_vs_scripts.openweather_adapter AS 
 import requests
@@ -100,7 +100,9 @@ def run(ctx) -> None:
 
     api_handler.api_calls()
 /
+```
 
+```sql
 --/
 CREATE VIRTUAL SCHEMA openweather
 USING openweather_vs_scripts.openweather_adapter
@@ -123,7 +125,7 @@ WHERE   city_name = 'Los Angeles' OR
 Note that the solution is built in a modular way. The actual code for the adapter script and the API Handler is not contained in the openweather-virtual-schema.sql but is dynamically loaded at runtime from GitHub using the `download_python_files()` method. To find out more about the inner workings of those files please visit the [GitHub](https://github.com/exasol/openweather-virtual-schema) repository. After 1. and 2. from the `openweather-virtual-schema.sql` is completed we can create the Virtual Schema itself (Step 3).
 
 
-```markup
+```sql
 --/
 CREATE VIRTUAL SCHEMA openweather
 USING openweather_vs_scripts.openweather_adapter
@@ -158,7 +160,7 @@ You can explore the layout of the Virtual Schema using your SQL-Editor:   
 ![](images/2020-10-13-13_36_47-DbVisualizer.png)
 
 The two tables `CURRENT_WEATHER` and `FORECAST` refer to the two API methods [Current weather data](https://openweathermap.org/current) and [5 day weather forecast](https://openweathermap.org/forecast5).Here is an example query showcasing the covered functionalities - this is step 4 and 5 from above:
-```markup
+```sql
 SELECT * 
 FROM   OPENWEATHER.CURRENT_WEATHER
 WHERE  city_name = 'Stuttgart' OR
@@ -174,7 +176,7 @@ WHERE  city_name = 'Stuttgart' OR
 Note that only those features can be supported by the Virtual Schema push-down that are supported by the source. For example
 
 
-```markup
+```sql
 SELECT * FROM OPENWEATHER.CURRENT_WEATHER WHERE temperature = 30.0;
 ```
 won't work. The Virtual Schema will try to push down the `PREDICATE_EQUAL` expression (`temperature = 30.0`) to the source but openweather does us not allow to request places by temperature. With other words: *No you can't use this to look for a vacation destination* 
@@ -182,7 +184,7 @@ won't work. The Virtual Schema will try to push down the `PREDICATE_EQUAL` expre
 Apart from `PREDICATE_EQUAL` (e.g. `city_name **=** 'Nuremberg'`) no other predicates are supported for push-down to the source. This means that any other expression like `<`, `>`, `=>`, `<=` or `NOT` will be carried out on the core database. This makes sure that every correct SQL you run against the Virtual Schema results in what you expect. Hence this:
 
 
-```markup
+```sql
 SELECT * FROM OPENWEATHER.CURRENT_WEATHER 
 WHERE city_name IN ('Berlin', 'Los Angeles', 'Oslo') 
 AND temperature > 25.0;

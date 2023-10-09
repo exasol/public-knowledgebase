@@ -20,14 +20,14 @@ We need to create a connection and get a master IP before running any ConfD job 
 Import required modules and get the master IP:
 
 
-```"code-java"
+```python
 >>> import xmlrpclib, requests, urllib3, ssl 
 >>> urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 ```
 **Get current master IP** (you can use any valid IP in the cluster for this request)
 
 
-```"code-java"
+```python
 >>> master_ip = requests.get("https://11.10.10.11:443/master", verify = False).content
 ```
 In this case, 11.10.10.11 is the IP address of one of the cluster nodes
@@ -37,7 +37,7 @@ In this case, 11.10.10.11 is the IP address of one of the cluster nodes
 Note: We assume you've set the root password **"testing".** You can set a password via **exaconf passwd-user** command
 
 
-```"code-java"
+```python
 >>> connection_string = "https://root:testing@%s:443/" % master_ip 
 >>> sslcontext = ssl._create_unverified_context() 
 >>> conn = xmlrpclib.ServerProxy(connection_string, context = sslcontext, allow_none=True)
@@ -63,13 +63,13 @@ Run a job to check the status of the database:
 Note: In this example we assume the database name is **"DB1"**. Please adjust the database name.
 
 
-```"code-java"
+```python
 conn.job_exec('db_state', {'params': {'db_name': 'DB1'}}) 
 ```
 Output:
 
 
-```"code-java"
+```python
 {'result_name': 'OK', 'result_output': 'running', 'result_desc': 'Success', 'result_jobid': '12.2', 'result_code': 0}
 ```
 As you can see in the output the 'result_output' is  'running' and 'result_desc' is 'Success'. This means the database is up and running.
@@ -79,7 +79,7 @@ Note: If you want to format the JSON output you can use **pprint** module
 Run a job to get information about the database:
 
 
-```"code-java"
+```python
 >>> import pprint
 >>> pprint.pprint(conn.job_exec('db_info', {'params': {'db_name': 'DB1'}}))
 
@@ -111,13 +111,13 @@ Run a job to get information about the database:
 Run a job to list databases in cluster:
 
 
-```"code-java"
+```python
 conn.job_exec('db_list')
 ```
 Output example:
 
 
-```"code-java"
+```python
 >>> pprint.pprint(conn.job_exec('db_list'))
 
 {'result_code': 0,
@@ -131,7 +131,7 @@ Output example:
 Run a job to stop database DB1 in cluster:
 
 
-```"code-java"
+```python
 >>> conn.job_exec('db_stop', {'params': {'db_name': 'DB1'}})
 
 {'result_name': 'OK', 'result_desc': 'Success', 'result_jobid': '12.11', 'result_code': 0}
@@ -139,7 +139,7 @@ Run a job to stop database DB1 in cluster:
 Run a job to confirm the state of the database DB1:
 
 
-```"code-java"
+```python
 >>> conn.job_exec('db_state', {'params': {'db_name': 'DB1'}})
 
 {'result_name': 'OK', 'result_output': 'setup', 'result_desc': 'Success', 'result_jobid': '12.12', 'result_code': 0}
@@ -149,7 +149,7 @@ Run a job to confirm the state of the database DB1:
  Run a job to start database DB1 in cluster:
 
 
-```"code-java"
+```python
 >>> conn.job_exec('db_start', {'params': {'db_name': 'DB1'}})
 
 {'result_name': 'OK', 'result_desc': 'Success', 'result_jobid': '12.13', 'result_code': 0}
@@ -157,7 +157,7 @@ Run a job to confirm the state of the database DB1:
 Run a job to verify the state of the database of DB1 is up and running:
 
 
-```"code-java"
+```python
 >>> conn.job_exec('db_state', {'params': {'db_name': 'DB1'}})
 
 {'result_name': 'OK', 'result_output': 'running', 'result_desc': 'Success', 'result_jobid': '12.14', 'result_code': 0}
@@ -173,7 +173,7 @@ Example 3.1: Add a remote archive volume to cluster
 | remote_volume_add | Add a remote volume | vol_type, url <br />**optional**: remote_volume_name, username, password, labels, options, owner, allowed_users<br />**substitutes:** remote_volume_id <br />**allowed_groups:** root, exaadm, exastoradm <br />**notes**: <br />--&gt; 'ID' is assigned automatically if omitted (10000 + next free ID) <br />--&gt; 'ID' must be >= 10000 if specified<br />--&gt; 'name' may be empty (for backwards compat.) and is generated from 'ID' in that case (*"r%04i" % ('ID' - 10000*))<br />--&gt; if 'owner' is omitted, the requesting user becomes the owner |
 
 
-```"code-java"
+```python
 >>> conn.job_exec('remote_volume_add', {'params': {'vol_type': 's3','url': 'http://bucketname.s3.amazonaws.com','username': 'ACCESS-KEY','password': 'BASE64-ENCODED-SECRET-KEY'}})   
 
 {'result_revision': 18, 'result_jobid': '11.3', 'result_output': [['r0001', 'root', '/exa/etc/remote_volumes/root.0.conf']], 'result_name': 'OK', 'result_desc': 'Success', 'result_code': 0}
@@ -187,7 +187,7 @@ Example 3.2: list all containing  remote volume names
 | remote_volume_list | List all existing remote volumes | None | a list containing all remote volume names |
 
 
-```"code-java"
+```python
 >>> pprint.pprint(conn.job_exec('remote_volume_list'))
 
 {'result_code': 0,
@@ -200,13 +200,12 @@ Example 3.3: Connection state of the given remote volume
 
 
 
-|  |  |  |  |
-| --- | --- | --- | --- |
 | Name | Description | Parameter | Returns |
+| --- | --- | --- | --- |
 | remote_volume_state | Return the connection state of the given remote volume, online / Unmounted / Connection problem | remote_volume_name <br />substitutes: remote_volume_id | List of the connection state of the given remote volume on all nodes |
 
 
-```"code-java"
+```python
 >>> conn.job_exec('remote_volume_state',  {'params': {'remote_volume_name': 'r0001'}})
 
 {'result_name': 'OK', 'result_output': ['Online'], 'result_desc': 'Success', 'result_jobid': '11.10', 'result_code': 0} 
@@ -222,7 +221,7 @@ Example 4.1: get node list
 | node_list | List all cluster nodes (from EXAConf) |  None | Dict containing all cluster nodes. |
 
 
-```"code-java"
+```python
 >>> pprint.pprint( conn.job_exec('node_list'))
 
 {'result_code': 0,
@@ -251,7 +250,7 @@ Example 4.1: get node list
 | node_state | State of all nodes (online, offline, deactivated) |  None |  A list containing a string representing the current node state. |
 
 
-```"code-java"
+```python
 >>> pprint.pprint(conn.job_exec('node_state'))
 
 {'result_code': 0,
@@ -265,7 +264,7 @@ Example 4.1: get node list
 
 
 
-|  |  |  |  |
+| Name | Description | Parameter | Returns |
 | --- | --- | --- | --- |
 | node_add | Add a node to the cluster | priv_net<br />**optional**: id, name, pub_net, space_warn_threshold, bg_rec_limit<br />**allowed_groups:** root, exaadm | int node_id |
 | node_remove | Remove a node from the cluster | node_id<br />**optional**: force<br />**allowed_groups:** root, exaadm | None |
@@ -284,7 +283,7 @@ Example 4.1: get node list
 | st_volume_list | List all existing volumes in the cluster. | none | List of dicts |
 
 
-```"code-java"
+```python
 >>> pprint.pprint(conn.job_exec('st_volume_list'))
 
 {'result_code': 0,
@@ -375,7 +374,7 @@ Example 4.1: get node list
 | st_volume_info | Return information about volume with id vid | vid | 
 
 
-```"code-java"
+```python
 >>> pprint.pprint(conn.job_exec('st_volume_info', {'params': {'vid': 0}}))
 
 {'result_code': 0,
@@ -453,7 +452,7 @@ Example 6.1: start a new backup
 | db_backup_start | Start a backup of the given database to the given volume | db_name, backup_volume_id, level, expire_time **substitutes**: dackup_volume_name | 
 
 
-```"code-java"
+```python
 >>> conn.job_exec('db_backup_start', {'params': {'db_name': 'DB1','backup_volume_name': 'RemoteVolume1','level': 0,'expire_time': '10d'}})
 
 {'result_name': 'OK', 'result_desc': 'Success', 'result_jobid': '11.77', 'result_code': 0}
@@ -467,7 +466,7 @@ Example 6.2: abort backup
 | db_backup_abort | Aborts the running backup of the given database | db_name | 
 
 
-```"code-java"
+```python
 >>> conn.job_exec('db_backup_abort', {'params': {'db_name': 'DB1'}})  
 
 {'result_name': 'OK', 'result_desc': 'Success', 'result_jobid': '11.82', 'result_code': 0}
@@ -481,7 +480,7 @@ Example 6.3: list backups
 | db_backup_list | Lists available backups for the given database | db_name | 
 
 
-```"code-java"
+```python
 >>> pprint.pprint(conn.job_exec('db_backup_list', {'params': {'db_name': 'DB1'}}))
 
 {'result_code': 0,

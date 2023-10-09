@@ -32,7 +32,7 @@ There are at least two options:
 If the same SQLs against the corresponding tables will be executed in the new cluster, Exasol would probably have to create almost the same set of indices because of JOINs. So manual index creation (in advance) might reduce workload during production period.
 
 
-```"code-sql"
+```sql
 SELECT   
  'enforce ' || index_type || ' index ' ||' on "' || index_schema || '"."' || index_table || '"' 
  || REPLACE(REPLACE(remarks, 'GLOBAL INDEX'), 'LOCAL INDEX') || '; '   
