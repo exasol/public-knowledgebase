@@ -1,4 +1,4 @@
-# Setting up Exasol single sign-on with Active Directory Kerberos
+# Setting up Exasol Kerberos single sign-on with Active Directory
 ## Prerequisites
 * AD: installed and configured to authenticate users, domain is configured (which hosts users to be SSO in Exasol DB), admin access to AD
 * Exasol DB 7.1: installed and configured, admin access to Exaoperation, dba access to DB
