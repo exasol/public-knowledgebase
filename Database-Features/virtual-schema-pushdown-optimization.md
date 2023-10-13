@@ -4,7 +4,7 @@
 There are a couple of situations which trigger the optimizer to rewrite the query with no regard to virtual schema (VS) pushdown optimization. So the following circumstances can ruin pushdown performance:
 * direct joins between objects from the different schemas (local and virtual)
 * multiple nested view layers on top of VS object
-* CTEs ( or "with" clause) for a subquery with VS objects or their derivatives
+* CTEs (or "with" clause) for a subquery with VS objects or their derivatives
 * multiple usages of the same VS based view in a single subquery
 
 Except the first one (it is critical in every scenario), each case by itself usually is not critical and performs as expected. But combinations of those situations may lead to separate pushdowns for each VS object.
