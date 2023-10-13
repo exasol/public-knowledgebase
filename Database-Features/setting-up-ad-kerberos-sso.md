@@ -107,7 +107,7 @@ create user {db user name} identified by KERBEROS PRINCIPAL '{AD user name}@{Ker
 GRANT CREATE SESSION TO {db user name};
 -- grant all other privileges and roles necessary for this particular user
 ```
-> **{db user name}** \- arbitrary Exasol db user name. This username itself is just an representation of AD user, it can be completely different form AD username and will not be directly used during authentication. \
+> **{db user name}** \- arbitrary Exasol db user name. This username itself is just a representation of AD user, it can be completely different form AD username and will not be directly used during authentication. \
 > **{AD user name}** \- username of AD user which we want to allow to access the database. \
 > **{Kerberos realm}** \- In AD it is usually the domain name written in all capital letters. \
 >
