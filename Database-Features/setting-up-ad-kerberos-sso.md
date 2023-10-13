@@ -91,4 +91,55 @@ ktpass -out C:\temp\exasol_service.keytab -princ exasol/exacluster_dev.boxes.tes
 * Startup the database and wiat unitl it goes online
 ![image](https://github.com/exasol/public-knowledgebase/assets/20660165/966fca88-1c6b-485d-bbc8-648d9247b197)
 
+###  6. Create database user which should authenticate with Kerberos principal
+Now Exasol cluster is configured to authenticate AD users with help of kerberos tickets, and we should allow some AD users to access the database this way.
+Since we are dealing with SSO solution, once the user is logged in their client machine, a tgt-ticket for a corresponding user principal should be already granted. We can check it using **klist** command on the user's machine.
+
+![image](https://github.com/exasol/public-knowledgebase/assets/20660165/29903ca9-a71c-4a48-97ff-f3ab38b42805)
+
+If for some reason tgt is not there (for example it expired), you can try to request it manualy with help of **kinit** command.
+
+To allow the AD user to authenticate to Exasol db using AD SSO do the following:
+* connect to DB as dba
+* create a databse user which is identified by AD user's kerberos principal:
+```sql
+create user {db user name} identified by KERBEROS PRINCIPAL '{AD user name}@{Kerberos realm}';
+GRANT CREATE SESSION TO {db user name};
+-- grant all other privileges and roles nessesary for this particular user
+```
+> **{db user name}** \- arbitrary Exasol db user name. This username itself is just an representation of AD user, it can be completely different form AD username and will not be directly used during authentication. \
+> **{AD user name}** \- username of AD user which we want to allow to access the database. \
+> **{Kerberos realm}** \- In AD it is usually the domian name written in all capital letters. \
+>
+
+**Example**
+```sql
+create user ad_john_smith identified by KERBEROS PRINCIPAL 'jsmith@BOXES.TEST';
+GRANT CREATE SESSION TO ad_john_smith;
+GRANT select any table TO ad_john_smith;
+```
+
+###  7. Test database connection from the user's AD account with Exaplus 
+Configuration is compleded. Now we can test connection to database from the user's AD account with help of Exaplus.
+
+* Login into user's machine using user's AD account.
+* Make sure that user's credential cache already contains appropriate tgt-ticket. To do so use **klist** command and check that the result contains ticket for the principal **{AD user name}@{Kerberos realm}**.
+* Open shell terminal and navigate to Exaplus directory
+* First try to connect to Exasol DB using a standart authentication method with username and password. For example use dba user from step 6.
+```
+./exaplusx64.exe -c {Full connection string to Exasol db}
+```
+**Example**
+
+![image](https://github.com/exasol/public-knowledgebase/assets/20660165/c1f71562-29df-432a-ad71-8ab46f7f9c05)
+
+* Once connection is established you can be sure that client can access and proceed with testing Kerberos authentication.
+* Now add **-k** option to the command. Exaplus will ask you to type **Service name** and **Host** instead of username and password. Use **{Exasol service name}** and **{Exasol host name}** from step 3.
+
+**Example**
+
+![image](https://github.com/exasol/public-knowledgebase/assets/20660165/f76378ab-caf6-47e2-82cd-09ca764757c5)
+
+
+
 
