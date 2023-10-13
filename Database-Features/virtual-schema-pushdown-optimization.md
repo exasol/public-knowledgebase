@@ -5,12 +5,12 @@ There are a couple of situations which trigger the optimizer to rewrite the quer
 * direct joins between objects from the different schemas (local and virtual)
 * multiple nested view layers on top of VS object
 * CTEs ( or "with" clause) for a subquery with VS objects or their derivatives
-* multiple usage of the same VS based view in a single subquery
+* multiple usages of the same VS based view in a single subquery
 
 Except the first one (it is critical in every scenario), each case by itself usually is not critical and performs as expected. But combinations of those situations may lead to separate pushdowns for each VS object.
 
 ## How to avoid the problem. Tips.
-Below are can find some tips and examples which hopefully will help you to avoid those situations:
+Below you can find some tips and examples which hopefully will help you to avoid those situations:
 
 * First of all, if VS objects are directly joined together with other sources (local tables, objects based on  another VS) this always leads to separate pushdowns. To avoid this you should always try to join only objects from a particular VS in one subquery and then use this subquery's results to join with other sources.
 
@@ -20,7 +20,7 @@ Below are can find some tips and examples which hopefully will help you to avoid
 
 **Example:**
 even if you use VS objects themselves (not views on top of them) without any CTEs, this query will give you multiple pushdowns because VS objects are directly joined with local objects:
-```markup
+```sql
 explain virtual
 
 SELECT
@@ -28,11 +28,11 @@ SELECT
 FROM VIRTUAL_SCHEMA.dax_akq_syr_op_a op
 INNER JOIN VIRTUAL_SCHEMA.dax_akq_syr_opdetail_a               opd2 ON op.boid = opd2.itsdet_op
 INNER JOIN VIRTUAL_SCHEMA.dax_akq_syr_opdetail_a               opd3 ON op.boid = opd3.itsdet_op
-INNER JOIN LOACL_SCHEMA.sale s on op.rechnungsnr = s.id;
+INNER JOIN LOCAL_SCHEMA.sale s on op.rechnungsnr = s.id;
 ```
 
 The next query is better, because we have all VS tables grouped together in one subquery VS_SUBQ and no other tables are mixed into it. But still it may result in a multiple pushdowns, if optimizer decides to rewrite the query and break apart the subquery:
-```markup
+```sql
 explain virtual
 select
         VS_SUBQ.rechnungsnr
@@ -48,7 +48,7 @@ INNER JOIN LOACL_SCHEMA.sale s on VS_SUBQ.rechnungsnr = s.CASH_OR_PLASTIC;
 ```
 
 Finally If we materialize the subquery, then only a single pushdown will be issued:
-```markup
+```sql
 explain virtual
 select
         VS_SUBQ.rechnungsnr
@@ -67,7 +67,7 @@ INNER JOIN LOACL_SCHEMA.sale s on VS_SUBQ.rechnungsnr = s.CASH_OR_PLASTIC;
 * If you need to use multiple different virtual schemas in one query, use described approach to have a dedicated subquery for each VS.
 
 **Example:** here we have 2 pushdowns to VIRTUAL_SCHEMA1 and VIRTUAL_SCHEMA2.
-```markup
+```sql
 explain virtual
 select 
         VS_SUBQ1.rechnungsnr
@@ -96,7 +96,7 @@ INNER JOIN LOACL_SCHEMA.sale s on VS_SUBQ1.rechnungsnr = s.CASH_OR_PLASTIC;
 * Regarding CTEs ("with" clause), try to avoid using them for VS object subqueries. In combination with nested view-layers on top of VS objects and multiple usage of the same VS object, CTEs are causing not optimal query rewriting and as a result - multiple pushdowns. You can use CTE for the other things inside your query though, for example for local objects.
 
 **Example:** even though we've separated all VS objects into a single CTE and tried to materialize it with "order by false", it still spawns multiple pushdowns because of using the same object twice (VS_VIEWS_LAYER1.dax_akq_syr_opdetail_a ) in combination with view layer on top of VS tables.
-```markup
+```sql
 explain virtual
 with VS_SUBQ as(
 select
@@ -110,7 +110,7 @@ select * from VS_SUBQ
 INNER JOIN LOACL_SCHEMA.sale s on VS_SUBQ.rechnungsnr = s.CASH_OR_PLASTIC;
 ```
 But if we use the same subquery not as CTE but just as a regular subquery in "from" clause, we get a single pushdown:
-```markup
+```sql
 explain virtual
 select * from 
 (select
@@ -122,7 +122,7 @@ order by false) VS_SUBQ
 INNER JOIN LOACL_SCHEMA.sale s on VS_SUBQ.rechnungsnr = s.CASH_OR_PLASTIC;
 ```
 Adding the CTE with local tables in it doesn't affect our pushdown optimization:
-```markup
+```sql
 explain virtual
 with LOCAL_CTE as
 (
