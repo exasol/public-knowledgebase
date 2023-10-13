@@ -6,7 +6,7 @@
 
 ## Configuring SSO for ExasolDB
 ###  1. Create Exasol service account in AD
-Create a new user in AD domain to represent Exasol DB service.
+Create a new user in the AD domain to represent Exasol DB service.
 
 This can be done by following commands in power shell:
 ```
@@ -27,9 +27,9 @@ or in "Active Directory Users and Computers" UI:
 
 ![image](https://github.com/exasol/public-knowledgebase/assets/20660165/db244eca-d0fc-4a1c-80bb-5a8ae83ebba6)
 
-***Noctice: service user can have an arbitrary name, it is just an alias for an Exasol ervice***
+***Noctic: service user can have an arbitrary name, it is just an alias for an Exasol service***
 
-###  2. Anable supports AES 128/256 bit encryption for exaol service user
+###  2. Anable supports AES 128/256 bit encryption for Exasol service user
 In "Active Directory Users and Computers" go to previously created Exasol user -> Properties -> Account -> Account options -> check "This account supports AES 128 bit encryption" and "This account supports AES 256 bit encryption" checkboxes.
 
 ![image](https://github.com/exasol/public-knowledgebase/assets/20660165/3d209665-3cce-42d7-999d-9e14e7b5749c)
@@ -41,8 +41,8 @@ In order to register SPN execute following command in power shell:
 setspn -S {Exasol service name}/{Exasol host name}.{AD domian} {Service account name}
 ```
 
-> **{Exasol service name}** \- this parameter represents a **kerberos service name** of particular exasol instance. This is the first out of 2 parameters which will be used during user authentication. It is arbitrary now, but later on it will be critical to use the exasct value which is set up here.\
-> **{Exasol host name}** \- this parameter represents a **kerberos host name** of particular exasol instance. This is the second out of 2 parameters which will be used during user authentication. It is arbitrary now, but later on it will be critical to use the exasct value which is set up here\
+> **{Exasol service name}** \- this parameter represents a **kerberos service name** of a particular exasol instance. This is the first out of 2 parameters which will be used during user authentication. It is arbitrary now, but later on it will be critical to use the exact value which is set up here.\
+> **{Exasol host name}** \- this parameter represents a **kerberos host name** of a particular exasol instance. This is the second out of 2 parameters which will be used during user authentication. It is arbitrary now, but later on it will be critical to use the exact value which is set up here\
 > **{AD domian}** \- Active Directory domain of the Exasol service user created during step 1\
 > **{Service account name}** \- Exasol service user created during step 1
 
@@ -67,7 +67,7 @@ ktpass -out {Keytab path}\exasol_service.keytab -princ {Exasol service name}/{Ex
 > **{Exasol service name}** \- Exasol **kerberos service name** which was set in step 3. \
 > **{Exasol host name}** \- Exasol **kerberos host name** which was set in step 3. \
 > **{AD domian}** \- Active Directory domain name of the Exasol service user created during step 1. \
-> **{Kerberos realm}** \- In AD it is usually the domian name written in all capital letters. \
+> **{Kerberos realm}** \- In AD it is usually the domain name written in all capital letters. \
 > **{NETBIOS}** \- Active Directory domain's Netbios (subdomain) name. Can be found in AD domain properties. \
 > **{Service account name}** \- Exasol service user created during step 1. \
 > **{Service account password}** \- Password of the Exasol service user created during step 1.
@@ -79,37 +79,37 @@ ktpass -out C:\temp\exasol_service.keytab -princ exasol/exacluster_dev.boxes.tes
 
 ###  5. Upload service keytab in Exaoperation
 * Login to Exaoperation of the Exasol DB instance which you need to be accessible with AD SSO.
-* Shutdow the database
+* Shutdown the database
 ![image](https://github.com/exasol/public-knowledgebase/assets/20660165/22bb6371-7c1d-49aa-99ad-48a71b2314af)
 * Go to the database link and wait until the **State** became **Selected**
-* In keytab section click **Choose file** and select the keytab file generated in step 4.
+* In the keytab section click **Choose file** and select the keytab file generated in step 4.
 * Click **Upload keytab file** button.
 ![image](https://github.com/exasol/public-knowledgebase/assets/20660165/b6585dbf-ef95-4a80-a5c3-dcd0bba3b39e)
 * Then click **Edit** button to go to Edit db page
 * Specify the **Kerberos Realm** parameter using Kerberos realm from step 4 and click **Apply**
 ![image](https://github.com/exasol/public-knowledgebase/assets/20660165/a8a79d0d-4507-443c-b3f7-24b625e0d930)
-* Startup the database and wiat unitl it goes online
+* Startup the database and wait until it goes online
 ![image](https://github.com/exasol/public-knowledgebase/assets/20660165/966fca88-1c6b-485d-bbc8-648d9247b197)
 
 ###  6. Create database user which should authenticate with Kerberos principal
-Now Exasol cluster is configured to authenticate AD users with help of kerberos tickets, and we should allow some AD users to access the database this way.
-Since we are dealing with SSO solution, once the user is logged in their client machine, a tgt-ticket for a corresponding user principal should be already granted. We can check it using **klist** command on the user's machine.
+Now the Exasol cluster is configured to authenticate AD users with help of kerberos tickets, and we should allow some AD users to access the database this way.
+Since we are dealing with an SSO solution, once the user is logged in their client machine, a tgt-ticket for a corresponding user principal should be already granted. We can check it using **klist** command on the user's machine.
 
 ![image](https://github.com/exasol/public-knowledgebase/assets/20660165/29903ca9-a71c-4a48-97ff-f3ab38b42805)
 
-If for some reason tgt is not there (for example it expired), you can try to request it manualy with help of **kinit** command.
+If for some reason tgt is not there (for example it expired), you can try to request it manually with the help of **kinit** command.
 
 To allow the AD user to authenticate to Exasol db using AD SSO do the following:
 * connect to DB as dba
-* create a databse user which is identified by AD user's kerberos principal:
+* create a database user which is identified by AD user's kerberos principal:
 ```sql
 create user {db user name} identified by KERBEROS PRINCIPAL '{AD user name}@{Kerberos realm}';
 GRANT CREATE SESSION TO {db user name};
--- grant all other privileges and roles nessesary for this particular user
+-- grant all other privileges and roles necessary for this particular user
 ```
 > **{db user name}** \- arbitrary Exasol db user name. This username itself is just an representation of AD user, it can be completely different form AD username and will not be directly used during authentication. \
 > **{AD user name}** \- username of AD user which we want to allow to access the database. \
-> **{Kerberos realm}** \- In AD it is usually the domian name written in all capital letters. \
+> **{Kerberos realm}** \- In AD it is usually the domain name written in all capital letters. \
 >
 
 **Example**
@@ -120,12 +120,12 @@ GRANT select any table TO ad_john_smith;
 ```
 
 ###  7. Test database connection from the user's AD account with Exaplus 
-Configuration is compleded. Now we can test connection to database from the user's AD account with help of Exaplus.
+Configuration is completed. Now we can test connection to the database from the user's AD account with help of Exaplus.
 
-* Login into user's machine using user's AD account.
-* Make sure that user's credential cache already contains appropriate tgt-ticket. To do so use **klist** command and check that the result contains ticket for the principal **{AD user name}@{Kerberos realm}**.
+* Login into the user's machine using user's AD account.
+* Make sure that user's credential cache already contains an appropriate tgt-ticket. To do so, use **klist** command and check that the result contains a ticket for the principal **{AD user name}@{Kerberos realm}**.
 * Open shell terminal and navigate to Exaplus directory
-* First try to connect to Exasol DB using a standart authentication method with username and password. For example use dba user from step 6.
+* First try to connect to Exasol DB using a standard authentication method with username and password. For example use dba user from step 6.
 ```
 ./exaplusx64.exe -c {Full connection string to Exasol db}
 ```
