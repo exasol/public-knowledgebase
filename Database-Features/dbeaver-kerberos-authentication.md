@@ -37,9 +37,9 @@ If you want to first check that Kerberos authentication was set up correctly in 
 
 ## 3. Create and test a connection using Kerberos authentication
 Before creating a new connection make sure that:
-> - you know the correct values of Service name and Host name of the Exasol DB Kerberos principal (those are set during configuration of Exasol DB to use a Kerberos authentication)\
-> - your OS user have an appropriate tgt-ticket in it's credential cache \
-> - DB user was created which is identified by OS user's kerberos principal \
+> - you know the correct values of Service name and Host name of the Exasol DB Kerberos principal (those are set during configuration of Exasol DB to use a Kerberos authentication)
+> - your OS user have an appropriate tgt-ticket in it's credential cache
+> - DB user was created which is identified by OS user's kerberos principal
 
 * Click **Create new Database connection** and select our new Exasol driver
   
