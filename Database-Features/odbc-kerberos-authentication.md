@@ -16,7 +16,7 @@ GRANT CREATE SESSION TO ad_john_smith;
 
 ## 2. Configure new DSN
 * Run **ODBC Data Source Administrator** and add a new User or System DSN. Select the previously installed **EXASolution Driver** and click **Finish**
-* 
+
 ![image](https://github.com/exasol/public-knowledgebase/assets/20660165/9aeaa5ff-bacd-4400-a330-b4919e787c21)
 
 * Enter the data source name. In the field **connection string** enter a full connection string with fingerprints and port. Leave **user** and **password** empty.
