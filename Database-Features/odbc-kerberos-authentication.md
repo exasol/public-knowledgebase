@@ -9,7 +9,7 @@ GRANT CREATE SESSION TO ad_john_smith;
 ```
 * Connection was successfully tested with **exaplus -k**. Service name and Host name of the Exasol DB Kerberos principal are known.
 
-![image](https://github.com/exasol/public-knowledgebase/assets/20660165/f76378ab-caf6-47e2-82cd-09ca764757c5)
+![](images/dbeaver-kerberos-authentication_screenshot_1.png)
 
 ## 1. Install latest Exasol ODBC driver
 * Download and install the latest version of Exasol ODBC driver here https://downloads.exasol.com/clients-and-drivers/odbc
@@ -17,11 +17,11 @@ GRANT CREATE SESSION TO ad_john_smith;
 ## 2. Configure new DSN
 * Run **ODBC Data Source Administrator** and add a new User or System DSN. Select the previously installed **EXASolution Driver** and click **Finish**
 
-![image](https://github.com/exasol/public-knowledgebase/assets/20660165/9aeaa5ff-bacd-4400-a330-b4919e787c21)
+![](images/odbc-kerberos-authentication_screenshot_2.png)
 
 * Enter the data source name. In the field **connection string** enter a full connection string with fingerprints and port. Leave **user** and **password** empty.
 
-![image](https://github.com/exasol/public-knowledgebase/assets/20660165/306d11dd-0ddb-44b3-9132-9e02a41d3379)
+![](images/odbc-kerberos-authentication_screenshot_3.png)
 
 * Go to **Advanced** tab. In the field **Aditional connection string parameters** type service name and Host name of the Exasol DB Kerberos principal are known in the following format (without spaces):
 ```
@@ -30,8 +30,8 @@ kerberosservicename=<service name>;kerberoshostname=<host name>
 > **kerberosservicename** : The service name of the Exasol DB Kerberos principal. Same as **Service name** parameter in **Exaplus -k**  \
 > **kerberoshostname** : The host name of the Exasol DB Kerberos principal. Same as **Host** parameter in **Exaplus -k** 
 
-![image](https://github.com/exasol/public-knowledgebase/assets/20660165/a1d25582-dbb3-4198-95d5-0980b3942546)
+![](images/odbc-kerberos-authentication_screenshot_4.png)
 
 * Go back to **Connection** tab and press **Test connection**. If the connection test is successful, click "Ok" and finish DSN creation.
 
-![image](https://github.com/exasol/public-knowledgebase/assets/20660165/e0436ff1-dabc-450e-af1b-b7a1aac36559)
+![](images/odbc-kerberos-authentication_screenshot_5.png)
