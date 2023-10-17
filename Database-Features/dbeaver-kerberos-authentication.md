@@ -10,7 +10,7 @@ GRANT CREATE SESSION TO ad_john_smith;
 ```
 * Connection was successfully tested with **exaplus -k**. Service name and Host name of the Exasol DB Kerberos principal are known.
 
-![image](https://github.com/exasol/public-knowledgebase/assets/20660165/f76378ab-caf6-47e2-82cd-09ca764757c5)
+![](images/dbeaver-kerberos-authentication_screenshot_1.png)
 
 ## 1. Install latest Exaplus or Exasol JDBC driver 
 Dbeaver already has an Exasol driver in its standard delivery, but this driver might not be the newest one and may not include kerberos libraries. 
@@ -27,11 +27,11 @@ If you want to first check that Kerberos authentication was set up correctly in 
 > **Driver type** : ```Generic``` \
 > **Class name** : ```com.exasol.jdbc.EXADriver```
 
-![image](https://github.com/exasol/public-knowledgebase/assets/20660165/9730dea9-4246-4756-80aa-728c34279710)
+![](images/dbeaver-kerberos-authentication_screenshot_2.png)
 
 * Go to **Libraries** tab and click **Add file**. Navigate to Exaplus or JDBC driver directory (for example: C:\Program Files\Exasol\EXASolution-7.1\EXAplus) and select **exajdbc.jar**.
 
-![image](https://github.com/exasol/public-knowledgebase/assets/20660165/1f9da46f-5a7d-496b-bd17-bbf5647a4ffb)
+![](images/dbeaver-kerberos-authentication_screenshot_3.png)
 
 * Click **Ok** to create a new Dbeaver driver.
 
@@ -43,16 +43,16 @@ Before creating a new connection make sure that:
 
 * Click **Create new Database connection** and select our new Exasol driver
   
-![image](https://github.com/exasol/public-knowledgebase/assets/20660165/7012f267-686b-420d-a20c-a654af39bee3)
+![](images/dbeaver-kerberos-authentication_screenshot_4.png)
 
 * Enter the database full connection string starting with **jdbc:exa:** in **JDBC URL**. Leave **user** and **password** empty.
 
-![image](https://github.com/exasol/public-knowledgebase/assets/20660165/669e1631-8121-467c-9a2f-a8dc1a967d10)
+![](images/dbeaver-kerberos-authentication_screenshot_5.png)
 
 * Go to **Driver properties** tab and specify only 2 additional parameters (**kerberoshostname** and **kerberosservicename**) and nothing else
 > **kerberosservicename** : The service name of the Exasol DB Kerberos principal. Same as **Service name** parameter in **Exaplus -k**  \
 > **kerberoshostname** : The host name of the Exasol DB Kerberos principal. Same as **Host** parameter in **Exaplus -k** \
 
-![image](https://github.com/exasol/public-knowledgebase/assets/20660165/e9105830-3093-4e06-86d3-7bec6e2e8ca4)
+![](images/dbeaver-kerberos-authentication_screenshot_6.png)
 
 * Click **Test connection** and if it works click **Finish**. Connection is configured.
