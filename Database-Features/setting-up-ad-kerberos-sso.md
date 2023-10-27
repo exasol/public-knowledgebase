@@ -41,10 +41,10 @@ In order to register SPN execute following command in power shell:
 setspn -S {Exasol service name}/{Exasol host name}.{AD domian} {Service account name}
 ```
 
-**{Exasol service name}**: this parameter represents a **kerberos service name** of a particular exasol instance. This is the first out of 2 parameters which will be used during user authentication. It is arbitrary now, but later on it will be critical to use the exact value which is set up here.  
-**{Exasol host name}**: this parameter represents a **kerberos host name** of a particular exasol instance. This is the second out of 2 parameters which will be used during user authentication. It is arbitrary now, but later on it will be critical to use the exact value which is set up here.  
-**{AD domian}**: Active Directory domain of the Exasol service user created during step 1  
-**{Service account name}**: Exasol service user created during step 1  
+**\{Exasol service name\}**: this parameter represents a **kerberos service name** of a particular exasol instance. This is the first out of 2 parameters which will be used during user authentication. It is arbitrary now, but later on it will be critical to use the exact value which is set up here.  
+**\{Exasol host name\}**: this parameter represents a **kerberos host name** of a particular exasol instance. This is the second out of 2 parameters which will be used during user authentication. It is arbitrary now, but later on it will be critical to use the exact value which is set up here.  
+**\{AD domian\}**: Active Directory domain of the Exasol service user created during step 1  
+**\{Service account name\}**: Exasol service user created during step 1  
 
 To check that SPN was registered correctly run the following command in power shell:
 ```
@@ -63,14 +63,14 @@ With help of the following ktpass command generate a keytab for Exasol service w
 ```
 ktpass -out {Keytab path}\exasol_service.keytab -princ {Exasol service name}/{Exasol host name}.{AD domian}@{Kerberos realm} -mapuser {NETBIOS}\{Service account name} -mapop set -pass {Service account password} -ptype KRB5_NT_PRINCIPAL -crypto all
 ```
-**{Keytab path}**: Arbitrary local directory where keytab file will be created.  
-**{Exasol service name}**: Exasol **kerberos service name** which was set in step 3.  
-**{Exasol host name}**: Exasol **kerberos host name** which was set in step 3.  
-**{AD domian}**: Active Directory domain name of the Exasol service user created during step 1.  
-**{Kerberos realm}**: In AD it is usually the domain name written in all capital letters.  
-**{NETBIOS}**: Active Directory domain's Netbios (subdomain) name. Can be found in AD domain properties.  
-**{Service account name}**: Exasol service user created during step 1.  
-**{Service account password}**: Password of the Exasol service user created during step 1.  
+**\{Keytab path\}**: Arbitrary local directory where keytab file will be created.  
+**\{Exasol service name\}**: Exasol **kerberos service name** which was set in step 3.  
+**\{Exasol host name\}**: Exasol **kerberos host name** which was set in step 3.  
+**\{AD domian\}**: Active Directory domain name of the Exasol service user created during step 1.  
+**\{Kerberos realm\}**: In AD it is usually the domain name written in all capital letters.  
+**\{NETBIOS\}**: Active Directory domain's Netbios (subdomain) name. Can be found in AD domain properties.  
+**\{Service account name\}**: Exasol service user created during step 1.  
+**\{Service account password\}**: Password of the Exasol service user created during step 1.  
 
 **Example**
 ```
@@ -107,9 +107,9 @@ create user {db user name} identified by KERBEROS PRINCIPAL '{AD user name}@{Ker
 GRANT CREATE SESSION TO {db user name};
 -- grant all other privileges and roles necessary for this particular user
 ```
-**{db user name}**: arbitrary Exasol db user name. This username itself is just a representation of AD user, it can be completely different form AD username and will not be directly used during authentication.  
-**{AD user name}**: username of AD user which we want to allow to access the database.  
-**{Kerberos realm}**: In AD it is usually the domain name written in all capital letters.  
+**\{db user name\}**: arbitrary Exasol db user name. This username itself is just a representation of AD user, it can be completely different form AD username and will not be directly used during authentication.  
+**\{AD user name\}**: username of AD user which we want to allow to access the database.  
+**\{Kerberos realm\}**: In AD it is usually the domain name written in all capital letters.  
 
 **Example**
 ```sql
