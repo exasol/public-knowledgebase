@@ -27,8 +27,8 @@ GRANT CREATE SESSION TO ad_john_smith;
 ```
 kerberosservicename=<service name>;kerberoshostname=<host name>
 ```
-> **kerberosservicename** : The service name of the Exasol DB Kerberos principal. Same as **Service name** parameter in **Exaplus -k**  \
-> **kerberoshostname** : The host name of the Exasol DB Kerberos principal. Same as **Host** parameter in **Exaplus -k** 
+**kerberosservicename** : The service name of the Exasol DB Kerberos principal. Same as **Service name** parameter in **Exaplus -k**  
+**kerberoshostname** : The host name of the Exasol DB Kerberos principal. Same as **Host** parameter in **Exaplus -k**  
 
 ![](images/odbc-kerberos-authentication_screenshot_4.png)
 
