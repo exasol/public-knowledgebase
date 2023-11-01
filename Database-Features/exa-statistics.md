@@ -68,7 +68,7 @@ The table EXA_SYSTEM_EVENTS contains system events, such as:
 Determining the overall average compression ratio, average raw database size and average compressed database size on monthly basis:
 
 
-```"code-sql"
+```sql
 SELECT RAW_OBJECT_SIZE_AVG/NULLIFZERO(MEM_OBJECT_SIZE_AVG) AS COMPRESSION_RATIO,        
  RAW_OBJECT_SIZE_AVG,        
  MEM_OBJECT_SIZE_AVG FROM EXA_DB_SIZE_MONTHLY;

@@ -12,7 +12,7 @@ Often, an analysis will be complex enough that it is very hard or cumbersome to 
 The usual way to work around this is to create temporary tables with intermediate results and then combine those in a 'final' select statement:
 
 
-```"code-sql"
+```sql
 CREATE TABLE german_cities AS
 (
        SELECT cities.* FROM cities, countries
@@ -51,7 +51,7 @@ The better solution, in this case, is to replace the temporary tables with views
 * There is no outdated data. The views always access the currently valid (committed) fact data.
 
 
-```"code-sql"
+```sql
 CREATE VIEW german_cities AS
 (
        SELECT cities.* FROM cities, countries
@@ -78,7 +78,7 @@ In these cases, named subselects (also called Common Table Expressions or CTEs) 
 Basically, they work like views, but they are not database objects. Instead they are parts of your query. No need to create them, drop them, commit them: No overhead, but still all the flexibility you wish for:
 
 
-```"code-sql"
+```sql
 WITH german_cities AS
 (
        SELECT cities.* FROM cities, countries

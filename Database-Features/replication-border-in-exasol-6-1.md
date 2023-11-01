@@ -17,7 +17,7 @@ A table will be joined by smart table replication if it has fewer or equal rows 
 The replication borders can be modified through **extra database parameters** in the web interface:
 
 
-```"code-java"
+```
 -soft_replicationborder_in_numrows=<numrows> [default is 100000 rows]
 ```
 

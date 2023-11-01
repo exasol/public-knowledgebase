@@ -5,7 +5,7 @@ Google Bigquery is able to connected with Exasol via the [Simba JDBC Driver](htt
 
 As Google's documentation states, the JDBC driver is not designed for large volumes of data transfer between external systems and Bigquery. Internally, for EXPORTs, the data is transferred via single-row inserts and these are limited by Google to 100. Thus, exporting data via the JDBC driver is not a performant or scalable solution. IMPORTs using the JDBC driver are also not very performant due to the Simba JDBC driver limitations.
 
-[According to Google](https://cloud.google.com/bigquery/docs/loading-data), the *recommended* way to ingest data into Bigquery is via files or Cloud Storage. Therefore, this solution make use of the Google API to load the data into a CSV file in Google Cloud Storage and then will insert the data into the target system (Bigquery or Exasol).  
+[According to Google](https://cloud.google.com/bigquery/docs/loading-data), the *recommended* way to ingest data into Bigquery is via files or Cloud Storage. Therefore, this article makes use of the Google API to load the data into a CSV file in Google Cloud Storage and then will insert the data into the target system (Bigquery or Exasol).  
 
 ## Prerequisites
 
@@ -25,19 +25,19 @@ The description on how to IMPORT data from Google Bigquery is described in detai
 2. Upload JSON key to BucketFS
 3. Configure the Driver in EXAoperation
 4. Create Database Connection to Google Bigquery, such as:
-```markup
+```sql
 CREATE CONNECTION BQ_CON TO 'jdbc:bigquery://https://www.googleapis.com/bigquery/v2:443;
  ProjectId=<your-project-id>;OAuthType=0;Timeout=10000;OAuthServiceAcctEmail=<your-service-account>;
  OAuthPvtKeyPath=/d02_data/<bucketfs-service>/<bucket-name>/<your-account-keyfile>;';
 ```
 5. You can run an IMPORT statement like below:
-```markup
+```sql
 IMPORT INTO (C1 INT) FROM JDBC AT BQ_CON STATEMENT 'SELECT 1';
 ```
 
 ## Method 2: Using the script (more performant and scalable)
 
-This solution will export the bigquery data into a CSV file stored in Google Cloud Storage via UDF using the Google API, and then will IMPORT the file into the target table in Exasol. 
+This article will export the bigquery data into a CSV file stored in Google Cloud Storage via UDF using the Google API, and then will IMPORT the file into the target table in Exasol. 
 
 ### Prerequisites
 
@@ -53,7 +53,7 @@ Since release 1.1.0 of Standard Script Language Containers ([link](https://githu
 Create a CONNECTION to Google Cloud Storage as described [here](https://docs.exasol.com/loading_data/load_data_google_cloud_storage_buckets.htm). You will use the credentials from the HMAC key in the CONNECTION object, like below. You should replace the bucket-name with the name of the Google Cloud Storage bucket
 
 
-```markup
+```sql
 create connection google_cloud_storage to 'https://<bucket-name>.storage.googleapis.com' 
  user '<access key>' IDENTIFIED BY '<secret>';
 ```
@@ -66,7 +66,7 @@ Run the commands found in the [import_from_bigquery.sql](https://raw.githubuserc
 Once the scripts are created, you can run this command to run the Lua script which calls the UDF that was created:
 
 
-```markup
+```sql
 execute script ETL.bigquery_import(connection_name_to_cloud_storage,file_name_in_cloud_storage,bigquery_dataset,bigquery_table,exasol_schema,exasol_table);
 ```
 The parameters are:
@@ -81,18 +81,15 @@ The parameters are:
 In my example, the call looks like this:
 
 
-```markup
+```sql
 execute script ETL.bigquery_import('GOOGLE_CLOUD_STORAGE','test_1.csv','DATASET1','TEST1','TEST','NUMBERS');
 ```
 ## Performance Considerations
 
 In my tests using a table containing approximately 1 million rows containing 10 columns (all integer), there was a considerable performance improvement using the script approach vs the JDBC approach:
 
-
-
-|  |  |
+| Approach | Duration |
 | --- | --- |
-| **Approach** | **Duration** |
 | IMPORT FROM JDBC... | 33 Seconds |
 | Script Approach | 16 Seconds |
 
@@ -100,7 +97,7 @@ In my tests using a table containing approximately 1 million rows containing 10 
 
 As Google's documentation states, the JDBC driver is not designed for large volumes of data transfer between external systems and Bigquery. Internally, the data is transferred via single-row inserts and these are limited by Google to 100. Thus, exporting data via the JDBC driver is not a performant or scalable solution. 
 
-[According to Google](https://cloud.google.com/bigquery/docs/loading-data), the *recommended* way to ingest data into Bigquery is via files or Cloud Storage. Therefore, this solution will export the exasol data into a CSV file stored in Google Cloud Storage, and then will call a UDF which will transfer the data to Bigquery using the Google API. 
+[According to Google](https://cloud.google.com/bigquery/docs/loading-data), the *recommended* way to ingest data into Bigquery is via files or Cloud Storage. Therefore, this article will export the exasol data into a CSV file stored in Google Cloud Storage, and then will call a UDF which will transfer the data to Bigquery using the Google API. 
 
 ## Prerequisites
 
@@ -116,7 +113,7 @@ Since release 1.1.0 of Standard Script Language Containers ([link](https://githu
 Create a CONNECTION to Google Cloud Storage as described [here](https://docs.exasol.com/loading_data/load_data_google_cloud_storage_buckets.htm). You will use the credentials from the HMAC key in the CONNECTION object, like below. You should replace the bucket-name with the name of the Google Cloud Storage bucket
 
 
-```markup
+```sql
 create connection google_cloud_storage to 'https://<bucket-name>.storage.googleapis.com' 
  user '<access key>' IDENTIFIED BY '<secret>';
 ```
@@ -129,7 +126,7 @@ Run the commands found in the [export_to_bigquery.sql](https://raw.githubusercon
 Once the scripts are created, you can run this command to run the Lua script which calls the UDF that was created:
 
 
-```markup
+```sql
 execute script ETL.bigquery_export(connection_name_to_cloud_storage,file_name_in_cloud_storage,bigquery_dataset,bigquery_table,exasol_schema,exasol_table);
 ```
 The parameters are:
@@ -144,7 +141,7 @@ The parameters are:
 In my example, the call looks like this:
 
 
-```markup
+```sql
 execute script ETL.bigquery_export('GOOGLE_CLOUD_STORAGE','test_1.csv','DATASET1','TEST1','TEST_SCHEMA','NUMBERS');
 ```
 ## Additional Notes

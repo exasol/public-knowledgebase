@@ -8,21 +8,21 @@ Impersonation is a new feature in Exasol 6.1. It allows for switching to a diffe
 The new system privilege IMPERSONATE ANY USER has been granted to sys and to the DBA role. This allows sys respectively grantees of the DBA role to become any user without having to specify their password:
 
 
-```"code-sql"
+```sql
 -- Example 1: sys is connected and becomes fred: 
 IMPERSONATE fred;
 ```
 Otherwise, the IMPERSONATION ON <user_name> privilege can be granted to a user that should be allowed to impersonate that other user.
 
 
-```"code-sql"
+```sql
 -- Example 2: bob is allowed to impersonate sys 
 GRANT IMPERSONATION ON sys TO bob; 
 ```
 Using the IMPERSONATE command, users can change the effective user within their sessions:
 
 
-```"code-sql"
+```sql
 -- Example 3: bob impersonates sys, so that he has sys' privileges 
 SELECT current_user; -- shows BOB 
 IMPERSONATE sys; 
@@ -46,7 +46,7 @@ Mind that EXA_DBA_AUDIT_... tables are only populated with data if auditing is e
 The following query adds an EFFECTIVE_USER column to the EXA_DBA_AUDIT_SQL. It shows for every query with whose user's privileges a query was executed:
 
 
-```"code-sql"
+```sql
 with impersonations as
 (
   select stmt_id + 1 as first_stmt_id, lead(stmt_id, 1, 999999999999) 

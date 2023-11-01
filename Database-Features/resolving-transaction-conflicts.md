@@ -14,7 +14,7 @@ A user may identify this problem by complaining that the query is running slow. 
 You can immediately diagnose if this is the case by looking into the EXA_DBA_SESSIONS or EXA_ALL_SESSIONS. For each session which experiences a WAIT FOR COMMIT, you will see that the session has the activity "Waiting for session &lt;Session ID&gt;". The session mentioned in the ACTIVITY column is known as the "Conflict Session ID".
 
 
-```markup
+```sql
 SELECT * FROM EXA_ALL_SESSIONS WHERE INSTR(ACTIVITY,'Waiting') > 0;
 ```
 **If the query was in the past:**
@@ -22,7 +22,7 @@ SELECT * FROM EXA_ALL_SESSIONS WHERE INSTR(ACTIVITY,'Waiting') > 0;
 You can view previous transaction conflicts by viewing the table EXA_DBA_TRANSACTION_CONFLICTS, which contains a historicized record of every transaction conflict. You can filter the table by the affected session ID to determine if the session in the past experienced a transaction conflict while the query was running:
 
 
-```markup
+```sql
 SELECT * FROM EXA_DBA_TRANSACTION_CONFLICTS WHERE SESSION_ID = <Session ID>;
 ```
 ## Explanation/Investigation
@@ -40,7 +40,7 @@ When a transaction conflict occurs, there are only two options to resolve the pr
 The session that needs to be killed is the one that is found in the "Waiting for " message in EXA_ALL_SESSIONS. Additionally, this is stored as the CONFLICT_SESSION_ID in EXA_DBA_TRANSACTION_CONFLICTS . The session can be killed with the following statement:
 
 
-```markup
+```sql
 KILL SESSION <Conflict Session ID>;
 ```
 **2. Wait for the commit**
@@ -48,7 +48,7 @@ KILL SESSION <Conflict Session ID>;
 The other option is to take no action, and simply let the conflict session ID commit. If you know for sure that the conflict session ID is in the middle of a job or will complete very soon, then it might be appropriate to let the conflict persist until the conflict session ID has the time to commit. You can monitor the progress of this session also in the EXA_ALL_SESSIONS/EXA_DBA_SESSIONS table.
 
 
-```markup
+```sql
 SELECT * FROM EXA_DBA_SESSIONS WHERE SESSION_ID = <conflict session Id>;
 ```
 If the conflict session is simply left open (STATUS='IDLE') and not doing anything, waiting for the session may not be an option and may need to be killed. 
@@ -59,7 +59,7 @@ Exasol recommends to keep autocommit on and not leave transactions open for too 
 
 ## Additional References
 
-* <https://docs.exasol.com/database_concepts/transaction_management.htm>
+* [Transaction Management](https://docs.exasol.com/database_concepts/transaction_management.htm)
 * [Transaction System](https://exasol.my.site.com/s/article/Transaction-System)
 * [Filter on system tables and transaction conflicts](https://exasol.my.site.com/s/article/Filter-on-system-tables-and-transaction-conflicts)
 * [Transaction Conflicts for Mixed Read/Write Transactions](https://exasol.my.site.com/s/article/Transaction-Conflicts-for-Mixed-Read-Write-Transactions)

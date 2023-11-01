@@ -20,7 +20,7 @@ Any console will do, depending on your operating system.
 ## Step 2: Change into the 'bin' directory of the JDK installation:
 
 
-```"code-java"
+```
 cd "C:\Program Files\Java\jdk1.8.0_20\bin" 
 ```
 Please note:

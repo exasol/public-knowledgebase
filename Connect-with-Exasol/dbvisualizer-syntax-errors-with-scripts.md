@@ -15,7 +15,7 @@ If you just hit "Continue", the database will then more than likely throw a synt
 
 DbVisualizer supports several different type of "Parameter Markers", which look like:
 
-```markup
+```
 &name
 :name
 :{name}

@@ -19,7 +19,7 @@ In order to run the examples below, let's create a basic test environment.
 3. Create test schema and table.
 
 
-```markup
+```sql
 CREATE SCHEMA exa_test;  
 CREATE OR REPLACE TABLE exa_test.users 
  (     
@@ -40,7 +40,7 @@ You may IMPORT data not only from LOCAL FILE, but also from system files and pse
 Example:
 
 
-```markup
+```shell
 cat exajload_users.csv | head -n 100 | ./exajload \
 -c 'localhost:8563' \
 -u 'SYS' \
@@ -56,7 +56,7 @@ It is possible to upgrade the previous example by sending compressed data stream
 All we need to do is to "trick" Exasol into thinking that it is going to import from file with **.gz** extension. This can be achieved by creating a symlink **stdin.gz** pointing to **/dev/stdin**.
 
 
-```markup
+```shell
 ln -s /dev/stdin stdin.gz
 ```
 Now can we use this symlink to send a compressed data stream.
@@ -64,7 +64,7 @@ Now can we use this symlink to send a compressed data stream.
 Example:
 
 
-```markup
+```shell
 cat exajload_users.csv | head -n 200 | gzip -c | ./exajload \
 -c 'localhost:8563' \
 -u 'SYS' \
@@ -80,13 +80,13 @@ Exasol JDBC connections are encrypted by default since version 6.0+. It is "good
 In order to do so, you should add the explicit option to JDBC connection string:
 
 
-```markup
+```
 ;encryption=0
 ```
 Example:
 
 
-```markup
+```shell
 ./exajload \
 -c 'localhost:8563;encryption=0' \
 -u 'SYS' \
@@ -106,7 +106,7 @@ In order to do so, you should disable autocommit explicitly, and call COMMIT man
 Example:
 
 
-```markup
+```shell
 ./exajload \
 -c 'localhost:8563;autocommit=0' \
 -u 'SYS' \

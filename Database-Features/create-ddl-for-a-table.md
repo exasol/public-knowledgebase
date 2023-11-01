@@ -10,7 +10,7 @@
  Example call:
 
    
-```"code-sql"
+```sql
 execute script exa_toolbox.create_table_ddl('SOURCE_SCHEMA', 'SOURCE_TABLE', 'TARGET_SCHEMA', 'TARGET_TABLE', true) ; 
 ```
    If the last parameter is 'true', the script will add the "OR REPLACE" option

@@ -30,7 +30,7 @@ Based on the query above, I have identified a session that is experiencing a con
 This information is also visible in EXA_DBA_TRANSACTION_CONFLICTS:
 
 
-```markup
+```sql
 select * from EXA_DBA_TRANSACTION_CONFLICTS WHERE TO_DATE(START_TIME) = CURRENT_DATE AND STOP_TIME IS NULL;
 ```
 ![](images/exa-Nico_1-1600945520523.png)
@@ -50,7 +50,7 @@ The SESSION_ID above is 1678224389846990848 and is the session that is actually
 Now that we have transaction 3 identified (this is also the session which experienced the WAIT FOR COMMIT), we can check auditing to find out what this session has been doing. In our case, the conflict is still occurring, so the auditing entry will be empty, but we can view the query being run in EXA_DBA_SESSIONS. Let's check the query that is currently being ran:
 
 
-```markup
+```sql
 --The Session ID corresponds to the session in tr3 
 select SESSION_ID, STATUS, ACTIVITY, SQL_TEXT from EXA_DBA_SESSIONS WHERE SESSION_ID = 1678224389846990848;
 ```
@@ -59,7 +59,7 @@ select SESSION_ID, STATUS, ACTIVITY, SQL_TEXT from EXA_DBA_SESSIONS WHERE SESSIO
 If you are investigating a conflict in the past, you can query auditing to find this information as well:
 
 
-```markup
+```sql
 SELECT * FROM EXA_DBA_AUDIT_SQL WHERE SESSION_ID = 1678224389846990848;
 ```
 Since our query is still running, we can assume that the start time of the query is the exact moment that the conflict started, which in this case is 2020-09-18 18:38:17.851 (as seen from EXA_DBA_TRANSACTION_CONFLICTS). We know that TEST.T1 is the conflict object, as seen from EXA_DBA_TRANSACTION_CONFLICTS. So, let's add this information to our table:
@@ -80,7 +80,7 @@ Now, we can take a look at auditing to determine information on transaction 1. W
 Transactions contain multiple queries and encompass all queries from the moment that the last COMMIT or ROLLBACK happened. So, we need to identify when exactly the transaction *started* to determine all of the queries that were in this transaction. 
 
 
-```markup
+```sql
 -- Session ID = the CONFLICT_SESSION_ID, which corresponds to tr1 
 -- START_TIME is less than the start time that is shown in EXA_DBA_TRANSACTION_CONFLICTS  
 SELECT SESSION_ID, STMT_ID, COMMAND_NAME, COMMAND_CLASS, START_TIME, STOP_TIME 
@@ -91,7 +91,7 @@ AND START_TIME < '2020-09-18 18:38:17.851' ORDER BY START_TIME DESC LIMIT 1;
 
 Now we know that the last commit had STMT_ID 10, so we need to know all of the queries that ran AFTER that last commit. We can make a query to get this information:
 
-```markup
+```sql
 --Session Id = the CONFLICT_SESSION_ID which corresponds to tr1 
 -- START_TIME is less than the start_time that is shown in EXA_DBA_TRANSACTION_CONFLICTS 
 -- STMT_ID is greater than the statement id of the last commit/rollback  
@@ -122,7 +122,7 @@ You need to look for any objects that are read in the query - this could be afte
 I can further verify that these objects are tables by querying EXA_ALL_OBJECTS:
 
 
-```markup
+```sql
 -- I use snapshot execution to ensure that this query does not get a Wait for commit 
 --  
 /*snapshot execution*/ select ROOT_NAME||'.'||OBJECT_NAME FULL_NAME, OBJECT_TYPE FROM EXA_ALL_OBJECTS WHERE LOCAL.FULL_NAME IN ( 
@@ -154,7 +154,7 @@ Again, we can turn to auditing to identify this. We know the following informati
 Let's write our query then:
 
 
-```markup
+```sql
 -- Start_time is greater than the start of the transaction in tr1 
 -- Start time is less than the start of the conflict 
 -- Session ID does not equal the CONFLICT_SESSION_ID 
@@ -173,7 +173,7 @@ We have successfully identified a session which modified the object in question!
 Now that we have a session ID, let's find out exactly what this session did:
 
 
-```markup
+```sql
 SELECT SESSION_ID, STMT_ID, COMMAND_NAME, COMMAND_CLASS, START_TIME, STOP_TIME, SQL_TEXT 
 FROM EXA_DBA_AUDIT_SQL  WHERE SESSION_ID  = 1678224357205278720;
 ```
@@ -196,7 +196,7 @@ With this information, we now can identify the complete turn of events to explai
 Session ID 1678224233621028864 ran the following query at 2020-09-18 18:37:37.532 which read TEST.T2 and wrote TEST.T1:
 
 
-```markup
+```sql
 INSERT INTO TEST.T1 SELECT * FROM TEST.T2
 ```
 After this insert statement, the session never sent a COMMIT or ROLLBACK leading to the transaction simply being opened. 
@@ -204,7 +204,7 @@ After this insert statement, the session never sent a COMMIT or ROLLBACK leading
 Shortly afterwards, Session ID 1678224357205278720 wrote the object TEST.T2 by running the following statement: 
 
 
-```markup
+```sql
 insert into test.t2 values (4)
 ```
 and sending a COMMIT afterwards. This enforced the relationship that tr2 must occur after tr1 because it wrote one of the objects that was read in tr1. Finally, Session 1678224389846990848 tried to read TEST.T1, which enforced the relationship that tr3 must occur after tr2, and therefore also after tr1. This leads to the WAIT FOR COMMIT scenario. 

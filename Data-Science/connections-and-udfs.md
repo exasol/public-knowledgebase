@@ -7,10 +7,10 @@ When you are working with UDF's, you may want to access some credentials to conn
 
 If you are trying to access connection credentials in a UDF, but do not have the correct permissions, you will see an error like this:
 
-
-```markup
+```
 insufficient privileges for using connection <connection name> in script <script name>
 ```
+
 This error could also occur when working with [Virtual Schemas](https://docs.exasol.com/database_concepts/virtual_schemas.htm) or [Cloud Storage UDFs](https://github.com/exasol/cloud-storage-extension)
 
 ## Explanation
@@ -24,19 +24,19 @@ To fix this error, you can grant the ACCESS privilege to the user. This privileg
 **Method 1 - least secure** - allows any script executed by this user to read the connection credentials
 
 
-```markup
+```sql
 GRANT ACCESS ON <CONNECTION_NAME> TO <USER>;
 ```
 **Method 2 - more secure** - allows all scripts in the specified schema executed by this user to read the connection credentials
 
 
-```markup
+```sql
 GRANT ACCESS ON <CONNECTION_NAME> for <SCHEMA_NAME> TO <USER>;
 ```
 **Method 3 - most secure** - allows only the named script executed by this user to read the connection credentials
 
 
-```markup
+```sql
 GRANT ACCESS ON <CONNECTION_NAME> FOR <SCHEMA_NAME>.<SCRIPT_NAME> TO <USER>;
 ```
 **Note- if you use method 3, any re-creation of the script (CREATE OR REPLACE) will drop also the privileges for this script**. So you would need to re-grant the access privileges. If you know that the script will be updated or re-created often, it may be better to grant it on the entire schema to avoid this problem.

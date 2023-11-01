@@ -14,7 +14,7 @@ In practice, you might face the following challenges:
 * Connect to a REST API from an Exasol UDF language (Python, Java, R, Lua).
 * If you want to benefit from Exasol's GEOMETRY data type (e.g. in order to run geospatial functions), you need to think about converting this data to Python strings and back.
 
-This solution uses Python and the python package [requests](https://requests.readthedocs.io/en/master/) to connect to the REST API.  
+This article uses Python and the python package [requests](https://requests.readthedocs.io/en/master/) to connect to the REST API.  
 As an example, we only demonstrate geocoding and reverse geocoding.
 
 ## Prerequisites

@@ -12,7 +12,7 @@ IBM Unica Campaign with MySQL template
 Create a pre-processor script that adjusts the SQL statements to appropriate ones.
 
 
-```"code-java"
+```lua
 CREATE OR REPLACE LUA SCRIPT DATAMART.PPSCRIPT_MYSQL RETURNS ROWCOUNT AS function unicaproc(sqltext)
   local tokens = sqlparsing.tokenize(sqltext)
   for i=1,#tokens do
@@ -34,7 +34,7 @@ end
 Activate this preprocessor script for all Unica session or system wide:
 
 
-```"code-java"
+```sql
 ALTER [SESSION|SYSTEM] SET sql_preprocessor_script=DATAMART.PPSCRIPT_MYSQL;
 ```
 

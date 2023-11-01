@@ -41,7 +41,7 @@ ConfD jobs are carefully designed to record down all the necessary information f
 RPC provides a high-level client-to-server communication for network application development. ConfD jobs also leverage modern RPC programming and support both XML and JSON for serialization/de-serialization. By implementing RPC APIs, ConfD provides the capability for remote management and automation. There are both pros and cons for XMLRPC and JSON-based RPC; the client can decide what to use. ConfD RPC removes insecure HTTP support and only listens on HTTPS. Customers have to decide whether or not to enable certificate verification on the server-side and if so, configure the SSL certification in EXAConf:
 
 
-```markup
+```
 # SSL options
 [SSL]
     # The SSL certificate, private key and CA for all EXASOL services
@@ -58,7 +58,7 @@ RPC provides a high-level client-to-server communication for network application
 Clients can send RPC requests to any node in the cluster but if that node is not a master node, HTTP_ERROR 302 (redirected). Either clients handle this error, or get the master node before sending out requests.
 
 
-```markup
+```python
 import requests
 # get current master IP (use any valid IP in the cluster for this request)
 # for example, one of the node ip is 10.10.10.11 
@@ -103,7 +103,7 @@ Jobs can be categorized into a few groups, like:
 and so on. There are too many of them but it's not necessary to remember all of them. Just check that information whenever needed.
 
 
-```markup
+```python
 # continue from above
 print (f'{server.job_list ()}')
 # jobs list

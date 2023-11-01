@@ -17,6 +17,6 @@ We recommend to filter only on DECIMAL columns to avoid described problems.
 
 The actual value range of this type can be seen in our documentation:
 
-<https://docs.exasol.com/sql_references/data_types/datatypedetails.htm>
+[Data Type Details](https://docs.exasol.com/sql_references/data_types/datatypedetails.htm)
 
 *We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

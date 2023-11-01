@@ -11,6 +11,8 @@ See <https://www.youtube.com/watch?v=C3eyqTw3HsQ> for a video demonstration of t
 
 **You should replace the API key given here with you own key**
 
+**Please note that currently adding additional libraries for UDFs is done by creating custom Script Language Containers (see [Expanding Script Languages](https://docs.exasol.com/db/latest/database_concepts/udf_scripts/adding_new_packages_script_languages.htm)).**
+
 ## Using Google Maps API with Exasol
 
 ## Geocoding
@@ -18,9 +20,9 @@ See <https://www.youtube.com/watch?v=C3eyqTw3HsQ> for a video demonstration of t
 ![](images/Slide9.jpg)
 
 
-```"code
+```python
 --/
-CREATE or replace PYTHON SET SCRIPT google_geocode(placename varchar(200)) 
+CREATE or replace PYTHON3 SET SCRIPT google_geocode(placename varchar(200)) 
 emits (lat double, lng double) AS
 import googlemaps
 def run(ctx):
@@ -39,9 +41,9 @@ select google_geocode('10 Downing Street, London, UK') from dual;
 ![](images/Slide10.jpg)
 
 
-```"code
+```python
 --/
-CREATE or replace PYTHON SET SCRIPT google_reverse_geocode(lat double, lng double) emits (placename varchar(20000)) AS
+CREATE or replace PYTHON3 SET SCRIPT google_reverse_geocode(lat double, lng double) emits (placename varchar(20000)) AS
 import googlemaps
 def run(ctx):
 	gmaps = googlemaps.Client(key='<your-secret-key>')
@@ -58,9 +60,9 @@ select google_reverse_geocode(51.5034066, -0.1275923) from dual;
 ![](images/Slide8.jpg)
 
 
-```"code
+```python
 --/
-CREATE OR REPLACE PYTHON SET SCRIPT google_nearest(address_search varchar(2000), category_search varchar(2000)) 
+CREATE OR REPLACE PYTHON3 SET SCRIPT google_nearest(address_search varchar(2000), category_search varchar(2000)) 
 EMITS (placename varchar(20000), geolocation varchar(200)) AS
 import googleplaces
 from googleplaces import GooglePlaces
@@ -82,9 +84,9 @@ select google_nearest('Neumeyerstrasse, Nuremberg, Germany', 'Bakery') from dual
 ![](images/Slide11.jpg)
 
 
-```"code
+```python
 --/
-CREATE or replace PYTHON SET SCRIPT google_summary_directions(from_place varchar(20000), to_place varchar(20000)) 
+CREATE or replace PYTHON3 SET SCRIPT google_summary_directions(from_place varchar(20000), to_place varchar(20000)) 
 emits (distance_metres double, duration_seconds double) AS
 import googlemaps
 def run(ctx):
@@ -106,6 +108,8 @@ select google_summary_directions('Buckingham Palace, Westminster, London', '10 D
 
 ## Additional References
 
-[Importing and Exporting Data with Google Bigquery](https://exasol.my.site.com/s/article/Importing-and-Exporting-Data-with-Google-Bigquery)
+* [Importing and Exporting Data with Google Bigquery](https://exasol.my.site.com/s/article/Importing-and-Exporting-Data-with-Google-Bigquery)
+* [Expanding Script Languages](https://docs.exasol.com/db/latest/database_concepts/udf_scripts/adding_new_packages_script_languages.htm)
+* [Esri: (reverse) geocoding with ArcGIS REST API and Exasol's GEOMETRY data type](https://exasol.my.site.com/s/article/Esri-reverse-geocoding-with-ArcGIS-REST-API-and-Exasol-s-GEOMETRY-data-type?language=en_US)
 
 *We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

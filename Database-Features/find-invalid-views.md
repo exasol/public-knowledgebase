@@ -12,7 +12,8 @@ You can figure out whether views are invalid by looking at whether there are EXA
 To make sure EXA_ALL_COLUMNS is accurate you have to first access any view that falls under these two scenarios and then check again. So the procedure is:
 
 1. Run: 
-```SELECT view_schema, view_name  
+```sql
+SELECT view_schema, view_name  
 FROM exa_all_views v  
 LEFT JOIN exa_all_columns c  
   ON v.view_schema = c.column_schema  

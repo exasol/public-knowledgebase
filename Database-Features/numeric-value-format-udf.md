@@ -1,8 +1,8 @@
-# How to See All Currently Running Scripts
+# Numeric value format UDF
 
 ## Question
 I have a Python UDF that will take a numeric value and apply an Excel like number format to produce a nicely formatted string value. This works really well, but performance is not optimal. Can anyone think of a more efficient way of doing this?  
-```
+```python
 CREATE OR REPLACE PYTHON SCALAR SCRIPT DASHBOARDS."UDF_FormatValue" ("Value" DECIMAL(32,6), "Format" VARCHAR(100) UTF8) RETURNS VARCHAR(255) UTF8 AS
 #==============================================
 #Description: This script formats a value based on a format pattern
@@ -74,7 +74,7 @@ def run(variables):
 ## Answer
 Solved this one myself with the suggestion to convert to a standard function in Exasol.  Solution below. This reduced compile time for some of my queries by 30 seconds! Apparently queries using Python UDFs have to spin up the language container.
 
-```
+```sql
 CREATE OR REPLACE FUNCTION DASHBOARDS."FN_FormatValue" (val DECIMAL(18,8), form VARCHAR(100))
 /*************************************************************
 Description: This function formats a value based on a format pattern

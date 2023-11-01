@@ -20,7 +20,7 @@ A global join causes network traffic by finding matches and transferring needed 
 Using distribution keys (see [here](https://exasol.my.site.com/s/article/Data-Distribution)) on the join columns (CUSTOMER.CITY_ID and CITY.ID in the example) causes a local join.
 
 
-```"code-sql"
+```sql
 ALTER TABLE CUSTOMER DISTRIBUTE BY CITY_ID; 
 ALTER TABLE CITIES DISTRIBUTE BY ID; 
 ```

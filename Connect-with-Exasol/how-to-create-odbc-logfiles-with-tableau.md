@@ -15,7 +15,7 @@ You want to create an ODBC logfile from Tableau.
 Find your datasource and edit the connection class:
 
 
-```"code-xml"
+```xml
 
 
 <workbook>
@@ -28,7 +28,7 @@ Find your datasource and edit the connection class:
 Now modify the **odbc-connect-string-extras**
 
 
-```"code-xml"
+```xml
       <connection class='exasolution' odbc-connect-string-extras='EXALOGFILE=D:\logfiles\TableauODBC.log;LOGMODE=DebugComm' port='8563' schema='YOURSCHEMA' server='192.168.10.11..22:8563' ...> 
 ```
 ## Step 3
@@ -39,9 +39,9 @@ Now open this workbook again with Tableau and do everything you want to have wit
 
 For all ODBC logfile options, please refer to the user manual.
 
-<https://docs.exasol.com/connect_exasol/drivers/odbc.htm>
+[ODBC Driver](https://docs.exasol.com/connect_exasol/drivers/odbc.htm)
 
-<https://docs.exasol.com/connect_exasol/bi_tools/tableau.htm>
+[Tableau](https://docs.exasol.com/connect_exasol/bi_tools/tableau.htm)
 
 [How to use Exasol as a Linked Server in SQL Server](https://exasol.my.site.com/s/article/How-to-use-Exasol-as-a-Linked-Server-in-SQL-Server)
 

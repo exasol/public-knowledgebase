@@ -16,7 +16,7 @@ Let's assume we have two tables (T1 and T2) with two columns each (ID and COUNTR
 The natural way to join both tables is:
 
 
-```"code-sql"
+```sql
 select count(*)  from t1 join t2   on t1.country_code = t2.country_code; 
 ```
 This will cause Exasol to create an index on one COUNTRY_CODE column. This index will be stored persistently and is maintained and reused for further joins.
@@ -26,7 +26,7 @@ But this approach does not return all results since for instance 'usa' and 'USA'
 Therefore it is necessary to change the join condition. E.g.:
 
 
-```"code-sql"
+```sql
 select count(*)  from t1 join t2   on lower(t1.country_code) = lower(t2.country_code); 
 ```
 This query will cause Exasol to create an expression index on one COUNTRY_CODE column. The expression index will not be stored persistent, it is dropped after query execution.

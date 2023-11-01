@@ -28,7 +28,7 @@ These system dictionaries provide you the total size of database objects in the 
 ### Example: Objects in the schema 'EXAMPLES'
 
 
-```"code-sql"
+```
         OBJECT_NAME              OBJECT_TYPE RAW_OBJE MEM_OBJE
         ------------------------ ----------- -------- --------
         TESTADR                  TABLE         492836  2615072
@@ -64,11 +64,11 @@ You can check the data distribution of a table by using an iproc()-function:
 #### Example: Using of iproc()-function
 
 
-```"code-sql"
+```sql
 SELECT count(*), iproc() FROM mytable GROUP BY iproc() ORDER BY 2; 
 ```
 
-```"code-sql"
+```
         COUNT(*)            IPROC
         ------------------- -----
                     5327099     0

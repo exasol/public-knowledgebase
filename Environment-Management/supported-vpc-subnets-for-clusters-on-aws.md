@@ -16,9 +16,8 @@ The subnet used for installation of the EXASOL cluster is calculated according t
 
 
 
-|  |  |  |
+| VPC CIDR RANGE | -> | Subnet mask |
 | --- | --- | --- |
-| **VPC CIDR RANGE** | **->** | **Subnet mask** |
 | 192.168.20.0/16 | -> | .../24 |
 | 192.168.20.0/17 | -> | .../24 |
 | ... | -> | .../24 |
@@ -48,9 +47,8 @@ The license server, therefore, gets the subnet base + 10, the other nodes follow
 
 
 
-|  |  |  |  |  |  |
+| VPC CIDR block | Public Subnet | Gateway | License Server IP address | IPMI network host addresses | First additional VLAN address |
 | --- | --- | --- | --- | --- | --- |
-| **VPC CIDR block** | **Public Subnet** | **Gateway** | **License Server IP address** | **IPMI network host addresses** | **First additional VLAN address** |
 | 10.0.0.0/16 | 10.0.1.0/24 | 10.0.1.1 | 10.0.1.10 | 10.0.128.0 | 10.0.65.0/16 |
 | 192.168.0.0/24 | 192.168.1.0/24 | 192.168.1.1 | 192.168.1.10 | 192.168.1.128 | 192.168.64.0/24 |
 | 192.168.128.0/24 | 192.168.129.0/24 | 192.168.128.1 | 192.168.129.10 | 192.168.129.128 | 192.168.32.0/24 |

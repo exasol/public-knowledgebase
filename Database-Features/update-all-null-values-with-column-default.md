@@ -34,7 +34,7 @@ The script does **not** contain any delta functionality, it will process all row
 Just create the script in any schema you like (CREATE SCRIPT permission required). It does not have any dependencies.
 
 
-```"code-sql"
+```sql
 create or replace /* procedure */ script REPLACE_NULL( schema_name, table_name ) ... 
 ```
 ## Usage
@@ -42,7 +42,7 @@ create or replace /* procedure */ script REPLACE_NULL( schema_name, table_name )
 When calling the script, it expects two parameters: A schema name and a table name:
 
 
-```"code-sql"
+```sql
 execute script REPLACE_NULL( 'my schema', 'my table' ); 
 ```
 Both schema and table name are expected as **string** and will be case-sensitive.
@@ -50,7 +50,7 @@ Both schema and table name are expected as **string** and will be case-sensitive
 ## Example
 
 
-```"code-sql"
+```sql
 open schema SR9000;
 -- Rows affected: 0
 
@@ -66,14 +66,11 @@ execute script REPLACE_NULL( 'SR9000', 'Invoice' );
 ... yes. We created the table using a regular identifier, so it ended up as uppercase...
 
 
-```"code-sql"
+```sql
 execute script REPLACE_NULL( 'SR9000', 'INVOICE' ); 
 ```
 This returns:
 
-
-
-|  |  |  |  |
 | --- | --- | --- | --- |
 | **COLUMN_NAME** | **COLUMN_TYPE** | **COLUMN_DEFAULT** | **UPDATE_RESULT** |
 | INVOICE_DATE | DATE | TO_DATE('2017-01-01','YYYY-MM-DD') | 2 rows updated |

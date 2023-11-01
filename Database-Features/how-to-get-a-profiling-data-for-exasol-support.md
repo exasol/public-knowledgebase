@@ -22,7 +22,7 @@ Open a new database connection, typically using EXAplus
 Execute the following:
 
 
-```"noformat
+```sql
   set autocommit on;   
   alter session set profile='on';   <your query here>;   
   alter session set profile='off';   

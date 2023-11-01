@@ -18,7 +18,7 @@ Note: This tool should be included in your SQL Server installation
 (Documentation of ***REPLACE***:<https://msdn.microsoft.com/de-de/library/ms186862.aspx>)  
 Example:  
 
-```markup
+```sql
 SELECT  [Customer Key],  [WWI Customer ID],  
  REPLACE([Customer], '"', '""') AS 'Customer',  
  REPLACE([Bill to Customer], '"', '""') AS 'Bill to Customer',  

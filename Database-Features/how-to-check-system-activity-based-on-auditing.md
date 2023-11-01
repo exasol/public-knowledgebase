@@ -12,7 +12,7 @@ Sometimes, you may want to look at exactly which queries were running at a speci
 Use the following query to do this. Don't forget to insert the timestamp that you are looking for in the first CTE!
 
 
-```markup
+```sql
 -- Replace the timestamp below with the timestamp you are interested in
 with target_time as
         (select timestamp'2020-04-14 10:45:10.237' ts from dual
@@ -34,6 +34,6 @@ select * from active_sessions;
 ```
 ## Additional References
 
-* <https://docs.exasol.com/database_concepts/auditing.htm>
+* [Auditing](https://docs.exasol.com/database_concepts/auditing.htm)
 
 *We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

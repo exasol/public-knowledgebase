@@ -6,7 +6,7 @@ Regular expressions do not recognize non-ascii national characters in class grou
 Example:
 
 
-```"noformat
+```sql
 select regexp_substr('dejá vu', '[[:lower:]]+'); --> "dej"
 ```
 ## Explanation
@@ -16,7 +16,7 @@ Character groups using [[:group:]] notation are Unicode-unaware as well as highl
 As Exasol implements the PCRE syntax for regular expressions, you should use Unicode character classes instead, using \p notation:
 
 
-```"noformat
+```sql
 select regexp_substr('dejá vu', '[\p{Ll}]+'); --> "dejá" 
 ```
 Here, "Ll" denotes the property (L)etter, (l)owercase.

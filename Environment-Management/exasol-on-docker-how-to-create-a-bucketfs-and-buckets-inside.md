@@ -22,7 +22,7 @@ In this section, we will show you the whole process of:
 ### Step 1. Go to your Docker host, log in to the container and create a BucketFS
 
  Log in to your host via ssh (or console) and get inside your Exasol on Docker container:
-```"lia-message-template-content-zone"
+```shell
 $ docker exec -it <your exasol container name> /bin/bash
 ```
 You can find the container's name by running ***docker ps***. Once inside the container run the following command to create a BucketFS:

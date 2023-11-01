@@ -12,7 +12,7 @@ You are using an enterprise version of Exasol, not the single node community edi
 The following small example shows this approach:
 
 
-```"code
+```lua
 create or replace lua script cat_return returns table as
 --Lua script that returns resultset of select * from cat
 --used to test parallel call

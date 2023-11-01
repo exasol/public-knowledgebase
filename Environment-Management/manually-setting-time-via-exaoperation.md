@@ -21,14 +21,13 @@ The cluster nodes constantly exchange configuration and vitality information and
 * Reload the page until all instances change their status from "Running" to "Created"
 * You may follow the procedure in an appropriate logservice:
 
-
->  System marked as stopped.  
-> Successfully send retry shutdown event to system partition 64.  
-> EXASolution exa_db is rejecting connections  
-> controller-st(0.0): Shutdown called.  
-> User 0 requests shutdown of system.
-> 
->  
+```
+  System marked as stopped.  
+ Successfully send retry shutdown event to system partition 64.  
+ EXASolution exa_db is rejecting connections  
+ controller-st(0.0): Shutdown called.  
+ User 0 requests shutdown of system.
+```
 
 ## 1.2 Shutdown EXAStorage Service
 
@@ -63,13 +62,12 @@ The cluster nodes constantly exchange configuration and vitality information and
 * Navigate back to the Services > EXASolution page and reload until the database indicates the status "Running"
 * You may follow the procedure in an appropriate logservice:
 
-
->  EXASolution exa_demo is accepting connections  
-> System is ready to receive client connections.  
-> System started successfully in partition 44.  
-> User 0 requests startup of system.  
-> User 0 requests new system setup.
-> 
->  
+```
+  EXASolution exa_demo is accepting connections  
+ System is ready to receive client connections.  
+ System started successfully in partition 44.  
+ User 0 requests startup of system.  
+ User 0 requests new system setup.
+```
 
 *We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

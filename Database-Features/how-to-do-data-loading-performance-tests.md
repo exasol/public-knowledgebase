@@ -10,7 +10,7 @@ One of EXASOL’s main differentiation criteria is its unprecedented loading per
 EXASOL is a shared-nothing database, running on multiple nodes. Ideally, those nodes’ individual capabilities to open connections to remote sources are best utilized by a “pull” approach on data loading: EXASOLs native bulk loader (“EXAloader”) makes this easy to do. It is triggered by a straight forward SQL command and hides most complexity arising from parallel loading from the user. For the complete syntax see the EXASOL manual section 2.2.2 ‘IMPORT’ .
 
 
-```"code
+```sql
 IMPORT INTO table_1 FROM CSV AT 'http://192.168.1.1:8080/' 
 USER 'agent_007' IDENTIFIED BY 'secret' FILE 'tab1_part1.csv'; 
 ```
@@ -26,7 +26,7 @@ Sources to load from are:
 * **CSV / FBV via HTTP/HTTPS or FTP / FTPS:** Often preferable, due to the performance of HTTP/FTP servers and their capability to serve multiple connections, as well as the simplicity of the dataset (effortless serving).
 * **CSV / FBV from a local client via EXAplus**: A local dataset is also transferred via HTTP, but in contrast to the option above, the open connection is used for the data transfer – to avoid problems due to NAT/firewall restrictions. This limits the amount of parallelism and will, therefore, be less performant than an import from a server.
 * **JDBC from other data sources:** The protocol introduces some overhead. However, it is possible to define multiple datasets within one IMPORT statement: 
-```"code
+```sql
 IMPORT INTO table_4 FROM JDBC 
 AT 'jdbc:exa:192.168.6.11..14:8563' 
 USER 'agent_008' IDENTIFIED BY 'secret' 
@@ -53,7 +53,7 @@ In general, system tables should be queried with AUTOCOMMIT ON to avoid difficul
 EXAplus can return timings of jobs:
 
 
-```"code
+```
 timing start; 
 IMPORT FROM ...; 
 timing stop; 
@@ -67,7 +67,7 @@ Alternatively you can lookup the duration of the import runs from the system tab
 * Optimal **compression** of a table may be achieved by explicitly triggering a RECOMPRESS TABLE tbl; (see EXASOL manual sec. 2.2.6 'RECOMPRESS').
 * It is possible to do the whole job within one IMPORT statement; EXAloader will utilize resources optimally. However, also the import runs inside an **ACID transaction** which would be rolled back entirely on any error. It may, therefore, be advisable to do larger jobs in separate transactions (sequentially or in parallel e.g. by opening several EXAplus instances).
 * Often the dataset is not entirely known. To avoid **errors causing the import to abort** it may be advisable to define a REJECT LIMIT () combined with an ERROR TABLE or log file. See for details EXASOL manual section 2.2.2 ‘IMPORT’ -> ‘error_clause’ in the notes paragraph. Example: 
-```"code
+```sql
 IMPORT INTO table_3 (col1, col2, col4) FROM ORA 
 AT my_oracle USER 'agent_008' IDENTIFIED BY 'secret' 
 STATEMENT ' SELECT * FROM orders WHERE order_state=''OK'' ' 
@@ -76,12 +76,12 @@ ERRORS INTO error_table (CURRENT_TIMESTAMP) REJECT LIMIT 10;
 
 ## Additional References
 
-<https://docs.exasol.com/sql/import.htm>
+* [IMPORT](https://docs.exasol.com/sql/import.htm)
 
-<https://docs.exasol.com/sql/export.htm>
+* [EXPORT](https://docs.exasol.com/sql/export.htm)
 
-<https://docs.exasol.com/loading_data/csv_fbv_file_types.htm>
+* [Load Data from CSV/FBV Files](https://docs.exasol.com/loading_data/csv_fbv_file_types.htm)
 
-<https://docs.exasol.com/loading_data/load_data_from_externalsources.htm>
+* [Load Data from External Sources](https://docs.exasol.com/loading_data/load_data_from_externalsources.htm)
 
 *We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

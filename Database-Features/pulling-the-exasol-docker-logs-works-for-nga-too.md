@@ -22,13 +22,13 @@ Before you begin, there are 2 commands used to pull logs, both using the same ar
  Our example will use "exasupport" as it is supported on our version of Docker If you have any issues with running "exasupport", then exchange the "exasupport" for "get_support_info". Example:
 
  
-```markup
+```
 exasupport -d 0 -s 2021-03-15 -t 2021-03-15 -e "All databases" -x 1
 ```
  becomes
 
  
-```markup
+```
 get_support_info -d 0 -s 2021-03-15 -t 2021-03-15 -e "All databases" -x 1
 ```
 
@@ -110,7 +110,7 @@ This is a tie-in to Step 3. When you complete "building" your exasupport command
 For example: 
 
 
-```sql
+```
 exasupport -d 0 -s 2021-03-15 -t 2021-03-16 -e "All databases" -x1 -d1,2 -m
 ```
 You can assess whether you have enough space to generate the logs. If not, you can either change to a directory (file system) with more space or make your "exasupport" parameters more stringent to reduce the overall size of the logs.
@@ -166,7 +166,7 @@ What to do? Start by locating your logs. If they are NOT in the directory where 
 Next, you can Docker copy the logs to the Docker server filesystem/directory outside of the Docker container. The command format is: 
 
 
-```sql
+```
 docker cp <contianer>:/tmp/<filename> <local path>.
 ```
 You can refer to [Docker_cp](https://docs.docker.com/engine/reference/commandline/cp/) for more information. Let's give an example:
@@ -182,7 +182,7 @@ You can refer to [Docker_cp](https://docs.docker.com/engine/reference/commandli
 Our command would look like this: 
 
 
-```sql
+```
 docker cp ec6499418c05:/exa/tmp/support/exacluster_debuginfo_2021_04_21-17_35_15.tar.gz /tmp
 ```
 For example, you could copy the logs to /tmp or /exa. This will make the next steps easier to troubleshoot if there are issues. If you see your logs in the docker server directory, you can proceed to step 4. Our example is doing a docker cp to the Docker server directory /tmp. If you do not see your logs, no worries, we continue. 
@@ -204,7 +204,7 @@ Let's assume we want to scp the logs from inside the Docker container to the Doc
 Our command would look like this:
 
 
-```sql
+```
 scp demo_logs.tar.gz jaskew@192.168.1.109:/tmp/
 ```
 Having executed the scp command, your screen should look something like this:

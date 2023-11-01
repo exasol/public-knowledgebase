@@ -21,7 +21,7 @@ Choose one of the following drivers:
 ##  Step 2: Create or replace connection
 
 
-```"code-sql"
+```sql
 -- Connecting EXAloader via Cloudera Hive driver and Simba Hive driver to Cloudera, MapR and Hortonworks Hadoop distributions  
 -- cloudera-quickstart-vm-5.13.0-0-vmware 
 create or replace connection hive_conn to 
@@ -38,7 +38,7 @@ create or replace connection hive_conn to
 ### EXPORT test for Cloudera and Simba driver
 
 
-```"code-sql"
+```sql
 export exa_syscat into jdbc driver = 'HiveCloudera' at hive_conn table exa_syscat 
  created by 
  'create table exa_syscat (schema_name varchar(128), object_name varchar(128), 
@@ -52,7 +52,7 @@ export exa_syscat into jdbc driver = 'HiveSimba' at hive_conn table exa_syscat
 ### IMPORT test for Cloudera and Simba driver
 
 
-```"code-sql"
+```sql
 import into(schema_name varchar(128), object_name varchar(128), object_type varchar(15), object_comment varchar(2000))     
  from jdbc driver = 'HiveCloudera' at hive_conn table exa_syscat;  
 

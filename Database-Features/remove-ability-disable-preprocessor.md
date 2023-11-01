@@ -14,13 +14,19 @@ Preprocessor Scripts explained - Exasol
 ## Answer
 There is a way:
 
-You can set the parameter alterSystemProhibitsAlterSessionForPreprocessing to 1, preventing users (other than SYS) from altering the use of the session/system-wide preprocessor script. 
+You can set the parameter `alterSystemProhibitsAlterSessionForPreprocessing` to 1, preventing users (other than SYS) from altering the use of the session/system-wide preprocessor script. 
 
 You can add this parameter into Exaoperation:
 
--alterSystemProhibitsAlterSessionForPreprocessing=1  
+```
+-alterSystemProhibitsAlterSessionForPreprocessing=1
+```
 
-You can find more about editing a database here: https://docs.exasol.com/administration/on-premise/manage_database/edit_database.htm
+You can find more about editing a database here:
+
+* In EXAOperation, for deployments having EXAOperation: [Edit a Database](https://docs.exasol.com/db/7.1/administration/on-premise/manage_database/edit_database.htm)
+* In commandline via ConfD (`confd_client + db_configure + (params_add OR params_delete OR params)`): [db_configure](https://docs.exasol.com/db/latest/confd/jobs/db_configure.htm)
+* Via REST API: [Add Database Parameters](https://docs.exasol.com/db/latest/administration/aws/manage_database/add_db_parameters.htm)
 
 The preprocessor script will return an error if a query uses a prohibited back-end resources. This would still work within the preprocessor because queries within a preprocessor script are not subject to the preprocessor itself.
 

@@ -31,13 +31,13 @@ Exasol strongly recommends setting the CPU governor on the host to performance, 
 Using cpupower utility
 
 
-```python
+```
 $ sudo cpupower -c all frequency-set -g powersave
 ```
 Change the content of scaling_governor files:
 
 
-```python
+```
 $ for F in /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor; do echo performance >$F; done
 ```
 Hugepages:
@@ -51,7 +51,7 @@ Resource limitation:
 It's possible to limit the resources of the Exasol container with the following docker run options:
 
 
-```python
+```
 $ docker run --cpuset-cpus="1,2,3,4" --memory=20g --memory-swap=20g --memory-reservation=10g exasol/docker-db:<version>
 ```
 This is especially recommended if we need multiple Exasol containers (or other services) on the same host. In that case, we should evenly distribute the available CPUs and memory throughout your Exasol containers.
@@ -65,13 +65,13 @@ Find more detailed information here <https://docs.docker.com/config/containers/r
 To store all persistent data from the container, we create a directory, name it “container_exa” and place it in the home folder of the Linux user.
 
 
-```python
+```
 $ mkdir $HOME/container_exa/
 ```
 Set the CONTAINER_EXA variable to the folder:
 
 
-```python
+```
 $ echo ‘export CONTAINER_EXA="$HOME/container_exa/"’ >> ~/.bashrc && source ~/.bashrc
 ```
 ## **Step 2 Create a configuration file for Exasol database and docker container**
@@ -79,7 +79,7 @@ $ echo ‘export CONTAINER_EXA="$HOME/container_exa/"’ >> ~/.bashrc && source 
 The command for creating a configuration file is:
 
 
-```python
+```
 $ docker run -v "$CONTAINER_EXA":/exa --rm -i exasol/docker-db:<version> init-sc --template --num-nodes 1
 ```
 We use the latest version of exasol (currently 6.2.6) with the **latest** tag.
@@ -87,7 +87,7 @@ We use the latest version of exasol (currently 6.2.6) with the **latest** tag.
 ***Num-nodes** is the number of containers. We need to change the value of this if we want to deploy a cluster*.
 
 
-```python
+```
 $ docker run -v "$CONTAINER_EXA":/exa --rm -i exasol/docker-db:latest init-sc --template --num-nodes 1
 ```
 NOTE: You need to add --privileged option because the host directory belongs to root.  
@@ -119,11 +119,11 @@ Different options can be configured in the EXAConf file.
 1)  A private network of the node
 
 
-```python
+```
 $ vim $CONTAINER_EXA/etc/EXAConf
 ```
 
-```python
+```
 [Node : 11]      
 
    PrivateNet = 10.10.10.11/24 # <-- replace with the real network
@@ -155,7 +155,7 @@ Since you should use the host network mode (see "Start the cluster" below), you 
 The other Exasol services (e. g. Cored, BucketFS, and the DB itself) are using port numbers above 1024. However, you can change them all by editing EXAConf. In this example, we use the default ports.
 
 
-```markup
+```
 Port   22 – SSH connection  
 Port  443 – for XMLRPC  
 Port 8888 – port of the Database  
@@ -175,7 +175,7 @@ It can be found in the 'Global' section, near the top of the file. Please also a
 
 EXAStorage is a distributed storage engine. All data is stored inside volumes. It also provides a failover mechanism. We recommend using a 32 GB LVM disk for EXAStorage, which can be checked by:
 
-```markup
+```
 $ lsblk
 ```
 
@@ -247,7 +247,7 @@ We're using the public IP address of the virtual machine and port 8888, which is
 By default, the password of the sys user is “exasol”. Let's run an example query:
 
 
-```markup
+```sql
 SELECT * FROM EXA_SYSCAT;
 ```
 

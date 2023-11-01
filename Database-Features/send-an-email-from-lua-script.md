@@ -10,7 +10,7 @@ No further installation is needed since 'socket' is part of Exasol's distributio
 ## Solution using a Lua Script
 
 
-```"code
+```lua
 --/
 CREATE LUA SCRIPT "SEND_MAIL" ()
 RETURNS ROWCOUNT AS

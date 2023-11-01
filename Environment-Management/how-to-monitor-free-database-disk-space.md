@@ -64,7 +64,7 @@ This results in the data volume usually aren't used completely by the database a
 
 **Database Volumes v0001 + v0002**
 
-|  |  |  |  |  |  |
+| Volume | Used | Unused | Redundancy | Total Free | Total Used |
 | --- | --- | --- | --- | --- | --- |
 | v0001 | Used 200 GiB | Unused 120 GiB | Redundancy=2 | 2 * 120 GiB = 240 GiB Free | 2 * 200 GiB = 400 GiB Used |
 | v0002 | Used 30 GiB | Unused 20 GiB | Redundancy=1 | 1 * 20 GiB = 20 GiB Free | 1 * 30 GiB = 30 GiB Used |

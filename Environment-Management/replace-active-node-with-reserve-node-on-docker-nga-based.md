@@ -25,19 +25,19 @@ The procedure requires a maintenance window of at least 15 minutes.
 In order to shut down the database instances, we can use the "dwad_client" command. The syntax of the command is:
 
 
-```python
+```
 dwad_client stop-wait {database_name}
 ```
 The database instance name(s) can be found via:
 
 
-```python
+```
 dwad_client shortlist
 ```
 In order to verify the state of database instance(s) you can use the command below:
 
 
-```python
+```
 dwad_client list
 ```
 ### Step 2: Switch nodes of the database instance(s)
@@ -45,7 +45,7 @@ dwad_client list
 In order to switch nodes:
 
 
-```python
+```
 dwad_client switch-nodes {database_name} {active node} {reserve node}
 ```
 In order to verify the state of nodes use the **"cosps -N"** command.
@@ -53,7 +53,7 @@ In order to verify the state of nodes use the **"cosps -N"** command.
 You can list of nodes and find the current reserve node via:
 
 
-```python
+```
 dwad_client sys-nodes {database_name}
 ```
 ### Step 3: Start up the database instance(s)
@@ -61,7 +61,7 @@ dwad_client sys-nodes {database_name}
 In order to start up the database instances, we can use the "dwad_client" command. The syntax of the command is:
 
 
-```python
+```
 dwad_client start-wait {database_name}
 ```
 ### Step 4: Move the data node to the reserve node
@@ -69,7 +69,7 @@ dwad_client start-wait {database_name}
 In order to start up the database instances, we can use the "csmove" command. The syntax of the command is:
 
 
-```python
+```
 csmove -s {source node ID} -d {destination node ID} -m -v {volume ID}
 ```
 - Source and Destination node IDs can be found via the **"cosps -N"** command.
@@ -77,7 +77,7 @@ csmove -s {source node ID} -d {destination node ID} -m -v {volume ID}
 - The volume ID can be found via the **"csinfo -v"** command. Please check the volume labels in order to verify the data volume. for example:
 
 
-```markup
+```
  === Labels ===  
  Name : 'DataVolume1' (#)  
  pub  : 'DB1_persistent'
@@ -97,7 +97,7 @@ You can monitor the recovery process via the **"cstop"** command.
 In case of the redundancy of the data volume is less than 2 the command below can be used for increase redundancy.
 
 
-```markup
+```
  csresize -i -l1 -v{VID} 
 ```
 Please run only run once otherwise redundancy will be increased to **3.**

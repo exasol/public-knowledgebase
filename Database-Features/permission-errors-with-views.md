@@ -8,20 +8,20 @@ A user may report that they are not able to select views due to permission error
 Usually, when there are permission problems with views, you would see an error message such as:
 
 
-```markup
+```
 [Code: 0, SQL State: 42500]  insufficient privileges for SELECT on table ...
 ```
 or
 
 
-```markup
+```
 [Code: 0, SQL State: 42500]  insufficient privileges for SELECT on table : 
 USAGE on schema ... needed. 
 ```
 or
 
 
-```markup
+```
 [Code: 0, SQL State: 42500]  insufficient privileges: SELECT on table ... 
 must be grantable for ... (Session: 1680100781957054464)
 ```
@@ -34,14 +34,14 @@ Permissions on views behave differently compared to permissions on other objects
 When confronted with these errors, you should first check who is the owner of the view. You can do this by checking the owner of the schema, in which the view was created:
 
 
-```markup
+```sql
 SELECT SCHEMA_NAME, SCHEMA_OWNER FROM EXA_SCHEMAS 
 WHERE SCHEMA_NAME = '<Schema name>';
 ```
 Once you find out the owner, you should verify the system and object privileges of this owner by checking EXA_DBA_OBJ_PRIVS and EXA_DBA_SYS_PRIVS:
 
 
-```markup
+```sql
 SELECT * FROM EXA_DBA_OBJ_PRIVS WHERE GRANTEE = '<Schema Owner>';  
 SELECT * FROM EXA_DBA_SYS_PRIVS WHERE GRANTEE = '<Schema Owner>';
 ```
@@ -54,7 +54,7 @@ In case of the third error, "**SELECT ON TABLE ... must be grantable ...**":
 This occurs because, even though the owner is able to select the underlying tables and objects, it does not mean that the owner is allowed to grant this object to other people. In this scenario, granting on a view is essentially granting a SELECT on the underlying objects to someone else. When the object is in the same schema, this is okay because the owner of the view and the underlying objects are the same (meaning the owner is able to decide if other people should select this object). In order to resolve this error, the **owner** of the schema needs to either have the SELECT ANY TABLE privilege, or also be the owner of the other schema which is referenced in the view.
 
 
-```markup
+```sql
 GRANT SELECT ANY TABLE TO '<Schema owner>';  
 ALTER SCHEMA <schema name> CHANGE OWNER <owner name>;
 ```

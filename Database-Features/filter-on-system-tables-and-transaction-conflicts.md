@@ -4,7 +4,7 @@
 Transaction conflicts, WAIT FOR COMMIT or ROLLBACK, each of them is possible. When querying system tables, read locks are implicitly set as follows:
 
 
-```"code-sql"
+```sql
 SELECT * FROM EXA_DBA_TABLES;       -- readlock on all tables  
 SELECT * FROM EXA_DBA_TABLES  WHERE TABLE_SCHEMA  = 'SCHEMA1';   -- readlock on tables in SCHEMA1  
 SELECT * FROM EXA_DBA_TABLES  WHERE TABLE_SCHEMA  = 'SCHEMA1' AND TABLE_NAME = 'TABLE1';        -- readlock on table SCHEMA1.TABLE1 

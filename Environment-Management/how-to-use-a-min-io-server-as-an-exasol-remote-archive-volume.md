@@ -16,8 +16,8 @@ min.io is an S3-compatible storage service (see <https://min.io>) that can be us
 2. Assuming that your min.io server is minio.yourdomain.comand it has a bucket named backups, create a DNS alias backups.minio.yourdomain.com which also resolves to the same IP as minio.yourdomain.com
 3. In the min.io startup script set theMINIO_DOMAINENV variable tominio.yourdomain.com.  This will cause min.io to extract the bucket name from the virtual host passed to it instead of extracting it from the URL path (which is the default)
 4. In the min.io startup script set the MINIO_REGION_NAMEENV variable tous-east-1 (or other region of your choice). This will cause min.io to include that in all HTTP response headers.
-5. Check out the min.io source code from <https://github.com/minio/minio.git>and apply the patch below. See the repository's Dockerfile for how to rebuild it:  
-```"lia-code-sample
+5. Check out the min.io source code from <https://github.com/minio/minio.git> and apply the patch below. See the repository's Dockerfile for how to rebuild it:  
+```go
 --- /cmd/api-headers.go
 +++ /cmd/api-headers.go
 @@ -51,7 +51,8 @@ func setCommonHeaders(w http.ResponseWriter) {

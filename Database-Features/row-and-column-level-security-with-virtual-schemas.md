@@ -129,6 +129,7 @@ With this framework, you can specify as many restrictions on as many tables as y
 
 ## Downloads
 * [RLS-CLS-data_schema_customer.csv](https://github.com/exasol/public-knowledgebase/blob/main/Database-Features/attachments/RLS-CLS-data_schema_customer.csv)
-* [RLS-CLS-Demo_V2.sql](https://github.com/exasol/public-knowledgebase/blob/main/Database-Features/attachments/RLS-CLS-Demo_V2.sql)
+* [RLS-CLS-Demo_V2.sql](https://github.com/exasol/public-knowledgebase/blob/main/Database-Features/attachments/RLS-CLS-Demo_V2.sql) - the vanilla version of the adapter
+* [RLS-CLS-Demo_PYTHON3.sql](https://github.com/exasol/public-knowledgebase/blob/main/Database-Features/attachments/RLS-CLS-Demo_PYTHON3.sql) - a Python 3 version of the adapter. When possible it takes advantage of no SQL metadata commands introduced in in Exasol 7.0, WebSocket protocol version 2. And when not possible it just executes metadata-like queries in snapshot execution mode.
 
 *We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

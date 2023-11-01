@@ -140,7 +140,7 @@ Another interesting project on this topic is the Exasol Github project [Exasol C
 * Google BigQuery is very time sensitive and tolerates only a very small time offset from UTC, to prevent such an error, you should make sure that the NTP server is correctly configured and synchronized in EXAOperation.
 
 
-```markup
+```
 [BigQueryJDBCDriver](100004) HttpTransport IO error : 400 Bad Request {   "error" : "invalid_grant",   "error_description" : 
 "Invalid JWT: Token must be a short-lived token (60 minutes) and in a reasonable timeframe. 
 Check your iat and exp values in the JWT claim." }.​

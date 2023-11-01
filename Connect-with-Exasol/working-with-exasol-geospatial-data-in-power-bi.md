@@ -135,7 +135,7 @@ For more information on all topics I'd advise you to read the links under additi
 ## Additional References
 
 Exasol's SQL reference section on geospatial data:  
-[https://docs.exasol.com/sql_references/geospatialdata/geospatialdata_overview.htm](https://docs.exasol.com/sql_references/geospatialdata/geospatialdata_overview.htm?tocpath=SQL%20Reference%7CGeospatial%20Data%7C_____0)  
+[Geospatial Data](https://docs.exasol.com/db/latest/sql_references/geospatialdata/geospatialdata_overview.htm)
 
 A how to on icon-map by the author himself:  
 <https://powerbi.jamesdales.com/how-to-use-icon-map/>

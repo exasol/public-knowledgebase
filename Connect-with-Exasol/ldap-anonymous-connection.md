@@ -3,7 +3,7 @@
 ## Question
 I have read the documentation about authenticating database users with LDAP: 
 
-https://docs.exasol.com/sql/create_user.htm
+[CREATE USER](https://docs.exasol.com/sql/create_user.htm)
 
 I couldn't see any technical user for exasol configured here, so I assume that exasol is making an anonymous LDAP connection to ask for user authentication.
 
@@ -18,14 +18,20 @@ Exasol uses internally the ldap_sasl_bind_s call with the provided user credenti
 
 Exasol is communicating with credentials given by the user which tries to login. For example if you have user_1:
 
-> CREATE USER user_1 IDENTIFIED AT LDAP AS 'cn=user_1,dc=authorization,dc=exasol,dc=com';
+```sql
+CREATE USER user_1 IDENTIFIED AT LDAP AS 'cn=user_1,dc=authorization,dc=exasol,dc=com';
+```
 
 In order to login into Exasol DB the user_1 have to use its ldap password, ie.
 
-> exaplus -u user_1 -P <ldap_password_for_user_1>
+```shell
+exaplus -u user_1 -P <ldap_password_for_user_1>
+```
 
 Exasol then knows that user_1 should be authenticated using the configured ldap server and makes the call:
 
-> ldap_sasl_bind_s(LDAP, "cn=user_1,dc=authorization,dc=exasol,dc=com", LDAP_SASL_SIMPLE, ldap_password_for_user_1, ...);
+```c
+ldap_sasl_bind_s(LDAP, "cn=user_1,dc=authorization,dc=exasol,dc=com", LDAP_SASL_SIMPLE, ldap_password_for_user_1, ...);
+```
 
 *We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

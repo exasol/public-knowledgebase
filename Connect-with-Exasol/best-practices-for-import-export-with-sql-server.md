@@ -19,13 +19,13 @@ For performance reasons, we recommend using the [**jTDS JDBC driver for SQL Serv
 From version 6.1 onwards, you will also need the system privileges IMPORT/EXPORT to be granted to your user (or one of it's roles). For example:
 
 
-```markup
+```sql
 grant import,export to public;
 ```
 You can create a connection object to SQL Server and use this in your import statements:
 
 
-```markup
+```sql
 CREATE CONNECTION conn_jtdsmssql  TO 
  'jdbc:jtds:sqlserver://dbserver;databaseName=testdb'  
  USER 'user1' 
@@ -34,7 +34,7 @@ CREATE CONNECTION conn_jtdsmssql  TO
 It is also possible to use Windows Authentication in conjunction with this driver. In order to enable this authentication, simply add the parameters "useNTLMv2=true" and "domain=[Domain name]", like so:
 
 
-```"code-sql"
+```sql
 CREATE CONNECTION conn_jtdsmssql TO 
  'jdbc:jtds:sqlserver://<host>:1433;DatabaseName=<db name>;domain=AD;useNTLMv2=true;' 
  USER 'username' -- Windows Username 
@@ -45,14 +45,14 @@ Once the AD user/password are defined in the database connection (USER '' IDENTI
 Once your connection is created, you can test the connectivity by querying the SQL Server system catalog:
 
 
-```markup
+```sql
 select * from  
  ( import from jdbc at conn_jtdsmssql statement 'select * from information_schema.tables'  );
 ```
 If your connection is successful, you're ready to IMPORT/EXPORT data from SQL Server! IF it's not, please check your network settings and/or the settings of your SQL Server instance. Using the JTDS driver, one could import/export data using the following commands:
 
 
-```"code-sql"
+```sql
 IMPORT INTO table1 FROM JDBC DRIVER='JTDSMSSQL'  
  AT 'jdbc:jtds:sqlserver://dbserver;databaseName=testdb'  
  USER 'user1' 
@@ -83,7 +83,7 @@ If you wish to use the official SQL Server driver, you need to install it first.
 From version 6.1 onwards, you will also need the system privileges IMPORT/EXPORT to be granted to your user (or one of it's roles). For example:
 
 
-```markup
+```sql
 grant import,export to public;
 ```
 #### Basic Syntax
@@ -91,7 +91,7 @@ grant import,export to public;
 Using **Microsoft's JDBC driver for SQL Server**, one could import/export data using the following commands:
 
 
-```"code-sql"
+```sql
 IMPORT INTO table1  FROM JDBC DRIVER='MSSQL'  
  AT 'jdbc:sqlserver://dbserver;databaseName=testdb'  
  USER 'user1' IDENTIFIED BY 'user1pw' TABLE table2;  
@@ -103,7 +103,7 @@ EXPORT table1 INTO JDBC DRIVER='MSSQL'
 A **connection** could also be created and used:
 
 
-```"code-sql"
+```sql
 CREATE CONNECTION conn_mssql  TO 
 'jdbc:sqlserver://dbserver;databaseName=testdb'  
 USER 'user1' IDENTIFIED BY 'user1pw';  
@@ -115,7 +115,7 @@ EXPORT table1  INTO JDBC DRIVER='MSSQL' AT conn_mssql TABLE table2;
 Once your connection is created, you can test the connectivity by querying the SQL Server system catalog like before:
 
 
-```markup
+```sql
 select * from  
  ( import from jdbc at conn_mssql statement 'select * from information_schema.tables'  );
 ```

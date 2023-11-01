@@ -32,7 +32,7 @@ Please see the Exasol User Manual (Section 3.8) for details.
 As a preprocessor script is a **schema object**, you will need to find or create a schema to create the script in:
 
 
-```"code-sql"
+```sql
 create schema if not exists PREPROCESSOR; 
 ```
 **Preconditions:**
@@ -46,7 +46,7 @@ create schema if not exists PREPROCESSOR;
 "CREATE SCRIPT" statements are also preprocessed. As the preprocessor script you are going to (re-)deploy is very likely to contain the keywords it should react on, it is advisable to disable the preprocessor before deployment:
 
 
-```"code-sql"
+```sql
 alter session set sql_preprocessor_script = null; 
 ```
 ## Step 2: Deploy
@@ -54,7 +54,7 @@ alter session set sql_preprocessor_script = null;
 Create the preprocessor script. Syntax "around" may depend on the SQL client you are using:
 
 
-```"code-sql"
+```lua
 --/
 create or replace Lua script MY_PREPROCESSOR()
 as
@@ -76,7 +76,7 @@ as
 Now activate the preprocessor for your local session:
 
 
-```"code-sql"
+```sql
 alter session set sql_preprocessor_script = PREPROCESSOR.MY_PREPROCESSOR; 
 ```
 ## Step 4: TEST IT!
@@ -89,7 +89,7 @@ When things go very wrong, go back to step (2) – This is the only SQL statemen
 Now that things went well, we can activate the script for other users (new sessions):
 
 
-```"code-sql"
+```sql
 alter system set sql_preprocessor_script = PREPROCESSOR.MY_PREPROCESSOR; 
 ```
 **Preconditions:**
@@ -101,7 +101,7 @@ alter system set sql_preprocessor_script = PREPROCESSOR.MY_PREPROCESSOR;
 We just locked out (more or less) everyone else from the database: They don't have EXECUTE permissions on the script!
 
 
-```"code-sql"
+```sql
 grant EXECUTE on PREPROCESSOR.MY_PREPROCESSOR to public; 
 ```
 **Preconditions:**
@@ -116,7 +116,7 @@ As step (3) replaces the script, all privileges on it are lost in that step.
 To avoid this problem, the EXECUTE privilege should be put on schema level:
 
 
-```"code-sql"
+```sql
 grant EXECUTE on SCHEMA PREPROCESSOR to public; 
 ```
 Just make sure you don't put anything dangerous/secret into that schema

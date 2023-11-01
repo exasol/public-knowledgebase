@@ -31,7 +31,7 @@ In DBVisualizer LUA scripts / UDFs should be created as a SQL block.
 The start of the SQL Block is **--/** and the end of the block is defined with **/**:
 
 
-```"code-java"
+```lua
 --/ 
 CREATE LUA SCRIPT MY_CAT RETURNS TABLE AS  
 return query([[select * from cat]])  

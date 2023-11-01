@@ -3,7 +3,9 @@
 
 Why does the following error occur in Scripts and what does it mean:
 
-'[p]query function: number of open resultsets exceeds 250" caught in script'
+```
+[p]query function: number of open resultsets exceeds 250" caught in script
+```
 
 ## Answer
 
@@ -19,7 +21,7 @@ A solution of this would be to re-initialize the variable at the beginning of th
 A basic example of this behavior can be found with the following queries:
 
 
-```markup
+```lua
 create script queryscript(param1) returns table as
     exit(query( [[select :t from dual]] , {t=param1} ));
 /

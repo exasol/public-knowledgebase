@@ -28,7 +28,7 @@ It is often useful to obtain an estimate on the duration of the ANALYZE DATABASE
 The query below delivers such an estimate (measured in seconds) when running **before** the update (that is, on EXASOL 5.0, while statistics are still valid):
 
 
-```"code
+```sql
 select
     cast(
         zeroifnull(

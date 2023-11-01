@@ -12,7 +12,7 @@ In this section we will show you how to:
 Log in to your Docker host via ssh (or console), log in to your Exasol container:
 
 
-```"lia-message-template-content-zone"
+```shell
 $ docker exec -it <your_exasol_container_name> /bin/bash
 ```
 Edit the EXAConf file with your preferred text editor and add the following line to your database parameters: 

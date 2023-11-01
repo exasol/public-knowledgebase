@@ -8,7 +8,7 @@ When creating Python UDF's, you may depend on external libraries to accomplish s
 If the Python library you are trying to import is not installed by default, you will receive an error message like this:
 
 
-```markup
+```
 [Code: 0, SQL State: 22002]  VM error: F-UDF-CL-LIB-1125: F-UDF-CL-SL-PYTHON-1000: F-UDF-CL-SL-PYTHON-1017: 
 ExaUDFError: F-UDF-CL-SL-PYTHON-1122: Exception while parsing UDF  <UDF name>:1 <module> ImportError: 
 No module named <module name>  (Session: 1690055142405898240)
@@ -18,7 +18,7 @@ No module named <module name>  (Session: 1690055142405898240)
 Exasol's script languages are built using a set of default packages that are commonly used in Python applications. However, these are by no means exhaustive, and it is not possible to prepare for all possibilities. In regular Python environments, you can use pip install to add additional packages, but this command is not available within the Exasol database. You can use the below script to see exactly which packages are available for you to use.
 
 
-```markup
+```python
 --/
 CREATE OR REPLACE PYTHON3 SCALAR SCRIPT "GET_AVAILABLE_PYTHON_MODULES" () EMITS ("res" VARCHAR(4096) UTF8) AS
 import pkgutil as pkgutil
@@ -45,7 +45,7 @@ To solve this problem, you can create a new Script Language Container. Before cr
 **Note: You can use the exaslct command to automatically upload the built container into BucketFS and to generate the ALTER SESSION statement needed by running the following command:**
 
 
-```markup
+```
 ./exaslct upload --flavor-path=flavors/<flavor-name> --database-host <hostname-or-ip> --bucketfs-port <port> \ 
                    --bucketfs-username w --bucketfs-password <password>  --bucketfs-name <bucketfs-name> \
                    --bucket-name <bucket-name> --path-in-bucket <path/in/bucket>
