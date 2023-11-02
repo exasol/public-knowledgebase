@@ -44,7 +44,7 @@ INNER JOIN VIRTUAL_SCHEMA.dax_akq_syr_opdetail_a               opd2 ON op.boid =
 INNER JOIN VIRTUAL_SCHEMA.dax_akq_syr_opdetail_a               opd3 ON op.boid = opd3.itsdet_op
 ) VS_SUBQ
 
-INNER JOIN LOACL_SCHEMA.sale s on VS_SUBQ.rechnungsnr = s.CASH_OR_PLASTIC;
+INNER JOIN LOCAL_SCHEMA.sale s on VS_SUBQ.rechnungsnr = s.CASH_OR_PLASTIC;
 ```
 
 Finally If we materialize the subquery, then only a single pushdown will be issued:
@@ -61,7 +61,7 @@ INNER JOIN VIRTUAL_SCHEMA.dax_akq_syr_opdetail_a               opd3 ON op.boid =
 order by false
 ) VS_SUBQ
 
-INNER JOIN LOACL_SCHEMA.sale s on VS_SUBQ.rechnungsnr = s.CASH_OR_PLASTIC;
+INNER JOIN LOCAL_SCHEMA.sale s on VS_SUBQ.rechnungsnr = s.CASH_OR_PLASTIC;
 ```
 
 * If you need to use multiple different virtual schemas in one query, use described approach to have a dedicated subquery for each VS.
@@ -89,7 +89,7 @@ INNER JOIN VIRTUAL_SCHEMA2.dax_akq_syr_opdetail_a               opd3 ON op.boid 
 order by false
 ) VS_SUBQ2 ON VS_SUBQ1.rechnungsnr = VS_SUBQ2.rechnungsnr
 
-INNER JOIN LOACL_SCHEMA.sale s on VS_SUBQ1.rechnungsnr = s.CASH_OR_PLASTIC;
+INNER JOIN LOCAL_SCHEMA.sale s on VS_SUBQ1.rechnungsnr = s.CASH_OR_PLASTIC;
 ```
 
 * The same applies when it is logically impossible to join together all objects from a single VS and you have multiple independent subqueries. Try to organize each subquery as described above and you should have 1 pushdown per subquery. 
@@ -107,7 +107,7 @@ INNER JOIN VS_VIEWS_LAYER1.dax_akq_syr_opdetail_a               opd3 ON op.boid 
 order by false
 ) 
 select * from VS_SUBQ
-INNER JOIN LOACL_SCHEMA.sale s on VS_SUBQ.rechnungsnr = s.CASH_OR_PLASTIC;
+INNER JOIN LOCAL_SCHEMA.sale s on VS_SUBQ.rechnungsnr = s.CASH_OR_PLASTIC;
 ```
 But if we use the same subquery not as CTE but just as a regular subquery in "from" clause, we get a single pushdown:
 ```sql
@@ -119,7 +119,7 @@ FROM VS_VIEWS_LAYER1.dax_akq_syr_op_a op
 INNER JOIN VS_VIEWS_LAYER1.dax_akq_syr_opdetail_a               opd2 ON op.boid = opd2.itsdet_op
 INNER JOIN VS_VIEWS_LAYER1.dax_akq_syr_opdetail_a               opd3 ON op.boid = opd3.itsdet_op
 order by false) VS_SUBQ
-INNER JOIN LOACL_SCHEMA.sale s on VS_SUBQ.rechnungsnr = s.CASH_OR_PLASTIC;
+INNER JOIN LOCAL_SCHEMA.sale s on VS_SUBQ.rechnungsnr = s.CASH_OR_PLASTIC;
 ```
 Adding the CTE with local tables in it doesn't affect our pushdown optimization:
 ```sql
@@ -149,3 +149,5 @@ INNER JOIN LOCAL_CTE s on VS_SUBQ.rechnungsnr = s.CASH_OR_PLASTIC;
 * Always materialize those VS subqueries with help of "order by false".
 * Avoid using "with" clause for VS subqueries. You can use them for the local schemas though.
 * Try to avoid using more than 1 view on top of each VS object. 
+
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

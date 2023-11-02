@@ -1,22 +1,20 @@
 # Create DDL for a table 
-* ## Background
+## Background
 
- Most Database Browsers include the ability to generate DDL for a database object (or multiple). For example, the instructions to do this in DBVisualizer are found [here](http://confluence.dbvis.com/display/UG100/Viewing+the+View+DDL) and for DBeaver [here](https://dbeaver.com/docs/wiki/Database-Navigator/). The following script will also create DDL for a single table when one of those other options are not available: [create_table_ddl.sql](https://github.com/exasol/exa-toolbox/blob/master/utilities/create_table_ddl.sql).
+Most Database Browsers include the ability to generate DDL for a database object (or multiple). For example, the instructions to do this in DBVisualizer are found [here](http://confluence.dbvis.com/display/UG100/Viewing+the+View+DDL) and for DBeaver [here](https://dbeaver.com/docs/wiki/Database-Navigator/). The following script will also create DDL for a single table when one of those other options are not available: [create_table_ddl.sql](https://github.com/exasol/exa-toolbox/blob/master/utilities/create_table_ddl.sql).
 
-   ## Explanation
+## Explanation
 
- The attached file provides a Lua script to do the same.
+The attached file provides a Lua script to do the same.
 
- Example call:
-
+Example call:
    
 ```sql
 execute script exa_toolbox.create_table_ddl('SOURCE_SCHEMA', 'SOURCE_TABLE', 'TARGET_SCHEMA', 'TARGET_TABLE', true) ; 
 ```
    If the last parameter is 'true', the script will add the "OR REPLACE" option
 
-   ## Additional References
-
+## Additional References
 
 The script itself: [create_table_ddl.sql](https://raw.githubusercontent.com/exasol/exa-toolbox/master/utilities/create_table_ddl.sql)
 

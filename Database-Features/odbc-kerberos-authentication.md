@@ -7,11 +7,11 @@
   create user ad_john_smith identified by KERBEROS PRINCIPAL 'jsmith@BOXES.TEST';
   GRANT CREATE SESSION TO ad_john_smith;
   ```
-* Connection was successfully tested with **exaplus -k**. Service name and Host name of the Exasol DB Kerberos principal are known.
+* Connection was successfully tested with **exaplus -k** (see [Setting up Exasol Kerberos single sign-on with Active Directory](https://exasol.my.site.com/s/article/Setting-up-Exasol-Kerberos-single-sign-on-with-Active-Directory?language=en_US)). Service name and Host name of the Exasol DB Kerberos principal are known.
 
   ![](images/dbeaver-kerberos-authentication_screenshot_1.png)
 
-## 1. Install latest Exasol ODBC driver
+## 1. Install the latest Exasol ODBC driver
 * Download and install the latest version of Exasol ODBC driver here https://downloads.exasol.com/clients-and-drivers/odbc
 
 ## 2. Configure new DSN
@@ -27,11 +27,17 @@
   ```
   kerberosservicename=<service name>;kerberoshostname=<host name>
   ```
-  * **kerberosservicename** : The service name of the Exasol DB Kerberos principal. Same as **Service name** parameter in **Exaplus -k**  
-  * **kerberoshostname** : The host name of the Exasol DB Kerberos principal. Same as **Host** parameter in **Exaplus -k**  
+  * **kerberosservicename** : The service name of the Exasol DB Kerberos principal. Same as **Service name** parameter in **exaplus -k**  
+  * **kerberoshostname** : The host name of the Exasol DB Kerberos principal. Same as **Host** parameter in **exaplus -k**  
 
   ![](images/odbc-kerberos-authentication_screenshot_4.png)
 
 * Go back to **Connection** tab and press **Test connection**. If the connection test is successful, click "Ok" and finish DSN creation.
 
   ![](images/odbc-kerberos-authentication_screenshot_5.png)
+
+## Additional References
+
+[Setting up Exasol Kerberos single sign-on with Active Directory](https://exasol.my.site.com/s/article/Setting-up-Exasol-Kerberos-single-sign-on-with-Active-Directory?language=en_US)
+
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 
