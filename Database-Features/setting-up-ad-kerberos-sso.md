@@ -122,7 +122,7 @@ To allow the AD user to authenticate to Exasol db using AD SSO do the following:
 Configuration is completed. Now we can test connection to the database from the user's AD account with help of EXAplus.
 
 * Login into the user's machine using user's AD account.
-* Make sure that user's credential cache already contains an appropriate tgt-ticket. To do so, use **klist** command and check that the result contains a ticket for the principal **{AD user name}@{Kerberos realm}**.
+* Make sure that user's credential cache already contains an appropriate tgt-ticket. To do so, use **klist** command and check that the result contains a ticket for the principal **\{AD user name\}@\{Kerberos realm\}**.
 * Open shell terminal and navigate to EXAplus directory
 * First try to connect to Exasol DB using a standard authentication method with username and password. For example use dba user from step 6.
   ```
@@ -133,7 +133,7 @@ Configuration is completed. Now we can test connection to the database from the 
   ![](images/setting-up-ad-kerberos-sso_screenshot_9.png)
 
 * Once connection is established you can be sure that client can access and proceed with testing Kerberos authentication.
-* Now add **-k** option to the command. EXAplus will ask you to type **Service name** and **Host** instead of username and password. Use **{Exasol service name}** and **{Exasol host name}** from step 3.
+* Now add **-k** option to the command. EXAplus will ask you to type **Service name** and **Host** instead of username and password. Use **\{Exasol service name\}** and **\{Exasol host name\}** from step 3.
 
   **Example**
 
