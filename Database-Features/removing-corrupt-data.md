@@ -1,0 +1,91 @@
+# Identifying and Removing Corrupt Data
+
+## Scope
+
+In very rare occasions, a chain of actions may cause some data in the database to become corrupt. This article gives some tools you can use to help identify if there is corrupt data or not. 
+
+**Corrupt data occurs very rarely, even if your issues match the symptoms in this article. You should only follow the below instructions after discussion with Exasol support.**
+
+## Diagnosis
+
+If something in the database is corrupt, it can manifest itself in several different ways. For example:
+* Some queries may cause the database to suddenly restart. The queries may reference certain objects in the database which are corrupt.
+* Backups are unable to be written.
+
+## Explanation
+
+Data is stored column-wise in Exasol, which means that if certain data blocks are removed or not accessible, then any attempt to access that block will crash the database. This includes queries reading certain columns, indexes, statistics, or other data structure, as well as backups. In this case, the database is in an inconsistent state and requires intervention.
+
+## Recommendation
+
+Depending on the setup of the database and the effort to perform the below tasks, there are the following options:
+
+### 1. Restore from Remote Backup
+If we identify that the database is an inconsistent state and there is a recent backup stored remotely (from before the event which caused the corruption), than a quick option is to restore the database from the latest available backup. This action would cause a downtime which corresponds to the time required to write the full and incremental backups. In addition, any data which was added to the database since the latest remote backup would need to be reloaded into the database. 
+
+Note: Local backups which were written before the event may not be reliable. There is no way to verify if the data blocks from the local backup were corrupted or not. For this reason, the backup to restore from should be stored remotely. 
+
+For information on restoring the database from a backup, see [Restore Database from Backup](https://docs.exasol.com/db/latest/administration/on-premise/backup_restore/restore_database.htm).
+
+### 2. Identify and Delete Corrupt Data
+It's possible to try to identify the objects which have the corrupt data. Depending on the size of the database, this option may be very time-consuming, and in the end, may not find all corrupt data. The following scripts will only help find corrupt data that is stored in a table/column, statistics, or indexes. If data corresponding to other data structures which are not checked in the below scripts are corrupt, then it may not be possible to remove this data. This option gives you the chance to "save" the database and not have to perform a restore, **but does not provide any guarantees**. 
+
+Save the below script into a file and run the below script using [Exaplus CLI](https://docs.exasol.com/db/latest/connect_exasol/sql_clients/exaplus_cli/exaplus_cli.htm). It will generate a list of SQL statements which forces the database to read all columns of every table in the entire database. 
+
+```sql
+set heading off;
+set verbose off;
+set linesize 20000;
+spool /tmp/check_all_columns.sql;
+SELECT '/*"' || COLUMN_SCHEMA || '"."' || COLUMN_TABLE || '"*/ ' || 'SELECT '||GROUP_CONCAT(CASE WHEN column_type='BOOLEAN' THEN 'COUNT("'||column_name||'")' ELSE CASE WHEN column_type LIKE '%CHAR%' THEN 'MIN(LENGTH("'||column_name||'"))' ELSE 'MIN("'||column_name||'")' END END ORDER BY column_ordinal_position)||' FROM "'||column_schema||'"."'||column_table||'";' FROM SYS."$EXA_SYS_COLUMNS_BASE" where column_schema='EXA_STATISTICS' and column_object_type='TABLE' group by column_table,column_schema order by column_table desc;
+SELECT '/*"' || COLUMN_SCHEMA || '"."' || COLUMN_TABLE || '"*/ ' || 'SELECT '||GROUP_CONCAT(CASE WHEN column_type='BOOLEAN' THEN 'COUNT("'||column_name||'")' ELSE CASE WHEN column_type LIKE '%CHAR%' THEN 'MIN(LENGTH("'||column_name||'"))' ELSE 'MIN("'||column_name||'")' END END ORDER BY column_ordinal_position)||' FROM "'||column_schema||'"."'||column_table||'";' FROM SYS.EXA_DBA_COLUMNS where column_object_type='TABLE' group by column_table,column_schema order by column_table desc;
+spool /tmp/check_all_columns.log;
+set heading on;
+set verbose on;
+@/tmp/check_all_columns.sql;
+```
+To execute the file, run `exaplus -u sys -p <passwd> -c <connection string> -f <file name>`. 
+
+The script will run through the entire script and store the output into /tmp/check_all_column.log. Once it's finished, do the following:
+1. Look into the output and find any queries which return an error message. The table which causes an error message contains corrupt data and should be dropped.
+2. Save the DDL of the object. Many SQL Editors offer the ability to save the DDL of the object, however we also have a script to help with this. For more information, see [Create DDL for a Table](create-ddl-for-a-table.md).
+3. Drop the table. For more information, see [DROP TABLE](https://docs.exasol.com/db/latest/sql/drop_table.htm).
+4. Re-create the table using the saved DDL.
+5. Reload the data into the table from another source. 
+
+If one of the statistics tables fails, contact Exasol to delete the corresponding data. Once all of the corrupt objects are dropped, re-run the above script to make sure there are no errors. 
+
+If the database is still crashing after all of the tables are fixed, you can try to drop all of the indexes in case one of them was also corrupted. The steps for this are:
+
+1. (optional) Run the below query to generate ENFORCE INDEX statements.
+```sql
+select 'ENFORCE '||case when IS_LOCAL then 'LOCAL' else 'GLOBAL' end||' INDEX ON "'||INDEX_SCHEMA||'"."'||INDEX_TABLE||'" ('||GROUP_CONCAT(('"'||COLUMN_NAME||'"')  order by
+ordinal_position)||');' from "$EXA_INDEX_COLUMNS" where INDEX_TABLE not like 'RPL:%'  group by index_object_id, index_schema, index_table, is_local order by COUNT(*) ASC;
+```
+2. (optional) Save the results to a separate text file
+3. Run the below query to generate DROP INDEX statements
+```sql
+select 'DROP '||case when IS_LOCAL then 'LOCAL' else 'GLOBAL' end||' INDEX ON "'||INDEX_SCHEMA||'"."'||INDEX_TABLE||'" ('||GROUP_CONCAT(('"'||COLUMN_NAME||'"')  order by
+ordinal_position)||');' from "$EXA_INDEX_COLUMNS" where INDEX_TABLE not like 'RPL:%'  group by index_object_id, index_schema, index_table, is_local order by COUNT(*) ASC;
+```
+4. Save the results to a separate text file
+5. Run the generated queries which perform all of the DROP INDEX statements
+6. (optional) Run the generated queries which perform all of the ENFORCE INDEX statements.
+
+Note - the database will automatically create indexes as needed, therefore the ENFORCE INDEX statements are purely optional and should only be run after you verify that the database is behaving normal. 
+
+**If after all of the above actions, the database is still restarting during query execution, then this may point to the fact that an underlying data structure was corrupted and the database is unrecoverable. In this case, the only option would be to delete the database, re-create it, and reload all of the data.**
+
+### 3. Re-create Database from Metadata
+
+If all of the data is easily restorable from different sources and there is no valid remote backup present, the fastest option may be to save the Metadata (DDL of all objects) of the database, delete the database, create a new database, restore the metadata, and reload all of the data. Exasol provides a [script](https://raw.githubusercontent.com/exasol/exa-toolbox/master/utilities/create_db_ddl.sql) to save the metadata of the entire database. In this script, all schemas, tables, views, scripts, functions, users, roles, permissions, and connections are created. However, any user or connection passwords are lost and must be reset afterwards. For more information, see [Create DDL for the entire database](create-ddl-for-the-entire-database.md).
+
+The exact steps would be:
+1. Create and save (in a seperate SQL file) metadata for the entire database. See [Create DDL for the entire database](create-ddl-for-the-entire-database.md) for more information.
+2. Delete the existing database. Once the database is deleted, **the data is unrecoverable**.
+3. Create a new database. For more information see our documentation for [version 8](https://docs.exasol.com/db/latest/administration/on-premise/manage_database/create_db.htm) or [7.1](https://docs.exasol.com/db/7.1/administration/on-premise/manage_database/create_db.htm).
+4. Run the saved SQL commands to recreate the database DDL. 
+5. Re-load the data from other sources.
+
+
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 
