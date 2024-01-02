@@ -20,17 +20,17 @@ Physical data is stored in blocks. The data blocks belong to a column, index, or
 
 Depending on the setup of the database and the effort to perform the below tasks, there are the following options:
 
-### 1. Restore from Remote Backup
-If we identify that the database is an inconsistent state and there is a recent backup stored remotely (from before the event which caused the corruption), than a quick option is to restore the database from the latest available backup. This action would cause a downtime which corresponds to the time required to write the full and incremental backups. In addition, any data which was added to the database since the latest remote backup would need to be reloaded into the database. 
+### 1. Restore from Backup
+If we identify that the database is an inconsistent state and there is a recent backup (from before the event which caused the corruption), than a quick option is to restore the database from the latest available backup. This action would cause a downtime which corresponds to the time required to write the full and incremental backups. In addition, any data which was added to the database since the latest  backup would need to be reloaded into the database. 
 
-Note: Local backups which were written before the event may not be reliable. There is no way to verify if the data blocks from the local backup were corrupted or not. For this reason, the backup to restore from should be stored remotely. 
+Note: If hardware errors (such as multiple defective disks) cause data loss or corruption, local backups may also be affected and you may need to restore from a remote backup in that case. 
 
 For information on restoring the database from a backup, see [Restore Database from Backup](https://docs.exasol.com/db/latest/administration/on-premise/backup_restore/restore_database.htm).
 
 ### 2. Identify and Delete Corrupt Data
 It's possible to try to identify the objects which have the corrupt data. Depending on the size of the database, this option may be very time-consuming, and in the end, may not find all corrupt data. The following scripts will only help find corrupt data that is stored in a table/column, statistics, or indexes. If data corresponding to other data structures which are not checked in the below scripts are corrupt, then it may not be possible to remove this data. This option gives you the chance to "save" the database and not have to perform a restore, **but does not provide any guarantees**. 
 
-Save the below script into a file and run the below script using [Exaplus CLI](https://docs.exasol.com/db/latest/connect_exasol/sql_clients/exaplus_cli/exaplus_cli.htm). It will generate a list of SQL statements which forces the database to read all columns of every table in the entire database. 
+Save the below script into a file called `corrupt_data_check.sql` and run the below script using [Exaplus CLI](https://docs.exasol.com/db/latest/connect_exasol/sql_clients/exaplus_cli/exaplus_cli.htm). It will generate a list of SQL statements which forces the database to read all columns of every table in the entire database. 
 
 ```sql
 set heading off;
@@ -44,10 +44,11 @@ set heading on;
 set verbose on;
 @/tmp/check_all_columns.sql;
 ```
-To execute the file, run `exaplus -u sys -p <passwd> -c <connection string> -f <file name>`. 
+
+To execute the file, run `exaplus -u sys -p <passwd> -c <connection string> -f corrupt_data_check.sql`. 
 
 The script will run through the entire script and store the output into /tmp/check_all_column.log. Once it's finished, do the following:
-1. Look into the output and find any queries which return an error message. The table which causes an error message contains corrupt data and should be dropped.
+1. Investigate `/tmp/check_all_column.log` and find any queries which return an error message. The table which causes an error message contains corrupt data and should be dropped.
 2. Save the DDL of the object. Many SQL Editors offer the ability to save the DDL of the object, however we also have a script to help with this. For more information, see [Create DDL for a Table](create-ddl-for-a-table.md).
 3. Drop the table. For more information, see [DROP TABLE](https://docs.exasol.com/db/latest/sql/drop_table.htm).
 4. Re-create the table using the saved DDL.
@@ -55,24 +56,30 @@ The script will run through the entire script and store the output into /tmp/che
 
 If one of the statistics tables fails, contact Exasol to delete the corresponding data. Once all of the corrupt objects are dropped, re-run the above script to make sure there are no errors. 
 
-If the database is still crashing after all of the tables are fixed, you can try to drop all of the indexes in case one of them was also corrupted. The steps for this are:
+If the database is still crashing after all of the tables are fixed, you can try to drop all of the indexes in case one of them was also corrupted. Save the below script into a file called `recreate_indexes.sql` and run the below script using [Exaplus CLI](https://docs.exasol.com/db/latest/connect_exasol/sql_clients/exaplus_cli/exaplus_cli.htm). It will generate a list of SQL statements which drops and re-creates all indexes on the database.
 
-1. Run the below query to generate ENFORCE INDEX statements.
+
+
 ```sql
+set heading off;
+set verbose off;
+set linesize 20000;
+spool /tmp/enforce_indexes.sql;
 select 'ENFORCE '||case when IS_LOCAL then 'LOCAL' else 'GLOBAL' end||' INDEX ON "'||INDEX_SCHEMA||'"."'||INDEX_TABLE||'" ('||GROUP_CONCAT(('"'||COLUMN_NAME||'"')  order by
 ordinal_position)||');' from "$EXA_INDEX_COLUMNS" where INDEX_TABLE not like 'RPL:%'  group by index_object_id, index_schema, index_table, is_local order by COUNT(*) ASC;
-```
-2. Save the results to a separate text file
-3. Run the below query to generate DROP INDEX statements
-```sql
+spool /tmp/drop_indexes.sql;
 select 'DROP '||case when IS_LOCAL then 'LOCAL' else 'GLOBAL' end||' INDEX ON "'||INDEX_SCHEMA||'"."'||INDEX_TABLE||'" ('||GROUP_CONCAT(('"'||COLUMN_NAME||'"')  order by
 ordinal_position)||');' from "$EXA_INDEX_COLUMNS" where INDEX_TABLE not like 'RPL:%'  group by index_object_id, index_schema, index_table, is_local order by COUNT(*) ASC;
+spool /tmp/index_logs.log;
+set heading on;
+set verbose on;
+@/tmp/drop_indexes.sql;
+@/tmp/enforce_indexes.sql;
 ```
-4. Save the results to a separate text file
-5. Run the generated queries which perform all of the DROP INDEX statements
-6. Run the generated queries which perform all of the ENFORCE INDEX statements.
 
-Note - the database will automatically create indexes as needed, therefore the ENFORCE INDEX statements are purely optional and should only be run after you verify that the database is behaving normal. 
+To execute the file, run `exaplus -u sys -p <passwd> -c <connection string> -f recreate_indexes.sql`. You can view `/tmp/index_logs.log` or auditing in the database to ensure that all queries executed successfully.
+
+Note - the database will automatically create indexes as needed, but the initial queries may run longer while they are creating indexes. For this reason, we recommend to re-create the indexes immediately after they are dropped.  
 
 **If after all of the above actions, the database is still restarting during query execution, then this may point to the fact that an underlying data structure was corrupted. In this case, you may need to export all of the data (for example, into CSV files), and re-load the data.**
 
