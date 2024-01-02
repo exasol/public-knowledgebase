@@ -14,7 +14,7 @@ If something in the database is corrupt, it can manifest itself in several diffe
 
 ## Explanation
 
-Data is stored column-wise in Exasol, which means that if certain data blocks are removed or not accessible, then any attempt to access that block will crash the database. This includes queries reading certain columns, indexes, statistics, or other data structure, as well as backups. In this case, the database is in an inconsistent state and requires intervention.
+Physical data is stored in blocks. The data blocks belong to a column, index, or internal data structure because Exasol is a column-oriented database. if certain data blocks are removed or not accessible, then any attempt to access that block will crash the database. This includes queries reading certain columns, indexes, statistics, or other data structure, as well as backups. In this case, the database is in an inconsistent state and requires intervention.
 
 ## Recommendation
 
@@ -57,12 +57,12 @@ If one of the statistics tables fails, contact Exasol to delete the correspondin
 
 If the database is still crashing after all of the tables are fixed, you can try to drop all of the indexes in case one of them was also corrupted. The steps for this are:
 
-1. (optional) Run the below query to generate ENFORCE INDEX statements.
+1. Run the below query to generate ENFORCE INDEX statements.
 ```sql
 select 'ENFORCE '||case when IS_LOCAL then 'LOCAL' else 'GLOBAL' end||' INDEX ON "'||INDEX_SCHEMA||'"."'||INDEX_TABLE||'" ('||GROUP_CONCAT(('"'||COLUMN_NAME||'"')  order by
 ordinal_position)||');' from "$EXA_INDEX_COLUMNS" where INDEX_TABLE not like 'RPL:%'  group by index_object_id, index_schema, index_table, is_local order by COUNT(*) ASC;
 ```
-2. (optional) Save the results to a separate text file
+2. Save the results to a separate text file
 3. Run the below query to generate DROP INDEX statements
 ```sql
 select 'DROP '||case when IS_LOCAL then 'LOCAL' else 'GLOBAL' end||' INDEX ON "'||INDEX_SCHEMA||'"."'||INDEX_TABLE||'" ('||GROUP_CONCAT(('"'||COLUMN_NAME||'"')  order by
@@ -70,22 +70,14 @@ ordinal_position)||');' from "$EXA_INDEX_COLUMNS" where INDEX_TABLE not like 'RP
 ```
 4. Save the results to a separate text file
 5. Run the generated queries which perform all of the DROP INDEX statements
-6. (optional) Run the generated queries which perform all of the ENFORCE INDEX statements.
+6. Run the generated queries which perform all of the ENFORCE INDEX statements.
 
 Note - the database will automatically create indexes as needed, therefore the ENFORCE INDEX statements are purely optional and should only be run after you verify that the database is behaving normal. 
 
-**If after all of the above actions, the database is still restarting during query execution, then this may point to the fact that an underlying data structure was corrupted and the database is unrecoverable. In this case, the only option would be to delete the database, re-create it, and reload all of the data.**
+**If after all of the above actions, the database is still restarting during query execution, then this may point to the fact that an underlying data structure was corrupted. In this case, you may need to export all of the data (for example, into CSV files), and re-load the data.**
 
 ### 3. Re-create Database from Metadata
 
 If all of the data is easily restorable from different sources and there is no valid remote backup present, the fastest option may be to save the Metadata (DDL of all objects) of the database, delete the database, create a new database, restore the metadata, and reload all of the data. Exasol provides a [script](https://raw.githubusercontent.com/exasol/exa-toolbox/master/utilities/create_db_ddl.sql) to save the metadata of the entire database. In this script, all schemas, tables, views, scripts, functions, users, roles, permissions, and connections are created. However, any user or connection passwords are lost and must be reset afterwards. For more information, see [Create DDL for the entire database](create-ddl-for-the-entire-database.md).
-
-The exact steps would be:
-1. Create and save (in a seperate SQL file) metadata for the entire database. See [Create DDL for the entire database](create-ddl-for-the-entire-database.md) for more information.
-2. Delete the existing database. Once the database is deleted, **the data is unrecoverable**.
-3. Create a new database. For more information see our documentation for [version 8](https://docs.exasol.com/db/latest/administration/on-premise/manage_database/create_db.htm) or [7.1](https://docs.exasol.com/db/7.1/administration/on-premise/manage_database/create_db.htm).
-4. Run the saved SQL commands to recreate the database DDL. 
-5. Re-load the data from other sources.
-
 
 *We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 
