@@ -14,7 +14,7 @@ If something in the database is corrupt, it can manifest itself in several diffe
 
 ## Explanation
 
-Physical data is stored in blocks. The data blocks belong to a column, index, or internal data structure because Exasol is a column-oriented database. if certain data blocks are removed or not accessible, then any attempt to access that block will crash the database. This includes queries reading certain columns, indexes, statistics, or other data structure, as well as backups. In this case, the database is in an inconsistent state and requires intervention.
+Physical data is stored in blocks. The data blocks belong to a column, index, or internal data structure because Exasol is a column-oriented database. If data blocks are removed or not accessible, then any attempt to access that block will crash the database. This includes queries reading certain columns, indexes, statistics, or other data structure, as well as backups. In this case, the database is in an inconsistent state and requires intervention.
 
 ## Recommendation
 
