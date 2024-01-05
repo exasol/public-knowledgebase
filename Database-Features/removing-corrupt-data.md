@@ -45,7 +45,7 @@ set verbose on;
 @/tmp/check_all_columns.sql;
 ```
 
-To execute the file, run `exaplus -u sys -p <passwd> -c <connection string> -f corrupt_data_check.sql`. 
+To execute the file, run `exaplus -u <username> -p <passwd> -c <connection string> -f corrupt_data_check.sql`. 
 
 The script will run through the entire script and store the output into /tmp/check_all_column.log. Once it's finished, do the following:
 1. Investigate `/tmp/check_all_column.log` and find any queries which return an error message. The table which causes an error message contains corrupt data and should be dropped.
