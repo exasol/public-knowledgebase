@@ -77,7 +77,7 @@ set verbose on;
 @/tmp/enforce_indexes.sql;
 ```
 
-To execute the file, run `exaplus -u sys -p <passwd> -c <connection string> -f recreate_indexes.sql`. You can view `/tmp/index_logs.log` or auditing in the database to ensure that all queries executed successfully.
+To execute the file, run `exaplus -u <username> -p <passwd> -c <connection string> -f recreate_indexes.sql`. You can view `/tmp/index_logs.log` or auditing in the database to ensure that all queries executed successfully.
 
 Note - the database will automatically create indexes as needed, but the initial queries may run longer while they are creating indexes. For this reason, we recommend to re-create the indexes immediately after they are dropped.  
 
