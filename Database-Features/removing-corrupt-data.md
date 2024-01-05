@@ -37,7 +37,7 @@ set heading off;
 set verbose off;
 set linesize 20000;
 spool /tmp/check_all_columns.sql;
-SELECT '/*"' || COLUMN_SCHEMA || '"."' || COLUMN_TABLE || '"*/ ' || 'SELECT '||GROUP_CONCAT(CASE WHEN column_type='BOOLEAN' THEN 'COUNT("'||column_name||'")' ELSE CASE WHEN column_type LIKE '%CHAR%' THEN 'MIN(LENGTH("'||column_name||'"))' ELSE 'MIN("'||column_name||'")' END END ORDER BY column_ordinal_position)||' FROM "'||column_schema||'"."'||column_table||'";' FROM SYS."$EXA_SYS_COLUMNS_BASE" where column_schema='EXA_STATISTICS' and column_object_type='TABLE' group by column_table,column_schema order by column_table desc;
+SELECT '/*"' || COLUMN_SCHEMA || '"."' || COLUMN_TABLE || '"*/ ' || 'SELECT '||GROUP_CONCAT(CASE WHEN column_type='BOOLEAN' THEN 'COUNT("'||column_name||'")' WHEN column_type LIKE '%CHAR%' THEN 'MIN(LENGTH("'||column_name||'"))' ELSE 'MIN("'||column_name||'")' END ORDER BY column_ordinal_position)||' FROM "'||column_schema||'"."'||column_table||'";' FROM SYS."$EXA_SYS_COLUMNS_BASE" where column_schema='EXA_STATISTICS' and column_object_type='TABLE' group by column_table,column_schema order by column_table desc;
 SELECT '/*"' || COLUMN_SCHEMA || '"."' || COLUMN_TABLE || '"*/ ' || 'SELECT '||GROUP_CONCAT(CASE WHEN column_type='BOOLEAN' THEN 'COUNT("'||column_name||'")' ELSE CASE WHEN column_type LIKE '%CHAR%' THEN 'MIN(LENGTH("'||column_name||'"))' ELSE 'MIN("'||column_name||'")' END END ORDER BY column_ordinal_position)||' FROM "'||column_schema||'"."'||column_table||'";' FROM SYS.EXA_DBA_COLUMNS where column_object_type='TABLE' group by column_table,column_schema order by column_table desc;
 spool /tmp/check_all_columns.log;
 set heading on;
