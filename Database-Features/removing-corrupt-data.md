@@ -45,7 +45,7 @@ set verbose on;
 @/tmp/check_all_columns.sql;
 ```
 
-To execute the file, run `exaplus -u <username> -p <passwd> -c <connection string> -f corrupt_data_check.sql`. Database user requires SELECT ANY DICTIONARY system privilege for executing this script, see [Details on Rights Management](https://docs.exasol.com/db/latest/database_concepts/privileges/details_rights_management.htm).
+To execute the file, run `exaplus -u <username> -p <passwd> -c <connection string> -f corrupt_data_check.sql`. DBA role would be sufficient for DB user to execute this script, see [Roles](https://docs.exasol.com/db/latest/database_concepts/database_users_roles.htm#Roles).
 
 The script will run through the entire script and store the output into /tmp/check_all_column.log. Once it's finished, do the following:
 1. Investigate `/tmp/check_all_column.log` and find any queries which return an error message. The table which causes an error message contains corrupt data and should be dropped.
@@ -77,7 +77,7 @@ set verbose on;
 @/tmp/enforce_indexes.sql;
 ```
 
-To execute the file, run `exaplus -u <username> -p <passwd> -c <connection string> -f recreate_indexes.sql`. Database user requires privileges to create and drop indices to run this script. DBA role would be sufficient, see [Roles](https://docs.exasol.com/db/latest/database_concepts/database_users_roles.htm#Roles). You can view `/tmp/index_logs.log` or auditing in the database to ensure that all queries executed successfully.
+To execute the file, run `exaplus -u <username> -p <passwd> -c <connection string> -f recreate_indexes.sql`. DBA role would be sufficient for DB user to execute this script, see [Roles](https://docs.exasol.com/db/latest/database_concepts/database_users_roles.htm#Roles). You can view `/tmp/index_logs.log` or auditing in the database to ensure that all queries executed successfully.
 
 Note - the database will automatically create indexes as needed, but the initial queries may run longer while they are creating indexes. For this reason, we recommend to re-create the indexes immediately after they are dropped.  
 
