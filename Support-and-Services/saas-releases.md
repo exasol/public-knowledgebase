@@ -7,7 +7,7 @@ For further information please also visit related pages for Exasol SaaS:
 * [Status Page (status.exasol.com)](https://status.exasol.com)
 
 ## March 06
-* make jdbc/oracle drivers uploaded with UI available in DB
+* make jdbc/oracle drivers uploaded with UI available in DB for [connections](https://docs.exasol.com/db/latest/sql/create_connection.htm)
 * prevent creation of security rules with invalid CIDR format
 * security improvements
 
