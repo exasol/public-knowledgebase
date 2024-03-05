@@ -11,6 +11,11 @@ For further information please also visit related pages for Exasol SaaS:
 * JDBC/Oracle drivers uploaded via the file upload feature can now be used as SQL level connections for IMPORT and EXPORT (see [documentation](https://docs.exasol.com/db/latest/sql/create_connection.htm))
 * prevent creation of security rules with invalid CIDR format
 * security improvements
+  
+Known issue:
+* Adding IPv6 addresses to the security rules prevent other security rules from applying.
+  
+  Workaround: Remove the IPv6 rule
 
 ## Aug 03
 UI Update
