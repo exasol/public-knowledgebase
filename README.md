@@ -14,9 +14,9 @@ You can choose one of the following templates:
 - [Question and Answer](Templates/QuestionAndAnswer.md): Pose a quick question with a specific answer.
 - [Solution to a Problem](Templates/SolutionToAProblem.md): Provide workarounds for bugs or new shortcuts that you would like to share with others.
 - [Tutorial](Templates/Tutorial.md): A quick tutorial for a specific task.
-- [EXplanation](Templates/Explanation.md): More information about a task or concept.
+- [Explanation](Templates/Explanation.md): More information about a task or concept.
 
-## Catagories
+## Categories
 The knowledge base provides five catagories:
 - Connect With Exasol
 - Data Science
@@ -40,6 +40,7 @@ Please keep in mind the following limitations when creating or modifying KB arti
 1. Images must not be larger than 1 MB.
 2. Do not include the < or > symbol in your Markdown. If you need to use the symbols, use "\&lt;" or "\%gt;" instead to represent those characters
 3. Use \<br /> instead of \<br>
+4. Article should contain only one level 1 header (starting from a single hash sign #). The content starting from the second hash sign will not be rendered in Salesforce Knowledgebase.
 
 ## Exasol Styles
 
