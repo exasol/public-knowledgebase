@@ -43,6 +43,7 @@ Due to the backwards compatibility we only release driver updates for the latest
 The end of Exasol Support for a particular platform is usually bound at least to their individual full/mainstream support end.
 ## ODBC Driver
 The ODBC (Open Database Connectivity) driver is fully supported until the end of life of the operating system. If there is an explicitly stated end-of-life date for the driver, that takes precedence.
+
 |Operating System|	Exasol Client Version|	End of Support by Exasol|	Remarks|
 |---|---|---|---|
 |**Linux**	|
