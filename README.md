@@ -41,6 +41,7 @@ Please keep in mind the following limitations when creating or modifying KB arti
 2. Do not include the < or > symbol in your Markdown. If you need to use the symbols, use "\&lt;" or "\%gt;" instead to represent those characters
 3. Use \<br /> instead of \<br>
 4. Article should contain only one level 1 header (starting from a single hash sign #). The content starting from the second hash sign will not be rendered in Salesforce Knowledgebase.
+5. Tables need to be separated from the surrounding text by at least one blank line from above and below.
 
 ## Exasol Styles
 
