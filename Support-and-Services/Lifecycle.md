@@ -69,6 +69,7 @@ The ODBC (Open Database Connectivity) driver is fully supported until the end of
 
 ## ADO.NET driver support for Visual Studio, SQL Server and .NET versions.
 ADO.Net is fully supported until the end of life of the Visual Studio version it is associated with. If there is an explicitly stated end-of-life date for ADO.Net within a particular Visual Studio version, that takes precedence over the support provided by Visual Studio.
+
 |Product	| Version | Exasol Client Version | End of Exasol Support|	Remarks|
 |---|---|---|---|---|
 |Visual Studio 2022| 17.0 | 24.0 | 	|	|
