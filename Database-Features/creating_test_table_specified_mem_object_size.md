@@ -61,7 +61,7 @@ test_data_gen.dummy x2);
 
 1. 100Mb
 ```sql
-EXECUTE SCRIPT create_table_mem_object_size('test_data_gen', 'tab_100mb', 100) WITH OUTPUT;
+EXECUTE SCRIPT create_table_mem_object_size('test_data_gen', 'tab_100mb', 100);
 --2 second on a basic singlenode vm cluster
 
 select mem_object_size/1024/1024 from exa_all_object_sizes where object_name = 'TAB_100MB' and ROOT_NAME = 'TEST_DATA_GEN'
@@ -70,7 +70,7 @@ select mem_object_size/1024/1024 from exa_all_object_sizes where object_name = '
 
 2. 2Gb
 ```sql
-EXECUTE SCRIPT create_table_mem_object_size('test_data_gen', 'tab_2gb', 2048) WITH OUTPUT;
+EXECUTE SCRIPT create_table_mem_object_size('test_data_gen', 'tab_2gb', 2048);
 --40 second on a basic singlenode vm cluster
 
 select mem_object_size/1024/1024 from exa_all_object_sizes where object_name = 'TAB_2GB' and ROOT_NAME = 'TEST_DATA_GEN'
@@ -79,7 +79,7 @@ select mem_object_size/1024/1024 from exa_all_object_sizes where object_name = '
 
 3. 10Gb
 ```sql
-EXECUTE SCRIPT create_table_mem_object_size('test_data_gen', 'tab_10gb', 10240) WITH OUTPUT;
+EXECUTE SCRIPT create_table_mem_object_size('test_data_gen', 'tab_10gb', 10240);
 --4 minutes on a basic singlenode vm cluster
 
 select mem_object_size/1024/1024 from exa_all_object_sizes where object_name = 'TAB_10GB' and ROOT_NAME = 'TEST_DATA_GEN'
