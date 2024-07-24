@@ -1,13 +1,13 @@
-## Creating a test table with a specified MEM_OBJECT_SIZE 
+# Creating a test table with a specified MEM_OBJECT_SIZE
 
-This article provides a detailed guide on using the create_table_mem_object_size script to create tables with a specified memory size (MEM_OBJECT_SIZE). It might be useful for Support investigations and experiments.
+This article provides a detailed guide on using the `create_table_mem_object_size` script to create tables with a specified memory size (MEM_OBJECT_SIZE). It might be useful for Support investigations and experiments.
 
 To use the script, simply create it in your desired schema. Be careful if a table named "dummy" already exists as the script will recreate it. 
 The script is designed to create a target table where each row occupies 128 bytes, with randomly generated content ensuring the actual table mem size is 128 bytes times the number of rows. 
 The number of rows required to populate the target table is calculated based on the value of the parameter mem_object_size.
 To generate a potentially large target table, the script uses a cartesian join of a smaller manageable "dummy" table on itself, multiplying the record count to reach the desired size.   
 
-# script
+## script
 ```sql
 create schema test_data_gen;
 open schema test_data_gen;
@@ -57,7 +57,7 @@ test_data_gen.dummy x2);
 /
 ```
 
-# Examples
+## Examples
 
 1. 100Mb
 ```sql
