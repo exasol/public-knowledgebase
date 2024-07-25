@@ -48,12 +48,31 @@ SELECT
 	RAND(1,100) AS rand15,
 	RAND(1,100) AS rand16
 	
-	--each row takes 128 byte 
+	--each row takes 128 byte RAW
 FROM 
 (SELECT 1 from
 test_data_gen.dummy x1,
 test_data_gen.dummy x2);
 ]])
+
+
+
+while true do
+
+    res = query([[commit]])
+    cur_size = query([[select mem_object_size/1024/1024 as MEM from exa_all_object_sizes where object_name = upper(']] .. table_name .. [[') and ROOT_NAME = upper(']] .. schema_name .. [[') ]])
+
+    if cur_size[1].MEM >= mem_object_size then
+        break;
+    end
+    
+    curr_count = query([[select table_row_count as CNT from exa_all_tables where table_name = upper(']] .. table_name .. [[') and table_schema = upper(']] .. schema_name .. [[') ]])
+    local add_rows = curr_count[1].CNT * ( mem_object_size - cur_size[1].MEM) / cur_size[1].MEM
+    if add_rows < 100 then add_rows = 100 end 
+    
+    res6 = query([[insert into ]] .. schema_name .. '.' .. table_name .. [[ select * from ]] .. schema_name .. '.' .. table_name .. [[ where rownum <= ]] .. add_rows)
+    output('Adding more rows to reach the target MEM_OBJECT ' .. add_rows)
+end
 /
 ```
 
@@ -61,27 +80,27 @@ test_data_gen.dummy x2);
 
 1. 100Mb
 ```sql
+drop table test_data_gen.tab_100mb;
 EXECUTE SCRIPT create_table_mem_object_size('test_data_gen', 'tab_100mb', 100);
---2 second on a basic singlenode vm cluster
-
+--2 second on a 4 node Saas cluster
 select mem_object_size/1024/1024 from exa_all_object_sizes where object_name = 'TAB_100MB' and ROOT_NAME = 'TEST_DATA_GEN'
---result 100.22835159301757812500
+--result 105.32723617553710937500
 ```
 
 2. 2Gb
 ```sql
+drop table test_data_gen.tab_2gb;
 EXECUTE SCRIPT create_table_mem_object_size('test_data_gen', 'tab_2gb', 2048);
---40 second on a basic singlenode vm cluster
-
+--10 second on a 4 node Saas cluster
 select mem_object_size/1024/1024 from exa_all_object_sizes where object_name = 'TAB_2GB' and ROOT_NAME = 'TEST_DATA_GEN'
---result 2049.37433147430419921875
+--result 2048.02326202392578125000
 ```
 
 3. 10Gb
 ```sql
+drop table test_data_gen.TAB_10GB;
 EXECUTE SCRIPT create_table_mem_object_size('test_data_gen', 'tab_10gb', 10240);
---4 minutes on a basic singlenode vm cluster
-
+--35 seconds on a 4 node Saas cluster
 select mem_object_size/1024/1024 from exa_all_object_sizes where object_name = 'TAB_10GB' and ROOT_NAME = 'TEST_DATA_GEN'
---result 10240.29162216186523437500
+--result 10240.88970947265625000000
 ```
