@@ -213,7 +213,7 @@ def adapter_call(request):
 /
 
 --create connection
-create or replace connection SELF_CONNECTION to 'ws://localhost:8563' user 'SYS' identified by 'exasol';
+create or replace connection SELF_CONNECTION to 'localhost:8563' user 'SYS' identified by 'exasol';
 
 -- create the virtual schema using the defined adapter and specified data schema
 CREATE VIRTUAL SCHEMA SECURED_BANK USING adapter_schema.rls_adapter with table_schema='OUR_BANK' META_CONNECTION='SELF_CONNECTION';
