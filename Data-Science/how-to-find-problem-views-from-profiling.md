@@ -27,7 +27,7 @@ Selecting from the view will provide a profile which includes the following pipe
 |12|PIPE PREFERENCE PREFILTER|(null)|(null)|(null)|
 |13|PIPE FULL PREFETCH|PIPE BUFFER|CDP|ISSUES|
 
-Unfortunately for us, profiling only shows the final execution plan, which contains tables only, the view layer has
+Unfortunately for us, profiling shows the final execution plan, which contains tables only, the view layer has
 been stripped away.
 
 Let's say we are interested how `ISSUES` is used twice, and how it relates to `DATABASE_JI`.
