@@ -89,9 +89,29 @@ For CDP.ISSUES:
 - Together with the fact that our query profile above does not include any `tmp_subselect` elements, we can deduce that
   the view `CDP.ISSUEVERSIONS` is "simple" and gets eliminated, embedding its logic into the parent view during execution.
 
-**Note:**
+Extracting the view text for `jira_H_V_DATABASE` using the `EXA_ALL_VIEWS` system table, we find the following part, which
+indeed answers our initial question:
+
+```sql
+ from
+  CDP.DATABASE_JI D
+ 
+  join CDP.ISSUES I
+   on I.ISSU_ID = D.DABA_ISSU_ID
+
+  join CDP.ISSUESTATI SS
+   on SS.ISTA_ID = I.ISSU_ISTA_ID
+
+  left join CDP.ISSUEVERSIONS V
+   on V.IVER_ISSU_ID = D.DABA_ISSU_ID
+```
+
+**Notes:**
 - The same technique can be applied to identify views generating `tmp_subselect` elements. Just identify the pipeline
-  inserting / aggregating *into* that subselect, and pick a few tables from its SCAN and JOIN entries. 
+  inserting / aggregating *into* that subselect, and pick a few tables from its SCAN and JOIN entries.
+- The example above does not contain any actual problems. It was simply picked to illustrate the process.
+- While the example is built to track down *TABLE* usage, the analysis query will also work for *VIEWS*, *FUNCTIONS* and
+  (non-procedure) *SCRIPTS*.
 
 ## Additional References
 
