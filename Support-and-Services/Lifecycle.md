@@ -21,8 +21,8 @@ Extended Support for Exasol 7.1 includes:
 * Major bug fixes
 * Security Fixes
 
-## Support for End of Life Versions
-If you continue to use an Exasol version after the End of Life date, Exasol support will help on a best-effort basis, however no SLAs or guarantees are applicable to these cases. For this reason, we strongly recommend to run supported versions.
+## End of Life Versions
+Once a version reaches End of Life, there are no more software updates, investigations, or bugfixes for that affected version. Incidents which occur on that version are not guaranteed to be processed or resolved, and no SLAs are applicable to these cases. For this reason, we strongly recommend to run supported versions.
 
 
 ## Client Platform Support
