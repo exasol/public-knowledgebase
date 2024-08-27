@@ -118,4 +118,4 @@ indeed answers our initial question:
 1. User Manual: [Profiling](https://docs.exasol.com/db/latest/database_concepts/profiling.htm)
 1. User Manual: [EXA_DBA_DEPENDENCIES](https://docs.exasol.com/db/latest/sql_references/system_tables/metadata/exa_dba_dependencies.htm)
 
-
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 
