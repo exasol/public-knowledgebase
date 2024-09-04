@@ -13,7 +13,7 @@ Adapter generated invalid pushdown query for virtual table
 A virtual schema used to work in version 7.1 but fails after upgrade to version 8 with an error like
 
 ```
-SQL Error [04000]: Adapter generated invalid pushdown query for virtual table TBLTPS_PHONEEVENTSEX_V: Data type mismatch in column number 1 (1-indexed).
+SQL Error [04000]: Adapter generated invalid pushdown query for virtual table MY_VIEW_NAME_V: Data type mismatch in column number 1 (1-indexed).
 Expected DECIMAL(18,0), but got DECIMAL(19,0).
 (pushdown query: IMPORT INTO (c1 DECIMAL(19, 0)) FROM JDBC AT MY_CONNECTION_NAME STATEMENT 'SELECT COUNT(*) FROM "my_schema"."my_table" LIMIT 200')
 ```
