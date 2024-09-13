@@ -43,7 +43,7 @@ This apporach could work in version 7.1, but not in version 8.
 
 1. For virtual schemas maintained by Exasol (see [Supported Dialects](https://github.com/exasol/virtual-schemas/blob/main/doc/user-guide/dialects.md)) the latest available releases have default settings covering this inconsistency.
 So please download the latest virtual schema JAR, upload it to BucketFS, recreate the virtual schema adapter and refresh the virtual schema in question (or create a new one).
-2. For other virtual schemas please refer to its' maintainer to fix the inconsistency.
+2. For other virtual schemas please refer to its maintainer to fix the inconsistency.
 
 ## Additional References
 
