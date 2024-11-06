@@ -4,8 +4,6 @@
 
 Replace this text with the question and all background information. Please do not change the section headings in this template. Thank you for your help!
 
-Please do not change, delete, or move the div tags in this template.
-
 ## Answer
 
 Replace this text with an answer to the question.
