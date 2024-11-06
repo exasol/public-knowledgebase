@@ -29,5 +29,3 @@ Replace this text with additional information that may be relevant for the custo
 ## Additional References
 
 Replace this text with helpful links to other information. Otherwise, delete this section and the Additional References section title.
-
-*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 
