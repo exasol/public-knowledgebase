@@ -44,7 +44,7 @@ The Exasol cluster where the monitoring agents are installed must have access to
 
 The following information is collected:
 
-**Note: Exasol does not collect any personal data.**
+**Note: Exasol does not collect any personal data or have access to user schemas.**
 
 - Exasol database statistics  
   - Schema "EXA_STATISTICS"
