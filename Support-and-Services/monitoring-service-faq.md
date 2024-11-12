@@ -107,6 +107,9 @@ The agent only supports SOCKS5, no other SOCKS protocols are supported.
 
 Data is stored at Exasol on an on-premise system. The data itself is unencrypted but the underlying hard disks are encrypted.
 
+## Will I get access to the Grafana dashboards?
+Currently, access to the data and the dashboards is limited to Exasol Support. We are evaluating if and how to make this available directly to customers. Each customer will receive a quarterly Usage Report with screenshots from the dashboards and key findings on performance and usage trends.
+
 
 
 ## Additional References
