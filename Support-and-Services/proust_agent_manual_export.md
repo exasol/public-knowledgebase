@@ -67,3 +67,5 @@ tar -czvf monitoring_export.tar.gz monitoring_export.line
 ## Downloads
 
 * [check_sqlquery.exe](https://github.com/exasol/public-knowledgebase/blob/main/Support-and-Services/attachments/check_sqlquery.exe)
+
+* [check_sqlquery.exe](attachments/check_sqlquery.exe)
