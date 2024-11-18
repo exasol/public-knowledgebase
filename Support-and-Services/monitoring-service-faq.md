@@ -1,10 +1,10 @@
-# Exasol Monitoring Service FAQ
+# Exasol Cloud Monitoring FAQ
 
 ## Background
 
-Exasol's Monitoring Service is a platform hosted and managed by Exasol which allows us to receive data about the performance and stability of your databases. This data is then used to provide better and faster support. For customers with Platinum Support, connection to the Monitoring Service is required for 24/7 alerting and incident management.
+Exasol's Cloud Monitoring is a platform hosted and managed by Exasol which allows us to receive data about the performance and stability of your databases. This data is then used to provide better and faster support. For customers with Platinum Support, connection to the Monitoring is required for 24/7 alerting and incident management.
 
-Connection to the Monitoring Service gives you the following benefits:
+Connection to Exasol's Cloud Monitoring gives you the following benefits:
 1. Faster problem identification as support is able to view a subset of logs before they are sent to Exasol
 2. Better performance analysis by Exasol experts using pre-defined Grafana dashboards based on best practices
 3. A quarterly Usage Report as a PDF with an insight into your database usage and any potential findings that require action.
@@ -12,7 +12,7 @@ Connection to the Monitoring Service gives you the following benefits:
 
 ## How does it work
 
-The Monitoring Service is a generic implementation using open source tools. On each node, Exasol Support installs monitoring agents which then collect relevant monitoring information from the system and the database. The Agent then sends the information to Exasol's central harvester and transforms and saves the data. Exasol Support has access to a variety of Grafana dashboards which are built on top of this information for speedy troubleshooting and incident alerting. The monitoring stack includes the following features:
+TExasol's Cloud Monitoring is a generic implementation using open source tools. On each node, Exasol Support installs monitoring agents which then collect relevant monitoring information from the system and the database. The Agent then sends the information to Exasol's central harvester and transforms and saves the data. Exasol Support has access to a variety of Grafana dashboards which are built on top of this information for speedy troubleshooting and incident alerting. The monitoring stack includes the following features:
 
 - no single point of failure
 - easy and secure connectivity
@@ -20,8 +20,8 @@ The Monitoring Service is a generic implementation using open source tools. On e
 - scalable architecture
 - modern stack
 
-## How do I get connected to the Monitoring Service
-If you are interested in getting connected to the Monitoring Service, just [open a case](https://exasol.my.site.com/s/create-new-case?language=en_US) with us expressing your interest. During the processing of the case, you will need to work with your internal teams to allow your Exasol clusters to connect to Exasol's host harvester.exasol.com via the following public data gateway ports (TCP):
+## How do I get connected to Exasol's Cloud Monitoring?
+If you are interested in getting connected, just [open a case](https://exasol.my.site.com/s/create-new-case?language=en_US) with us expressing your interest. During the processing of the case, you will need to work with your internal teams to allow your Exasol clusters to connect to Exasol's host harvester.exasol.com via the following public data gateway ports (TCP):
    - 9092
    - 10016
    - 10019
@@ -34,7 +34,7 @@ After the internet access is available, Exasol Support will set up a meeting wit
 
 The monitoring agents are created using [Open Source Telegraf Server Agent](https://github.com/influxdata/telegraf). Updates are provided on a regular basis and can be applied by our support staff.
 
-## How will the Monitoring Service be installed on my Exasol environment?
+## How will Exasol's Cloud Monitoring be installed on my Exasol environment?
 
 Exasol will install the monitoring agents on your clusters. These agents require root access and run inside the Exasol cluster process namespace.
 
