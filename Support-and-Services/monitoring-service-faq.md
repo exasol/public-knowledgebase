@@ -1,4 +1,4 @@
-# Exasol Cloud Monitoring FAQ
+# Exasol Monitoring Service FAQ
 
 ## Background
 
