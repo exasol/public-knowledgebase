@@ -1,4 +1,7 @@
-# Synchronize Archive Volumes via FTP 
+# Synchronize Archive Volumes via FTP
+
+**IMPORTANT: This article was written prior to Exasol version 6.1 and effectively uses several mechanisms that significantly changed since that time (network interface setup for Script Language Containers, network interface names, availability of remote backups proxied by EXAoperation over FTP etc.). Most likely, it won't work with modern Exasol versions.**
+
 ## Background
 
 With this UDF (backup_copy_ftp.sql) written in Python, you can easily synchronize archive volumes between clusters. Transport is TLS encrypted (self._ftp = FTP_TLS). After volumes have been initially synchronized, all files added or deleted will be added or deleted in the target archive volume. This UDF does not support synchronizing specific days or backup IDs, but it can be easily adjusted to your needs. Parallelism is handled by the database. So for best performance, the number of database and master nodes of the target archive volume should be the same.
