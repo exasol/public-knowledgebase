@@ -1,3 +1,13 @@
+CREATE CONNECTION BACKUPSYNC_LOCAL_CONN
+TO 'ftp://%s:%s@%s/v0002'
+USER 'admin'
+IDENTIFIED BY 'admin';
+
+CREATE CONNECTION BACKUPSYNC_REMOTE_CONN
+TO 'ftp://%s:%s@%s/LocalArchiveVolume1'
+USER 'admin'
+IDENTIFIED BY 'aX1234567';
+
 CREATE SCHEMA TEST;
 OPEN SCHEMA TEST;
 
@@ -7,28 +17,22 @@ OPEN SCHEMA TEST;
 -- To use it, simply set the correct access URLs and IP addresses to
 -- the remote nodes, create the UDF and call it in following SQL:
 -- 
--- SQL_EXA> SELECT syncBackups(IPROC) FROM EXA_LOADAVG;
+-- SQL_EXA> SELECT syncBackups(IPROC, '<Comma-separated list of remote DB IP addresses>') FROM EXA_LOADAVG;
 --
 -- The copy process runs completely parallel, distributed over all
 -- nodes and only files missing in the remote system are copied, so
--- this UDF can be called on regulary. Backup files which are removed
+-- this UDF can be called on a regular basis. Backup files which are removed
 -- from the source will alse be removed in the remote system.
 -- 
 --/
-CREATE OR REPLACE PYTHON SCALAR SCRIPT syncBackups(iproc INT) EMITS (iproc INT, lnum INT, line VARCHAR(2000000)) AS
+
+CREATE OR REPLACE PYTHON3 SCALAR SCRIPT syncBackups(iproc INT, remote_nodes VARCHAR(2000000)) EMITS (iproc INT, lnum INT, line VARCHAR(2000000)) AS
 from socket import inet_ntoa, AF_INET, SOCK_DGRAM, socket
 from fcntl import ioctl
 from struct import pack
 from ftplib import FTP_TLS
-from cStringIO import StringIO
-from urlparse import urlparse
-
-LOCAL_URL    = 'ftp://admin:admin@%s/v0001'
-REMOTE_URL   = 'ftp://admin:admin@%s/v0002'
-REMOTE_NODES = [ '27.1.0.11',
-                 '27.1.0.12',
-                 '27.1.0.13',
-                 '27.1.0.14', ]
+from io import StringIO
+from urllib.parse import urlparse
 
 class _ftp_writer(object):
     def __init__(self, ftp, fpath): self._fpath = fpath; self._ftp = ftp
@@ -127,32 +131,39 @@ def syncBackups(source, destination, node_id, debug = False):
         if fpath in dst_lst: continue
         if node is not None and fpath[3] != node: continue
         length = src_vol.copyFile(dst_vol, *fpath)
-        if debug: print "cp", '/'.join(fpath), "->", length
+        if debug: print("cp", '/'.join(fpath), "->", length)
     for fpath in sorted(dst_lst):
         if fpath in src_lst: continue
         if node is not None and fpath[3] != node: continue
-        if debug: print "rm", '/'.join(fpath)
+        if debug: print("rm", '/'.join(fpath))
         try: dst_vol.removeFile(*fpath)
         except:
-            if debug: print "rm", repr(fpath), "(-)"
+            if debug: print("rm", repr(fpath), "(-)")
 
 def run(ctx):
     sys.stdout = sys.stderr = output = StringIO()
+    remote_nodes_list = ctx.remote_nodes.split(',')
     nid = int(ctx.iproc)
     sfd = socket(AF_INET, SOCK_DGRAM)
-    currentip = inet_ntoa(ioctl(sfd.fileno(), 0x8915, pack('256s', 'eth0'))[20:24])
+    currentip = inet_ntoa(ioctl(sfd.fileno(), 0x8915, pack('256s', b'private0'))[20:24])
     sfd.close()
-    syncBackups(LOCAL_URL % currentip,
-                REMOTE_URL % REMOTE_NODES[nid],
+
+    local_url = exa.get_connection('BACKUPSYNC_LOCAL_CONN').address
+    local_user = exa.get_connection('BACKUPSYNC_LOCAL_CONN').user
+    local_password = exa.get_connection('BACKUPSYNC_LOCAL_CONN').password
+
+    remote_url = exa.get_connection('BACKUPSYNC_REMOTE_CONN').address
+    remote_user = exa.get_connection('BACKUPSYNC_REMOTE_CONN').user
+    remote_password = exa.get_connection('BACKUPSYNC_REMOTE_CONN').password
+
+    syncBackups(local_url % (local_user, local_password, currentip),
+                remote_url % (remote_user, remote_password, remote_nodes_list[nid]),
                 int(nid), True)
     lnum = 0
     for line in output.getvalue().split('\n'):
         if len(line.strip()) == 0: continue
         ctx.emit(nid, lnum, line)
         lnum += 1
-
 /
 
-SELECT syncBackups(IPROC) FROM EXA_LOADAVG;
-
-
+SELECT syncBackups(IPROC, '192.168.0.93') FROM EXA_LOADAVG;
