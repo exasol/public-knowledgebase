@@ -15,13 +15,13 @@ What I want to point out in this article is that keywords come in two different 
 Luckily there is a system table called `EXA_SQL_KEYWORDS` that contains that list and it obviously fits with the installed version.
 
 
-```ruby
+```sql
 SELECT * FROM EXA_SQL_KEYWORDS;
 ```
 Notice the column named `RESERVED`. If that value is false, you are allowed to use that keyword as a regular identifier. Otherwise quoting is mandatory. Let's try this out.
 
 
-```ruby
+```sql
 SELECT * FROM VALUES ('MON'), ('TUE'), ('WED'), ('THU'), ('FRI'), ('SAT'), ('SUN') AS DAYS("DAY");
 ```
 Here we use the reserved keyword "DAY" as an identifier. Try that statement in your SQL client to see the effect. You need to enclose the keyword in double quotes for the query to succeed.
