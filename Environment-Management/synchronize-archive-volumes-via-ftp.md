@@ -15,7 +15,7 @@ With this UDF (backup_copy_ftp.sql) written in Python, you can easily synchroniz
 
 ## Step 1: Create the UDF
 
-Open the attached file (backup_copy_ftp.sql), created connection objects `BACKUPSYNC_LOCAL_CONN` and `BACKUPSYNC_REMOTE_CONN`, then create the script in the schema of your choice. Within the connection object definitionss, you should adjust values
+Open the attached file (backup_copy_ftp.sql), create connection objects `BACKUPSYNC_LOCAL_CONN` and `BACKUPSYNC_REMOTE_CONN`, then create the script in the schema of your choice. Within the connection object definitions you should adjust values
 
 * `SourceArchiveVolumeName`
 * `SourceEXAoperationOrConfdUser`
