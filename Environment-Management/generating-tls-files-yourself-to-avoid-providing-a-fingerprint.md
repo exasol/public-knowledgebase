@@ -21,7 +21,7 @@ Please acquaint yourself with the process of using and uploading TLS certificate
 The tutorial applies to a particular use case:
 
 1. Only a connection string with IP addresses or DNS names could be used, fingerprint couldn't be added.
-2. Customer's IT Department or Security Department couldn't purchase a certificate from a public certification authority (CA) and also couldn't generate certificate in-house and sign it with company's customr root CA certificate.
+2. Customer's IT Department or Security Department couldn't purchase a certificate from a public certification authority (CA) and also couldn't generate certificate in-house and sign it with company's customer root CA certificate.
 
 __If both items hold__, than the last resort will be to generate yourself
 
@@ -67,7 +67,7 @@ This command creates a CA certificate as file `rootCA_cert.pem` with the followi
 * The key is not password protected (`-nodes`)
 * Common name (`CN` in `-subj`) is "Custom root CA for Exasol databases"
 * Organization Name (`O` in `-subj`) is "test"
-* Country Name (`C` in `-subj`) is "test"
+* Country Name (`C` in `-subj`) is "DE"
 
 This file is not sensitive.
 
@@ -118,11 +118,11 @@ and uploading the resulting certificate chain file `cert_chain.pem` and key file
 In this section we'll show how to configure some client tools to work with the certificates we've just created.
 One needs to do so as the generated root CA certificate is not known to client applications.
 
-### DBeaver, DB Visualizer and other third party tools using Exasol JDBC driver
+### DBeaver, DbVisualizer and other third party tools using Exasol JDBC driver
 
 Third party SQL clients leveraging Exasol JDBC driver typically come with their own JRE (Java Runtime Environment).
 By design Java applications use their own truststore and check if they trust database certificates by searching it in such a truststore.
-For example, as of 2024-11-25 for DBeaver (steps and paths for DB Visualizer are similar) JRE resides in `jre` subfolder of installation folder.
+For example, as of 2024-11-25 for DBeaver (steps and paths for DbVisualizer are similar) JRE resides in `jre` subfolder of installation folder.
 The respective truststore is `.\jre\lib\security\cacerts`.
 
 If we want to add a certificate to DBeaver's truststore, we need to find its location and perform the activity using the standard Java tool called `keytool`.
@@ -150,7 +150,7 @@ After a DBeaver restart connection to DB should be possible without a fingerprin
 According to [CHANGELOG: EXAplus on Windows will use Java from the current console](https://exasol.my.site.com/s/article/Changelog-content-18724?language=en_US) since version 24.0.0 EXAplus on Windows
 uses the Java interpreter set in the PATH variable of the console where it is started. We will be referring to this scenario.
 
-As EXAplus uses Exasol JDBC driver we simply need to perform the same steps as in the section "DBeaver, DB Visualizer and other third party tools using Exasol JDBC driver" but for the right Java.
+As EXAplus uses Exasol JDBC driver we simply need to perform the same steps as in the section "DBeaver, DbVisualizer and other third party tools using Exasol JDBC driver" but for the right Java.
 
 As explained above, that would be Java contained in the PATH variable of the console where it is started. If you still couldn't find it,
 try running EXAplus and checking using your favourite Task Manager application on Windows the list of running processes while EXAplus is still open.
