@@ -57,7 +57,7 @@ CREATE OR REPLACE TABLE OUR_BANK.CUSTOMER (
 
 
 import into OUR_BANK.CUSTOMER from local csv file 'C:\path\to\RLS-CLS-data_schema_customer.csv' 
-COLUMN SEPARATOR='|' skip=1;
+COLUMN SEPARATOR='|' skip=1 ROW SEPARATOR = 'CRLF';
 
 
 create or replace table our_bank.customer as 
@@ -157,7 +157,7 @@ def get_columns_for_table(cn, s, tbl, u):
     c = exa.get_connection(cn)
     l = get_restricted_columns_for_table(cn,s,tbl,u)
     with pyexasol.connect(dsn=c.address, user=c.user, password=c.password, protocol_version=pyexasol.PROTOCOL_V3) as conn:
-        if l is not None: stmt = conn.meta.execute_snapshot("select case when column_name  in ("+l+") then '''***''' else column_name end as column_name from EXA_ALL_COLUMNS where column_schema='"+s+"' and column_table='"+tbl+"'")
+        if l is not None: stmt = conn.meta.execute_snapshot("select case when column_name  in ("+l+") then 'cast(null as ' || column_type || ') as ' || column_name else column_name end as column_name from EXA_ALL_COLUMNS where column_schema='"+s+"' and column_table='"+tbl+"'")
         else: stmt = conn.meta.execute_snapshot("select column_name from EXA_ALL_COLUMNS where column_schema='"+s+"' and column_table='"+tbl+"'")
         cols = []
         for row in stmt:
@@ -217,6 +217,8 @@ create or replace connection SELF_CONNECTION to 'localhost:8563' user 'SYS' iden
 
 -- create the virtual schema using the defined adapter and specified data schema
 CREATE VIRTUAL SCHEMA SECURED_BANK USING adapter_schema.rls_adapter with table_schema='OUR_BANK' META_CONNECTION='SELF_CONNECTION';
+
+
 
 
 
