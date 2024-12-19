@@ -204,11 +204,6 @@ Configuration is completed. Now we can test connection to the database from the 
 
   ![](images/setting-up-ad-kerberos-sso_screenshot_10.png)
 
-## Links
-
-* [Setting up DBeaver for Kerberos authentication to Exasol](dbeaver-kerberos-authentication.md)
-* [Setting up ODBC DSN for Kerberos authentication to Exasol](odbc-kerberos-authentication.md)
-
 ##  Known issues
 
 ### Error: [28900] Cannot initialize SSPI security context
