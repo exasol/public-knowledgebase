@@ -206,10 +206,8 @@ Configuration is completed. Now we can test connection to the database from the 
 
 ## Links
 
-[Setting up DBeaver for Kerberos authentication to Exasol](dbeaver-kerberos-authentication.md)
-[Setting up ODBC DSN for Kerberos authentication to Exasol](odbc-kerberos-authentication.md)
-
-https://exasol.my.site.com/s/article/Setting-up-ODBC-DSN-for-Kerberos-authentication-to-Exasol?language=en_US
+* [Setting up DBeaver for Kerberos authentication to Exasol](dbeaver-kerberos-authentication.md)
+* [Setting up ODBC DSN for Kerberos authentication to Exasol](odbc-kerberos-authentication.md)
 
 ##  Known issues
 
