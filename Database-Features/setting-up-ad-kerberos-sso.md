@@ -53,15 +53,15 @@ In "Active Directory Users and Computers" go to previously created Exasol user -
 ![](images/setting-up-ad-kerberos-sso_screenshot_2.png)
 
 ###  3. Register SPN for exasol service user
-In order to register SPN execute following command in PowerShell: 
+In order to register SPN execute the following command in PowerShell: 
 
 ```
 setspn -S {Exasol service name}/{Exasol host name}.{AD domain} {Service account name}
 ```
 
-* **\{Exasol service name\}**: this parameter represents a **kerberos service name** of a particular exasol instance. This is the first out of 2 parameters which will be used during user authentication. It is arbitrary now, but later on it will be critical to use the exact value which is set up here.  
-* **\{Exasol host name\}**: this parameter represents a **kerberos host name** of a particular exasol instance. This is the second out of 2 parameters which will be used during user authentication. It is arbitrary now, but later on it will be critical to use the exact value which is set up here.  
-* **\{AD domain\}**: Active Directory domain of the Exasol service user created during step 1  
+* **\{Exasol service name\}**: this parameter represents a **kerberos service name** of a particular exasol instance. This is the first out of 2 parameters which will be used during user authentication. It is arbitrary now, but later on it will be critical to use the exact value which is set up here. Try to keep it simple and use lower case. 
+* **\{Exasol host name\}**: this parameter represents a **kerberos host name** of a particular exasol instance. This is the second out of 2 parameters which will be used during user authentication. It is arbitrary now, but later on it will be critical to use the exact value which is set up here. Try to keep it simple and use lower case. 
+* **\{AD domain\}**: Active Directory domain of the Exasol service user created during step 1. 
 * **\{Service account name\}**: Exasol service user created during step 1  
 
 To check that SPN was registered correctly run the following command in PowerShell:
