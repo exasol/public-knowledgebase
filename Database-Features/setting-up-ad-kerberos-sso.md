@@ -210,7 +210,7 @@ Configuration is completed. Now we can test connection to the database from the 
 `Error: [28900] Cannot initialize SSPI security context. The specified target is unknown or unreachable` during Step 7. This usually mean that prived parameters **Service name** and **Host** don't match the service keytab uploaded in Exasol DB.
 
 **Actions:**
-* Make sure that **Service name** and **Host** are exactly the as returned by `setspn -L {Service account name}` command. Run it in the same command promt before runing Exaplus.
+* Make sure that **Service name** and **Host** are exactly the same as returned by `setspn -L {Service account name}` command. Run it in the same command promt before runing Exaplus.
 
 
 ### Error: [28900] Connection exception - authentication failed.
