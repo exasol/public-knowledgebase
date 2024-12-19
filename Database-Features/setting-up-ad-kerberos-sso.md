@@ -1,14 +1,39 @@
 # Setting up Exasol Kerberos single sign-on with Active Directory
 ## Prerequisites
-* AD: installed and configured to authenticate users, domain is configured (which hosts users to be SSO in Exasol DB), admin access to AD
-* Exasol DB 7.1: installed and configured, admin access to Exaoperation, dba access to DB
-* Client machine: able authenticate with AD (get kerberos tgt for the client user), able to establish connection to Exasol DB, EXAplus installed (https://downloads.exasol.com/clients-and-drivers/exaplus)
+
+To successfully set up and use this integration, ensure the following requirements are met:
+
+### 1. Active Directory (AD)
+- Installed and configured to authenticate users.
+- A domain is set up to host users for Single Sign-On (SSO) with Exasol DB.
+- Administrative access to AD is available.
+
+### 2. Exasol Database
+- Installed and properly configured.
+- Exasol v7.1 - administrative access to ExaOperation is available.
+- Exasol v8 - administrative access to COS and Confd is available.
+- DBA privileges are granted for the database.
+
+### 3. Client Machine
+- Capable of authenticating with AD (able to obtain a Kerberos Ticket Granting Ticket (TGT) for the client user).
+- Able to establish a connection to the Exasol database.
+- EXAplus client installed. [Download here](https://downloads.exasol.com/clients-and-drivers/exaplus).
 
 ## Configuring SSO for ExasolDB
-###  1. Create Exasol service account in AD
-Create a new user in the AD domain to represent Exasol DB service.
 
-This can be done by following commands in PowerShell:
+>  **Important:** Please **double-check all commands and inputs** for accuracy. Even small typos can lead to critical errors or unexpected behavior.
+> 
+> - Identifiers (usernames, hostnames, realms, domains etc.)  and configurations provided below are **case-sensitive**.
+> - To avoid additional issues it is recommended to use simple names in lowercase where it is applicable.
+> - If you encounter issues, review your inputs for potential misspellings or formatting errors before proceeding.
+> 
+> Your attention to detail is crucial for successful execution.
+
+###  1. Create Exasol service account in AD
+Create a new user in the AD domain to represent Exasol DB service. 
+> **Important:** This account represents the Exasol database itself and is not intended to be used as a user account for authentication within the database. You can pick an arbitrary name, it is just an alias for an Exasol service. Try to keep it simple and use lower case.
+
+This can be accomplished using the following PowerShell commands:
 ```
 $password = ConvertTo-SecureString "{Service account password}" -AsPlainText -Force
 New-ADUser -Name "{Service account name}" -AccountPassword $password -Enabled $true
@@ -19,15 +44,8 @@ New-ADUser -Name "{Service account name}" -AccountPassword $password -Enabled $t
 **Example**
 ```
 $password = ConvertTo-SecureString "Password123!" -AsPlainText -Force
-New-ADUser -Name "exauser_dev" -AccountPassword $password -Enabled $true
+New-ADUser -Name "exa_db1" -AccountPassword $password -Enabled $true
 ```
-
-
-or in "Active Directory Users and Computers" UI:
-
-![](images/setting-up-ad-kerberos-sso_screenshot_1.png)
-
-***Note: service user can have an arbitrary name, it is just an alias for an Exasol service***
 
 ###  2. Anable supports AES 128/256 bit encryption for Exasol service user
 In "Active Directory Users and Computers" go to previously created Exasol user -> Properties -> Account -> Account options -> check "This account supports AES 128 bit encryption" and "This account supports AES 256 bit encryption" checkboxes.
@@ -53,7 +71,7 @@ setspn -L {Service account name}
 
 **Example**
 ```
-setspn -S exasol/exacluster_dev.boxes.test exauser_dev
+setspn -S exasol/exacluster_dev.boxes.test exa_db1
 ```
 ![](images/setting-up-ad-kerberos-sso_screenshot_3.png)
 
@@ -74,7 +92,7 @@ ktpass -out {Keytab path}\exasol_service.keytab -princ {Exasol service name}/{Ex
 
 **Example**
 ```
-ktpass -out C:\temp\exasol_service.keytab -princ exasol/exacluster_dev.boxes.test@BOXES.TEST -mapuser BOXES\exauser_dev -mapop set -pass Password123! -ptype KRB5_NT_PRINCIPAL -crypto all
+ktpass -out C:\temp\exasol_service.keytab -princ exasol/exacluster_dev.boxes.test@BOXES.TEST -mapuser BOXES\exa_db1 -mapop set -pass Password123! -ptype KRB5_NT_PRINCIPAL -crypto all
 ```
 
 ###  5. Upload service keytab in Exaoperation
