@@ -204,7 +204,14 @@ Configuration is completed. Now we can test connection to the database from the 
 
   ![](images/setting-up-ad-kerberos-sso_screenshot_10.png)
 
-##  7. Known issues
+## Links
+
+[Setting up DBeaver for Kerberos authentication to Exasol](dbeaver-kerberos-authentication.md)
+[Setting up ODBC DSN for Kerberos authentication to Exasol](odbc-kerberos-authentication.md)
+
+https://exasol.my.site.com/s/article/Setting-up-ODBC-DSN-for-Kerberos-authentication-to-Exasol?language=en_US
+
+##  Known issues
 
 ### Error: [28900] Cannot initialize SSPI security context
 `Error: [28900] Cannot initialize SSPI security context. The specified target is unknown or unreachable` during Step 7. This usually mean that prived parameters **Service name** and **Host** don't match the service keytab uploaded in Exasol DB.
@@ -222,7 +229,6 @@ Configuration is completed. Now we can test connection to the database from the 
 * Check that **Kerberos Realm** db parameter is correctly set in Exaoperation/EXAConf.
 * Try to regenerate keytab carefully and import it into DB once again.
 * This error could indicate several different issues. To investigate further, export the database logs following the [instructions here](https://docs.exasol.com/db/latest/administration/on-premise/admin_interface/exasupport.htm?Highlight=exasupport) and send them to Exasol Support.
-
 
 
 *We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 
