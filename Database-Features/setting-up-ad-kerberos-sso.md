@@ -127,7 +127,7 @@ ktpass -out C:\temp\exasol_service.keytab -princ exasol/exacluster_dev.boxes.tes
   * Manually replace the "dummy" keytab with the actual keytab file on all nodes.
   * The keytab file must be located on each DB node in the following path: /exa/etc/<database name>-keytab.
   * Ensure the keytab file does not already exist before running the job. If it does, delete it first.
-* Start up the database using [db_start](https://docs.exasol.com/db/latest/confd/jobs/db_start.htm) confd job.
+* Start up the database using [db_start](https://docs.exasol.com/db/latest/confd/jobs/db_start.htm) ConfD job.
  
 **Example**
 ```
