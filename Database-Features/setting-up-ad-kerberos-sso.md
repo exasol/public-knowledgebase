@@ -174,7 +174,7 @@ To enable an AD user to authenticate to the Exasol database using AD SSO, follow
   ```
   *  **\{db user name\}**: arbitrary Exasol db user name. This username itself is just a representation of AD user, it can be completely different form AD username and will not be directly used during authentication.  
   *  **\{AD user name\}**: username of AD user which we want to allow to access the database.  
-  *  **\{Kerberos realm\}**: In AD it is usually the domain name written in all capital letters. The AD usre must have the same Realm as the Exasol service account from Step 1.  
+  *  **\{Kerberos realm\}**: In AD it is usually the domain name written in all capital letters. The AD user must have the same Realm as the Exasol service account from Step 1.  
 
   **Example**
   ```sql
