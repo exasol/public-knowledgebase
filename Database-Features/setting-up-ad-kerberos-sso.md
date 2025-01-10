@@ -11,7 +11,7 @@ To successfully set up and use this integration, ensure the following requiremen
 ### 2. Exasol Database
 - Installed and properly configured.
 - Exasol v7.1 - administrative access to EXAoperation is available.
-- Exasol v8 - administrative access to COS and Confd is available.
+- Exasol v8 - administrative access to COS and ConfD is available.
 - DBA privileges are granted for the database.
 
 ### 3. Client Machine
