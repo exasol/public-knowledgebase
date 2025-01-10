@@ -113,7 +113,7 @@ ktpass -out C:\temp\exasol_service.keytab -princ exasol/exacluster_dev.boxes.tes
   ![](images/setting-up-ad-kerberos-sso_screenshot_7.png)
 
 ###  5.2 Upload service keytab using ConfD - Exasol v8.
-> **Important:** This section applies to Exasol version without ExaOperation.
+> **Important:** This section applies to Exasol version without EXAoperation.
 * Log in to any node of your Exasol database deployment and use the command-line tool confd_client to perform the following operations.
 * Stop the database using [db_stop](https://docs.exasol.com/db/latest/confd/jobs/db_stop.htm) confd job.
 * Upload the keytab file generated in Step 4 to a temporary location in the Cluster Operating System (COS), such as `/tmp/exasol_service.keytab`.
