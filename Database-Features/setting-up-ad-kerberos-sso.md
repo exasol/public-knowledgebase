@@ -189,7 +189,7 @@ Configuration is completed. Now we can test connection to the database from the 
 * Login into the user's machine using user's AD account.
 * Make sure that user's credential cache already contains an appropriate tgt-ticket. To do so, use **klist** command and check that the result contains a ticket for the principal **\{AD user name\}@\{Kerberos realm\}**.
 * Open shell terminal and navigate to EXAplus directory
-* To verify network connectivity between the client machine and the Exasol database, first attempt to connect to the database using a standard authentication method with a username and password. For example, use the dba user created in Step 6.
+* To verify network connectivity between the client machine and the Exasol database, first attempt to connect to the database using a standard authentication method with a username and password. For example, use the dba user from Step 6.
   ```
   ./exaplusx64.exe -c {Full connection string to Exasol db}
   ```
