@@ -117,7 +117,7 @@ ktpass -out C:\temp\exasol_service.keytab -princ exasol/exacluster_dev.boxes.tes
 * Log in to any node of your Exasol database deployment and use the command-line tool confd_client to perform the following operations.
 * Stop the database using [db_stop](https://docs.exasol.com/db/latest/confd/jobs/db_stop.htm) ConfD job.
 * Upload the keytab file generated in Step 4 to a temporary location in the Cluster Operating System (COS), such as `/tmp/exasol_service.keytab`.
-* Use the [db_configure_kerberos](https://docs.exasol.com/db/latest/confd/jobs/db_configure_kerberos.htm) job to setup Kerberos realm EXAconf parameteres and upload keytab file on all nodes. Only Kerberos realm parameter is nessesary.
+* Use the [db_configure_kerberos](https://docs.exasol.com/db/latest/confd/jobs/db_configure_kerberos.htm) job to setup Kerberos realm EXAConf parameteres and upload keytab file on all nodes. Only Kerberos realm parameter is necessary.
 > **Important:** Currently this job doens't work correctly.
 > 
 > The db_configure_kerberos job cannot process actual keytab files. It expects either the file's content as a text string or an attempt to read the file as text using the {<filename} syntax. Both approaches fail since keytab files are binary and cannot be represented as text.
