@@ -97,7 +97,7 @@ ktpass -out {Keytab path}\exasol_service.keytab -princ {Exasol service name}/{Ex
 ktpass -out C:\temp\exasol_service.keytab -princ exasol/exacluster_dev.boxes.test@BOXES.TEST -mapuser BOXES\exa_db1 -mapop set -pass Password123! -ptype KRB5_NT_PRINCIPAL -crypto all
 ```
 
-###  5.1 Upload service keytab in Exaoperation - Exasol v7.1.
+###  5.1 Upload service keytab in EXAoperation - Exasol v7.1.
 > **Important:** This section applies only to Exasol version 7.1 with ExaOperation. For other types of Exasol installations, please refer to Section 5.2.
 * Login to Exaoperation of the Exasol DB instance which you need to be accessible with AD SSO.
 * Shutdown the database
