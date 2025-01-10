@@ -12,6 +12,7 @@ With this UDF (backup_copy_ftp.sql) written in Python, you can easily synchroniz
 
 * Your Archive Volumes must be accessible to the Exasol cluster.
 * The user creating the UDF must have permission to create the script in a schema.
+* If a version 8 database is a synchronization party, the respective local archive volume should have both FTP and FTPS configured with the same port number.
 
 ## Step 1: Create the UDF
 
