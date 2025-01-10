@@ -221,7 +221,7 @@ Configuration is completed. Now we can test connection to the database from the 
 * Make sure that Exasol Service Account keytab is correctly imported in the DB.
 * Check that **Kerberos Realm** db parameter is correctly set in EXAoperation/EXAConf.
 * Try to regenerate keytab carefully and import it into DB once again.
-* This error could indicate several different issues. To investigate further, export the database logs following the [instructions here](https://docs.exasol.com/db/latest/administration/on-premise/admin_interface/exasupport.htm?Highlight=exasupport) and send them to Exasol Support.
+* This error could indicate several different issues. To investigate further, export the database logs following the [instructions here](https://docs.exasol.com/db/latest/administration/on-premise/admin_interface/exasupport.htm) and send them to Exasol Support.
 
 
 *We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 
