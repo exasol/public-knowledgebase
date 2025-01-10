@@ -112,7 +112,7 @@ ktpass -out C:\temp\exasol_service.keytab -princ exasol/exacluster_dev.boxes.tes
 * Startup the database and wait until it goes online
   ![](images/setting-up-ad-kerberos-sso_screenshot_7.png)
 
-###  5.2 Upload service keytab using Confd - Exasol v8.
+###  5.2 Upload service keytab using ConfD - Exasol v8.
 > **Important:** This section applies to Exasol version without ExaOperation.
 * Log in to any node of your Exasol database deployment and use the command-line tool confd_client to perform the following operations.
 * Stop the database using [db_stop](https://docs.exasol.com/db/latest/confd/jobs/db_stop.htm) confd job.
