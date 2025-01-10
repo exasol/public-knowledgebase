@@ -50,7 +50,7 @@ New-ADUser -Name "exa_db1" -AccountPassword $password -Enabled $true
 ```
 
 ###  2. Anable supports AES 128/256 bit encryption for Exasol service user
-In "Active Directory Users and Computers" go to previously created Exasol user -> Properties -> Account -> Account options -> check "This account supports AES 128 bit encryption" and "This account supports AES 256 bit encryption" checkboxes.
+In "Active Directory Users and Computers" go to previously created Exasol user -%gt; Properties -%gt; Account -%gt; Account options -%gt; check "This account supports AES 128 bit encryption" and "This account supports AES 256 bit encryption" checkboxes.
 
 ![](images/setting-up-ad-kerberos-sso_screenshot_2.png)
 
@@ -120,12 +120,12 @@ ktpass -out C:\temp\exasol_service.keytab -princ exasol/exacluster_dev.boxes.tes
 * Use the [db_configure_kerberos](https://docs.exasol.com/db/latest/confd/jobs/db_configure_kerberos.htm) job to setup Kerberos realm EXAConf parameteres and upload keytab file on all nodes. Only Kerberos realm parameter is necessary.
 > **Important:** Currently this job doens't work correctly.
 > 
-> The db_configure_kerberos job cannot process actual keytab files. It expects either the file's content as a text string or an attempt to read the file as text using the {<filename} syntax. Both approaches fail since keytab files are binary and cannot be represented as text.
+> The db_configure_kerberos job cannot process actual keytab files. It expects either the file's content as a text string or an attempt to read the file as text using the {&lt;filename} syntax. Both approaches fail since keytab files are binary and cannot be represented as text.
 > 
 * **Workaround**
   * Use db_configure_kerberos only to set EXAConf parameters and create a "dummy" keytab file in the correct location. 
   * Manually replace the "dummy" keytab with the actual keytab file on all nodes.
-  * The keytab file must be located on each DB node in the following path: /exa/etc/<database name>-keytab.
+  * The keytab file must be located on each DB node in the following path: /exa/etc/&lt;database name%gt;-keytab.
   * Ensure the keytab file does not already exist before running the job. If it does, delete it first.
 * Start up the database using [db_start](https://docs.exasol.com/db/latest/confd/jobs/db_start.htm) ConfD job.
  
