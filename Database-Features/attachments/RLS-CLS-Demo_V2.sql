@@ -1,3 +1,5 @@
+-- SWITCH TO the "RLS-CLS-Demo_PYTHON3.sql" FILE WHEN POSSIBLE!
+--
 -- Preparation: Cleanup
 impersonate sys;
 drop schema if exists OUR_BANK cascade;
@@ -16,7 +18,6 @@ drop user if exists "STEVE";
 drop user if exists "JAKE";
 drop user if exists "JESSICA";
 
-
 -- Preparation: Setup
 -- user management
 create user "MONICA" identified by "a";
@@ -26,7 +27,6 @@ create user "JAKE" identified by "a";
 grant create session to MONICA;
 grant create session to STEVE;
 grant create session to JAKE;
-
 
 -- impersonation (only for demo purposes)
 create role IMP;

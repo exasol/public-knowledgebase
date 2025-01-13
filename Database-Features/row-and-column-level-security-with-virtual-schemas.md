@@ -5,7 +5,7 @@
 
 **The official project to implement Row Level Security via Virtual Schemas is described here: <https://github.com/exasol/row-level-security-lua>. We recommend to use the Github Project to implement your own Row Level Security. The below article is only an example of a custom connector and is not officially supported.**
 
-This article describes how you could implement a custom Virtual Schema adapter to implement column level security in addition to row level security. It consists of 4 parts:
+This article describes how you could implement a custom Virtual Schema adapter to implement Column Level Security (CLS) in addition to Row Level Security (RLS). RLS with Exasol can be used to restrict access to rows (datasets) in tables to set of roles, tenants (owners), group of users, combination of tenant and role, and combination of tenant and group. CLS allows customers to control access to table columns. In theory CLS could be achieved by creating a set of views on top of base tables. Virtual schema approach might be more flexible as it won't require creating and maintaining additional objects (views). The article consists of 4 parts:
 
 * Creating the Virtual Schema
 * Setting up permissions
@@ -24,8 +24,8 @@ At the same time, there are also bank employees that are not working for a parti
 
 To prepare for this demo, you will need to download these 2 files:
 
-* RLS-CLS-data_schema_customer.csv
-* RLS-CLS-Demo_PYTHON3.sql
+* [RLS-CLS-data_schema_customer.csv](https://github.com/exasol/public-knowledgebase/blob/main/Database-Features/attachments/RLS-CLS-data_schema_customer.csv)
+* [RLS-CLS-Demo_PYTHON3.sql](https://github.com/exasol/public-knowledgebase/blob/main/Database-Features/attachments/RLS-CLS-Demo_PYTHON3.sql)
 
 Open the SQL File and change the IMPORT statement so that it matches your path. Within this file, we will create our users, table, virtual schema adapter script, roles, and import our data (lines 1-80).
 
@@ -42,9 +42,9 @@ CREATE VIRTUAL SCHEMA SECURED_BANK USING adapter_schema.rls_adapter
 
 Once our Virtual Schema is created, we need to assign the users roles which match their privileges. We've created these Roles to match their permission policies:
 
-* CLS_BALANCE_SECURED – Column level security on BALANCE
-* CLS_DETAILS_SECURED – Column level security on IBAN and CREDIT_SCORE
-* RLS_INSTITUTE_1 – Row level Security on INSTITUTE_1
+* CLS_BALANCE_SECURED – Column Level Security on BALANCE
+* CLS_DETAILS_SECURED – Column Level Security on IBAN and CREDIT_SCORE
+* RLS_INSTITUTE_1 – Row Level Security on INSTITUTE_1
 
 Based on the permissions from before, we have this alignment:
 
@@ -129,7 +129,7 @@ With this framework, you can specify as many restrictions on as many tables as y
 
 ## Downloads
 * [RLS-CLS-data_schema_customer.csv](https://github.com/exasol/public-knowledgebase/blob/main/Database-Features/attachments/RLS-CLS-data_schema_customer.csv)
-* [RLS-CLS-Demo_V2.sql](https://github.com/exasol/public-knowledgebase/blob/main/Database-Features/attachments/RLS-CLS-Demo_V2.sql) - the vanilla version of the adapter
+* [RLS-CLS-Demo_V2_OLD.sql](https://github.com/exasol/public-knowledgebase/blob/main/Database-Features/attachments/RLS-CLS-Demo_V2.sql) - the vanilla version of the adapter. Use only when you couldn't use Python 3 version below.
 * [RLS-CLS-Demo_PYTHON3.sql](https://github.com/exasol/public-knowledgebase/blob/main/Database-Features/attachments/RLS-CLS-Demo_PYTHON3.sql) - a Python 3 version of the adapter. When possible it takes advantage of no SQL metadata commands introduced in in Exasol 7.0, WebSocket protocol version 2. And when not possible it just executes metadata-like queries in snapshot execution mode.
 
 *We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 
