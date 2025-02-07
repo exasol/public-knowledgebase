@@ -27,7 +27,7 @@ Connection lost after session running out of memory.
 
 if it uses more than the specified `maxProcessHeapMemory`.
 
-Database also checks if sum or all sessions' working memory + memory of related UDF and IMPORT/EXPORT processes exceeds the value of `maxSystemHeapMemory` DB parameter. Sessions consuming the most of memory will fail with "SYSTEM out of memory" error:
+Database also checks if sum or all sessions' working memory + memory of related UDF and IMPORT/EXPORT processes exceeds the value of `maxSystemHeapMemory` DB parameter. At first BLOCKED (e.g. waiting for COMMIT) sessions and then sessions consuming the most of memory will fail with "SYSTEM out of memory" error:
 
 ```
 Connection lost after system running out of memory.
