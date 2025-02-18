@@ -34,7 +34,7 @@ In the Add data source template enter EXASOL as name and copy paste the followin
 <jdbc-type-settings>
 <type-name>EXASOL</type-name>
 <driver>com.exasol.jdbc.EXADriver</driver>
-<connection-url-pattern>jdbc:exa:&lt;host&gt;:&lt;port&gt;;clientname=Spotfire;</connection-url-pattern>
+<connection-url-pattern>jdbc:exa:<host>:<port>;clientname=Spotfire;</connection-url-pattern>
 <ping-command>SELECT 1</ping-command>
 <supports-catalogs>false</supports-catalogs>
 <supports-schemas>true</supports-schemas>
