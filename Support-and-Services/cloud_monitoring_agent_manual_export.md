@@ -34,8 +34,6 @@ When using the Exasol Cloud Monitoring Agent App in manual mode, the following p
 - **`-duration`**  
   Specifies the time period for which data should be exported. Currently, this parameter accepts only days(d), hours(h) and minutes(m). Support for additional time units will be introduced in future updates.
 
-## ENV variables
-Alternatively, instead of providing **`-user`**, **`-pass`**, and **`-host`** in the command itself, you can set up the ENV variables **`EXASOL_HOSTS`**, **`EXASOL_USER`**, and **`EXASOL_PASS`** beforehand and run the command without explicitly specifying these credentials.
 
 ## Example
 
@@ -52,7 +50,7 @@ or with ENV variables
 set EXASOL_HOSTS=<DB_HOST_IP>:<DB_PORT>
 set EXASOL_USER=<EXA_USER>
 set EXASOL_PASS=<EXA_USER_PASS>
-./check_sqlquery.exe -collect  -duration 100d > monitoring_export.line
+./check_sqlquery.exe -collect -user %EXASOL_USER% -pass %EXASOL_PASS% -host %EXASOL_HOSTS% -duration 100d > monitoring_export.line
 ```
 
 ### Linux
@@ -66,7 +64,7 @@ or with ENV variables
 EXASOL_HOSTS=<DB_HOST_IP>:<DB_PORT>
 EXASOL_USER=<EXA_USER>
 EXASOL_PASS=<EXA_USER_PASS>
-./check_sqlquery -collect -duration 100d > monitoring_export.line
+./check_sqlquery -collect -user $EXASOL_USER -pass $EXASOL_PASS -host $EXASOL_HOSTS -duration 100d > monitoring_export.line
 ```
 
 ### In both examples:
