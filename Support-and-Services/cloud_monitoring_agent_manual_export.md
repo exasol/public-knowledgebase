@@ -29,10 +29,11 @@ When using the Exasol Cloud Monitoring Agent App in manual mode, the following p
   Exasol user login that the app will use to connect and gather statistics. The specified user should have the **"select any dictionary"** privilege.
 
 - **`-pass`**  
-  Password of the corresponding Exasol user account.
+  Password of the corresponding Exasol user account. Password input masking will be implemented in a future update.
 
 - **`-duration`**  
-  Specifies the time period for which data should be exported. Currently, this parameter accepts only hours and minutes. Support for additional time units will be introduced in future updates.
+  Specifies the time period for which data should be exported. Currently, this parameter accepts only days(d), hours(h) and minutes(m). Support for additional time units will be introduced in future updates.
+
 
 ## Example
 
@@ -43,9 +44,27 @@ Below are examples of how to run the Exasol Cloud Monitoring Agent App in offlin
 ./check_sqlquery.exe -collect -user <EXA_USER> -pass <EXA_USER_PASS> -host <DB_HOST_IP>:<DB_PORT> -duration 5000h > monitoring_export.line
 ```
 
+or with ENV variables
+
+```bash
+set EXASOL_HOSTS=<DB_HOST_IP>:<DB_PORT>
+set EXASOL_USER=<EXA_USER>
+set EXASOL_PASS=<EXA_USER_PASS>
+./check_sqlquery.exe -collect -user %EXASOL_USER% -pass %EXASOL_PASS% -host %EXASOL_HOSTS% -duration 100d > monitoring_export.line
+```
+
 ### Linux
 ```bash
 ./check_sqlquery -collect -user <EXA_USER> -pass <EXA_USER_PASS> -host <DB_HOST_IP>:<DB_PORT> -duration 5000h > monitoring_export.line
+```
+
+or with ENV variables
+
+```bash
+EXASOL_HOSTS=<DB_HOST_IP>:<DB_PORT>
+EXASOL_USER=<EXA_USER>
+EXASOL_PASS=<EXA_USER_PASS>
+./check_sqlquery -collect -user $EXASOL_USER -pass $EXASOL_PASS -host $EXASOL_HOSTS -duration 100d > monitoring_export.line
 ```
 
 ### In both examples:
