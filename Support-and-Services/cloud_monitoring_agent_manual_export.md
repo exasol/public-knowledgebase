@@ -59,6 +59,7 @@ set EXASOL_PASS=<EXA_USER_PASS>
 ```bash
 ./check_sqlquery -collect -user <EXA_USER> -pass <EXA_USER_PASS> -host <DB_HOST_IP>:<DB_PORT> -duration 5000h > monitoring_export.line
 ```
+
 or with ENV variables
 
 ```bash
@@ -87,8 +88,8 @@ tar -czvf monitoring_export.tar.gz monitoring_export.line
 ## Downloads
 ### Linux
 
-* [check_sqlquery](https://github.com/exasol/public-knowledgebase/blob/main/Database-Features/attachments/check_sqlquery)
+* [check_sqlquery](https://github.com/exasol/public-knowledgebase/blob/main/Support-and-Services/attachments/check_sqlquery)
 
 ### Windows
 
-* [check_sqlquery.exe](https://github.com/exasol/public-knowledgebase/blob/main/Database-Features/attachments/check_sqlquery.exe)
+* [check_sqlquery.exe](https://github.com/exasol/public-knowledgebase/blob/main/Support-and-Services/attachments/check_sqlquery.exe)
