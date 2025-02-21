@@ -5,7 +5,7 @@
 
 We have an unusual peak in our DQL queries and would like to know which user with which IP is responsible for it.
 
-![Peak](Database-Features/images/PeggySchmidtMittenzweiDQLHighPeak2.png)
+![Peak](images/PeggySchmidtMittenzweiDQLHighPeak2.png)
 
 This diagram visualizes the table [EXA_SQL_HOURLY](https://docs.exasol.com/db/latest/sql_references/system_tables/statistical/exa_dba_audit_sql.htm) for the attribute COMMAND_CLASS with the value DQL.
 
