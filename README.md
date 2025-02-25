@@ -42,6 +42,10 @@ Please keep in mind the following limitations when creating or modifying KB arti
 1. Use \<br /> instead of \<br>
 1. Article should contain only one level 1 header (starting from a single hash sign #). The content starting from the second hash sign will not be rendered in Salesforce Knowledgebase.
 1. Tables need to be separated from the surrounding text by at least one blank line from above and below.
+1. As images should go to a special subfolder called "images", they should be further used via a path relative to a current folder, like (uppercase fragments are to be replaced accordingly)
+```
+![SOME_CAPTION_THAT_SHOWS_UP_WHEN_YOU_HOVER_OVER_PIC](images/MYFILE.PNG)
+```
 
 ## Exasol Styles
 
