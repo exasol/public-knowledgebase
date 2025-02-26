@@ -13,28 +13,31 @@ To make sure `EXA_ALL_COLUMNS` is accurate you have to first access any view tha
 
 1. Run: 
 ```sql
-select * from(
-SELECT view_schema, view_name
-FROM exa_all_views v
-LEFT JOIN exa_all_columns c
-  ON v.view_schema = c.column_schema
-AND v.view_name = c.column_table
-GROUP BY view_schema, view_name
-HAVING ANY( column_name IS NULL )
-    OR ANY( status = 'OUTDATED' )
+SELECT *
+FROM (
+       SELECT view_schema,
+              view_name
+       FROM exa_all_views v
+       LEFT JOIN exa_all_columns c
+          ON v.view_schema = c.column_schema
+          AND v.view_name = c.column_table
+       GROUP BY view_schema, view_name
+       HAVING ANY( column_name IS NULL )
+       OR ANY( status = 'OUTDATED' )
+   
+       UNION ALL
 
-union all
-
-select
-	column_schema, column_table
-from
-	exa_sys_columns c
-WHERE
-	status = 'OUTDATED'
-group by
-	column_schema, column_table
+       SELECT
+       	 column_schema,
+         column_table
+       FROM
+       	exa_sys_columns c
+       WHERE
+       	status = 'OUTDATED'
+       GROUP BY
+      	column_schema, column_table
 )
-order by 1, 2
+ORDER BY 1, 2
 ;
 ```
 2. For every view that is listed you need to access it by (for example) running `DESC schema.view`. If this DESC fails the view is invalid and vice versa.
