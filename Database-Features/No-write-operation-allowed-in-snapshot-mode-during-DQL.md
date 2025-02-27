@@ -1,4 +1,4 @@
-# No-write-operation-allowed-in-snapshot-mode-during-DQL
+# No write operation allowed in snapshot mode during DQL
 
 ## Problem
 
