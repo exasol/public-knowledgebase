@@ -37,10 +37,10 @@ The knowledge base provides five catagories:
 ## Limitations
 Please keep in mind the following limitations when creating or modifying KB articles:
 1. Images must not be larger than 1 MB.
-1. Do not include the < or > symbols in your Markdown in plaintext parts of the article. If you need to use the symbols, use "\&lt;" or "\%gt;" instead to represent those characters.
+1. Do not include the < or > symbols in your Markdown in plaintext parts of the article. If you need to use the symbols, use "\&lt;" or "\&gt;" instead to represent those characters.
 1. Symbols < or > should, however, be used inside code blocks (triple ticks) and code inlines (single ticks).
 1. Use \<br /> instead of \<br>
-1. Article should contain only one level 1 header (starting from a single hash sign #). The content starting from the second hash sign will not be rendered in Salesforce Knowledgebase.
+1. Article should contain only one level 1 header (starting from a single hash sign #). The content starting from the second single hash sign will not be rendered in Salesforce Knowledgebase.
 1. Tables need to be separated from the surrounding text by at least one blank line from above and below.
 1. As images should go to a special subfolder called "images", they should be further used via a path relative to a current folder, like (uppercase fragments are to be replaced accordingly)
 ```
