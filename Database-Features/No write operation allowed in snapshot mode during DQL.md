@@ -46,7 +46,6 @@ FROM
 WHERE     
   1=1
   and c.status in ('OUTDATED')     
-  and c.column_schema in ('<application_name>')
    
 ORDER BY      
 1, 2, 3      
@@ -61,7 +60,7 @@ So, after the system upgrade (on application startup / before DDL (re-)deploymen
 
 #### Additional references:
 
-* [How to find invalid views](https://exasol.my.site.com/s/article/How-to-Find-Invalid-Views?language=en_US#:~:text=Answer,field%20will%20be%20%22OUTDATED%22.)
+* [How to find invalid views](https://exasol.my.site.com/s/article/How-to-Find-Invalid-Views?language=en_US)
 
 * [Snapshot mode](https://docs.exasol.com/db/latest/database_concepts/snapshot_mode.htm)
 
