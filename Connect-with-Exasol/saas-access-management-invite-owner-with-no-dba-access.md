@@ -6,7 +6,7 @@ Why does an invited user as "Owner" have full access to the data in the database
 How can I restrict an invited "Owner" from having full DBA privileges?
 
 Current behavior:
-Invited user as OWNER is haveing full access to the DB.
+Invited user as OWNER is having full access to the DB.
 
 Expected behavior:
 According to the description in SaaS web console (see screenshots), the access to the DB must be limited. "Access to data in databases is granted separatley"
