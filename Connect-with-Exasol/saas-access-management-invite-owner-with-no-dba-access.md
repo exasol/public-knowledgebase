@@ -22,7 +22,7 @@ Invite a User as Owner to be able to see the DB. You will get a pop-up window sa
 
 When a user is invited as "Owner", the inviter presented with a web console option on the next screen to grant access to specific databases they own. The system allows the inviter to select which databases the user will have access to as a DBA.
 
-Currently the only way do prevent a new Owner from having DBA access to the data, would be to manually downgrade that user from DBA to something else.
+Currently the only way do prevent a new Owner from having DBA access to the data, would be to manually (via SQL) downgrade that user from DBA to something else.
 
 ## Additional References
 
