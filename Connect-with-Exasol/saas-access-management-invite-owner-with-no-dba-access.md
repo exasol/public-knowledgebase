@@ -26,6 +26,6 @@ Currently the only way do prevent a new Owner from having DBA access to the data
 
 ## Additional References
 
-https://docs.exasol.com/saas/administration/access_mngt/access_management.htm
+[Exasol SaaS: Administration &gt; Access Management](https://docs.exasol.com/saas/administration/access_mngt/access_management.htm)
 
 *We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).*
