@@ -3,6 +3,7 @@
 ## Question
 
 How to retrieve the last login time or last session's details of a DB user?
+Possible use case: Identify database user accounts that have not been actively used recently.
 
 ## Answer
 
