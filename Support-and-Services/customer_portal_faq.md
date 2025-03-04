@@ -18,6 +18,7 @@ The MyExasol User Manager can then open a case of type **Service Request**  and 
 ## *How can I contact Support now?*
 
 You can contact support via email, phone, or online. The Customer Portal is an additional communication channel to support. The below table describes which communication methods you can use to reach us:
+
 | Support Channel | Method | Notes |
 | - | - | - |
 | Phone | Call one of the following numbers:<br /> - Toll America: +1 415 363 5510<br />- Toll Europe/Rest of the World: +49 911 2399 110 | | 
