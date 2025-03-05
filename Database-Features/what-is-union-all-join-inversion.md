@@ -4,7 +4,9 @@
 
 The content of this article provides more information on [Changelog-content-22913](https://exasol.my.site.com/s/article/Changelog-content-7802) and applies to Exasol versions starting with **8.34.0**.
 
-There is another automated optimization for `UNION ALL` covering the case of identical tables in every branch.[^union-all-opt]
+There is another automated optimization[^union-all-opt] for `UNION ALL` covering the case of identical tables in every branch.
+
+[^union-all-opt]: Union All Optimization: [Knowledge Base Article](https://exasol.my.site.com/s/article/Union-all-optimization)
 
 ## Question
 
@@ -44,9 +46,9 @@ WHERE d_year = 2003 AND d_moy = 6
 GROUP BY d_date, ss_store_sk
 ```
 
-> **Note:** All queries in this article use the **TPC-DS** data structures.[^tpc-ds]
+> **Note:** All queries in this article use the **TPC-DS**[^tpc-ds] data structures.
 
-The query above used to look like this in profiling (shortened table):[^profiling]
+The query above used to look like this in profiling[^profiling] (shortened table):
 
 |PART_ID|PART_NAME|OBJECT_NAME|OBJECT_ROWS|OUT_ROWS|
 |---:|---|---|---:|---:|
@@ -63,10 +65,18 @@ Only the join with `date_dim` in part 8 can apply the provided filter.
 
 > **Note:** This example uses a simple table for demonstration purposes. See **Limitations (4)** below for the full set of supported filter-joins.
 
+[^tpc-ds]: Official site: [https://www.tpc.org/tpcds/](https://www.tpc.org/tpcds/)
+[^profiling]: Profiling Documentation: [https://docs.exasol.com/db/latest/database_concepts/profiling.htm](https://docs.exasol.com/db/latest/database_concepts/profiling.htm "Docs: Profiling")
+
 ## Answer: What
 
 On a mathematics level, the optimization is pretty simple to describe:
-`(A+B) * C == A*C + B*C`, because neither ==UNION ALL== ('+') nor ==JOIN== ('*') care about duplicates.
+
+```math
+(A+B) * C == A*C + B*C
+```
+
+because neither `UNION ALL` ('+') nor `JOIN` ('*') need to care about duplicates on either side.
 
 Similar to the regular filter propagation, the new optimization will "push" the filtering join into each of the union all branches, thereby *inverting* the order of operations:
 
@@ -106,7 +116,7 @@ The accompanying execution profile would look like that:
 
 This optimized execution provides multiple advantages:
 
-- The date filter is applied before materialization, potentially **saving** a lot of **TEMP RAM**.
+- The date filter is applied before materialization, potentially **saving a lot of TEMP RAM**.
 - The date join is now applied on individual tables instead of on the big `tmp_subselect`. Indices on tables are persistent, while **indices on temporary objects** die with the object and potentially have to be re-created again within every query.
 - Better insights... checking the profile above, we immediately see that the large `store_sales` table does not actually provide any rows matching the date filter.
 
@@ -224,9 +234,11 @@ JOIN date_dim
 
 #### 4.2. Materialized Subselect
 
-At this stage of optimization, a "materialized subselect" is usually a **view** that was automatically pre-materialized due to being **used multiple times** in the query. Please note that in this regard, a common table expression ('CTE') does **not** qualify as a view!
+At this stage of optimization, a "materialized subselect" is usually a **view** or **CTE**[^cte] that was automatically pre-materialized due to being **used multiple times** in the query.
 
 Unfortunately, information used to materialize the subselect is lost in the process, so the subselect has to be treated as a *simple table* as shown in 4.1 above.
+
+[^cte]: Common Table Expression; see `WITH` clause at [https://docs.exasol.com/db/latest/sql/select.htm](https://docs.exasol.com/db/latest/sql/select.htm "Docs: SELECT")
 
 #### 4.3. Single-Table Subselect
 
@@ -374,14 +386,4 @@ In other words: The inversion is allowed if it adds less than six columns or at 
 - *required columns* for the joined table are all columns that are required to process the remainder of the query
 - As indicated above, multiple join filters may be applicable, so a table violating this limit in the first check may find a higher value for `NU` after another join was pushed into the union...
 
-## Tags
-
-`optimizer`, `union all`, `improvement`
-
 ## Additional References
-
-[^tpc-ds]: Official site: [https://www.tpc.org/tpcds/](https://www.tpc.org/tpcds/)
-
-[^profiling]: Profiling Documentation: [https://docs.exasol.com/db/latest/database_concepts/profiling.htm](https://docs.exasol.com/db/latest/database_concepts/profiling.htm)
-
-[^union-all-opt]: Union All Optimization: [Knowledge Base Article](https://exasol.my.site.com/s/article/Union-all-optimization)
