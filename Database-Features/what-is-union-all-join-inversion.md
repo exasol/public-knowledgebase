@@ -2,11 +2,13 @@
 
 ## Introduction
 
-The content of this article provides more information on [Changelog-entry-22913](Changelog-entry-22913) and applies to Exasol versions starting with **8.34.0**.
+The content of this article provides more information on [Changelog-content-22913](https://exasol.my.site.com/s/article/Changelog-content-7802) and applies to Exasol versions starting with **8.34.0**.
+
+There is another automated optimization for `UNION ALL` covering the case of identical tables in every branch.[^union-all-opt]
 
 ## Question
 
-What does it do, how can I use it and why would I want to?
+What does "union all join inversion" do, how can I use it and why would I want to?
 
 ## Answer: How
 
@@ -14,13 +16,13 @@ This is the simplest part: This is fully automated, you do not have to change an
 
 ## Answer: Why
 
-Table operators (UNION, MINUS, INTERSECT) are powerful tools, but in Exasol they come with some drawbacks:
+Table operators (`UNION`, `MINUS`, `INTERSECT`) are powerful tools, but in Exasol they come with some drawbacks:
 
-Those operations act as *materialization barriers*: At query execution time, the result of the operation is always fully materialized in a temporary table (tmp_subselect) before the remainder of the query can be processed.
+Those operations act as *materialization barriers*: At query execution time, the result of the operation is always fully materialized in a temporary table (tmp_subselect, see profile examples below) before the remainder of the query can be processed.
 
 Exasol versions prior to 8.34.0 already do their best to reduce the footprint of the operation by removing unused columns ("select list elimination") and pushing applicable filters into each of the operands ("filter propagation").
 
-**However**, one frequently used type of filter is *not applicable* to filter propagation: a "filter join":
+**However**, one frequently used type of filter is *not applicable* to filter propagation: a "filter join" as shown in the following example.
 
 ```sql
 WITH sales_and_returns AS (
@@ -42,12 +44,12 @@ WHERE d_year = 2003 AND d_moy = 6
 GROUP BY d_date, ss_store_sk
 ```
 
-> **Note:** All queries in this article use the **TPC-DS** data structures
+> **Note:** All queries in this article use the **TPC-DS** data structures.[^tpc-ds]
 
-The query above used to look like this in profiling (shortened table):
+The query above used to look like this in profiling (shortened table):[^profiling]
 
 |PART_ID|PART_NAME|OBJECT_NAME|OBJECT_ROWS|OUT_ROWS|
-|---|---|---|---|---|
+|---:|---|---|---:|---:|
 |2|SCAN|STORE_SALES|28,800,991|28,800,991|
 |3|INSERT|tmp_subselect0|0|28,800,991|
 |4|SCAN|STORE_RETURNS|2,875,432|2,875,432|
@@ -56,15 +58,15 @@ The query above used to look like this in profiling (shortened table):
 |7|SCAN|tmp_subselect0|31,676,423|31,676,423|
 |8|JOIN|DATE_DIM|438,294|8,570|
 
-Here, the pipelines of parts (2-3) and (4-5) create the materialized UNION ALL without any filter applied.
-Only the join with `DATE_DIM` in part 8 can apply the provided filter.
+Here, the pipelines of parts (2-3) and (4-5) create the materialized union without any filter applied.
+Only the join with `date_dim` in part 8 can apply the provided filter.
 
 > **Note:** This example uses a simple table for demonstration purposes. See **Limitations (4)** below for the full set of supported filter-joins.
 
 ## Answer: What
 
 On a mathematics level, the optimization is pretty simple to describe:
-`(A+B) * C == A*C + B*C`, because neither UNION ALL ('+') nor JOIN ('*') care about duplicates.
+`(A+B) * C == A*C + B*C`, because neither ==UNION ALL== ('+') nor ==JOIN== ('*') care about duplicates.
 
 Similar to the regular filter propagation, the new optimization will "push" the filtering join into each of the union all branches, thereby *inverting* the order of operations:
 
@@ -94,7 +96,7 @@ GROUP BY d_date, ss_store_sk;
 The accompanying execution profile would look like that:
 
 |PART_ID|PART_NAME|OBJECT_NAME|OBJECT_ROWS|OUT_ROWS|
-|---|---|---|---|---|
+|---:|---|---|---:|---:|
 |2|SCAN|DATE_DIM|438,294|180|
 |3|JOIN|STORE_SALES|28,800,991|0|
 |4|INSERT|tmp_subselect0|0|0|
@@ -106,12 +108,12 @@ This optimized execution provides multiple advantages:
 
 - The date filter is applied before materialization, potentially **saving** a lot of **TEMP RAM**.
 - The date join is now applied on individual tables instead of on the big `tmp_subselect`. Indices on tables are persistent, while **indices on temporary objects** die with the object and potentially have to be re-created again within every query.
-- Better insights... checking the profile above, we immediately see that the large `STORE_SALES` table does not actually provide any rows matching the date filter.
+- Better insights... checking the profile above, we immediately see that the large `store_sales` table does not actually provide any rows matching the date filter.
 
 > **Note:** This optimization is **repeatable**, which means
 >
-> 1. it can push joins into cascaded UNION ALL subselects
-> 2. it can push multiple joins into one UNION ALL
+> 1. it can push joins into cascaded `UNION ALL` subselects
+> 2. it can push multiple joins into one `UNION ALL`
 
 ## Limitations
 
@@ -129,7 +131,7 @@ Therefore, the union-join-inversion can only be applied to `UNION ALL`.
 
 ### 3: Only INNER JOINS
 
-Only inner joins are applicable to be pushed into a UNION ALL.
+Only inner joins are applicable to be pushed into a `UNION ALL`.
 
 Examples explaining the limitation, using the same `sales_and_returns` view:
 
@@ -150,10 +152,10 @@ SELECT d_date, ss_store_sk, SUM(ss_net_profit) AS profit
 FROM date_dim
 LEFT JOIN sales_and_returns
   ON d_date_sk = ss_sold_date_sk
-where d_year = 2003 AND d_moy = 6
+WHERE d_year = 2003 AND d_moy = 6
 ```
 
-The left join will need an explicit "hit or no hit" answer for every row of `DATE_DIM`. This decision can not be simply applied twice in two different join pipelines.
+The left join will need an explicit "hit or no hit" answer for every row of `date_dim`. This decision can not be simply applied twice in two different join pipelines.
 
 ### 4: Query Indicates Filtering
 
@@ -161,8 +163,8 @@ As explained above, this optimization does not have access to table statistics a
 
 **Supported Predicates:**
 
-- `<column> = <constant>`: Equality condition between a constant value and an unmodified column. A constant may be a simple SQL literal or a more complex expression like `add_days(sysdate, -5)`; but it must be computable without any data processing, so even scalar non-correlated subselects do not count as constants.
-- `<column> between <constant> and <constant>` -- note that usually, `A >= X and A <= Y` is automatically converted into the equivalent `BETWEEN` expression.
+- `<column> = <constant>`: Equality condition between a constant value and an unmodified column. A constant may be a simple SQL literal or a more complex expression like `ADD_DAYS(SYSDATE, -5)`; but it must be computable without any data processing, so even scalar non-correlated subselects do not count as constants.
+- `<column> BETWEEN <constant> AND <constant>` -- note that usually, `A >= X AND A <= Y` is automatically converted into the equivalent `BETWEEN` expression.
 
 **Unsupported Predicates:**
 
@@ -201,7 +203,7 @@ JOIN date_dim
 WHERE d_year = 2003 AND d_moy = 6
 ```
 
-> **Note:** Due to the already mentioned *filter propagation*, approproiate filters on a higher subquery level or in `HAVING` clauses are **likely** to be pushed to the right place before the union-all-join-inversion is evaluated.
+> **Note:** Due to the already mentioned *filter propagation*, appropriate filters on a higher subquery level or in `HAVING` clauses are **likely** to be pushed to the right place before the union-all-join-inversion is evaluated.
 
 **Unsupported Cases:**
 
@@ -226,25 +228,29 @@ At this stage of optimization, a "materialized subselect" is usually a **view** 
 
 Unfortunately, information used to materialize the subselect is lost in the process, so the subselect has to be treated as a *simple table* as shown in 4.1 above.
 
-#### 4.3. Subselect
+#### 4.3. Single-Table Subselect
 
-This category contains all other subselects, regardless of their complexity or structure. Even the "standard solution" of `ORDER BY FALSE` will not make a subselect 'materialized' in this stage of the optimization.
+This category contains all other subselects, regardless of their complexity or structure; the only condition here is that the `FROM` clause in the subselect must itself only contain one simple or materialized table.
 
-In case of a subselect, the search for an applicable filter proedicate is performed in the `WHERE` clause of that subselect.
+In other words: The subselect must not contain any joins.
+
+Even the "standard solution" of `ORDER BY FALSE` will not make a subselect 'materialized' in this stage of the optimization.
+
+In case of a subselect, the search for an applicable filter predicate is performed in the `WHERE` clause of that subselect.
 
 **Supported Cases:**
 
 ```sql
 -- filter present in subselect
 FROM sales_and_returns
-JOIN (SELECT * FROM date_dim where d_year = 2003)
+JOIN (SELECT * FROM date_dim WHERE d_year = 2003)
   ON d_date_sk = ss_sold_date_sk
 ```
 
 ```sql
 FROM sales_and_returns
 -- local filter not applicable: wrong type
-JOIN (SELECT * FROM date_dim where d_year >= 2003)
+JOIN (SELECT * FROM date_dim WHERE d_year >= 2003)
   ON d_date_sk = ss_sold_date_sk
 ...
 GROUP BY ..., d_year, ...
@@ -253,16 +259,14 @@ HAVING d_year = 2004
 ```
 
 ```sql
--- TODO: not sure yet -- without distinct, this could be very bad
 FROM sales_and_returns
+-- local filter not applicable: wrong type
 JOIN (
-    -- subselect: get all days relevant for one promo event
-    SELECT d_date_sk
-    FROM date_dim
-    JOIN promotion
-      ON d_date_sk between p_start_date_sk and p_end_date_sk
-    -- applicable filter predicate
-    where P_PROMO_ID = 'AAAAAAAAPAAAAAAA'
+  -- get last day of every month
+  SELECT d_moy, MAX(d_date_sk) as d_date_sk
+  FROM date_dim
+  WHERE d_year = 2003
+  GROUP BY d_moy
 )
   ON d_date_sk = ss_sold_date_sk
 ```
@@ -272,13 +276,31 @@ Notes:
 - As usual, compatible filters specified on a higher query level may be propagated into the subselect, possibly making it eligible for the union-join-inversion.
 - Also, very simple subselects might be subject to the *subquery elimination*, embedding their table or join graph into the parent graph. After that, case 4.1 might be applicable.
 
+---
+
+**Unsupported Cases:**
+
+```sql
+FROM sales_and_returns
+JOIN (
+    -- subselect contains more than one table
+    SELECT DISTINCT d_date_sk
+    FROM date_dim
+    JOIN promotion
+      ON d_date_sk between p_start_date_sk and p_end_date_sk
+    -- applicable filter predicate
+    where P_PROMO_ID = 'AAAAAAAAPAAAAAAA'
+)
+  ON d_date_sk = ss_sold_date_sk
+```
+
 ### 5: One-Way Strict Join
 
-A table join is applicable for this pushdown only if the join condition is exclusively between this table and the union all, and it joins two columns without expressions.
+A table join is applicable for this push-down only if the join condition is exclusively between this table and the union all, and it joins two columns without expressions.
 
 **Supported Cases:**
 
-Assuming there is a WHERE condition filtering on `DATE_DIM`...
+Assuming there is a `WHERE` condition filtering on `date_dim`...
 
 ```sql
 FROM sales_and_returns
@@ -334,7 +356,7 @@ JOIN date_dim
 **Notes:**
 
 - Fixing the join order/conditions to SALES -> DATE => INV in this example should re-enable the optimization.
-- Providing another supported predicate on `INVENTORY` (like `inv_warehouse_sk = 1928`) would possible enable iterative pushing of both joins. (TODO: to be seen)
+- Providing another supported predicate on `inventory` (like `inv_warehouse_sk = 1928`) would possibly enable iterative pushing of both joins. (TODO: to be seen)
 
 ### 6: Limit Number Of Added Columns
 
@@ -342,7 +364,9 @@ As the size of the materialization also depends on the number of columns needed,
 
 - given `NU` as number of *required* columns of the UNION ALL
 - given `NT` as number of *required* columns of the joined table
-- `if NT > 6 AND NT >= NU` then **do not push**
+- `if NT >= 6 AND NT > NU` then **do not push**
+
+In other words: The inversion is allowed if it adds less than six columns or at most doubles the number of columns in the union.
 
 **Notes:**
 
@@ -350,11 +374,14 @@ As the size of the materialization also depends on the number of columns needed,
 - *required columns* for the joined table are all columns that are required to process the remainder of the query
 - As indicated above, multiple join filters may be applicable, so a table violating this limit in the first check may find a higher value for `NU` after another join was pushed into the union...
 
-## Additional References
-
-- TODO: pipeline article
-- TODO: profiling link
-
 ## Tags
 
 `optimizer`, `union all`, `improvement`
+
+## Additional References
+
+[^tpc-ds]: Official site: [https://www.tpc.org/tpcds/](https://www.tpc.org/tpcds/)
+
+[^profiling]: Profiling Documentation: [https://docs.exasol.com/db/latest/database_concepts/profiling.htm](https://docs.exasol.com/db/latest/database_concepts/profiling.htm)
+
+[^union-all-opt]: Union All Optimization: [Knowledge Base Article](https://exasol.my.site.com/s/article/Union-all-optimization)
