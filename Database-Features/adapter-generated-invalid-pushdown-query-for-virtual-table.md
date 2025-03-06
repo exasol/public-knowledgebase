@@ -18,6 +18,12 @@ Expected DECIMAL(18,0), but got DECIMAL(19,0).
 (pushdown query: IMPORT INTO (c1 DECIMAL(19, 0)) FROM JDBC AT MY_CONNECTION_NAME STATEMENT 'SELECT COUNT(*) FROM "my_schema"."my_table" LIMIT 200')
 ```
 
+or
+
+```
+[Code: 0, SQL State: 42636] ETL-3009: [Column=1 Row=86] [Charset conversion from 'UTF-8' to 'ASCII' failed [Invalid or incomplete multibyte or wide character]] 
+```
+
 ## Explanation
 
 Virtual schemas are an abstraction layer that makes external data sources accessible in Exasol data analytics platform through regular SQL commands
