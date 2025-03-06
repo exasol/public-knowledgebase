@@ -4,7 +4,7 @@
 
 The content of this article provides more information on [Changelog-content-22913](https://exasol.my.site.com/s/article/Changelog-content-7802) and applies to Exasol versions starting with **8.34.0**.
 
-There is another automated optimization[^union-all-opt] for `UNION ALL` covering the case of identical tables in every branch.
+There is another, older, automated optimization[^union-all-opt] for `UNION ALL` covering the case of identical tables in every branch.
 
 [^union-all-opt]: Union All Optimization: [Knowledge Base Article](https://exasol.my.site.com/s/article/Union-all-optimization)
 
@@ -14,7 +14,7 @@ What does "union all join inversion" do, how can I use it and why would I want t
 
 ## Answer: How
 
-This is the simplest part: This is fully automated, you do not have to change any system settings or queries -- unless your setup exceeds one of the *Limitations* below.
+This is the simplest part: This is fully automated, you do not have to change any system settings or queries -- unless your setup exceeds one of the *Limitations* shown below.
 
 ## Answer: Why
 
@@ -24,7 +24,7 @@ Those operations act as *materialization barriers*: At query execution time, the
 
 Exasol versions prior to 8.34.0 already do their best to reduce the footprint of the operation by removing unused columns ("select list elimination") and pushing applicable filters into each of the operands ("filter propagation").
 
-**However**, one frequently used type of filter is *not applicable* to filter propagation: a "filter join" as shown in the following example.
+**However**, one frequently used type of filter is *not applicable* to filter propagation: a "filter join" as shown in the following example:
 
 ```sql
 WITH sales_and_returns AS (
@@ -46,7 +46,7 @@ WHERE d_year = 2003 AND d_moy = 6
 GROUP BY d_date, ss_store_sk
 ```
 
-> **Note:** All queries in this article use the **TPC-DS**[^tpc-ds] data structures.
+**Note:** All queries in this article use the **TPC-DS**[^tpc-ds] data structures.
 
 The query above used to look like this in profiling[^profiling] (shortened table):
 
@@ -60,10 +60,10 @@ The query above used to look like this in profiling[^profiling] (shortened table
 |7|SCAN|tmp_subselect0|31,676,423|31,676,423|
 |8|JOIN|DATE_DIM|438,294|8,570|
 
-Here, the pipelines of parts (2-3) and (4-5) create the materialized union without any filter applied.
+Here, the pipelines of parts (2-3) and (4-5) create the materialized union of about 32 million rows, without any filter applied.
 Only the join with `date_dim` in part 8 can apply the provided filter.
 
-> **Note:** This example uses a simple table for demonstration purposes. See **Limitations (4)** below for the full set of supported filter-joins.
+**Note:** This example uses a simple table for demonstration purposes. See point 4 in *Limitations* below for the full set of supported filter-joins.
 
 [^tpc-ds]: Official site: [https://www.tpc.org/tpcds/](https://www.tpc.org/tpcds/)
 [^profiling]: Profiling Documentation: [https://docs.exasol.com/db/latest/database_concepts/profiling.htm](https://docs.exasol.com/db/latest/database_concepts/profiling.htm "Docs: Profiling")
@@ -84,18 +84,18 @@ Similar to the regular filter propagation, the new optimization will "push" the 
 WITH sales_and_returns AS (
     -- joins added automatically by the Exasol optimizer
     SELECT d_date, ss_store_sk, ss_net_profit
-        FROM store_sales
-        JOIN date_dim
-          ON d_date_sk = ss_sold_date_sk
-       WHERE d_year = 2003 AND d_moy = 6
+      FROM store_sales
+      JOIN date_dim
+        ON d_date_sk = ss_sold_date_sk
+     WHERE d_year = 2003 AND d_moy = 6
 
     UNION ALL
     
     SELECT d_date, sr_store_sk, -sr_net_loss
-        FROM store_returns
-        JOIN date_dim
-          ON d_date_sk = sr_returned_date_sk
-       WHERE d_year = 2003 AND d_moy = 6
+      FROM store_returns
+      JOIN date_dim
+        ON d_date_sk = sr_returned_date_sk
+     WHERE d_year = 2003 AND d_moy = 6
 )
 SELECT d_date, ss_store_sk, SUM(ss_net_profit) AS profit
 -- materialized union-all (8500 rows)
@@ -107,12 +107,14 @@ The accompanying execution profile would look like that:
 
 |PART_ID|PART_NAME|OBJECT_NAME|OBJECT_ROWS|OUT_ROWS|
 |---:|---|---|---:|---:|
-|2|SCAN|DATE_DIM|438,294|180|
+|2|SCAN|DATE_DIM|438,294|180[^replicated]|
 |3|JOIN|STORE_SALES|28,800,991|0|
 |4|INSERT|tmp_subselect0|0|0|
 |5|SCAN|DATE_DIM|438,294|180|
 |6|JOIN|STORE_RETURNS|2,875,432|8,570|
 |7|INSERT|tmp_subselect0|0|8,570|
+
+[^replicated]: Note that profiling reports 180 matching rows for our "one month" filter. The reason for this is is that `date_dim` is treated as a *replicated table* in this use case, returning 30 rows on each of the 6 nodes of the showcase system.
 
 This optimized execution provides multiple advantages:
 
@@ -120,14 +122,14 @@ This optimized execution provides multiple advantages:
 - The date join is now applied on individual tables instead of on the big `tmp_subselect`. Indices on tables are persistent, while **indices on temporary objects** die with the object and potentially have to be re-created again within every query.
 - Better insights... checking the profile above, we immediately see that the large `store_sales` table does not actually provide any rows matching the date filter.
 
-> **Note:** This optimization is **repeatable**, which means
->
-> 1. it can push joins into cascaded `UNION ALL` subselects
-> 2. it can push multiple joins into one `UNION ALL`
+**Note:** This optimization is *repeatable*, which means
+
+1. it can push joins into cascaded `UNION ALL` subselects
+1. it can push multiple joins into one `UNION ALL`
 
 ## Limitations
 
-The optimization described above is part of Exasol's rule-based **structural optimizer**. While very powerful, this optimizer part does not have access to actual table objects and their statistical information (sizes, selectivity, uniqueness, ...). For this reason, certain limitations were added to prevent the improvement from backfiring... each join we push into the union all contains the risk of actually increasing the number of rows and/or columns that need to be materialized.
+The optimization described above is part of Exasol's rule-based *structural optimizer*. While very powerful, this optimizer part does not have access to actual table objects and their statistical information (sizes, selectivity, uniqueness, ...). For this reason, certain limitations were added to prevent the improvement from backfiring: Each join we push into the union all contains the risk of actually increasing the number of rows and/or columns that need to be materialized.
 
 ### 1: Four Or Less Union Branches
 
@@ -155,6 +157,28 @@ LEFT JOIN date_dim
 
 The left join by definition will not *filter* any rows from the union all. Thereby, pushing it into the union all will only increase the risk of increasing its size, by either adding too many new columns or by duplicating rows with multiple join hits.
 
+<!--
+== TEST QUERY 1 ==
+WITH sales_and_returns AS (
+    -- typically, this is not part of the query, but hidden
+    -- in some view providing a unified data source
+    SELECT ss_sold_date_sk, ss_store_sk, ss_net_profit
+        FROM store_sales
+    UNION ALL
+    SELECT sr_returned_date_sk, sr_store_sk, -sr_net_loss
+        FROM store_returns
+)
+SELECT d_date, ss_store_sk, SUM(ss_net_profit) AS profit
+FROM sales_and_returns
+LEFT JOIN date_dim
+  ON d_date_sk = ss_sold_date_sk
+  -- WHERE would convert this into an inner join!
+  AND d_year = 2003 AND d_moy = 6
+GROUP BY d_date, ss_store_sk
+
+== EXPECT: No union-join-inversion
+-->
+
 ---
 
 ```sql
@@ -165,7 +189,28 @@ LEFT JOIN sales_and_returns
 WHERE d_year = 2003 AND d_moy = 6
 ```
 
-The left join will need an explicit "hit or no hit" answer for every row of `date_dim`. This decision can not be simply applied twice in two different join pipelines.
+The left join here will need an explicit "hit or no hit" answer for every row of `date_dim`, to generate the *null match* if necessary. This decision can not be simply applied twice in two different join pipelines.
+
+<!--
+== TEST QUERY 2 ==
+WITH sales_and_returns AS (
+    -- typically, this is not part of the query, but hidden
+    -- in some view providing a unified data source
+    SELECT ss_sold_date_sk, ss_store_sk, ss_net_profit
+        FROM store_sales
+    UNION ALL
+    SELECT sr_returned_date_sk, sr_store_sk, -sr_net_loss
+        FROM store_returns
+)
+SELECT d_date, ss_store_sk, SUM(ss_net_profit) AS profit
+FROM date_dim
+LEFT JOIN sales_and_returns
+  ON d_date_sk = ss_sold_date_sk
+WHERE d_year = 2003 AND d_moy = 6
+GROUP BY d_date, ss_store_sk
+
+== EXPECT: No union-join-inversion
+-->
 
 ### 4: Query Indicates Filtering
 
@@ -175,6 +220,8 @@ As explained above, this optimization does not have access to table statistics a
 
 - `<column> = <constant>`: Equality condition between a constant value and an unmodified column. A constant may be a simple SQL literal or a more complex expression like `ADD_DAYS(SYSDATE, -5)`; but it must be computable without any data processing, so even scalar non-correlated subselects do not count as constants.
 - `<column> BETWEEN <constant> AND <constant>` -- note that usually, `A >= X AND A <= Y` is automatically converted into the equivalent `BETWEEN` expression.
+
+**Note:** Only *strong* predicates are accepted; any predicate that is weakened by an `OR` clause is not supported.
 
 **Unsupported Predicates:**
 
@@ -204,6 +251,27 @@ JOIN date_dim
  AND d_year = 2003 AND d_moy = 6
 ```
 
+<!--
+== TEST QUERY 3 ==
+WITH sales_and_returns AS (
+    -- typically, this is not part of the query, but hidden
+    -- in some view providing a unified data source
+    SELECT ss_sold_date_sk, ss_store_sk, ss_net_profit
+        FROM store_sales
+    UNION ALL
+    SELECT sr_returned_date_sk, sr_store_sk, -sr_net_loss
+        FROM store_returns
+)
+SELECT d_date, ss_store_sk, SUM(ss_net_profit) AS profit
+FROM sales_and_returns
+JOIN date_dim
+  ON d_date_sk = ss_sold_date_sk
+  AND d_year = 2003 AND d_moy = 6
+GROUP BY d_date, ss_store_sk
+
+== EXPECT: inversion
+-->
+
 ```sql
 -- filter in where clause
 FROM sales_and_returns
@@ -213,7 +281,28 @@ JOIN date_dim
 WHERE d_year = 2003 AND d_moy = 6
 ```
 
-> **Note:** Due to the already mentioned *filter propagation*, appropriate filters on a higher subquery level or in `HAVING` clauses are **likely** to be pushed to the right place before the union-all-join-inversion is evaluated.
+<!--
+== TEST QUERY 4 ==
+WITH sales_and_returns AS (
+    -- typically, this is not part of the query, but hidden
+    -- in some view providing a unified data source
+    SELECT ss_sold_date_sk, ss_store_sk, ss_net_profit
+        FROM store_sales
+    UNION ALL
+    SELECT sr_returned_date_sk, sr_store_sk, -sr_net_loss
+        FROM store_returns
+)
+SELECT d_date, ss_store_sk, SUM(ss_net_profit) AS profit
+FROM sales_and_returns
+JOIN date_dim
+  ON d_date_sk = ss_sold_date_sk
+WHERE d_year = 2003 AND d_moy = 6
+GROUP BY d_date, ss_store_sk
+
+== EXPECT: inversion
+-->
+
+**Note:** Due to the already mentioned *filter propagation*, appropriate filters on a higher subquery level or in `HAVING` clauses are *likely* to be pushed to the right place before the union-all-join-inversion is evaluated.
 
 **Unsupported Cases:**
 
@@ -224,6 +313,26 @@ JOIN date_dim
   ON d_date_sk = ss_sold_date_sk
 ```
 
+<!--
+== TEST QUERY 5 ==
+WITH sales_and_returns AS (
+    -- typically, this is not part of the query, but hidden
+    -- in some view providing a unified data source
+    SELECT ss_sold_date_sk, ss_store_sk, ss_net_profit
+        FROM store_sales
+    UNION ALL
+    SELECT sr_returned_date_sk, sr_store_sk, -sr_net_loss
+        FROM store_returns
+)
+SELECT d_date, ss_store_sk, SUM(ss_net_profit) AS profit
+FROM sales_and_returns
+JOIN date_dim
+  ON d_date_sk = ss_sold_date_sk
+GROUP BY d_date, ss_store_sk
+
+== EXPECT: no inversion
+-->
+
 ```sql
 -- unsupported predicate type
 FROM sales_and_returns
@@ -231,6 +340,56 @@ JOIN date_dim
   ON d_date_sk = ss_sold_date_sk
  AND d_year >= 2003
 ```
+
+<!--
+== TEST QUERY 6 ==
+WITH sales_and_returns AS (
+    -- typically, this is not part of the query, but hidden
+    -- in some view providing a unified data source
+    SELECT ss_sold_date_sk, ss_store_sk, ss_net_profit
+        FROM store_sales
+    UNION ALL
+    SELECT sr_returned_date_sk, sr_store_sk, -sr_net_loss
+        FROM store_returns
+)
+SELECT d_date, ss_store_sk, SUM(ss_net_profit) AS profit
+FROM sales_and_returns
+JOIN date_dim
+  ON d_date_sk = ss_sold_date_sk
+  AND d_year >= 2003
+GROUP BY d_date, ss_store_sk
+
+== EXPECT: no inversion
+-->
+
+```sql
+-- predicate weakened by OR
+FROM sales_and_returns
+JOIN date_dim
+  ON d_date_sk = ss_sold_date_sk
+ AND (d_year = 2003 OR d_year = 2004)
+```
+
+<!--
+== TEST QUERY 7 ==
+WITH sales_and_returns AS (
+    -- typically, this is not part of the query, but hidden
+    -- in some view providing a unified data source
+    SELECT ss_sold_date_sk, ss_store_sk, ss_net_profit
+        FROM store_sales
+    UNION ALL
+    SELECT sr_returned_date_sk, sr_store_sk, -sr_net_loss
+        FROM store_returns
+)
+SELECT d_date, ss_store_sk, SUM(ss_net_profit) AS profit
+FROM sales_and_returns
+JOIN date_dim
+  ON d_date_sk = ss_sold_date_sk
+  AND (d_year = 2003 OR d_year = 2004)
+GROUP BY d_date, ss_store_sk
+
+== EXPECT: no inversion
+-->
 
 #### 4.2. Materialized Subselect
 
@@ -246,7 +405,7 @@ This category contains all other subselects, regardless of their complexity or s
 
 In other words: The subselect must not contain any joins.
 
-Even the "standard solution" of `ORDER BY FALSE` will not make a subselect 'materialized' in this stage of the optimization.
+**Note:** Even the "standard solution" of `ORDER BY FALSE` will not make a subselect 'materialized' in this stage of the optimization!
 
 In case of a subselect, the search for an applicable filter predicate is performed in the `WHERE` clause of that subselect.
 
@@ -259,6 +418,26 @@ JOIN (SELECT * FROM date_dim WHERE d_year = 2003)
   ON d_date_sk = ss_sold_date_sk
 ```
 
+<!--
+== TEST QUERY 8 ==
+WITH sales_and_returns AS (
+    -- typically, this is not part of the query, but hidden
+    -- in some view providing a unified data source
+    SELECT ss_sold_date_sk, ss_store_sk, ss_net_profit
+        FROM store_sales
+    UNION ALL
+    SELECT sr_returned_date_sk, sr_store_sk, -sr_net_loss
+        FROM store_returns
+)
+SELECT d_date, ss_store_sk, SUM(ss_net_profit) AS profit
+FROM sales_and_returns
+JOIN (SELECT * FROM date_dim WHERE d_year = 2003)
+  ON d_date_sk = ss_sold_date_sk
+GROUP BY d_date, ss_store_sk
+
+== EXPECT: inversion
+-->
+
 ```sql
 FROM sales_and_returns
 -- local filter not applicable: wrong type
@@ -270,9 +449,29 @@ GROUP BY ..., d_year, ...
 HAVING d_year = 2004
 ```
 
+<!--
+== TEST QUERY 9 ==
+WITH sales_and_returns AS (
+    -- typically, this is not part of the query, but hidden
+    -- in some view providing a unified data source
+    SELECT ss_sold_date_sk, ss_store_sk, ss_net_profit
+        FROM store_sales
+    UNION ALL
+    SELECT sr_returned_date_sk, sr_store_sk, -sr_net_loss
+        FROM store_returns
+)
+SELECT d_year, ss_store_sk, SUM(ss_net_profit) AS profit
+FROM sales_and_returns
+JOIN (SELECT * FROM date_dim WHERE d_year >= 2003)
+  ON d_date_sk = ss_sold_date_sk
+GROUP BY d_year, ss_store_sk
+HAVING d_year = 2004
+
+== EXPECT: inversion
+-->
+
 ```sql
 FROM sales_and_returns
--- local filter not applicable: wrong type
 JOIN (
   -- get last day of every month
   SELECT d_moy, MAX(d_date_sk) as d_date_sk
@@ -283,10 +482,36 @@ JOIN (
   ON d_date_sk = ss_sold_date_sk
 ```
 
-Notes:
+<!--
+== TEST QUERY 10 ==
+WITH sales_and_returns AS (
+    -- typically, this is not part of the query, but hidden
+    -- in some view providing a unified data source
+    SELECT ss_sold_date_sk, ss_store_sk, ss_net_profit
+        FROM store_sales
+    UNION ALL
+    SELECT sr_returned_date_sk, sr_store_sk, -sr_net_loss
+        FROM store_returns
+)
+SELECT d_moy, ss_store_sk, SUM(ss_net_profit) AS profit
+FROM sales_and_returns
+JOIN (
+  -- get last day of every month
+  SELECT d_moy, MAX(d_date_sk) as d_date_sk
+  FROM date_dim
+  WHERE d_year = 2003
+  GROUP BY d_moy
+)
+  ON d_date_sk = ss_sold_date_sk
+GROUP BY d_moy, ss_store_sk
+
+== EXPECT: inversion
+-->
+
+**Notes:**
 
 - As usual, compatible filters specified on a higher query level may be propagated into the subselect, possibly making it eligible for the union-join-inversion.
-- Also, very simple subselects might be subject to the *subquery elimination*, embedding their table or join graph into the parent graph. After that, case 4.1 might be applicable.
+- Also, very simple subselects might be subject to *subquery elimination*, embedding their table or join graph into the parent graph. After that, case 4.1 might be applicable.
 
 ---
 
@@ -306,6 +531,33 @@ JOIN (
   ON d_date_sk = ss_sold_date_sk
 ```
 
+<!--
+== TEST QUERY 10 ==
+WITH sales_and_returns AS (
+    -- typically, this is not part of the query, but hidden
+    -- in some view providing a unified data source
+    SELECT ss_sold_date_sk, ss_store_sk, ss_net_profit
+        FROM store_sales
+    UNION ALL
+    SELECT sr_returned_date_sk, sr_store_sk, -sr_net_loss
+        FROM store_returns
+)
+select count(*)
+FROM sales_and_returns
+JOIN (
+    -- subselect contains more than one table
+    SELECT DISTINCT d_date_sk
+    FROM date_dim
+    JOIN promotion
+      ON d_date_sk between p_start_date_sk and p_end_date_sk
+    -- applicable filter predicate
+    where P_PROMO_ID = 'AAAAAAAAPAAAAAAA'
+)
+  ON d_date_sk = ss_sold_date_sk
+
+== EXPECT: no inversion
+-->
+
 ### 5: One-Way Strict Join
 
 A table join is applicable for this push-down only if the join condition is exclusively between this table and the union all, and it joins two columns without expressions.
@@ -323,15 +575,64 @@ JOIN date_dim
   AND d_dom < 15
 ```
 
+<!--
+== TEST QUERY 11 ==
+WITH sales_and_returns AS (
+    -- typically, this is not part of the query, but hidden
+    -- in some view providing a unified data source
+    SELECT ss_sold_date_sk, ss_store_sk, ss_net_profit
+        FROM store_sales
+    UNION ALL
+    SELECT sr_returned_date_sk, sr_store_sk, -sr_net_loss
+        FROM store_returns
+)
+select count(*)
+FROM sales_and_returns
+JOIN date_dim
+    -- strict column-to-column predicate
+  ON d_date_sk = ss_sold_date_sk
+  -- does not block other predicates
+  AND d_dom < 15
+
+== EXPECT: inversion
+-->
+
 ```sql
 FROM sales_and_returns
 JOIN date_dim
   ON d_date_sk = ss_sold_date_sk
+-- note: this join is "bad", but serves as demonstration case
 JOIN inventory
   ON inv_item_sk = ss_item_sk
   -- join condition not part of the sales/date join
   AND d_date_sk = ss_date_sk
 ```
+
+<!--
+== TEST QUERY 12 ==
+WITH sales_and_returns AS (
+    -- typically, this is not part of the query, but hidden
+    -- in some view providing a unified data source
+    SELECT ss_sold_date_sk, ss_store_sk, ss_item_sk, ss_net_profit
+        FROM store_sales
+    UNION ALL
+    SELECT sr_returned_date_sk, sr_store_sk, sr_item_sk, -sr_net_loss
+        FROM store_returns
+)
+select count(*)
+FROM sales_and_returns
+JOIN date_dim
+    -- strict column-to-column predicate
+  ON d_date_sk = ss_sold_date_sk
+-- note: this join is "bad", but serves as demonstration case
+JOIN inventory
+  ON inv_item_sk = ss_item_sk
+  -- join condition not part of the sales/date join
+  AND d_date_sk = ss_sold_date_sk
+WHERE d_date = DATE '2002-10-03'
+
+== EXPECT: inversion
+-->
 
 ---
 
@@ -344,6 +645,27 @@ JOIN date_dim
   ON TRIM(d_date_sk) = TRIM(ss_sold_date_sk)
 ```
 
+<!--
+== TEST QUERY 13 ==
+WITH sales_and_returns AS (
+    -- typically, this is not part of the query, but hidden
+    -- in some view providing a unified data source
+    SELECT ss_sold_date_sk, ss_store_sk, ss_net_profit
+        FROM store_sales
+    UNION ALL
+    SELECT sr_returned_date_sk, sr_store_sk, -sr_net_loss
+        FROM store_returns
+)
+select count(*)
+FROM sales_and_returns
+JOIN date_dim
+    -- strict column-to-column predicate
+  ON d_date_sk+1 = ss_sold_date_sk
+WHERE d_date = DATE '2002-10-03'
+
+== EXPECT: no inversion
+-->
+
 ```sql
 FROM sales_and_returns
 -- note: this join is "bad", but serves as demonstration case
@@ -355,6 +677,33 @@ JOIN date_dim
   AND d_date_sk = inv_date_sk
 ```
 
+**Note:** Swapping `inventory` and `dim_date` in the SQL text along with their join conditions would turn this into a supported case...
+
+<!--
+== TEST QUERY 14 ==
+WITH sales_and_returns AS (
+    -- typically, this is not part of the query, but hidden
+    -- in some view providing a unified data source
+    SELECT ss_sold_date_sk, ss_store_sk, ss_net_profit, ss_item_sk
+        FROM store_sales
+    UNION ALL
+    SELECT sr_returned_date_sk, sr_store_sk, -sr_net_loss, sr_item_sk
+        FROM store_returns
+)
+select count(*)
+FROM sales_and_returns
+-- note: this join is "bad", but serves as demonstration case
+JOIN inventory
+  ON inv_item_sk = ss_item_sk
+JOIN date_dim
+  -- filtering table joins on another table
+  ON d_date_sk = ss_sold_date_sk
+  AND d_date_sk = inv_date_sk
+WHERE d_date = DATE '2002-10-03'
+
+== EXPECT: no inversion
+-->
+
 ```sql
 FROM sales_and_returns
 -- note: this join is "bad", but serves as demonstration case
@@ -365,10 +714,31 @@ JOIN date_dim
   ON d_date_sk = inv_date_sk
 ```
 
-**Notes:**
+**Note:** Providing another supported predicate on `inventory` (like `inv_warehouse_sk = 1928`) would possibly enable iterative pushing of both joins.
 
-- Fixing the join order/conditions to SALES -> DATE => INV in this example should re-enable the optimization.
-- Providing another supported predicate on `inventory` (like `inv_warehouse_sk = 1928`) would possibly enable iterative pushing of both joins. (TODO: to be seen)
+<!--
+== TEST QUERY 15 ==
+WITH sales_and_returns AS (
+    -- typically, this is not part of the query, but hidden
+    -- in some view providing a unified data source
+    SELECT ss_sold_date_sk, ss_store_sk, ss_net_profit, ss_item_sk
+        FROM store_sales
+    UNION ALL
+    SELECT sr_returned_date_sk, sr_store_sk, -sr_net_loss, sr_item_sk
+        FROM store_returns
+)
+select count(*)
+FROM sales_and_returns
+-- note: this join is "bad", but serves as demonstration case
+JOIN inventory
+  ON inv_item_sk = ss_item_sk
+JOIN date_dim
+  -- filtering table does not directly join to union
+  ON d_date_sk = inv_date_sk
+WHERE d_date = DATE '2002-10-03'
+
+== EXPECT: no inversion
+-->
 
 ### 6: Limit Number Of Added Columns
 
@@ -386,4 +756,4 @@ In other words: The inversion is allowed if it adds less than six columns or at 
 - *required columns* for the joined table are all columns that are required to process the remainder of the query
 - As indicated above, multiple join filters may be applicable, so a table violating this limit in the first check may find a higher value for `NU` after another join was pushed into the union...
 
-## Additional References
+## References
