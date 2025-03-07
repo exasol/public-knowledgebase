@@ -1,6 +1,7 @@
 # Exasol Knowledge Base
 
 ## Welcome
+
 Welcome to the Exasol Knowledge Base (KB)! This repository contains files and information needed to create a KB article.
 
 Exasol KB articles must be created using Markdown (.md) format. If you are new to Markdown, see [Markdown Guide's Getting Started section](https://www.markdownguide.org/getting-started/). There are also many programs that will convert, say, Microsoft Word (.docx) files to Markdown files.
