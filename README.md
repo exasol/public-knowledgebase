@@ -37,6 +37,7 @@ The knowledge base provides five categories:
 1. Save the file in the appropriate category folder.
 1. Write the article using styles listed in the Exasol Styles section of this readme and instructions in the template.
 1. Each category folder contains a subfolder called __images__. If you have images, place them in your chosen category's __images__ folder. Make sure the size of each image does not exceed 1 MB.
+1. We recommend you use a *Markdown linter* locally, to make sure required formatting rules are applied. The pull request you will create will be subject to a linter check online.
 1. Once you are happy with the article, use your tool to commit and push the changes.
 1. In GitHub, click __Pull request__, __New pull request__, and then click __Create pull request__.
 
@@ -68,3 +69,9 @@ Some Exasol styles do differ from Google and Microsoft, and Exasol is in the pro
 - [Google Style Guide](https://developers.google.com/style)
 - [Google Word List](https://developers.google.com/style/word-list)
 - [Microsoft Writing Style Guide](https://docs.microsoft.com/en-us/style-guide/welcome/): Use when the Google Style Guide doesn't answer your question.
+- [Markdown Linter CLI 2]: An implementation of a Markdown syntax checker, which is also available as [plugin] for [Visual Studio Code]
+
+<!-- link URL definitions used above -->
+[Markdown Linter CLI 2]: https://github.com/DavidAnson/markdownlint-cli2
+[plugin]: https://marketplace.visualstudio.com/items?itemName=DavidAnson.vscode-markdownlint
+[Visual Studio Code]: https://code.visualstudio.com/
