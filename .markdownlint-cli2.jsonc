@@ -1,0 +1,7 @@
+{
+    "config": {
+        // disable line length checking
+        "MD013": false
+    }
+}
+
