@@ -757,3 +757,5 @@ In other words: The inversion is allowed if it adds less than six columns or at 
 - As indicated above, multiple join filters may be applicable, so a table violating this limit in the first check may find a higher value for `NU` after another join was pushed into the union...
 
 ## References
+
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).*
