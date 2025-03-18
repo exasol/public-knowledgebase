@@ -12,7 +12,7 @@ When trying to connect I get this error message. As I understand it, it sounds l
 Any ideas as to what I can try to make this work.
 
 ```
-SQL Error [ETL-5]: JDBC-Client-Error: Connecting to 'jdbc:postgresql://&lt;IP&gt;:5432/metadata?currentSchema=analyticaldata' as user='postgres' failed:
+SQL Error [ETL-5]: JDBC-Client-Error: Connecting to 'jdbc:postgresql://<IP>:5432/metadata?currentSchema=analyticaldata' as user='postgres' failed:
 SSL error: access denied ("java.io.FilePermission" "/home/exasolution/.postgresql/postgresql.crt" "read") (Session: 1690951028142374912)
 ```
 

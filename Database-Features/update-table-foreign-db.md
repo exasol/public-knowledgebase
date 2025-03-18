@@ -8,7 +8,8 @@ Is it possible to "update" or "delete" the connected database via a connection (
 Background: We set up a permanent synchronization of an Oracle database in the Exasol DB by using a trigger to first log all changed table records with their primary keys in a synchronization table. Exasol should then import the changed data from this log table. But now we have to inform the source database via a concrete update or delete on this sync table which data has already been transferred.
 
 FYI: The sync table in the source DB looks like this:
-```
+
+```sql
 Create Table CSB_PL_Sync_Queue
 (
 id NUMBER GENERATED ALWAYS AS IDENTITY,
@@ -31,9 +32,10 @@ since connection objects are "homed" in the IMPORT and EXPORT context.
 
 If you absolutely have to do it at the level of a SQL statement from EXA, the following would be possible, although not necessarily recommended:
 
-export (select &lt;your-table-conform-colum-list&gt; from dual where 0=1)
-INTO ORA AT &lt;your-connection-here&gt; TABLE &lt;your-table-here&gt; CREATED BY 'update CSB_PL_Sync_Queue set Sync-Status=1';
-
+```sql
+export (select <your-table-conform-colum-list> from dual where 0=1)
+INTO ORA AT <your-connection-here> TABLE <your-table-here> CREATED BY 'update CSB_PL_Sync_Queue set Sync-Status=1';
+```
 
 It's worth knowing that this works, but for a permanent use case like the one described here, I would definitely prefer littlekoi's suggestion.
 
