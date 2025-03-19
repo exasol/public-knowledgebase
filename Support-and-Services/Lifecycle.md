@@ -12,9 +12,11 @@ The release policy starting with version 8 can be found here: https://docs.exaso
 |  Exasol 6.2 |  2019-07-24 |  2021-12-31 |  out of support since 2021-12-31 |
 |  Exasol 7.0 |  2020-09-11 |  2023-06-30 |  extended to 2023-06-30|
 |  Exasol 7.1 (Regular Support) |  2021-08-03 |  2024-06-30 |  extended to 2024-06-30 |
-|  Exasol 7.1 (Extended Support) | 2024-07-01 | 2025-06-30 | See below note | 
+|  Exasol 7.1 (Extended Support) | 2024-07-01 | 2025-06-30* | See below note | 
 |  Exasol 8 AWS (RR) | 2023-06-01 | | 
 |  Exasol 8 as Application (RR) | 2023-06-01 | | 
+
+\* Reach out to your account executive to discuss next steps.
 
 Extended Support for Exasol 7.1 includes:
 * OS patches (via 3rd party provider)
