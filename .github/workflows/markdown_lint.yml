@@ -16,7 +16,7 @@ jobs:
         files: '**/*.md'
         separator: ","
 
-    - uses: DavidAnson/markdownlint-cli2-action@v105f32210e84442804257b2a6f20b273450ec8265
+    - uses: DavidAnson/markdownlint-cli2-action@05f32210e84442804257b2a6f20b273450ec8265
       # version 19.1.0 as of 2025-03-19
       if: steps.changed-files.outputs.any_changed == 'true'
       with:
