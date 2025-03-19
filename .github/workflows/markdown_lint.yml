@@ -9,13 +9,15 @@ jobs:
       with:
         fetch-depth: 0
 
-    - uses: tj-actions/changed-files@v45
+    - uses: tj-actions/changed-files@2f7c5bfce28377bc069a65ba478de0a74aa0ca32
+      # version 46.0.1 as of 2025-03-19
       id: changed-files
       with:
         files: '**/*.md'
         separator: ","
 
-    - uses: DavidAnson/markdownlint-cli2-action@v19
+    - uses: DavidAnson/markdownlint-cli2-action@05f32210e84442804257b2a6f20b273450ec8265
+      # version 19.1.0 as of 2025-03-19
       if: steps.changed-files.outputs.any_changed == 'true'
       with:
         globs: ${{ steps.changed-files.outputs.all_changed_files }}
