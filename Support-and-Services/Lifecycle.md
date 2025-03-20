@@ -1,8 +1,10 @@
 
 # Exasol Life Cycle Policy
+
 This page summarizes End-of-Life (EOL) information for the Exasol database, as well as supported platforms and platform versions for drivers and clients.
 
 ## Exasol Releases
+
 You can find the latest database release and drivers here: https://downloads.exasol.com
 
 The release policy starting with version 8 can be found here: https://docs.exasol.com/db/latest/planning/life_cycle.htm
@@ -24,6 +26,7 @@ Extended Support for Exasol 7.1 includes:
 * Security Fixes
 
 ## End of Life Versions
+
 Once a version reaches End of Life, there are no more software updates, investigations, or bugfixes for that affected version. Incidents which occur on that version are not guaranteed to be processed or resolved, and no SLAs are applicable to these cases. For this reason, we strongly recommend to run supported versions.
 
 
@@ -43,7 +46,9 @@ The drivers (ODBC, JDBC, ADO.NET) listed on our downloads page are fully backwar
 
 Due to the backwards compatibility we only release driver updates for the latest released version (major or minor).
 The end of Exasol Support for a particular platform is usually bound at least to their individual full/mainstream support end.
+
 ## ODBC Driver
+
 The ODBC (Open Database Connectivity) driver is fully supported until the end of life of the operating system. If there is an explicitly stated end-of-life date for the driver, that takes precedence.
 
 |Operating System|	Exasol Client Version|	End of Support by Exasol|	Remarks|
@@ -69,7 +74,8 @@ The ODBC (Open Database Connectivity) driver is fully supported until the end of
 |Windows 11|	24.0|	||	
 |Windows 10|	24.0|	||	
 
-## ADO.NET driver support for Visual Studio, SQL Server and .NET versions.
+## ADO.NET driver support for Visual Studio, SQL Server and .NET versions
+
 ADO.Net is fully supported until the end of life of the Visual Studio version it is associated with. If there is an explicitly stated end-of-life date for ADO.Net within a particular Visual Studio version, that takes precedence over the support provided by Visual Studio.
 
 |Product	| Version | Exasol Client Version | End of Exasol Support|	Remarks|
@@ -78,8 +84,6 @@ ADO.Net is fully supported until the end of life of the Visual Studio version it
 |Visual Studio 2019| 16.0 | 24.0 | 	|	|
 |Visual Studio 2017| 15.0 | 24.0 | 	|	|
 |Visual Studio 2015| 14.0 | 24.0 | 	|	|
-
-
 
 ## JDBC Version (& Java Version)
 
