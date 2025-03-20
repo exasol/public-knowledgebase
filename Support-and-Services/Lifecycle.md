@@ -11,12 +11,12 @@ The release policy starting with version 8 can be found here: [Product Life Cycl
 
 |  Release | Release Date | End of Life | Remarks |
 |---|---|---|---|
-|  Exasol 6.2 |  2019-07-24 |  2021-12-31 |  out of support since 2021-12-31 |
-|  Exasol 7.0 |  2020-09-11 |  2023-06-30 |  extended to 2023-06-30 |
-|  Exasol 7.1 (Regular Support) |  2021-08-03 |  2024-06-30 |  extended to 2024-06-30 |
-|  Exasol 7.1 (Extended Support) | 2024-07-01 | 2025-06-30* | See below note |
-|  Exasol 8 AWS (RR) | 2023-06-01 | | |
-|  Exasol 8 as Application (RR) | 2023-06-01 | | |
+| Exasol 6.2 |  2019-07-24 | 2021-12-31 | out of support since 2021-12-31 |
+| Exasol 7.0 |  2020-09-11 | 2023-06-30 | extended to 2023-06-30 |
+| Exasol 7.1 (Regular Support) |  2021-08-03 | 2024-06-30 | extended to 2024-06-30 |
+| Exasol 7.1 (Extended Support) | 2024-07-01 | 2025-06-30* | See below note |
+| Exasol 8 AWS (RR) | 2023-06-01 | | |
+| Exasol 8 as Application (RR) | 2023-06-01 | | |
 
 \* Reach out to your account executive to discuss next steps.
 
@@ -53,32 +53,32 @@ The ODBC (Open Database Connectivity) driver is fully supported until the end of
 
 | Operating System | Exasol Client Version | End of Support by Exasol | Remarks |
 |---|---|---|---|
-| **Linux** |
+| **Linux** | | | |
 | CentOS 8 Stream | 24.0 | | |
-| Centos 7|	24.0 | | |
+| Centos 7 | 24.0 | | |
 | openSUSE Leap 15.5 | 24.0 | | |
 | Ubuntu 22 | 24.0 | | |
-| Ubuntu 20 | 24.0 | | | |
-| Debian 10 | 24.0 | | | |
-| **Mac** |
+| Ubuntu 20 | 24.0 | | |
+| Debian 10 | 24.0 | | |
+| **Mac** | | | |
 | OS X 14 | 24.0 | | ARM and Intel Architectures are supported. SDK not supported |
 | OS X 13 | 24.0 | | ARM and Intel Architectures are supported. SDK not supported |
 | OS X 12 | 24.0 | | ARM and Intel Architectures are supported. SDK not supported |
-| **BSD** |
+| **BSD** | | | |
 | FreeBSD 14.0 | 24.0 | | |
 | FreeBSD 13.2 | 24.0 | | |
-| **Windows** |
+| **Windows** | | | |
 | Server 2022 |	24.0 | | |
 | Server 2019 |	24.0 | | |
 | Server 2016 |	24.0 | | |
-| Windows 11 | 24.0 |	| |
-| Windows 10 | 24.0 |	| |
+| Windows 11 | 24.0 | | |
+| Windows 10 | 24.0 | | |
 
 ## ADO.NET driver support for Visual Studio, SQL Server and .NET versions
 
 ADO.Net is fully supported until the end of life of the Visual Studio version it is associated with. If there is an explicitly stated end-of-life date for ADO.Net within a particular Visual Studio version, that takes precedence over the support provided by Visual Studio.
 
-|Product	| Version | Exasol Client Version | End of Exasol Support|	Remarks|
+| Product | Version | Exasol Client Version | End of Exasol Support | Remarks |
 |---|---|---|---|---|
 | Visual Studio 2022 | 17.0 | 24.0 | | |
 | Visual Studio 2019 | 16.0 | 24.0 | | |
