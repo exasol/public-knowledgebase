@@ -5,22 +5,23 @@ This page summarizes End-of-Life (EOL) information for the Exasol database, as w
 
 ## Exasol Releases
 
-You can find the latest database release and drivers here: https://downloads.exasol.com
+You can find the latest database release and drivers here: [https://downloads.exasol.com](https://downloads.exasol.com)
 
-The release policy starting with version 8 can be found here: https://docs.exasol.com/db/latest/planning/life_cycle.htm
+The release policy starting with version 8 can be found here: [Product Life Cycle](https://docs.exasol.com/db/latest/planning/life_cycle.htm)
 
 |  Release | Release Date  | End of Life   |  Remarks  | 
 |---|---|---|---|
 |  Exasol 6.2 |  2019-07-24 |  2021-12-31 |  out of support since 2021-12-31 |
-|  Exasol 7.0 |  2020-09-11 |  2023-06-30 |  extended to 2023-06-30|
+|  Exasol 7.0 |  2020-09-11 |  2023-06-30 |  extended to 2023-06-30 |
 |  Exasol 7.1 (Regular Support) |  2021-08-03 |  2024-06-30 |  extended to 2024-06-30 |
 |  Exasol 7.1 (Extended Support) | 2024-07-01 | 2025-06-30* | See below note | 
-|  Exasol 8 AWS (RR) | 2023-06-01 | | 
-|  Exasol 8 as Application (RR) | 2023-06-01 | | 
+|  Exasol 8 AWS (RR) | 2023-06-01 | | |
+|  Exasol 8 as Application (RR) | 2023-06-01 | | |
 
 \* Reach out to your account executive to discuss next steps.
 
 Extended Support for Exasol 7.1 includes:
+
 * OS patches (via 3rd party provider)
 * Major bug fixes
 * Security Fixes
@@ -28,7 +29,6 @@ Extended Support for Exasol 7.1 includes:
 ## End of Life Versions
 
 Once a version reaches End of Life, there are no more software updates, investigations, or bugfixes for that affected version. Incidents which occur on that version are not guaranteed to be processed or resolved, and no SLAs are applicable to these cases. For this reason, we strongly recommend to run supported versions.
-
 
 ## Client Platform Support
 
