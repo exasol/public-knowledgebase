@@ -68,9 +68,9 @@ The ODBC (Open Database Connectivity) driver is fully supported until the end of
 | FreeBSD 14.0 | 24.0 | | |
 | FreeBSD 13.2 | 24.0 | | |
 | **Windows** | | | |
-| Server 2022 |	24.0 | | |
-| Server 2019 |	24.0 | | |
-| Server 2016 |	24.0 | | |
+| Server 2022 | 24.0 | | |
+| Server 2019 | 24.0 | | |
+| Server 2016 | 24.0 | | |
 | Windows 11 | 24.0 | | |
 | Windows 10 | 24.0 | | |
 
@@ -95,4 +95,4 @@ The JDBC (Java Database Connectivity) driver is fully supported until the end of
 | Java SE 11 | 24.0 | | |
 | Java SE 8 | 24.0 | | |
 
-*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).*
