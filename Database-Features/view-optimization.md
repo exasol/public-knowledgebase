@@ -20,7 +20,7 @@ WITH big_sales AS (
     WHERE cs_quantity > 50
 )
 SELECT 
-    d_year, SUM(cs_net_paid) as turnover
+    d_year, SUM(cs_net_paid) AS turnover
 FROM big_sales
 JOIN date_dim
   ON d_date_sk = cs_sold_date_sk
@@ -28,7 +28,7 @@ GROUP BY d_year;
 
 -- after subselect elimination: no intermediate materialization
 SELECT 
-    d_year, SUM(cs_net_paid) as turnover
+    d_year, SUM(cs_net_paid) AS turnover
 FROM catalog_sales
 JOIN date_dim
   ON d_date_sk = cs_sold_date_sk
@@ -40,7 +40,7 @@ GROUP BY d_year;
 -- original query: materialized view would process 14 million records
 WITH yearly_turnover AS (
     SELECT 
-        d_year, SUM(cs_net_paid) as turnover
+        d_year, SUM(cs_net_paid) AS turnover
     FROM catalog_sales
     JOIN date_dim
       ON d_date_sk = cs_sold_date_sk
@@ -53,7 +53,7 @@ WHERE d_year >= 2002;
 -- after filter propagation: processes 3 million records
 WITH yearly_turnover AS (
     SELECT 
-        d_year, SUM(cs_net_paid) as turnover
+        d_year, SUM(cs_net_paid) AS turnover
     FROM catalog_sales
     JOIN date_dim
       ON d_date_sk = cs_sold_date_sk
@@ -76,7 +76,7 @@ However, things get more complicated when a view is **used multiple times** with
 ```sql
 WITH yearly_turnover AS (
     SELECT 
-        d_year, SUM(cs_net_paid) as turnover
+        d_year, SUM(cs_net_paid) AS turnover
     FROM catalog_sales
     JOIN date_dim
       ON d_date_sk = cs_sold_date_sk
@@ -107,7 +107,7 @@ In the given example, this is the decision taken by the optimizer. The query is 
 ```sql
 SELECT 'previous' AS "YEAR", SUM(turnover) FROM (
     SELECT 
-        d_year, SUM(cs_net_paid) as turnover
+        d_year, SUM(cs_net_paid) AS turnover
     FROM catalog_sales
     JOIN date_dim
       ON d_date_sk = cs_sold_date_sk
@@ -116,7 +116,7 @@ SELECT 'previous' AS "YEAR", SUM(turnover) FROM (
 UNION ALL
 SELECT 'current', SUM(turnover) FROM (
     SELECT 
-        d_year, SUM(cs_net_paid) as turnover
+        d_year, SUM(cs_net_paid) AS turnover
     FROM catalog_sales
     JOIN date_dim
       ON d_date_sk = cs_sold_date_sk
@@ -130,7 +130,7 @@ And at this point, the *filter propagation* shown earlier comes into play, conve
 SELECT 'previous' AS "YEAR", SUM(turnover) FROM (
     -- processes 2 million rows
     SELECT 
-        d_year, SUM(cs_net_paid) as turnover
+        d_year, SUM(cs_net_paid) AS turnover
     FROM catalog_sales
     JOIN date_dim
       ON d_date_sk = cs_sold_date_sk
@@ -141,7 +141,7 @@ UNION ALL
 SELECT 'current', SUM(turnover) FROM (
     -- processes 60k rows
     SELECT 
-        d_year, SUM(cs_net_paid) as turnover
+        d_year, SUM(cs_net_paid) AS turnover
     FROM catalog_sales
     JOIN date_dim
       ON d_date_sk = cs_sold_date_sk
