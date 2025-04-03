@@ -53,9 +53,12 @@ Please keep in mind the following limitations when creating or modifying KB arti
 1. Tables need to be separated from the surrounding text by at least one blank line from above and below.
 1. As images should go to a special subfolder called "images", they should be further used via a path relative to a current folder, like (uppercase fragments are to be replaced accordingly)
 
-```markdown
-![SOME_CAPTION_THAT_SHOWS_UP_WHEN_YOU_HOVER_OVER_PIC](images/MYFILE.PNG)
-```
+    ```markdown
+    ![SOME_CAPTION_THAT_SHOWS_UP_WHEN_YOU_HOVER_OVER_PIC](images/MYFILE.PNG)
+    ```
+
+    (uppercase fragments are to be replaced accordingly)
+1. The article headline and filename must be the same, use "-" for spaces. This way, you can ensure that you will be able to find the articles in Github. If possible, avoid in filenames anything except alphanumeric characters and dashes "-".
 
 ## Exasol Styles
 
