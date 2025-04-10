@@ -26,7 +26,7 @@ Create a connection object to access S3 bucket from the Exasol DB.
 
 Depending on whether the bucket is public or secured you would need to provide Access Key and Access Secret.
 
-**Squred access S3 bucket:**
+Squred access S3 bucket:
 
 ```sql
 create or replace connection s3_conn
@@ -35,7 +35,7 @@ USER '<YOUR_S3_Access_Key>'
 IDENTIFIED BY '<YOUR_S3_Access_Secret>';
 ```
 
-**Public access S3 bucket:**
+Public access S3 bucket:
 
 ```sql
 create or replace connection s3_conn
@@ -46,7 +46,7 @@ TO 'https://vit1221-cdp.s3.eu-central-1.amazonaws.com';
 
 Test IMPORT/EXPORT with the specified connection by exporting and importing a dummy csv file.
 
-**EXPORT**
+EXPORT
 
 ```sql
 EXPORT 
@@ -58,7 +58,7 @@ WITH COLUMN NAMES
 REPLACE;
 ```
 
-**IMPORT**
+IMPORT
 
 ```sql
 SELECT * FROM (
@@ -70,7 +70,7 @@ IMPORT INTO (v VARCHAR(200)) FROM CSV
 
 ## Troubleshooting
 
-**Known issues:**
+Known issues:
 
 ### error code=400
 
