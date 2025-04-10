@@ -88,6 +88,7 @@ AuthorizationHeaderMalformed: The authorization header is malformed;
 a non-empty Access Key (AKID) must be provided in the credential.] (Session: 1829018413790265344)
 ```
 Reasons:
+
 * No AccessKey/AccessSecret provided when connecting to secure bucket.
 * Wrong bucket name in the connection object. Check that you are using a correct bucket name in connection object.
 * Connectivity issue: firewall settings, DNS resolution issues. 
@@ -106,6 +107,7 @@ Check your key and signing method.] (Session: 1826489156976181248)
 ```
 
 Reasons:
+
 * Wrong S3 Access Key in connection object - USER clause.
 * Wrong Access Secret in connection object - IDENTIFIED BY clause.
 
@@ -117,6 +119,7 @@ Reasons:
 Not Found
 ```
 Reasons:
+
 *  Incorrect url in connection object .
 
 ## Additional References
