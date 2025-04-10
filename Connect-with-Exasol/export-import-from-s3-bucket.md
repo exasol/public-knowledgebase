@@ -122,7 +122,7 @@ Not Found
 
 Reasons:
 
-*  Incorrect url in connection object.
+* Incorrect url in connection object.
 
 ## Additional References
 
