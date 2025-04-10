@@ -87,11 +87,12 @@ expecting 'eu-central-1'] (Session: 1826489156976181248)
 AuthorizationHeaderMalformed: The authorization header is malformed;
 a non-empty Access Key (AKID) must be provided in the credential.] (Session: 1829018413790265344)
 ```
+
 Reasons:
 
 * No AccessKey/AccessSecret provided when connecting to secure bucket.
 * Wrong bucket name in the connection object. Check that you are using a correct bucket name in connection object.
-* Connectivity issue: firewall settings, DNS resolution issues. 
+* Connectivity issue: firewall settings, DNS resolution issues.
 
 ### error code=403
 
@@ -118,9 +119,10 @@ Reasons:
 [https://vit1221-cdp.s3.eu-central-1.amazonaws.com/test1/test_file_name.csv?uploads= failed with error code=404 after 0 bytes.
 Not Found
 ```
+
 Reasons:
 
-*  Incorrect url in connection object .
+*  Incorrect url in connection object.
 
 ## Additional References
 
