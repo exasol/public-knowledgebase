@@ -15,6 +15,7 @@ However, there is another undocumented parameter `-subqueryreplicationboarder` w
 * In v8 the proper way of changing `-soft_replicationborder_in_numrows` is ALTER SYSTEM\SESSION command instead of db command-line parameter. But for the `-subqueryreplicationboarder` the same is not provided. So the only way of changing it remains db command-line parameter.
 
 ## How to adjust SubqueryReplication border
+
 The replication borders can be modified through extra database parameters:
 
 ```sh
