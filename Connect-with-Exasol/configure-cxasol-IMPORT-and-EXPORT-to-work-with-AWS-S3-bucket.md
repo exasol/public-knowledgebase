@@ -16,7 +16,9 @@ Ensure you have the following in place before proceeding:
 
 * A properly configured Amazon S3 bucket.
 * Network connectivity between your Exasol database and the S3 bucket. Verify that there is a network connectivity from the Exasol nodes to the S3 bucket. You can use the curl command below to check this. The result should be either success or 403 Forbidden, which basically means that the URL could be resolved but the access is secured.  
-`curl -I https://<S3_BUCKET_NAME>.s3.<REGION_NAME>.amazonaws.com`
+    ```shell
+    curl -I https://<S3_BUCKET_NAME>.s3.<REGION_NAME>.amazonaws.com
+    ```
 
 ## How to setup Exasol to use AWS S3 Bucket in IMPORT and EXPORT
 
@@ -125,5 +127,9 @@ Reasons:
 * Incorrect URL in connection object.
 
 ## Additional References
+
+* [Policies and permissions in Amazon S3](https://docs.aws.amazon.com/AmazonS3/latest/userguide/access-policy-language-overview.html)  
+* [Examples of Amazon S3 bucket policies](https://docs.aws.amazon.com/AmazonS3/latest/userguide/example-bucket-policies.html)
+* [Load Data from Amazon S3 Using IMPORT](https://docs.exasol.com/db/latest/loading_data/load_data_amazon_s3.htm)
 
 *We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).*
