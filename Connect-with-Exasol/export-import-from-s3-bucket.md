@@ -15,7 +15,7 @@ Refer to the following AWS documentation for guidance on setting up and securing
 Ensure you have the following in place before proceeding:
 
 * A properly configured Amazon S3 bucket.
-* Network connectivity between your Exasol database and the S3 bucket. Verify that there is a network connectivity from the Exasol nodes to the S3 bucket. You can use the curl command below to check this. The result should be either success or 403 Forbidden, which basically means that the url could be resolved but the access is secured.  
+* Network connectivity between your Exasol database and the S3 bucket. Verify that there is a network connectivity from the Exasol nodes to the S3 bucket. You can use the curl command below to check this. The result should be either success or 403 Forbidden, which basically means that the URL could be resolved but the access is secured.  
 `curl -I https://<S3_BUCKET_NAME>.s3.<REGION_NAME>.amazonaws.com`
 
 ## How to setup Exasol to use AWS S3 Bucket in IMPORT and EXPORT
@@ -24,22 +24,22 @@ Ensure you have the following in place before proceeding:
 
 Create a connection object to access S3 bucket from the Exasol DB.
 
-Depending on whether the bucket is public or secured you would need to provide Access Key and Access Secret.
+Depending on whether the bucket is public or secured you would need to provide Access Key and Secret Key.
 
-Squred access S3 bucket:
+Secured access S3 bucket:
 
 ```sql
 create or replace connection s3_conn
-TO 'https://vit1221-cdp.s3.eu-central-1.amazonaws.com'
+TO 'https://<My_Bucket_Name>.s3.eu-central-1.amazonaws.com'
 USER '<YOUR_S3_Access_Key>' 
-IDENTIFIED BY '<YOUR_S3_Access_Secret>';
+IDENTIFIED BY '<YOUR_S3_Secret_Key>';
 ```
 
 Public access S3 bucket:
 
 ```sql
 create or replace connection s3_conn
-TO 'https://vit1221-cdp.s3.eu-central-1.amazonaws.com';
+TO 'https://<My_Bucket_Name>.s3.eu-central-1.amazonaws.com';
 ```
 
 ### Step 2
@@ -76,21 +76,21 @@ Known issues:
 
 ```txt
 [Code: 0, SQL State: 42636]  ETL-5106: Following error occured while writing data to external connection 
-[https://vit1221-cdpp.s3.eu-central-1.amazonaws.com/test1/test_file_name.csv?uploads= failed with error code=400 after 0 bytes. 
+[https://<My_Bucket_Name>.s3.eu-central-1.amazonaws.com/test1/test_file_name.csv?uploads= failed with error code=400 after 0 bytes. 
 AuthorizationHeaderMalformed: The authorization header is malformed; the region 'us-east-1' is wrong; 
 expecting 'eu-central-1'] (Session: 1826489156976181248)
 ```
 
 ```txt
 [Code: 0, SQL State: 42636]  ETL-5105: Following error occured while reading data from external connection
-[https://vit1221-cdp.s3.eu-central-1.amazonaws.com/test/test_file_name.csv failed with error code=400 after 350 bytes.
+[https://<My_Bucket_Name>.s3.eu-central-1.amazonaws.com/test/test_file_name.csv failed with error code=400 after 350 bytes.
 AuthorizationHeaderMalformed: The authorization header is malformed;
 a non-empty Access Key (AKID) must be provided in the credential.] (Session: 1829018413790265344)
 ```
 
 Reasons:
 
-* No AccessKey/AccessSecret provided when connecting to secure bucket.
+* No AccessKey/SecretKey provided when connecting to secure bucket.
 * Wrong bucket name in the connection object. Check that you are using a correct bucket name in connection object.
 * Connectivity issue: firewall settings, DNS resolution issues.
 
@@ -98,11 +98,11 @@ Reasons:
 
 ```txt
 [Code: 0, SQL State: 42636]  ETL-5106: Following error occured while writing data to external connection 
-[https://vit1221-cdp.s3.eu-central-1.amazonaws.com/test1/test_file_name.csv?uploads= failed with error code=403 after 0 bytes. 
+[https://<My_Bucket_Name>.s3.eu-central-1.amazonaws.com/test1/test_file_name.csv?uploads= failed with error code=403 after 0 bytes. 
 InvalidAccessKeyId: The AWS Access Key Id you provided does not exist in our records.] (Session: 1826489156976181248)
 
 [Code: 0, SQL State: 42636]  ETL-5106: Following error occured while writing data to external connection 
-[https://vit1221-cdp.s3.eu-central-1.amazonaws.com/test1/test_file_name.csv?uploads= failed with error code=403 after 0 bytes. 
+[https://<My_Bucket_Name>.s3.eu-central-1.amazonaws.com/test1/test_file_name.csv?uploads= failed with error code=403 after 0 bytes. 
 SignatureDoesNotMatch: The request signature we calculated does not match the signature you provided. 
 Check your key and signing method.] (Session: 1826489156976181248)
 ```
@@ -116,13 +116,13 @@ Reasons:
 
 ```txt
 [Code: 0, SQL State: 42636]  ETL-5106: Following error occured while writing data to external connection 
-[https://vit1221-cdp.s3.eu-central-1.amazonaws.com/test1/test_file_name.csv?uploads= failed with error code=404 after 0 bytes.
+[https://<My_Bucket_Name>.s3.eu-central-1.amazonaws.com/test1/test_file_name.csv?uploads= failed with error code=404 after 0 bytes.
 Not Found
 ```
 
 Reasons:
 
-* Incorrect url in connection object.
+* Incorrect URL in connection object.
 
 ## Additional References
 
