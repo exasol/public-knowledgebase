@@ -15,7 +15,8 @@ Refer to the following AWS documentation for guidance on setting up and securing
 Ensure you have the following in place before proceeding:
 
 * A properly configured Amazon S3 bucket.
-* Network connectivity between your Exasol database and the S3 bucket. Verify that there is a network connectivity from the Exasol nodes to the S3 bucket. You can use the curl command below to check this. The result should be either success or 403 Forbidden, which basically means that the URL could be resolved but the access is secured.  
+* Network connectivity between your Exasol database and the S3 bucket. Verify that there is a network connectivity from the Exasol nodes to the S3 bucket. You can use the curl command below to check this. The result should be either success or 403 Forbidden, which basically means that the URL could be resolved but the access is secured.
+
     ```shell
     curl -I https://<S3_BUCKET_NAME>.s3.<REGION_NAME>.amazonaws.com
     ```
