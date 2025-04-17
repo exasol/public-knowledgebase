@@ -1,6 +1,8 @@
 # What is "Union all join inversion"?
 
-<!-- meta: verified 2025-04-17, Exasol 0.34.0 -->
+<!-- meta
+   LAST_VERIFIED: Exasol 8.34.0
+-->
 
 ## Introduction
 
