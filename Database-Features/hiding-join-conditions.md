@@ -13,7 +13,7 @@ For any join, the query engine will always request &mdash; and create, if necess
 
 [^eqj]: Equality operator, and one side of the operation contains only columns of the adjoined table.
 
-This can lead to the different problems as shown below.
+This can lead to different problems as shown below.
 
 **Notes:**
 
@@ -42,7 +42,7 @@ Even though `ca_address_sk` is actually a primary key, the query engine wants to
 |2|INDEX CREATE|(null)|CUSTOMER_ADDRESS|GLOBAL INDEX (CA_ADDRESS_SK,CA_COUNTRY)|
 |3|**INDEX CREATE**|on REPLICATED table|CUSTOMER_ADDRESS|**LOCAL INDEX (CA_ADDRESS_SK,CA_COUNTRY)**|
 |4|SCAN|(null)|CUSTOMER|(null)|
-|5|OUTER JOIN|on REPLICATED table|CUSTOMER_ADDRESS|CUSTOMER(C_CURRENT_ADDR_SK,C_BIRTH_COUNTRY) **=> LOCAL INDEX (CA_ADDRESS_SK,CA_COUNTRY)**|
+|5|OUTER JOIN|on REPLICATED table|CUSTOMER_ADDRESS|CUSTOMER(C_CURRENT_ADDR_SK,C_BIRTH_COUNTRY) **=&gt; LOCAL INDEX (CA_ADDRESS_SK,CA_COUNTRY)**|
 |6|GROUP BY|GLOBAL on TEMPORARY table|tmp_subselect0|(null)|
 
 ### 2 - Duplicate Index Columns
@@ -63,7 +63,7 @@ This will indeed create and use an index with two columns:
 |2|INDEX CREATE|(null)|CUSTOMER_ADDRESS|GLOBAL INDEX (CA_ADDRESS_SK,CA_ADDRESS_SK)|
 |3|**INDEX CREATE**|on REPLICATED table|CUSTOMER_ADDRESS|**LOCAL INDEX (CA_ADDRESS_SK,CA_ADDRESS_SK)**|
 |4|SCAN|(null)|CUSTOMER|(null)|
-|5|OUTER JOIN|on REPLICATED table|CUSTOMER_ADDRESS|CUSTOMER(C_CURRENT_ADDR_SK) **=> LOCAL INDEX (CA_ADDRESS_SK,CA_ADDRESS_SK)**|
+|5|OUTER JOIN|on REPLICATED table|CUSTOMER_ADDRESS|CUSTOMER(C_CURRENT_ADDR_SK) **=&gt; LOCAL INDEX (CA_ADDRESS_SK,CA_ADDRESS_SK)**|
 |6|GROUP BY|GLOBAL on TEMPORARY table|tmp_subselect0|(null)|
 
 ### 3 - Expression Indices
@@ -84,7 +84,7 @@ Compiler accepts the third condition as an equality-join condition, resulting in
 |1|COMPILE / EXECUTE|(null)|(null)|(null)|
 |2|**INDEX CREATE**|**EXPRESSION INDEX** on REPLICATED table|CUSTOMER_ADDRESS|**ExpressionIndex**|
 |3|SCAN|(null)|CUSTOMER|(null)|
-|4|OUTER JOIN|on REPLICATED table|CUSTOMER_ADDRESS|CUSTOMER(C_CURRENT_ADDR_SK,C_BIRTH_YEAR,C_BIRTH_COUNTRY) **=> ExpressionIndex**|
+|4|OUTER JOIN|on REPLICATED table|CUSTOMER_ADDRESS|CUSTOMER(C_CURRENT_ADDR_SK,C_BIRTH_YEAR,C_BIRTH_COUNTRY) **=&gt; ExpressionIndex**|
 |5|GROUP BY|GLOBAL on TEMPORARY table|tmp_subselect0|(null)|
 
 Beyond the obvious resource usage and storage problems caused by cases 1 and 2, expression indices are even worse: They cannot be stored and reused -- which means that index will be **re-created for every execution** of a query with such a join!
@@ -112,7 +112,7 @@ Now, one side of the equality operator (`TRUE`) references no tables at all, and
 |---|---|---|---|---|
 |1|COMPILE / EXECUTE|(null)|(null)|(null)|
 |2|SCAN|(null)|CUSTOMER|(null)|
-|3|OUTER JOIN|on REPLICATED table|CUSTOMER_ADDRESS|CUSTOMER(C_CURRENT_ADDR_SK) **=> GLOBAL INDEX (CA_ADDRESS_SK)**|
+|3|OUTER JOIN|on REPLICATED table|CUSTOMER_ADDRESS|CUSTOMER(C_CURRENT_ADDR_SK) **=&gt; GLOBAL INDEX (CA_ADDRESS_SK)**|
 |4|GROUP BY|GLOBAL on TEMPORARY table|tmp_subselect0|(null)|
 
 ## Additional References
