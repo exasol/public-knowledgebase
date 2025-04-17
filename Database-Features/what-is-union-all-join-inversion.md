@@ -1,5 +1,7 @@
 # What is "Union all join inversion"?
 
+<!-- meta: verified 2025-04-17, Exasol 0.34.0 -->
+
 ## Introduction
 
 The content of this article provides more information on [Changelog-content-22913](https://exasol.my.site.com/s/article/Changelog-content-7802) and applies to Exasol versions starting with **8.34.0**.
@@ -593,6 +595,7 @@ JOIN date_dim
   ON d_date_sk = ss_sold_date_sk
   -- does not block other predicates
   AND d_dom < 15
+WHERE d_year = 2003
 
 == EXPECT: inversion
 -->
@@ -714,7 +717,8 @@ JOIN date_dim
   ON d_date_sk = inv_date_sk
 ```
 
-**Note:** Providing another supported predicate on `inventory` (like `inv_warehouse_sk = 1928`) would possibly enable iterative pushing of both joins.
+**Note:** Providing another supported predicate on `inventory` (like `inv_warehouse_sk = 3`) would enable iterative pushing of both joins.
+<!-- meta: verified 2025-04-17, Exasol 0.34.0 -->
 
 <!--
 == TEST QUERY 15 ==
