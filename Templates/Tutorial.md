@@ -2,7 +2,7 @@
 
 ## Background
 
-Replace this text with the task you want the customer to complete and all background information to describe why they want to complete the task. Relace headings as directed. Thank you for your help!
+Replace this text with the task you want the customer to complete and all background information to describe why they want to complete the task. Replace headings as directed. Thank you for your help!
 
 ## Prerequisites
 
