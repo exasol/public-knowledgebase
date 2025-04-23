@@ -164,8 +164,6 @@ The left join by definition will not *filter* any rows from the union all. There
 <!--
 == TEST QUERY 1 ==
 WITH sales_and_returns AS (
-    -- typically, this is not part of the query, but hidden
-    -- in some view providing a unified data source
     SELECT ss_sold_date_sk, ss_store_sk, ss_net_profit
         FROM store_sales
     UNION ALL
@@ -176,7 +174,6 @@ SELECT d_date, ss_store_sk, SUM(ss_net_profit) AS profit
 FROM sales_and_returns
 LEFT JOIN date_dim
   ON d_date_sk = ss_sold_date_sk
-  -- WHERE would convert this into an inner join!
   AND d_year = 2003 AND d_moy = 6
 GROUP BY d_date, ss_store_sk
 
@@ -198,8 +195,6 @@ The left join here will need an explicit "hit or no hit" answer for every row of
 <!--
 == TEST QUERY 2 ==
 WITH sales_and_returns AS (
-    -- typically, this is not part of the query, but hidden
-    -- in some view providing a unified data source
     SELECT ss_sold_date_sk, ss_store_sk, ss_net_profit
         FROM store_sales
     UNION ALL
@@ -258,8 +253,6 @@ JOIN date_dim
 <!--
 == TEST QUERY 3 ==
 WITH sales_and_returns AS (
-    -- typically, this is not part of the query, but hidden
-    -- in some view providing a unified data source
     SELECT ss_sold_date_sk, ss_store_sk, ss_net_profit
         FROM store_sales
     UNION ALL
@@ -288,8 +281,6 @@ WHERE d_year = 2003 AND d_moy = 6
 <!--
 == TEST QUERY 4 ==
 WITH sales_and_returns AS (
-    -- typically, this is not part of the query, but hidden
-    -- in some view providing a unified data source
     SELECT ss_sold_date_sk, ss_store_sk, ss_net_profit
         FROM store_sales
     UNION ALL
@@ -320,8 +311,6 @@ JOIN date_dim
 <!--
 == TEST QUERY 5 ==
 WITH sales_and_returns AS (
-    -- typically, this is not part of the query, but hidden
-    -- in some view providing a unified data source
     SELECT ss_sold_date_sk, ss_store_sk, ss_net_profit
         FROM store_sales
     UNION ALL
@@ -348,8 +337,6 @@ JOIN date_dim
 <!--
 == TEST QUERY 6 ==
 WITH sales_and_returns AS (
-    -- typically, this is not part of the query, but hidden
-    -- in some view providing a unified data source
     SELECT ss_sold_date_sk, ss_store_sk, ss_net_profit
         FROM store_sales
     UNION ALL
@@ -377,8 +364,6 @@ JOIN date_dim
 <!--
 == TEST QUERY 7 ==
 WITH sales_and_returns AS (
-    -- typically, this is not part of the query, but hidden
-    -- in some view providing a unified data source
     SELECT ss_sold_date_sk, ss_store_sk, ss_net_profit
         FROM store_sales
     UNION ALL
@@ -425,8 +410,6 @@ JOIN (SELECT * FROM date_dim WHERE d_year = 2003)
 <!--
 == TEST QUERY 8 ==
 WITH sales_and_returns AS (
-    -- typically, this is not part of the query, but hidden
-    -- in some view providing a unified data source
     SELECT ss_sold_date_sk, ss_store_sk, ss_net_profit
         FROM store_sales
     UNION ALL
@@ -456,8 +439,6 @@ HAVING d_year = 2004
 <!--
 == TEST QUERY 9 ==
 WITH sales_and_returns AS (
-    -- typically, this is not part of the query, but hidden
-    -- in some view providing a unified data source
     SELECT ss_sold_date_sk, ss_store_sk, ss_net_profit
         FROM store_sales
     UNION ALL
@@ -489,8 +470,6 @@ JOIN (
 <!--
 == TEST QUERY 10 ==
 WITH sales_and_returns AS (
-    -- typically, this is not part of the query, but hidden
-    -- in some view providing a unified data source
     SELECT ss_sold_date_sk, ss_store_sk, ss_net_profit
         FROM store_sales
     UNION ALL
@@ -500,7 +479,6 @@ WITH sales_and_returns AS (
 SELECT d_moy, ss_store_sk, SUM(ss_net_profit) AS profit
 FROM sales_and_returns
 JOIN (
-  -- get last day of every month
   SELECT d_moy, MAX(d_date_sk) as d_date_sk
   FROM date_dim
   WHERE d_year = 2003
@@ -538,8 +516,6 @@ JOIN (
 <!--
 == TEST QUERY 10 ==
 WITH sales_and_returns AS (
-    -- typically, this is not part of the query, but hidden
-    -- in some view providing a unified data source
     SELECT ss_sold_date_sk, ss_store_sk, ss_net_profit
         FROM store_sales
     UNION ALL
@@ -549,12 +525,10 @@ WITH sales_and_returns AS (
 select count(*)
 FROM sales_and_returns
 JOIN (
-    -- subselect contains more than one table
     SELECT DISTINCT d_date_sk
     FROM date_dim
     JOIN promotion
       ON d_date_sk between p_start_date_sk and p_end_date_sk
-    -- applicable filter predicate
     where P_PROMO_ID = 'AAAAAAAAPAAAAAAA'
 )
   ON d_date_sk = ss_sold_date_sk
@@ -582,8 +556,6 @@ JOIN date_dim
 <!--
 == TEST QUERY 11 ==
 WITH sales_and_returns AS (
-    -- typically, this is not part of the query, but hidden
-    -- in some view providing a unified data source
     SELECT ss_sold_date_sk, ss_store_sk, ss_net_profit
         FROM store_sales
     UNION ALL
@@ -593,9 +565,7 @@ WITH sales_and_returns AS (
 select count(*)
 FROM sales_and_returns
 JOIN date_dim
-    -- strict column-to-column predicate
   ON d_date_sk = ss_sold_date_sk
-  -- does not block other predicates
   AND d_dom < 15
 WHERE d_year = 2003
 
@@ -616,8 +586,6 @@ JOIN inventory
 <!--
 == TEST QUERY 12 ==
 WITH sales_and_returns AS (
-    -- typically, this is not part of the query, but hidden
-    -- in some view providing a unified data source
     SELECT ss_sold_date_sk, ss_store_sk, ss_item_sk, ss_net_profit
         FROM store_sales
     UNION ALL
@@ -627,12 +595,9 @@ WITH sales_and_returns AS (
 select count(*)
 FROM sales_and_returns
 JOIN date_dim
-    -- strict column-to-column predicate
   ON d_date_sk = ss_sold_date_sk
--- note: this join is "bad", but serves as demonstration case
 JOIN inventory
   ON inv_item_sk = ss_item_sk
-  -- join condition not part of the sales/date join
   AND d_date_sk = ss_sold_date_sk
 WHERE d_date = DATE '2002-10-03'
 
@@ -653,8 +618,6 @@ JOIN date_dim
 <!--
 == TEST QUERY 13 ==
 WITH sales_and_returns AS (
-    -- typically, this is not part of the query, but hidden
-    -- in some view providing a unified data source
     SELECT ss_sold_date_sk, ss_store_sk, ss_net_profit
         FROM store_sales
     UNION ALL
@@ -664,7 +627,6 @@ WITH sales_and_returns AS (
 select count(*)
 FROM sales_and_returns
 JOIN date_dim
-    -- strict column-to-column predicate
   ON d_date_sk+1 = ss_sold_date_sk
 WHERE d_date = DATE '2002-10-03'
 
@@ -687,8 +649,6 @@ JOIN date_dim
 <!--
 == TEST QUERY 14 ==
 WITH sales_and_returns AS (
-    -- typically, this is not part of the query, but hidden
-    -- in some view providing a unified data source
     SELECT ss_sold_date_sk, ss_store_sk, ss_net_profit, ss_item_sk
         FROM store_sales
     UNION ALL
@@ -697,11 +657,9 @@ WITH sales_and_returns AS (
 )
 select count(*)
 FROM sales_and_returns
--- note: this join is "bad", but serves as demonstration case
 JOIN inventory
   ON inv_item_sk = ss_item_sk
 JOIN date_dim
-  -- filtering table joins on another table
   ON d_date_sk = ss_sold_date_sk
   AND d_date_sk = inv_date_sk
 WHERE d_date = DATE '2002-10-03'
@@ -725,8 +683,6 @@ JOIN date_dim
 <!--
 == TEST QUERY 15 ==
 WITH sales_and_returns AS (
-    -- typically, this is not part of the query, but hidden
-    -- in some view providing a unified data source
     SELECT ss_sold_date_sk, ss_store_sk, ss_net_profit, ss_item_sk
         FROM store_sales
     UNION ALL
@@ -735,11 +691,9 @@ WITH sales_and_returns AS (
 )
 select count(*)
 FROM sales_and_returns
--- note: this join is "bad", but serves as demonstration case
 JOIN inventory
   ON inv_item_sk = ss_item_sk
 JOIN date_dim
-  -- filtering table does not directly join to union
   ON d_date_sk = inv_date_sk
 WHERE d_date = DATE '2002-10-03'
 
