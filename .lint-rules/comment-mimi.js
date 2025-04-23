@@ -1,11 +1,16 @@
 // Function to extract and process XML comments
-function processXMLComments(commentToken, errFunc) {
+function processXMLComments(token, errFunc) {
     const xmlCommentRegex = /<!--(.*?)-->/gs;
     const sqlCommentRegex = /(.*?)(--[^\n]*)/gs;
 
-    // check if this html element is or contains a comment
-    const match = xmlCommentRegex.exec(commentToken.content);
+    if( token.type !== 'html_block' ) {
+        // wrong token type
+        return;
+    }
+
+    const match = xmlCommentRegex.exec(token.content);
     if ( match==null ) {
+        // no XML comment
         return;
     }
 
@@ -15,13 +20,13 @@ function processXMLComments(commentToken, errFunc) {
         // and report it as an error if so
         const localLines = match2[1].split(/\n/).length - 1
         errFunc({
-            "lineNumber": commentToken.lineNumber + localLines,
+            "lineNumber": token.lineNumber + localLines,
             "detail": "forbidden '--' within XML comment",
             "context": match2[2]
         })
     }
 
-    // console.log(commentToken);
+    // console.log(token);
     return;
 }
 
@@ -33,11 +38,7 @@ module.exports = {
     // Define the actual function that checks the markdown
     "function": function rule(params, errFunc) {
         params.tokens.forEach(
-            function forToken(tok) {
-                if( tok.type == 'html_block' ) {
-                    processXMLComments(tok, errFunc)
-                }
-            }
+            t => processXMLComments(t, errFunc)
         );
     }
 };
