@@ -1,6 +1,10 @@
 {
+    "customRules": [
+        "./.lint-rules/comment-mimi.js"
+    ],
     "config": {
         // disable line length checking
-        "MD013": false
+        "MD013": false,
+        "madcap-comment-mimi": true
     }
 }
