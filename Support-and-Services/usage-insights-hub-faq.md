@@ -5,6 +5,7 @@
 Exasol's Usage Insights Hub is a platform hosted and managed by Exasol which allows us to receive data about the performance and stability of your databases. This data is then used to provide better and faster support. For customers with Platinum Support, connection to the platform is required for 24/7 alerting and incident management.
 
 Connection to Exasol's Usage Insight Hub gives you the following benefits:
+
 1. Faster problem identification as support is able to view a subset of logs before they are sent to Exasol
 2. Better performance analysis by Exasol experts using pre-defined Grafana dashboards based on best practices
 3. A quarterly Usage Report as a PDF with an insight into your database usage and any potential findings that require action.
@@ -21,13 +22,15 @@ The Exasol Usage Insights Hub is a generic implementation using open source tool
 - modern stack
 
 ## How do I get connected to Exasol's Usage Insights Hub?
+
 If you are interested in getting connected, just [open a case](https://exasol.my.site.com/s/create-new-case?language=en_US) with us expressing your interest. During the processing of the case, you will need to work with your internal teams to allow your Exasol clusters to connect to Exasol's host harvester.exasol.com via the following public data gateway ports (TCP):
-   - 9092
-   - 10016
-   - 10019
-   
+- 9092
+- 10016
+- 10019
+
 All nodes must be able to resolve the hostname **harvester.exasol.com**.
-<br /><br />
+\
+\
 After the internet access is available, Exasol Support will set up a meeting with you to install and configure the agents if there is no VPN already configured. Installing the agents does NOT require a downtime.
 
 ## What are the monitoring agents?
@@ -87,13 +90,13 @@ Encryption:
 
 Certificates:
 
-Monitoring agent certificates used by the Exasol monitoring agents (can be downloaded from here https://letsencrypt.org/certificates/):
+Monitoring agent certificates used by the Exasol monitoring agents (can be downloaded from [let's encrypt](https://letsencrypt.org/certificates/)):
 
-* https://letsencrypt.org/certs/isrgrootx1.pem
-* https://letsencrypt.org/certs/lets-encrypt-r3.pem
-* https://letsencrypt.org/certs/isrg-root-x1-cross-signed.pem
-* https://letsencrypt.org/certs/lets-encrypt-r3-cross-signed.pem
-* Agent certificate lifetime 356 days, will be renewed with each new agent release
+- <https://letsencrypt.org/certs/isrgrootx1.pem>
+- <https://letsencrypt.org/certs/lets-encrypt-r3.pem>
+- <https://letsencrypt.org/certs/isrg-root-x1-cross-signed.pem>
+- <https://letsencrypt.org/certs/lets-encrypt-r3-cross-signed.pem>
+- Agent certificate lifetime 356 days, will be renewed with each new agent release
 
 On top of that each Exasol cluster is using a unique user + password combination in order to authenticate at harvester.exasol.com only if certificates + user + password do match monitoring data will flow into our platform.
 
@@ -108,14 +111,12 @@ The agent only supports SOCKS5, no other SOCKS protocols are supported.
 Data is stored at Exasol on an on-premise system. The data itself is unencrypted but the underlying hard disks are encrypted.
 
 ## Will I get access to the Grafana dashboards?
+
 Currently, access to the data and the dashboards is limited to Exasol Support. We are evaluating if and how to make this available directly to customers. Each customer will receive a quarterly Usage Report with screenshots from the dashboards and key findings on performance and usage trends.
-
-
 
 ## Additional References
 
-[Exasol On-premise](https://docs.exasol.com/db/latest/get_started/on-premise/exasol_on-premises.htm)
-
-[Exasol Cluster Nodes](https://docs.exasol.com/db/latest/administration/on-premise/architecture/cluster_nodes.htm)
+- [Exasol On-premise](https://docs.exasol.com/db/latest/get_started/on-premise/exasol_on-premises.htm)
+- [Exasol Cluster Nodes](https://docs.exasol.com/db/latest/administration/on-premise/architecture/cluster_nodes.htm)
 
 *We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 
