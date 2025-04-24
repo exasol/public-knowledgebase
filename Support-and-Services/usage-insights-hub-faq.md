@@ -24,6 +24,7 @@ The Exasol Usage Insights Hub is a generic implementation using open source tool
 ## How do I get connected to Exasol's Usage Insights Hub?
 
 If you are interested in getting connected, just [open a case](https://exasol.my.site.com/s/create-new-case?language=en_US) with us expressing your interest. During the processing of the case, you will need to work with your internal teams to allow your Exasol clusters to connect to Exasol's host harvester.exasol.com via the following public data gateway ports (TCP):
+
 - 9092
 - 10016
 - 10019
@@ -119,4 +120,4 @@ Currently, access to the data and the dashboards is limited to Exasol Support. W
 - [Exasol On-premise](https://docs.exasol.com/db/latest/get_started/on-premise/exasol_on-premises.htm)
 - [Exasol Cluster Nodes](https://docs.exasol.com/db/latest/administration/on-premise/architecture/cluster_nodes.htm)
 
-*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).*
