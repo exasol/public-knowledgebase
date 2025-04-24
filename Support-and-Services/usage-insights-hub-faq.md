@@ -1,10 +1,10 @@
-# Exasol Monitoring Service FAQ
+# Exasol Usage Insights Hub FAQ
 
 ## Background
 
-Exasol's Cloud Monitoring is a platform hosted and managed by Exasol which allows us to receive data about the performance and stability of your databases. This data is then used to provide better and faster support. For customers with Platinum Support, connection to the Monitoring is required for 24/7 alerting and incident management.
+Exasol's Usage Insights Hub is a platform hosted and managed by Exasol which allows us to receive data about the performance and stability of your databases. This data is then used to provide better and faster support. For customers with Platinum Support, connection to the platform is required for 24/7 alerting and incident management.
 
-Connection to Exasol's Cloud Monitoring gives you the following benefits:
+Connection to Exasol's Usage Insight Hub gives you the following benefits:
 1. Faster problem identification as support is able to view a subset of logs before they are sent to Exasol
 2. Better performance analysis by Exasol experts using pre-defined Grafana dashboards based on best practices
 3. A quarterly Usage Report as a PDF with an insight into your database usage and any potential findings that require action.
@@ -12,7 +12,7 @@ Connection to Exasol's Cloud Monitoring gives you the following benefits:
 
 ## How does it work
 
-TExasol's Cloud Monitoring is a generic implementation using open source tools. On each node, Exasol Support installs monitoring agents which then collect relevant monitoring information from the system and the database. The Agent then sends the information to Exasol's central harvester and transforms and saves the data. Exasol Support has access to a variety of Grafana dashboards which are built on top of this information for speedy troubleshooting and incident alerting. The monitoring stack includes the following features:
+The Exasol Usage Insights Hub is a generic implementation using open source tools. On each node, Exasol Support installs monitoring agents which then collect relevant monitoring information from the system and the database. The Agent then sends the information to Exasol's central harvester and transforms and saves the data. Exasol Support has access to a variety of Grafana dashboards which are built on top of this information for speedy troubleshooting and incident alerting. The monitoring stack includes the following features:
 
 - no single point of failure
 - easy and secure connectivity
@@ -20,7 +20,7 @@ TExasol's Cloud Monitoring is a generic implementation using open source tools. 
 - scalable architecture
 - modern stack
 
-## How do I get connected to Exasol's Cloud Monitoring?
+## How do I get connected to Exasol's Usage Insights Hub?
 If you are interested in getting connected, just [open a case](https://exasol.my.site.com/s/create-new-case?language=en_US) with us expressing your interest. During the processing of the case, you will need to work with your internal teams to allow your Exasol clusters to connect to Exasol's host harvester.exasol.com via the following public data gateway ports (TCP):
    - 9092
    - 10016
@@ -34,7 +34,7 @@ After the internet access is available, Exasol Support will set up a meeting wit
 
 The monitoring agents are created using [Open Source Telegraf Server Agent](https://github.com/influxdata/telegraf). Updates are provided on a regular basis and can be applied by our support staff.
 
-## How will Exasol's Cloud Monitoring be installed on my Exasol environment?
+## How will Exasol's Usage Insights Hub be installed on my Exasol environment?
 
 Exasol will install the monitoring agents on your clusters. These agents require root access and run inside the Exasol cluster process namespace.
 
@@ -71,7 +71,7 @@ The following information is collected:
 
 ## How is data transferred?
 
-Once data is collected by the nodes inside the cluster, it is converted into the Influx line protocol and shipped to our Data Gateway (harvester.exasol.com). The connection uses SASL over SSL. Data will be sent to the monitoring stack via the Internet.
+Once data is collected by the nodes inside the cluster, it is converted into the Influx line protocol and shipped to our Data Gateway (harvester.exasol.com). The connection uses SASL over SSL. Data will be sent to the Usage Insights Hub stack via the Internet.
 
 Encrypted data is sent using three ports:
 
@@ -95,7 +95,7 @@ Monitoring agent certificates used by the Exasol monitoring agents (can be downl
 * https://letsencrypt.org/certs/lets-encrypt-r3-cross-signed.pem
 * Agent certificate lifetime 356 days, will be renewed with each new agent release
 
-On top of that each Exasol cluster is using a unique user + password combination in order to authenticate at harvester.exasol.com only if certificates + user + password do match monitoring data will flow into our monitoring platform.
+On top of that each Exasol cluster is using a unique user + password combination in order to authenticate at harvester.exasol.com only if certificates + user + password do match monitoring data will flow into our platform.
 
 ### SOCKS5 Proxy support
 
