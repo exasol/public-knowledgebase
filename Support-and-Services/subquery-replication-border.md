@@ -4,7 +4,7 @@
 
 Concept of the replication border and corresponding db parameter `-soft_replicationborder_in_numrows` described here:
 
-- [Best Practices](https://docs.exasol.com/db/latest/performance/best_practices.htm?Highlight=replication)  
+- [Best Practices](https://docs.exasol.com/db/latest/performance/best_practices.htm)  
 - [Replication border in Exasol 6.1](https://exasol.my.site.com/s/article/Replication-border-in-Exasol-6-1)
 - [Replication border in Exasol 8](https://exasol.my.site.com/s/article/Changelog-content-16000)
 
