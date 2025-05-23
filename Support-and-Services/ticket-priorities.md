@@ -45,5 +45,9 @@ Examples:
 - Questions regarding products and functions.
 - Installations and consulting.
 
+## Mapping to Exasol priorities
+
+Exasol determines the priority of incidents by analyzing the combination of selected "Impact" and "Urgency" factors. "Impact" reflects the extent of consequences, categorized as "System-Wide", affecting "Multiple-Users", or a "Single-User". Meanwhile, "Urgency" specifies how quickly a resolution is necessary, categorized as High, Medium, or Low.
+
 *We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 
 
