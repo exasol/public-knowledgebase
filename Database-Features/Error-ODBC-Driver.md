@@ -48,4 +48,4 @@ libltdl.so.7 => /lib64/libltdl.so.7 (0x00007fb4d41c6000)
 
 ```
 
-If the issue still persist, provide the output of the ldd command to Exasol Support.
+If the issue still persists, provide the output of the `ldd` command to Exasol Support.
