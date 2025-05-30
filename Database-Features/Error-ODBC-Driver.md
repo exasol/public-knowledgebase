@@ -10,7 +10,7 @@ Can't open lib '/opt/exasol_odbc_driver' : file not found"
 
 ## Solution
 
-In Exasol ODBC Drivers prior to 24.0.0, ODBC and CLI were single file. But now they are splitted to two different files. Exasol ODBC is an dependent to Exasol CLI (Located in lib/libexacli.so in the Exasol ODBC Package) . It is mandatory that both the file should be at same place even for the symlink. To confirm this the issue, you can run
+In Exasol ODBC Drivers prior to 24.0.0, ODBC and CLI were a single file. But now they are splitt to two different files. Exasol ODBC is dependent on Exasol CLI (located in lib/libexacli.so in the Exasol ODBC Package). It is mandatory that both files should be at same place even for the symlink. To confirm this the issue, you can run
 
 ```sql
 $> ldd exasol_odbc_driver
