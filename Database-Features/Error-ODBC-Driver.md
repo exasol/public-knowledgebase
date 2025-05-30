@@ -32,7 +32,7 @@ If the above output is observed (i.e., libexacli.so => not found ). Then almost 
 Again run the previous command to check the library is loaded properly (
 libexacli.so => /home/testuser/libexacli.so (0x00007fb4d3600000) )
 
-```sql
+```text
 ldd exasol_odbc_driver
 linux-vdso.so.1 (0x00007fb4d45ac000)
 libresolv.so.2 => /lib64/libresolv.so.2 (0x00007fb4d4579000)
