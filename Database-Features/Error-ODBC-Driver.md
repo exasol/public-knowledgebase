@@ -27,7 +27,7 @@ libltdl.so.7 => /lib64/libltdl.so.7 (0x00007fd97b4d6000)
 /lib64/ld-linux-x86-64.so.2 (0x00007fd97b646000)
 ```
 
-If the above output is observed (i.e., libexacli.so => not found ). Then almost it is the above described behavior. If that's the case, create an sym link of the excli too.
+If the above output is observed (i.e. libexacli.so => not found ). Then it is likely the above described behavior. If that's the case, create a symlink of the exacli too.
 
 Again run the previous command to check the library is loaded properly (
 libexacli.so => /home/testuser/libexacli.so (0x00007fb4d3600000) )
