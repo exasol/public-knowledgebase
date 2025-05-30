@@ -5,17 +5,14 @@
 As Exasol ODBC driver doesn't have / create symlinks itself when a new version of ODBC driver is installed,the user is used to create symlinks to driver libraries to avoid changing ODBC DSN definition ,it's sufficient to update only the symlink.
 After upgrading to ODBC driver 24.0.0 or later version, it gives below error
 
-
 ```text
 Can't open lib '/opt/exasol_odbc_driver' : file not found
 ```
-
 This change in behaviour is caused by  [Merge Exasol ODBC and SDK Packages](https://exasol.my.site.com/kA09W00000007eZ?name=Changelog-content-18720)
 
 ## Solution
 
 In Exasol ODBC Drivers prior to 24.0.0, ODBC and CLI were a single file. But now they are splitt to two different files. Exasol ODBC is dependent on Exasol CLI (located in lib/libexacli.so in the Exasol ODBC Package). It is mandatory that both files should be at same place even for the symlink. To confirm this the issue, you can run
-
 
 ```text
 $> ldd exasol_odbc_driver
@@ -32,12 +29,10 @@ libltdl.so.7 => /lib64/libltdl.so.7 (0x00007fd97b4d6000)
 /lib64/ld-linux-x86-64.so.2 (0x00007fd97b646000)
 ```
 
-
 If the above output is observed (i.e. libexacli.so => not found ). Then it is likely the above described behavior. If that's the case, create a symlink of the exacli too.
 
 Again run the previous command to check the library is loaded properly (
 libexacli.so => /home/testuser/libexacli.so (0x00007fb4d3600000) )
-
 
 ```text
 ldd exasol_odbc_driver
@@ -53,7 +48,6 @@ libgcc_s.so.1 => /lib64/libgcc_s.so.1 (0x00007fb4d41d1000)
 libltdl.so.7 => /lib64/libltdl.so.7 (0x00007fb4d41c6000)
 /lib64/ld-linux-x86-64.so.2 (0x00007fb4d45ae000)
 ```
-
 
 If the issue still persists, provide the output of the `ldd` command to Exasol Support.
 
