@@ -2,11 +2,13 @@
 
 ## Problem
 
+As Exasol ODBC driver doesn't have / create symlinks itself when a new version of ODBC driver is installed,the user is used to create symlinks to driver libraries to avoid changing ODBC DSN definition ,it's sufficient to update only the symlink.
 After upgrading to ODBC driver 24.0.0 or later version, it gives an error
 
 ```text
 Can't open lib '/opt/exasol_odbc_driver' : file not found"
 ```
+This change in behaviour is caused by  [Merge Exasol ODBC and SDK Packages](https://exasol.my.site.com/kA09W00000007eZ?name=Changelog-content-18720)
 
 ## Solution
 
@@ -49,3 +51,7 @@ libltdl.so.7 => /lib64/libltdl.so.7 (0x00007fb4d41c6000)
 ```
 
 If the issue still persists, provide the output of the `ldd` command to Exasol Support.
+
+#### Additional references:
+
+* [Merge Exasol ODBC and SDK Packages](https://exasol.my.site.com/kA09W00000007eZ?name=Changelog-content-18720)
