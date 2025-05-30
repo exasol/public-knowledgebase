@@ -2,7 +2,11 @@
 
 ## Problem
 
-After upgrading to odbc driver 24.0.0 or later version gives an error "Can't open lib '/opt/exasol_odbc_driver' : file not found"
+After upgrading to ODBC driver 24.0.0 or later version, it gives an error
+
+```text
+Can't open lib '/opt/exasol_odbc_driver' : file not found"
+```
 
 ## Solution
 
