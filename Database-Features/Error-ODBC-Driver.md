@@ -2,7 +2,7 @@
 
 ## Problem
 
-As Exasol ODBC driver doesn't have / create symlinks itself when a new version of ODBC driver is installed,the user is used to create symlinks to driver libraries to avoid changing ODBC DSN definition ,it's sufficient to update only the symlink.
+As Exasol ODBC driver doesn't have / create symlinks itself when a new version of ODBC driver is installed, the user is used to create symlinks to driver libraries to avoid changing ODBC DSN definition, it's sufficient to update only the symlink.
 After upgrading to ODBC driver 24.0.0 or later version, it gives below error
 
 ```text
