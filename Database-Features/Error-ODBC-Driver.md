@@ -13,7 +13,7 @@ This change in behaviour is caused by  [Merge Exasol ODBC and SDK Packages](http
 
 ## Solution
 
-In Exasol ODBC Drivers prior to 24.0.0, ODBC and CLI were a single file. But now they are splitt to two different files. Exasol ODBC is dependent on Exasol CLI (located in lib/libexacli.so in the Exasol ODBC Package). It is mandatory that both files should be at same place even for the symlink. To confirm this the issue, you can run
+In Exasol ODBC Drivers prior to 24.0.0, ODBC and CLI were a single file. But now they are split to two different files. Exasol ODBC is dependent on Exasol CLI (located in lib/libexacli.so in the Exasol ODBC Package). It is mandatory that both files should be at same place even for the symlink. To confirm this the issue, you can run
 
 ```text
 $> ldd exasol_odbc_driver
