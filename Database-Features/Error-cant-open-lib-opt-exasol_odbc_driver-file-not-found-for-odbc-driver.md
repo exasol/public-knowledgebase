@@ -9,7 +9,7 @@ After upgrading to ODBC driver 24.0.0 or later version, it gives below error
 Can't open lib '/opt/exasol_odbc_driver' : file not found
 ```
 
-This change in behaviour is caused by  [Merge Exasol ODBC and SDK Packages](https://exasol.my.site.com/kA09W00000007eZ?name=Changelog-content-18720)
+This change in behaviour is caused by  [Merge Exasol ODBC and SDK Packages](https://exasol.my.site.com/s/article/Changelog-content-18720?language=en_US)
 
 ## Solution
 
@@ -54,4 +54,4 @@ If the issue still persists, provide the output of the `ldd` command to Exasol S
 
 ### Additional references
 
-* [Merge Exasol ODBC and SDK Packages](https://exasol.my.site.com/kA09W00000007eZ?name=Changelog-content-18720)
+* [Merge Exasol ODBC and SDK Packages](https://exasol.my.site.com/s/article/Changelog-content-18720?language=en_US)
