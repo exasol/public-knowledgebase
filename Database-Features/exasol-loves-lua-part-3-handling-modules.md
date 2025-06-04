@@ -72,7 +72,7 @@ brew install luarocks
 
 ### LuaRocks Installation under Windows
 
-You can use LuaRocks under Windows too. Since the installation is more complex, please refer to the [Windows installation instructions](https://github.com/luarocks/luarocks/wiki/Installation-instructions-for-Windows "Installing") on the Lua homepage.
+You can use LuaRocks under Windows too. Since the installation is more complex, please refer to the [Windows installation instructions](https://github.com/luarocks/luarocks/blob/main/docs/installation_instructions_for_windows.md) on the Lua homepage.
 
 ## How do I get my own modules into Exasol?
 
