@@ -1,6 +1,6 @@
 # Exasol loves Lua (part 3) - Handling modules
 
-_What you will learn in this blog_
+What you will learn in this blog
 
 * **How Lua handles modules**
 * **Which modules Exasol has preinstalled and where you can get more**
@@ -215,4 +215,4 @@ If you bundle modules, you become a distributor, making you responsible for chec
 
 In the next part of our series we will discuss unit testing Lua scripts and why that is especially valuable in the context of database scripts.
 
-*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 
+_We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase)._
