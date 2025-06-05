@@ -1,6 +1,7 @@
 # Which ticket priorities does Exasol use?
 
 When you create a ticket, you should select a priority based on the following criteria:
+
 ## Critical (Blocker)
 
 Business-critical processes are no longer available. No quick, temporary solution exists.
@@ -13,7 +14,6 @@ Examples:
 - The database does not start after an update.
 - The VPN Tunnel does not function, and a database connection is therefore not possible.
 
- 
 ## Major
 
 Important functions and/or access to the database are severely compromised. Working with the database is only possible to a limited extent.
@@ -45,5 +45,8 @@ Examples:
 - Questions regarding products and functions.
 - Installations and consulting.
 
-*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 
+## Mapping to Exasol priorities
 
+Exasol determines the priority of incidents by analyzing the combination of selected "Impact" and "Urgency" factors. "Impact" reflects the extent of consequences, categorized as "System-Wide", affecting "Multiple-Users", or a "Single-User". Meanwhile, "Urgency" specifies how quickly a resolution is necessary, categorized as High, Medium, or Low.
+
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).*
