@@ -21,7 +21,7 @@ JOIN exa_dba_audit_sessions ses
       and aud.success=true
 ```  
 
-Unfortunately,it is not very feasible to find out when the schema was last accessed as there might be references within the views and lack of history of those views.
+Unfortunately, it is not very feasible to find out when the schema was last accessed as there might be references within the views and lack of history of those views.
 
 Note : The MIGRATION schemas are typicaly created by Exasol employees for database migrations (hardware change or v7 -> v8). This is done in maintenance mode where system tables, including auditing are not maintained so above query will not list these schemas.
        Also, audit can be disabled or truncated by a particular SQL command, so exa_dba_audit_sql doesn't have to contain the full history of statement execution.
