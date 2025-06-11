@@ -6,7 +6,7 @@ How to know who created a particular schema and when it was last used.
 
 ## Solution
 
-To find out who a created particular schema,one can evaluate sql_text from exa_dba_audit_sql table.
+To find out who a created particular schema, one can evaluate `sql_text` from `exa_dba_audit_sql` table.
 
 Below is the query.
 
