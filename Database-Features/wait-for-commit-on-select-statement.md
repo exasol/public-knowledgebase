@@ -54,7 +54,7 @@ In case when transaction T1 can't be broken up into multiple transactions (i.e. 
 
 ### 1. Lock ALL Tables Required for Transactions T1 in Advance
 
-The main idea here is to impose WRITE locks on all objects involved in the T1 transaction — even those that are only being read. This can be achieved using the following command: 
+The main idea here is to impose WRITE locks on all objects involved in the T1 transaction — even those that are only being read. This can be achieved using the following command:
 
 ```sql
 delete from <table> where FALSE;
@@ -70,11 +70,12 @@ You can find more information and examples of this approach in the following art
 
 ### 2. Use IMPORT statements to read conflicted TABLEs in T1
 
-The first option of course could be complicated and inconvenient, because it supposes that all objects underneath the T1 transaction should be identified and explicitly locked by T1. If there are a lot of objects involved, it could be tricky to lock them all in advance. Additionally this could significantly increase waiting in ETL processes. 
+The first option of course could be complicated and inconvenient, because it supposes that all objects underneath the T1 transaction should be identified and explicitly locked by T1. If there are a lot of objects involved, it could be tricky to lock them all in advance. Additionally this could significantly increase waiting in ETL processes.
 
 Alternatively you can use IMPORT statements to read the conflicted tables in T1. This will ensure that those table are read in a separate transactions, thus will not be READ locked by T1, and T2 will not trigger the strict transactional order.
 
 In order to do so, please follow these steps:
+
 - identify a conflict tables. In previous example it was PSA_VISTA.TBLSESSIONATTRIBUTE
 - Create a EXA connection form your DB to itself.
 
@@ -142,7 +143,6 @@ INSERT INTO tab2 SELECT * FROM tmp_tab2;
 ```
 
 This technique doesn't require any changes in the views, doesn't need a complicated analysis of the potential conflict tables, and could significantly alleviate the WAIT FOR COMMIT conflicts. But it doesn't prevent the conflicts from happening.
-
 
 ## Additional References
 
