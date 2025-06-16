@@ -1,19 +1,20 @@
-# WAIT FOR COMMIT on SELECT statement 
+# WAIT FOR COMMIT on SELECT statement
+
 ## Background
 
-### Cause and Effect:
+### Cause and Effect
 
-Since Exasol's transaction isolation level is SERIALIZABLE and newly created transactions are automatically scheduled after finished transactions, it is possible that WAIT FOR COMMITS occur for pure read transactions (consisting of SELECT statements, only). 
+Since Exasol's transaction isolation level is SERIALIZABLE and newly created transactions are automatically scheduled after finished transactions, it is possible that WAIT FOR COMMITS occur for pure read transactions (consisting of SELECT statements, only).
 
 ## Explanation
 
-## How to reproduce:
+## How to reproduce
 
 Three different connections (having AUTOCOMMIT off) are needed to reproduce this situation:
 
-#### Example 1:
+### Example 1
 
-If a long running transaction (nr. 1 in table below) reads object A and writes object B (e.g. long running IMPORT statements) and a second transaction (2 in table) writes object A and commits in parallel, Tr2 is scheduled after   
+If a long running transaction (nr. 1 in table below) reads object A and writes object B (e.g. long running IMPORT statements) and a second transaction (2 in table) writes object A and commits in parallel, Tr2 is scheduled after.
 Tr1 logicallym, but does not have to actually wait. After Tr2 is committed all new transactions are scheduled after it. If such a new transaction (3 below) wants to read object B it now has to wait for the commit of our inial transaction 1:
 
 | Transaction 1              | Transaction 2 | Transaction 3 | Comment |
@@ -26,7 +27,7 @@ Tr1 logicallym, but does not have to actually wait. After Tr2 is committed all n
 |                            |   |commit;   |Starts a new transaction (Transaction 2 < Transaction 3)   |
 |                            |   |select * from tab2;   |This statement ends up in WAIT FOR COMMIT, waiting for Transaction 1   |
 
-#### Example 2:
+### Example 2
 
 The same situation may occur if you query **system tables** while SqlLogServer is performing one of its tasks (e.g. "DB size task" determining the database size). The following example describes this situation:
 
