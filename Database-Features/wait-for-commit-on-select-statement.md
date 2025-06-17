@@ -62,7 +62,7 @@ delete from <table> where FALSE;
 
 This command does nothing to the table, but if executed at the beginning of the transaction, it will associate the table with the transaction. Also you should ensure that **autocommit** is off in this T1 transaction, otherwise by default all DML statements (including those DELETEs ) will be performed in a separate transactions, and this won't lock the corresponding objects for T1.
 
-Basically the idea is to prevent the in-the-middle transaction T2 (the one that eventually enforces the order of transactions T1<T2<T3) from changing the Read-locked objects of T1. This means that now T2 transaction will be waiting for T1 to end, before writing into PSA_VISTA.TBLSESSIONATTRIBUTE.
+Basically the idea is to prevent the in-the-middle transaction T2 (the one that eventually enforces the order of transactions T1&lt;T2&lt;T3) from changing the Read-locked objects of T1. This means that now T2 transaction will be waiting for T1 to end, before writing into PSA_VISTA.TBLSESSIONATTRIBUTE.
 
 This of course will also be a WAIT_FOR COMMIT but, now it will be in writing transaction T2 (probably some ETL process) and not in the reading transaction T3 which is a user query which is much more critical to have a quick response.
 
