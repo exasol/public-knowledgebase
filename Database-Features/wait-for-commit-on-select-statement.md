@@ -119,7 +119,7 @@ Let's consider the following example
 | – transaction remains open |   |   |   |
 |                            |insert into tab1 values 1;   |   |Transaction 1 &lt; Transaction 2   |
 |                            |commit;   |   |   |
-|                            |   |commit;   |Starts a new transaction (Transaction 2 < Transaction 3)   |
+|                            |   |commit;   |Starts a new transaction (Transaction 2 &lt; Transaction 3)   |
 |                            |   |select * from tab2;   |This statement ends up in WAIT FOR COMMIT, waiting for Transaction 1   |
 
 The idea is simple yet effective — instead of having T1 write directly to **tab2**, let it write to a temporary table first. Typically, the majority of time is spent executing the underlying SELECT statement rather than performing the final INSERT.
