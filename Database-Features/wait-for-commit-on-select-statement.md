@@ -104,7 +104,7 @@ IMPORT INTO (x VARCHAR(20)) FROM EXA
 on t1.x = T2.x;
 ```
 
-This will prevent the mixed read/write conflict. But this logic could complicate the initial SQL query and make it performance overall worse than before. Even though, IMPROT from EXA provides a best optimization compared to other IMPORTs, it's still not as fast as just simply reading the table.
+This will prevent the mixed read/write conflict. But this logic could complicate the initial SQL query and make it performance overall worse than before. Even though, IMPORT from EXA provides a best optimization compared to other IMPORTs, it's still not as fast as just simply reading the table.
 
 ### 3. Using a buffer temp table in T1
 
