@@ -81,7 +81,7 @@ In order to do so, please follow these steps:
 
 ```sql
 --For example
-CREATE OR REPLACE CONNECTION EXA_SELF TO 'exa:<CONNECTION_STRING>'  USER '<USER>' IDENTIFIED BY '<PASSWORD>';
+CREATE OR REPLACE CONNECTION EXA_SELF TO '<CONNECTION_STRING>'  USER '<USER>' IDENTIFIED BY '<PASSWORD>';
 ```
 
 - In T1, instead of just reading this table, use the subquery with IMPORT FROM EXA, to read the table in a separate transaction.
