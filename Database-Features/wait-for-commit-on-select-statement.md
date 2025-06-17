@@ -72,7 +72,7 @@ You can find more information and examples of this approach in the following art
 
 The first option of course could be complicated and inconvenient, because it supposes that all objects underneath the T1 transaction should be identified and explicitly locked by T1. If there are a lot of objects involved, it could be tricky to lock them all in advance. Additionally this could significantly increase waiting in ETL processes.
 
-Alternatively you can use IMPORT statements to read the conflicted tables in T1. This will ensure that those table are read in a separate transactions, thus will not be READ locked by T1, and T2 will not trigger the strict transactional order.
+Alternatively you can use IMPORT statements to read the conflicted tables in T1. This will ensure that those tables are read in a separate transactions, thus will not be READ locked by T1, and T2 will not trigger the strict transactional order.
 
 In order to do so, please follow these steps:
 
