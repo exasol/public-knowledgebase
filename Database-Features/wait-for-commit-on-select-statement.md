@@ -149,5 +149,6 @@ This technique doesn't require any changes in the views, doesn't need a complica
 1. [Transaction System](https://exasol.my.site.com/s/article/Transaction-System)
 2. [Filter on system tables and transaction conflicts](https://exasol.my.site.com/s/article/Filter-on-system-tables-and-transaction-conflicts)
 3. [Investigating Transaction Conflicts using Auditing](https://exasol.my.site.com/s/article/Investigating-Transaction-Conflicts-using-Auditing)
+4. [Transaction Conflicts for Mixed Read/Write Transactions](https://exasol.my.site.com/s/article/Transaction-Conflicts-for-Mixed-Read-Write-Transactions)
 
 *We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).*
