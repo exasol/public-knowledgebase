@@ -117,7 +117,7 @@ Let's consider the following example
 | insert into tab2 select * from view1; |   |   |   |
 | – view1 is heavy and have a lot of objects underneath including some tab1 table |   |   |   |
 | – transaction remains open |   |   |   |
-|                            |insert into tab1 values 1;   |   |Transaction 1 < Transaction 2   |
+|                            |insert into tab1 values 1;   |   |Transaction 1 &lt; Transaction 2   |
 |                            |commit;   |   |   |
 |                            |   |commit;   |Starts a new transaction (Transaction 2 < Transaction 3)   |
 |                            |   |select * from tab2;   |This statement ends up in WAIT FOR COMMIT, waiting for Transaction 1   |
