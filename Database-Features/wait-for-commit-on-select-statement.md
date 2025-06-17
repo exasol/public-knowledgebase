@@ -110,7 +110,7 @@ This will prevent the mixed read/write conflict. But this logic could complicate
 
 Last but not least, there's a classic approach: separating T1 from T3 by minimizing the time during which they compete for the shared object.
 
-Let's concider the following example
+Let's consider the following example
 
 | Transaction 1              | Transaction 2 | Transaction 3 | Comment |
 |----------------------------|---|---|---|
