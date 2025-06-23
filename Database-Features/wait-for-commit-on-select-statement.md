@@ -76,7 +76,7 @@ Alternatively you can use IMPORT statements to read the conflicted tables in T1.
 
 In order to do so, please follow these steps:
 
-- identify a conflict tables. In previous example it was PSA_VISTA.TBLSESSIONATTRIBUTE
+- Identify conflict tables. In previous example it was PSA_VISTA.TBLSESSIONATTRIBUTE
 - Create a EXA connection form your DB to itself.
 
 ```sql
