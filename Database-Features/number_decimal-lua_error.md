@@ -10,18 +10,18 @@ CREATE OR REPLACE TABLE test.T (a DECIMAL(18,0));
 INSERT INTO test.T VALUES (100.5);
 ```
 
- and the following LUA-UDF defined:
+and the following LUA-UDF defined:
  
  ```lua
 CREATE OR REPLACE LUA SCALAR SCRIPT TEST.NUMBER_DECIMAL_UDF (a DECIMAL(18,0))
 EMITS (b DECIMAL(18,0)) as
 function run(ctx)
-b = ctx.a / 10
-ctx.emit(b)
+  b = ctx.a / 10
+  ctx.emit(b)
 end
 ```
 
-When I execute it 
+When I execute it
 
 ```sql
 SELECT TEST.NUMBER_DECIMAL_UDF (a) FROM TEST.T;
