@@ -6,18 +6,17 @@ I have the following TEST-Data:
 
 ```sql
 CREATE SCHEMA IF NOT EXISTS TEST;
-
 CREATE OR REPLACE TABLE test.T (a DECIMAL(18,0));
 INSERT INTO test.T VALUES (100.5);
 ```
+
  and the following LUA-UDF defined:
  
  ```lua
 CREATE OR REPLACE LUA SCALAR SCRIPT TEST.NUMBER_DECIMAL_UDF (a DECIMAL(18,0))
 EMITS (b DECIMAL(18,0)) as
-
 function run(ctx)
- b = ctx.a / 10 
+ b = ctx.a / 10
  ctx.emit(b)
 end
 ```
@@ -25,10 +24,7 @@ end
 When I execute it 
 
 ```sql
-SELECT 
- TEST.NUMBER_DECIMAL_UDF (a) 
-FROM 
- test.T;
+SELECT TEST.NUMBER_DECIMAL_UDF (a) FROM TEST.T;
 ```
 
 I get the following error message:
@@ -49,11 +45,10 @@ Wrap your value using decimal() provided by Exasol’s Lua integration to explic
 ```lua
 CREATE OR REPLACE LUA SCALAR SCRIPT TEST.NUMBER_DECIMAL_UDF (a DECIMAL(18,0))
 EMITS (b DECIMAL(18,0)) as
-
 function run(ctx)
- local b_float = ctx.a / 10 -- This will result in a Lua 'number' (float)
- local b_integer = decimal(b_float,18,0) -- Convert to integer (truncates decimal part)
- ctx.emit(b_integer) -- Emit the integer
+  local b_float = ctx.a / 10 -- This will result in a Lua 'number' (float)
+  local b_integer = decimal(b_float,18,0) -- Convert to integer (truncates decimal part)
+  ctx.emit(b_integer) -- Emit the integer
 end
 ```
 ### Explanation:
@@ -66,6 +61,6 @@ end
 
 # References
 
-•	[Exasol Lua Scripting: Decimal number handling](https://docs.exasol.com/db/latest/sql_reference/script_languages/lua/lua_decimal_numbers.htm)
+*	[Exasol Lua Scripting: Decimal number handling](https://docs.exasol.com/db/latest/sql_reference/script_languages/lua/lua_decimal_numbers.htm)
 
 *We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).*
