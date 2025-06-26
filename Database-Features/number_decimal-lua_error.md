@@ -16,8 +16,8 @@ INSERT INTO test.T VALUES (100.5);
 CREATE OR REPLACE LUA SCALAR SCRIPT TEST.NUMBER_DECIMAL_UDF (a DECIMAL(18,0))
 EMITS (b DECIMAL(18,0)) as
 function run(ctx)
- b = ctx.a / 10
- ctx.emit(b)
+b = ctx.a / 10
+ctx.emit(b)
 end
 ```
 
