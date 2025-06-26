@@ -1,27 +1,19 @@
 # Why I get Lua Error "decimal expected, got number"?
 
 
-# # The Problem: 
+## The Problem: 
 
 I have the following TEST-Data:
 
-```
+```sql
 CREATE SCHEMA IF NOT EXISTS TEST;
 
-CREATE OR REPLACE TABLE 
-    test.T 
-    ( 
-        a DECIMAL(18,0) 
-    );
-INSERT INTO 
-    test.T VALUES 
-    ( 
-        100.5 
-    );
+CREATE OR REPLACE TABLE test.T (a DECIMAL(18,0));
+INSERT INTO test.T VALUES (100.5);
 ```
- and the following LUA-UDF:
+ and the following LUA-UDF defined:
     
- ```
+ ```lua
 CREATE OR REPLACE LUA SCALAR  SCRIPT TEST.NUMBER_DECIMAL_UDF (a DECIMAL(18,0))
 EMITS (b DECIMAL(18,0)) as
 
@@ -32,8 +24,8 @@ end
 ```
 
 When I execute it 
-```
 
+```sql
 SELECT 
     TEST.NUMBER_DECIMAL_UDF (a) 
 FROM 
@@ -53,7 +45,7 @@ The as output (EMIT) expect an instance of decimal object, but it is passing a s
 ## The Solution: 
 We need to explicitly convert our Lua numbers into the decimal type:
 
-```
+```lua
 CREATE OR REPLACE LUA SCALAR SCRIPT TEST.NUMBER_DECIMAL_UDF (a DECIMAL(18,0))
 EMITS (b DECIMAL(18,0)) as
 
@@ -62,7 +54,6 @@ function run(ctx)
    local b_integer = decimal(b_float,18,0) -- Convert to integer (truncates decimal part)
    ctx.emit(b_integer) -- Emit the integer
 end
-
 ```
 ### Explanation:
 *	ctx.a / 10: Performs floating-point division in Lua.
