@@ -1,6 +1,6 @@
 # Why I get Lua Error "decimal expected, got number"?
 
-## The Problem: 
+## The Problem
 
 I have the following TEST-Data:
 
@@ -32,13 +32,13 @@ I get the following error message:
 > [!CAUTION]
 > [Code: 0, SQL State: 22001] Lua Error "decimal expected, got number" caught in script "TEST"."TESTDECI" at line 4 (Session: 1836005522647613440)
 
-## The Error: 
+## The Error
 
 We get "decimal expected, got number" error in this Exasol Lua UDF because Exasol's UDF environment treats DECIMAL types very strictly, and the result of a division operation (/) in Lua, even between two numbers that originated as DECIMAL, will default to a standard Lua number (which is a floating-point double).
 
 The as output (EMIT) expect an instance of decimal object, this means a value of the same type as the column declared (b DECIMAL(18,0)) but it is passing a standard Lua number (e.g., 20, 5.03) via ctx.emit.
 
-## The Solution: 
+## The Solution
 
 Wrap your value using decimal() provided by Exasol’s Lua integration to explicitly convert your Lua numbers into the decimal type:
 
@@ -51,7 +51,7 @@ function run(ctx)
   ctx.emit(b_integer) -- Emit the integer
 end
 ```
-### Explanation:
+### Explanation
 
 * ctx.a / 10: Performs floating-point division in Lua.
 * DECIMAL(): Converts the floating-point result into an integer by rounding down
@@ -59,7 +59,7 @@ end
 > [!TIP]
 > Always use decimal() for calculations if you’re working with DECIMALs!
 
-# References
+## References
 
 * [Exasol Lua Scripting: Decimal number handling](https://docs.exasol.com/db/latest/sql_reference/script_languages/lua/lua_decimal_numbers.htm)
 
