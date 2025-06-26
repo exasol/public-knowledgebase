@@ -51,6 +51,7 @@ function run(ctx)
   ctx.emit(b_integer) -- Emit the integer
 end
 ```
+
 ### Explanation
 
 * ctx.a / 10: Performs floating-point division in Lua.
