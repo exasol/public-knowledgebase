@@ -53,14 +53,14 @@ end
 ```
 ### Explanation:
 
-*	ctx.a / 10: Performs floating-point division in Lua.
-*	DECIMAL(): Converts the floating-point result into an integer by rounding down
+* ctx.a / 10: Performs floating-point division in Lua.
+* DECIMAL(): Converts the floating-point result into an integer by rounding down
 
 > [!TIP]
 > Always use decimal() for calculations if you’re working with DECIMALs!
 
 # References
 
-*	[Exasol Lua Scripting: Decimal number handling](https://docs.exasol.com/db/latest/sql_reference/script_languages/lua/lua_decimal_numbers.htm)
+* [Exasol Lua Scripting: Decimal number handling](https://docs.exasol.com/db/latest/sql_reference/script_languages/lua/lua_decimal_numbers.htm)
 
 *We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).*
