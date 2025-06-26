@@ -11,7 +11,7 @@ INSERT INTO test.T VALUES (100.5);
 ```
 
 and the following LUA-UDF defined:
- 
+
  ```lua
 CREATE OR REPLACE LUA SCALAR SCRIPT TEST.NUMBER_DECIMAL_UDF (a DECIMAL(18,0))
 EMITS (b DECIMAL(18,0)) as
