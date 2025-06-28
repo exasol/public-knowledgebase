@@ -62,6 +62,6 @@ end
 
 ## References
 
-* [Exasol Lua Scripting: Decimal number handling](https://docs.exasol.com/db/latest/sql_reference/script_languages/lua/lua_decimal_numbers.htm)
+* [Exasol Lua Scripting: Decimal number handling](https://docs.exasol.com/db/latest/database_concepts/scripting/general_script_language.htm#TypesandValues)
 
 *We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).*
