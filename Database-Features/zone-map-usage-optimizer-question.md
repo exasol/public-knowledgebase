@@ -75,6 +75,8 @@ Regarding [Exasol Zone maps documentation](https://docs.exasol.com/db/latest/per
 
 ## Explanation
 
+The engine computes the data based on the execution plan created by the compiler. During filter stages, the Engine decides on the use of zone maps.
+
 > [!IMPORTANT]
 > The engine may decide not to use the zone map because it estimates that another access path or index is more efficient.
 
