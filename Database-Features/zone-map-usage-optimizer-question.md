@@ -76,7 +76,6 @@ WHERE time_zones between '2025-06-01 00:00:00' and '2025-06-06 00:00:00';
 |2|SCAN|$${\color{red}(null)}$$|TEST|T1|(null)|0.041|40000009|1204436|82.5|
 |3|GROUP BY|on TEMPORARY table|(null)|tmp_subselect0|(null)|0.005|0|1000|82.6|
 
-
 Regarding [Exasol Zone maps documentation](https://docs.exasol.com/db/latest/performance/zonemaps.htm) in profiling, an operation that utilized the zone records will show WITH ZONEMAP in the PART_INFO field. Why we do not see zone map usage?
 
 ## Explanation
@@ -111,7 +110,6 @@ WHERE time_zones between '2025-06-01 00:00:00' and '2025-06-06 00:00:00';
 > [!NOTE]
 > From this example we see that the first pipeline speeds up the filter but slows down the GROUP BY.
 
-
 In order to explain the problem sufficiently and simply, we have simplified the execution somewhat and use the additional data sets.
 
 ### Explanation of the execution plan without zone map usage
@@ -121,16 +119,16 @@ Let us go the first execution:
 The SCAN uses the index on SID to identify the best ROWID order for the GROUP BY. So the data block layout after
 the SCAN is:
 
-|ROWID | TIMES_SEGMENT_ID | TIMES_VALUE  | SID_VALUE | 
+|ROWID|TIMES_SEGMENT_ID|TIMES_VALUE|SID_VALUE|
 |---|---|---|---|
-|46    | 1                | '2020-01-01' | 5|
-|65    | 6                | '2025-06-05' | 5|
-|7348  | 5                | '2025-06-02' | 5|
-|23    | 1                | '2020-01-01' | 105|
-|3     | 5                | '2025-06-03' | 105|
-|1234  | 5                | '2025-04-18' | 111|
-|12    | 1                | '2020-01-01' | 20717|
-|128   | 5                | '2025-06-04' | 20717|
+|46|1|'2020-01-01'|5|
+|65|6|'2025-06-05'|5|
+|7348|5|'2025-06-02'|5|
+|23|1|'2020-01-01'|105|
+|3|5|'2025-06-03'|105|
+|1234|5|'2025-04-18'|111|
+|12|1|'2020-01-01'|20717|
+|128|5|'2025-06-04'|20717|
 
 The input is ordered as above. This means, engine reads the first entries and sees TIMES_SEGMENT_ID 1, 6, 5, 1, ...
 Accessing the metadata of a segment has an overhead and also consumes memory.  So our engine only accesses the metadata if consecutive rows in the data block have the same SEGMENT_ID.
@@ -141,12 +139,12 @@ Accessing the metadata of a segment has an overhead and also consumes memory.  S
 Now let us continue with the example.
 After the PIPE FILTER filter stage down the data block layout is:
 
-ROWID | TIMES_SEGMENT_ID | TIMES_VALUE  | SID
+|ROWID|TIMES_SEGMENT_ID|TIMES_VALUE|SID|
 |---|---|---|---|
-65    | 6                | '2025-06-05' | $${\color{green}5}$$
-7348  | 5                | '2025-06-02' | $${\color{green}5}$$
-3     | 5                | '2025-06-03' | 105
-128   | 5                | '2025-06-04' | 20717
+|65|6|'2025-06-05'|$${\color{green}5}$$|
+|7348|5|'2025-06-02'|$${\color{green}5}$$|
+|3|5|'2025-06-03'|105|
+|128|5|'2025-06-04'|20717|
 
 > [!IMPORTANT]
 > This is the perfect input for the GROUP BY and considerable speeds up the following GROUP BY computation.
@@ -157,27 +155,27 @@ $\textsf{\color{green}{Reason: GROUP BY execution is faster if entries with the 
 
 Here the SCAN scans the column TIMES and executes the filter. The scan part leads to the following data block layout:
 
-ROWID | TIMES_SEGMENT_ID | TIMES_VALUE  | SID_VALUE
+|ROWID|TIMES_SEGMENT_ID|TIMES_VALUE|SID_VALUE|
 |---|---|---|---|
-23    | 1                | '2020-01-01' | 105                            
-12    | 1                | '2020-01-01' | 20717
-46    | 1                | '2020-01-01' | 5
-1234  | 5                | '2025-04-18' | 111
-7348  | 5                | '2025-06-02' | 5
-3     | 5                | '2025-06-03' | 105
-128   | 5                | '2025-06-04' | 20717
-65    | 6                | '2025-06-05' | 5
+|23|1|'2020-01-01'|105|
+|12|1|'2020-01-01'|20717|
+|46|1|'2020-01-01'|5|
+|1234|5|'2025-04-18'|111|
+|7348|5|'2025-06-02'|5|
+|3|5|'2025-06-03'|105|
+|128|5|'2025-06-04'|20717|
+|65|6|'2025-06-05'|5|
 
 Let us assume the zone maps for the TIMES_SEGEMENT_IDs (1,2,3,4) have min = '2020-01-01' and max = '2020-01-01'.
 This means the filter part of the scan can remove the segments 1,2,3,4 with zone maps and only needs to filter the rest.
 Thus the data block layout for the next stage after the filter part of FILTERSCAN is
 
-ROWID | TIMES_SEGMENT_ID | TIMES_VALUE  | SID
+|ROWID|TIMES_SEGMENT_ID|TIMES_VALUE|SID|
 |---|---|---|---|
-7348  | 5                | '2025-06-02' | $${\color{red}5}$$
-3     | 5                | '2025-06-03' | 105
-128   | 5                | '2025-06-04' | 20717
-65    | 6                | '2025-06-05' | $${\color{red}5}$$
+|7348|5|'2025-06-02'|$${\color{red}5}$$|
+|3|5|'2025-06-03'|105|
+|128|5|'2025-06-04'|20717|
+|65|6|'2025-06-05'|$${\color{red}5}$$|
 
 Now we do a GROUP BY POSTPROCESSING. Here the issue starts because GROUP BY is a time consuming
 operation because the data is not already correctly pre-sorted by the scan.
@@ -198,10 +196,3 @@ $\textsf{\color{red}{Reason: GROUP BY execution is slower if entries with the sa
 * [Exasol Zone Maps documentation]([https://docs.exasol.com/db/latest/database_concepts/scripting/general_script_language.htm#TypesandValues](https://docs.exasol.com/db/latest/performance/zonemaps.htm))
 
 *We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).*
-
-
-
-
-
-
-
