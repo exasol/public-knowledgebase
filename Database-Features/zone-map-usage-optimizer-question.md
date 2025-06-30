@@ -1,11 +1,11 @@
-# Why did the optimizer decide not to use the zone map?
+# Why did engine decide not to use the zone map?
 
 * even though zone map is forced and
 * the WHERE clause can be used to prune data?
 
 ## Question
 
-Even if you force zone map usage and our WHERE clause is prunable, the optimizer might still avoid using the zone map:
+Even if you force zone map usage and our WHERE clause is prunable, engine might still avoid using the zone map:
 
 We have given the following DDL:
 
@@ -29,7 +29,7 @@ FROM
     VALUES BETWEEN 1 AND 40000001;
 ```
 
-We also include the following data to better explain the optimizer’s decisions:
+We also include the following data to better explain the engine’s decisions:
 
 ```sql
 INSERT INTO TEST.T1 VALUES
@@ -76,7 +76,7 @@ Regarding [Exasol Zone maps documentation](https://docs.exasol.com/db/latest/per
 ## Explanation
 
 > [!IMPORTANT]
-> The optimizer may decide not to use the zone map because it estimates that another access path or index is more efficient.
+> The engine may decide not to use the zone map because it estimates that another access path or index is more efficient.
 
 Let's break down why this can happen in Exasol:
 
