@@ -3,11 +3,6 @@
 * even though zone map is forced and
 * the WHERE clause can be used to prune data?
 
-## Authors
-
-* [Peggy Schmidt-Mittenzwei](https://github.com/PeggySchmidtMittenzwei)
-* [Georg Dotzler](https://github.com/narmion)
-
 ## Question
 
 Even if you force zone map usage and our WHERE clause is prunable, the optimizer might still avoid using the zone map:
@@ -79,6 +74,9 @@ WHERE time_zones between '2025-06-01 00:00:00' and '2025-06-06 00:00:00';
 Regarding [Exasol Zone maps documentation](https://docs.exasol.com/db/latest/performance/zonemaps.htm) in profiling, an operation that utilized the zone records will show WITH ZONEMAP in the PART_INFO field. Why we do not see zone map usage?
 
 ## Explanation
+
+> [!IMPORTANT]
+> The optimizer may decide not to use the zone map because it estimates that another access path or index is more efficient.
 
 Let's break down why this can happen in Exasol:
 
@@ -188,12 +186,13 @@ $\textsf{\color{red}{Reason: GROUP BY execution is slower if entries with the sa
 > [!NOTE]
 > In general, GROUP BY is more time consuming than a SCAN.
 
-## Summary
-
-The optimizer may decide not to use the zone map because it estimates that another access path or index is more efficient.
-
 ## References
 
 * [Exasol Zone Maps documentation]([https://docs.exasol.com/db/latest/database_concepts/scripting/general_script_language.htm#TypesandValues](https://docs.exasol.com/db/latest/performance/zonemaps.htm))
+
+## Authors
+
+* [Peggy Schmidt-Mittenzwei](https://github.com/PeggySchmidtMittenzwei)
+* [Georg Dotzler](https://github.com/narmion)
 
 *We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).*
