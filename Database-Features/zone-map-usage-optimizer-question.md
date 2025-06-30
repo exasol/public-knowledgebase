@@ -4,8 +4,9 @@
 * the WHERE clause can be used to prune data?
 
 ## Authors
-- [Peggy Schmidt-Mittenzwei](https://github.com/PeggySchmidtMittenzwei)
-- [Georg Dotzler](https://github.com/narmion)
+
+* [Peggy Schmidt-Mittenzwei](https://github.com/PeggySchmidtMittenzwei)
+* [Georg Dotzler](https://github.com/narmion)
 
 ## Question
 
@@ -20,6 +21,7 @@ CREATE SCHEMA TEST;
 CREATE OR REPLACE TABLE TEST.T1  (time_zones timestamp, sid int);
 ALTER TABLE TEST.T1  DISTRIBUTE BY sid;
 ```
+
 We insert data as follows:
 
 ```sql
@@ -31,26 +33,30 @@ SELECT
 FROM
     VALUES BETWEEN 1 AND 40000001;
 ```
+
 We also include the following data to better explain the optimizer’s decisions:
-```sql    
-INSERT INTO TEST.T1 VALUES 
-('2024-01-01 00:00:00',105 ),                           
-('2024-01-01 00:00:00',20717), 
-('2024-01-01 00:00:00',5), 
-('2025-04-18 00:00:00',111), 
-('2025-06-02 00:00:00',5), 
-('2025-06-03 00:00:00',105), 
-('2025-06-04 00:00:00',20717), 
+
+```sql
+INSERT INTO TEST.T1 VALUES
+('2024-01-01 00:00:00',105 ),                         
+('2024-01-01 00:00:00',20717),
+('2024-01-01 00:00:00',5),
+('2025-04-18 00:00:00',111),
+('2025-06-02 00:00:00',5),
+('2025-06-03 00:00:00',105),
+('2025-06-04 00:00:00',20717),
 ('2025-06-05 00:00:00',5);
 ```
+
 Next we add zone map enforcement:
 
-```sql    
+```sql
 ENFORCE ZONEMAP ON TEST.T1 (time_zones);
 ```
+
 and add an index to the SID, which in real use cases can be created by join queries:
 
-```sql   
+```sql
 ENFORCE LOCAL INDEX ON  TEST.T1 (sid);
 ```
 
@@ -82,6 +88,7 @@ Let us do the following test, and lets remove the index:
 ```sql
 DROP LOCAL INDEX ON  TEST.T1 (sid);
 ```
+
 > [!CAUTION]
 > Only perform such manual indexing operations based on the advice and guidance of Exasol Support.
 
@@ -92,6 +99,7 @@ SELECT DISTINCT sid
 FROM TEST.T1
 WHERE time_zones between '2025-06-01 00:00:00' and '2025-06-06 00:00:00';
 ```
+
 ### Profiling of the execution plan with zone map usage
 
 |PART_ID|PART_NAME|PART_INFO|OBJECT_SCHEMA|OBJECT_NAME|REMARKS|DURATION|OBJECT_ROWS|OUT_ROWS|TEMP_DB_RAM_PEAK|
