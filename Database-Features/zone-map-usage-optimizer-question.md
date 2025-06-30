@@ -186,10 +186,11 @@ operation because the data is not already correctly pre-sorted by the scan.
 $\textsf{\color{red}{Reason: GROUP BY execution is slower if entries with the same key are not executed together.}}$  
 
 > [!NOTE]
-> In general, GROUP BY is more time consuming than a SCAN. 
+> In general, GROUP BY is more time consuming than a SCAN.
 
-> [!WARNING]
-> The optimizer may decide not to use the zone map because it estimates that another access path or index is more efficient.
+## Summary
+
+The optimizer may decide not to use the zone map because it estimates that another access path or index is more efficient.
 
 ## References
 
