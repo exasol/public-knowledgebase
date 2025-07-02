@@ -101,7 +101,6 @@ WHERE time_zones between '2021-06-01 00:00:00' and '2025-06-06 00:00:00';
 
 ### Profiling of the execution plan with zone map usage
 
-
 |PART_ID|PART_NAME|PART_INFO|OBJECT_SCHEMA|OBJECT_NAME|REMARKS|DURATION|
 |---|---|---|---|---|---|---|
 |1|COMPILE / EXECUTE| - | - | - | - |0.667|
@@ -110,8 +109,9 @@ WHERE time_zones between '2021-06-01 00:00:00' and '2025-06-06 00:00:00';
 
 > [!NOTE]
 > From this example we see that this execution
-> + speeds up the SCAN from 0.484 sec to 0.117 sec but
-> + slows down the GROUP BY from 0.491 sec to 5.271 sec.
+> 
+> * speeds up the SCAN from 0.484 sec to 0.117 sec but
+> * slows down the GROUP BY from 0.491 sec to 5.271 sec.
 
 In order to explain the problem sufficiently and simply, we have simplified the execution somewhat and use the additional data sets.
 
