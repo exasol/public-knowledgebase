@@ -190,7 +190,8 @@ $\textsf{\color{red}{Reason: GROUP BY execution is slower if entries with the sa
 
 ## References
 
-* [Exasol Zone Maps documentation]([https://docs.exasol.com/db/latest/database_concepts/scripting/general_script_language.htm#TypesandValues](https://docs.exasol.com/db/latest/performance/zonemaps.htm))
+* [Exasol Zone Maps documentation](https://docs.exasol.com/db/latest/performance/zonemaps.htm)
+* [Profiling](https://docs.exasol.com/db/latest/database_concepts/profiling.htm)
 
 ## Authors
 
