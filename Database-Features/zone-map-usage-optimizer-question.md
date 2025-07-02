@@ -23,10 +23,10 @@ We insert data as follows:
 INSERT INTO 
     TEST.T1
 SELECT 
-    ADD_DAYS(TIMESTAMP '2025-06-30 00:00:00', -ROUND(RANDOM(1,200),0))
-  , RANGE_VALUE
+      ADD_DAYS(TIMESTAMP '2025-06-30 00:00:00', - round(RANGE_VALUE mod 4*365,0)) as mydate
+    , RANGE_VALUE
 FROM
-    VALUES BETWEEN 1 AND 40000001;
+    VALUES BETWEEN 1 AND 1000000*200*NPROC()+1;
 ```
 
 We also include the following data to better explain the engine’s decisions:
@@ -60,16 +60,16 @@ Let's run the following statement to see if the zonemap was used.
 ```sql
 SELECT DISTINCT sid
 FROM TEST.T1
-WHERE time_zones between '2025-06-01 00:00:00' and '2025-06-06 00:00:00';
+WHERE time_zones between '2021-06-01 00:00:00' and '2025-06-06 00:00:00';
 ```
 
 ### Profiling of the execution plan without zone map usage
 
-|PART_ID|PART_NAME|PART_INFO|OBJECT_SCHEMA|OBJECT_NAME|REMARKS|DURATION|OBJECT_ROWS|OUT_ROWS|TEMP_DB_RAM_PEAK|
-|---|---|---|---|---|---|---|---|---|---|
-|1|COMPILE / EXECUTE|(null)|(null)|(null)|(null)|0.025|(null)|(null)|82.5|
-|2|SCAN|$${\color{red}(null)}$$|TEST|T1|(null)|0.041|40000009|1204436|82.5|
-|3|GROUP BY|on TEMPORARY table|(null)|tmp_subselect0|(null)|0.005|0|1000|82.6|
+|PART_ID|PART_NAME|PART_INFO|OBJECT_SCHEMA|OBJECT_NAME|REMARKS|DURATION|
+|---|---|---|---|---|---|---|
+|1|COMPILE / EXECUTE| - | - | - | - |0.203|
+|2|SCAN| - |TEST|T1| - |0.484|
+|3|GROUP BY|on TEMPORARY table| - |tmp_subselect0| - |$${\color{red}0.491}$$|
 
 Regarding [Exasol Zone maps documentation](https://docs.exasol.com/db/latest/performance/zonemaps.htm) in profiling, an operation that utilized the zone records will show WITH ZONEMAP in the PART_INFO field. Why we do not see zone map usage?
 
@@ -96,19 +96,22 @@ We run the query again:
 ```sql
 SELECT DISTINCT sid
 FROM TEST.T1
-WHERE time_zones between '2025-06-01 00:00:00' and '2025-06-06 00:00:00';
+WHERE time_zones between '2021-06-01 00:00:00' and '2025-06-06 00:00:00';
 ```
 
 ### Profiling of the execution plan with zone map usage
 
-|PART_ID|PART_NAME|PART_INFO|OBJECT_SCHEMA|OBJECT_NAME|REMARKS|DURATION|OBJECT_ROWS|OUT_ROWS|TEMP_DB_RAM_PEAK|
-|---|---|---|---|---|---|---|---|---|---|
-|1|COMPILE / EXECUTE|(null)|(null)|(null)|(null)|0.015|(null)|(null)|156.0|
-|2|SCAN|$${\color{red}WITH ZONEMAP}$$|TEST|T1|T1(TIME_ZONES)|0.007|40000009|1204436|156.0|
-|3|GROUP BY|on TEMPORARY table|(null)|tmp_subselect0|T1(SID)|0.070|0|1000|156.0|
+
+|PART_ID|PART_NAME|PART_INFO|OBJECT_SCHEMA|OBJECT_NAME|REMARKS|DURATION|
+|---|---|---|---|---|---|---|
+|1|COMPILE / EXECUTE| - | - | - | - |0.667|
+|2|SCAN|$${\color{red}WITH \space ZONEMAP}$$|TEST|T1|T1(TIME_ZONES)|0.117|
+|3|GROUP BY|on TEMPORARY table| - |tmp_subselect0|T1(SID)|$${\color{red}5.271}$$|
 
 > [!NOTE]
-> From this example we see that the first pipeline speeds up the filter but slows down the GROUP BY.
+> From this example we see that this execution
+> + speeds up the SCAN from 0.484 sec to 0.117 sec but
+> + slows down the GROUP BY from 0.491 sec to 5.271 sec.
 
 In order to explain the problem sufficiently and simply, we have simplified the execution somewhat and use the additional data sets.
 
