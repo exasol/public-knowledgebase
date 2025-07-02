@@ -108,10 +108,7 @@ WHERE time_zones between '2021-06-01 00:00:00' and '2025-06-06 00:00:00';
 |3|GROUP BY|on TEMPORARY table| - |tmp_subselect0|T1(SID)|$${\color{red}5.271}$$|
 
 > [!NOTE]
-> From this example we see that this execution
-> 
-> * speeds up the SCAN from 0.484 sec to 0.117 sec but
-> * slows down the GROUP BY from 0.491 sec to 5.271 sec.
+> From this example we see that this execution speeds up the SCAN from 0.484 sec to 0.117 sec but slows down the GROUP BY from 0.491 sec to 5.271 sec.
 
 In order to explain the problem sufficiently and simply, we have simplified the execution somewhat and use the additional data sets.
 
