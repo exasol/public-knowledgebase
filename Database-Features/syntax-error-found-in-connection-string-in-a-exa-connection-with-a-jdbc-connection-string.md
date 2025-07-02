@@ -34,10 +34,10 @@ In the example above a JDBC connection string is passed to a native EXA connecti
 
 We have to remove $\textsf{\color{red}{jdbc:exa:}}$ from the connection string:
 
-```sql 
-CREATE CONNECTION exa_connection 
+```sql
+CREATE CONNECTION exa_connection
     TO '192.168.6.11..12:8563'
-    USER 'my_user' 
+    USER 'my_user'
     IDENTIFIED BY 'my_secret';
 ```
 
@@ -50,6 +50,5 @@ CREATE CONNECTION exa_connection
 ## Author
 
 * [Peggy Schmidt-Mittenzwei](https://github.com/PeggySchmidtMittenzwei)
-
 
 *We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).*
