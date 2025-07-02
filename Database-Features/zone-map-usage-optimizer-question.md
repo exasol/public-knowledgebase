@@ -134,7 +134,7 @@ The input is ordered as above. This means, engine reads the first entries and se
 Accessing the metadata of a segment has an overhead and also consumes memory.  So our engine only accesses the metadata if consecutive rows in the data block have the same SEGMENT_ID.
 
 > [!NOTE]
-> Due to that mixed up TIMES_SEGMENT_IDs, our database engine does not use zone maps for the filter although zone maps are available.
+> Due to that mixed up TIMES_SEGMENT_IDs, our database engine does not use zone maps for the SCAN although zone maps are available.
 
 Now let us continue with the example.
 After the PIPE FILTER filter stage down the data block layout is:
