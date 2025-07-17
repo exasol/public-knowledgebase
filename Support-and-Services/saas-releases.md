@@ -6,6 +6,17 @@ For further information please also visit related pages for Exasol SaaS:
 * [SaaS Documentation](https://docs.exasol.com/saas)
 * [Status Page (status.exasol.com)](https://status.exasol.com)
 
+## March 06
+* make jdbc/oracle drivers uploaded with UI available in DB for
+* JDBC/Oracle drivers uploaded via the file upload feature can now be used as SQL level connections for IMPORT and EXPORT (see [documentation](https://docs.exasol.com/db/latest/sql/create_connection.htm))
+* prevent creation of security rules with invalid CIDR format
+* security improvements
+  
+Known issue:
+* Adding IPv6 addresses to the security rules prevent other security rules from applying.
+  
+  Workaround: Remove the IPv6 rule
+
 ## Aug 03
 UI Update
 * Fix worksheets not showing results in case that first statement was incorrect
