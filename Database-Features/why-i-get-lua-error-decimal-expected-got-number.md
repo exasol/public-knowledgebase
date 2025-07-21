@@ -29,8 +29,9 @@ SELECT TEST.NUMBER_DECIMAL_UDF (a) FROM TEST.T;
 
 I get the following error message:
 
-> [!CAUTION]
-> [Code: 0, SQL State: 22001] Lua Error "decimal expected, got number" caught in script "TEST"."NUMBER_DECIMAL_UDF" at line 4 (Session: 1836005522647613440)
+```sql
+[Code: 0, SQL State: 22001] Lua Error "decimal expected, got number" caught in script "TEST"."NUMBER_DECIMAL_UDF" at line 4 (Session: 1836005522647613440)
+```
 
 ## The Error
 
@@ -57,8 +58,9 @@ end
 * ctx.a / 10: Performs floating-point division in Lua.
 * DECIMAL(): Converts the floating-point result into an integer by rounding down
 
-> [!TIP]
-> Always use decimal() for calculations if you’re working with DECIMALs!
+### Hint
+
+❗ Always use decimal() for calculations if you’re working with DECIMALs! ❗
 
 ## References
 
