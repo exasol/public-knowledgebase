@@ -29,11 +29,11 @@ You can choose the the database source among an Exasol connection (EXA), a nativ
 
 In the example above the database source is EXA and not JDBC. The "EXA" connection type refers to Exasol's native, high-performance protocol specifically designed for data transfer between two Exasol databases whereas jdbc:exa: is the prefix that you use in Java applications to indicate a connection to an Exasol database using JDBC.
 
-In the example above a JDBC connection string is passed to a native EXA connection. Thus the (EXA)-driver recognize invalid syntax $\textsf{\color{red}{jdbc:exa:}}$ in the connection string.
+In the example above a JDBC connection string is passed to a native EXA connection. Thus the (EXA)-driver recognize invalid syntax **jdbc:exa:** in the connection string.
 
 ## Solution
 
-We have to remove *jdbc:exa:* from the connection string:
+We have to remove **jdbc:exa:** from the connection string:
 
 ```sql
 CREATE CONNECTION exa_connection
