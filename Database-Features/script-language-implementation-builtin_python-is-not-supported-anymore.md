@@ -34,7 +34,7 @@ select test."SPLIT"('a|b');
 
 ### Restore Python2
 
-If it's not possible to convert Python 2 scripts to Python 3, then you can restore the PYTHON alias by setting a parameter to the old container. The procedure is described in in chapter “Update From 7.1.x To 7.1.20 or newer” in [Using Python 2 with Exasol 7.1.20 or later | Exasol DB Documentation](https://docs.exasol.com/db/7.1/database_concepts/udf_scripts/python2_extended_use.htm#UpdateFrom71xTo7120ornewer)
+If it's not possible to convert Python 2 scripts to Python 3, then you can restore the PYTHON alias by setting a parameter to the old container. The procedure is described in in chapter “Update From 7.1.x To 7.1.20 or newer” in [Using Python 2 with Exasol 7.1.20 or later | Exasol DB Documentation](https://docs.exasol.com/db/7.1/database_concepts/udf_scripts/python2_extended_use.htm#UpdateFrom71xTo7120ornewer).
 
 ### Further background information
 
