@@ -2,8 +2,9 @@
 
 ## Problem
 
-After the upgrade of Exasol cluster development team is saying some of their scheduled batch jobs or UDFs are failing. 
-```
+After the upgrade of Exasol cluster development team is saying some of their scheduled batch jobs or UDFs are failing.
+
+```SQL
 [Exasol][Exasol Driver]"Error while loading TEST_UDF merge2 in LUA_DATA. Error Code: 22064 Error Message: Script language implementation "builtin_python" is not supported anymore. Please consider switching to Python3. If this is not possible at all, please contact Exasol support." caught in script "Schema_1"."Script_1" at line 137 (Session: 1835276087831811338), SQLSTATE [43000]
 ```
 
@@ -15,7 +16,21 @@ Python 2 is no longer available by default and has been hidden on existing syste
 
 ### Convert to Python3
 
-Convert Python 2 scripts to Python 3.
+Convert **PYTHON** to **PYTHON3**.
+
+Example:
+
+```SQL
+--/
+CREATE OR REPLACE PYTHON3 SCALAR SCRIPT test."SPLIT" ("myStr" VARCHAR(2000) UTF8) EMITS ("STR" VARCHAR(2000) UTF8) AS
+def run(ctx):
+  txt = ctx.myStr
+  for line in txt.split('|'): 
+    ctx.emit(line)
+;
+
+select test."SPLIT"('a|b');
+```
 
 ### Restore Python2
 
@@ -23,8 +38,7 @@ If it's not possible to convert Python 2 scripts to Python 3, then you can resto
 
 ### Further background information
 
-You can find further background information on [GitHub](https://github.com/exasol/script-languages-release/releases/tag/2.1.0)
- and [Exasol's Docs site](https://docs.exasol.com/db/latest/database_concepts/udf_scripts/programming_languages_detail.htm). All our latest Script Language Containers on GitHub have Python 2 removed already. 
+You can find further background information on [GitHub](https://github.com/exasol/script-languages-release/releases/tag/2.1.0) and [Exasol's Docs site](https://docs.exasol.com/db/latest/database_concepts/udf_scripts/programming_languages_detail.htm). All our latest Script Language Containers on GitHub have Python 2 removed already. 
 
 On existing installations, the following will happen:
 
