@@ -38,7 +38,7 @@ If it's not possible to convert Python 2 scripts to Python 3, then you can resto
 
 ### Further background information
 
-All our latest Script Language Containers on GitHub have Python 2 removed already. 
+All our latest Script Language Containers on GitHub have Python 2 removed already.
 
 On existing installations, the following will happen:
 
