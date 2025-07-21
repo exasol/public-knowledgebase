@@ -19,8 +19,9 @@ IMPORT INTO Test.impT FROM EXA AT exa_connection TABLE Test.sourceT;
 
 I get this error message:
 
-> [!CAUTION]
-> [Code: 0, SQL State: 42636]  ETL-4211: Connection from n12 to external EXASolution at jdbc:exa:192.168.6.6..7 failed. [Syntax error found in connection string.] (Session: 1836541654066528257)
+```
+[Code: 0, SQL State: 42636]  ETL-4211: Connection from n12 to external EXASolution at jdbc:exa:192.168.6.6..7 failed. [Syntax error found in connection string.] (Session: 1836541654066528257)
+```
 
 ## Explanation
 
@@ -32,7 +33,7 @@ In the example above a JDBC connection string is passed to a native EXA connecti
 
 ## Solution
 
-We have to remove $\textsf{\color{red}{jdbc:exa:}}$ from the connection string:
+We have to remove *jdbc:exa:* from the connection string:
 
 ```sql
 CREATE CONNECTION exa_connection
