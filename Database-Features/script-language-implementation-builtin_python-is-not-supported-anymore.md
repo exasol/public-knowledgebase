@@ -38,7 +38,7 @@ If it's not possible to convert Python 2 scripts to Python 3, then you can resto
 
 ### Further background information
 
-You can find further background information on [GitHub](https://github.com/exasol/script-languages-release/releases/tag/2.1.0) and [Exasol's Docs site](https://docs.exasol.com/db/latest/database_concepts/udf_scripts/programming_languages_detail.htm). All our latest Script Language Containers on GitHub have Python 2 removed already. 
+All our latest Script Language Containers on GitHub have Python 2 removed already. 
 
 On existing installations, the following will happen:
 
