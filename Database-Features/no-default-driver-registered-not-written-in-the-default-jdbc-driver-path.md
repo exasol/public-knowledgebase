@@ -2,7 +2,7 @@
 
 ## Problem
 
-We have stored the driver in **bucketfsfordrivers/mydrivers/**. However, the connection does not work and the following error message appears: 
+We have stored the driver in **bucketfsfordrivers/mydrivers/**. However, the connection does not work and the following error message appears:
 
 ```text
 [Code: 0, SQL State: ETL-1] No default DRIVER registered for jdbc:postgresql://xyz.intern:1234/abc.
@@ -30,25 +30,18 @@ root@n11:~#  confd_client db_info db_name: MYDB | grep bucket
 If it is not listed there add it like this in our example:
 
 1.  The database must be offline to change its configuration, thus stop database:
-
 ```text
 confd_client db_stop db_name: MYDB
 ```
-
 2. Set List of URLs used to search for JDBC drivers with jdbc_urls
-
 ```text
 confd_client db_configure db_name: MYDB jdbc_urls: ['bucketfs://bucketfsfordrivers/mydrivers/jdbc']
 ```
-
-3. start database
-
+3. Start database
 ```text
 confd_client db_start db_name: MYDB
 ``` 
-
-4. Test, if custom bucket is listed:
-   
+4. Test, if custom bucket is listed: 
 ```text
 root@n11:~#  confd_client db_info db_name: MYDB | grep bucket
     bucket: mydrivers
