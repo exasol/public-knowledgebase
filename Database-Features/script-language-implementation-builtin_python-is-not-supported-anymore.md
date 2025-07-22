@@ -45,7 +45,6 @@ def run(ctx):
 
 #### Pre-update check
 
-
 We have developed a procedure, which can be found in the “Pre-update Check” chapter in  [Using Python 2 with Exasol 7.1.20 or later | Exasol DB Documentation](https://docs.exasol.com/db/7.1/database_concepts/udf_scripts/python2_extended_use.htm#UpdateFrom71xTo7120ornewer), that you can use to check whether you have existing Python 2 scripts running, in case you want to check your system and start converting Python 2 scripts to Python 3.
 
 #### ⚠ DISCLAIMER ⚠
@@ -56,7 +55,6 @@ We have developed a procedure, which can be found in the “Pre-update Check” 
 ### Restore Python2
 
 If it's not possible to convert Python 2 scripts to Python 3, then you can restore the PYTHON alias by setting a parameter to the old container. The procedure is described in in chapter “Update From 7.1.x To 7.1.20 or newer” in [Using Python 2 with Exasol 7.1.20 or later | Exasol DB Documentation](https://docs.exasol.com/db/7.1/database_concepts/udf_scripts/python2_extended_use.htm#UpdateFrom71xTo7120ornewer).
-
 
 ## References
 
