@@ -33,8 +33,8 @@ If it is not listed there add it like this in our example:
 
 ```text
 confd_client db_stop db_name: MYDB
-
 ```
+
 (2.) Set List of URLs used to search for JDBC drivers with jdbc_urls
 
 ```text
