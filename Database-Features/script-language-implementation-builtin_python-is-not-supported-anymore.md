@@ -2,7 +2,7 @@
 
 ## Problem
 
-After the upgrade of Exasol cluster to 7.1.20 and higher the following UDF is failing:
+After the upgrade of Exasol cluster to 7.1.20 and higher the following UDF 
 
 ```SQL
 --/
@@ -10,9 +10,10 @@ CREATE OR REPLACE PYTHON SCALAR SCRIPT TEST."PHYTHON_TEST" () RETURNS INT AS
 def run(ctx):
   return 1
 ;
-```
 
 select TEST."PHYTHON_TEST"() ;
+```
+is failing with:
 
 ```SQL
 Error Code: 22064 Error Message: Script language implementation "builtin_python" is not supported anymore. Please consider switching to Python3. If this is not possible at all, please contact Exasol support." caught in script "Schema_1"."Script_1" at line 137 (Session: 1835276087831811338), SQLSTATE [43000]
