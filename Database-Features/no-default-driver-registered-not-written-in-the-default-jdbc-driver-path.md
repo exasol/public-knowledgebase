@@ -29,7 +29,9 @@ root@n11:~#  confd_client db_info db_name: MYDB | grep bucket
 
 If it is not listed there add it like this in our example:
 
-#### 1. The database must be offline to change its configuration, thus stop database:
+### Steps
+
+#### 1. The database must be offline to change its configuration, thus stop database
 
 ```text
 confd_client db_stop db_name: MYDB
