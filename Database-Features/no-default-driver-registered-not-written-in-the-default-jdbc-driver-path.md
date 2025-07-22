@@ -2,7 +2,7 @@
 
 ## Problem
 
-We have stored the driver in **bucketfsfordrivers/mydrivers/**. However, the connection does not work and the following error message appears:
+We have stored the driver in **bucketfsfordrivers/mydrivers/jdbc**. However, the connection does not work and the following error message appears:
 
 ```text
 [Code: 0, SQL State: ETL-1] No default DRIVER registered for jdbc:postgresql://xyz.intern:1234/abc.
