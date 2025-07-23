@@ -2,7 +2,7 @@
 
 ## Problem
 
-After the upgrade of Exasol cluster to 7.1.20 and higher the following UDF 
+After the upgrade of Exasol cluster to 7.1.20 and higher the following Python-UDF
 
 ```SQL
 --/
@@ -13,6 +13,7 @@ def run(ctx):
 
 select TEST."PHYTHON_TEST"() ;
 ```
+
 is failing with:
 
 ```SQL
