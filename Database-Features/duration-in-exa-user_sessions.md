@@ -43,7 +43,7 @@ AND CAST(SUBSTRING(duration, 1, INSTR(duration, ':') - 1) AS INT) * 36
 ;
 ```
 
-Alternatively, you could convert the seconds and write the query as follows, given that
+Alternatively, you can convert the 600 seconds to 10 minutes ('0:10:00') and write the query as follows, given that
 
 * minutes and seconds are zero-prefixed and can therefore be sorted alphabetically
 * hours are not zero-prefixed, so any number bigger than '0' will also be alphabetically greater.
