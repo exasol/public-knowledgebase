@@ -11,7 +11,7 @@ Please specify DRIVER or add a default via EXAoperation
 
 ## Solution
 
-By default, Exasol expects JDBC drivers to be in: */buckets/bfsdefault/default/drivers/jdbc/*.  In this case, however, the JDBC information should be read from another bucketfs.
+By default, Exasol expects JDBC drivers to be in: */buckets/bfsdefault/default/drivers/jdbc/*. In this case, however, the JDBC information should be read from another bucketfs.
 
 Thus, check if it is in the list of URLs used to search for JDBC drivers:
 
