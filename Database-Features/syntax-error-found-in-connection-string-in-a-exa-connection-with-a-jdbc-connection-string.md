@@ -19,8 +19,9 @@ IMPORT INTO Test.impT FROM EXA AT exa_connection TABLE Test.sourceT;
 
 I get this error message:
 
-```
-[Code: 0, SQL State: 42636]  ETL-4211: Connection from n12 to external EXASolution at jdbc:exa:192.168.6.6..7 failed. [Syntax error found in connection string.] (Session: 1836541654066528257)
+```text
+[Code: 0, SQL State: 42636]  ETL-4211: Connection from n12 to external EXASolution at jdbc:exa:192.168.6.6..7 failed.
+[Syntax error found in connection string.] (Session: 1836541654066528257)
 ```
 
 ## Explanation
@@ -44,9 +45,9 @@ CREATE CONNECTION exa_connection
 
 ## References
 
-* [CHANGELOG: Fixed incorrect error messages for invalid connection string syntax in Exasol ODBC driver](https://exasol.my.site.com/s/article/Changelog-content-15363?language=en_US&name=Changelog-content-15363)
-* [CREATE CONNECTION](https://docs.exasol.com/db/latest/sql/create_connection.htm)
-* [IMPORT](https://docs.exasol.com/db/latest/sql/import.htm)
+* Documentation of [CHANGELOG: Fixed incorrect error messages for invalid connection string syntax in Exasol ODBC driver](https://exasol.my.site.com/s/article/Changelog-content-15363?language=en_US&name=Changelog-content-15363)
+* Documentation of [CREATE CONNECTION](https://docs.exasol.com/db/latest/sql/create_connection.htm)
+* Documentation of [IMPORT](https://docs.exasol.com/db/latest/sql/import.htm)
 
 ## Author
 
