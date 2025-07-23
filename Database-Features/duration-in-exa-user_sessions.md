@@ -31,7 +31,7 @@ Format is 'HH:MM:SS', with HH not limited to 24 hours.
 
 Exasol SQL dialect doesn't have a direct function, thus we have to parse the string and calculate it:
 
-#### SQL
+#### SQL-Query 1
 
 ```SQL
 SELECT
@@ -65,7 +65,7 @@ Alternatively, you can convert the 600 seconds to 10 minutes ('0:10:00') and wri
 * minutes and seconds are zero-prefixed and can therefore be sorted alphabetically
 * hours are not zero-prefixed, so any number bigger than '0' will also be alphabetically greater.
 
-#### SQL
+#### SQL-Query 2
 
 ```SQL
 SELECT  
