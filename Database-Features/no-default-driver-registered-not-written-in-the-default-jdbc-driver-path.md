@@ -1,4 +1,4 @@
-# No default DRIVER registered (not written in the Default JDBC Driver Path)
+# No default DRIVER registered (not uploaded in the Default JDBC Driver Path)
 
 ## Problem
 
