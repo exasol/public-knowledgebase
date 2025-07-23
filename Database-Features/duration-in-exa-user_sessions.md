@@ -38,7 +38,7 @@ WHERE 
     COMMAND_NAME in ('COMMIT','ROLLBACK')
 AND CAST(SUBSTRING(duration, 1, INSTR(duration, ':') - 1) AS INT) * 3600 +  -- Hours
     CAST(SUBSTRING(duration, INSTR(duration, ':') + 1, INSTR(duration, ':', 1, 2) - INSTR(duration, ':') - 1) AS INT) * 60 + -- Minutes
-    CAST(SUBSTRING(duration, INSTR(duration, ':', 1, 2) + 1) AS INT)   
+    CAST(SUBSTRING(duration, INSTR(duration, ':', 1, 2) + 1) AS INT) -- Seconds
     > 10*60
 ;
 ```
