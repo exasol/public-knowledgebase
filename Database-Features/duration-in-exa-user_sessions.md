@@ -2,14 +2,14 @@
 
 ## Problem
 
-I would like to receive current statements that run longer than 10 minutes.
+I would like to receive current statements that run longer than 600 seconds.
 
 I tried to execute following statement:
 
 ```SQL
 SELECT * 
 FROM EXA_DBA_SESSIONS a
-WHERE DURATION < 10*60;
+WHERE DURATION < 600;
 ```
 
 and got the follwoing error message:
@@ -40,6 +40,22 @@ AND CAST(SUBSTRING(duration, 1, INSTR(duration, ':') - 1) AS INT) * 36
     CAST(SUBSTRING(duration, INSTR(duration, ':') + 1, INSTR(duration, ':', 1, 2) - INSTR(duration, ':') - 1) AS INT) * 60 + -- Minutes
     CAST(SUBSTRING(duration, INSTR(duration, ':', 1, 2) + 1) AS INT) -- Seconds
     > 10*60
+;
+```
+
+Alternatively, you could convert the seconds and write the query as follows, given that
+
+* minutes and seconds are zero-prefixed and can therefore be sorted alphabetically
+* hours are not zero-prefixed, so any number bigger than '0' will also be alphabetically greater.
+
+```SQL
+SELECT  
+s.*
+FROM
+    EXA_DBA_SESSIONS s
+WHERE 
+    COMMAND_NAME in ('COMMIT','ROLLBACK')
+AND DURATION > '0:10:00'
 ;
 ```
 
