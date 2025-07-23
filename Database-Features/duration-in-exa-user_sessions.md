@@ -34,12 +34,12 @@ SELECT  
 s.*
 FROM
     EXA_DBA_SESSIONS s
-WHERE 1=1
-  AND COMMAND_NAME in ('COMMIT','ROLLBACK')
-  AND CAST(SUBSTRING(duration, 1, INSTR(duration, ':') - 1) AS INT) * 3600 +  -- Hours
-      CAST(SUBSTRING(duration, INSTR(duration, ':') + 1, INSTR(duration, ':', 1, 2) - INSTR(duration, ':') - 1) AS INT) * 60 + -- Minutes
-      CAST(SUBSTRING(duration, INSTR(duration, ':', 1, 2) + 1) AS INT)        
-      > 10*60
+WHERE 
+    COMMAND_NAME in ('COMMIT','ROLLBACK')
+AND CAST(SUBSTRING(duration, 1, INSTR(duration, ':') - 1) AS INT) * 3600 +  -- Hours
+    CAST(SUBSTRING(duration, INSTR(duration, ':') + 1, INSTR(duration, ':', 1, 2) - INSTR(duration, ':') - 1) AS INT) * 60 + -- Minutes
+    CAST(SUBSTRING(duration, INSTR(duration, ':', 1, 2) + 1) AS INT)   
+    > 10*60
 ;
 ```
 
@@ -50,4 +50,3 @@ WHERE 1=1
 * [EXA_USER_SESSIONS](https://docs.exasol.com/db/latest/sql_references/system_tables/metadata/exa_user_sessions.htm)
 
 *We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).*
-
