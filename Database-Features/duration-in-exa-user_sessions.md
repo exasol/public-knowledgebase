@@ -36,20 +36,20 @@ Exasol SQL dialect doesn't have a direct function, thus we have to parse the str
 ```SQL
 SELECT
     SESSION_ID,
-    duration,
+    DURATION,
     -- test
-    regexp_substr(duration, '[0-9]+', 1, 1) AS HH,
-    regexp_substr(duration, '[0-9]+', 1, 2) AS MM,
-    regexp_substr(duration, '[0-9]+', 1, 3) AS SS,
+    to_number(regexp_substr(duration, '[0-9]+', 1, 1)) AS HH,
+    to_number(regexp_substr(duration, '[0-9]+', 1, 2)) AS MM,
+    to_number(regexp_substr(duration, '[0-9]+', 1, 3)) AS SS,
     -- formula
     3600 * regexp_substr(duration, '[0-9]+', 1, 1) -- HH
     + 60 * regexp_substr(duration, '[0-9]+', 1, 2) -- MM
-    + regexp_substr(duration, '[0-9]+', 1, 3) -- SS
-    AS duration_seconds
+    +      regexp_substr(duration, '[0-9]+', 1, 3) -- SS
+    AS DURATION_SECONDS
 FROM 
-    exa_dba_sessions 
+    SYS.EXA_DBA_SESSIONS 
 WHERE 
-    local.duration_seconds > 600;
+    local.DURATION_SECONDS > 600;
 ```
 
 #### Output
