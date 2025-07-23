@@ -2,7 +2,7 @@
 
 ## Problem
 
-I would like to receive current statements that run longer than 600 seconds.
+I would like to find current statements that run longer than 600 seconds.
 
 I tried to execute following statement:
 
