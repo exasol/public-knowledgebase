@@ -61,7 +61,7 @@ end
 
 ### 💡Hint💡
 
-* Always use decimal() for calculations if you’re working with DECIMALs! 
+* Always use decimal() for calculations if you’re working with DECIMALs!
 
 ## References
 
