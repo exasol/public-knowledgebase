@@ -29,7 +29,7 @@ SELECT TEST.NUMBER_DECIMAL_UDF (a) FROM TEST.T;
 
 I get the following error message:
 
-```sql
+```text
 [Code: 0, SQL State: 22001] Lua Error "decimal expected, got number" caught in script "TEST"."NUMBER_DECIMAL_UDF" at line 4 (Session: 1836005522647613440)
 ```
 
