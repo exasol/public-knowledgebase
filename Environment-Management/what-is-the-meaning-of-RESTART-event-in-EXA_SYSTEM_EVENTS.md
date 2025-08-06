@@ -1,4 +1,4 @@
-# What is the meaning of RESTART even in EXA_SYSTEM_EVENTS
+# What is the meaning of RESTART event in EXA_SYSTEM_EVENTS
 
 ## Question
 
