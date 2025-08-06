@@ -78,4 +78,4 @@ SELECT RAW_OBJECT_SIZE_AVG/NULLIFZERO(MEM_OBJECT_SIZE_AVG) AS COMPRESSION_RATIO,
 * [Transaction Management](https://docs.exasol.com/database_concepts/transaction_management.htm)
 * [Profiling](https://docs.exasol.com/database_concepts/profiling.htm)
 
-*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).*
