@@ -32,21 +32,19 @@ OpenJDK 64-Bit Server VM 18.9 (build 11.0.2+9, mixed mode)
 
 The next step depends on what you downloaded, a JRE only or the complete JDK.
 
-### 2.
-
-#### a) JDK
+### 2.a) JDK
 
 It comes with a MSI installer and works as any other windows installer and does the necessary registry entries.  
 But EXAplus needs a JRE instance to start. Contrary to Oracles installation, there's no own "jre" folder  
 in the installation path of the JDK. Just create one and copy all contents again to this folder and EXAplus  
 should start.
 
-#### 2.b) JRE
+### 2.b) JRE
 
 The JRE is only a ZIP file and doesn't edit registry during the unzip to the desired folder. You can edit the registry using the Registry Editor.
 
-- edit existing registry entries manually  
-- create the proper registry entries
+* edit existing registry entries manually  
+* create the proper registry entries
 
 The path is `HKEY_LOCAL_MACHINE\Software\JavaSoft`
 
@@ -64,4 +62,4 @@ Example:
 
 * [CHANGELOG: EXAplus on Windows will use Java from the current console](https://exasol.my.site.com/s/article/Changelog-content-18724?language=en_US)
 
-*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).*
