@@ -21,7 +21,7 @@ Please acquaint yourself with the process of using and uploading TLS certificate
 The tutorial applies to a particular use case:
 
 1. Only a connection string with IP addresses or DNS names could be used, fingerprint couldn't be added.
-2. Customer's IT Department or Security Department couldn't purchase a certificate from a public certification authority (CA) and also couldn't generate certificate in-house and sign it with company's customer root CA certificate.
+2. Customer's IT Department or Security Department couldn't purchase a certificate from a public certification authority (CA) and also couldn't generate certificate in-house and sign it with company's custom root CA certificate.
 
 __If both items hold__, than the last resort will be to generate yourself
 
@@ -35,7 +35,7 @@ and add them to
 
 ## Prerequisites
 
-* An environment with `openssl` utility, to generate the certificates / keys.
+* An environment with `openssl` utility, to generate the certificates / keys. Files don't have to be generated inside Exasol cluster.
 * Administrative access to ConfD in case of DB version 8 (see [ConfD](https://docs.exasol.com/db/latest/confd/confd.htm)) or EXAoperation ([EXAoperation](https://docs.exasol.com/db/7.1/administration/on-premise/admin_interface/exaoperation.htm)), to upload the files to Exasol cluster.
 * Sufficient access on client machines to make changes to respective truststores (see below).
 
@@ -129,7 +129,7 @@ If we want to add a certificate to DBeaver's truststore, we need to find its loc
 
 First, we need to find the path to DBeaver executable, for me it's `<Desktop folder>\Distribs\dbeaver\dbeaver.exe` and, therefore, truststore is the file
 
-```
+```shell
 <Desktop folder>\Distribs\dbeaver\jre\lib\security\cacerts
 ```
 
