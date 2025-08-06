@@ -1,7 +1,8 @@
-# EXA_STATISTICS 
+# EXA_STATISTICS
+
 ## Background
 
-Each Exasol database includes two out-of-the-box schemas: SYS and EXA_STATISTICS. It is not possible to change these schemas manually, and the information visible in some system tables depend on the object and system privileges the user is assigned. It is also possible to grant access to every table in these schemas by granting the SELECT ANY DICTIONARY privilege to a user or role. 
+Each Exasol database includes two out-of-the-box schemas: SYS and EXA_STATISTICS. It is not possible to change these schemas manually, and the information visible in some system tables depend on the object and system privileges the user is assigned. It is also possible to grant access to every table in these schemas by granting the SELECT ANY DICTIONARY privilege to a user or role.
 
 ## General Information
 
@@ -64,12 +65,12 @@ The table EXA_SYSTEM_EVENTS contains system events, such as:
 
 Determining the overall average compression ratio, average raw database size and average compressed database size on monthly basis:
 
-
 ```sql
 SELECT RAW_OBJECT_SIZE_AVG/NULLIFZERO(MEM_OBJECT_SIZE_AVG) AS COMPRESSION_RATIO,        
  RAW_OBJECT_SIZE_AVG,        
  MEM_OBJECT_SIZE_AVG FROM EXA_DB_SIZE_MONTHLY;
 ```
+
 ## Additional References
 
 * [The Exasol Logserver](https://exasol.my.site.com/s/article/The-Exasol-Logserver)
