@@ -24,6 +24,9 @@ The logic behind this process: such a timestamp is approximately the last moment
 
 Nevertheless, in case Log Server (see [The Exasol Logserver](https://github.com/exasol/public-knowledgebase/blob/main/Database-Features/the-exasol-logserver.md)) process hangs or deadlocks, MEASURE_TIME for the "RESTART" event might be unexpected, as it shows the time when the problem started, not the time when the database was eventually stopped and started.
 
+In [Restore Database from Backup](https://docs.exasol.com/db/latest/administration/on-premise/backup_restore/restore_database.htm) we instruct end users to stop the database before triggering the restore process.
+If it's not done, restore process could kill the running internal processes, leading to a "RESTART" entry with MEASURE_TIME being the time of restore start.
+
 Based on information above, a "RESTART" entry in EXA_SYSTEM_EVENTS often means a crash of one of internal server processes. As a result, it needs to be analyzed by Exasol Support. Server Processes logs, COS logs and coredumps are usually sufficient for the analysis.
 They could be pulled using the following command (adapt date arguments for `-s` and `-t`, and DB name for `-e` accordingly):
 
@@ -40,5 +43,6 @@ For more details on pulling the logs from Exasol please refer to [Log Files for 
 * [EXA_STATISTICS](https://github.com/exasol/public-knowledgebase/blob/main/Database-Features/exa-statistics.md)
 * [The Exasol Logserver](https://github.com/exasol/public-knowledgebase/blob/main/Database-Features/the-exasol-logserver.md)
 * [Log Files for Support](https://docs.exasol.com/db/latest/administration/on-premise/support.htm)
+* [Restore Database from Backup](https://docs.exasol.com/db/latest/administration/on-premise/backup_restore/restore_database.htm)
 
 *We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).*
