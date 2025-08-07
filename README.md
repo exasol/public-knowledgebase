@@ -60,7 +60,7 @@ Please keep in mind the following limitations when creating or modifying KB arti
     (uppercase fragments are to be replaced accordingly)
 1. The article headline and filename must be the same, use "-" for spaces. This way, you can ensure that you will be able to find the articles in Github. If possible, avoid in filenames anything except alphanumeric characters and dashes "-".
 1. To refer to a public Knowledgebase article, use paths in Github. If the target article resides in the same folder, then .md file name is sufficient, like `[referred article name](respective_file_name.md)`.
-If the target article resides in another folder, the path should start from the article category, like `[referred article name](Environment-Management/respective_file_name.md)`.
+If the target article resides in another folder, the path should start from the article category, like `[referred article name](/Environment-Management/respective_file_name.md)`.
 
 ## Exasol Styles
 
