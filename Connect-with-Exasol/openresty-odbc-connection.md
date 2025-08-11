@@ -1,10 +1,10 @@
-# Openresty Exasol ODBC connection
+# OpenResty Exasol ODBC connection
 Below are steps to connect to Exasol from Openresty.
 
 * Install openresty [Openresty Installation manual](https://openresty.org/en/linux-packages.html#ubuntu)
 * install Luarocks
 
-```markup
+```shell
 wget https://github.com/luarocks/luarocks/archive/v3.0.0.tar.gz
 
 tar zxvf v3.0.0.tar.gz
@@ -17,7 +17,7 @@ sudo make install
 ```
 
 * install ODBC package in luarocks
-```markup
+```shell
 luarocks install odbc
 ```
 
@@ -26,7 +26,7 @@ luarocks install odbc
 * Execute connection test scripts
 
 **odbctest.sh**
-```markup
+```shell
 # set -x
 # ORHOME is the path to the OpenResty install
 export ORHOME="/usr/local/openresty"
@@ -37,7 +37,7 @@ resty odbctest.lua $1
 echo "Retun code from resty $?"
 ```
 **odbctest.lua**
-```markup
+```lua
 local odbc = require("odbc")
 local call = [[select * from sys.exa_all_tables]]
 print("Using dsn " .. arg[1])
