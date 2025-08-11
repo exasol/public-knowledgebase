@@ -17,9 +17,9 @@ Check the [Update Considerations](https://docs.exasol.com/db/7.1/administration/
     ```shell
     rsync -avP EXA*.pkg root@{LS_IP}:/tmp/
     ```
-    
+
     _or_
-    
+
     ```shell
     scp EXA*.pkg root@{LS_IP}:/tmp/
     ```
@@ -62,13 +62,13 @@ Check the [Update Considerations](https://docs.exasol.com/db/7.1/administration/
     apply_os_security_updates /tmp/EXASOL-7.1-CentOS-7-CumulativeUpdate-YYYYMMDDHHMM.pkg
     ```
 
-_Note: In case you see a message like this "Dismiss already applied patchlevel YYYYMMDDHHMM", it means there is no update needed, and you can continue the procedure._
+    _Note: In case you see a message like this "Dismiss already applied patchlevel YYYYMMDDHHMM", it means there is no update needed, and you can continue the procedure._
 
-13. Reboot the license node.
-14. Check the Software tab and confirm the new version was successfully applied.
-15. Make sure there is enough space in the root filesystem (`df -h /`). If not, try removing some files to release space.
-16. [Reboot the data nodes](https://docs.exasol.com/db/7.1/administration/on-premise/nodes/actions_on_nodes.htm).
-17. [Start the Storage Services](https://docs.exasol.com/db/7.1/administration/on-premise/manage_storage/stop_start_storage_service.htm).
-18. [Start the Database](https://docs.exasol.com/db/7.1/administration/on-premise/manage_database/start_db.htm).
+14. Reboot the license node.
+15. Check the Software tab and confirm the new version was successfully applied.
+16. Make sure there is enough space in the root filesystem (`df -h /`). If not, try removing some files to release space.
+17. [Reboot the data nodes](https://docs.exasol.com/db/7.1/administration/on-premise/nodes/actions_on_nodes.htm).
+18. [Start the Storage Services](https://docs.exasol.com/db/7.1/administration/on-premise/manage_storage/stop_start_storage_service.htm).
+19. [Start the Database](https://docs.exasol.com/db/7.1/administration/on-premise/manage_database/start_db.htm).
 
 *We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).*
