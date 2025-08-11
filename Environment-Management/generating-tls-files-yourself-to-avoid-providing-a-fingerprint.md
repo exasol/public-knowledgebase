@@ -21,7 +21,7 @@ Please acquaint yourself with the process of using and uploading TLS certificate
 The tutorial applies to a particular use case:
 
 1. Only a connection string with IP addresses or DNS names could be used, fingerprint couldn't be added.
-2. Customer's IT Department or Security Department couldn't purchase a certificate from a public certification authority (CA) and also couldn't generate certificate in-house and sign it with company's customer root CA certificate.
+2. Customer's IT Department or Security Department couldn't purchase a certificate from a public certification authority (CA) and also couldn't generate certificate in-house and sign it with company's custom root CA certificate.
 
 __If both items hold__, than the last resort will be to generate yourself
 
@@ -35,7 +35,7 @@ and add them to
 
 ## Prerequisites
 
-* An environment with `openssl` utility, to generate the certificates / keys.
+* An environment with `openssl` utility, to generate the certificates / keys. Files don't have to be generated inside Exasol cluster.
 * Administrative access to ConfD in case of DB version 8 (see [ConfD](https://docs.exasol.com/db/latest/confd/confd.htm)) or EXAoperation ([EXAoperation](https://docs.exasol.com/db/7.1/administration/on-premise/admin_interface/exaoperation.htm)), to upload the files to Exasol cluster.
 * Sufficient access on client machines to make changes to respective truststores (see below).
 
@@ -96,7 +96,7 @@ IP.3 = 10.36.1.7
 " > server_cert.ext
 ```
 
-This command creates file `server_cert.ext`. It isn't sensitive and at the same time, it's just an intermediate file needed for further steps. All IP addresses and DNS names that are directly used in connection string in SQL client should be present in this file. In case EXAoperation is used, its IP or DNS that is used for web browser access should included into the file. IP addresses are added added as IP.1, IP.2 etc. and DNS names are added as DNS.1, DNS.2 etc. 
+This command creates file `server_cert.ext`. It isn't sensitive and at the same time, it's just an intermediate file needed for further steps. All IP addresses and DNS names that are directly used in connection string in SQL client should be present in this file. In case EXAoperation is used, its IP or DNS that is used for web browser access should included into the file. IP addresses are added added as IP.1, IP.2 etc. and DNS names are added as DNS.1, DNS.2 etc.
 
 ```shell
 # Create server cert
@@ -129,7 +129,7 @@ If we want to add a certificate to DBeaver's truststore, we need to find its loc
 
 First, we need to find the path to DBeaver executable, for me it's `<Desktop folder>\Distribs\dbeaver\dbeaver.exe` and, therefore, truststore is the file
 
-```
+```shell
 <Desktop folder>\Distribs\dbeaver\jre\lib\security\cacerts
 ```
 
@@ -179,7 +179,7 @@ In particular, one could follow the following the steps official Linux distribut
 * Ubuntu: [Install a root CA certificate in the trust store](https://ubuntu.com/server/docs/install-a-root-ca-certificate-in-the-trust-store)
 * Red Hat 8: [Using shared system certificates](https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/8/html/securing_networks/using-shared-system-certificates_securing-networks)
 
-Just like with other driver setups, one needs to add the generated custom root CA certificate from file "rootCA_cert.pem" following a relevant instruction for 
+Just like with other driver setups, one needs to add the generated custom root CA certificate from file "rootCA_cert.pem" following a relevant instruction for
 
 ### ADO.NET driver on Windows
 
@@ -213,4 +213,4 @@ Therefore, please follow the approach from the section "ODBC driver on Windows".
 
 * Red Hat 8: [Using shared system certificates](https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/8/html/securing_networks/using-shared-system-certificates_securing-networks)
 
-*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).*
