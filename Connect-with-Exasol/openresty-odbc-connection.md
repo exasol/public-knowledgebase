@@ -1,4 +1,12 @@
 # OpenResty Exasol ODBC connection
+
+## Background
+
+Connecting to Exasol from OpenResty lets you build fast APIs or dynamic web endpoints directly inside Nginx using Lua.
+This enables you to query Exasol on the fly and return results to clients without an extra backend layer.
+
+## Steps
+
 Below are steps to connect to Exasol from Openresty.
 
 * Install openresty [Openresty Installation manual](https://openresty.org/en/linux-packages.html#ubuntu)
@@ -17,6 +25,7 @@ sudo make install
 ```
 
 * install ODBC package in luarocks
+
 ```shell
 luarocks install odbc
 ```
@@ -25,7 +34,8 @@ luarocks install odbc
 
 * Execute connection test scripts
 
-**odbctest.sh**
+ odbctest.sh
+
 ```shell
 # set -x
 # ORHOME is the path to the OpenResty install
@@ -36,7 +46,9 @@ export PATH="$PATH:${ORHOME}/bin/"
 resty odbctest.lua $1
 echo "Retun code from resty $?"
 ```
-**odbctest.lua**
+
+ odbctest.lua
+
 ```lua
 local odbc = require("odbc")
 local call = [[select * from sys.exa_all_tables]]
@@ -67,3 +79,10 @@ if string.upper(cols[1]) == [[ERR]] then
    print("Some sort of error was raised " .. ret:fetch())
 end
 ```
+
+## Additional References
+
+* [Openresty Installation manual](https://openresty.org/en/linux-packages.html#ubuntu)
+* [ODBC Drivers for Linux/FreeBSD | Exasol Documentation](https://docs.exasol.com/db/latest/connect_exasol/drivers/odbc/odbc_linux.htm)
+
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).*
