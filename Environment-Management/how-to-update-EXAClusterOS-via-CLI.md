@@ -70,4 +70,4 @@ Check the [Update Considerations](https://docs.exasol.com/db/7.1/administration/
 17. [Start the Storage Services](https://docs.exasol.com/db/7.1/administration/on-premise/manage_storage/stop_start_storage_service.htm).
 18. [Start the Database](https://docs.exasol.com/db/7.1/administration/on-premise/manage_database/start_db.htm).
 
-*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).*
+_We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase)._
