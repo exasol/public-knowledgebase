@@ -58,7 +58,7 @@ ALTER SESSION SET SCRIPT_LANGUAGES='PYTHON3=localzmq+protobuf:///bfsdefault/defa
 To permanently activate the SLC for the whole system please run the following statement:
 
 ```sql
-ALTER SYSTEM SET SCRIPT_LANGUAGES='PYTHON3=localzmq+protobuf:///<YOUR_BFS_CERVICE>/<YOUR_BUCKET>/<PATH_INSIDE_THE BUCKET>/<SLC_PACKAGE_NAME>?lang=python#buckets/<YOUR_BFS_CERVICE>/<YOUR_BUCKET>/<PATH_INSIDE_THE BUCKET>/<SLC_PACKAGE_NAME>/exaudf/exaudfclient';
+ALTER SYSTEM SET SCRIPT_LANGUAGES='PYTHON3=localzmq+protobuf:///<YOUR_BFS_CERVICE>/<YOUR_BUCKET>/<PATH_INSIDE_THE_BUCKET>/<SLC_PACKAGE_NAME>?lang=python#buckets/<YOUR_BFS_CERVICE>/<YOUR_BUCKET>/<PATH_INSIDE_THE BUCKET>/<SLC_PACKAGE_NAME>/exaudf/exaudfclient';
 
 --replace the following placeholders with the corresponding values in your system.
 --<YOUR_BFS_CERVICE> - bucketfs service where the SLC package resides
