@@ -5,7 +5,7 @@
 Exasol allows you to extend UDF capabilities using Script Language Containers (SLCs).
 This powerful feature enables you to integrate almost any required libraries and language packages into your UDFs.
 
-For detailed information and instructions about building and using your own SLC, please refer to the official GitHub repository. [SLC github](https://github.com/exasol/script-languages-release/blob/master/doc/user_guide/usage.md)
+For detailed information and instructions about building and using your own SLC, please refer to the official GitHub repository: [SLC github](https://github.com/exasol/script-languages-release/blob/master/doc/user_guide/usage.md)
 
 In this short tutorial, we focus on a specific use case: when Exasol prepares and provides a custom SLC and the customer only needs to install it in their own database.
 
