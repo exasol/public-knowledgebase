@@ -40,7 +40,7 @@ Once you have confirmed that the package is uploaded and accessible in your Buck
 To activate the SLC only for the current session please run the following statement:
 
 ```sql
-ALTER SESSION SET SCRIPT_LANGUAGES='PYTHON3=localzmq+protobuf:///<YOUR_BFS_SERVICE>/<YOUR_BUCKET>/<PATH_INSIDE_THE BUCKET>/<SLC_PACKAGE_NAME>?lang=python#buckets/<YOUR_BFS_SERVICE>/<YOUR_BUCKET>/<PATH_INSIDE_THE BUCKET>/<SLC_PACKAGE_NAME>/exaudf/exaudfclient';
+ALTER SESSION SET SCRIPT_LANGUAGES='PYTHON3=localzmq+protobuf:///<YOUR_BFS_SERVICE>/<YOUR_BUCKET>/<PATH_INSIDE_THE_BUCKET>/<SLC_PACKAGE_NAME>?lang=python#buckets/<YOUR_BFS_SERVICE>/<YOUR_BUCKET>/<PATH_INSIDE_THE BUCKET>/<SLC_PACKAGE_NAME>/exaudf/exaudfclient';
 
 --replace the following placeholders with the corresponding values in your system.
 --<YOUR_BFS_SERVICE> - bucketfs service where the SLC package resides
