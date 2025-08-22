@@ -45,7 +45,7 @@ ALTER SESSION SET SCRIPT_LANGUAGES='PYTHON3=localzmq+protobuf:///<YOUR_BFS_SERVI
 --replace the following placeholders with the corresponding values in your system.
 --<YOUR_BFS_SERVICE> - bucketfs service where the SLC package resides
 --<YOUR_BUCKET> - bucket where the SLC package resides
---<PATH_INSIDE_THE BUCKET> - path inside the bucket where the SLC resides
+--<PATH_INSIDE_THE_BUCKET> - path inside the bucket where the SLC resides
 --<SLC_PACKAGE_NAME> - your SLC package name WITHOUT the extension
 
 
