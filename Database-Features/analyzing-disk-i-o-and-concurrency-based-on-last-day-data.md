@@ -148,10 +148,6 @@ order by 1
 ```
 ## Additional References
 
-<https://www.exasol.com/support/browse/EXASOL-1598>
-
-<https://www.exasol.com/support/browse/EXASOL-2373>
-
 [Statistical System Tables](https://docs.exasol.com/sql_references/metadata/statistical_system_table.htm)
 
 *We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 
