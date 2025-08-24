@@ -1,4 +1,4 @@
-Default Resource Group
+# Default Resource Group
 
 ## Question
 
@@ -6,7 +6,7 @@ What is the default resource group for those that are not assigned?
 
 ## Answer
 
-The default Consumer group is MEDIUM. SYS_CONSUMER_GROUP is a special consumer group that is set for the SYS user. 
+The default Consumer group is MEDIUM. SYS_CONSUMER_GROUP is a special consumer group that is set for the SYS user.
 
 ## References
 
