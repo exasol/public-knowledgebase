@@ -38,17 +38,17 @@ ORDER BY
 #### EXA_DBA_OBJECT_SIZES
 
 * EXA_DBA_OBJECT_SIZES  is similar to EXA_ALL_OBJECT_SIZES.
-* It contains the sizes of all database objects, regardless of the current user's access rights. 
+* It contains the sizes of all database objects, regardless of the current user's access rights.
 * You need the SELECT ANY DICTIONARY system privilege to access this table.
 
 #### EXA_DBA_COLUMN_SIZES
 
-This table provides more granular information, listing the raw and compressed sizes for individual columns within all user tables. 
+This table provides more granular information, listing the raw and compressed sizes for individual columns within all user tables.
 This is very useful for identifying which columns contribute most to table size.
 
 ##### Example Query 2
 
-```SQL 
+```SQL
 SELECT
     COLUMN_SCHEMA,
     COLUMN_TABLE,
@@ -68,21 +68,21 @@ This table contains the sizes of statistical system tables themselves, aggregate
 
 EXA_DBA_INDICES is directly relevant to table size because it provides information about the storage consumed by the indexes associated with a table.
 
-* Specifically, the key column for understanding index size is MEM_OBJECT_SIZE which indicates the size of the index in bytes (at the last COMMIT). 
+* Specifically, the key column for understanding index size is MEM_OBJECT_SIZE which indicates the size of the index in bytes (at the last COMMIT).
 * This is the real, compressed size of the index as stored in memory.
 * Larger indexes contribute to higher memory consumption by your Exasol database.
 
 ### Statistical System Tables
 
-* This section describes the **statistical** system tables in Exasol. 
-* The statistical system tables are placed in the system schema EXA_STATISTICS. 
+* This section describes the **statistical** system tables in Exasol.
+* The statistical system tables are placed in the system schema EXA_STATISTICS.
 * The statistical system tables contain historical data about the usage and the status of the DBMS.  
-* This data can be used to analyze trends, identify patterns, and make predictions about future events or conditions. 
+* This data can be used to analyze trends, identify patterns, and make predictions about future events or conditions.
 
 
 #### EXA_DB_*
 
-* EXA_DB_SIZE_HOURLY, EXA_DB_SIZE_DAILY, EXA_DB_SIZE_MONTHLY system tables provide aggregated information about database sizes at a cluster level, including average and maximum uncompressed, compressed, auxiliary (indexes), and statistics sizes over different intervals. 
+* EXA_DB_SIZE_HOURLY, EXA_DB_SIZE_DAILY, EXA_DB_SIZE_MONTHLY system tables provide aggregated information about database sizes at a cluster level, including average and maximum uncompressed, compressed, auxiliary (indexes), and statistics sizes over different intervals.
 * These are great for trending and capacity planning.
 
 ## References
