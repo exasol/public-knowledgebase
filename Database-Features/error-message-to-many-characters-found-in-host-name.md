@@ -28,7 +28,7 @@ I get the following error message
 
 ## Answer
 
-The Exa connection does not use the sqlserver protocol. It uses exasol. When the Exasol driver tries to parse jdbc:sqlserver://, it gets confused by the structure, specifically the multiple forward slashes (//) after a protocol it doesn't recognize.
+The Exa connection does not use the JDBC protocol. When the Exasol driver tries to parse jdbc:sqlserver://, it gets confused by the structure, specifically the multiple forward slashes (//) after a protocol it doesn't recognize.
 
 In the Exasol context, this is a typo, because what is intended is a JDBC connection instead of an EXA connection.
 
