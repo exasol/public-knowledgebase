@@ -6,7 +6,8 @@ Is it possible to have a query or a view to control the size of all objects in t
 
 ## Answer
 
-You can use system tables to get information about the size of all objects in the database to monitor object sizes and identify areas for potential optimization.
+You can utilize system tables to gather detailed information about the sizes of all objects in the database. This enables efficient monitoring and helps identify opportunities for optimization.
+Below, we present an overview of various system tables available at both the metadata and history levels.
 
 ### Metadata System Tables
 
@@ -16,23 +17,23 @@ You can use system tables to get information about the size of all objects in th
 
 #### EXA_ALL_OBJECT_SIZES
 
-This is the most comprehensive table for object sizes.
-
+* This is the most comprehensive table for object sizes.
 * It contains the RAW_OBJECT_SIZE (uncompressed volume) and MEM_OBJECT_SIZE (compressed volume) for all database objects (tables, schemas, views, functions, scripts) that the current user has access to.
 * The sizes for schemas are calculated recursively, meaning they include the sum of sizes of all objects within that schema.
 * For views, functions, and scripts, the size represents the text size of their definitions.
 
-##### Example Query 1
+##### Example Query EXA_ALL_OBJECT_SIZES
 
 ```SQL
 SELECT
     OBJECT_NAME,
     OBJECT_TYPE,
-    MEM_OBJECT_SIZE / (1024 * 1024 *1024) AS MEM_SIZE_GB,
+    round(MEM_OBJECT_SIZE / (1024 * 1024),1) AS MEM_SIZE_MIB,
+    round(MEM_OBJECT_SIZE / (1024 * 1024 * 1024),1) AS MEM_SIZE_GIB
 FROM
     EXA_ALL_OBJECT_SIZES
 ORDER BY
-    MEM_SIZE_MB DESC;
+    MEM_OBJECT_SIZE DESC;
 ```
 
 #### EXA_DBA_OBJECT_SIZES
@@ -41,36 +42,65 @@ ORDER BY
 * It contains the sizes of all database objects, regardless of the current user's access rights.
 * You need the SELECT ANY DICTIONARY system privilege to access this table.
 
+##### Example Query EXA_DBA_OBJECT_SIZES
+
+```SQL
+SELECT
+    OBJECT_NAME,
+    OBJECT_TYPE,
+    round(MEM_OBJECT_SIZE / (1024 * 1024),1) AS MEM_SIZE_MIB,
+    round(MEM_OBJECT_SIZE / (1024 * 1024 * 1024),1) AS MEM_SIZE_GIB
+FROM
+    EXA_DBA_OBJECT_SIZES
+ORDER BY
+    MEM_OBJECT_SIZE DESC;
+```
+
 #### EXA_DBA_COLUMN_SIZES
 
-This table provides more granular information, listing the raw and compressed sizes for individual columns within all user tables.
-This is very useful for identifying which columns contribute most to table size.
+* This table provides more granular information, listing the raw and compressed sizes for individual columns within all user tables.
+* This is very useful for identifying which columns contribute most to table size.
 
-##### Example Query 2
+##### Example Query EXA_DBA_COLUMN_SIZES
 
 ```SQL
 SELECT
     COLUMN_SCHEMA,
     COLUMN_TABLE,
     COLUMN_NAME,
-   MEM_OBJECT_SIZE / (1024 * 1024*1024) AS MEM_COLUMN_SIZE_GB
+    round(MEM_OBJECT_SIZE,1) AS MEM_COLUMN_SIZE_BYTES,
+    round(MEM_OBJECT_SIZE / (1024 ),1) AS MEM_COLUMN_SIZE_KIB,
+    round(MEM_OBJECT_SIZE / (1024 * 1024),1) AS MEM_COLUMN_SIZE_MIB,
+    round(MEM_OBJECT_SIZE / (1024 * 1024 * 1024),1) AS MEM_COLUMN_SIZE_GIB
 FROM
     EXA_DBA_COLUMN_SIZES
 ORDER BY
-    MEM_COLUMN_SIZE_MB DESC;
+    MEM_OBJECT_SIZE DESC nulls last;
 ```
 
 ### EXA_STATISTICS_OBJECT_SIZES
 
-This table contains the sizes of statistical system tables themselves, aggregated by type (e.g., AUDIT, DB_SIZE, MONITOR).
+* This table contains the sizes of statistical system tables themselves, aggregated by type (e.g., AUDIT, DB_SIZE, MONITOR).
+
+##### Example Query EXA_STATISTICS_OBJECT_SIZES
+
+```SQL
+SELECT * FROM EXA_STATISTICS_OBJECT_SIZES;
+```
 
 ### EXA_DBA_INDICES
 
-EXA_DBA_INDICES is directly relevant to table size because it provides information about the storage consumed by the indexes associated with a table.
-
+* EXA_DBA_INDICES is directly relevant to table size because it provides information about the storage consumed by the indexes associated with a table.
 * Specifically, the key column for understanding index size is MEM_OBJECT_SIZE which indicates the size of the index in bytes (at the last COMMIT).
 * This is the real, compressed size of the index as stored in memory.
 * Larger indexes contribute to higher memory consumption by your Exasol database.
+
+##### Example Query EXA_STATISTICS_OBJECT_SIZES
+
+```SQL
+SELECT INDEX_SCHEMA, INDEX_TABLE, INDEX_OBJECT_ID, MEM_OBJECT_SIZE
+FROM EXA_DBA_INDICES;
+```
 
 ### Statistical System Tables
 
@@ -79,11 +109,17 @@ EXA_DBA_INDICES is directly relevant to table size because it provides informati
 * The statistical system tables contain historical data about the usage and the status of the DBMS.  
 * This data can be used to analyze trends, identify patterns, and make predictions about future events or conditions.
 
-
 #### EXA_DB_*
 
 * EXA_DB_SIZE_HOURLY, EXA_DB_SIZE_DAILY, EXA_DB_SIZE_MONTHLY system tables provide aggregated information about database sizes at a cluster level, including average and maximum uncompressed, compressed, auxiliary (indexes), and statistics sizes over different intervals.
 * These are great for trending and capacity planning.
+
+##### Example Query EXA_DB_SIZE_HOURLY
+
+```SQL
+SELECT INTERVAL_START, MEM_OBJECT_SIZE_AVG as MEM_OBJECT_SIZE_AVG_GiB
+FROM EXA_DB_SIZE_HOURLY;
+```
 
 ## References
 
