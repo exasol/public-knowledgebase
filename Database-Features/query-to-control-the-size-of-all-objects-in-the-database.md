@@ -78,7 +78,7 @@ ORDER BY
     MEM_OBJECT_SIZE DESC nulls last;
 ```
 
-### EXA_STATISTICS_OBJECT_SIZES
+#### EXA_STATISTICS_OBJECT_SIZES
 
 * This table contains the sizes of statistical system tables themselves, aggregated by type (e.g., AUDIT, DB_SIZE, MONITOR).
 
@@ -88,14 +88,14 @@ ORDER BY
 SELECT * FROM EXA_STATISTICS_OBJECT_SIZES;
 ```
 
-### EXA_DBA_INDICES
+#### EXA_DBA_INDICES
 
 * EXA_DBA_INDICES is directly relevant to table size because it provides information about the storage consumed by the indexes associated with a table.
 * Specifically, the key column for understanding index size is MEM_OBJECT_SIZE which indicates the size of the index in bytes (at the last COMMIT).
 * This is the real, compressed size of the index as stored in memory.
 * Larger indexes contribute to higher memory consumption by your Exasol database.
 
-##### Example Query EXA_STATISTICS_OBJECT_SIZES
+##### Example Query EXA_DBA_INDICES
 
 ```SQL
 SELECT INDEX_SCHEMA, INDEX_TABLE, INDEX_OBJECT_ID, MEM_OBJECT_SIZE
