@@ -24,7 +24,7 @@ IDENTIFIED BY 'pw';
 
 ### Test the connections via import
 
-I tested both connections using the following statements:
+I tested both connections using the following statements
 
 ```sql
 SELECT * FROM ( IMPORT INTO (i INT) FROM EXA AT EXA_CONNECTION  TABLE TEST.T1);
