@@ -22,6 +22,8 @@ USER 'user1'
 IDENTIFIED BY 'pw';
 ```
 
+### Test the connections via import
+
 I tested both connections using the following statements:
 
 ```sql
@@ -34,7 +36,7 @@ Both connections were successful.
 
 ### CREATE VIRTUAL SCHEMA SQL
 
-and I try to execute this statement
+I tried to execute the following statement
 
 ```sql
 CREATE VIRTUAL SCHEMA VIRTUAL_SCHEMA_TEST
@@ -48,7 +50,7 @@ SCHEMA_NAME = 'SCHEMA_FOR_VS_SOURCE';
 
 ### Error
 
-I get the following error
+I got the following error message
 
 ```text
 [Code: 0, SQL State: 22002] VM error: F-UDF-CL-LIB-1126: F-UDF-CL-SL-JAVA-1006: F-UDF-CL-SL-JAVA-1026:
