@@ -1,4 +1,5 @@
-# Exasol on Docker - How to Create a BucketFS and Buckets Inside 
+# Exasol on Docker - How to Create a BucketFS and Buckets Inside
+
 ## Background
 
 In this tutorial we are going to show you how to create a BucketFS and Buckets inside it for Exasol on Docker.
@@ -24,7 +25,7 @@ In this section, we will show you the whole process of:
 **Since database version 8 please use `confd_client` to manage BucketFS: [ConfD](https://docs.exasol.com/db/latest/confd/confd.htm). Likely, this functionality will eventually be added to Admin UI.**
 
  Log in to your host via ssh (or console) and get inside your Exasol on Docker container:
- 
+
 ```shell
 docker exec -it <your exasol container name> /bin/bash
 ```
@@ -67,13 +68,13 @@ cat /exa/etc/EXAConf
 
 Output should be similar to:
 
-![](images/BFS_1.PNG)
+![BucketFS Service description](images/BFS_1.PNG)
 
 ### Step 3. (Optional) Open the firewall port for the new BucketFS (in this example, AWS)
 
 Go to the Security Group that you used while deploying the Docker node and add the port that you used for the new BucketFS:
 
-![](images/BFS_2.png)
+![AWS Security settings](images/BFS_2.png)
 
 1 - Go to the Secuirty Group and edit the inbound rules
 
@@ -127,4 +128,4 @@ curl http://r:newread@<docker_host_ip>:6932/newbucketfs-bucket/
 
 * [ConfD](https://docs.exasol.com/db/latest/confd/confd.htm)
 
-*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).*
