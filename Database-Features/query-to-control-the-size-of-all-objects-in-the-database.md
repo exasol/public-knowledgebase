@@ -11,7 +11,7 @@ Below, we present an overview of various system tables available at both the met
 
 ### RAW and MEM Size
 
-In Exasol, MEM and RAW are two important metrics used to monitor and manage the size of tables and databases. 
+In Exasol, MEM and RAW are two important metrics used to monitor and manage the size of tables and databases.
 
 #### RAW Size
 
