@@ -6,7 +6,7 @@
 * **Source:** Microsoft SQL Server
 * **Symptom:** The import process hangs or freezes.
 * **Key Detail:** No error messages or exceptions are thrown.
-* **Environment:** e.g. mssql-jdbc-13.2.0.jre11.jar, Exasol environment (Version 8.33) 
+* **Environment:** e.g. mssql-jdbc-13.2.0.jre11.jar, Exasol environment (Version 8.33)
 
 When attempting to import data from Microsoft SQL Server using the JDBC driver, the following import statement hangs indefinitely. The process stalls and never completes, but no errors are logged or returned. This occurs consistently, even on a simple SELECT statement on a small table."
 
