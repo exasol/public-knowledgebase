@@ -16,7 +16,7 @@ CREATE OR REPLACE CONNECTION my_msql_conn
     USER 'my_user' IDENTIFIED BY 'my_secret';
 
 IMPORT INTO my_table 
-    FROM JDBC DRIVER='MSSQL'
+    FROM JDBC DRIVER='MSSQLServer'
     AT ms_sql_conn
     STATEMENT ' SELECT * FROM orders WHERE order_state=''OK'' ';
 ```
