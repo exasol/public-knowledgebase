@@ -23,7 +23,7 @@ IMPORT INTO my_table
 
 ## Solution
 
-In this case, you should disable the security manager by adding NOSECURITY=YES to the settings.cfg file associated with the relevant MS SQL JDBC driver, and then upload the updated file to BucketFS.
+In this case, you should try disabling the security manager by adding NOSECURITY=YES to the settings.cfg file associated with the relevant MS SQL JDBC driver, and then upload the updated file to BucketFS.
 
 ### Example
 
