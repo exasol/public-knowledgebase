@@ -16,7 +16,7 @@ What is the security manager for the Exasol JDBC driver and what are the implica
 
 ## Answer
 
-Setting the NOSECURITY flag to YES disables security manager, allowing function calls without additional checks.
+Setting the NOSECURITY flag to YES disables the Java security manager, allowing function calls without additional checks.
 
 The Security Manager provides detailed control over which functions are permitted to run in your environment. However, configuring these settings can be complex and time-consuming.  In the past, we tried to whitelist only the functions that JDBC drivers required. However, because the drivers frequently change and add new functions with each update, maintaining an accurate whitelist soon became impractical—especially since ExaLoader would then require a comprehensive list covering all functions for all drivers.
 
