@@ -1,6 +1,6 @@
 # Explanation of the Security Manager for the JDBC Driver and the Impact of Disabling It
 
-## Problem
+## Question
 
 You can disable the Security Manager by setting NOSECURITY=YES in the JDBC driver configuration, as shown in the following example:
 
@@ -31,7 +31,7 @@ We also recommend building security directly into your applications from the sta
 ### Further Background Information
 
 The Java Security Manager has been deprecated for removal and is now effectively disabled in modern Java versions. It was deprecated in Java 17 (JEP 411) and permanently disabled in Java 24 (JEP 486). This means that even if you try to enable it via command-line options or by calling System.setSecurityManager(), it will either be ignored or an UnsupportedOperationException will be thrown.
-There were several key reasons for this change, as outlined in the JDK Enhancement Proposals (JEPs)
+There were several key reasons for this change, as outlined in the JDK Enhancement Proposals (JEPs).
 
 Despite its original purpose, the Security Manager was rarely used to secure server-side applications. It was disabled by default, and developers found it notoriously difficult to configure correctly. A slight misconfiguration could either render the security useless or, more commonly, break the application entirely. Its all-or-nothing nature made it unappealing for the nuanced security needs of modern applications.
 
