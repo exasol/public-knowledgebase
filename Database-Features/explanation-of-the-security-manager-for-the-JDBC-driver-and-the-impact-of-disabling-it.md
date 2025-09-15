@@ -12,7 +12,7 @@ INSERTSIZE=-1
 NOSECURITY=YES
 ```
 
-What is the security manager for the Exasol JDBC driver and what are the implications of disabling it in the JDBC driver configuration?
+What is the security manager for the Exasol "IMPORT/EXPORT FROM/TO JDBC" commands and what are the implications of disabling it in the JDBC driver configuration?
 
 ## Answer
 
