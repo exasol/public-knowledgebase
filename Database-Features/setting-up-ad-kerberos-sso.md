@@ -30,12 +30,12 @@ To successfully set up and use this integration, ensure the following requiremen
 > - Identifiers (usernames, hostnames, realms, domains etc.) and configurations provided below are **case-sensitive**.
 > - To avoid additional issues it is recommended to use simple names in lowercase where it is applicable.
 > - If you encounter issues, review your inputs for potential misspellings or formatting errors before proceeding.
-> 
+>
 > Your attention to detail is crucial for successful execution.
 
 ### 1. Create Exasol service account in AD
 
-Create a new user in the AD domain to represent Exasol DB service. 
+Create a new user in the AD domain to represent Exasol DB service.
 > **Important:** This account represents the Exasol database itself and is not intended to be used as a user account for authentication within the database. You can pick an arbitrary name, it is just an alias for an Exasol service. Try to keep it simple and use lower case.
 
 > **Important:** Only users from the same domain/realm will be able to authenticate in the Exasol database using this service account.
@@ -65,13 +65,13 @@ In "Active Directory Users and Computers" go to previously created Exasol user -
 
 ### 3. Register SPN for exasol service user
 
-In order to register SPN execute the following command in PowerShell: 
+In order to register SPN execute the following command in PowerShell:
 
 ```powershell
 setspn -S {Exasol service name}/{Exasol host name}.{AD domain} {Service account name}
 ```
 
-* **\{Exasol service name\}**: this parameter represents a **kerberos service name** of a particular exasol instance. This is the first out of 2 parameters which will be used during user authentication. It is arbitrary now, but later on it will be critical to use the exact value which is set up here. Try to keep it simple and use lower case. 
+* **\{Exasol service name\}**: this parameter represents a **kerberos service name** of a particular exasol instance. This is the first out of 2 parameters which will be used during user authentication. It is arbitrary now, but later on it will be critical to use the exact value which is set up here. Try to keep it simple and use lower case.
 * **\{Exasol host name\}**: this parameter represents a **kerberos host name** of a particular exasol instance. This is the second out of 2 parameters which will be used during user authentication. It is arbitrary now, but later on it will be critical to use the exact value which is set up here. Try to keep it simple and use lower case. 
 * **\{AD domain\}**: Active Directory domain of the Exasol service user created during step 1. 
 * **\{Service account name\}**: Exasol service user created during step 1
