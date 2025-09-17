@@ -246,7 +246,7 @@ Configuration is completed. Now we can test connection to the database from the 
 
 ### Error: [28900] Connection exception - authentication failed
 
-`Error: [28900] Connection exception - authentication failed.` during Step 7. 
+`Error: [28900] Connection exception - authentication failed.` during Step 7.
 
 **Actions:**
 
