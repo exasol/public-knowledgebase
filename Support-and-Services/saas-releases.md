@@ -7,6 +7,7 @@ For further information please also visit related pages for Exasol SaaS:
 * [Status Page (status.exasol.com)](https://status.exasol.com)
 
 ## Sep 18
+
 ### Automated SaaS Updates
 
 We are introducing automated updates to improve reliability and reduce the effort required to keep SaaS deployments current. Customers now have greater flexibility in how updates are applied.
