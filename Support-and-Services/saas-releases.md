@@ -6,6 +6,20 @@ For further information please also visit related pages for Exasol SaaS:
 * [SaaS Documentation](https://docs.exasol.com/saas)
 * [Status Page (status.exasol.com)](https://status.exasol.com)
 
+## Sep 18
+### Automated SaaS Updates
+
+We are introducing automated updates to improve reliability and reduce the effort required to keep SaaS deployments current. Customers now have greater flexibility in how updates are applied.
+
+#### Update options
+- Minor updates – Receive regular updates that include both new features and bug fixes.
+- Major updates only – Limit feature changes to major releases, while minor updates focus on stability and bug fixes.
+- Early access – Optionally receive new features earlier through more frequent update cycles.
+
+#### Additional controls
+- Advance notifications before each update, delivered in-app and by email.
+- Ability to apply updates immediately, reschedule, or pause them if required.
+
 ## Aug 03
 UI Update
 * Fix worksheets not showing results in case that first statement was incorrect
