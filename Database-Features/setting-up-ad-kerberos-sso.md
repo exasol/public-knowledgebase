@@ -25,15 +25,15 @@ To successfully set up and use this integration, ensure the following requiremen
 
 ## Configuring SSO for ExasolDB
 
->  **Important:** Please **double-check all commands and inputs** for accuracy. Even small typos can lead to critical errors or unexpected behavior.
-> 
-> - Identifiers (usernames, hostnames, realms, domains etc.)  and configurations provided below are **case-sensitive**.
+> **Important:** Please **double-check all commands and inputs** for accuracy. Even small typos can lead to critical errors or unexpected behavior.
+>
+> - Identifiers (usernames, hostnames, realms, domains etc.) and configurations provided below are **case-sensitive**.
 > - To avoid additional issues it is recommended to use simple names in lowercase where it is applicable.
 > - If you encounter issues, review your inputs for potential misspellings or formatting errors before proceeding.
 > 
 > Your attention to detail is crucial for successful execution.
 
-###  1. Create Exasol service account in AD
+### 1. Create Exasol service account in AD
 
 Create a new user in the AD domain to represent Exasol DB service. 
 > **Important:** This account represents the Exasol database itself and is not intended to be used as a user account for authentication within the database. You can pick an arbitrary name, it is just an alias for an Exasol service. Try to keep it simple and use lower case.
@@ -47,8 +47,8 @@ $password = ConvertTo-SecureString "{Service account password}" -AsPlainText -Fo
 New-ADUser -Name "{Service account name}" -AccountPassword $password -Enabled $true
 ```
 
-* **\{Service account name\}**: arbitrary Exasol service user alias  
-* **\{Service account password\}**: password for Exasol service user  
+* **\{Service account name\}**: arbitrary Exasol service user alias
+* **\{Service account password\}**: password for Exasol service user
 
 **Example**
 
@@ -57,13 +57,13 @@ $password = ConvertTo-SecureString "Password123!" -AsPlainText -Force
 New-ADUser -Name "exa_db1" -AccountPassword $password -Enabled $true
 ```
 
-###  2. Enable supports AES 128/256 bit encryption for Exasol service user
+### 2. Enable supports AES 128/256 bit encryption for Exasol service user
 
 In "Active Directory Users and Computers" go to previously created Exasol user -&gt; Properties -&gt; Account -&gt; Account options -&gt; check "This account supports AES 128 bit encryption" and "This account supports AES 256 bit encryption" checkboxes.
 
 ![](images/setting-up-ad-kerberos-sso_screenshot_2.png)
 
-###  3. Register SPN for exasol service user
+### 3. Register SPN for exasol service user
 
 In order to register SPN execute the following command in PowerShell: 
 
@@ -74,7 +74,7 @@ setspn -S {Exasol service name}/{Exasol host name}.{AD domain} {Service account 
 * **\{Exasol service name\}**: this parameter represents a **kerberos service name** of a particular exasol instance. This is the first out of 2 parameters which will be used during user authentication. It is arbitrary now, but later on it will be critical to use the exact value which is set up here. Try to keep it simple and use lower case. 
 * **\{Exasol host name\}**: this parameter represents a **kerberos host name** of a particular exasol instance. This is the second out of 2 parameters which will be used during user authentication. It is arbitrary now, but later on it will be critical to use the exact value which is set up here. Try to keep it simple and use lower case. 
 * **\{AD domain\}**: Active Directory domain of the Exasol service user created during step 1. 
-* **\{Service account name\}**: Exasol service user created during step 1  
+* **\{Service account name\}**: Exasol service user created during step 1
 
 To check that SPN was registered correctly run the following command in PowerShell:
 
@@ -90,21 +90,21 @@ setspn -S exasol/exacluster_dev.boxes.test exa_db1
 
 ![](images/setting-up-ad-kerberos-sso_screenshot_3.png)
 
-###  4. Generate keytab file for Exasol service
+### 4. Generate keytab file for Exasol service
 With help of the following ktpass command generate a keytab for Exasol service which will later be uploaded in EXAoperation:
 
 ```shell
 ktpass -out {Keytab path}\exasol_service.keytab -princ {Exasol service name}/{Exasol host name}.{AD domain}@{Kerberos realm} -mapuser {NETBIOS}\{Service account name} -mapop set -pass {Service account password} -ptype KRB5_NT_PRINCIPAL -crypto all
 ```
 
-* **\{Keytab path\}**: Arbitrary local directory where keytab file will be created.  
-* **\{Exasol service name\}**: Exasol **kerberos service name** which was set in step 3.  
-* **\{Exasol host name\}**: Exasol **kerberos host name** which was set in step 3.  
-* **\{AD domain\}**: Active Directory domain name of the Exasol service user created during step 1.  
-* **\{Kerberos realm\}**: In AD it is usually the domain name written in all capital letters.  
-* **\{NETBIOS\}**: Active Directory domain's Netbios (subdomain) name. Can be found in AD domain properties.  
-* **\{Service account name\}**: Exasol service user created during step 1.  
-* **\{Service account password\}**: Password of the Exasol service user created during step 1.  
+* **\{Keytab path\}**: Arbitrary local directory where keytab file will be created.
+* **\{Exasol service name\}**: Exasol **kerberos service name** which was set in step 3.
+* **\{Exasol host name\}**: Exasol **kerberos host name** which was set in step 3.
+* **\{AD domain\}**: Active Directory domain name of the Exasol service user created during step 1.
+* **\{Kerberos realm\}**: In AD it is usually the domain name written in all capital letters.
+* **\{NETBIOS\}**: Active Directory domain's Netbios (subdomain) name. Can be found in AD domain properties.
+* **\{Service account name\}**: Exasol service user created during step 1.
+* **\{Service account password\}**: Password of the Exasol service user created during step 1.
 
 **Example**
 
@@ -112,7 +112,7 @@ ktpass -out {Keytab path}\exasol_service.keytab -princ {Exasol service name}/{Ex
 ktpass -out C:\temp\exasol_service.keytab -princ exasol/exacluster_dev.boxes.test@BOXES.TEST -mapuser BOXES\exa_db1 -mapop set -pass Password123! -ptype KRB5_NT_PRINCIPAL -crypto all
 ```
 
-###  5.1 Upload service keytab in EXAoperation - Exasol v7.1.
+### 5.1 Upload service keytab in EXAoperation - Exasol v7.1.
 
 > **Important:** This section applies only to Exasol version 7.1 with EXAoperation. For other types of Exasol installations, please refer to Section 5.2.
 * Login to EXAoperation of the Exasol DB instance which you need to be accessible with AD SSO.
@@ -128,7 +128,7 @@ ktpass -out C:\temp\exasol_service.keytab -princ exasol/exacluster_dev.boxes.tes
 * Startup the database and wait until it goes online
   ![](images/setting-up-ad-kerberos-sso_screenshot_7.png)
 
-###  5.2 Upload service keytab using ConfD - Exasol v8.
+### 5.2 Upload service keytab using ConfD - Exasol v8.
 
 > **Important:** This section applies to Exasol version without EXAoperation.
 * Log in to any node of your Exasol database deployment and use the command-line tool confd_client to perform the following operations.
@@ -170,7 +170,7 @@ cp /tmp/exasol_service.keytab /exa/etc/DB1-keytab
 confd_client db_start db_name: DB1
 ```
 
-###  6. Create a Database User for Authentication with a Kerberos Principal
+### 6. Create a Database User for Authentication with a Kerberos Principal
 
 > **Important:** AD users should be in the same realm/domain as the Exasol service account from the Step 1.
 
@@ -226,7 +226,7 @@ Configuration is completed. Now we can test connection to the database from the 
 
   ![](images/setting-up-ad-kerberos-sso_screenshot_10.png)
 
-##  Known issues
+## Known issues
 
 ### Error: [28900] Cannot initialize SSPI security context
 
