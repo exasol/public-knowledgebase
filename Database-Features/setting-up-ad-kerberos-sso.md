@@ -115,39 +115,41 @@ Example
 ktpass -out C:\temp\exasol_service.keytab -princ exasol/exacluster_dev.boxes.test@BOXES.TEST -mapuser BOXES\exa_db1 -mapop set -pass Password123! -ptype KRB5_NT_PRINCIPAL -crypto all
 ```
 
-### 5.1 Upload service keytab in EXAoperation - Exasol v7.1.
+### 5.1 Upload service keytab in EXAoperation - Exasol v7.1
 
 > **Important:** This section applies only to Exasol version 7.1 with EXAoperation. For other types of Exasol installations, please refer to Section 5.2.
-* Login to EXAoperation of the Exasol DB instance which you need to be accessible with AD SSO.
-* Shutdown the database
+
+- Login to EXAoperation of the Exasol DB instance which you need to be accessible with AD SSO.
+- Shutdown the database
   ![Shutdown the database via EXAoperation](images/setting-up-ad-kerberos-sso_screenshot_4.png)
-* Go to the database link and wait until the **State** became **Selected**
-* In the keytab section click **Choose file** and select the keytab file generated in step 4.
-* Click **Upload keytab file** button.
+- Go to the database link and wait until the **State** became **Selected**
+- In the keytab section click **Choose file** and select the keytab file generated in step 4.
+- Click **Upload keytab file** button.
   ![Upload keytab file via EXAoperation](images/setting-up-ad-kerberos-sso_screenshot_5.png)
-* Then click **Edit** button to go to Edit db page
-* Specify the **Kerberos Realm** parameter using Kerberos realm from step 4 and click **Apply**
+- Then click **Edit** button to go to Edit db page
+- Specify the **Kerberos Realm** parameter using Kerberos realm from step 4 and click **Apply**
   ![Specify the Kerberos Realm via EXAoperation](images/setting-up-ad-kerberos-sso_screenshot_6.png)
-* Startup the database and wait until it goes online
+- Startup the database and wait until it goes online
   ![Startup the database via EXAoperation](images/setting-up-ad-kerberos-sso_screenshot_7.png)
 
-### 5.2 Upload service keytab using ConfD - Exasol v8.
+### 5.2 Upload service keytab using ConfD - Exasol v8
 
 > **Important:** This section applies to Exasol version without EXAoperation.
-* Log in to any node of your Exasol database deployment and use the command-line tool confd_client to perform the following operations.
-* Stop the database using [db_stop](https://docs.exasol.com/db/latest/confd/jobs/db_stop.htm) ConfD job.
-* Upload the keytab file generated in Step 4 to a temporary location in the Cluster Operating System (COS), such as `/tmp/exasol_service.keytab`.
-* Use the [db_configure_kerberos](https://docs.exasol.com/db/latest/confd/jobs/db_configure_kerberos.htm) job to setup Kerberos realm EXAConf parameteres and upload keytab file on all nodes. Only Kerberos realm parameter is necessary.
-> **Important:** Currently this job doens't work correctly.
-> 
-> The db_configure_kerberos job cannot process actual keytab files. It expects either the file's content as a text string or an attempt to read the file as text using the {&lt;filename} syntax. Both approaches fail since keytab files are binary and cannot be represented as text.
-> 
-* **Workaround**
+
+- Log in to any node of your Exasol database deployment and use the command-line tool confd_client to perform the following operations.
+- Stop the database using [db_stop](https://docs.exasol.com/db/latest/confd/jobs/db_stop.htm) ConfD job.
+- Upload the keytab file generated in Step 4 to a temporary location in the Cluster Operating System (COS), such as `/tmp/exasol_service.keytab`.
+- Use the [db_configure_kerberos](https://docs.exasol.com/db/latest/confd/jobs/db_configure_kerberos.htm) job to setup Kerberos realm EXAConf parameteres and upload keytab file on all nodes. Only Kerberos realm parameter is necessary.
+  > **Important:** Currently this job doens't work correctly.
+  > 
+  > The db_configure_kerberos job cannot process actual keytab files. It expects either the file's content as a text string or an attempt to read the file as text using the {&lt;filename} syntax. Both approaches fail since keytab files are binary and cannot be represented as text.
+  > 
+- **Workaround**
   * Use db_configure_kerberos only to set EXAConf parameters and create a "dummy" keytab file in the correct location. 
   * Manually replace the "dummy" keytab with the actual keytab file on all nodes.
   * The keytab file must be located on each DB node in the following path: /exa/etc/&lt;database name&gt;-keytab.
   * Ensure the keytab file does not already exist before running the job. If it does, delete it first.
-* Start up the database using [db_start](https://docs.exasol.com/db/latest/confd/jobs/db_start.htm) ConfD job.
+- Start up the database using [db_start](https://docs.exasol.com/db/latest/confd/jobs/db_start.htm) ConfD job.
  
 Example
 
