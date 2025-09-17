@@ -38,6 +38,8 @@ To successfully set up and use this integration, ensure the following requiremen
 Create a new user in the AD domain to represent Exasol DB service.
 > **Important:** This account represents the Exasol database itself and is not intended to be used as a user account for authentication within the database. You can pick an arbitrary name, it is just an alias for an Exasol service. Try to keep it simple and use lower case.
 
+and also
+
 > **Important:** Only users from the same domain/realm will be able to authenticate in the Exasol database using this service account.
 
 This can be accomplished using the following PowerShell commands:
@@ -47,8 +49,8 @@ $password = ConvertTo-SecureString "{Service account password}" -AsPlainText -Fo
 New-ADUser -Name "{Service account name}" -AccountPassword $password -Enabled $true
 ```
 
-* **\{Service account name\}**: arbitrary Exasol service user alias
-* **\{Service account password\}**: password for Exasol service user
+- **\{Service account name\}**: arbitrary Exasol service user alias
+- **\{Service account password\}**: password for Exasol service user
 
 **Example**
 
@@ -71,10 +73,10 @@ In order to register SPN execute the following command in PowerShell:
 setspn -S {Exasol service name}/{Exasol host name}.{AD domain} {Service account name}
 ```
 
-* **\{Exasol service name\}**: this parameter represents a **kerberos service name** of a particular exasol instance. This is the first out of 2 parameters which will be used during user authentication. It is arbitrary now, but later on it will be critical to use the exact value which is set up here. Try to keep it simple and use lower case.
-* **\{Exasol host name\}**: this parameter represents a **kerberos host name** of a particular exasol instance. This is the second out of 2 parameters which will be used during user authentication. It is arbitrary now, but later on it will be critical to use the exact value which is set up here. Try to keep it simple and use lower case. 
-* **\{AD domain\}**: Active Directory domain of the Exasol service user created during step 1. 
-* **\{Service account name\}**: Exasol service user created during step 1
+- **\{Exasol service name\}**: this parameter represents a **kerberos service name** of a particular exasol instance. This is the first out of 2 parameters which will be used during user authentication. It is arbitrary now, but later on it will be critical to use the exact value which is set up here. Try to keep it simple and use lower case.
+- **\{Exasol host name\}**: this parameter represents a **kerberos host name** of a particular exasol instance. This is the second out of 2 parameters which will be used during user authentication. It is arbitrary now, but later on it will be critical to use the exact value which is set up here. Try to keep it simple and use lower case.
+- **\{AD domain\}**: Active Directory domain of the Exasol service user created during step 1. 
+- **\{Service account name\}**: Exasol service user created during step 1
 
 To check that SPN was registered correctly run the following command in PowerShell:
 
