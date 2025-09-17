@@ -141,14 +141,14 @@ ktpass -out C:\temp\exasol_service.keytab -princ exasol/exacluster_dev.boxes.tes
 - Upload the keytab file generated in Step 4 to a temporary location in the Cluster Operating System (COS), such as `/tmp/exasol_service.keytab`.
 - Use the [db_configure_kerberos](https://docs.exasol.com/db/latest/confd/jobs/db_configure_kerberos.htm) job to setup Kerberos realm EXAConf parameteres and upload keytab file on all nodes. Only Kerberos realm parameter is necessary.
   > **Important:** Currently this job doens't work correctly.
-  > 
+  >
   > The db_configure_kerberos job cannot process actual keytab files. It expects either the file's content as a text string or an attempt to read the file as text using the {&lt;filename} syntax. Both approaches fail since keytab files are binary and cannot be represented as text.
-  > 
+  >
 - **Workaround**
-  * Use db_configure_kerberos only to set EXAConf parameters and create a "dummy" keytab file in the correct location. 
-  * Manually replace the "dummy" keytab with the actual keytab file on all nodes.
-  * The keytab file must be located on each DB node in the following path: /exa/etc/&lt;database name&gt;-keytab.
-  * Ensure the keytab file does not already exist before running the job. If it does, delete it first.
+  - Use db_configure_kerberos only to set EXAConf parameters and create a "dummy" keytab file in the correct location.
+  - Manually replace the "dummy" keytab with the actual keytab file on all nodes.
+  - The keytab file must be located on each DB node in the following path: /exa/etc/&lt;database name&gt;-keytab.
+  - Ensure the keytab file does not already exist before running the job. If it does, delete it first.
 - Start up the database using [db_start](https://docs.exasol.com/db/latest/confd/jobs/db_start.htm) ConfD job.
  
 Example
@@ -187,9 +187,10 @@ Since this is a SSO solution, a TGT for the corresponding AD user principal shou
 
 If for some reason tgt is not there (for example it has expired), you can try to request it manually with help of **kinit** command.
 
-To enable an AD user to authenticate to the Exasol database using AD SSO, follow these steps::
-* connect to Exasol DB as dba
-* create a database user which is identified by the AD user's kerberos principal:
+To enable an AD user to authenticate to the Exasol database using AD SSO, follow these steps:
+
+- connect to Exasol DB as dba
+- create a database user which is identified by the AD user's kerberos principal:
 
   ```sql
   create user {db user name} identified by KERBEROS PRINCIPAL '{AD user name}@{Kerberos realm}';
@@ -212,10 +213,10 @@ To enable an AD user to authenticate to the Exasol database using AD SSO, follow
 
 Configuration is completed. Now we can test connection to the database from the user's AD account with help of EXAplus.
 
-* Login into the user's machine using user's AD account.
-* Make sure that user's credential cache already contains an appropriate tgt-ticket. To do so, use **klist** command and check that the result contains a ticket for the principal **\{AD user name\}@\{Kerberos realm\}**.
-* Open shell terminal and navigate to EXAplus directory
-* To verify network connectivity between the client machine and the Exasol database, first attempt to connect to the database using a standard authentication method with a username and password. For example, use the dba user from Step 6.
+- Login into the user's machine using user's AD account.
+- Make sure that user's credential cache already contains an appropriate tgt-ticket. To do so, use **klist** command and check that the result contains a ticket for the principal **\{AD user name\}@\{Kerberos realm\}**.
+- Open shell terminal and navigate to EXAplus directory
+- To verify network connectivity between the client machine and the Exasol database, first attempt to connect to the database using a standard authentication method with a username and password. For example, use the dba user from Step 6.
 
   ```shell
   ./exaplusx64.exe -c {Full connection string to Exasol db}
@@ -225,8 +226,8 @@ Configuration is completed. Now we can test connection to the database from the 
 
   ![Connect to DB via EXAplus without Kerberos](images/setting-up-ad-kerberos-sso_screenshot_9.png)
 
-* Once connection is established you can be sure that client can access the DB. Now proceed with testing Kerberos authentication.
-* Add **-k** option to the command. EXAplus will ask you to type **Service name** and **Host** instead of username and password. Use **\{Exasol service name\}** and **\{Exasol host name\}** from step 3.
+- Once connection is established you can be sure that client can access the DB. Now proceed with testing Kerberos authentication.
+- Add **-k** option to the command. EXAplus will ask you to type **Service name** and **Host** instead of username and password. Use **\{Exasol service name\}** and **\{Exasol host name\}** from step 3.
 
   Example
 
@@ -239,18 +240,19 @@ Configuration is completed. Now we can test connection to the database from the 
 `Error: [28900] Cannot initialize SSPI security context. The specified target is unknown or unreachable` during Step 7. This usually mean that provided parameters **Service name** and **Host** don't match the service keytab uploaded in Exasol DB.
 
 **Actions:**
-* Make sure that **Service name** and **Host** are exactly the same as returned by `setspn -L {Service account name}` command. Run it in the same command prompt before running EXAplus.
 
+- Make sure that **Service name** and **Host** are exactly the same as returned by `setspn -L {Service account name}` command. Run it in the same command prompt before running EXAplus.
 
 ### Error: [28900] Connection exception - authentication failed.
 
 `Error: [28900] Connection exception - authentication failed.` during Step 7. 
 
 **Actions:**
-* Permissions on `/var/tmp/krb5_500.rcache2`.There might be an issue with permissions for this file `/var/tmp/krb5_500.rcache2`. It is a temporary file used by the Kerberos authentication mechanism to store information about authentication tickets that have been issued. This file is generated by the Kerberos libraries when Exasol performs Kerberos authentication. Ensure that users in the `exausers` group (in particular this user: `exadefusr` ) have Read/Write permissions in the `/var/tmp/` directory on all nodes. If permissions are insufficient, issue corresponding chmod command: `chmod 777 /var/tmp/`
-* Make sure that Exasol Service Account keytab is correctly imported in the DB.
-* Check that **Kerberos Realm** db parameter is correctly set in EXAoperation/EXAConf.
-* Try to regenerate keytab carefully and import it into DB once again.
-* This error could indicate several different issues. To investigate further, export the database logs following the [instructions here](https://docs.exasol.com/db/latest/administration/on-premise/admin_interface/exasupport.htm) and send them to Exasol Support.
+
+- Permissions on `/var/tmp/krb5_500.rcache2`.There might be an issue with permissions for this file `/var/tmp/krb5_500.rcache2`. It is a temporary file used by the Kerberos authentication mechanism to store information about authentication tickets that have been issued. This file is generated by the Kerberos libraries when Exasol performs Kerberos authentication. Ensure that users in the `exausers` group (in particular this user: `exadefusr` ) have Read/Write permissions in the `/var/tmp/` directory on all nodes. If permissions are insufficient, issue corresponding chmod command: `chmod 777 /var/tmp/`
+- Make sure that Exasol Service Account keytab is correctly imported in the DB.
+- Check that **Kerberos Realm** db parameter is correctly set in EXAoperation/EXAConf.
+- Try to regenerate keytab carefully and import it into DB once again.
+- This error could indicate several different issues. To investigate further, export the database logs following the [instructions here](https://docs.exasol.com/db/latest/administration/on-premise/admin_interface/exasupport.htm) and send them to Exasol Support.
 
 *We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).*
