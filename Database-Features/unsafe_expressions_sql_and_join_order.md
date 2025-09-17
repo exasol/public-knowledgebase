@@ -2,7 +2,7 @@
 
 ## Problem
 
-When working with SQL, it’s easy to assume that filters in a CTE or subquery are always applied before ther joins or filters expressions are evaluated. 
+When working with SQL, it’s easy to assume that filters in a CTE or subquery are always applied before ther joins or filters expressions are evaluated.
 However, because SQL is **declarative**, the database optimizer decides the actual execution plan. This can lead to unexpected errors when using unsafe expressions like:
 
 - Division — risk of divide-by-zero errors.
@@ -69,6 +69,7 @@ WITH FILTERED_SIMPLE_DATE as (
 ```
 
 ## Additional References
+
 - [Enforcing materializations with ORDER BY FALSE in subselects, views or CTEs](/Database-Features/enforcing-materializations-with-order-by-false-in-subselects.md)
 
 *We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).*
