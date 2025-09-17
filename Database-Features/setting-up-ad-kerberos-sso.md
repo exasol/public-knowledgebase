@@ -150,7 +150,7 @@ ktpass -out C:\temp\exasol_service.keytab -princ exasol/exacluster_dev.boxes.tes
   - The keytab file must be located on each DB node in the following path: /exa/etc/&lt;database name&gt;-keytab.
   - Ensure the keytab file does not already exist before running the job. If it does, delete it first.
 - Start up the database using [db_start](https://docs.exasol.com/db/latest/confd/jobs/db_start.htm) ConfD job.
- 
+
 Example
 
 ```shell
@@ -197,9 +197,10 @@ To enable an AD user to authenticate to the Exasol database using AD SSO, follow
   GRANT CREATE SESSION TO {db user name};
   -- grant all other privileges and roles necessary for this particular user
   ```
-  *  **\{db user name\}**: arbitrary Exasol db user name. This username itself is just a representation of AD user, it can be completely different form AD username and will not be directly used during authentication.  
-  *  **\{AD user name\}**: username of AD user which we want to allow to access the database.  
-  *  **\{Kerberos realm\}**: In AD it is usually the domain name written in all capital letters. The AD user must have the same Realm as the Exasol service account from Step 1.  
+
+  - **\{db user name\}**: arbitrary Exasol db user name. This username itself is just a representation of AD user, it can be completely different form AD username and will not be directly used during authentication.  
+  - **\{AD user name\}**: username of AD user which we want to allow to access the database.  
+  - **\{Kerberos realm\}**: In AD it is usually the domain name written in all capital letters. The AD user must have the same Realm as the Exasol service account from Step 1.  
 
   Example
 
@@ -209,7 +210,7 @@ To enable an AD user to authenticate to the Exasol database using AD SSO, follow
   GRANT select any table TO ad_john_smith;
   ```
 
-###  7. Test database connection from the user's AD account with EXAplus
+### 7. Test database connection from the user's AD account with EXAplus
 
 Configuration is completed. Now we can test connection to the database from the user's AD account with help of EXAplus.
 
@@ -243,7 +244,7 @@ Configuration is completed. Now we can test connection to the database from the 
 
 - Make sure that **Service name** and **Host** are exactly the same as returned by `setspn -L {Service account name}` command. Run it in the same command prompt before running EXAplus.
 
-### Error: [28900] Connection exception - authentication failed.
+### Error: [28900] Connection exception - authentication failed
 
 `Error: [28900] Connection exception - authentication failed.` during Step 7. 
 
