@@ -7,7 +7,7 @@ For further information please also visit related pages for Exasol SaaS:
 * [SaaS Documentation](https://docs.exasol.com/saas)
 * [Status Page (status.exasol.com)](https://status.exasol.com)
 
-## Sep 18
+## Sep 18 2025
 
 ### Automated SaaS Updates
 
