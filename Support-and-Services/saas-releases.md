@@ -7,7 +7,7 @@ For further information please also visit related pages for Exasol SaaS:
 * [SaaS Documentation](https://docs.exasol.com/saas)
 * [Status Page (status.exasol.com)](https://status.exasol.com)
 
-## Sep 22
+## Sep 22 2025
 
 ### Lakehouse Turbo
 
