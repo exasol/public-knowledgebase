@@ -15,7 +15,7 @@ Lakehouse Turbo by Exasol supercharges Databricks analytics, delivering up to 18
 
 [Getting Started](https://marconae.github.io/lakehouse-turbo-documentation/#/getting-started) | [Signup for free](https://www.lakehouseturbo.com/)
 
-## Sep 18
+## Sep 18 2025
 
 ### Automated SaaS Updates
 
