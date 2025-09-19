@@ -13,11 +13,11 @@ While executing a self-join on the TEST table to find pairs of rows where DATEVA
 #### Create and insert into the table
 
 ```sql
-CREATE OR REPLACE TABLE test( DATEVALUE DATE);
+CREATE OR REPLACE TABLE test(DATEVALUE DATE);
 
-INSERT INTO test (DATEVALUE) VALUES ('0001-01-01');
-INSERT INTO test (DATEVALUE) VALUES ('2025-09-01' );
-INSERT INTO test (DATEVALUE) VALUES ('2025-09-04');
+INSERT INTO test (DATEVALUE) VALUES (date '0001-01-01');
+INSERT INTO test (DATEVALUE) VALUES (date '2025-09-01');
+INSERT INTO test (DATEVALUE) VALUES (date '2025-09-04');
 ```
 
 #### Execute the query
