@@ -11,7 +11,7 @@ However, because SQL is **declarative**, the database optimizer decides the actu
 - String-to-number conversions — errors with invalid characters.
 - Null handling in expressions — may cause unexpected failures if operands are NULL.
 - Aggregations or math functions (e.g., SQRT, LOG, LN) — errors with invalid arguments (e.g., square root of negative number, logarithm of non-positive number).
-- etc
+- etc.
 
 ## Example
 
