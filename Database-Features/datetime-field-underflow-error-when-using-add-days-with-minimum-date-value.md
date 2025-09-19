@@ -64,7 +64,7 @@ WHERE
 
 #### Explanation of the idea
 
-This WHERE clause should act as a safeguard. It should filter  out any rows from t1 that would cause an underflow error when calculating ADD_DAYS(t1.DATEVALUE, -3). Specifically, it should check if the t1.DATEVALUE is more than three days after the minimum supported date ('0001-01-01'). This should prevents the database from trying to calculate a date before the year 1.
+This WHERE clause should act as a safeguard. It should filter out any rows from t1 that would cause an underflow error when calculating ADD_DAYS(t1.DATEVALUE, -3). Specifically, it should check if the t1.DATEVALUE is more than three days after the minimum supported date ('0001-01-01'). This should prevent the database from trying to calculate a date before the year 1.
 
 #### The Problem with this Approach
 
