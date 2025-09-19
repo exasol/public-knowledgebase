@@ -100,7 +100,7 @@ UI and Platform Update
 UI Update to v1.224.0
 
 * Improve service usage card for pre-purchase customers.
-* Hide additional data for timestamp data types in SQL worksheets .
+* Hide additional data for timestamp data types in SQL worksheets.
 
 ## March 01
 
@@ -155,6 +155,7 @@ UI Update
 ## December 10
 
 Platform Update
+
 * Switched the authentication provider to Auth0 instead of Okta.  Account migration instructions have been sent by email.
 * New Account IDs have been issued for use in the rest API and can be obtained via the SaaS UI.
 
