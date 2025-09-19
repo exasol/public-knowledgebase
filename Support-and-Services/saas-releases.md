@@ -295,6 +295,7 @@ UI Update
 * Stopped clusters can now be resized. The resize will be considered next time the user starts the cluster.
 
 Platform Update
+
 * Fixed a bug where granting access to a database (DB1) can lead to ungranting access for another database (DB2). This happened if the inviting person has no access to the other database DB2.
 
-*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).*
