@@ -2,7 +2,7 @@
 
 ## Problem
 
-When working with SQL, it’s easy to assume that filters in a CTE or subquery are always applied before ther joins or filters expressions are evaluated.
+When working with SQL, it’s easy to assume that filters in a CTE or subquery are always applied before their joins or filters expressions are evaluated.
 However, because SQL is **declarative**, the database optimizer decides the actual execution plan. This can lead to unexpected errors when using unsafe expressions like:
 
 - Division — risk of divide-by-zero errors.
