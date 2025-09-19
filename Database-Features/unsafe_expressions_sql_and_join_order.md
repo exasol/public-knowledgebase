@@ -23,7 +23,7 @@ open schema vit;
 create or replace table test (DATEVALUE date);
 
 insert into test (DATEVALUE) values (date'0001-01-01');
-insert into test (DATEVALUE) values ('2025-09-01');
+insert into test (DATEVALUE) values (date'2025-09-01');
 
 
 WITH FILTERED_SIMPLE_DATE as (
