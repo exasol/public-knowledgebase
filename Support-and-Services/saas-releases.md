@@ -36,7 +36,7 @@ UI Update
 
 UI Update
 
-* Fix for worksheets. `EXECUTE SCRIPT ...` statements are working now as expected. 
+* Fix for worksheets. `EXECUTE SCRIPT ...` statements are working now as expected.
 
 ## June 21
 
@@ -61,20 +61,18 @@ UI and Platform Update
 Platform Update
 
 * Hotfix for internal platform problems.
-* Use Exasol DB version 8.18.1 for new database deployments.  See the release notes here:  https://docs.exasol.com/db/latest/release_notes/8.18.1.htm
-
+* Use Exasol DB version 8.18.1 for new database deployments.  See the release notes here: [Version 8.18.1 Release Notes](https://docs.exasol.com/db/latest/release_notes/8.18.1.htm)
 
 ## May 30
 
 UI and Platform Update
 
-* Use Exasol DB version 8.17.0 for new database deployments.  See the release notes here:  https://docs.exasol.com/db/latest/release_notes/8.17.0.htm
+* Use Exasol DB version 8.17.0 for new database deployments. See the release notes here: [Version 8.17.0 Release Notes](https://docs.exasol.com/db/latest/release_notes_db/8.17.0.htm)
 * Include user interface for uploading custom files to a deployment (available for Trial and Enterprise users only).
 * Use Google Recaptcha on account signup.
 * Improved response time for UI and database/cluster browsing rest API operations.
 * Removed Rest API compatibility with legacy Okta account IDs which were replaced in December 2022 but supported until now for compatibility.  The account ID you use in the Rest API should now begin 'org' and is obtainable in the SaaS UI.  Using an Okta ID in the rest API will now result in a 401 error for some endpoints.
 * Fixed a bug where attempting to change the size of a deployment which is running could sometimes result in the deployment being stopped after the resize completes.
-
 
 ## May 17
 
@@ -84,7 +82,6 @@ Platform Update
 * Add the capability to upload custom UDF files to a a deployment's bfssaas bucket via the SaaS rest API.
 * Further improved the SaaS API response times for a faster UI and rest API.
 * Minor bugfixes and improvements.
-
 
 ## April 18
 
@@ -98,7 +95,6 @@ UI and Platform Update
 * Eliminated the problem where the SaaS rest API occasionally returns an error and requires a retry.
 * Minor bugfixes and improvements.
 
-
 ## March 17
 
 UI Update to v1.224.0
@@ -106,17 +102,15 @@ UI Update to v1.224.0
 * Improve service usage card for pre-purchase customers.
 * Hide additional data for timestamp data types in SQL worksheets .
 
-
 ## March 01
 
 Platform Update
 
-* Use Exasol DB 8.9.0 for new database deployments.  See the release notes here:  https://docs.exasol.com/db/latest/release_notes/8.9.0.htm
+* Use Exasol DB 8.9.0 for new database deployments.  See the release notes here: [Version 8.9.0 Release Notes](https://docs.exasol.com/db/latest/release_notes_db/8.9.0.htm)
 * General improvements of the reliability of database and cluster management operations.
 * Fix for problems experienced when XS deployments are put under heavy load.
 * Fixed an issue where some XS deployments failed to start due to AWS instance launch problems.
 * Minor bugfixes and improvements.
-
 
 ## March 01
 
