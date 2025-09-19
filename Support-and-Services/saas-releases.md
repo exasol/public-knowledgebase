@@ -222,13 +222,13 @@ Platform Update
 UI Update
 
 * We introduced a new preview feature "schema browser for Worksheets". You can now browse your database schemas, tables and other metadata using the schema browser, available in the left side bar on the worksheet page. Following objects are supported:
-  - Schemas, separated by user schemas, system schemas and virtual schemas
-  - Tables, Views, and columns with type information
-  - Users and roles
-  - UDFs
-  - Virtual Schema Adapters
-  - Lua Scripts
-  - Functions
+  + Schemas, separated by user schemas, system schemas and virtual schemas
+  + Tables, Views, and columns with type information
+  + Users and roles
+  + UDFs
+  + Virtual Schema Adapters
+  + Lua Scripts
+  + Functions
 * Fixed an issue in Worksheets where sometimes the wrong font type was used when the desired font was not available on the system.
 * Fix an issue in Worksheets it could happen that a wrong cluster state was shown.
 * New JDBC driver 7.1.11
@@ -244,7 +244,7 @@ UI Update
 Platform Update
 
 * The speed of database creation was improved, so in most cases it is expected to take less than 5 minutes.
-* Fixed wrong prices shown in the UI when creating a database or cluster, where some prices were not consistent with the prices shown on https://www.exasol.com/exasol-saas/.
+* Fixed wrong prices shown in the UI when creating a database or cluster, where some prices were not consistent with the prices shown on [Exasol SaaS](https://www.exasol.com/exasol-saas/).
 
 Database Update
 
@@ -270,7 +270,7 @@ Database update
 Platform Update
 
 * The speed of database creation was improved, so in most cases it is expected to take less than 5 minutes.
-* Stability improvements to fix a problem where cluster management functionality could stop working. This fixes the underlying problem which caused the incident on May 18, which is documented on https://status.exasol.com/.
+* Stability improvements to fix a problem where cluster management functionality could stop working. This fixes the underlying problem which caused the incident on May 18, which is documented on [Exasol SaaS Status Page](https://status.exasol.com/).
 
 ## May 16
 
