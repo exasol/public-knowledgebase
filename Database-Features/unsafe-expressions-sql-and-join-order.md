@@ -24,6 +24,7 @@ create or replace table test (DATEVALUE date);
 
 insert into test (DATEVALUE) values (date'0001-01-01');
 insert into test (DATEVALUE) values (date'2025-09-01');
+insert into test (DATEVALUE) values (date'2025-09-04');
 
 
 WITH FILTERED_SIMPLE_DATE as (
@@ -33,7 +34,7 @@ WITH FILTERED_SIMPLE_DATE as (
 )
         SELECT * 
         FROM FILTERED_SIMPLE_DATE t
-        INNER JOIN FILTERED_SIMPLE_DATE d on TO_CHAR(ADD_DAYS(d.DATEVALUE, 1 - TO_CHAR(d.DATEVALUE, 'D'))) = t.DATEVALUE;
+        INNER JOIN FILTERED_SIMPLE_DATE d on ADD_DAYS(d.DATEVALUE, -3) = t.DATEVALUE;
 
 -- [Code: 0, SQL State: 22104]  data exception - datetime field underflow (Session: 1843518053339627520)
 ```
@@ -44,7 +45,8 @@ Here, the error arises because ADD_DAYS(d.DATEVALUE, 1 - TO_CHAR(d.DATEVALUE, 'D
 
 - Always keep in mind that SQL does not guarantee execution order: filters, joins, and expression evaluations may occur in different sequences depending on the execution plan.
 - Avoid unsafe expressions: handle edge cases like invalid or extreme values explicitly (e.g. use safe functions like TRUNC(d.DATEVALUE, 'W') instead of ADD_DATES to calculate the start of the week).
-- Enforce execution order when needed: if you want to guarantee the filter is applied before the join, you can force materialization of the CTE (e.g. add ORDER BY FALSE at the end of the CTE).
+- Enforce execution order when needed: if you want to guarantee the filter is applied before the join, you can force materialization of the CTE (e.g. add ORDER BY FALSE at the end of the CTE). **Keep in mind** that large materializations can consume a significant amount of temporary data, which may lead to block swapping and reduced throughput.
+- Alternatively, you can use a secure approach like CASE-WHEN to explicitly handle unsafe input values.
 
 ```sql
 open schema vit;
@@ -53,17 +55,30 @@ create or replace table test (DATEVALUE date);
 
 insert into test (DATEVALUE) values (date'0001-01-01');
 insert into test (DATEVALUE) values (date'2025-09-01');
+insert into test (DATEVALUE) values (date'2025-09-04');
 
-
+-- 1. Materialization
 WITH FILTERED_SIMPLE_DATE as (
     SELECT *
     FROM test d
     WHERE DATEVALUE between '2025-01-02' AND '2025-10-01'
-    ORDER BY false 
+    ORDER BY false
 )
         SELECT * 
         FROM FILTERED_SIMPLE_DATE t
-        INNER JOIN FILTERED_SIMPLE_DATE d on TO_CHAR(ADD_DAYS(d.DATEVALUE, 1 - TO_CHAR(d.DATEVALUE, 'D'))) = t.DATEVALUE;
+        INNER JOIN FILTERED_SIMPLE_DATE d on ADD_DAYS(d.DATEVALUE, -3) = t.DATEVALUE;
+
+-- Success
+
+-- 2. CASE_WHEN
+WITH FILTERED_SIMPLE_DATE as (
+    SELECT *
+    FROM test d
+    WHERE DATEVALUE between '2025-01-02' AND '2025-10-01'
+)
+        SELECT * 
+        FROM FILTERED_SIMPLE_DATE t
+        INNER JOIN FILTERED_SIMPLE_DATE d on case when d.DATEVALUE > date'1900-01-01' then ADD_DAYS(d.DATEVALUE, -3) else null end = t.DATEVALUE;
 
 -- Success
 ```
