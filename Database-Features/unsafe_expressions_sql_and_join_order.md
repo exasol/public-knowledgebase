@@ -38,7 +38,7 @@ WITH FILTERED_SIMPLE_DATE as (
 -- [Code: 0, SQL State: 22104]  data exception - datetime field underflow (Session: 1843518053339627520)
 ```
 
-Here, the error arises because ADD_DAYS(d.DATEVALUE, 1 - TO_CHAR(d.DATEVALUE, 'D')) tries to process the value '0001-01-01', even though the CTE filter should have excluded it. Depending on the optimizer’s decision, the filter may not be applied before the join expression is evaluated, leading to inconsistent behavior across database versions, diferent filter conditions etc..
+Here, the error arises because ADD_DAYS(d.DATEVALUE, 1 - TO_CHAR(d.DATEVALUE, 'D')) tries to process the value '0001-01-01', even though the CTE filter should have excluded it. Depending on the optimizer’s decision, the filter may not be applied before the join expression is evaluated, leading to inconsistent behavior across database versions, different filter conditions etc.
 
 ## Solution
 
