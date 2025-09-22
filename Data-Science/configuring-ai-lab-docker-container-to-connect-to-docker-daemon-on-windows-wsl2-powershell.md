@@ -38,7 +38,7 @@ Run the Docker container:
 docker run `
   --name "$CONTAINER_NAME" `
   --volume "${VOLUME}:/home/jupyter/notebooks" `
-  --volume "//var/run/docker.sock:/var/run/docker.sock" `
+  --volume "/var/run/docker.sock:/var/run/docker.sock" `
   --publish "${LISTEN_IP}:49494:49494" `
   "exasol/ai-lab:${VERSION}"
 ```
@@ -47,7 +47,7 @@ docker run `
 
 * **--name "$CONTAINER_NAME":** Sets the container name (replace with your preferred name or environment variable).
 * **--volume "${VOLUME}:/home/jupyter/notebooks":** Mounts a host path (VOLUME) to the container.
-* **--volume "//var/run/docker.sock:/var/run/docker.sock":** Allows Docker-in-Docker or enables the container to communicate with the Docker daemon.
+* **--volume "/var/run/docker.sock:/var/run/docker.sock":** Allows Docker-in-Docker or enables the container to communicate with the Docker daemon.
 * **--publish "${LISTEN_IP}:49494:49494":** Maps host port 49494 to container port 49494, bound to LISTEN_IP.
 "exasol/ai-lab:${VERSION}": Specifies the image with a tag (VERSION).
 
