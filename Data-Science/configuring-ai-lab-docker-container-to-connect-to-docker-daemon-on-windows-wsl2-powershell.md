@@ -30,7 +30,7 @@ $VOLUME = "my-vol"             # Name of the Docker volume to attach
 $CONTAINER_NAME = "ai-lab"     # Container name
 ```
 
-#### 2 - Enable AI-Lab Container Access to the Docker Daemon
+#### 2 - Enable AI Lab Container Access to the Docker Daemon
 
 Run the Docker container:
 
