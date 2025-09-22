@@ -2,7 +2,7 @@
 
 ## Question
 
-How do I install and run the AI-Lab Docker image using Windows PowerShell, including how to enable access to the Docker daemon?
+How do I install and run the AI Lab Docker image using Windows PowerShell, including how to enable access to the Docker daemon?
 
 ## Answer
 
