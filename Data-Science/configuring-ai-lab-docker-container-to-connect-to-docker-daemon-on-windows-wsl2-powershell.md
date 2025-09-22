@@ -1,4 +1,4 @@
-# Configuring AI-Lab Docker Container to Connect to Docker Daemon on Windows (WSL2 & PowerShell)
+# Configuring AI Lab Docker Container to Connect to Docker Daemon on Windows (WSL2 & PowerShell)
 
 ## Question
 
