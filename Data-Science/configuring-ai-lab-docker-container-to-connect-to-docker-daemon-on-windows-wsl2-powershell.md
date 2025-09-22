@@ -35,12 +35,12 @@ $CONTAINER_NAME = "ai-lab"     # Container name
 Run the Docker container:
 
 ```bash
-docker run `
-  --name "$CONTAINER_NAME" `
-  --volume "${VOLUME}:/home/jupyter/notebooks" `
-  --volume "/var/run/docker.sock:/var/run/docker.sock" `
-  --publish "${LISTEN_IP}:49494:49494" `
-  "exasol/ai-lab:${VERSION}"
+ docker run `
+     --name "$CONTAINER_NAME" `
+     --volume "${VOLUME}:/home/jupyter/notebooks" `
+     --volume /var/run/docker.sock:/var/run/docker.sock `
+     --publish "${LISTEN_IP}:49494:49494" `
+     "exasol/ai-lab:${VERSION}"
 ```
 
 ##### Parameters
