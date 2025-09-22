@@ -66,7 +66,7 @@ com.exasol.adapter.dialects.exasol.ExasolSqlDialect.createRemoteMetadataReader(E
 
 ## Explanation
 
-The "No suitable driver" exception is thrown by the DriverManager when none of the registered driver implementations can recognize or handle the specified URL.
+The "No suitable driver" exception is thrown by the DriverManager when none of the registered driver implementations can recognize or handle the specified URL. "ExaUDFException" and "adapter" in error stack suggest that connection error happens in Virtual Schema adapter.
 
 ### EXA_CONNECTION (Import from Exa)
 
