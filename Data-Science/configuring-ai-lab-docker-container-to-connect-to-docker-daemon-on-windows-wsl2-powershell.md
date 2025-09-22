@@ -68,5 +68,4 @@ Once the container is running, open your web browser and navigate to: [http://lo
 * [AI-Lab with Integrated Exasol Docker-DB](https://github.com/exasol/ai-lab/blob/3.1.0/doc/user_guide/docker/docker-usage.md#ai-lab-with-integrated-exasol-docker-db)
 * [Accelerate Your AI Journey with Exasol](https://www.exasol.com/use-cases/exasol-ai/)
 
-
 *We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).*
