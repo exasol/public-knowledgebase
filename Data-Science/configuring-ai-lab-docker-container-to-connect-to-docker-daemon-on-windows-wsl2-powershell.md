@@ -42,6 +42,7 @@ docker run `
   --publish "${LISTEN_IP}:49494:49494" `
   "exasol/ai-lab:${VERSION}"
 ```
+
 ##### Parameters
 
 * **--name "$CONTAINER_NAME":** Sets the container name (replace with your preferred name or environment variable).
@@ -60,8 +61,7 @@ Exposing the Docker socket (/var/run/docker.sock) inside the container poses sig
 
 #### Accessing Jupyter Notebooks
 
-Once the container is running, open your web browser and navigate to:
-http://localhost:49494
+Once the container is running, open your web browser and navigate to: [http://localhost:49494](http://localhost:49494)
 
 ## References
 
