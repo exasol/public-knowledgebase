@@ -29,8 +29,10 @@ SELECT TEST.NUMBER_DECIMAL_UDF (a) FROM TEST.T;
 
 I get the following error message:
 
-> [!CAUTION]
-> [Code: 0, SQL State: 22001] Lua Error "decimal expected, got number" caught in script "TEST"."NUMBER_DECIMAL_UDF" at line 4 (Session: 1836005522647613440)
+```text
+[Code: 0, SQL State: 22001] Lua Error "decimal expected, got number" caught in
+script "TEST"."NUMBER_DECIMAL_UDF" at line 4 (Session: 1836005522647613440)
+```
 
 ## The Error
 
@@ -57,11 +59,12 @@ end
 * ctx.a / 10: Performs floating-point division in Lua.
 * DECIMAL(): Converts the floating-point result into an integer by rounding down
 
-> [!TIP]
-> Always use decimal() for calculations if you’re working with DECIMALs!
+### 💡Hint💡
+
+* Always use decimal() for calculations if you’re working with DECIMALs!
 
 ## References
 
-* [Exasol Lua Scripting: Decimal number handling](https://docs.exasol.com/db/latest/database_concepts/scripting/general_script_language.htm#TypesandValues)
+* Documentation of [Exasol Lua Scripting: Decimal number handling](https://docs.exasol.com/db/latest/database_concepts/scripting/general_script_language.htm#TypesandValues)
 
 *We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).*
