@@ -4,17 +4,18 @@
 
 After upgrading to v8, customer is not able to connect to Oracle DB with short host name. Connection can be established with FQDN and IP adrress but not with short host name.
 
-
 Connection details:
 
 ```text
 create connection ORA_TEST to '(DESCRIPTION = (ADDRESS_LIST = (ADDRESS = (COMMUNITY = tcp.world)(PROTOCOL = TCP)(Host = DB-ENDUR)(Port = 1520)) (ADDRESS = (COMMUNITY = tcp.world)(PROTOCOL = TCP)(Host = DB-ENDUR)(Port = 1521)) (LOAD_BALANCE = off) (FAILOVER = on) ) (CONNECT_DATA = (SERVICE_NAME = ENDUR_TEST.VERBUND.CO.AT) ) )'
 ```
+
 Query:
 
 ```text
 [IMPORT INTO T_00_STAGING_TABLES FROM ORA AT ORA_TEST USER 'test' IDENTIFIED BY '???'  STATEMENT 'WITH q1 as (SELECT ID, ORACLE_TABLE_SCHEMA, ORACLE_TABLE_NAME, EXASOL_TABLE_SCHEMA, EXASOL_TABLE_NAME, EXASOL_TO_ORACLE_CONNECTION, FL_ACTIVE, FL_ABRECHNUNG, EXASOL_TO_ORACLE_CONNECTION_2, SQL_WHERE, SQL_WHERE2 FROM T_00_STAGING_TABLES WHERE ''TESTSYSTEM'' = ''TESTSYSTEM'' AND DB_TYPE = ''TESTSYSTEM'' AND ''PS2'' = SCRIPT_SCHEMA) SELECT ID, ORACLE_TABLE_SCHEMA, ORACLE_TABLE_NAME, EXASOL_TABLE_SCHEMA, EXASOL_TABLE_NAME, EXASOL_TO_ORACLE_CONNECTION,  FL_ACTIVE, FL_ABRECHNUNG, EXASOL_TO_ORACLE_CONNECTION_2, SQL_WHERE, SQL_WHERE2 FROM T_00_STAGING_TABLES WHERE DB_TYPE = ''TEST'' AND ID NOT IN (SELECT ID FROM q1) UNION ALL SELECT ID, ORACLE_TABLE_SCHEMA, ORACLE_TABLE_NAME, EXASOL_TABLE_SCHEMA, EXASOL_TABLE_NAME, EXASOL_TO_ORACLE_CONNECTION, FL_ACTIVE, FL_ABRECHNUNG, EXASOL_TO_ORACLE_CONNECTION_2, SQL_WHERE, SQL_WHERE2 FROM Q1'] 
 ```
+
 Error:
 
 ```text
@@ -36,16 +37,18 @@ confd_client general_settings changes: '{Global: {SearchDomains: power.inet}}'
 
 After that, the exasol service needs to be restarted, to safely do it, please follow below steps:
 
-1. Stop the database by using below command.
+1. Stop the database by using below command
  
 ```text
      confd_client db_stop db_name: <DB-NAME>
 ```
-2. Exit the container and run the command on all nodes.
+
+2. Exit the container and run the command on all nodes
 
 ```text
     "systemctl stop c4_cloud_command" and then "systemctl start c4_cloud_command"
 ```
+
 In case of rootless installation, the commands would be these:
 
 ```text
