@@ -1,4 +1,4 @@
-# Not-able-to-connect-to-Oracle-DB-after-upgrading-to-v8
+# Not able to connect to Oracle DB after upgrading to v8
 
 ## Problem
 
@@ -38,7 +38,7 @@ confd_client general_settings changes: '{Global: {SearchDomains: power.inet}}'
 After that, the exasol service needs to be restarted, to safely do it, please follow below steps:
 
 1. Stop the database by using below command
- 
+
 ```text
      confd_client db_stop db_name: <DB-NAME>
 ```
@@ -55,6 +55,6 @@ In case of rootless installation, the commands would be these:
     "systemctl --user stop c4_cloud_command" and "systemctl --user start c4_cloud_command"
 ```
 
-#### Additional references:
+#### Additional references
 
 * [ConfDSettings](https://docs.exasol.com/db/latest/confd/jobs/general_settings.htm)
