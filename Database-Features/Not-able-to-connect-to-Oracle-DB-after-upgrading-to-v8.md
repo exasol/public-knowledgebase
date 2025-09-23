@@ -58,11 +58,3 @@ In case of rootless installation, the commands would be these:
 #### Additional references:
 
 * [ConfDSettings](https://docs.exasol.com/db/latest/confd/jobs/general_settings.htm)
-
-
-
-
-
-
- 
- 
