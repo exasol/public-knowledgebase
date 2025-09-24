@@ -59,7 +59,7 @@ Example 6: Working with backups
 
 #### Example 1: Database jobs
 
-**How to use ConfD jobs to get the database status and information about a database**
+**How to use ConfD jobs to get the database status and information about a database.**
 
 Run a job to check the status of the database:
 
@@ -235,6 +235,7 @@ Example 4.1: get node list
                           'private_net': '192.168.31.171/24',
                           'uuid': 'C5ED84F591574F97A337B2EC9357B68EF0EC4EDE'}}}             
 ```
+
  Example 4.2: get node state
 
 | Name | Description | Parameter | Returns |
@@ -357,7 +358,7 @@ Example 4.1: get node list
 
 | Name | Description | Parameter | Returns |
 | --- | --- | --- | --- |
-| st_volume_info | Return information about volume with id vid | vid | 
+| st_volume_info | Return information about volume with id vid | vid | |
 
 ```python
 >>> pprint.pprint(conn.job_exec('st_volume_info', {'params': {'vid': 0}}))
@@ -407,7 +408,7 @@ Example 4.1: get node list
 
 **other options:**
 
-**EXAStorage Volume Jobs**
+**EXAStorage Volume Jobs:**
 
 | Name | description | Parameters |
 |---|---|---|
@@ -432,7 +433,7 @@ Example 6.1: start a new backup
 
 | Name | Description | Parameter | Returns |
 | --- | --- | --- | --- |
-| db_backup_start | Start a backup of the given database to the given volume | db_name, backup_volume_id, level, expire_time **substitutes**: dackup_volume_name | 
+| db_backup_start | Start a backup of the given database to the given volume | db_name, backup_volume_id, level, expire_time **substitutes**: dackup_volume_name | |
 
 ```python
 >>> conn.job_exec('db_backup_start', {'params': {'db_name': 'DB1','backup_volume_name': 'RemoteVolume1','level': 0,'expire_time': '10d'}})
@@ -444,7 +445,7 @@ Example 6.2: abort backup
 
 | Name | Description | Parameter | Returns |
 | --- | --- | --- | --- |
-| db_backup_abort | Aborts the running backup of the given database | db_name | 
+| db_backup_abort | Aborts the running backup of the given database | db_name | |
 
 ```python
 >>> conn.job_exec('db_backup_abort', {'params': {'db_name': 'DB1'}})  
@@ -456,7 +457,7 @@ Example 6.3: list backups
 
 | Name | Description | Parameter |
 | --- | --- | --- |
-| db_backup_list | Lists available backups for the given database | db_name | 
+| db_backup_list | Lists available backups for the given database | db_name |
 
 ```python
 >>> pprint.pprint(conn.job_exec('db_backup_list', {'params': {'db_name': 'DB1'}}))
