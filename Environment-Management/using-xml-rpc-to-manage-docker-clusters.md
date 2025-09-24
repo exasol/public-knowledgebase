@@ -1,4 +1,4 @@
-# Using XML-RPC to manage Docker clusters 
+# Using XML-RPC to manage Docker clusters
 
 **Since database version 8 XML-RPC interface described in <https://github.com/exasol/exaoperation-xmlrpc> is deprecated. Please use ConfD XML-RPC interface in Python: [Use XML-RPC in Python](https://docs.exasol.com/db/latest/confd/confd.htm#UseXMLRPCinPython).**
 
@@ -8,7 +8,7 @@ ConfD is the EXASOL configuration and administration daemon that runs on all nod
 
 ## Prerequisites and Notes
 
-##### Please note that this is still under development and is *not officially supported* by Exasol. We will try to help you as much as possible, but can't guarantee anything.
+**Please note that this is still under development and is *not officially supported* by Exasol. We will try to help you as much as possible, but can't guarantee anything.**
 
 Note: *Any SSL checks disabled for these examples in order to avoid exceptions with self-signed certificates*
 
@@ -26,11 +26,13 @@ Import required modules and get the master IP:
 >>> import xmlrpclib, requests, urllib3, ssl 
 >>> urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 ```
+
 **Get current master IP** (you can use any valid IP in the cluster for this request)
 
 ```python
 >>> master_ip = requests.get("https://11.10.10.11:443/master", verify = False).content
 ```
+
 In this case, 11.10.10.11 is the IP address of one of the cluster nodes
 
 **Create connection:**
@@ -42,6 +44,7 @@ Note: We assume you've set the root password **"testing".** You can set a passwo
 >>> sslcontext = ssl._create_unverified_context() 
 >>> conn = xmlrpclib.ServerProxy(connection_string, context = sslcontext, allow_none=True)
 ```
+
 #### **The list of examples:**
 
 Example 1 - 2: Database jobs
@@ -65,11 +68,13 @@ Note: In this example we assume the database name is **"DB1"**. Please adjust th
 ```python
 conn.job_exec('db_state', {'params': {'db_name': 'DB1'}}) 
 ```
+
 Output:
 
 ```python
 {'result_name': 'OK', 'result_output': 'running', 'result_desc': 'Success', 'result_jobid': '12.2', 'result_code': 0}
 ```
+
 As you can see in the output the 'result_output' is  'running' and 'result_desc' is 'Success'. This means the database is up and running.
 
 Note: If you want to format the JSON output you can use **pprint** module
@@ -103,6 +108,7 @@ Run a job to get information about the database:
                                         'used': '0 B',
                                         'volume id': '1'}]}}
 ```
+
 ### Example 2: Database jobs. How to list, start and stop databases
 
 Run a job to list databases in cluster:
@@ -110,6 +116,7 @@ Run a job to list databases in cluster:
 ```python
 conn.job_exec('db_list')
 ```
+
 Output example:
 
 ```python
@@ -121,6 +128,7 @@ Output example:
  'result_name': 'OK',
  'result_output': ['DB1']}
 ```
+
 **Stop the DB1 database:**
 
 Run a job to stop database DB1 in cluster:
@@ -130,6 +138,7 @@ Run a job to stop database DB1 in cluster:
 
 {'result_name': 'OK', 'result_desc': 'Success', 'result_jobid': '12.11', 'result_code': 0}
 ```
+
 Run a job to confirm the state of the database DB1:
 
 ```python
@@ -137,6 +146,7 @@ Run a job to confirm the state of the database DB1:
 
 {'result_name': 'OK', 'result_output': 'setup', 'result_desc': 'Success', 'result_jobid': '12.12', 'result_code': 0}
 ```
+
  Note: *'result_output': 'setup': the status of the database is "setup"*
 
  Run a job to start database DB1 in cluster:
@@ -146,6 +156,7 @@ Run a job to confirm the state of the database DB1:
 
 {'result_name': 'OK', 'result_desc': 'Success', 'result_jobid': '12.13', 'result_code': 0}
 ```
+
 Run a job to verify the state of the database of DB1 is up and running:
 
 ```python
@@ -153,6 +164,7 @@ Run a job to verify the state of the database of DB1 is up and running:
 
 {'result_name': 'OK', 'result_output': 'running', 'result_desc': 'Success', 'result_jobid': '12.14', 'result_code': 0}
 ```
+
 ### Example 3: Working with archive volumes
 
 Example 3.1: Add a remote archive volume to cluster
@@ -166,6 +178,7 @@ Example 3.1: Add a remote archive volume to cluster
 
 {'result_revision': 18, 'result_jobid': '11.3', 'result_output': [['r0001', 'root', '/exa/etc/remote_volumes/root.0.conf']], 'result_name': 'OK', 'result_desc': 'Success', 'result_code': 0}
 ```
+
 Example 3.2: list all containing  remote volume names
 
 | Name | Description | Parameter | Returns |
@@ -181,6 +194,7 @@ Example 3.2: list all containing  remote volume names
  'result_name': 'OK',
  'result_output': ['RemoteVolume1']}
 ```
+
 Example 3.3: Connection state of the given remote volume
 
 | Name | Description | Parameter | Returns |
@@ -192,6 +206,7 @@ Example 3.3: Connection state of the given remote volume
 
 {'result_name': 'OK', 'result_output': ['Online'], 'result_desc': 'Success', 'result_jobid': '11.10', 'result_code': 0} 
 ```
+
 ### Example 4: Manage cluster nodes
 
 Example 4.1: get node list
@@ -236,6 +251,7 @@ Example 4.1: get node list
  'result_output': {'11': 'online',
                    'booted': {'11': 'Tue Jul  7 14:14:07 2020'}}}
 ```
+
 **other available options:**
 
 | Name | Description | Parameter | Returns |
@@ -336,6 +352,7 @@ Example 4.1: get node list
                     'users': [[30, False]],
                     'volume_nodes': [11]}]}
 ```
+
  Example 5.2: Get information about volume with id "vid"
 
 | Name | Description | Parameter | Returns |
@@ -422,6 +439,7 @@ Example 6.1: start a new backup
 
 {'result_name': 'OK', 'result_desc': 'Success', 'result_jobid': '11.77', 'result_code': 0}
 ```
+
 Example 6.2: abort backup
 
 | Name | Description | Parameter | Returns |
@@ -433,6 +451,7 @@ Example 6.2: abort backup
 
 {'result_name': 'OK', 'result_desc': 'Success', 'result_jobid': '11.82', 'result_code': 0}
 ```
+
 Example 6.3: list backups
 
 | Name | Description | Parameter |
