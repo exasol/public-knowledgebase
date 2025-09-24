@@ -6,6 +6,6 @@
         // disable line length checking
         "MD013": false,
         "madcap-comment-mimi": true,
-        "allowed_elements": ['&gt;']
+        "allowed_elements": ["&gt;"]
     }
 }
