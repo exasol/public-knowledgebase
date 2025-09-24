@@ -56,6 +56,11 @@ After that, the exasol service needs to be restarted, to safely do it, please fo
     systemctl --user stop c4_cloud_command
     systemctl --user start c4_cloud_command
     ```
+3. Start the database by using below command
+
+    ```shell
+    confd_client db_start db_name: <DB-NAME>
+    ```
 
 ### Additional references
 
