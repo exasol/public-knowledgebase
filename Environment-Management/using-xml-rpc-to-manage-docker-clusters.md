@@ -45,7 +45,7 @@ Note: We assume you've set the root password **"testing".** You can set a passwo
 >>> conn = xmlrpclib.ServerProxy(connection_string, context = sslcontext, allow_none=True)
 ```
 
-#### **The list of examples:**
+### **The list of examples:**
 
 Example 1 - 2: Database jobs
 
@@ -57,7 +57,7 @@ Example 5: EXAStorage Volume Jobs
 
 Example 6: Working with backups
 
-### Example 1: Database jobs
+#### Example 1: Database jobs
 
 **How to use ConfD jobs to get the database status and information about a database**
 
@@ -109,7 +109,7 @@ Run a job to get information about the database:
                                         'volume id': '1'}]}}
 ```
 
-### Example 2: Database jobs. How to list, start and stop databases
+#### Example 2: Database jobs. How to list, start and stop databases
 
 Run a job to list databases in cluster:
 
@@ -165,7 +165,7 @@ Run a job to verify the state of the database of DB1 is up and running:
 {'result_name': 'OK', 'result_output': 'running', 'result_desc': 'Success', 'result_jobid': '12.14', 'result_code': 0}
 ```
 
-### Example 3: Working with archive volumes
+#### Example 3: Working with archive volumes
 
 Example 3.1: Add a remote archive volume to cluster
 
@@ -207,7 +207,7 @@ Example 3.3: Connection state of the given remote volume
 {'result_name': 'OK', 'result_output': ['Online'], 'result_desc': 'Success', 'result_jobid': '11.10', 'result_code': 0} 
 ```
 
-### Example 4: Manage cluster nodes
+#### Example 4: Manage cluster nodes
 
 Example 4.1: get node list
 
@@ -262,7 +262,7 @@ Example 4.1: get node list
 | node_suspend | Suspend node, i. e. mark it as "permanently offline". | node_id<br />**allowed_groups:** root, exaadm | mark one node as suspended |
 | node_resume | Manually resume a suspended node. | node_id<br />**allowed_groups:** root, exaadm | unmark one suspended node |
 
-### Example 5: EXAStorage volume jobs
+#### Example 5: EXAStorage volume jobs
 
  Example 5.1: list EXAStorage volumes
 
@@ -426,7 +426,7 @@ Example 4.1: get node list
 | st_volume_lock | Unlock a volume | vid<br />optional: vname |
 | st_volume_clear_data | Clear data on (a part of) the given volume | vid, num__bytes, node_ids<br />optional: vname |
 
-### Example 6: Working with backups
+#### Example 6: Working with backups
 
 Example 6.1: start a new backup
 
