@@ -486,7 +486,7 @@ Example 6.3: list backups
 
 **other options:**
 
-**Jobs to manage backups**
+**Jobs to manage backups:**
 
 | Name | description | Parameters |
 | --- | --- | --- |
