@@ -1,4 +1,7 @@
 # Using XML-RPC to manage Docker clusters 
+
+**Since database version 8 XML-RPC interface described in <https://github.com/exasol/exaoperation-xmlrpc> is deprecated. Please use ConfD XML-RPC interface in Python: [Use XML-RPC in Python](https://docs.exasol.com/db/latest/confd/confd.htm#UseXMLRPCinPython).**
+
 ## Background
 
 ConfD is the EXASOL configuration and administration daemon that runs on all nodes of an EXASOL cluster. It provides an interface for cluster administration and synchronizes the configuration across all nodes. In this article, you can find examples to manage the Exasol docker cluster using XML-RPC.
@@ -19,13 +22,11 @@ We need to create a connection and get a master IP before running any ConfD job 
 
 Import required modules and get the master IP:
 
-
 ```python
 >>> import xmlrpclib, requests, urllib3, ssl 
 >>> urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 ```
 **Get current master IP** (you can use any valid IP in the cluster for this request)
-
 
 ```python
 >>> master_ip = requests.get("https://11.10.10.11:443/master", verify = False).content
@@ -35,7 +36,6 @@ In this case, 11.10.10.11 is the IP address of one of the cluster nodes
 **Create connection:**
 
 Note: We assume you've set the root password **"testing".** You can set a password via **exaconf passwd-user** command
-
 
 ```python
 >>> connection_string = "https://root:testing@%s:443/" % master_ip 
@@ -62,12 +62,10 @@ Run a job to check the status of the database:
 
 Note: In this example we assume the database name is **"DB1"**. Please adjust the database name.
 
-
 ```python
 conn.job_exec('db_state', {'params': {'db_name': 'DB1'}}) 
 ```
 Output:
-
 
 ```python
 {'result_name': 'OK', 'result_output': 'running', 'result_desc': 'Success', 'result_jobid': '12.2', 'result_code': 0}
@@ -77,7 +75,6 @@ As you can see in the output the 'result_output' is  'running' and 'result_desc
 Note: If you want to format the JSON output you can use **pprint** module
 
 Run a job to get information about the database:
-
 
 ```python
 >>> import pprint
@@ -110,12 +107,10 @@ Run a job to get information about the database:
 
 Run a job to list databases in cluster:
 
-
 ```python
 conn.job_exec('db_list')
 ```
 Output example:
-
 
 ```python
 >>> pprint.pprint(conn.job_exec('db_list'))
@@ -130,14 +125,12 @@ Output example:
 
 Run a job to stop database DB1 in cluster:
 
-
 ```python
 >>> conn.job_exec('db_stop', {'params': {'db_name': 'DB1'}})
 
 {'result_name': 'OK', 'result_desc': 'Success', 'result_jobid': '12.11', 'result_code': 0}
 ```
 Run a job to confirm the state of the database DB1:
-
 
 ```python
 >>> conn.job_exec('db_state', {'params': {'db_name': 'DB1'}})
@@ -148,14 +141,12 @@ Run a job to confirm the state of the database DB1:
 
  Run a job to start database DB1 in cluster:
 
-
 ```python
 >>> conn.job_exec('db_start', {'params': {'db_name': 'DB1'}})
 
 {'result_name': 'OK', 'result_desc': 'Success', 'result_jobid': '12.13', 'result_code': 0}
 ```
 Run a job to verify the state of the database of DB1 is up and running:
-
 
 ```python
 >>> conn.job_exec('db_state', {'params': {'db_name': 'DB1'}})
@@ -166,12 +157,9 @@ Run a job to verify the state of the database of DB1 is up and running:
 
 Example 3.1: Add a remote archive volume to cluster
 
-
-
 | Name | Description | Parameters |
 | --- | --- | --- |
 | remote_volume_add | Add a remote volume | vol_type, url <br />**optional**: remote_volume_name, username, password, labels, options, owner, allowed_users<br />**substitutes:** remote_volume_id <br />**allowed_groups:** root, exaadm, exastoradm <br />**notes**: <br />--&gt; 'ID' is assigned automatically if omitted (10000 + next free ID) <br />--&gt; 'ID' must be >= 10000 if specified<br />--&gt; 'name' may be empty (for backwards compat.) and is generated from 'ID' in that case (*"r%04i" % ('ID' - 10000*))<br />--&gt; if 'owner' is omitted, the requesting user becomes the owner |
-
 
 ```python
 >>> conn.job_exec('remote_volume_add', {'params': {'vol_type': 's3','url': 'http://bucketname.s3.amazonaws.com','username': 'ACCESS-KEY','password': 'BASE64-ENCODED-SECRET-KEY'}})   
@@ -180,12 +168,9 @@ Example 3.1: Add a remote archive volume to cluster
 ```
 Example 3.2: list all containing  remote volume names
 
-
-
 | Name | Description | Parameter | Returns |
 | --- | --- | --- | --- |
 | remote_volume_list | List all existing remote volumes | None | a list containing all remote volume names |
-
 
 ```python
 >>> pprint.pprint(conn.job_exec('remote_volume_list'))
@@ -198,12 +183,9 @@ Example 3.2: list all containing  remote volume names
 ```
 Example 3.3: Connection state of the given remote volume
 
-
-
 | Name | Description | Parameter | Returns |
 | --- | --- | --- | --- |
 | remote_volume_state | Return the connection state of the given remote volume, online / Unmounted / Connection problem | remote_volume_name <br />substitutes: remote_volume_id | List of the connection state of the given remote volume on all nodes |
-
 
 ```python
 >>> conn.job_exec('remote_volume_state',  {'params': {'remote_volume_name': 'r0001'}})
@@ -214,12 +196,9 @@ Example 3.3: Connection state of the given remote volume
 
 Example 4.1: get node list
 
-
-
 | Name | Description | Parameter | Returns |
 | --- | --- | --- | --- |
 | node_list | List all cluster nodes (from EXAConf) |  None | Dict containing all cluster nodes. |
-
 
 ```python
 >>> pprint.pprint( conn.job_exec('node_list'))
@@ -243,12 +222,9 @@ Example 4.1: get node list
 ```
  Example 4.2: get node state
 
-
-
 | Name | Description | Parameter | Returns |
 | --- | --- | --- | --- |
 | node_state | State of all nodes (online, offline, deactivated) |  None |  A list containing a string representing the current node state. |
-
 
 ```python
 >>> pprint.pprint(conn.job_exec('node_state'))
@@ -262,8 +238,6 @@ Example 4.1: get node list
 ```
 **other available options:**
 
-
-
 | Name | Description | Parameter | Returns |
 | --- | --- | --- | --- |
 | node_add | Add a node to the cluster | priv_net<br />**optional**: id, name, pub_net, space_warn_threshold, bg_rec_limit<br />**allowed_groups:** root, exaadm | int node_id |
@@ -276,12 +250,9 @@ Example 4.1: get node list
 
  Example 5.1: list EXAStorage volumes
 
-
-
 | Name | Description | Parameter | Returns |
 | --- | --- | --- | --- |
 | st_volume_list | List all existing volumes in the cluster. | none | List of dicts |
-
 
 ```python
 >>> pprint.pprint(conn.job_exec('st_volume_list'))
@@ -367,12 +338,9 @@ Example 4.1: get node list
 ```
  Example 5.2: Get information about volume with id "vid"
 
-
-
 | Name | Description | Parameter | Returns |
 | --- | --- | --- | --- |
 | st_volume_info | Return information about volume with id vid | vid | 
-
 
 ```python
 >>> pprint.pprint(conn.job_exec('st_volume_info', {'params': {'vid': 0}}))
@@ -445,12 +413,9 @@ Example 4.1: get node list
 
 Example 6.1: start a new backup
 
-
-
 | Name | Description | Parameter | Returns |
 | --- | --- | --- | --- |
 | db_backup_start | Start a backup of the given database to the given volume | db_name, backup_volume_id, level, expire_time **substitutes**: dackup_volume_name | 
-
 
 ```python
 >>> conn.job_exec('db_backup_start', {'params': {'db_name': 'DB1','backup_volume_name': 'RemoteVolume1','level': 0,'expire_time': '10d'}})
@@ -459,12 +424,9 @@ Example 6.1: start a new backup
 ```
 Example 6.2: abort backup
 
-
-
 | Name | Description | Parameter | Returns |
 | --- | --- | --- | --- |
 | db_backup_abort | Aborts the running backup of the given database | db_name | 
-
 
 ```python
 >>> conn.job_exec('db_backup_abort', {'params': {'db_name': 'DB1'}})  
@@ -473,12 +435,9 @@ Example 6.2: abort backup
 ```
 Example 6.3: list backups
 
-
-
 | Name | Description | Parameter |
 | --- | --- | --- |
 | db_backup_list | Lists available backups for the given database | db_name | 
-
 
 ```python
 >>> pprint.pprint(conn.job_exec('db_backup_list', {'params': {'db_name': 'DB1'}}))
@@ -521,10 +480,10 @@ Example 6.3: list backups
 
 ## Additional References
 
-<https://github.com/EXASOL/docker-db>
-
-<https://github.com/exasol/exaoperation-xmlrpc>
+* <https://github.com/EXASOL/docker-db>
+* [v8, Use XML-RPC in Python](https://docs.exasol.com/db/latest/confd/confd.htm#UseXMLRPCinPython)
+* <https://github.com/exasol/exaoperation-xmlrpc>
 
 You can find another article about deploying a exasol database as an docker image in [How to deploy a single-node Exasol database as a Docker image for testing purposes](https://exasol.my.site.com/s/article/How-to-deploy-a-single-node-Exasol-database-as-a-Docker-image-for-testing-purposes)
 
-*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).*
