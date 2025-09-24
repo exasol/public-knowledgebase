@@ -87,6 +87,6 @@ WITH FILTERED_SIMPLE_DATE as (
 
 - [Enforcing materializations with ORDER BY FALSE in subselects, views or CTEs](/Database-Features/enforcing-materializations-with-order-by-false-in-subselects.md)
 - [Documentation of CASE](https://docs.exasol.com/db/latest/sql_references/functions/alphabeticallistfunctions/case.htm)
-- ["datetime field underflow" Error When Using ADD_DAYS with Minimum DATE Value](https://github.com/exasol/public-knowledgebase/blob/main/Database-Features/datetime-field-underflow-error-when-using-add-days-with-minimum-date-value.md)
+- ["datetime field underflow" Error When Using ADD_DAYS with Minimum DATE Value](/Database-Features/datetime-field-underflow-error-when-using-add-days-with-minimum-date-value.md)
 
 *We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).*
