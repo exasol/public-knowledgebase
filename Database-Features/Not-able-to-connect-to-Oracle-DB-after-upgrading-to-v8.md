@@ -59,4 +59,5 @@ After that, the exasol service needs to be restarted, to safely do it, please fo
 
 ### Additional references
 
-* [ConfDSettings](https://docs.exasol.com/db/latest/confd/jobs/general_settings.htm)
+* [Documentation of ConfDSettings](https://docs.exasol.com/db/latest/confd/jobs/general_settings.htm)
+* [Documentation of Stop and Start Nodes](https://docs.exasol.com/db/latest/administration/on-premise/nodes/stop_start_nodes.htm)
