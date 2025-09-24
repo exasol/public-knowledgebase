@@ -51,9 +51,9 @@ After that, the exasol service needs to be restarted, to safely do it, please fo
 
 In case of rootless installation, the commands would be these:
 
-     ```text
+    ```text
          "systemctl --user stop c4_cloud_command" and "systemctl --user start c4_cloud_command"
-     ```
+    ```
 
 ### Additional references
 
