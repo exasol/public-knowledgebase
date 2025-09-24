@@ -31,29 +31,29 @@ A Linux search domain is a domain name, or a list of domains, that the operating
 
 To set up the "search" domain one should use the following command inside the container:
 
-     
-              confd_client general_settings changes: '{Global: {SearchDomains: power.inet}}'
-     
+```text   
+            confd_client general_settings changes: '{Global: {SearchDomains: power.inet}}'
+```
 
 After that, the exasol service needs to be restarted, to safely do it, please follow below steps:
 
 1. Stop the database by using below command
 
-          
-               confd_client db_stop db_name: <DB-NAME>
-         
-
+```text
+   confd_client db_stop db_name: <DB-NAME>
+```
+ 
 2. Exit the container and run the command on all nodes
 
-          
-              "systemctl stop c4_cloud_command" and then "systemctl start c4_cloud_command"
-          
-
+```text
+    "systemctl stop c4_cloud_command" and then "systemctl start c4_cloud_command"
+```
+      
    In case of rootless installation, the commands would be these:
 
-        
-              "systemctl --user stop c4_cloud_command" and "systemctl --user start c4_cloud_command"
-         
+ ```text
+    "systemctl --user stop c4_cloud_command" and "systemctl --user start c4_cloud_command"
+  ```
 
 ### Additional references
 
