@@ -99,11 +99,11 @@ With this article, you will learn how to add an LDAP server for your database:
 
 7.1. With **dwad_client list:**
 
-    ![](images/DWAD_LIST2.png)
+![](images/DWAD_LIST2.png)
 
 7.2. With **dwad_list print-setup <database_instance>:**
 
-    ![](images/DWAD_PRINT2.png)
+![](images/DWAD_PRINT2.png)
 
 ## References
 
