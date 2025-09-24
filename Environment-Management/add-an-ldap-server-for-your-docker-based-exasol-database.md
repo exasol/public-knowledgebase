@@ -39,7 +39,7 @@ With this article, you will learn how to add an LDAP server for your database:
             Dir = drivers/oracle
     ```
 
-**NOTE:** You can also use *ldaps* instead of *ldap*
+    **NOTE:** You can also use *ldaps* instead of *ldap*
 
 4. Change the value of **Checksum** in **EXAConf**:
 
@@ -70,7 +70,7 @@ With this article, you will learn how to add an LDAP server for your database:
     ...
     ```
 
-As you can from the output mentioned above, the parameters have been added. However, rebooting the cluster can cause some downtime. In order to shorten the duration of your downtime, you can try the method below.
+    As you can from the output mentioned above, the parameters have been added. However, rebooting the cluster can cause some downtime. In order to shorten the duration of your downtime, you can try the method below.
 
 6.2. Use a configuration file to change the parameters by just rebooting the database, not container:
 
