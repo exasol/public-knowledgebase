@@ -4,7 +4,7 @@
 
 ## Background
 
-Exasol can be deployed as a Docker container for testing purposes. Using Docker, you can create and run an Exasol database quickly with a few commands. The underlying architecture for Exasol on Docker is not the same as traditional deployment methods on-premise and in the cloud, and for these reasons, the method of installation and administration is completely different. This guide will serve as your starting point and will link to the various articles and how-to's to install, run, administer, and troubleshoot Exasol on Docker. The list below will be continuously updated, and if you feel some information is missing or would be helpful, you can let us know by commenting on this article. 
+Exasol can be deployed as a Docker container for testing purposes. Using Docker, you can create and run an Exasol database quickly with a few commands. The underlying architecture for Exasol on Docker is not the same as traditional deployment methods on-premise and in the cloud, and for these reasons, the method of installation and administration is completely different. This guide will serve as your starting point and will link to the various articles and how-to's to install, run, administer, and troubleshoot Exasol on Docker. The list below will be continuously updated, and if you feel some information is missing or would be helpful, you can let us know by commenting on this article.
 
 ## Installation
 
@@ -33,6 +33,5 @@ Exasol can be deployed as a Docker container for testing purposes. Using Docker,
 | --- | --- |
 | [Get Debug Information](https://exasol.my.site.com/s/article/How-to-get-debug-information-and-log-files-from-docker-based-systems) | This article describes how to get debug information for Docker installations |
 | [Get Debug Information (Extended version); works for NGA, too](https://exasol.my.site.com/s/article/Pulling-the-Exasol-Docker-logs-works-for-NGA-too) | This article includes extra steps for those not familiar with Docker or NGA |
- 
 
-*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).*
