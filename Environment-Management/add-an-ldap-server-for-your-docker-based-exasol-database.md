@@ -55,7 +55,7 @@ With this article, you will learn how to add an LDAP server for your database:
 
 6. At this point you have 2 options:
 
-6.1. Restart the container:
+    6.1. Restart the container:
 
     ```shell
     $ dwad_client stop-wait <database_instance>     # Stop the database instance (inside the container)  
@@ -72,7 +72,7 @@ With this article, you will learn how to add an LDAP server for your database:
 
     As you can from the output mentioned above, the parameters have been added. However, rebooting the cluster can cause some downtime. In order to shorten the duration of your downtime, you can try the method below.
 
-6.2. Use a configuration file to change the parameters by just rebooting the database, not container:
+    6.2. Use a configuration file to change the parameters by just rebooting the database, not container:
 
     ```shell
     dwad_client setup-print <database_instance> > db1.cfg # See the database parameters  
