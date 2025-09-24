@@ -6,6 +6,8 @@
         // disable line length checking
         "MD013": false,
         "madcap-comment-mimi": true,
-        "allowed_elements": ["br"]
+        "MD033": {
+    "allowed_elements": ["br"]
+  }
     }
 }
