@@ -57,6 +57,12 @@ After that, the exasol service needs to be restarted, to safely do it, please fo
     systemctl --user start c4_cloud_command
     ```
 
+2. If the database is not running, start it now using the ConfD job db_start:
+
+    ```shell
+    confd_client db_start db_name: <DB-NAME>
+    ```
+
 ### Additional references
 
 * [Documentation of ConfDSettings](https://docs.exasol.com/db/latest/confd/jobs/general_settings.htm)
