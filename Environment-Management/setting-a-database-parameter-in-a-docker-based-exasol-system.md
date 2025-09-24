@@ -101,11 +101,11 @@ With this article, you will learn how to add and change database parameters and 
 
 7. Verify the parameters:
 
-    7.1. With **dwad_client list**:
+7.1. With **dwad_client list**:
 
 !["dwad_client list" output](images/DWAD_LIST.png)
 
-    7.2. With **dwad_client list print-setup <database_instance>**:
+7.2. With **dwad_client list print-setup <database_instance>**:
 
 !["dwad_client list print-setup <database_instance>" output](images/DWAD_PRINT.png)
 
