@@ -493,7 +493,7 @@ Example 6.3: list backups
 | db_backups_delete | Delete given backups of given database | db_name, backup list (as returned by 'db_backup_list()') |
 | db_backup_change_expiration | Change expiration time of the given backup files |backup volume ID <br />backup_files: Prefix of the backup files, like exa_db1/id_1/level_0) <br />expire_time : Timestamp in seconds since the Epoch on which the backup should expire.|
 | db_backup_delete_unusable | Delete all unusable backups for a given database | db_name |
-| db_restore | Restore a given database from given backup | db_name, backup ID, restore type ('blocking' | 'nonblocking' | 'virtual access') |
+| db_restore | Restore a given database from given backup | db_name, backup ID, restore type ('blocking' or 'nonblocking' or 'virtual access') |
 | db_backup_add_schedule | Add a backup schedule to an existing database | db_name, backup_name, volume, level, expire, minute, hour, day, month, weekday, enabled <br />**notes**: <br />--&gt; 'level' must be int <br />--&gt; 'expire' is string (use common/util.str2sec to convert) <br />--&gt; 'backup_name' is string (unique within a DB)|
 | db_backup_remove_schedule | Remove an existing backup schedule |  db_name, backup_name |
 | db_backup_modify_schedule | Modify an existing backup schedule |  db_name, backup_name <br />**optional:** <br />hour, minute, day, month, weekday, enabled |
