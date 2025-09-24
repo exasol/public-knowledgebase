@@ -1,4 +1,4 @@
-# Add an LDAP server for your Docker-based Exasol Database 
+# Add an LDAP server for your Docker-based Exasol Database
 
 **Since database version 8 please use `confd_client` to manage LDAP servers: [Add an LDAP Server](https://docs.exasol.com/db/latest/administration/on-premise/manage_database/add_ldap_server.htm). Likely, this functionality will eventually be added to Admin UI.**
 
@@ -6,15 +6,15 @@ With this article, you will learn how to add an LDAP server for your database:
 
 1. Log in to your Exasol container:
 
-```shell
-$ docker exec -it <container_name> /bin/bash
-```
+    ```shell
+    $ docker exec -it <container_name> /bin/bash
+    ```
 
 2. Inside the container go to the ***/exa/etc/*** folder and open the ***EXAConf*** file with a text editor of your choice:
 
 ```shell
-$ cd /exa/etc  
-$ vim EXAConf
+cd /exa/etc  
+vim EXAConf
 ```
 
 3. Under the **DB** section, right above the **[[JDBC]]** sub-section add a line that says **Params** and the values mentioned after it:
@@ -44,13 +44,13 @@ $ vim EXAConf
 4. Change the value of **Checksum** in **EXAConf**:
 
 ```shell
-$ sed -i '/Checksum =/c\    Checksum = COMMIT' /exa/etc/EXAConf
+sed -i '/Checksum =/c\    Checksum = COMMIT' /exa/etc/EXAConf
 ```
 
 5. Commit the changes:
 
 ```shell
-$ exaconf commit
+exaconf commit
 ```
 
 6. At this point you have 2 options:
@@ -75,8 +75,8 @@ As you can from the output mentioned above, the parameters have been added. Howe
 6.2. Use a configuration file to change the parameters by just rebooting the database, not container:
 
 ```shell
-$ dwad_client setup-print <database_instance> > db1.cfg # See the database parameters  
-$ vim db1.cfg                                           # Edit the configuration file
+dwad_client setup-print <database_instance> > db1.cfg # See the database parameters  
+vim db1.cfg                                           # Edit the configuration file
 ```
 
 When you open the file, find the line starting with **PARAMS** and the parameter you need, like:
@@ -88,9 +88,9 @@ PARAMS: -netmask= -auditing_enabled=0 -lockslb=1 -sandboxPath=/usr/opt/mountjail
 After adding the parameters, save the file and execute the following commands:
 
 ```shell
-$ dwad_client stop-wait <database_instance>       # Stop the database instance (inside the container)  
-$ dwad_client setup <database_instance> db1.cfg   # Setup the database with the db1.cfg configuration file (inside the container)  
-$ dwad_client start-wait <database_instance>      # Start the database instance (inside the container)
+dwad_client stop-wait <database_instance>       # Stop the database instance (inside the container)  
+dwad_client setup <database_instance> db1.cfg   # Setup the database with the db1.cfg configuration file (inside the container)  
+dwad_client start-wait <database_instance>      # Start the database instance (inside the container)
 ```
 
 This will add the database parameters, but will not be persistent throughout reboots. Therefore, by adding the parameters this way you shorten your downtime, but the changes aren't permanent. After doing this, we would recommend to also do method 6.1, in case you decide to reboot sometime in the future.
