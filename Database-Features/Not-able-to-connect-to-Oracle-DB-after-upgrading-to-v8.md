@@ -1,4 +1,4 @@
-# Not able to connect to Oracle DB after upgrading to v8
+# Not able to connect to Oracle DB with Short Host Name
 
 ## Problem
 
