@@ -24,7 +24,7 @@ Oracle tool failed with error code '12545' and message 'ORA-12545: Connect faile
 
 ## Solution
 
-For the short host name to work,search domain needs to be configured as described below.If search domain was configured in v7,It should also be configured in v8 after upgrade to v8. 
+For the short host name to work,search domain needs to be configured as described below.If search domain was configured in v7,It should also be configured in v8 after upgrade to v8.
 
 About Search domain:
 A Linux search domain is a domain name, or a list of domains, that the operating system automatically appends to a short hostname (like "server1") when you try to resolve it to an IP address. This process is part of DNS resolution and allows you to access local network devices using only their simple hostnames instead of their fully qualified domain names (FQDNs) (e.g., server1.example.com). For example, if your search domain is example.com and you type forums, your system will search for forums.example.com.
@@ -55,7 +55,6 @@ After that, the exasol service needs to be restarted, To safely do it, please fo
     ```shell
     confd_client db_start db_name: <DB-NAME>
     ```
-
 
    In case of rootless installation, the commands would be these:
 
