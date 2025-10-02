@@ -1,4 +1,5 @@
-# NULL in Exasol 
+# NULL in Exasol
+
 ## Background
 
 Generally speaking, NULL is not a special value, but it represents an undefined value. Given this, comparing anything against NULL is not applicable.  Therefore, any comparison of the form "column = NULL" always returns NULL in Exasol, even if that column contains NULL values. Especially joins do not generate matches on rows where the join condition contains NULL values.
@@ -8,7 +9,6 @@ Generally speaking, NULL is not a special value, but it represents an undefined 
 If a value is to be tested against NULL, the comparison operator has to be replaced by the [IS NULL](https://docs.exasol.com/sql_references/predicates/is_not_null.htm) and [IS NOT NULL](https://docs.exasol.com/sql_references/predicates/is_not_null.htm) predicates.
 
 The following sample table will be used in all the examples on this page to demonstrate NULL handling.
-
 
 ```sql
 CREATE OR REPLACE TABLE testnull
@@ -45,7 +45,6 @@ The following basic rules apply to operations with NULL values:
 * The predicates IS (NOT) NULL have to be used to check against NULL values
 * Operations with NULL values return a NULL value.
 
-
 ```sql
 SELECT
     num+1 num,
@@ -57,6 +56,7 @@ SELECT
     case when str IS NULL then 'X' else str end str
 FROM testnull;
 ```
+
 will return the following results:
 
 |NUM   |BOO   |DAT   |STR   |
@@ -74,11 +74,9 @@ Exasol does **not distinguish** between NULL and an empty string (''). The same 
 
 Concatenation ('||', CONCAT) with a NULL value does not yield a NULL value, but the remaining operand(s). Only when all operands are NULL, the result also is NULL.
 
-
 ```sql
 SELECT 'str: '||str A FROM testnull; 
 ```
-
 
 | A |
 | --- |
@@ -109,39 +107,39 @@ Returns the integer 0 when number is NULL. Otherwise, number itself is returned.
 
 The equivalent CASE-expression is:
 
-
 ```sql
 CASE WHEN number is NULL THEN 0 ELSE number END
 ```
+
 #### [NULLIFZERO(number)](https://docs.exasol.com/sql_references/functions/alphabeticallistfunctions/nullifzero.htm)
 
 Returns NULL when number has the value 0. Otherwise, number is returned. This function is useful to prevent division by zero errors (see example).
 
 The equivalent CASE-expression is:
 
-
 ```sql
 CASE WHEN number=0 THEN NULL 
 ELSE number END
 ```
+
 #### [DECODE(expr, val1, ret1, ..., default)](https://docs.exasol.com/sql_references/functions/alphabeticallistfunctions/decode.htm)
 
 This function is not primarily designed for NULL handling, it will return the first retX value for which expr=valX holds true. However, the function is exceptional in the sense that it will match NULL values when asked to do so.
 
 The equivalent CASE-expression would have to fall back on the corresponding NULL-Predicate:
 
-
 ```sql
 CASE WHEN expr=val1 THEN ret1 WHEN expr is NULL then ... ELSE default END
 ```
+
 If no comparison against NULL is required, the following expression also is equivalent:
 
 
 ```sql
 CASE expr WHEN val1 THEN ret1 WHEN val2 THEN ... ELSE default END
 ```
-Now we can make some different comparisons to our table:
 
+Now we can make some different comparisons to our table:
 
 ```sql
 SELECT
@@ -164,15 +162,15 @@ FROM testnull;
 
 #### Count the number of NULL-Values
 
-
 ```sql
 SELECT count(*)-count(col) AS NULLCOUNT FROM tab;
 ```
+
 ## Additional References
 
 * [IS NULL Predicate](https://docs.exasol.com/sql_references/predicates/is_not_null.htm)
 * [Exasol Functions](https://docs.exasol.com/sql_references/functions/all_functions.htm)
 * [Data Types](https://docs.exasol.com/sql_references/data_types/datatypesoverview.htm)
-* [NULL in UDF's and Lua Scripts](https://exasol.my.site.com/s/article/NULL-in-UDFs-and-Lua-Scripts)
+* [NULL in UDF's and Lua Scripts](/Database-Features/null-in-udfs-and-lua-scripts.md)
 
 *We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 
