@@ -134,7 +134,6 @@ CASE WHEN expr=val1 THEN ret1 WHEN expr is NULL then ... ELSE default END
 
 If no comparison against NULL is required, the following expression also is equivalent:
 
-
 ```sql
 CASE expr WHEN val1 THEN ret1 WHEN val2 THEN ... ELSE default END
 ```
@@ -173,4 +172,4 @@ SELECT count(*)-count(col) AS NULLCOUNT FROM tab;
 * [Data Types](https://docs.exasol.com/sql_references/data_types/datatypesoverview.htm)
 * [NULL in UDF's and Lua Scripts](/Database-Features/null-in-udfs-and-lua-scripts.md)
 
-*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).*
