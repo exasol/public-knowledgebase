@@ -1,5 +1,5 @@
 # How to determine idle sessions with open transactions (Except Snapshot Executions)
- 
+
 ## Background
 
 Idle sessions with open transactions may have some negative implications:
@@ -15,7 +15,7 @@ You can use the following SQL statement to add locking information to your sessi
 **DISCLAIMER  
 An Auto-Commit is not always set for executions in Snapshot-Mode. Thus, in the case of snapshot execution, this solution can lead to false-positive read locks.**
 
-**=> We recommend to use caution when developing watchdog scripts which automatically kill all critical read locks**
+**=> We recommend to use caution when developing watchdog scripts which automatically kill all critical read locks.**
 
 For Database versions `up to 7.0` the query can be found in
 
