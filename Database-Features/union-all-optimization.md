@@ -69,17 +69,17 @@ If those conditions are met, the **following optimization** is possible if the o
 * Based on those values, whole branches are eliminated from the union all
   * Assuming that the table names are representative in the example above, it will eliminate years 2011 and 2012 from the query graph
 * The remaining branches will be placed in a temporary wrapper object for actual query processing
-    * If there is only one branch, the union view will actually be replaced by that single table
+  * If there is only one branch, the union view will actually be replaced by that single table
 
 Properties of the **union table wrapper**:
 
 * If used as a scan table,
   * the scan simply iterates through the contained tables
-    * no pre-materialization necessary
+  * no pre-materialization necessary
 * If used as a join table,
-    * Individual indices are (created and) used on the (not eliminated) underlying tables. This may reduce resource requirements when creating new indices on the full union and also memory requirements as only indices of selected tables are accessed.
-    * All index accesses are wrapped to automatically return data from all the contained indices.
-    * No pre-materialization is required
+  * Individual indices are (created and) used on the (not eliminated) underlying tables. This may reduce resource requirements when creating new indices on the full union and also memory requirements as only indices of selected tables are accessed.
+  * All index accesses are wrapped to automatically return data from all the contained indices.
+  * No pre-materialization is required
 
 **Limitations** of the union wrapper:
 
@@ -94,20 +94,20 @@ Properties of the **union table wrapper**:
 ### For UNION ALL:
 
 * **Single fact table with date/timestamp column:**  
-Typically all reports will query only a small time slice using hard date literals as filters. This will lead to strong table elimination in the union wrapper.
+  Typically all reports will query only a small time slice using hard date literals as filters. This will lead to strong table elimination in the union wrapper.
 * **Really big tables:**  
-Even when query structure will not allow any union optimizations, the underlying mechanics might prove useful:
-	+ Indices are built on tables, not on the union. Overall index build time will not decrease, but peak memory consumption will be drastically reduced. Also in case of table updates, only one of the tables is affected per statement.
-	+ Enforced data locality and possible boost for later pipeline stages
+  Even when query structure will not allow any union optimizations, the underlying mechanics might prove useful:
+  * Indices are built on tables, not on the union. Overall index build time will not decrease, but peak memory consumption will be drastically reduced. Also in case of table updates, only one of the tables is affected per statement.
+  * Enforced data locality and possible boost for later pipeline stages
 * **Parallel write of small to medium tables:**  
-If you have multiple streams that need to write into a common table, this may be simulated by providing a table for each stream and combining them through a union wrapper. This avoids transaction conflicts between the writing processes but typically will provide no segmentation information for table elimination in queries. This concept can be extended to a single fact table with a set of assorted 'tail segments' that are consolidated by some ETL process.
+  If you have multiple streams that need to write into a common table, this may be simulated by providing a table for each stream and combining them through a union wrapper. This avoids transaction conflicts between the writing processes but typically will provide no segmentation information for table elimination in queries. This concept can be extended to a single fact table with a set of assorted 'tail segments' that are consolidated by some ETL process.
 
 ### Against UNION ALL:
 
 * **Multiple fact tables:**  
-Typically, fact tables are not joined together through date columns, and (almost) no application will put timeslice filters on multiple tables in a query. This means that at most one of the fact tables can be wrapped successfully. If you try to wrap both/all of them, you will probably incur penalties for union-wrapped index lookups.
+  Typically, fact tables are not joined together through date columns, and (almost) no application will put timeslice filters on multiple tables in a query. This means that at most one of the fact tables can be wrapped successfully. If you try to wrap both/all of them, you will probably incur penalties for union-wrapped index lookups.
 * **Indirect partitioning:**  
-When the fact table does not contain the partitioning information (date) directly, but only as a foreign key based on some dimension, for example dim_calendar. Any date filter in queries will be put on the dimension table and will not be available for union optimization. Minor advantages might arise from data locality, but typically the index overhead will dominate.
+  When the fact table does not contain the partitioning information (date) directly, but only as a foreign key based on some dimension, for example dim_calendar. Any date filter in queries will be put on the dimension table and will not be available for union optimization. Minor advantages might arise from data locality, but typically the index overhead will dominate.
 
 ## Additional References
 
