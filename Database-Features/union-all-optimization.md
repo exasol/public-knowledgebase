@@ -1,7 +1,8 @@
-# UNION ALL optimization 
+# UNION ALL optimization
+
 ## Background:
 
-#### As of Version 6.1, Exasol supports partitioning, however, this optimization is still present.
+#### As of Version 6.1, Exasol supports partitioning, however, this optimization is still present
 
 On a typical Exasol cluster, data is **distributed** across multiple nodes very much like a hash partition, but the use case is very different: While partitions are used for filtering (eliminate as many partitions as possible in queries), distribution is used for load balancing (spread the processed data across as many nodes as possible).  
 Table data is also split into columns and multiple data blocks per column, such that some features of partitioning are achieved automatically, but this is far from perfect, as blocks may still contain a wide range of rows that should (in some cases) be split into separate partitions.
@@ -13,7 +14,6 @@ Exasol 5 introduced a powerful optimization that can be used for **manual partit
 #### UNION ALL branch elimination using column statistics
 
 As an example, given the following view and statement:
-
 
 ```sql
 create view union_all as (
@@ -30,6 +30,7 @@ select sum(sales_amount) as turnover
 from union_all
 where sales_date between date '2013-11-01' and date '2014-02-28';
 ```
+
 The intent here is that
 
 * Data is stored in separate tables, each containing a densely packed range of data, disjoint from each other. The example uses a date range.
@@ -43,7 +44,6 @@ The mentioned optimization can take place if the **following conditions** are me
 * All the union branches select all columns from the tables, ****in their original order****. All the tables in the union share the same structure (column order, column types, distribution keys)
 
 Example:
-
 
 ```sql
 -- slow variant => not all columns included
@@ -62,6 +62,7 @@ FROM (
   SELECT * T
 ) LIMIT 9;
 ```
+
 If those conditions are met, the **following optimization** is possible if the outer select contains a **literal filter** (no subselects, no joins, etc) that can be propagated to a column of the union all view:
 
 * The database will (create and) evaluate column statistics (min/max) for the filtered column
@@ -110,6 +111,6 @@ When the fact table does not contain the partitioning information (date) directl
 
 ## Additional References
 
-<https://www.exasol.com/support/browse/EXASOL-1362> 
+* [Zone maps](https://docs.exasol.com/db/latest/performance/zonemaps.htm)
 
-*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).*
