@@ -125,7 +125,7 @@ select
 
     -- total HDD_READ caused by SQL, about 10-20% overestimated compared to EXA_MONITOR_HOURLY
     cast(sum( nproc()  * concurrent_ratio * interval_length )/1024 as decimal(10,2)) as GB_read_interval 
-	
+
     -- maximum TEMP_DB_RAM_USAGE peak. SHOULD fit into RAM to avoid swapping
     , cast( max(TEMP_RAM_USAGE) as decimal(9) ) as TEMP_DB_RAM_PEAK
     -- bad average over different-sized intervals ... no relevance
