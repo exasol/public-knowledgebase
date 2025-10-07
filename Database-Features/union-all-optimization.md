@@ -67,19 +67,19 @@ If those conditions are met, the **following optimization** is possible if the o
 
 * The database will (create and) evaluate column statistics (min/max) for the filtered column
 * Based on those values, whole branches are eliminated from the union all
-    + Assuming that the table names are representative in the example above, it will eliminate years 2011 and 2012 from the query graph
+    * Assuming that the table names are representative in the example above, it will eliminate years 2011 and 2012 from the query graph
 * The remaining branches will be placed in a temporary wrapper object for actual query processing
-    + If there is only one branch, the union view will actually be replaced by that single table
+    * If there is only one branch, the union view will actually be replaced by that single table
 
 Properties of the **union table wrapper**:
 
 * If used as a scan table,
-    + the scan simply iterates through the contained tables
-    + no pre-materialization necessary
+    * the scan simply iterates through the contained tables
+    * no pre-materialization necessary
 * If used as a join table,
-    + Individual indices are (created and) used on the (not eliminated) underlying tables. This may reduce resource requirements when creating new indices on the full union and also memory requirements as only indices of selected tables are accessed.
-    + All index accesses are wrapped to automatically return data from all the contained indices.
-    + No pre-materialization is required
+    * Individual indices are (created and) used on the (not eliminated) underlying tables. This may reduce resource requirements when creating new indices on the full union and also memory requirements as only indices of selected tables are accessed.
+    * All index accesses are wrapped to automatically return data from all the contained indices.
+    * No pre-materialization is required
 
 **Limitations** of the union wrapper:
 
