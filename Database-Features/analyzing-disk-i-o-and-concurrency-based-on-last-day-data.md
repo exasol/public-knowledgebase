@@ -72,7 +72,7 @@ UNION ALL
         stmt_delta, stmt_duration,
         sum(stmt_delta) over(order by interval_start) as concurrent_statements,
         sum(hdd_delta) over(order by interval_start) as concurrent_reads,
-        sum(hdd_delta*hdd_read) over(order by interval_start) as concurrent_ratio,		
+        sum(hdd_delta*hdd_read) over(order by interval_start) as concurrent_ratio,
         lead(interval_start) over(order by interval_start) as interval_end
         , sum(temp_db_ram_peak * stmt_delta) over( order by interval_start ) as TEMP_RAM_USAGE
     from k3
@@ -83,7 +83,7 @@ UNION ALL
         interval_start,
         trunc(interval_start, 'HH') as interval_hour,
         stmt_delta, stmt_duration,
-        seconds_between(interval_end, interval_start) as interval_length,		
+        seconds_between(interval_end, interval_start) as interval_length,
         concurrent_statements,
         concurrent_reads,
         concurrent_ratio
