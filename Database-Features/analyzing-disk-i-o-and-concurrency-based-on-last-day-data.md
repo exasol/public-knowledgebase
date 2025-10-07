@@ -1,4 +1,5 @@
-# Analyzing disk I/O and concurrency based on *_last_day data 
+# Analyzing disk I/O and concurrency based on *_last_day data
+
 ## Background
 
 System performance data about disk I/O and concurrency is sought. 
@@ -10,7 +11,6 @@ System performance data about disk I/O and concurrency is sought. 
 ### Checking "$EXA_MONITOR_LAST_DAY"
 
 To check for I/O spikes based on hourly data:
-
 
 ```sql
 select
@@ -30,6 +30,7 @@ group by 1
 order by 1
 ;
 ```
+
 ## Step 2
 
 ### Query concurrency
@@ -42,15 +43,12 @@ Getting a nice overview per hour for
 * percentage of queries with HDD_READ
 * average (MB/sec/node) and total (GB/cluster) HDD_READ caused by SQL
 
-
 ```sql
 with k1 as (
     -- preselected statements. Add type filter (COMMAND_NAME) or user filter (sessions/auditing) when required
 	select session_id, stmt_id, start_time, stop_time, hdd_read, temp_db_ram_peak, seconds_between(stop_time, start_time) as stmt_duration
 	from exa_sql_last_day
 )
-
-
 , k3 as (
     -- Splitting duration-based data into plus/minus events
 	select
@@ -67,8 +65,6 @@ UNION ALL
 		, temp_db_ram_peak
 	from k1
 )
-
-
 , k4 as (
     -- reconnect events into intervals with running totals
 	select
@@ -81,7 +77,6 @@ UNION ALL
 		, sum(temp_db_ram_peak * stmt_delta) over( order by interval_start ) as TEMP_RAM_USAGE
 	from k3
 )
-
 , k5 as (
     -- prepare for grouping and add RAM-sorted timeline for percent-based RAM estimation
 	select
@@ -97,7 +92,6 @@ UNION ALL
        , sum(local.interval_length) over(partition by local.interval_hour) as total_time
 	from k4
 )
-
 select
 	-- interval start
 	interval_hour,
@@ -146,12 +140,10 @@ group by 1
 order by 1
 ;
 ```
+
 ## Additional References
 
-<https://www.exasol.com/support/browse/EXASOL-1598>
+* [CHANGELOG: Transaction collisions when validating views on virtual tables in concurrent sessions](https://exasol.my.site.com/s/article/Changelog-content-6991?language=en_US)
+* [Statistical System Tables](https://docs.exasol.com/sql_references/metadata/statistical_system_table.htm)
 
-<https://www.exasol.com/support/browse/EXASOL-2373>
-
-[Statistical System Tables](https://docs.exasol.com/sql_references/metadata/statistical_system_table.htm)
-
-*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).*
