@@ -12,7 +12,7 @@ Within Exasol there are four different resources available and the performance s
 
 ## Explanation
 
-# Details
+### Details
 
 Exasol attempts to use as many resources as possible by internal parallelization (multi-threading). If there is more than one active query the resource management distributes the available resources among those. By default, all queries are treated equally. By using consumer groups (see <https://docs.exasol.com/db/latest/database_concepts/resource_manager.htm>) the resource distribution can be influenced.  
 The resource management distinguishes between "short" and "long" queries:
