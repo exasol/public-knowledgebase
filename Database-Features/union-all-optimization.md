@@ -74,7 +74,7 @@ If those conditions are met, the **following optimization** is possible if the o
 Properties of the **union table wrapper**:
 
 * If used as a scan table,
-    * the scan simply iterates through the contained tables
+  * the scan simply iterates through the contained tables
     * no pre-materialization necessary
 * If used as a join table,
     * Individual indices are (created and) used on the (not eliminated) underlying tables. This may reduce resource requirements when creating new indices on the full union and also memory requirements as only indices of selected tables are accessed.
