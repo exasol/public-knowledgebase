@@ -1,8 +1,8 @@
 # UNION ALL optimization
 
-## Background:
+## Background
 
-#### As of Version 6.1, Exasol supports partitioning, however, this optimization is still present
+### As of Version 6.1, Exasol supports partitioning, however, this optimization is still present
 
 On a typical Exasol cluster, data is **distributed** across multiple nodes very much like a hash partition, but the use case is very different: While partitions are used for filtering (eliminate as many partitions as possible in queries), distribution is used for load balancing (spread the processed data across as many nodes as possible).  
 Table data is also split into columns and multiple data blocks per column, such that some features of partitioning are achieved automatically, but this is far from perfect, as blocks may still contain a wide range of rows that should (in some cases) be split into separate partitions.
@@ -11,7 +11,7 @@ Table data is also split into columns and multiple data blocks per column, such 
 
 Exasol 5 introduced a powerful optimization that can be used for **manual partitioning**:
 
-#### UNION ALL branch elimination using column statistics
+### UNION ALL branch elimination using column statistics
 
 As an example, given the following view and statement:
 
@@ -36,7 +36,7 @@ The intent here is that
 * Data is stored in separate tables, each containing a densely packed range of data, disjoint from each other. The example uses a date range.
 * The database should be able to use this information together with given query filters, removing unneeded objects from the query graph. Thus, further optimizations can be more efficient and less data needs to be processed or loaded to memory.
 
-## Prerequisites:
+## Prerequisites
 
 The mentioned optimization can take place if the **following conditions** are met (as of version 5.0.15):
 
