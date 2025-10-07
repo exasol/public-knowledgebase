@@ -1,9 +1,10 @@
-# Database connection encryption at Exasol 
+# Database connection encryption at Exasol
+
 ### Background
 
 This article will explain about the details on encryption at Exasol Database.
 
-It gives you answers for questions like :
+It gives you answers for questions like:
 
 * Is data transfer through client connection encrypted by default or not?
 
@@ -36,10 +37,10 @@ In addition to these driver properties, one can set a database parameter in EXAo
 
 #### Further Clarifications:
 
-Prior to Exasol version 7.1, if the parameter `'-forceProtocolEncryption=1'` is set to the database, it means that regardless of what the client requests, protocol encryption will be FORCED (i.e. required) by Exasol for the connection. If either Exasol or the client requests encryption, encryption will be used. Therefore if the parameter `'-forceProtocolEncryption=1'` is set over the database, then all the connections are encrypted, for versions before 7.1.  
+Prior to Exasol version 7.1, if the parameter `'-forceProtocolEncryption=1'` is set to the database, it means that regardless of what the client requests, protocol encryption will be FORCED (i.e. required) by Exasol for the connection. If either Exasol or the client requests encryption, encryption will be used. Therefore if the parameter `'-forceProtocolEncryption=1'` is set over the database, then all the connections are encrypted, for versions before 7.1.
 But starting Exasol drivers version 7.1, if this parameter is set and if at the client side the encryption is set to OFF or 0, then you will get an error like below while connecting:
 
-```
+```text
 Illegal encryption settings: server requires encryption but the user has turned encryption off.
 ```
 
@@ -47,7 +48,7 @@ Illegal encryption settings: server requires encryption but the user has turned 
 
 _Prior to version 7.1:_
 
-With `'-forceProtocolEncryption=1'`, clients are only rejected if they do not support encryption at all (e.g. older drivers).  
+With `'-forceProtocolEncryption=1'`, clients are only rejected if they do not support encryption at all (e.g. older drivers).
 An unencrypted connection is only allowed if both Exasol and the client disable encryption.
 
 Having this parameter (`forceProtocolEncryption=1`) set, means that even if the client/driver side encryption is turned off then (with the exception of -- the driver being old/does not support encryption) then the client/driver is forced to encrypt data. In the other case (when this parameter would not have been set) then client/driver connection would be allowed to transfer data UNENCRYPTED. NOTE: One can check the `ENCRYPTED` column from the `EXA_DBA_SESSIONS` table and confirm if it is true or false in such a case.
@@ -66,8 +67,8 @@ Since version 8 this parameter is not necessary as by default DB accepts only TL
 
 * [Metadata System Tables](https://docs.exasol.com/sql_references/metadata/metadata_system_tables.htm)
 
-* Bug related to this topic: [EXASOL-2649](https://www.exasol.com/support/browse/EXASOL-2649)
+* Bug related to this topic: [CHANGELOG: Encrypted connections may be shown as unencrypted in sessions tables]([https://www.exasol.com/support/browse/EXASOL-2649](https://exasol.my.site.com/s/article/Changelog-content-9722?language=en_US))
 
 * [CHANGELOG: Database accepts only TLS connections](https://exasol.my.site.com/s/article/Changelog-content-16927?language=en_US)
 
-*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).*
