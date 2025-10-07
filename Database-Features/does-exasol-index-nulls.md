@@ -1,4 +1,5 @@
-# Does Exasol index NULLS? 
+# Does Exasol index NULLS?
+
 ## Question
 
 Does Exasol index Null values?
@@ -11,8 +12,7 @@ The NULLs of the index have rather few application scenarios as filters and join
 
 ## Additional References
 
-<https://www.exasol.com/support/browse/EXASOL-2197>
+* [CHANGELOG: Improve NL joins of "OR NULL" equi joins](https://exasol.my.site.com/s/article/Changelog-content-836?language=en_US)
+* [NULL in Exasol](https://exasol.my.site.com/s/article/NULL-in-Exasol)
 
-[NULL in Exasol](https://exasol.my.site.com/s/article/NULL-in-Exasol)
-
-*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).*
