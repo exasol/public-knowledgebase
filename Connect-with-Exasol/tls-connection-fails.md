@@ -53,8 +53,8 @@ For example: `192.168.56.101/2747B64E34414C293091FF37F428CC8D795B64B7159E50EDD7
 The below screenshots show what the connect box should look like in DbVisualizer and DBeaver.
 
 ![DbVisualizer connection settings](images/exaNico_1-1630058020013.png)![DBeaver  connection settings](images/exaNico_2-1630058092668.png)
- 
-###  **Option 2. Deactivate the certificate check using a driver parameter (not recommended)**
+
+### **Option 2. Deactivate the certificate check using a driver parameter (not recommended)**
 
 The TLS Certificate check can be disabled using the following driver parameters.
 
@@ -70,8 +70,8 @@ If you are connecting using a tool, it may not be possible to change the driver
 
  In case you don't want to change the client connection string and could not timely configure the certificate on the database side you might consider downgrading the driver from version 7.1 to the latest available driver of version 7.0 as a temporary workaround.
  Please contact Exasol Support to get the latest 7.0 driever installers if you have active subscription.
- 
- ## Long-term solution
+
+## Long-term solution
 
 If you are able to use a CA-signed certificate, it can be uploaded to EXAoperation as described in our [documentation](https://docs.exasol.com/administration/on-premise/access_management/tls_certificate.htm). The necessary certificate must also be provided to the client.
 
