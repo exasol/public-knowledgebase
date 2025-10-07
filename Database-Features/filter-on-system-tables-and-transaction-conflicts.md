@@ -10,13 +10,12 @@ SELECT * FROM EXA_DBA_TABLES  WHERE TABLE_SCHEMA  = 'SCHEMA1';   -- readlock on 
 SELECT * FROM EXA_DBA_TABLES  WHERE TABLE_SCHEMA  = 'SCHEMA1' AND TABLE_NAME = 'TABLE1';        -- readlock on table SCHEMA1.TABLE1 
 ```
 
-This holds even for more complex filters if the following conditions are met:
-
-1) The system table (in this case EXA_DBA_TABLES) is the only one used in the query.
-2) The system table appears no more than once in the query (views built on top of this table, e.g. EXA_USER_TABLES, count as well)
-3) Only filters which meet the following requirements are evaluated without read-locking all objects contained in the system table (Filter Type A):
-a) Only one column is used in the filter
-b) This column is filterable (e.g. table_schema, table_name)
+This holds even for more complex filters if the following conditions are met:  
+1) The system table (in this case EXA_DBA_TABLES) is the only one used in the query.  
+2) The system table appears no more than once in the query (views built on top of this table, e.g. EXA_USER_TABLES, count as well)  
+3) Only filters which meet the following requirements are evaluated without read-locking all objects contained in the system table (Filter Type A):  
+a) Only one column is used in the filter  
+b) This column is filterable (e.g. table_schema, table_name)  
 c) The filter contains no lookups or references to other tables
 
 ## Explanation
