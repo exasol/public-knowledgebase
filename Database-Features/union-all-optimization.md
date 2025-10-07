@@ -91,7 +91,7 @@ Properties of the **union table wrapper**:
 
 ## Usage indications
 
-### For UNION ALL:
+### For UNION ALL
 
 * **Single fact table with date/timestamp column:**  
   Typically all reports will query only a small time slice using hard date literals as filters. This will lead to strong table elimination in the union wrapper.
@@ -102,7 +102,7 @@ Properties of the **union table wrapper**:
 * **Parallel write of small to medium tables:**  
   If you have multiple streams that need to write into a common table, this may be simulated by providing a table for each stream and combining them through a union wrapper. This avoids transaction conflicts between the writing processes but typically will provide no segmentation information for table elimination in queries. This concept can be extended to a single fact table with a set of assorted 'tail segments' that are consolidated by some ETL process.
 
-### Against UNION ALL:
+### Against UNION ALL
 
 * **Multiple fact tables:**  
   Typically, fact tables are not joined together through date columns, and (almost) no application will put timeslice filters on multiple tables in a query. This means that at most one of the fact tables can be wrapped successfully. If you try to wrap both/all of them, you will probably incur penalties for union-wrapped index lookups.
