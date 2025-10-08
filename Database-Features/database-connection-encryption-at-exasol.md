@@ -67,7 +67,7 @@ Since version 8 this parameter is not necessary as by default DB accepts only TL
 
 * [Metadata System Tables](https://docs.exasol.com/sql_references/metadata/metadata_system_tables.htm)
 
-* Bug related to this topic: [CHANGELOG: Encrypted connections may be shown as unencrypted in sessions tables]([https://www.exasol.com/support/browse/EXASOL-2649](https://exasol.my.site.com/s/article/Changelog-content-9722?language=en_US))
+* Bug related to this topic: [CHANGELOG: Encrypted connections may be shown as unencrypted in sessions tables](https://exasol.my.site.com/s/article/Changelog-content-9722?language=en_US)
 
 * [CHANGELOG: Database accepts only TLS connections](https://exasol.my.site.com/s/article/Changelog-content-16927?language=en_US)
 
