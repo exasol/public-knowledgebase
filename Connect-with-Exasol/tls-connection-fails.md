@@ -32,7 +32,7 @@ If you trust the server, connect to it using the fingerprint:
 
 **If another certificate has not been uploaded using EXAoperation, a self-signed certificate is used by Exasol per default. Since this certificate is self-signed, TLS connections to Exasol will fail by default.**
 
-For an in-depth explanation of this change, see [CHANGELOG: TLS for all Exasol drivers](https://www.exasol.com/support/browse/EXASOL-2936 "Explanation")
+For an in-depth explanation of this change, see [CHANGELOG: TLS for all Exasol drivers](https://exasol.my.site.com/s/article/Changelog-content-6507?language=en_US)
 
 ## Recommendation
 
