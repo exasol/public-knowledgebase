@@ -1,86 +1,74 @@
-# TLS connection fails
+# Database connection encryption at Exasol
 
-## Scope
+## Background
 
-This article will describe how to resolve the issue when you are using version 7.1 of the Exasol driver and your existing connections no longer work. This article is relevant for driver version 7.1.0+ and database versions 7.1.0+, 7.0.10+, and 6.2.15+. Other database and driver combinations are not affected.
+This article will explain about the details on encryption at Exasol Database.
 
-[exasol-7-1-connection-security-changes](https://www.exasol.com/resource/exasol-7-1-connection-security-changes/)
-Here is the original changelog documentation: [CHANGELOG: TLS for all Exasol drivers](https://exasol.my.site.com/s/article/Changelog-content-6507?language=en_US "Explanation")
+It gives you answers for questions like:
 
-## Diagnosis
+* Is data transfer through client connection encrypted by default or not?
 
-When connecting to your database, you will get an error message similar to this:
+* How to check if encryption is enabled in database?
 
-```text
-java.io.IOException: TLS connection to host (192.168.56.101) failed: 
-PKIX path building failed: sun.security.provider.certpath.SunCertPathBuilderException: 
-unable to find valid certification path to requested target. 
-If you trust the server, connect to it using the fingerprint: 
-2747B64E34414C293091FF37F428CC8D795B64B7159E50EDD7EA507B58D4FAEA.
-```
+* How to enable/disable encryption?
+
+* What is the parameter `forceProtocolEncryption` used for?
+
+* How to enforce encrypted client connections ? and so on ...
 
 ## Explanation
 
-With the release of 7.1.0, we made a big change in our drivers: JDBC, ODBC and ADO.NET are now using TLS by default to connect to the database versions 7.1.0+, 7.0.10+, and 6.2.15+. For security reasons, the drivers will only establish a connection to the database if the SSL/TLS certificate of the database can be verified. If the certificate used by the database is not signed by a publicly recognized certificate authority (CA) or if the necessary CA certificate has not been provided to the client to use for verification, the connection will fail. In these cases you will get an exception like:
+In Exasol database, when data is transferred through a network, the data is by default encrypted (from Exasol versions 6.0 and above). Until version 7.0, Exasol used ChaCha20 encryption for JDBC, ODBC, ADO.NET, CLI and for WebSockets, Exasol used TLS v 1.2 encryption. However, starting from version 7.1 Exasol uses TLS encryption for JDBC, ODBC, ADO.NET, WebSockets and for CLI.
+
+On all clients and drivers, the encryption can be enabled by using their respective connection string parameters, for example:
+
+* EXAPlus: -encryption <ON|OFF>
+* JDBC: encryption=<1|0> (1 = on, 0= off, default is 1)
+* ODBC: ENCRYPTION=<"Y"|"N"> (Y is default)
+* ADO.NET: encryption=<ON|OFF> (on is default)
+
+## How to check if data transferred was encrypted or not
+
+One can check the `‘encrypted’` column in `exa_dba_sessions` or `exa_dba_audit_sessions` tables that encryption was set to true or false for that particular session.
+
+## The Parameter *forceProtocolEncryption*
+
+In addition to these driver properties, one can set a database parameter in EXAoperation to force incoming connections to be encrypted. The parameter is: `-forceProtocolEncryption=1`. This can be done while creating a database or setting it in Exaoperation and restarting the database again.
+
+## Further Clarifications
+
+Prior to Exasol version 7.1, if the parameter `'-forceProtocolEncryption=1'` is set to the database, it means that regardless of what the client requests, protocol encryption will be FORCED (i.e. required) by Exasol for the connection. If either Exasol or the client requests encryption, encryption will be used. Therefore if the parameter `'-forceProtocolEncryption=1'` is set over the database, then all the connections are encrypted, for versions before 7.1.
+But starting Exasol drivers version 7.1, if this parameter is set and if at the client side the encryption is set to OFF or 0, then you will get an error like below while connecting:
 
 ```text
-TLS connection to host (exadb1.example.com) failed: 
-unable to get local issuer certificate. 
-If you trust the server, connect to it using the fingerprint: 
-2747B64E34414C293091FF37F428CC8D795B64B7159E50EDD7EA507B58D4FAEA.
+Illegal encryption settings: server requires encryption but the user has turned encryption off.
 ```
 
-**If another certificate has not been uploaded using EXAoperation, a self-signed certificate is used by Exasol per default. Since this certificate is self-signed, TLS connections to Exasol will fail by default.**
+## Additional notes
 
-For an in-depth explanation of this change, see [CHANGELOG: TLS for all Exasol drivers](https://www.exasol.com/support/browse/EXASOL-2936 "Explanation")
+### Prior to version 7.1
 
-## Recommendation
+With `'-forceProtocolEncryption=1'`, clients are only rejected if they do not support encryption at all (e.g. older drivers).
+An unencrypted connection is only allowed if both Exasol and the client disable encryption.
 
-## Immediate Mitigation
+Having this parameter (`forceProtocolEncryption=1`) set, means that even if the client/driver side encryption is turned off then (with the exception of -- the driver being old/does not support encryption) then the client/driver is forced to encrypt data. In the other case (when this parameter would not have been set) then client/driver connection would be allowed to transfer data UNENCRYPTED. NOTE: One can check the `ENCRYPTED` column from the `EXA_DBA_SESSIONS` table and confirm if it is true or false in such a case.
 
-To re-establish connection to your database using the latest driver, there are 3 short-term solutions:
+### Starting from version 7.1
 
-### **Option 1. Use the fingerprint**
+However, the above paragraph (prior to version 7.1) stands not entirely true for Exasol version 7.1 and above. If the client side the encryption is set to FALSE, then the connection error is produced, if the parameter is set for the database. Hence this case, only an encrypted connection is allowed.
 
-The error message provides you a fingerprint that you can append to your hostname when connecting to the database. The fingerprint looks like: `2747B64E34414C293091FF37F428CC8D795B64B7159E50EDD7EA507B58D4FAEA`. You can also see this fingerprint in EXAoperation (if your DB is on version 7.1 or newer):
+### Starting from version 8
 
-![Database list in EXAoperation](images/exaNico_0-1630057772662.png)
+Since version 8 this parameter is not necessary as by default DB accepts only TLS-encrypted connections (no ChaCha20 or unencrypted): [CHANGELOG: Database accepts only TLS connections](https://exasol.my.site.com/s/article/Changelog-content-16927?language=en_US).
 
-In your client or driver, change the server or host field to follow this format: &lt;ip address&gt;/&lt;fingerprint&gt;:8563
+## Additional references
 
-For example: `192.168.56.101/2747B64E34414C293091FF37F428CC8D795B64B7159E50EDD7EA507B58D4FAEA:8563`
+* [Data Security - General Concepts](https://docs.exasol.com/planning/data_security.htm#GeneralConcepts)
 
-The below screenshots show what the connect box should look like in DbVisualizer and DBeaver.
+* [Metadata System Tables](https://docs.exasol.com/sql_references/metadata/metadata_system_tables.htm)
 
-![DbVisualizer connection settings](images/exaNico_1-1630058020013.png)![DBeaver  connection settings](images/exaNico_2-1630058092668.png)
+* Bug related to this topic: [CHANGELOG: Encrypted connections may be shown as unencrypted in sessions tables](https://exasol.my.site.com/s/article/Changelog-content-9722?language=en_US)
 
-### **Option 2. Deactivate the certificate check using a driver parameter (not recommended)**
-
-The TLS Certificate check can be disabled using the following driver parameters.
-
-* JDBC: validateservercertificate=0
-* ODBC: SSLCertificate=SSL_VERIFY_NONE
-* ADO.NET: SSLCertificate=VERIFYNONE
-
-A JDBC connection string would now look like this: `jdbc:exa:exadb1.example.com:8563;validateservercertificate=0`
-
-If you are connecting using a tool, it may not be possible to change the driver parameters very easily. For information on this, see the documentation of your tool.
-
-### **Option 3. Use previous drivers**
-
- In case you don't want to change the client connection string and could not timely configure the certificate on the database side you might consider downgrading the driver from version 7.1 to the latest available driver of version 7.0 as a temporary workaround.
- Please contact Exasol Support to get the latest 7.0 driever installers if you have active subscription.
-
-## Long-term solution
-
-If you are able to use a CA-signed certificate, it can be uploaded to EXAoperation as described in our [documentation](https://docs.exasol.com/administration/on-premise/access_management/tls_certificate.htm). The necessary certificate must also be provided to the client.
-
-## Additional References
-
-* [exasol-7-1-connection-security-changes](https://www.exasol.com/resource/exasol-7-1-connection-security-changes/)
-* [Upload TLS Certificate](https://docs.exasol.com/administration/on-premise/access_management/tls_certificate.htm)
-* [ODBC Documentation](https://docs.exasol.com/connect_exasol/drivers/odbc/using_odbc.htm)
-* [JDBC Documentation](https://docs.exasol.com/connect_exasol/drivers/jdbc.htm)
-* [ADO.NET Documentation](https://docs.exasol.com/connect_exasol/drivers/ado_net.htm)
+* [CHANGELOG: Database accepts only TLS connections](https://exasol.my.site.com/s/article/Changelog-content-16927?language=en_US)
 
 *We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).*
