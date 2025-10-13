@@ -3,7 +3,7 @@
 ## Problem
 
 Customer is not able to connect to Oracle DB with short host name.Connection can be established with FQDN and IP adrress but not with short host name.
-Below is example of connection detail and query which failed with error. 
+Below is example of connection detail and query which failed with error.
 
 Connection detail:
 
