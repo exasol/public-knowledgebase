@@ -716,7 +716,7 @@ Cluster overview if n24 fails:
 
 > **NOTE: An additional node failure in the active site (for example n12) would bring the database down as there is no redundancy segment in place.**
 
-To restore the situation, the redundant segments for both the data and archive volume need to be rebuilt on the reserve node in the passive side.
+If the failed node becomes online again, the redundancy is re-created automatically. Otherwise to restore the situation, the redundant segments for both the data and archive volume need to be rebuilt on the reserve node in the passive side.
 
 1. ConfD job to restore missing segments:
     ```
