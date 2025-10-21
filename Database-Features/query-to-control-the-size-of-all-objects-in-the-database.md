@@ -6,12 +6,12 @@ We want to keep track of how much data is stored in our database so we can prepa
 
 * The size of data in each table and schema.
 * How the amount of data changes over time (each day, week, and month).
-  
+ 
 Is it possible to create a query or view that shows the size of all tables and schemas, so we can easily monitor data growth for specific time periods?
 
 ## Answer
 
-You can utilize system tables to gather detailed information about the sizes of all objects in the database.  This enables efficient monitoring and helps identify opportunities for optimization.
+You can utilize system tables to gather detailed information about the sizes of all objects in the database. This enables efficient monitoring and helps identify opportunities for optimization.
 Below, we present an overview of various system tables available at both the metadata and history levels.
 
 ### RAW and MEM Size
@@ -51,21 +51,21 @@ In Exasol, MEM and RAW are two important metrics used to monitor and manage the 
 
 ```SQL
 SELECT
-    OBJECT_NAME,
-    OBJECT_TYPE,
-    round(RAW_OBJECT_SIZE / (1024 * 1024),1) AS RAW_SIZE_MIB,
-    round(RAW_OBJECT_SIZE / (1024 * 1024 * 1024),1) AS RAW_SIZE_GIB,
-    round(MEM_OBJECT_SIZE / (1024 * 1024),1) AS MEM_SIZE_MIB,
-    round(MEM_OBJECT_SIZE / (1024 * 1024 * 1024),1) AS MEM_SIZE_GIB
+ OBJECT_NAME,
+ OBJECT_TYPE,
+ round(RAW_OBJECT_SIZE / (1024 * 1024),1) AS RAW_SIZE_MIB,
+ round(RAW_OBJECT_SIZE / (1024 * 1024 * 1024),1) AS RAW_SIZE_GIB,
+ round(MEM_OBJECT_SIZE / (1024 * 1024),1) AS MEM_SIZE_MIB,
+ round(MEM_OBJECT_SIZE / (1024 * 1024 * 1024),1) AS MEM_SIZE_GIB
 FROM
-    EXA_ALL_OBJECT_SIZES
+ EXA_ALL_OBJECT_SIZES
 ORDER BY
-    MEM_OBJECT_SIZE DESC;
+ MEM_OBJECT_SIZE DESC;
 ```
 
 #### EXA_DBA_OBJECT_SIZES
 
-* EXA_DBA_OBJECT_SIZES  is similar to EXA_ALL_OBJECT_SIZES.
+* EXA_DBA_OBJECT_SIZES is similar to EXA_ALL_OBJECT_SIZES.
 * It contains the sizes of all database objects, regardless of the current user's access rights.
 * You need the SELECT ANY DICTIONARY system privilege to access this table.
 
@@ -73,16 +73,16 @@ ORDER BY
 
 ```SQL
 SELECT
-    OBJECT_NAME,
-    OBJECT_TYPE,
-    round(RAW_OBJECT_SIZE / (1024 * 1024),1) AS RAW_SIZE_MIB,
-    round(RAW_OBJECT_SIZE / (1024 * 1024 * 1024),1) AS RAW_SIZE_GIB,
-    round(MEM_OBJECT_SIZE / (1024 * 1024),1) AS MEM_SIZE_MIB,
-    round(MEM_OBJECT_SIZE / (1024 * 1024 * 1024),1) AS MEM_SIZE_GIB
+ OBJECT_NAME,
+ OBJECT_TYPE,
+ round(RAW_OBJECT_SIZE / (1024 * 1024),1) AS RAW_SIZE_MIB,
+ round(RAW_OBJECT_SIZE / (1024 * 1024 * 1024),1) AS RAW_SIZE_GIB,
+ round(MEM_OBJECT_SIZE / (1024 * 1024),1) AS MEM_SIZE_MIB,
+ round(MEM_OBJECT_SIZE / (1024 * 1024 * 1024),1) AS MEM_SIZE_GIB
 FROM
-    EXA_DBA_OBJECT_SIZES
+ EXA_DBA_OBJECT_SIZES
 ORDER BY
-    MEM_OBJECT_SIZE DESC;
+ MEM_OBJECT_SIZE DESC;
 ```
 
 #### EXA_DBA_COLUMN_SIZES
@@ -94,21 +94,21 @@ ORDER BY
 
 ```SQL
 SELECT
-    COLUMN_SCHEMA,
-    COLUMN_TABLE,
-    COLUMN_NAME,
-    round(RAW_OBJECT_SIZE,1) AS RAW_COLUMN_SIZE_BYTES,
-    round(RAW_OBJECT_SIZE / (1024 ),1) AS RAW_COLUMN_SIZE_KIB,
-    round(RAW_OBJECT_SIZE / (1024 * 1024),1) AS RAW_COLUMN_SIZE_MIB,
-    round(RAW_OBJECT_SIZE / (1024 * 1024 * 1024),1) AS RAW_COLUMN_SIZE_GIB,
-    round(MEM_OBJECT_SIZE,1) AS MEM_COLUMN_SIZE_BYTES,
-    round(MEM_OBJECT_SIZE / (1024 ),1) AS MEM_COLUMN_SIZE_KIB,
-    round(MEM_OBJECT_SIZE / (1024 * 1024),1) AS MEM_COLUMN_SIZE_MIB,
-    round(MEM_OBJECT_SIZE / (1024 * 1024 * 1024),1) AS MEM_COLUMN_SIZE_GIB
+ COLUMN_SCHEMA,
+ COLUMN_TABLE,
+ COLUMN_NAME,
+ round(RAW_OBJECT_SIZE,1) AS RAW_COLUMN_SIZE_BYTES,
+ round(RAW_OBJECT_SIZE / (1024 ),1) AS RAW_COLUMN_SIZE_KIB,
+ round(RAW_OBJECT_SIZE / (1024 * 1024),1) AS RAW_COLUMN_SIZE_MIB,
+ round(RAW_OBJECT_SIZE / (1024 * 1024 * 1024),1) AS RAW_COLUMN_SIZE_GIB,
+ round(MEM_OBJECT_SIZE,1) AS MEM_COLUMN_SIZE_BYTES,
+ round(MEM_OBJECT_SIZE / (1024 ),1) AS MEM_COLUMN_SIZE_KIB,
+ round(MEM_OBJECT_SIZE / (1024 * 1024),1) AS MEM_COLUMN_SIZE_MIB,
+ round(MEM_OBJECT_SIZE / (1024 * 1024 * 1024),1) AS MEM_COLUMN_SIZE_GIB
 FROM
-    EXA_DBA_COLUMN_SIZES
+ EXA_DBA_COLUMN_SIZES
 ORDER BY
-    MEM_OBJECT_SIZE DESC nulls last;
+ MEM_OBJECT_SIZE DESC nulls last;
 ```
 
 #### EXA_STATISTICS_OBJECT_SIZES
@@ -139,7 +139,7 @@ FROM EXA_DBA_INDICES;
 
 * This section describes the **statistical** system tables in Exasol.
 * The statistical system tables are placed in the system schema EXA_STATISTICS.
-* The statistical system tables contain historical data about the usage and the status of the DBMS.  
+* The statistical system tables contain historical data about the usage and the status of the DBMS. 
 * This data can be used to analyze trends, identify patterns, and make predictions about future events or conditions.
 
 #### EXA_DB_*
@@ -153,11 +153,11 @@ The following query retrieves the average raw and memory object sizes (in GiB) f
 
 ```SQL
 SELECT 
-    INTERVAL_START, 
-    RAW_OBJECT_SIZE_AVG AS RAW_OBJECT_SIZE_AVG_GiB, 
-    MEM_OBJECT_SIZE_AVG AS MEM_OBJECT_SIZE_AVG_GiB
+ INTERVAL_START, 
+ RAW_OBJECT_SIZE_AVG AS RAW_OBJECT_SIZE_AVG_GiB, 
+ MEM_OBJECT_SIZE_AVG AS MEM_OBJECT_SIZE_AVG_GiB
 FROM 
-    EXA_DB_SIZE_DAILY
+ EXA_DB_SIZE_DAILY
 WHERE INTERVAL_START BETWEEN '2025-06-01 00:00:00' AND '2025-11-01 00:00:00';
 ```
 
@@ -167,17 +167,17 @@ The following query calculates and displays the weekly averages of raw and memor
 
 ```SQL
 SELECT
-    TO_CHAR(INTERVAL_START, 'YYYY-IW') AS WEEK,
-    ROUND(AVG(RAW_OBJECT_SIZE_AVG),2) AS RAW_OBJECT_SIZE_AVG_GiB,
-    ROUND(AVG(MEM_OBJECT_SIZE_AVG),2) AS MEM_OBJECT_SIZE_AVG_GiB
+ TO_CHAR(INTERVAL_START, 'YYYY-IW') AS WEEK,
+ ROUND(AVG(RAW_OBJECT_SIZE_AVG),2) AS RAW_OBJECT_SIZE_AVG_GiB,
+ ROUND(AVG(MEM_OBJECT_SIZE_AVG),2) AS MEM_OBJECT_SIZE_AVG_GiB
 FROM
-    EXA_DB_SIZE_DAILY
+ EXA_DB_SIZE_DAILY
 WHERE
-    INTERVAL_START BETWEEN '2025-06-01 00:00:00' AND '2025-11-01 00:00:00'
+ INTERVAL_START BETWEEN '2025-06-01 00:00:00' AND '2025-11-01 00:00:00'
 GROUP BY
-    TO_CHAR(INTERVAL_START, 'YYYY-IW')
+ TO_CHAR(INTERVAL_START, 'YYYY-IW')
 ORDER BY
-   LOCAL.WEEK;
+ LOCAL.WEEK;
 ```
 
 ## References
@@ -197,3 +197,5 @@ ORDER BY
 * [CHANGELOG: Raw size of scripts, views, and functions set to 0 bytes](https://exasol.my.site.com/s/article/Changelog-content-11369?language=en_US)
 
 *We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).*
+
+
