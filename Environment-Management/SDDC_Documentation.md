@@ -62,15 +62,15 @@ For simplification purposes, only 5 nodes are displayed. The "…" between nodes
 
 ## Background – how SDDC works
 
-SDDC (Synchronous Dual Data Center) allows for business continuity with minimal downtime by stretching the storage for a database across servers in multiple data centers. Each cluster is split into an "active" side with half of the nodes and a "passive" side with half of the nodes at a different data center. Each side contains a database with the exact same number of nodes, and each database is using the same data volume. As a result, only one database can be running at a time. 
+In a normal Exasol setup, a cluster consists of multiple nodes, typically with one or more nodes marked as a "reserve" node which will take over for any failed node on demand. In these configurations, the data is stored redundantly on 2 nodes to ensure that even in case of a hardware failure, the data is not lost because a copy of it exists on a different node. This type of setup, however, is unable to protect against a disaster scenario in which the entire data center is unavailable. For more information on how redundancy works in a standard setup, see [Redundancy](https://docs.exasol.com/db/latest/administration/on-premise/architecture/redundancy.htm).
+
+SDDC (Synchronous Dual Data Center), on the other hand, allows for business continuity with minimal downtime by stretching the storage for a database across servers in multiple data centers. Each cluster is split into an "active" side with half of the nodes and a "passive" side with half of the nodes at a different data center. Each side contains a database with the exact same number of nodes, and each database is using the same data volume. As a result, only one database can be running at a time. 
 
 On the storage layer, redundant copies of the data are created and maintained on the passive side. This redundancy is a part of every commit in the database which guarantees that the data is present on both data centers for each successful transaction. There is no delay between Commit time and the data being synchronized to the other data center because the synchronization happens as a part of the commit.   
 
 A simplified SDDC Setup looks like this:
 
 ![Standard SDDC setup](images/SDDC/SDDC_docs.png)
-
-
 
 The ability to write to the redundant copy requires that all volumes are online and operational. **If all volumes are in the ONLINE state, then SDDC is functioning properly and the cluster is capable of handling a disaster scenario and swapping to the passive data center. In any other state (DEGRADED or RECOVERING), there is no guarantee that the cluster can handle a disaster scenario on the passive or active side.** In these statuses, it depends on which nodes crash and if there is a full redundancy already in place for those nodes.
 
