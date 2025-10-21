@@ -1,8 +1,13 @@
 # Query to control the size of all objects in the database
 
-## Question
+## Problem Statement: Monitoring Database Data Growth
 
-Is it possible to have a query or a view to control the size of all objects in the database?
+We want to keep track of how much data is stored in our database so we can prepare for future storage needs. Specifically, we need to know:
+
+* The size of data in each table and schema.
+* How the amount of data changes over time (each day, week, and month).
+  
+Is it possible to create a query or view that shows the size of all tables and schemas, so we can easily monitor data growth for specific time periods?
 
 ## Answer
 
@@ -32,7 +37,7 @@ In Exasol, MEM and RAW are two important metrics used to monitor and manage the 
 
 * The metadata system tables provide information about the metadata of the database.
 * The metadata system tables are placed in the system schema SYS.
-* The **current** size of the objects can be monitored in the following tables.
+* You can check the **current** size of database objects using the following tables. However, these tables only show what’s stored right now—they do not keep a record of size changes over time (no history is included).
 
 #### EXA_ALL_OBJECT_SIZES
 
@@ -142,7 +147,9 @@ FROM EXA_DBA_INDICES;
 * EXA_DB_SIZE_HOURLY, EXA_DB_SIZE_DAILY, EXA_DB_SIZE_MONTHLY system tables provide aggregated information about database sizes at a cluster level, including average and maximum uncompressed, compressed, auxiliary (indexes), and statistics sizes over different intervals.
 * These are great for trending and capacity planning.
 
-##### Example Query EXA_DB_SIZE_HOURLY
+##### Example Query EXA_DB_SIZE_DAILY per Day
+
+The following query retrieves the average raw and memory object sizes (in GiB) for each day from the EXA_DB_SIZE_DAILY table within the date range from June 1, 2025 to November 1, 2025.
 
 ```SQL
 SELECT 
@@ -150,7 +157,27 @@ SELECT
     RAW_OBJECT_SIZE_AVG AS RAW_OBJECT_SIZE_AVG_GiB, 
     MEM_OBJECT_SIZE_AVG AS MEM_OBJECT_SIZE_AVG_GiB
 FROM 
-    EXA_DB_SIZE_HOURLY;
+    EXA_DB_SIZE_DAILY
+WHERE INTERVAL_START BETWEEN '2025-06-01 00:00:00' AND '2025-11-01 00:00:00';
+```
+
+##### Example Query EXA_DB_SIZE_DAILY per Week
+
+The following query calculates and displays the weekly averages of raw and memory object sizes (rounded to two decimal places) in GiB from the EXA_DB_SIZE_DAILY table for the period between June 1, 2025 and November 1, 2025.
+
+```SQL
+SELECT
+    TO_CHAR(INTERVAL_START, 'YYYY-IW') AS WEEK,
+    ROUND(AVG(RAW_OBJECT_SIZE_AVG),2) AS RAW_OBJECT_SIZE_AVG_GiB,
+    ROUND(AVG(MEM_OBJECT_SIZE_AVG),2) AS MEM_OBJECT_SIZE_AVG_GiB
+FROM
+    EXA_DB_SIZE_DAILY
+WHERE
+    INTERVAL_START BETWEEN '2025-06-01 00:00:00' AND '2025-11-01 00:00:00'
+GROUP BY
+    TO_CHAR(INTERVAL_START, 'YYYY-IW')
+ORDER BY
+   LOCAL.WEEK;
 ```
 
 ## References
