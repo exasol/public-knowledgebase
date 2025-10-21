@@ -283,7 +283,7 @@ All administration tasks are done using the Exasol [ConfD client](https://docs.e
 
 ### Starting a database
 
-It is **critical** that only one database is configured to run at a time. Starting both the active and passive databases at the same time will result in data corruption. There is no mechanism which will prevent you from accidentally starting the incorrect database, therefore ensure that you check the states of each database before starting any!
+It is **critical** that only one database is configured to run at a time. Starting both the active and passive databases at the same time will result in data corruption. If you try to start the passive database while the active database is running, you will receive an error message that the data volume is in use. Only start a database if both databases are in the setup state.
 
 1. Check the state of each database with the following command:
    ```
@@ -417,34 +417,35 @@ confd_client db_backup_modify_schedule db_name: PROD_DR backup_name: "Backup PRO
 
 ### Switch back DR Database to PROD Database
 
-This scenario assumes that the nodes of the former PROD database are offline - if the nodes are already running just check the state of the nodes using 'confd_client node_state' and skip starting the service on these nodes.
+This scenario assumes that the nodes of the former PROD database are offline - if the nodes are already running just check the state of the nodes using 'confd_client node_state' and skip resuming or starting the service on these nodes. Nodes are automatically added to the cluster upon startup, so there is no need to explicitly resume them.
 
-1. Resume nodes
 
-    ```bash
-    confd_client node_resume nid: '[11,12,13,14,15,16,17,18,19,20,21,22]' enable: true
-    ```
-
-2. Start Exasol Service
+1. Start Exasol Service on the previously offline nodes
 
     ```bash
     systemctl --user start c4
     systemctl --user start c4_cloud_command
     ```
 
-3. Check the state of the previously stopped nodes from one of the passive sited nodes.
+2. Check the state of the previously stopped nodes from one of the passive sited nodes. Wait until all nodes are shown as ONLINE.
 
     ```bash
     confd_client node_state
     ```
 
-4. Stop DR database
+3. Stop DR database
 
     ```bash
     confd_client db_stop db_name: PROD_DR
     ```
 
-5. Start PROD database
+4. Wait until the DR database status is shown as 'setup'
+
+    ```bash
+    confd_client db_state db_name: PROD_DR
+    ```
+
+5. Start PROD database once the PROD_DR database is shut down.
 
     ```bash
     confd_client db_start db_name: PROD
@@ -502,7 +503,7 @@ csinfo -R
 
 If one of the volumes is in the RECOVERING state, then a redundancy is being built from a different node. During recovery, a log message is printed in the Storage logs every 5 minutes with a counter on the given status and an ETA:
 ```
-Logd_collect Storage
+logd_collect Storage
 ```
 For example, after moving a segment to n22, you would see a message like this in the logfile:
 ```
@@ -883,15 +884,11 @@ Now the database is again protected against single node failures. The procedures
 
 > **NOTE:** This scenario assumes that the same original nodes from DC1 rejoin the cluster. If new nodes join, an installation of those nodes is required. This means the Exasol software must be installed and nodes are re-added to the cluster as existing nodes.
 
-Once all the nodes of DC1 are online again, the nodes can be resumed. 
+Nodes are automatically resumed in the cluster upon start of the Exasol services on those machines. This will clear the 'suspended' status. 
 
-> **NOTE:** It is important to only resume the nodes once they are back online to maintain the quorum.
 
-1. ConfD job to resume suspended nodes:
-    ```
-    confd_client node_resume nid: '[11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22]' enable: True
-    ```
-
+1. Start the services on the affectd nodes.
+   
     As soon as the nodes from DC1 are resumed and online, all storage deputy segments in DC2 will be demoted to redundancy copies and the resynchronizing of all storage segments in DC1 is started. The recovery starts automatically, the duration of the resynchronization depends on the amount of data that is out of date.
 
     > **NOTE:** In the worst case, all data is resynchronized. 
@@ -998,14 +995,11 @@ In this cluster configuration, the cluster is still protected against single nod
 
 > **NOTE:** This scenario assumes that the same original nodes from DC2 rejoin the cluster. If new nodes join, an installation of those nodes is required. This means the Exasol software must be installed and nodes are re-added to the cluster as existing nodes.
 
-Once all the nodes of DC2 are online again, the nodes can be resumed. 
+Nodes are automatically resumed in the cluster upon start of the Exasol services on those machines. This will clear the 'suspended' status. 
 
-> **NOTE:** It is important to only resume the nodes once they are back online to maintain the quorum.
 
-1. ConfD job to resume suspended nodes from DC2:
-    ```
-    confd_client node_resume nid: '[23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34]' enable: True
-    ```
+1. Start the Exasol services on the affected nodes 
+
     As soon as the nodes have joined the quorum, storage will start to resync the outdated storage segments in DC2. The recovery starts automatically, the duration of the resynchronization depends on the amount of data that is out of date.
 
     > **NOTE:** In the worst case, all data is resynchronized.
