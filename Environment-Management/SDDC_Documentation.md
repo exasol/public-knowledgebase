@@ -186,13 +186,15 @@ Prepare hosts according to [Prepare Host](https://docs.exasol.com/db/latest/admi
 
 4. Create new data volume
 
-    **NOTE:** Exclude reserve nodes, add all storage nodes from both sites DC1 and DC2, number of master nodes = active database nodes in DC1
+    **NOTE:** Exclude reserve nodes, add all storage nodes from both sites DC1 and DC2, number of master nodes = active database nodes in DC1. Data volumes will automatically grow as the database grows if there is enough disk space in the cluster to accomodate it. 
 
     ```bash
     confd_client st_volume_create name: data_vol disk: disk1 type: data size: '100 GiB' nodes: '[11,12,13,14,15,16,17,18,19,20,21,23,24,25,26,27,28,29,30,31,32,33]' redundancy: 2 num_master_nodes: 11
     ```
 
 5. Create new archive volume (optional)
+
+    When creating an archive volume, consider how large the archive volume needs to be before creation. Unlike the data volume, the archive volume can only expand manually and cannot be decreased. The below example uses 100 GiB as the size, but for most production workloads, the size should be much larger. View [Sizing Guidelines](https://docs.exasol.com/db/latest/administration/on-premise/sizing.htm#Backupdiskspace) for more information. 
     ```bash
     confd_client st_volume_create name: arc_vol disk: disk1 type: archive size: '100 GiB' nodes: '[11,12,13,14,15,16,17,18,19,20,21,23,24,25,26,27,28,29,30,31,32,33]' redundancy: 2 num_master_nodes: 11
     ```
@@ -206,8 +208,10 @@ Prepare hosts according to [Prepare Host](https://docs.exasol.com/db/latest/admi
 
 7. Create active database
 
+    When creating a database, specify the data volume you created in step 4. When creating a database, you must specify the amount of DB RAM the database is allocated (mem_size). If you specify a size larger than what is physically possible given the available physical memory, it will automatically be reduced. View [Sizing Information](https://docs.exasol.com/db/latest/administration/on-premise/sizing.htm#DatabaseRAMDBRAM) for more information about calculating the amount of DB RAM. The example below creates a database with 100 GiB of RAM.
+
     ```bash
-    confd_client db_create db_name: PROD version: 8.29.12 data_volume_name: data_vol mem_size: '47618 MiB' port: 8563 nodes: '[11,12,13,14,15,16,17,18,19,20,21,22]' num_active_nodes: 11 owner: '[500, 500]' auto_start: true
+    confd_client db_create db_name: PROD version: 8.29.12 data_volume_name: data_vol mem_size: '100 GiB' port: 8563 nodes: '[11,12,13,14,15,16,17,18,19,20,21,22]' num_active_nodes: 11 auto_start: true
     ```
 
 8. Install database certificates (optional)
@@ -216,10 +220,12 @@ Prepare hosts according to [Prepare Host](https://docs.exasol.com/db/latest/admi
     confd_client cert_update
     ```
 
-9. Create standby database
+9.  Create standby database
+
+    When creating the standby database, keep the parameters the same as the active database. However you must use the temporary data volume created in step 6. This is important because upon startup, the database will wipe the volume. After the database has been started once, we will swap which volume is in use. Specify all of the nodes on DC2 within the node list. Auto_start should be set to false to prevent the database from starting automatically after a restart of the cluster or update.
 
     ```bash
-    confd_client db_create db_name: PROD_DR version: 8.29.12 data_volume_name: DataVolumeTemporary mem_size: '47618 MiB' port: 8564 nodes: '[23,24,25,26,27,28,29,30,31,32,33,34]' num_active_nodes: 11 owner: '[500, 500]' auto_start: false
+    confd_client db_create db_name: PROD_DR version: 8.29.12 data_volume_name: DataVolumeTemporary mem_size: '100 GiB' port: 8563 nodes: '[23,24,25,26,27,28,29,30,31,32,33,34]' num_active_nodes: 11 auto_start: false
     ```
 
 10. Install database certificates (optional)
@@ -242,12 +248,12 @@ Prepare hosts according to [Prepare Host](https://docs.exasol.com/db/latest/admi
     confd_client db_configure db_name: PROD_DR create_new_db: false
     ```
 
-13. Update database port and data volume of the standby database
+13. Update data volume of the standby database
 
-    **NOTE:** set to the same port and data volume as the active database
+    **NOTE:** set to the same data volume as the active database
         
     ```bash
-    confd_client db_configure db_name: PROD_DR data_volume_name: data_vol port: 8563
+    confd_client db_configure db_name: PROD_DR data_volume_name: data_vol
     ```
 
 14. Remove temporary database volume(s)
