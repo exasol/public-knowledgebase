@@ -6,7 +6,7 @@ We want to keep track of how much data is stored in our database so we can prepa
 
 * The size of data in each table and schema.
 * How the amount of data changes over time (each day, week, and month).
- 
+
 Is it possible to create a query or view that shows the size of all tables and schemas, so we can easily monitor data growth for specific time periods?
 
 ## Answer
