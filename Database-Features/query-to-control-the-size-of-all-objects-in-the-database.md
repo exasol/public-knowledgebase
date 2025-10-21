@@ -11,8 +11,11 @@ Is it possible to create a query or view that shows the size of all tables and s
 
 ## Answer
 
-You can utilize system tables to gather detailed information about the sizes of all objects in the database. This enables efficient monitoring and helps identify opportunities for optimization.
-Below, we present an overview of various system tables available at both the metadata and history levels.
+It is possible to create queries or views that show the size of all tables and schemas in Exasol using system tables like EXA_ALL_TABLES and EXA_ALL_TABLE_SIZES. These tables provide metadata about object sizes, which allows you to monitor storage usage at both schema and table levels.
+
+However, Exasol does not store historical size information for all objects by default. For tracking data growth over specific time periods (daily, weekly, monthly), you would need to implement your own history recording—such as scheduling regular queries to store size snapshots in a custom table. 
+
+Below is an overview of the system tables accessible for metadata and, where available, historical information.
 
 ### RAW and MEM Size
 
