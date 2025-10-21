@@ -283,7 +283,7 @@ All administration tasks are done using the Exasol [ConfD client](https://docs.e
 
 ### Starting a database
 
-Since both databases are configured to run on the same port, starting the database will fail if the port is already in use by a database. Only one database can run at a time. In normal operation mode the database on the active site is online while the database on the passive site is offline. 
+It is **critical** that only one database is configured to run at a time. Starting both the active and passive databases at the same time will result in data corruption. There is no mechanism which will prevent you from accidentally starting the incorrect database, therefore ensure that you check the states of each database before starting any!
 
 1. Check the state of each database with the following command:
    ```
