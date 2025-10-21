@@ -139,7 +139,7 @@ FROM EXA_DBA_INDICES;
 
 * This section describes the **statistical** system tables in Exasol.
 * The statistical system tables are placed in the system schema EXA_STATISTICS.
-* The statistical system tables contain historical data about the usage and the status of the DBMS. 
+* The statistical system tables contain historical data about the usage and the status of the DBMS.
 * This data can be used to analyze trends, identify patterns, and make predictions about future events or conditions.
 
 #### EXA_DB_*
@@ -197,5 +197,3 @@ ORDER BY
 * [CHANGELOG: Raw size of scripts, views, and functions set to 0 bytes](https://exasol.my.site.com/s/article/Changelog-content-11369?language=en_US)
 
 *We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).*
-
-
