@@ -53,6 +53,9 @@ In Exasol, MEM and RAW are two important metrics used to monitor and manage the 
 ##### Example Query EXA_ALL_OBJECT_SIZES
 
 ```SQL
+-- Retrieves and displays the name, type, and both raw and compressed sizes (in MiB and GiB) of all database objects,
+-- sorted by compressed size in descending order.
+
 SELECT
  OBJECT_NAME,
  OBJECT_TYPE,
@@ -75,6 +78,9 @@ ORDER BY
 ##### Example Query EXA_DBA_OBJECT_SIZES
 
 ```SQL
+-- Retrieves the name, type, and both raw (uncompressed) and memory (compressed) sizes of all database objects in MiB and GiB,
+-- sorted by compressed size in descending order.
+
 SELECT
  OBJECT_NAME,
  OBJECT_TYPE,
@@ -96,6 +102,9 @@ ORDER BY
 ##### Example Query EXA_DBA_COLUMN_SIZES
 
 ```SQL
+-- Retrieves schema, table, and column names along with raw and compressed size details (in bytes, KiB, MiB, GiB) for each database column,
+-- sorted by compressed size in descending order (nulls last).
+
 SELECT
  COLUMN_SCHEMA,
  COLUMN_TABLE,
@@ -121,6 +130,8 @@ ORDER BY
 ##### Example Query EXA_STATISTICS_OBJECT_SIZES
 
 ```SQL
+-- Displays storage size information for statistical system tables
+
 SELECT * FROM EXA_STATISTICS_OBJECT_SIZES;
 ```
 
@@ -134,6 +145,8 @@ SELECT * FROM EXA_STATISTICS_OBJECT_SIZES;
 ##### Example Query EXA_DBA_INDICES
 
 ```SQL
+-- -- Retrieves the schema, table, object ID, and memory (compressed) size for all database indexes.
+
 SELECT INDEX_SCHEMA, INDEX_TABLE, INDEX_OBJECT_ID, MEM_OBJECT_SIZE
 FROM EXA_DBA_INDICES;
 ```
@@ -152,9 +165,10 @@ FROM EXA_DBA_INDICES;
 
 ##### Example Query EXA_DB_SIZE_DAILY per Day
 
-The following query retrieves the average raw and memory object sizes (in GiB) for each day from the EXA_DB_SIZE_DAILY table within the date range from June 1, 2025 to November 1, 2025.
-
 ```SQL
+-- Retrieves the average raw and memory object sizes (in GiB) for each day from the EXA_DB_SIZE_DAILY table
+-- within the date range from June 1, 2025 to November 1, 2025.
+
 SELECT 
  INTERVAL_START, 
  RAW_OBJECT_SIZE_AVG AS RAW_OBJECT_SIZE_AVG_GiB, 
@@ -166,9 +180,10 @@ WHERE INTERVAL_START BETWEEN '2025-06-01 00:00:00' AND '2025-11-01 00:00:00';
 
 ##### Example Query EXA_DB_SIZE_DAILY per Week
 
-The following query calculates and displays the weekly averages of raw and memory object sizes (rounded to two decimal places) in GiB from the EXA_DB_SIZE_DAILY table for the period between June 1, 2025 and November 1, 2025.
-
 ```SQL
+-- Calculates and displays the weekly averages of raw and memory object sizes (rounded to two decimal places) in GiB
+-- from the EXA_DB_SIZE_DAILY table for the period between June 1, 2025 and November 1, 2025.
+
 SELECT
  TO_CHAR(INTERVAL_START, 'YYYY-IW') AS WEEK,
  ROUND(AVG(RAW_OBJECT_SIZE_AVG),2) AS RAW_OBJECT_SIZE_AVG_GiB,
