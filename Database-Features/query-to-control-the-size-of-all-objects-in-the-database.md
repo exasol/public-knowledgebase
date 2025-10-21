@@ -40,7 +40,7 @@ In Exasol, MEM and RAW are two important metrics used to monitor and manage the 
 * It contains the RAW_OBJECT_SIZE (uncompressed volume) and MEM_OBJECT_SIZE (compressed volume) for all database objects (tables, schemas, views, functions, scripts) that the current user has access to.
 * The sizes for schemas are calculated recursively, meaning they include the sum of sizes of all objects within that schema.
 * Views, functions, and scripts are defined by text. The space this text occupies is measured as MEM-size.
-* These objects don't store data themselves—they are just definitions or code—their raw_size is always 0 bytes. As a result, they do not consume any space against your schema quotas, which are typically based on raw_size.
+* These objects don't store data themselves - they are just definitions or code - their raw_size is always 0 bytes. As a result, they do not consume any space against your schema quotas, which are typically based on raw_size.
 
 ##### Example Query EXA_ALL_OBJECT_SIZES
 
