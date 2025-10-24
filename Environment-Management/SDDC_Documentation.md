@@ -458,6 +458,13 @@ It is important to always monitor the status of the volumes to ensure that SDDC 
 
 However, the ability to write to the redundant copy requires that all volumes are online and operational. **If all volumes are in the ONLINE state, then SDDC is functioning properly and the cluster is capable of handling a disaster scenario and swapping to the passive data center. In any other state (DEGRADED or RECOVERING), there is no guarantee that the cluster can handle a disaster scenario on the passive or active side.** In these statuses, it depends on which nodes crash and if there is a full redundancy already in place for those nodes.
 
+You can use the below tools to ensure:
+1. All volumes are in an ONLINE state
+2. There aren't any data segments on a reserve node (causes degraded performance)
+3. All redundant segments are on nodes in DC2
+4. The data and archive volumes are using the same nodes (NOTE: this is recommended to avoid any headaches in case of a node failure which could result in the data and archive volumes being in different states)
+ 
+
 ### Monitoring Volume States
 
 You should monitor the state of the volumes and take the appropriate action:
@@ -614,15 +621,16 @@ Move data segments from node n12 to node n22. No downtime is required.
     confd_client st_volume_move_node vname: data_vol src_nodes: '[12]' dst_nodes: '[22]'
 
     confd_client st_volume_move_node vname: arc_vol src_nodes: '[12]' dst_nodes: '[22]'
+    ```
 
-    … wait until all segments have moved…
-
+    … wait until all segments have moved and move redundant segments (optional)
+    ```
     confd_client st_volume_move_node vname: data_vol src_nodes: '[24]' dst_nodes: '[34]'
 
     confd_client st_volume_move_node vname: arc_vol src_nodes: '[24]' dst_nodes: '[34]'
     ```
 
-    **NOTE**: it is not strictly necessary to also move the redundant segments. It is included here so that the nodes in DC1 have the same configuration as in DC2.
+    **NOTE**: it is not strictly necessary to also move the redundant segments. It is included here so that the nodes in DC1 have the same configuration as in DC2. As long as the redundancy exists on a node on the passive side, then the cluster is in a proper state.
 
 2. Monitor the progress of the synchronization using the Storage logs (Progress will be updated every 5 minutes):
     ```
@@ -685,7 +693,7 @@ Archive volumes do not have any mechanisms in place to automatically move segmen
 
     In this state, the database and all storage segments are redundant, and the cluster can handle Disaster Scenarios again. If you want to keep the passive site layout similar to the active site, you can move the segments stored on n24 to n34. This requires no database downtime, but during the duration of the synchronization, the cluster cannot switch to the passive site. 
 
-2. Use [st_volume_move_node](https://docs.exasol.com/db/latest/confd/jobs/st_volume_move_node.htm) to move node segments of a volume (and repeat for both data and archive volumes):
+2. Use [st_volume_move_node](https://docs.exasol.com/db/latest/confd/jobs/st_volume_move_node.htm) to move node segments of a volume (and repeat for both data and archive volumes) (optional):
     ```
     confd_client st_volume_move_node vname: data_vol src_nodes: '[24]' dst_nodes: '[34]'
     confd_client st_volume_move_node vname: arc_vol src_nodes: '[24]' dst_nodes: '[34]'
@@ -746,14 +754,15 @@ Once the segments are rebuilt, the volumes enter the ONLINE status again, and th
 ![Overview after moving redundant segments](images/SDDC/node_failure_passive_3.png)
 
 To restore the database to its original state, wait until the failed node is online again. Once the failed node is repaired, it is automatically added to the cluster as a passive node. Afterwards, the segments of the data and archive volume can be returned to that node. During the recovery phase, the database is not capable of swapping to the passive side until the redundancy is rebuilt. 
+> Note: Moving the data segments back to n24 is totally optional. The cluster is already in a proper state and can handle DR scenarios because all volumes are ONLINE and the redundancy is complete on both data centers. It is included here for demonstration purposes to return the cluster back to it's "original" state.
 
-2. ConfD job to move segments back to the original node after node is restored:
+1. ConfD job to move segments back to the original node after node is restored (optional):
     ```
     confd_client st_volume_move_node vname: data_vol src_nodes: '[34]' dst_nodes: '[24]'
     confd_client st_volume_move_node vname: arc_vol src_nodes: '[34]' dst_nodes: '[24]'
     ```
 
-The database is back in its original state:
+The database is back in its original state after the segments are rebuilt:
 
 ![Standard SDDC setup](images/SDDC/SDDC_standard.png)
 
