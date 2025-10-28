@@ -2,7 +2,7 @@
 
 ## Problem
 
-Customer is not able to connect to Oracle DB with short host name.Connection can be established with FQDN and IP adrress but not with short host name.
+Customer is not able to connect to Oracle DB with short host name.Connection can be established with FQDN and IP address but not with short host name.
 Below is example of connection detail and query which failed with error.
 
 Connection detail:
@@ -14,11 +14,11 @@ create connection my_oracle to '(DESCRIPTION = (ADDRESS_LIST = (ADDRESS = (COMMU
 Query:
 
 ```sql
-    IMPORT INTO my_table (col1, col2, col4) 
-    FROM ORA
-    AT my_oracle
-    USER 'my_user' IDENTIFIED BY 'my_secret'
-    STATEMENT ' SELECT * FROM orders WHERE order_state=''OK'' '
+IMPORT INTO my_table (col1, col2, col4) 
+FROM ORA
+AT my_oracle
+USER 'my_user' IDENTIFIED BY 'my_secret'
+STATEMENT ' SELECT * FROM orders WHERE order_state=''OK'' '
 ```
 
 Error:
@@ -29,7 +29,7 @@ Oracle tool failed with error code '12545' and message 'ORA-12545: Connect faile
 
 ## Solution
 
-For the short host name to work,search domain needs to be configured as described below.If search domain was configured in v7,It should also be configured in v8 after upgrade to v8.
+For the short host name to work, search domain needs to be configured as described below.If search domain was configured in v7, it should also be configured in v8 after upgrade to v8.
 
 About Search domain:
 A Linux search domain is a domain name, or a list of domains, that the operating system automatically appends to a short hostname (like "server1") when you try to resolve it to an IP address. This process is part of DNS resolution and allows you to access local network devices using only their simple hostnames instead of their fully qualified domain names (FQDNs) (e.g., server1.example.com). For example, if your search domain is example.com and you type forums, your system will search for forums.example.com.
@@ -55,7 +55,7 @@ After that, the exasol service needs to be restarted, To safely do it, please fo
     systemctl start c4_cloud_command
     ```
 
-   By default DB automatically starts when c4 services start If it doesn't, start it using the ConfD job db_start:
+   By default DB automatically starts when c4 services start. If it doesn't, start it using the ConfD job db_start:
 
     ```shell
     confd_client db_start db_name: <DB-NAME>
