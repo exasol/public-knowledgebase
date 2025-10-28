@@ -126,16 +126,16 @@ So now you have a file "jars" residing in folder "default" and having content of
 ```sql
 WITH
 content_of_default as(
-	SELECT
-		exa_toolbox.bucketfs_ls('/buckets/bfsdefault/default/')
+  SELECT
+    exa_toolbox.bucketfs_ls('/buckets/bfsdefault/default/')
 )
 select
-	*
+  *
 from
-	content_of_default d
+  content_of_default d
 where
-	1=1
-	and d.file_name like '%jars%'
+  1=1
+  and d.file_name like '%jars%'
 ;
 ```
 
