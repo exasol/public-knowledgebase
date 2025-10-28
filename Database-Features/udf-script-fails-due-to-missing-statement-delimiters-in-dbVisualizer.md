@@ -62,5 +62,6 @@ def run(ctx):
 
 * [Documentation of how to use DbVisualizer with Exasol](https://docs.exasol.com/db/latest/connect_exasol/sql_clients/db_visualizer.htm)
 * [Documentation of UDF Instance Limiting](https://docs.exasol.com/db/latest/database_concepts/udf_scripts/udf_instance_limit.htm)
+* [Troubleshooting DbVisualizer] (https://docs.exasol.com/db/latest/connect_exasol/sql_clients/db_visualizer.htm#Troubleshooting)
 
 *We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).*
