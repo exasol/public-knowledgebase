@@ -7,6 +7,12 @@ For further information please also visit related pages for Exasol SaaS:
 * [SaaS Documentation](https://docs.exasol.com/saas)
 * [Status Page (status.exasol.com)](https://status.exasol.com)
 
+## Nov 01 2025
+
+### Scheduled Actions Improvements
+
+Enhanced scheduling capabilities now allow 15-minute time increments (previously limited to hourly), giving you finer control over automation timing. The scheduled actions list can be sorted by next scheduled time for better visibility. You can now edit cron rules directly in the UI and temporarily disable actions without deletion, making it easier to manage and coordinate automated workflows.
+
 ## Sep 22 2025
 
 ### Lakehouse Turbo
