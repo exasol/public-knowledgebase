@@ -17,7 +17,7 @@ confd_client db_stop db_name: DB1
 
 A normal shutdown in Exasol is a controlled, graceful termination of database services, which proceeds in multiple steps over a grace period.
 
-#### Key Consequences and Usage
+#### Key Consequences and Usage of Normal Shutdown
 
 * **Transaction Handling:** It aborts all active transactions and queries using the standard mechanism (like session kill). If necessary, transactions are forcefully terminated after a short grace period.
 
@@ -37,7 +37,7 @@ confd_client db_stop db_name: DB1 force: true
 
 A forced shutdown in Exasol is an immediate and abrupt termination of all active database connections and service processes.
 
-#### Key Consequences and Usage
+#### Key Consequences and Usage of Forced Shutdown
 
 * **Impact:** Because the termination is so abrupt, no entry is written to the auditing table, making the event functionally equivalent to a complete system crash.
 
