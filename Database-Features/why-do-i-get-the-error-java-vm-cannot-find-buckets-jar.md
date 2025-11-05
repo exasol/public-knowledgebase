@@ -84,7 +84,7 @@ Now, suppose, Bucket folder is present in the `BUCKETFS_LS` output for the respe
 `BUCKETFS_LS` output in that case might look like
 
 ```sql
-SELECT BUCKETFS_LS('/buckets/bfsdefault/default/jars');
+SELECT BUCKETFS_LS('/buckets/bfsdefault/default/drivers/jdbc/');
 ```
 
 ```text
@@ -101,7 +101,7 @@ In case you hit a situation with uploaded file having size 0, please try re-uplo
 
 Another similar kind of problem that one can face when uploading files to BucketFS is `curl`'s folder vs. file behavior.
 
-Imagine the goal is still to upload file `myfile.jar` to BucketFS folder `/buckets/bfsdefault/default/jars/`.
+Imagine the goal is still to upload file `ojdbc10.jar` to BucketFS folder `/buckets/bfsdefault/default/drivers/jdbc/`.
 
 Originally, there is no such file and folder:
 
