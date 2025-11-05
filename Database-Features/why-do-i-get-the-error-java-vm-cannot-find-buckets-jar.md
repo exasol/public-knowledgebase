@@ -7,6 +7,16 @@ For Java-based Virtual Schemas maintained by Exasol, adapter script defines:
 * JAR files to inform UDF framework where to find the libraries (JAR files) for the virtual schema and database driver. It is done via `%jar` pragma.
 * Java class used during script execution. It is done via `%scriptclass` pragma.
 
+Example:
+
+```sql
+CREATE JAVA ADAPTER SCRIPT "JDBC_ORACLE" AS
+%scriptclass com.exasol.adapter.RequestDispatcher;
+%jar /buckets/bfsdefault/default/vs/virtual-schema-dist-13.0.0-oracle-3.0.7.jar;
+%jar /buckets/bfsdefault/default/drivers/jdbc/oracle/ojdbc10.jar;
+/
+```
+
 So you uploaded all necessary files to BucketFS, but receive error like
 
 ```text
