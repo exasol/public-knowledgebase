@@ -28,11 +28,11 @@ Java VM cannot find '/buckets/bfsdefault/default/drivers/jdbc/ojdbc10.jar': No s
 (Session: 1839255503714910208)
 ```
 
-The advice below is also generally applicable to UDFs using BucketFS files via `%jar` pragma.
+The following solution is also generally relevant for UDFs that use the additional %jar script option, which is a command for registering and loading necessary files (such as libraries and configuration files) from BucketFS into the UDF's runtime environment.
 
-## Solution
+## Explanation
 
-Please familiarize yourself with the concept of BucketFS: [BucketFS](https://docs.exasol.com/db/latest/database_concepts/bucketfs/bucketfs.htm).
+Before proceeding with the solution, it is important to understand the concept of BucketFS. In the context of Java UDFs in Exasol, BucketFS plays a crucial role in storing and distributing Java libraries, JAR files, and related resources across all database nodes. For more detailed information, please refer to the official documentation: [BucketFS](https://docs.exasol.com/db/latest/database_concepts/bucketfs/bucketfs.htm).
 
 First of all, this multi-level error stack trace with many "F-UDF-CL" error codes means that error happened during a UDF execution (see [UDF Scripts](https://docs.exasol.com/db/latest/database_concepts/udf_scripts.htm)).
 The only involved UDF script here is the Adapter script, as adapter scripts are implemented as UDFs.
@@ -43,7 +43,9 @@ In the long error stack trace we find the important part:
 Java VM cannot find '/buckets/bfsdefault/default/drivers/jdbc/ojdbc10.jar': No such file or directory
 ```
 
-so we need to understand why this file couldn't be found, even if we've just uploaded it.
+Therefore, it's important to investigate why the file cannot be located, even though it was just uploaded.
+
+## Solution
 
 The next diagnostic step is to explore the content of BucketFS in the eyes of a UDF.
 For that purpose we'll use UDF "BUCKETFS_LS" shown in <https://github.com/exasol/exa-toolbox/tree/master/utilities#bucketfs_ls>.
@@ -51,12 +53,16 @@ For that purpose we'll use UDF "BUCKETFS_LS" shown in <https://github.com/exasol
 Step-by-step, starting from `/buckets`, we'll check if all parent folder and file itself is visible:
 
 ```sql
+-- List folders/files in top-level BucketFS directory
 SELECT BUCKETFS_LS('/buckets/');
 
+-- Explore the default bucket folder
 SELECT BUCKETFS_LS('/buckets/bfsdefault/');
 
+-- Navigate into the default subdirectory
 SELECT BUCKETFS_LS('/buckets/bfsdefault/default/');
-
+-- Repeat as needed for further subfolders and files...
+SELECT BUCKETFS_LS('/buckets/bfsdefault/default/drivers/jdbc/');
 ...
 ```
 
@@ -132,6 +138,7 @@ while upload to `https://w:<write password>@<data node ip>:<BucketFS Service por
 So now you have a file "jars" residing in folder "default" and having content of the file "myfile.jar" to be uploaded:
 
 ```sql
+-- List all entries in the 'default' bucket where the file name contains 'jars', using the BUCKETFS_LS UDF for inspection.
 WITH
 content_of_default as(
   SELECT
@@ -190,5 +197,6 @@ curl -v -k --upload-file myfile.jar https://w:<write password>@<data node ip>:<B
 * [UDF Scripts](https://docs.exasol.com/db/latest/database_concepts/udf_scripts.htm)
 * [Database Access in BucketFS](https://docs.exasol.com/db/latest/administration/on-premise/bucketfs/database_access.htm)
 * [bucketfs_ls UDF](https://github.com/exasol/exa-toolbox/tree/master/utilities#bucketfs_ls)
+[Exasol UDF Script Options: User Documentation](https://github.com/exasol/script-languages-release/blob/master/doc/user_guide/script_options/script_options.md)
 
 *We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).*
