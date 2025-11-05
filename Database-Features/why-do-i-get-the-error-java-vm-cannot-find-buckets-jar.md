@@ -107,17 +107,17 @@ Originally, there is no such file and folder:
 
 ```sql
 WITH
-content_of_default as(
+content_of_default AS(
   SELECT
     exa_toolbox.bucketfs_ls('/buckets/bfsdefault/default/')
 )
-select
+SELECT
   *
-from
+FROM
   content_of_default d
-where
+WHERE
   1=1
-  and d.file_name like '%jars%'
+  AND d.file_name LIKE '%jars%'
 ;
 ```
 
@@ -146,17 +146,17 @@ So now you have a file "jars" residing in folder "default" and having content of
 ```sql
 -- List all entries in the 'default' bucket where the file name contains 'jars', using the BUCKETFS_LS UDF for inspection.
 WITH
-content_of_default as(
+content_of_default AS(
   SELECT
     exa_toolbox.bucketfs_ls('/buckets/bfsdefault/default/')
 )
-select
+SELECT
   *
-from
+FROM
   content_of_default d
-where
+WHERE
   1=1
-  and d.file_name like '%jars%'
+  AND d.file_name LIKE '%jars%'
 ;
 ```
 
