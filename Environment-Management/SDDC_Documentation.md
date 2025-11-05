@@ -3,6 +3,7 @@
 This document contains information about how to use the SDDC Feature with Exasol.
 
 ## Table of Contents
+
 - [Table of Contents](#table-of-contents)
 - [Foreword](#foreword)
 - [Background – how SDDC works](#background--how-sddc-works)
@@ -10,13 +11,13 @@ This document contains information about how to use the SDDC Feature with Exasol
   - [Cluster Interconnect: Requirements and Bandwidth Planning](#cluster-interconnect-requirements-and-bandwidth-planning)
   - [Installation Example](#installation-example)
 - [SDDC Administration](#sddc-administration)
-   - [Starting a database](#starting-a-database)
-   - [Configuring a database](#configuring-a-database)
-   - [Creating new volumes](#creating-new-volumes)
-   - [Creating Backups](#creating-backups)
-   - [Activating or Deactivating Backup Schedules](#activating-or-deactivating-backup-schedules)
-   - [Switch Active Database to DR database](#switch-active-database-to-dr-database)
-   - [Switch back DR Database to PROD Database](#switch-back-dr-database-to-prod-database)
+  - [Starting a database](#starting-a-database)
+  - [Configuring a database](#configuring-a-database)
+  - [Creating new volumes](#creating-new-volumes)
+  - [Creating Backups](#creating-backups)
+  - [Activating or Deactivating Backup Schedules](#activating-or-deactivating-backup-schedules)
+  - [Switch Active Database to DR database](#switch-active-database-to-dr-database)
+  - [Switch back DR Database to PROD Database](#switch-back-dr-database-to-prod-database)
 - [SDDC Monitoring](#sddc-monitoring)
   - [Monitoring Volume States](#monitoring-volume-states)
   - [Monitoring Database Info](#monitoring-database-info)
@@ -104,8 +105,8 @@ For this example, provision at least **25 Gbit/s** interconnect bandwidth to h
 
 > **Note:**  
 > Disk throughput is a **theoretical maximum**. Actual throughput depends on disk type (e.g. SSD, NVMe, HDD), IOPS, block size, encryption, controller features, size and frequency of database writes (small or large blocks), and the type of database queries being executed.
- 
-> **Tip:**  
+
+ **Tip:**  
 > Only peak write operations and backups are covered here. Be sure to include all regular and exceptional loads (application traffic, management tasks, etc.) in final network sizing.
 
 ---
@@ -159,13 +160,13 @@ Prepare hosts according to [Prepare Host](https://docs.exasol.com/db/latest/admi
 **Example:**
 
 1. When deploying an SDDC cluster, you need to create a config file as if you were creating a normal Exasol database. For more instructions, see the [documentation](https://docs.exasol.com/db/latest/administration/on-premise/installation.htm). When creating your config file, include the ip addresses of all nodes from both data centers. You also need to add a parameter so that c4 does not create a default database or data volume during installation. Open the config file and add the following parameter:
-   
+
    ```bash
    CCC_PLAY_WITH_DB=false
    ```
 
-2. Start deployment with 
-    
+2. Start deployment with
+
     ```bash
     ./c4 host play -i config
     ```
@@ -187,7 +188,7 @@ Prepare hosts according to [Prepare Host](https://docs.exasol.com/db/latest/admi
     ```
 
 5. Create Temporary data volume
-   
+
     **NOTE:** This volume will be deleted later it is only needed for creating the standby database. The volume is created in redundancy 1 and only on the active nodes in DC2, exclude reserve node(s)
 
     ```bash
@@ -202,13 +203,13 @@ Prepare hosts according to [Prepare Host](https://docs.exasol.com/db/latest/admi
     confd_client db_create db_name: PROD version: 8.29.12 data_volume_name: data_vol mem_size: '100 GiB' port: 8563 nodes: '[11,12,13,14,15,16,17,18,19,20,21,22]' num_active_nodes: 11 auto_start: true
     ```
 
-7.  Install database certificates (optional)
+7. Install database certificates (optional)
 
     ```bash
     confd_client cert_update
     ```
 
-8.  Create standby database
+8. Create standby database
 
     When creating the standby database, keep the parameters the same as the active database. However you must use the temporary data volume created in step 6. This is important because upon startup, the database will wipe the volume. After the database has been started once, we will swap which volume is in use. Specify all of the nodes on DC2 within the node list. Auto_start should be set to false to prevent the database from starting automatically after a restart of the cluster or update.
 
@@ -216,7 +217,7 @@ Prepare hosts according to [Prepare Host](https://docs.exasol.com/db/latest/admi
     confd_client db_create db_name: PROD_DR version: 8.29.12 data_volume_name: DataVolumeTemporary mem_size: '100 GiB' port: 8563 nodes: '[23,24,25,26,27,28,29,30,31,32,33,34]' num_active_nodes: 11 auto_start: false
     ```
 
-9.  Install database certificates (optional)
+9. Install database certificates (optional)
 
     ```bash
     confd_client cert_update
@@ -239,7 +240,7 @@ Prepare hosts according to [Prepare Host](https://docs.exasol.com/db/latest/admi
 12. Update data volume of the standby database
 
     **NOTE:** set to the same data volume as the active database
-        
+
     ```bash
     confd_client db_configure db_name: PROD_DR data_volume_name: data_vol
     ```
@@ -274,7 +275,7 @@ All administration tasks are done using the Exasol [ConfD client](https://docs.e
 It is **critical** that only one database is configured to run at a time. Starting both the active and passive databases at the same time will result in data corruption. If you try to start the passive database while the active database is running, you will receive an error message that the data volume is in use. Only start a database if both databases are in the setup state.
 
 1. Check the state of each database with the following command:
-   
+
    ```bash
    confd_client db_state db_name: PROD
    running
@@ -286,15 +287,15 @@ It is **critical** that only one database is configured to run at a time. Starti
     NOTE: Databases with the "running" state are up and running. Databases with the "setup" state are shutdown.
 
 2. To start up a database:
-   
+
     ```bash
     confd_client db_start db_name: PROD
     ```
 
     NOTE: The database is fully up and running when the "connectible" property is set to "yes".
 
-3. Check database connectivity: 
-    
+3. Check database connectivity:
+
     ```bash
     confd_client db_info db_name: <database name> | grep connectible
     ```
@@ -315,7 +316,7 @@ To change the configuration of an existing database, such as enabling auditing o
 The below example adds a new parameter to both existing databases:
 
 1. Add a database parameter to both databases active and passive
-    
+
     ```bash
     confd_client db_configure db_name: PROD params_add: '[-oidcProviderClientSecret=abcd]'
 
@@ -327,9 +328,10 @@ The below example adds a new parameter to both existing databases:
 ### Creating new volumes
 
 Whenever a new volume is needed, ensure that the following is set:
-  - Redundancy 2
-  - the list of nodes includes all active nodes from both data centers (but no reserve nodes!)
-  - The *num_master_nodes* parameter is set to the same number of active database nodes.
+
+- Redundancy 2
+- the list of nodes includes all active nodes from both data centers (but no reserve nodes!)
+- The *num_master_nodes* parameter is set to the same number of active database nodes.
 
 For example:
 
@@ -344,7 +346,7 @@ confd_client st_volume_create name: arc_vol disk: disk1 type: archive size: '100
 NOTE: Backups are database-specific, meaning that it is not possible to create a L-1 backup based on a L-0 backup from a different database, even if the database is using the same data volume. For SDDC setups, this means that the PROD_DR database is not able to create a L-1 backup until you create a L-0 backup first.
 
 1. ConfD job to create a backup:
-    
+
     ```bash
     confd_client db_backup_start db_name: PROD_DR backup_volume_name: arc_vol level: 0 expire: 1w
     ```
@@ -360,7 +362,7 @@ In order to avoid false alerts or error messages, we recommend to deactivate all
 After a swap to the passive site, the backup schedule needs to be activated for the PROD_DR database. Use the [db_backup_modify_schedule](https://docs.exasol.com/db/latest/confd/jobs/db_backup_modify_schedule.htm) job. Backups configured in the schedule will not run if the database is not running.
 
 1. ConfD job to modify an existing backup schedule:
-    
+
     ```bash
     confd_client db_backup_modify_schedule db_name: PROD_DR backup_name: "Backup PROD_DR Level 0" enabled: true
     ```
@@ -381,7 +383,7 @@ confd_client db_backup_modify_schedule db_name: PROD_DR backup_name: "Backup PRO
 
     ```bash
     confd_client db_stop db_name: PROD
-    ``` 
+    ```
 
 2. Stop active site database nodes
 
@@ -417,7 +419,6 @@ confd_client db_backup_modify_schedule db_name: PROD_DR backup_name: "Backup PRO
 ### Switch back DR Database to PROD Database
 
 This scenario assumes that the nodes of the former PROD database are offline - if the nodes are already running just check the state of the nodes using 'confd_client node_state' and skip resuming or starting the service on these nodes. Nodes are automatically added to the cluster upon startup, so there is no need to explicitly resume them.
-
 
 1. Start Exasol Service on the previously offline nodes
 
@@ -457,11 +458,12 @@ It is important to always monitor the status of the volumes to ensure that SDDC 
 However, the ability to write to the redundant copy requires that all volumes are online and operational. **If all volumes are in the ONLINE state, then SDDC is functioning properly and the cluster is capable of handling a disaster scenario and swapping to the passive data center. In any other state (DEGRADED or RECOVERING), there is no guarantee that the cluster can handle a disaster scenario on the passive or active side.** In these statuses, it depends on which nodes crash and if there is a full redundancy already in place for those nodes.
 
 You can use the below tools to ensure:
+
 1. All volumes are in an ONLINE state
 2. There aren't any data segments on a reserve node (causes degraded performance)
 3. All redundant segments are on nodes in DC2
 4. The data and archive volumes are using the same nodes (NOTE: this is recommended to avoid any headaches in case of a node failure which could result in the data and archive volumes being in different states)
- 
+
 ### Monitoring Volume States
 
 You should monitor the state of the volumes and take the appropriate action:
@@ -475,9 +477,10 @@ confd_client st_volume_info vname: Arc_vol --json | jq -r '.state'
 Desired result: ONLINE
 
 Undesired results:
-* DEGRADED 
-* RECOVERING
-* LOCKED
+
+- DEGRADED
+- RECOVERING
+- LOCKED
 
 ---
 
@@ -573,10 +576,10 @@ Cluster overview after node failure:
     DEGRADED
     ```
 
-    NOTE: use jq to filter multiple "states" returned by ConfD. 
+    NOTE: use jq to filter multiple "states" returned by ConfD.
 
 2. Verify the database state (grep for info section):
-   
+
     ```bash
     confd_client db_info db_name: PROD | grep info
     info: 'Payload of database node 22 resides on volume master node 12. 1 segments of the database volume are not online (missing redundancy)'
@@ -609,14 +612,14 @@ Once segments on node n12 are recovered, volume states will change from recoveri
 
 ---
 
-#### Recovering from a transient node failure:
+#### Recovering from a transient node failure
 
-**Option 1 – Restart database with the failed node as active node**
+#### Option 1 – Restart database with the failed node as active node
 
 Stop the database and restart the database using n12 as an active node and n22 as the reserve node so that the database is back into its original state. For this activity, a short downtime is required.
 
 1. Stop and start database:
-    
+
     ```bash
     confd_client db_stop db_name: PROD 
 
@@ -629,14 +632,14 @@ Stop the database and restart the database using n12 as an active node and n22 a
 
 ![Standard SDDC setup](images/SDDC/SDDC_standard.png)
 
-**Option 2 – Move segments to new active node**
+#### Option 2 – Move segments to new active node
 
 Move data segments from node n12 to node n22. No downtime is required.
 
 **CAUTION: During the restoration of the data segments on the target node, the cluster cannot handle disaster scenarios.** Moving segments needs to be done for both the DATA volume and the ARCHIVE volume.
 
 1. Move nodes segments using ConfD:
-    
+
     ```bash
     confd_client st_volume_move_node vname: data_vol src_nodes: '[12]' dst_nodes: '[22]'
 
@@ -654,7 +657,7 @@ Move data segments from node n12 to node n22. No downtime is required.
     **NOTE**: it is not strictly necessary to also move the redundant segments. It is included here so that the nodes in DC1 have the same configuration as in DC2. As long as the redundancy exists on a node on the passive side, then the cluster is in a proper state.
 
 2. Monitor the progress of the synchronization using the Storage logs (Progress will be updated every 5 minutes):
-    
+
     ```bash
     logd_collect Storage
     ```
@@ -678,7 +681,7 @@ Cluster Overview after persistent node failure:
 ![Diagram after node failure](images/SDDC/node_failure_persistent_1.png)
 
 1. Use ConfD to validate volume states:
-   
+
     ```bash
     confd_client st_volume_info vname: data_vol --json | jq -r '.state'
     DEGRADED
@@ -690,7 +693,7 @@ Cluster Overview after persistent node failure:
     NOTE: use jq to filter multiple states.
 
 2. Use ConfD to validate database state:
-    
+
     ```bash
     confd_client db_info db_name: PROD | grep info
     info: 'Payload of database node 22 resides on volume master node 12. 1 segment of the database volume are not online (missing redundancy)'
@@ -702,7 +705,7 @@ Cluster overview after the **volume_move_delay** passed:
 
 ![Diagram after volume move delay](images/SDDC/node_failure_persistent_2.png)
 
-During recovery, the status of the _data_ volume is in the RECOVERING state, and the archive volume is DEGRADED.
+During recovery, the status of the *data* volume is in the RECOVERING state, and the archive volume is DEGRADED.
 
 Archive volumes do not have any mechanisms in place to automatically move segments to other nodes. Anytime an archive volume is in a DEGRADED state, the segments must be moved to a different node using [st_volume_move_node](https://docs.exasol.com/db/latest/confd/jobs/st_volume_move_node.htm).
 
@@ -719,7 +722,7 @@ Archive volumes do not have any mechanisms in place to automatically move segmen
     In this state, the database and all storage segments are redundant, and the cluster can handle Disaster Scenarios again. If you want to keep the passive site layout similar to the active site, you can move the segments stored on n24 to n34. This requires no database downtime, but during the duration of the synchronization, the cluster cannot switch to the passive site.
 
 2. Use [st_volume_move_node](https://docs.exasol.com/db/latest/confd/jobs/st_volume_move_node.htm) to move node segments of a volume (and repeat for both data and archive volumes) (optional):
-    
+
     ```bash
     confd_client st_volume_move_node vname: data_vol src_nodes: '[24]' dst_nodes: '[34]'
     confd_client st_volume_move_node vname: arc_vol src_nodes: '[24]' dst_nodes: '[34]'
@@ -730,7 +733,7 @@ Archive volumes do not have any mechanisms in place to automatically move segmen
     ![Diagram after moving redundant segments](images/SDDC/node_failure_persistent_4.png)
 
 3. Monitor the progress of the synchronization in the Storage logs (progress and ETA is updated every 5 minutes):
-    
+
     ```bash
     logd_collect Storage
     ```
@@ -764,7 +767,7 @@ Cluster overview if n24 fails:
 If the failed node becomes online again, the redundancy is re-created automatically. Otherwise to restore the situation, the redundant segments for both the data and archive volume need to be rebuilt on the reserve node in the passive side.
 
 1. ConfD job to restore missing segments:
-    
+
     ```bash
     confd_client st_volume_move_node vname: data_vol src_nodes: '[24]' dst_nodes: '[34]'
     confd_client st_volume_move_node vname: arc_vol src_nodes: '[24]' dst_nodes: '[34]'
@@ -782,7 +785,7 @@ To restore the database to its original state, wait until the failed node is onl
 > Note: Moving the data segments back to n24 is totally optional. The cluster is already in a proper state and can handle DR scenarios because all volumes are ONLINE and the redundancy is complete on both data centers. It is included here for demonstration purposes to return the cluster back to it's "original" state.
 
 1. ConfD job to move segments back to the original node after node is restored (optional):
-    
+
     ```bash
     confd_client st_volume_move_node vname: data_vol src_nodes: '[34]' dst_nodes: '[24]'
     confd_client st_volume_move_node vname: arc_vol src_nodes: '[34]' dst_nodes: '[24]'
@@ -803,7 +806,7 @@ Cluster overview before the start of the test scenario:
 ![Standard SDDC setup](images/SDDC/SDDC_standard.png)
 
 1. Shutdown the active database:
-    
+
     ```bash
     confd_client db_stop db_name: PROD 
     ```
@@ -813,30 +816,30 @@ Cluster overview before the start of the test scenario:
     ![State after shutting down database](images/SDDC/dr_test_1.png)
 
 2. Start up the passive database:
-    
+
     ```bash
     confd_client db_start db_name: PROD_DR 
     ```
 
-> **NOTE**: The PROD_DR database is running on the now active nodes in DC2, storage master segments remain unchanged (DC1). As a result, node n23 is using the master segment stored on n11, which in turn is redundantly written back to n23. 
+> **NOTE**: The PROD_DR database is running on the now active nodes in DC2, storage master segments remain unchanged (DC1). As a result, node n23 is using the master segment stored on n11, which in turn is redundantly written back to n23.
 
 Cluster overview active database node from DC2 accesses data remotely in DC1 and redundancy copies are written to DC2:
 
 ![State after starting DR database](images/SDDC/dr_test_2.png)
 
-
 Next steps to finalize the swap
+
 1. Activate the backup schedule(s) as described in [Activating Backup Schedules](#activating-or-deactivating-backup-schedules)  
 2. Deactivate backup schedule(s) for the former active database (optional)
 3. [Perform a L0 backup](#creating-backups)
    1. If the test runs for more than one day: ensure there is enough disk capacity in the archive volume to support an additional L0 backup.
- 
+
 > **NOTE**: During the test, the cluster is capable of handling node failures and site failures because the storage is unaffected, and all volumes are in the ONLINE state.
 
 To revert back to normal operation, follow a similar procedure which involves stopping the PROD_DR database and starting the PROD database.
 
 1. ConfD jobs to stop the database in DC2 and start the database in DC1:
-    
+
     ```bash
     confd_client db_stop db_name: PROD_DR 
     confd_client db_start db_name: PROD
@@ -855,7 +858,6 @@ Cluster overview before the data center failure:
 
 ![Standard SDDC setup](images/SDDC/SDDC_standard.png)
 
-
 During a Disaster Scenario, all nodes on the active site in DC1 become unavailable. As a result, the active database in DC1 crashes due to multiple active node failures. All data which was last successfully committed in the active database is also written redundantly on the passive side. The only data loss would therefore be data which was not yet committed or in the process of being committed when the database crashed.
 
 Cluster overview after DC1 (active site) failed:
@@ -863,15 +865,15 @@ Cluster overview after DC1 (active site) failed:
 ![Overview after DC1 fails](images/SDDC/dr_active_1.png)
 
 > **CAUTION:** The cluster requires manual intervention from here. While a disaster-case is normally that one Data Center is unavailable (or at least two active nodes have failed), it actually may also be the case that the link between the two data centers is severed, so each site of the cluster thinks the other has failed (split-brain). For this reason, a process, team or runbook decides which set of nodes to mark as suspended or which steps to execute next.
-
-> **NOTE:** To operate an Exasol cluster, the cluster needs a quorum. If the cluster has no quorum, the cluster does not accept any changes to any of the services and for example also confd will not show the right data or does not respond to requests properly. To create a quorum at least 50% + 1 of the nodes of a cluster need to be online.
+>
+> **NOTE:** To operate an Exasol cluster, the cluster needs a quorum. If the cluster has no quorum, the cluster does not accept any changes to any of the services and for example also confd will not show the right data or does not respond to requests properly. To create a quorum, at least 50% + 1 of the nodes of a cluster need to be online.
 
 In this example, all nodes from DC1 failed and this will make the quorum of the cluster fail. In order to restore the quorum with the remaining nodes from DC2 the failed nodes need to be suspended (temporarily removed from the cluster quorum).
 
 > **NOTE:** It might take up to 60 seconds for the cluster to reevaluate the quorum and to recognize failed nodes. Reelections are constantly ongoing every couple of seconds.
 
 1. Use ConfD to suspend the failed nodes from DC1:
-    
+
     ```bash
     confd_client node_suspend nid: '[11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22]'
     ```
@@ -879,7 +881,7 @@ In this example, all nodes from DC1 failed and this will make the quorum of the 
     With the nodes being suspended, the quorum is reached again and ConfD jobs will behave normally. In this state, all volumes are DEGRADED, however functional. The database on the passive site in DC2 can now be started using ConfD.
 
 2. Start the database in DC2:
-    
+
     ```bash
     confd_client db_start db_name: PROD_DR
     ```
@@ -895,7 +897,7 @@ The database in DC2 is up and running, and the original redundant segments have 
 To be protected against further node failures in DC2, temporarily increase redundancy for both the data volume and the archive volume in DC2.
 
 1. ConfD job to increase the redundancy of a volume:
-    
+
     ```bash
     confd_client st_volume_increase_redundancy vname: data_vol delta: 1
 
@@ -903,17 +905,17 @@ To be protected against further node failures in DC2, temporarily increase redun
     ```
 
     **NOTE**: This command will create additional redundancy segments on all nodes in DC2.
-    
+
     Cluster overview after creating additional redundancy in DC2 (redundancy 3):
 
     ![Overview after creating local redundancy](images/SDDC/dr_active_3.png)
 
 2. Monitor the progress using logd_collect or csrec:
-    
+
     ```bash
     logd_collect Storage
     ```
-    
+
     or
 
     ```bash
@@ -940,7 +942,7 @@ Now the database is again protected against single node failures. The procedures
 Nodes are automatically resumed in the cluster upon start of the Exasol services on those machines. This will clear the 'suspended' status.
 
 1. Start the services on the affectd nodes.
-   
+
     As soon as the nodes from DC1 are resumed and online, all storage deputy segments in DC2 will be demoted to redundancy copies and the resynchronizing of all storage segments in DC1 is started. The recovery starts automatically, the duration of the resynchronization depends on the amount of data that is out of date.
 
     > **NOTE:** In the worst case, all data is resynchronized.
@@ -950,7 +952,7 @@ Nodes are automatically resumed in the cluster upon start of the Exasol services
     ![Overview after resuming nodes in DC1](images/SDDC/dr_active_5.png)
 
 2. Once the volumes are fully resynchronized and in ONLINE status, the redundancy in DC2 should be reduced from 3 to 2 to keep disk IO at a minimum.
-    
+
     ```bash
     confd_client st_volume_decrease_redundancy vname: data_vol delta: 1 nid: 23
 
@@ -964,7 +966,7 @@ Nodes are automatically resumed in the cluster upon start of the Exasol services
     ![Overview after decreasing redundancy](images/SDDC/dr_active_6.png)
 
 3. To revert the cluster state back to its original state, stop the database in DC2 and start the database in DC1.
-   
+
     ```bash
     confd_client db_stop db_name: PROD_DR 
 
@@ -990,7 +992,7 @@ Cluster overview once site DC2 failed:
 ![Overview once DC2 fails](images/SDDC/dr_passive_1.png)
 
 > **CAUTION:** The cluster requires manual intervention from here. While a disaster-case is normally that one Data Center is unavailable (or at least two active nodes have failed), it actually may also be the case that the link between the 2 data centers is severed, so each site of the cluster thinks the other has failed (split-brain). For this reason, a process, team or runbook decides which set of nodes to mark as suspended or which steps to execute next.
-
+>
 > **NOTE:** To operate an Exasol cluster, the cluster needs a quorum. If the cluster has no quorum, the cluster does not accept any changes to any of the services and for example also confd will not show the right data or does not respond to requests properly. To create a quorum at least 50% + 1 of the nodes of a cluster need to be online.
 
 In this example, all nodes from DC2 failed and this will make the quorum of the cluster fail. In order to restore the quorum with the remaining nodes from DC1 the failed nodes need to be suspended (temporarily removed from the cluster quorum).
@@ -998,7 +1000,7 @@ In this example, all nodes from DC2 failed and this will make the quorum of the 
 > **NOTE:** It might take up to 60 seconds for the cluster to reevaluate the quorum and to recognize failed nodes. Reelections are constantly ongoing every couple of seconds.
 
 1. Suspend all nodes from DC2:
-    
+
     ```bash
     confd_client node_suspend nid: '[23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34]'
     ```
@@ -1010,13 +1012,13 @@ In this example, all nodes from DC2 failed and this will make the quorum of the 
     With the nodes suspended, the quorum is reached again and ConfD jobs will behave normally. All volumes are in DEGRADED state, that means at least one master or redundancy segment is offline. Depending on how long the cluster was without quorum, the database in DC1 may or may not be online (responding to client requests). The database in DC1 can now be started if it is not already online.
 
 2. ConfD job to start the database in DC1:
-    
+
     ```bash
     confd_client db_start db_name: PROD
     ```
 
 3. When viewing information about the database, check for messages indicating that the redundancy is missing.
-    
+
     ```bash
     confd_client db_info db_name: PROD | grep info
     info: "11 segments of the database volume are not online (missing redundancy)"
@@ -1027,7 +1029,7 @@ In this example, all nodes from DC2 failed and this will make the quorum of the 
     The database is now running, and the master segments are in use as before, but there is no storage redundancy. To be protected against further node failures in DC1 temporarily increase the redundancy for both the data volume and the archive volume locally.
 
 4. Increase the redundancy of the storage volumes:
-    
+
     ```bash
     confd_client st_volume_increase_redundancy vname: data_vol delta: 1
 
@@ -1037,7 +1039,7 @@ In this example, all nodes from DC2 failed and this will make the quorum of the 
     > **NOTE:** This command will create additional redundancy on all in-use storage nodes in DC1.
 
 5. Monitor the progress using logd_collect or csrec:
-    
+
     ```bash
     logd_collect Storage
     ```
@@ -1062,27 +1064,26 @@ Cluster overview after the redundancy has been increased to 3:
 
 In this cluster configuration, the cluster is still protected against single node failures due to volume redundancy 3. The procedures to handle a node failure are the same as [Active Node Failure Scenarios](#active-node-failure-scenarios), with the difference being that the redundant copies are in DC1.
 
-#### Return to normal operation
+#### Return to standard operation
 
 > **NOTE:** This scenario assumes that the same original nodes from DC2 rejoin the cluster. If new nodes join, an installation of those nodes is required. This means the Exasol software must be installed and nodes are re-added to the cluster as existing nodes.
 
 Nodes are automatically resumed in the cluster upon start of the Exasol services on those machines. This will clear the 'suspended' status.
-
 
 1. Start the Exasol services on the affected nodes
 
     As soon as the nodes have joined the quorum, storage will start to resync the outdated storage segments in DC2. The recovery starts automatically, the duration of the resynchronization depends on the amount of data that is out of date.
 
     > **NOTE:** In the worst case, all data is resynchronized.
-    
+
     Cluster overview showing nodes in DC2 being resynchronized:
 
     ![Overview after resuming nodes from DC2](images/SDDC/dr_passive_4.png)
 
     Once all volumes are resychronized, volume states will switch from RECOVERING to ONLINE.
-    
+
 2. To keep disk IO at a minimum it is recommended to reduce the volume redundancy from 3 back to 2:
-    
+
     ```bash
     confd_client st_volume_decrease_redundancy vname: data_vol delta: 1 nid: 11
 
@@ -1094,11 +1095,13 @@ Cluster overview showing the cluster in its original state:
 ![Standard SDDC setup](images/SDDC/SDDC_standard.png)
 
 ---
+
 ### Network Failure between the data centers (Split Brain)
 
 In most of the Disaster Scenarios, one of the data centers is unavailable for a period of time. However, if the network between the 2 data centers is severed, then manual intervention is required to determine which cluster to use. In this state, both "halves" of the cluster are still available, but not able to connect to the other half. When this happens, the quorum for the cluster is lost. To return the cluster to an operational state, you must choose which site to leave online and which to leave offline.
 
 To recover from this scenario:
+
 1. Shut down all nodes from the site that will not be used (if possible)
    1. If you are unable to connect via SSH, physically shut down the machines. This is needed to prevent the two sites from running with different configurations. Not doing so may lead to issues when recovering from the situation.
 2. Based on which site was shut down, follow either [Disaster of active data center (DC1)](#disaster-of-active-data-center-dc1) or [Disaster of passive site DC2](#disaster-of-passive-site-dc2).
