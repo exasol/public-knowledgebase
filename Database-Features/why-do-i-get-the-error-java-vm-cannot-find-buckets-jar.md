@@ -32,8 +32,6 @@ The advice below is also generally applicable to UDFs using BucketFS files via `
 
 ## Solution
 
-### The original problem
-
 Please familiarize yourself with the concept of BucketFS: [BucketFS](https://docs.exasol.com/db/latest/database_concepts/bucketfs/bucketfs.htm).
 
 First of all, this multi-level error stack trace with many "F-UDF-CL" error codes means that error happened during a UDF execution (see [UDF Scripts](https://docs.exasol.com/db/latest/database_concepts/udf_scripts.htm)).
