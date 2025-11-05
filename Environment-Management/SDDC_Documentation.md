@@ -176,7 +176,7 @@ Prepare hosts according to [Prepare Host](https://docs.exasol.com/db/latest/admi
     **NOTE:** Exclude reserve nodes, add all storage nodes from both sites DC1 and DC2 (in that order), number of master nodes = active database nodes in DC1. Data volumes will automatically grow as the database grows if there is enough disk space in the cluster to accomodate it.
 
     ```bash
-    confd_client st_volume_create name: data_vol disk: disk1 type: data size: '100 GiB' nodes: '[11,12,13,14,15,16,17,18,19,20,21,23,24,25,26,27,28,29,30,31,32,33]' redundancy: 2 num_master_nodes: 11
+    confd_client st_volume_create name: data_vol disk: disk1 type: data size: '100 GiB' nodes: '[11,12,13,14,15,16,17,18,19,20,21,23,24,25,26,27,28,29,30,31,32,33]' redundancy: 2 num_master_nodes: 11 shared: false
     ```
 
 4. Create new archive volume (optional)
@@ -198,9 +198,10 @@ Prepare hosts according to [Prepare Host](https://docs.exasol.com/db/latest/admi
 6. Create active database
 
     When creating a database, specify the data volume you created in step 4. When creating a database, you must specify the amount of DB RAM the database is allocated (mem_size). If you specify a size larger than what is physically possible given the available physical memory, it will automatically be reduced. View [Sizing Information](https://docs.exasol.com/db/latest/administration/on-premise/sizing.htm#DatabaseRAMDBRAM) for more information about calculating the amount of DB RAM. The example below creates a database with 100 GiB of RAM.
+    > **NOTE**: The database is created with the auto_start flag set to false. As a result, the database will need to be started manually after starting the services (for example, after database updates, firmware updates, etc). This is done to protect the database against unwanted startups during disaster scenarios.
 
     ```bash
-    confd_client db_create db_name: PROD version: 8.29.12 data_volume_name: data_vol mem_size: '100 GiB' port: 8563 nodes: '[11,12,13,14,15,16,17,18,19,20,21,22]' num_active_nodes: 11 auto_start: true
+    confd_client db_create db_name: PROD version: 8.29.12 data_volume_name: data_vol mem_size: '100 GiB' port: 8563 nodes: '[11,12,13,14,15,16,17,18,19,20,21,22]' num_active_nodes: 11 auto_start: false
     ```
 
 7. Install database certificates (optional)
@@ -870,7 +871,7 @@ Cluster overview after DC1 (active site) failed:
 
 In this example, all nodes from DC1 failed and this will make the quorum of the cluster fail. In order to restore the quorum with the remaining nodes from DC2 the failed nodes need to be suspended (temporarily removed from the cluster quorum).
 
-> **NOTE:** It might take up to 60 seconds for the cluster to reevaluate the quorum and to recognize failed nodes. Reelections are constantly ongoing every couple of seconds.
+> **WARNING:** The below actions are critical. Ensure that you are only suspending 50% of the nodes and that you only suspend the nodes from one data center. Performing this action on both sides would lead to an inconsistent state and potential data corruption. Exercise extreme caution. It might take up to 60 seconds for the cluster to reevaluate the quorum and to recognize failed nodes. Reelections are constantly ongoing every couple of seconds.
 
 1. Use ConfD to suspend the failed nodes from DC1:
 
@@ -997,7 +998,7 @@ Cluster overview once site DC2 failed:
 
 In this example, all nodes from DC2 failed and this will make the quorum of the cluster fail. In order to restore the quorum with the remaining nodes from DC1 the failed nodes need to be suspended (temporarily removed from the cluster quorum).
 
-> **NOTE:** It might take up to 60 seconds for the cluster to reevaluate the quorum and to recognize failed nodes. Reelections are constantly ongoing every couple of seconds.
+> **WARNING:** The below actions are critical. Ensure that you are only suspending 50% of the nodes and that you only suspend the nodes from one data center. Performing this action on both sides would lead to an inconsistent state and potential data corruption. Exercise extreme caution. It might take up to 60 seconds for the cluster to reevaluate the quorum and to recognize failed nodes. Reelections are constantly ongoing every couple of seconds.
 
 1. Suspend all nodes from DC2:
 
