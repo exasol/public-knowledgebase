@@ -25,7 +25,7 @@ A normal shutdown in Exasol is a controlled, graceful termination of database se
 
 * **New Connections:** No new connections are accepted during the process; they are rejected with a specific SQL exception.
 
-* **Impact:** The process includes flushing system statistics and writing a corresponding shutdown record to the auditing tables. This provides a clear audit trail.
+* **Impact:** The process includes flushing system statistics and writing a corresponding shutdown record to the EXA_DBA_AUDIT_SQL table. This provides a clear audit trail. It is listed as a **SHUTDOWN** event in EXA_SYSTEM_EVENTS.
 
 ### Forced Shutdown
 
@@ -39,7 +39,7 @@ A forced shutdown in Exasol is an immediate and abrupt termination of all active
 
 #### Key Consequences and Usage of Forced Shutdown
 
-* **Impact:** Because the termination is so abrupt, no entry is written to the auditing table, making the event functionally equivalent to a complete system crash.
+* **Impact:** Because the termination is so abrupt, no entry is written to EXA_DBA_AUDIT_SQL table, making the functionally equivalent to a complete system crash. It is listed as a **RESTART** event in EXA_SYSTEM_EVENTS.
 
 * **When to Use:** ⚠ This process should be used **only as a last resort** when a critical issue prevents a normal shutdown.⚠ Examples include a bug or a system malfunction that stops the database from shutting down cleanly.
 
@@ -53,5 +53,6 @@ If a transaction ends or disappears before committing—such as during a normal 
 * [Documentation of ConfD | db_stop](https://docs.exasol.com/db/latest/confd/jobs/db_stop.htm)
 * [Documentation of Stop a Database](https://docs.exasol.com/db/latest/administration/on-premise/manage_database/stop_db.htm)
 * [Documentation of Transaction Management](https://docs.exasol.com/db/latest/database_concepts/transaction_management.htm)
+* [What is the meaning of RESTART event in EXA_SYSTEM_EVENTS](https://github.com/exasol/public-knowledgebase/blob/main/Environment-Management/what-is-the-meaning-of-RESTART-event-in-EXA_SYSTEM_EVENTS.md)
 
 *We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).*
