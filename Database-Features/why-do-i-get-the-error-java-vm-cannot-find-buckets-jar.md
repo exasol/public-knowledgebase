@@ -5,7 +5,7 @@
 For Java-based Virtual Schemas maintained by Exasol, adapter script defines:
 
 * JAR files to inform UDF framework where to find the libraries (JAR files) for the virtual schema and database driver. It is done via `%jar` pragma.
-* Java class that serves as the entry point. It is done via `%scriptclass` pragma.
+* Java class used during script execution. It is done via `%scriptclass` pragma.
 
 So you uploaded all necessary files to BucketFS, but receive error like
 
