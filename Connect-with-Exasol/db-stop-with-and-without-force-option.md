@@ -11,7 +11,7 @@
 
 Example command:
 
-```text
+```shell
 confd_client db_stop db_name: DB1
 ```
 
