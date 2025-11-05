@@ -24,7 +24,7 @@ VM error:
 F-UDF-CL-LIB-1125:
 F-UDF-CL-SL-JAVA-1000:
 F-UDF-CL-SL-JAVA-1061:
-Java VM cannot find '/buckets/bfsdefault/default/drivers/jdbc/ojdbc10.jar': No such file or directory
+Java VM cannot find '/buckets/bfsdefault/default/drivers/jdbc/oracle/ojdbc10.jar': No such file or directory
 (Session: 1839255503714910208)
 ```
 
@@ -40,7 +40,7 @@ The only involved UDF script here is the Adapter script, as adapter scripts are 
 In the long error stack trace we find the important part:
 
 ```text
-Java VM cannot find '/buckets/bfsdefault/default/drivers/jdbc/ojdbc10.jar': No such file or directory
+Java VM cannot find '/buckets/bfsdefault/default/drivers/jdbc/oracle/ojdbc10.jar': No such file or directory
 ```
 
 Therefore, it's important to investigate why the file cannot be located, even though it was just uploaded.
@@ -64,7 +64,7 @@ SELECT BUCKETFS_LS('/buckets/bfsdefault/');
 -- Navigate into the default subdirectory
 SELECT BUCKETFS_LS('/buckets/bfsdefault/default/');
 -- Repeat as needed for further subfolders and files...
-SELECT BUCKETFS_LS('/buckets/bfsdefault/default/drivers/jdbc/');
+SELECT BUCKETFS_LS('/buckets/bfsdefault/default/drivers/jdbc/oracle/');
 ...
 ```
 
@@ -84,7 +84,7 @@ Now, suppose, Bucket folder is present in the `BUCKETFS_LS` output for the respe
 `BUCKETFS_LS` output in that case might look like
 
 ```sql
-SELECT BUCKETFS_LS('/buckets/bfsdefault/default/drivers/jdbc/');
+SELECT BUCKETFS_LS('/buckets/bfsdefault/default/drivers/jdbc/oracle/');
 ```
 
 ```text
@@ -101,7 +101,7 @@ In case you hit a situation with uploaded file having size 0, please try re-uplo
 
 Another similar kind of problem that one can face when uploading files to BucketFS is `curl`'s folder vs. file behavior.
 
-Imagine the goal is still to upload file `ojdbc10.jar` to BucketFS folder `/buckets/bfsdefault/default/drivers/jdbc/`.
+Imagine the goal is still to upload file `ojdbc10.jar` to BucketFS folder `/buckets/bfsdefault/default/drivers/jdbc/oracle/`.
 
 Originally, there is no such file and folder:
 
@@ -109,7 +109,7 @@ Originally, there is no such file and folder:
 WITH
 content_of_default AS(
   SELECT
-    exa_toolbox.bucketfs_ls('/buckets/bfsdefault/default/')
+    exa_toolbox.bucketfs_ls('/buckets/bfsdefault/default/jdbc/')
 )
 SELECT
   *
@@ -117,7 +117,7 @@ FROM
   content_of_default d
 WHERE
   1=1
-  AND d.file_name LIKE '%jars%'
+  AND d.file_name LIKE '%oracle%'
 ;
 ```
 
@@ -129,7 +129,7 @@ SIZE_BYTES|IS_DIR|FILE_NAME|
 Then you successfully upload file
 
 ```shell
-# curl -v -k --upload-file ojdbc10.jar https://w:<write password>@<data node ip>:<BucketFS Service port>/default/jars
+# curl -v -k --upload-file ojdbc10.jar https://w:<write password>@<data node ip>:<BucketFS Service port>/default/jdbc/oracle
 ...
 < HTTP/1.1 200 OK
 ...
@@ -137,18 +137,18 @@ Then you successfully upload file
 
 However, virtual schema creation fails with "Java VM cannot find" error.
 
-Here the problem is with the lack of the trailing slash ("/") at the end of `curl` target: by design of `curl` upload to `https://w:<write password>@<data node ip>:<BucketFS Service port>/default/jars` creates and populates file "jars" in folder "default",
-while upload to `https://w:<write password>@<data node ip>:<BucketFS Service port>/default/jars/` means upload file with original name "myfile.jar" to existing folder "jars". For the latter case BucketFS backend creates the respective folder automatically
+Here the problem is with the lack of the trailing slash ("/") at the end of `curl` target: by design of `curl` upload to `https://w:<write password>@<data node ip>:<BucketFS Service port>/default/jdbc/oracle` creates and populates file "oracle" in folder "jdbc",
+while upload to `https://w:<write password>@<data node ip>:<BucketFS Service port>/default/jdbc/oracle/` means upload file with original name "ojdbc10.jar" to existing folder "oracle". For the latter case BucketFS backend creates the respective folder automatically
 (moreover, creating folders without files in BucketFS via HTTP(S) is not possible).
 
-So now you have a file "jars" residing in folder "default" and having content of the file "ojdbc10.jar" to be uploaded:
+So now you have a file "oracle" residing in folder "jdbc" and having content of the file "ojdbc10.jar" to be uploaded:
 
 ```sql
--- List all entries in the 'default' bucket where the file name contains 'jars', using the BUCKETFS_LS UDF for inspection.
+-- List all entries in the 'default' bucket where the file name contains 'oracle', using the BUCKETFS_LS UDF for inspection.
 WITH
 content_of_default AS(
   SELECT
-    exa_toolbox.bucketfs_ls('/buckets/bfsdefault/default/')
+    exa_toolbox.bucketfs_ls('/buckets/bfsdefault/default/jdbc/')
 )
 SELECT
   *
@@ -156,44 +156,44 @@ FROM
   content_of_default d
 WHERE
   1=1
-  AND d.file_name LIKE '%jars%'
+  AND d.file_name LIKE '%oracle%'
 ;
 ```
 
 ```text
 SIZE_BYTES|IS_DIR|FILE_NAME|
 ----------+------+---------+
-         6|false |jars     |
+         6|false |oracle   |
 ```
 
 If you try now to upload the file the right way
 
 ```shell
-curl -v -k --upload-file ojdbc10.jar https://w:<write password>@<data node ip>:<BucketFS Service port>/default/jars/
+curl -v -k --upload-file ojdbc10.jar https://w:<write password>@<data node ip>:<BucketFS Service port>/default/jdbc/oracle/
 ```
 
 the command either doesn't return or succeeds (HTTP/1.1 200 OK). However, virtual schema creation still fails with "Java VM cannot find" error.
 
-Here, "jars" remained a file (note IS_DIR=false):
+Here, "oracle" remained a file (note IS_DIR=false):
 
 ```text
 SIZE_BYTES|IS_DIR|FILE_NAME|
 ----------+------+---------+
-         6|false |jars     |
+         6|false |oracle   |
 ```
 
-as BucketFS backend couldn't turn an existing file "jars" to a folder to upload file "ojdbc10.jar" to that folder.
+as BucketFS backend couldn't turn an existing file "oracle" to a folder to upload file "ojdbc10.jar" to that folder.
 
-What you need to do is to remove the "jars" file
+What you need to do is to remove the "oracle" file
 
 ```shell
-curl -v -k --request DELETE https://w:<write password>@<data node ip>:<BucketFS Service port>/default/jars
+curl -v -k --request DELETE https://w:<write password>@<data node ip>:<BucketFS Service port>/default/jdbc/oracle
 ```
 
 and then repeat the upload
 
 ```shell
-curl -v -k --upload-file ojdbc10.jar https://w:<write password>@<data node ip>:<BucketFS Service port>/default/jars/
+curl -v -k --upload-file ojdbc10.jar https://w:<write password>@<data node ip>:<BucketFS Service port>/default/jdbc/oracle/
 ```
 
 ## Additional References
@@ -203,6 +203,6 @@ curl -v -k --upload-file ojdbc10.jar https://w:<write password>@<data node ip>:<
 * [UDF Scripts](https://docs.exasol.com/db/latest/database_concepts/udf_scripts.htm)
 * [Database Access in BucketFS](https://docs.exasol.com/db/latest/administration/on-premise/bucketfs/database_access.htm)
 * [bucketfs_ls UDF](https://github.com/exasol/exa-toolbox/tree/master/utilities#bucketfs_ls)
-[Exasol UDF Script Options: User Documentation](https://github.com/exasol/script-languages-release/blob/master/doc/user_guide/script_options/script_options.md)
+* [Exasol UDF Script Options: User Documentation](https://github.com/exasol/script-languages-release/blob/master/doc/user_guide/script_options/script_options.md)
 
 *We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).*
