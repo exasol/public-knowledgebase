@@ -47,7 +47,9 @@ Therefore, it's important to investigate why the file cannot be located, even th
 
 ## Solution
 
-The next diagnostic step is to explore the content of BucketFS in the eyes of a UDF.
+### BucketFS Diagnostic: Exploring BucketFS Contents via UDF BUCKETFS_LS
+
+The first diagnostic step is to explore the content of BucketFS in the eyes of a UDF.
 For that purpose we'll use UDF "BUCKETFS_LS" shown in <https://github.com/exasol/exa-toolbox/tree/master/utilities#bucketfs_ls>.
 
 Step-by-step, starting from `/buckets`, we'll check if all parent folder and file itself is visible:
@@ -66,6 +68,8 @@ SELECT BUCKETFS_LS('/buckets/bfsdefault/default/drivers/jdbc/');
 ...
 ```
 
+### Verifying BucketFS Bucket Visibility and Access for UDFs
+
 What can happen is that in BucketFS Service folder (say, `bfsdefault`) there is no folder visible for the Bucket (here `default`) where you uploaded the file.
 
 According to [BucketFS](https://docs.exasol.com/db/latest/database_concepts/bucketfs/bucketfs.htm),
@@ -73,6 +77,8 @@ if Bucket is not configured as "Public", UDFs can access it only if they are gra
 Therefore, please check if bucket is Public in the output of ConfD job [bucketfs_info](https://docs.exasol.com/db/latest/confd/jobs/bucketfs_info.htm) for the respective BucketFS Service.
 If it's not, consider granting access for UDFs via [Database Access in BucketFS](https://docs.exasol.com/db/latest/administration/on-premise/bucketfs/database_access.htm) or making it Public
 (reading bucket's data will be possible for everybody with network access to the respective BucketFS Service port on a data node).
+
+### Diagnosing Zero-Size Files in BucketFS After Upload
 
 Now, suppose, Bucket folder is present in the `BUCKETFS_LS` output for the respective BucketFS Service. Another possibility is that file was created in BucketFS, but has size zero.
 `BUCKETFS_LS` output in that case might look like
@@ -84,7 +90,7 @@ SELECT BUCKETFS_LS('/buckets/bfsdefault/default/jars');
 ```text
 SIZE_BYTES|IS_DIR|FILE_NAME |
 ----------+------+----------+
-         0|false |myfile.jar|
+         0|false |ojdbc10.jar|
 ```
 
 Often it means that an error happened during file upload via HTTP(S), resulting in file been created but content not being written.
@@ -123,7 +129,7 @@ SIZE_BYTES|IS_DIR|FILE_NAME|
 Then you successfully upload file
 
 ```shell
-# curl -v -k --upload-file myfile.jar https://w:<write password>@<data node ip>:<BucketFS Service port>/default/jars
+# curl -v -k --upload-file ojdbc10.jar https://w:<write password>@<data node ip>:<BucketFS Service port>/default/jars
 ...
 < HTTP/1.1 200 OK
 ...
@@ -135,7 +141,7 @@ Here the problem is with the lack of the trailing slash ("/") at the end of `cur
 while upload to `https://w:<write password>@<data node ip>:<BucketFS Service port>/default/jars/` means upload file with original name "myfile.jar" to existing folder "jars". For the latter case BucketFS backend creates the respective folder automatically
 (moreover, creating folders without files in BucketFS via HTTP(S) is not possible).
 
-So now you have a file "jars" residing in folder "default" and having content of the file "myfile.jar" to be uploaded:
+So now you have a file "jars" residing in folder "default" and having content of the file "ojdbc10.jar" to be uploaded:
 
 ```sql
 -- List all entries in the 'default' bucket where the file name contains 'jars', using the BUCKETFS_LS UDF for inspection.
@@ -163,7 +169,7 @@ SIZE_BYTES|IS_DIR|FILE_NAME|
 If you try now to upload the file the right way
 
 ```shell
-curl -v -k --upload-file myfile.jar https://w:<write password>@<data node ip>:<BucketFS Service port>/default/jars/
+curl -v -k --upload-file ojdbc10.jar https://w:<write password>@<data node ip>:<BucketFS Service port>/default/jars/
 ```
 
 the command either doesn't return or succeeds (HTTP/1.1 200 OK). However, virtual schema creation still fails with "Java VM cannot find" error.
@@ -176,7 +182,7 @@ SIZE_BYTES|IS_DIR|FILE_NAME|
          6|false |jars     |
 ```
 
-as BucketFS backend couldn't turn an existing file "jars" to a folder to upload file "myfile.jar" to that folder.
+as BucketFS backend couldn't turn an existing file "jars" to a folder to upload file "ojdbc10.jar" to that folder.
 
 What you need to do is to remove the "jars" file
 
@@ -187,7 +193,7 @@ curl -v -k --request DELETE https://w:<write password>@<data node ip>:<BucketFS 
 and then repeat the upload
 
 ```shell
-curl -v -k --upload-file myfile.jar https://w:<write password>@<data node ip>:<BucketFS Service port>/default/jars/
+curl -v -k --upload-file ojdbc10.jar https://w:<write password>@<data node ip>:<BucketFS Service port>/default/jars/
 ```
 
 ## Additional References
