@@ -45,7 +45,7 @@ A forced shutdown in Exasol is an immediate and abrupt termination of all active
 
 ### Behavior of Uncommitted Transactions During Database Shutdown
 
-In Exasol, uncommitted changes remain isolated within their respective transactions and are never visible to other sessions. When a database shutdown is initiated with force: false (the standard behavior), the database automatically performs a rollback of any open, uncommitted transactions before the shutdown completes. This ensures that no changes are persisted or exposed beyond their transaction scope.
+In Exasol, uncommitted changes remain isolated within their respective transactions and are never visible to other sessions. When a database shutdown is initiated with force: false (the default behavior), the database automatically performs a rollback of any open, uncommitted transactions before the shutdown completes. This ensures that no changes are persisted or exposed beyond their transaction scope.
 If a transaction ends or disappears before committing—such as during a normal shutdown or a query crash—no explicit user intervention is required, as the database handles the rollback process internally. As a result, all uncommitted modifications are safely discarded during shutdown, maintaining data integrity.
 
 ## References
