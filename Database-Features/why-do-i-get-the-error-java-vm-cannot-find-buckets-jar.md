@@ -52,7 +52,7 @@ Therefore, it's important to investigate why the file cannot be located, even th
 The first diagnostic step is to explore the content of BucketFS in the eyes of a UDF.
 For that purpose we'll use UDF "BUCKETFS_LS" shown in <https://github.com/exasol/exa-toolbox/tree/master/utilities#bucketfs_ls>.
 
-Step-by-step, starting from `/buckets`, we'll check if all parent folder and file itself is visible:
+The step-by-step inspection starts from the top-level `/buckets` directory and proceeds recursively, allowing for troubleshooting and validation of BucketFS structure and and if the file itself is visible:
 
 ```sql
 -- List folders/files in top-level BucketFS directory
