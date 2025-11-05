@@ -27,7 +27,9 @@ Nevertheless, in case Log Server (see [The Exasol Logserver](https://github.com/
 In [Restore Database from Backup](https://docs.exasol.com/db/latest/administration/on-premise/backup_restore/restore_database.htm) we instruct end users to stop the database before triggering the restore process.
 If it's not done, restore process could kill the running internal processes, leading to a "RESTART" entry with MEASURE_TIME being the time of restore start.
 
-Based on information above, a "RESTART" entry in EXA_SYSTEM_EVENTS often means a crash of one of internal server processes. As a result, it needs to be analyzed by Exasol Support. Server Processes logs, COS logs and coredumps are usually sufficient for the analysis.
+When the database is stopped with the parameter **force: true**, this action is also logged as a RESTART event in the EXA_SYSTEM_EVENTS table.
+
+Based on information above, a "RESTART" entry in EXA_SYSTEM_EVENTS often means a crash of one of internal server processes. As a result, it needs to be analyzed by Exasol Support (when no forced database shutdown occurred). Server Processes logs, COS logs and coredumps are usually sufficient for the analysis.
 They could be pulled using the following command (adapt date arguments for `-s` and `-t`, and DB name for `-e` accordingly):
 
 ```shell
