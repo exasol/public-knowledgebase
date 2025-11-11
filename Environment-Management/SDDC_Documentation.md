@@ -55,7 +55,7 @@ This illustration uses colors to convey the status of databases, nodes, data seg
 - The active database ("PROD") is created using the "stretched" data volume and with the active nodes set to n11-n21 and n22 set as the reserve node. The database has port 8563.
 - The passive database ("PROD_DR") is created using the same data volume as the primary database, but has the active nodes set to n23 – n33 and n34 as the reserve node. It is also set to use port 8563.
 
-For simplification purposes, only 5 nodes are displayed. The "…" between nodes n13 and n21 and n25 and n33 are used to show that the rest of the nodes have the exact same configuration but are not displayed.
+> **NOTE:** For simplification purposes, only 5 nodes are displayed. The "…" between nodes n13 and n21 and n25 and n33 are used to show that the rest of the nodes have the exact same configuration but are not displayed. The diagram purposefully paints a simplified picture of an SDDC setup. In reality, the mirrored segments in DC2 may not align in the exact same order as illustrated due to situations in which a reserve node takes over.
 
 ## Background – how SDDC works
 
@@ -463,7 +463,7 @@ You can use the below tools to ensure:
 1. All volumes are in an ONLINE state
 2. There aren't any data segments on a reserve node (causes degraded performance)
 3. All redundant segments are on nodes in DC2
-4. The data and archive volumes are using the same nodes (NOTE: this is recommended to avoid any headaches in case of a node failure which could result in the data and archive volumes being in different states)
+4. The data and archive volumes are using the same nodes. This is recommended to avoid any headaches in case of a future node failure which could result in the data and archive volumes being in different states. For example, if a reserve node is taken offline to perform maintenance, but this is still in use by the archive volume, then the archive volume would be in a DEGRADED state, but the data volume is ONLINE.
 
 ### Monitoring Volume States
 
@@ -509,7 +509,7 @@ info: 'Payload of database node 22 resides on volume master node 12. 1 segments 
 
 ### Monitoring Segments
 
-In the default state, each volume contains a MASTER segment and a REDUNDANT segment. You can use the following command to identify and parse which segments and redundant copies are stored on which nodes:
+In the default state, each volume contains a MASTER segment and a REDUNDANT segment. You can use the following command to identify and parse which segments and redundant copies are stored on which nodes. You should also verify that any reserve nodes are not holding any segments of the data and archive volumes.
 
 ```bash
 csinfo -R
@@ -635,9 +635,9 @@ Stop the database and restart the database using n12 as an active node and n22 a
 
 #### Option 2 – Move segments to new active node
 
-Move data segments from node n12 to node n22. No downtime is required.
+Move data segments from node n12 to node n22. No downtime is required. This is typically done if maintenance needs to be performed on n12 after the failure. You can verify on which nodes the segments exist before moving them to ensure the segments are running on the nodes that you expect. For more details, see [Monitoring Segments](#monitoring-segments).
 
-**CAUTION: During the restoration of the data segments on the target node, the cluster cannot handle disaster scenarios.** Moving segments needs to be done for both the DATA volume and the ARCHIVE volume.
+**CAUTION: During the restoration of the data segments on the target node, the cluster cannot handle disaster scenarios.** Moving segments needs to be done for both the DATA volume and the ARCHIVE volume to ensure that both volumes are using the same nodes.
 
 1. Move nodes segments using ConfD:
 
@@ -1106,3 +1106,5 @@ To recover from this scenario:
 1. Shut down all nodes from the site that will not be used (if possible)
    1. If you are unable to connect via SSH, physically shut down the machines. This is needed to prevent the two sites from running with different configurations. Not doing so may lead to issues when recovering from the situation.
 2. Based on which site was shut down, follow either [Disaster of active data center (DC1)](#disaster-of-active-data-center-dc1) or [Disaster of passive site DC2](#disaster-of-passive-site-dc2).
+
+These kinds of situations could also be handled by using a small VM as a "quorum node", with the only purpose of being a tiebreaker to determine which side is active or not. For more details, you can contact Exasol Support.
