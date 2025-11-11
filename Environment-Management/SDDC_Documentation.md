@@ -461,7 +461,7 @@ However, the ability to write to the redundant copy requires that all volumes ar
 You can use the below tools to ensure:
 
 1. All volumes are in an ONLINE state
-2. There aren't any data segments on a reserve node (causes degraded performance)
+2. There aren't any segments on a reserve node (causes degraded performance)
 3. All redundant segments are on nodes in DC2
 4. The data and archive volumes are using the same nodes. This is recommended to avoid any headaches in case of a future node failure which could result in the data and archive volumes being in different states. For example, if a reserve node is taken offline to perform maintenance, but this is still in use by the archive volume, then the archive volume would be in a DEGRADED state, but the data volume is ONLINE.
 
