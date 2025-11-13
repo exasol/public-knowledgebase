@@ -2,7 +2,7 @@
 
 ## Problem
 
-After migration to v8, import of DELTA files from AWS S3 bucket via Cloud Storage Extension stopped working. But, import of Parquet files works as usual. 
+After migration to v8, import of DELTA files from AWS S3 bucket via Cloud Storage Extension stopped working. But, import of Parquet files works as usual.
 When trying to import a DELTA files from S3 we receive the following error **cannot access class sun.nio.ch.DirectBuffer**:
 
 ```sh
