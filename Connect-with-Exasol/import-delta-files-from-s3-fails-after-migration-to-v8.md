@@ -61,7 +61,7 @@ Workaround is to allow access to the required internal package by adding this JV
 %jvmoption --add-exports=java.base/sun.nio.ch=ALL-UNNAMED;
 ```
 
-So the workaraund is to add this jvmoption to all 3 IMPORT UDFs. Eventually they should like this:
+So the workaround is to add this jvmoption to all 3 IMPORT UDFs. Eventually they should like this:
 
 ```sql
 --/
