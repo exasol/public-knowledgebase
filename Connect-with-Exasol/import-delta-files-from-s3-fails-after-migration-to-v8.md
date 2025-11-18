@@ -95,5 +95,7 @@ CREATE OR REPLACE JAVA SET SCRIPT IMPORT_FILES(...) EMITS (...) AS
 
 * [Configure Exasol IMPORT and EXPORT to work with AWS S3 bucket](/Connect-with-Exasol/configure-cxasol-IMPORT-and-EXPORT-to-work-with-AWS-S3-bucket.md)
 * [Exasol Cloud Storage Extension](https://github.com/exasol/cloud-storage-extension)
+* [Changelog Java17 in standard SLC](https://exasol.my.site.com/s/article/Changelog-content-24714?language=en_US)
+* [Java 17 cannot access class sun.nio.ch](https://stackoverflow.com/questions/73465937/apache-spark-3-3-0-breaks-on-java-17-with-cannot-access-class-sun-nio-ch-direct)
 
 *We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).*
