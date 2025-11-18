@@ -5,7 +5,7 @@
 After migration to v8, import of DELTA files from AWS S3 bucket via Cloud Storage Extension stopped working. But, import of Parquet files works as usual.
 When trying to import a DELTA files from S3 we receive the following error **cannot access class sun.nio.ch.DirectBuffer**:
 
-```sh
+```text
 SQL Error [22002]: VM error: F-UDF-CL-LIB-1127: F-UDF-CL-SL-JAVA-1002: F-UDF-CL-SL-JAVA-1013:
 com.exasol.ExaUDFException: F-UDF-CL-SL-JAVA-1080: Exception during run
 java.lang.IllegalAccessError: class org.apache.spark.storage.StorageUtils$ (in unnamed module @0x4686afc2) cannot access class sun.nio.ch.DirectBuffer (in module java.base) because module java.base does not export sun.nio.ch to unnamed module @0x4686afc2
