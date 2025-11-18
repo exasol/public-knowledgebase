@@ -38,7 +38,7 @@ com.exasol.ExaWrapper.run(ExaWrapper.java:215)
 (Session: 1847938994977701888)
 ```
 
-Import statement eample:
+Import statement example:
 
 ```sql
 IMPORT INTO ECONSIGHT.DT_UCID_REGIONS_IMP
