@@ -41,12 +41,12 @@ com.exasol.ExaWrapper.run(ExaWrapper.java:215)
 Import statement example:
 
 ```sql
-IMPORT INTO ECONSIGHT.DT_UCID_REGIONS_IMP
+IMPORT INTO <SCHEMA>.<TABLE>
 FROM SCRIPT CLOUD_STORAGE_EXTENSION.IMPORT_PATH WITH
-BUCKET_PATH = 's3a://econsighttest1/data/delta/dt_ucid_regions/'
+BUCKET_PATH = 's3a://<bucket>/<delta files path>/'
 DATA_FORMAT = 'DELTA'
 S3_ENDPOINT = 's3.us-east-1.amazonaws.com'
-CONNECTION_NAME = 'ECONSIGHT_CONNECTION';
+CONNECTION_NAME = '<S3_CONNECTION>';
 ```
 
 It works for DATA_FORMAT='PARQUET', but not for DELTA. In v7 this was working for both formats. No other changes were introduced.
