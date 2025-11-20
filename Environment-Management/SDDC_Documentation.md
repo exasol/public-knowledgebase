@@ -37,7 +37,7 @@ This document contains information about how to use the SDDC Feature with Exasol
 
 SDDC (Synchronous Dual Data Center) is a very powerful configuration within Exasol which enables business continuity using two data centers. The information provided within this article is meant for **advanced** users of Exasol who are already very familiar with Exasol databases and their administration, especially using [ConfD](https://docs.exasol.com/db/latest/confd/confd.htm) and [c4](https://docs.exasol.com/db/latest/administration/aws/admin_interface/c4.htm).
 
-**When administering an SDDC cluster, extreme caution is recommended. Incorrect actions could lead to data loss. If there is any doubt, contact Exasol Support.**
+**When administering an SDDC cluster, extreme caution is recommended. Incorrect actions could lead to data loss. When considering an SDDC setup, always contact Exasol support so we can analyze and advise if this setup is appropriate for your needs.  If there is any doubt when performing any action, contact Exasol Support.**
 
 The information and examples provided are developed with a customer's set up in mind. This guide was created using version 8.29.12 and therefore does not include mention of the [Admin UI](https://docs.exasol.com/db/latest/administration/on-premise/admin_interface/admin_ui_overview.htm). We recommend to perform any administration tasks using the steps provided in this guide.
 
