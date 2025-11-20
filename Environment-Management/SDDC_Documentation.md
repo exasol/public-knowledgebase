@@ -81,6 +81,8 @@ The ability to write to the redundant copy requires that all volumes are online 
 - Performance is influenced by network latency, disk I/O, shared/limited bandwidth, and can be impacted by firewalls or encryption.
 - Network saturation may make cluster nodes unresponsive, threatening stability. The goal is to minimize bottlenecks and performance loss between sites.
 
+> Always contact Exasol support when considering an SDDC setup so that we can evaluate the exact network architecture and configuration.
+
 ---
 
 #### Required Bandwidth Calculation
@@ -513,6 +515,12 @@ In the default state, each volume contains a MASTER segment and a REDUNDANT segm
 
 ```bash
 csinfo -R
+```
+
+You can also use confd_client to identify which nodes are in use by the volume based on which nodes contain segments for the given volume. The archive and data volumes should be using the same list of nodes, however the order of the nodes presented in the list does not have to be identical.
+
+```bash
+confd_client st_volume_info vname: Data_vol --json | jq -r '.volume_nodes'
 ```
 
 ---
