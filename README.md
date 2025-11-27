@@ -30,11 +30,20 @@ The knowledge base provides five categories:
 
 ## Create a KB Article
 
+Steps 2. and 4. below apply if you author articles in a locally cloned repository on your machine. It's also possible to author files directly in GitHub interface.
+
+To change an existing file, open it and start from "Edit this file" in top right corner. To add a new file, go to the respective folder and use "Add file" option in top right corner.
+
+When done - click "Commit changes" and choose option "Create a new branch for this commit and start a pull request".
+
+All remaining steps below apply to all ways of authoring articles.
+
 1. Access the GitHub repository at [exasol\Public-Knowledgebase](https://github.com/exasol/Public-Knowledgebase).
 1. In GitHub, click __Fork__ or create a new branch.
 1. Select the appropriate template in the [Templates](/Templates) folder and copy the content.
 1. Using your tool's commands, create a new file in the matching folder and copy the template's content into that file.  
 1. Save the file in the appropriate category folder.
+1. The article headline and filename must be the same (or at least very close), use “-” for spaces. This way, you can ensure that you will be able to find the articles in Github. If possible, avoid in filenames anything except alphanumeric characters and dashes “-”.
 1. Write the article using styles listed in the Exasol Styles section of this readme and instructions in the template.
 1. Each category folder contains a subfolder called __images__. If you have images, place them in your chosen category's __images__ folder. Make sure the size of each image does not exceed 1 MB.
 1. We recommend you use a *Markdown linter* locally, to make sure required formatting rules are applied. The pull request you will create will be subject to a linter check online.
