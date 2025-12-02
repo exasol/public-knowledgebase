@@ -31,6 +31,9 @@ When using the Exasol Cloud Monitoring Agent App in manual mode, the following p
 - **`-pass`**  
   Password of the corresponding Exasol user account. Password input masking will be implemented in a future update.
 
+  - **`-timeout`**  
+  Timeout in seconds for all statistics to be gathered. 
+
 - **`-duration`**  
   Specifies the time period for which data should be exported. Currently, this parameter accepts only days(d), hours(h) and minutes(m). Support for additional time units will be introduced in future updates.
 
