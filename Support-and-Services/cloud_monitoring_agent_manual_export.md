@@ -31,7 +31,7 @@ When using the Exasol Cloud Monitoring Agent App in manual mode, the following p
 - **`-pass`**  
   Password of the corresponding Exasol user account. Password input masking will be implemented in a future update.
 
-  - **`-timeout`**  
+- **`-timeout`**  
   Timeout in seconds for all statistics to be gathered. 
 
 - **`-duration`**  
