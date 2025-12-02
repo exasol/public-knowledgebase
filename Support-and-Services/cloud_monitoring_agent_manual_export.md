@@ -2,7 +2,7 @@
 
 ## Overview
 
-The **Exasol Cloud Monitoring Agent App** was originally developed to run as an "online" monitoring agent within customer systems, enabling continuous monitoring and data export to Exasol's monitoring infrastructure. However, the app has been modified to support manual data export for "offline" environments, where continuous online monitoring isn't feasible. 
+The **Exasol Cloud Monitoring Agent App** was originally developed to run as an "online" monitoring agent within customer systems, enabling continuous monitoring and data export to Exasol's monitoring infrastructure. However, the app has been modified to support manual data export for "offline" environments, where continuous online monitoring isn't feasible.
 
 This article contains instructions on using the Exasol Cloud Monitoring Agent App in this offline, manual mode.
 
@@ -32,17 +32,17 @@ When using the Exasol Cloud Monitoring Agent App in manual mode, the following p
   Password of the corresponding Exasol user account. Password input masking will be implemented in a future update.
 
 - **`-timeout`**  
-  Timeout in seconds for all statistics to be gathered. 
+  Timeout in seconds for all statistics to be gathered.
 
 - **`-duration`**  
   Specifies the time period for which data should be exported. Currently, this parameter accepts only days(d), hours(h) and minutes(m). Support for additional time units will be introduced in future updates.
-
 
 ## Example
 
 Below are examples of how to run the Exasol Cloud Monitoring Agent App in offline mode on both Windows and Linux.
 
 ### Windows
+
 ```bash
 ./check_sqlquery.exe -collect -user <EXA_USER> -pass <EXA_USER_PASS> -host <DB_HOST_IP>:<DB_PORT> -duration 365d > monitoring_export.line
 ```
@@ -57,6 +57,7 @@ set EXASOL_PASS=<EXA_USER_PASS>
 ```
 
 ### Linux
+
 ```bash
 ./check_sqlquery -collect -user <EXA_USER> -pass <EXA_USER_PASS> -host <DB_HOST_IP>:<DB_PORT> -duration 365d > monitoring_export.line
 ```
@@ -70,7 +71,7 @@ EXASOL_PASS=<EXA_USER_PASS>
 ./check_sqlquery -collect -user $EXASOL_USER -pass $EXASOL_PASS -host $EXASOL_HOSTS -duration 365d > monitoring_export.line
 ```
 
-### In both examples:
+### In both examples
 
 Replace <EXA_USER> and <EXA_USER_PASS> with the actual Exasol user credentials.
 Replace <DB_HOST_IP> and <DB_PORT> with the actual IP and port for the Exasol instance.
@@ -87,10 +88,6 @@ tar -czvf monitoring_export.tar.gz monitoring_export.line
 ```
 
 ## Downloads
-### Linux
 
-* [check_sqlquery](https://github.com/exasol/public-knowledgebase/blob/main/Support-and-Services/attachments/check_sqlquery)
-
-### Windows
-
-* [check_sqlquery.exe](https://github.com/exasol/public-knowledgebase/blob/main/Support-and-Services/attachments/check_sqlquery.exe)
+- For Linux: [check_sqlquery](https://github.com/exasol/public-knowledgebase/blob/main/Support-and-Services/attachments/check_sqlquery)
+- For Windows: [check_sqlquery.exe](https://github.com/exasol/public-knowledgebase/blob/main/Support-and-Services/attachments/check_sqlquery.exe)
