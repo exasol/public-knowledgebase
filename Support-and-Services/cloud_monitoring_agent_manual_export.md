@@ -2,7 +2,7 @@
 
 ## Overview
 
-The **Exasol Cloud Monitoring Agent App** was originally developed to run as an "online" monitoring agent within customer systems, enabling continuous monitoring and data export to Exasol's monitoring infrastructure. However, the app has been modified to support manual data export for "offline" environments, where continuous online monitoring isn't feasible. 
+The **Exasol Cloud Monitoring Agent App** was originally developed to run as an "online" monitoring agent within customer systems, enabling continuous monitoring and data export to Exasol's monitoring infrastructure. However, the app has been modified to support manual data export for "offline" environments, where continuous online monitoring isn't feasible.
 
 This article contains instructions on using the Exasol Cloud Monitoring Agent App in this offline, manual mode.
 
@@ -29,19 +29,22 @@ When using the Exasol Cloud Monitoring Agent App in manual mode, the following p
   Exasol user login that the app will use to connect and gather statistics. The specified user should have the **"select any dictionary"** privilege.
 
 - **`-pass`**  
-  Password of the corresponding Exasol user account. Password input masking will be implemented in a future update.
+Password for the corresponding Exasol user account. If the password is provided directly on the command line or through an environment variable, it will not be masked, which may be inconvenient and could expose the password in command history. To avoid this, you can omit the password here - the application will then prompt for it interactively, with the input masked.
+
+- **`-timeout`**  
+  Timeout in seconds for all statistics to be gathered.
 
 - **`-duration`**  
   Specifies the time period for which data should be exported. Currently, this parameter accepts only days(d), hours(h) and minutes(m). Support for additional time units will be introduced in future updates.
-
 
 ## Example
 
 Below are examples of how to run the Exasol Cloud Monitoring Agent App in offline mode on both Windows and Linux.
 
 ### Windows
+
 ```bash
-./check_sqlquery.exe -collect -user <EXA_USER> -pass <EXA_USER_PASS> -host <DB_HOST_IP>:<DB_PORT> -duration 5000h > monitoring_export.line
+./check_sqlquery.exe -collect -user <EXA_USER> -pass <EXA_USER_PASS> -host <DB_HOST_IP>:<DB_PORT> -duration 365d -timeout 600 > monitoring_export.line
 ```
 
 or with ENV variables
@@ -50,12 +53,13 @@ or with ENV variables
 set EXASOL_HOSTS=<DB_HOST_IP>:<DB_PORT>
 set EXASOL_USER=<EXA_USER>
 set EXASOL_PASS=<EXA_USER_PASS>
-./check_sqlquery.exe -collect -user %EXASOL_USER% -pass %EXASOL_PASS% -host %EXASOL_HOSTS% -duration 100d > monitoring_export.line
+./check_sqlquery.exe -collect -user %EXASOL_USER% -pass %EXASOL_PASS% -host %EXASOL_HOSTS% -duration 365d -timeout 600 > monitoring_export.line
 ```
 
 ### Linux
+
 ```bash
-./check_sqlquery -collect -user <EXA_USER> -pass <EXA_USER_PASS> -host <DB_HOST_IP>:<DB_PORT> -duration 5000h > monitoring_export.line
+./check_sqlquery -collect -user <EXA_USER> -pass <EXA_USER_PASS> -host <DB_HOST_IP>:<DB_PORT> -duration 365d -timeout 600 > monitoring_export.line
 ```
 
 or with ENV variables
@@ -64,10 +68,10 @@ or with ENV variables
 EXASOL_HOSTS=<DB_HOST_IP>:<DB_PORT>
 EXASOL_USER=<EXA_USER>
 EXASOL_PASS=<EXA_USER_PASS>
-./check_sqlquery -collect -user $EXASOL_USER -pass $EXASOL_PASS -host $EXASOL_HOSTS -duration 100d > monitoring_export.line
+./check_sqlquery -collect -user $EXASOL_USER -pass $EXASOL_PASS -host $EXASOL_HOSTS -duration 365d -timeout 600 > monitoring_export.line
 ```
 
-### In both examples:
+### In both examples
 
 Replace <EXA_USER> and <EXA_USER_PASS> with the actual Exasol user credentials.
 Replace <DB_HOST_IP> and <DB_PORT> with the actual IP and port for the Exasol instance.
@@ -84,10 +88,6 @@ tar -czvf monitoring_export.tar.gz monitoring_export.line
 ```
 
 ## Downloads
-### Linux
 
-* [check_sqlquery](https://github.com/exasol/public-knowledgebase/blob/main/Support-and-Services/attachments/check_sqlquery)
-
-### Windows
-
-* [check_sqlquery.exe](https://github.com/exasol/public-knowledgebase/blob/main/Support-and-Services/attachments/check_sqlquery.exe)
+- For Linux: [check_sqlquery](https://github.com/exasol/public-knowledgebase/blob/main/Support-and-Services/attachments/check_sqlquery)
+- For Windows: [check_sqlquery.exe](https://github.com/exasol/public-knowledgebase/blob/main/Support-and-Services/attachments/check_sqlquery.exe)
