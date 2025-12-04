@@ -44,7 +44,7 @@ Below are examples of how to run the Exasol Cloud Monitoring Agent App in offlin
 ### Windows
 
 ```bash
-./check_sqlquery.exe -collect -user <EXA_USER> -pass <EXA_USER_PASS> -host <DB_HOST_IP>:<DB_PORT> -duration 365d > monitoring_export.line
+./check_sqlquery.exe -collect -user <EXA_USER> -pass <EXA_USER_PASS> -host <DB_HOST_IP>:<DB_PORT> -duration 365d -timeout 600 > monitoring_export.line
 ```
 
 or with ENV variables
@@ -53,13 +53,13 @@ or with ENV variables
 set EXASOL_HOSTS=<DB_HOST_IP>:<DB_PORT>
 set EXASOL_USER=<EXA_USER>
 set EXASOL_PASS=<EXA_USER_PASS>
-./check_sqlquery.exe -collect -user %EXASOL_USER% -pass %EXASOL_PASS% -host %EXASOL_HOSTS% -duration 365d > monitoring_export.line
+./check_sqlquery.exe -collect -user %EXASOL_USER% -pass %EXASOL_PASS% -host %EXASOL_HOSTS% -duration 365d -timeout 600 > monitoring_export.line
 ```
 
 ### Linux
 
 ```bash
-./check_sqlquery -collect -user <EXA_USER> -pass <EXA_USER_PASS> -host <DB_HOST_IP>:<DB_PORT> -duration 365d > monitoring_export.line
+./check_sqlquery -collect -user <EXA_USER> -pass <EXA_USER_PASS> -host <DB_HOST_IP>:<DB_PORT> -duration 365d -timeout 600 > monitoring_export.line
 ```
 
 or with ENV variables
@@ -68,7 +68,7 @@ or with ENV variables
 EXASOL_HOSTS=<DB_HOST_IP>:<DB_PORT>
 EXASOL_USER=<EXA_USER>
 EXASOL_PASS=<EXA_USER_PASS>
-./check_sqlquery -collect -user $EXASOL_USER -pass $EXASOL_PASS -host $EXASOL_HOSTS -duration 365d > monitoring_export.line
+./check_sqlquery -collect -user $EXASOL_USER -pass $EXASOL_PASS -host $EXASOL_HOSTS -duration 365d -timeout 600 > monitoring_export.line
 ```
 
 ### In both examples
