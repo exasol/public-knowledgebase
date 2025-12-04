@@ -29,7 +29,7 @@ When using the Exasol Cloud Monitoring Agent App in manual mode, the following p
   Exasol user login that the app will use to connect and gather statistics. The specified user should have the **"select any dictionary"** privilege.
 
 - **`-pass`**  
-  Password of the corresponding Exasol user account. Password input masking will be implemented in a future update.
+Password for the corresponding Exasol user account. If the password is provided directly on the command line or through an environment variable, it will not be masked, which may be inconvenient and could expose the password in command history. To avoid this, you can omit the password here - the application will then prompt for it interactively, with the input masked.
 
 - **`-timeout`**  
   Timeout in seconds for all statistics to be gathered.
