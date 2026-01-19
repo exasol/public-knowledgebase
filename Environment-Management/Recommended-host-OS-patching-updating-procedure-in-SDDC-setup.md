@@ -26,7 +26,7 @@ Updating the host systems on the inactive half of SDDC, then switch SDDC over to
 
 If a node is being updated or restarted and is unavailable at the same time the active node (which relies on it for redundancy) experiences a storage failure, data loss could occur.
 
-While backups may allow for recovery, the resulting database downtime would likely be even longer. This is a risk which Exaslo and you may not want to take. Therefore Exasol does not recommend to the procedure of patching inactive SDDC site first then switch over SDDC to patch the rest.
+While backups may allow for recovery, the resulting database downtime would likely be even longer. This is a risk which Exasol and you may not want to take. Therefore Exasol does not recommend to the procedure of patching inactive SDDC site first then switch over SDDC to patch the rest.
 
 ## Additional References
 
