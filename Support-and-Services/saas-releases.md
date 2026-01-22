@@ -7,6 +7,12 @@ For further information please also visit related pages for Exasol SaaS:
 * [SaaS Documentation](https://docs.exasol.com/saas)
 * [Status Page (status.exasol.com)](https://status.exasol.com)
 
+## Nov 15 2025
+
+### Cluster Scaling Improvements
+
+Cluster scaling operations are now more reliable and efficient. When scaling up, the system first attempts to secure dedicated capacity reservations before proceeding, ensuring resources are available for your database. Additionally, clusters that are powered off will automatically start before resizing, allowing scheduled scaling actions to succeed even when clusters are stopped. This eliminates the need for manual intervention and ensures your automation workflows work seamlessly regardless of cluster state.
+
 ## Sep 22 2025
 
 ### Lakehouse Turbo
