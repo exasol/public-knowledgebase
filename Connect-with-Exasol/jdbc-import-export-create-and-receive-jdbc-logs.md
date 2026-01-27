@@ -2,7 +2,7 @@
 
 ## Background
 
-If you run IMPORT/EXPORT commands with another DBMS, sometimes you may need to generate JDBC logs to debug why the statement is not working. This is especially true if you do not receive any error message, and the command "hangs". This article specifically describes how to create these logs when connecting to an external source, like SQL Server, Oracle, or any other JDBC source. 
+If you run IMPORT/EXPORT commands with another DBMS, sometimes you may need to generate JDBC logs to debug why the statement is not working. This is especially true if you do not receive any error message, and the command "hangs". This article specifically describes how to create these logs when connecting to an external source, like SQL Server, Oracle, or any other JDBC source.
 
 ## Prerequisites
 
@@ -44,4 +44,4 @@ Remember, the parameters that you need to change to enable JDBC logging depend o
 * [Loading Data Documentation](https://docs.exasol.com/loading_data/load_data_from_externalsources.htm)
 * [CREATE CONNECTION](https://docs.exasol.com/sql/create_connection.htm)
 
-*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).*
