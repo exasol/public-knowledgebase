@@ -34,7 +34,7 @@ Below are steps to connect to Exasol from Openresty.
 
 * Execute connection test scripts
 
- odbctest.sh
+    odbctest.sh
 
     ```shell
     # set -x
@@ -47,7 +47,7 @@ Below are steps to connect to Exasol from Openresty.
     echo "Retun code from resty $?"
     ```
 
- odbctest.lua
+    odbctest.lua
 
     ```lua
     local odbc = require("odbc")
