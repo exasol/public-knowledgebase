@@ -1,9 +1,10 @@
-# Run your ETL jobs with Azure Data Factory and Exasol 
+# Run your ETL jobs with Azure Data Factory and Exasol
+
 ## Background
 
 This tutorial shows you how to use the Exasol database with the ETL Tool Azure Data Factory.
 
-We'll go over a few topics in this tutorial: 
+We'll go over a few topics in this tutorial:
 
 - Enabling access to your Exasol database
 
@@ -51,22 +52,22 @@ Documented below is my preferred method of doing so:
 
 Let's navigate to the azure data factory UI and add a new integration runtime there:
 
-![](images/exa-Pieterjan_0-1621601254920.png)
+![azure data factory UI](images/exa-Pieterjan_0-1621601254920.png)
 
 Then we pick "Azure, Self-Hosted",
 
-![](images/exa-Pieterjan_0-1621601866786.png)
+![New Integration runtime](images/exa-Pieterjan_0-1621601866786.png)
 
 Then "Self-Hosted"
 
-![](images/exa-Pieterjan_1-1621601880297.png)
+![Integration runtime setup](images/exa-Pieterjan_1-1621601880297.png)
 
-Let's pick a  good recognizable name and then press "Create" 
+Let's pick a  good recognizable name and then press "Create"
 (You won't be able to change this name later so that's why I specifically mention this here).
 
 This will open another pop-up menu:
 
-![](images/exa-Pieterjan_2-1621602126955.png)
+![Integration runtime settings](images/exa-Pieterjan_2-1621602126955.png)
 
 Here we get the option to download an express setup installer or a default installer.
 
@@ -86,7 +87,7 @@ On the 'Manage' tab (we should still be on this tab) we need to create a linked 
 
 Click on 'Linked Services', under 'Connections', there click 'New'
 
-![](images/exa-Pieterjan_0-1621609938753.png)
+![New Linked service](images/exa-Pieterjan_0-1621609938753.png)
 
 A new menu pops up where we'll have to do further configurations:
 
@@ -94,7 +95,7 @@ Let's pick the integrated runtime we've just created under 'connect via integrat
 
 Enter the connection string: In our case it looks like this.
 
-`DRIVER=EXASolution Driver;EXAHOST=exasol-pjs-adf-tutorial.westeurope.cloudapp.azure.com;`
+`DRIVER=Exasol Driver;EXAHOST=exasol-pjs-adf-tutorial.westeurope.cloudapp.azure.com;`
 
 The `DRIVER` name is important since it needs to know which ODBC driver to use (in our case the Exasol ODBC driver we've installed earlier).
 
@@ -104,7 +105,7 @@ The next step is to enter the credentials of the database account we plan to acc
 
 The end result will look something like this:
 
-![](images/exa-Pieterjan_1-1622115224378.png)
+![Exasol ODBC driver settings](images/exa-Pieterjan_1-1622115224378.png)
 
 We  can test whether our linked service is correctly configured by clicking on 'Test Connection'.
 
@@ -112,7 +113,7 @@ We've now successfully established a connection to the Exasol database.
 
 Our next steps will be creating actual datasets  that utilize this linked service and then pipelines that utilize these datasets so that we can send and extract data to and from our Exasol database.
 
-## Transferring data to the Exasol database.
+## Transferring data to the Exasol database
 
 Next up we'll set up an ODBC dataset using the linked service we've just created.
 
@@ -122,7 +123,7 @@ ODBC datasets can be used by the 'Copy' and 'Lookup' activities in Azure Data Fa
 
 Let's move back to the 'Authoring' tab in Azure Data Factory.
 
-![](images/exa-Pieterjan_0-1622116518424.png)
+![Authoring](images/exa-Pieterjan_0-1622116518424.png)
 
 Next to dataset click the dotted line ('...').
 
@@ -132,13 +133,13 @@ Search for 'odbc', select the right result and press 'Create'.
 
 Pick the linked ODBC service we've created in the previous step, to select a table.
 
-![](images/exa-Pieterjan_0-1622017666331.png)
+![Create new dataset](images/exa-Pieterjan_0-1622017666331.png)
 
 For this example I've added a very simple table to my database containing just a first name and last name column.
 
 Here's the script:
 
-```
+```sql
 CREATE SCHEMA "adf";
 ALTER SCHEMA "adf" CHANGE OWNER SYS;
 
@@ -152,13 +153,13 @@ LASTNAME VARCHAR(50) UTF8
 
 This is what our dataset should look like then:
 
-![](images/exa-Pieterjan_0-1622118812350.png)
+![New dataset](images/exa-Pieterjan_0-1622118812350.png)
 
 ## Adding an azure blob storage dataset
 
 We'll also need an azure blob storage dataset for this tutorial.
 
-This article goes over setting up an azure blob storage dataset in more detail: 
+This article goes over setting up an azure blob storage dataset in more detail:
 
 <https://docs.microsoft.com/en-us/azure/data-factory/quickstart-create-data-factory-portal>
 
@@ -171,20 +172,20 @@ Now let's create a new dataset:
 
 Search for 'blob', pick 'Azure Blob Storage'
 
-![](images/exa-Pieterjan_0-1622019358830.png)
+![Azure Blob Storage](images/exa-Pieterjan_0-1622019358830.png)
 
 Pick 'DelimitedText' as the format:
 
-![](images/exa-Pieterjan_1-1622019421513.png)
+![DelimitedText](images/exa-Pieterjan_1-1622019421513.png)
 
-We're picking the "DelimitedText" option, because this allows us to configure how to extract comma separated values from our CSV file out of the box. 
+We're picking the "DelimitedText" option, because this allows us to configure how to extract comma separated values from our CSV file out of the box.
 For Parquet files or other files we'd pick one of the other corresponding options.
 
 Then we'll need to configure the filepath so it points to the right csv file(s) in our blob storage. There's a handy file browser you can use for this.
 
 Our configured blob storage dataset should look like this:
 
-![](images/exa-Pieterjan_1-1622120616219.png)
+![New DelimitedText dataset](images/exa-Pieterjan_1-1622120616219.png)
 
 ## Creating a pipeline and transferring data to the database
 
@@ -196,11 +197,11 @@ Add a 'Copy data' activity:
 
 Set the csv file dataset we've created as the source.
 
-![](images/exa-Pieterjan_2-1622021297130.png)
+![New pipeline](images/exa-Pieterjan_2-1622021297130.png)
 
 Pick the ODBC table dataset we've created as the sink.
 
-![](images/exa-Pieterjan_3-1622021366202.png)
+![Sink](images/exa-Pieterjan_3-1622021366202.png)
 
 If your source CSV file has no header, like in our case, we need to explicitly configure the mapping (as the source doesn't contain column names).
 
@@ -214,7 +215,7 @@ Take note: We'll need to enter the database column names manually.
 
 In our case the first csv value maps to the first name column in the database and the second csv value maps to the last name so the process is very straightforward:
 
-![](images/exa-Pieterjan_0-1622022149361.png)
+![Mapping](images/exa-Pieterjan_0-1622022149361.png)
 
 And we're good to go!
 
@@ -234,35 +235,37 @@ The ODBC dataset could also be a view.
 
 Another possibility is a custom query, we can set this option in the activity source tab:
 
-![](images/exa-Pieterjan_0-1622128058140.png)
+![Exporting](images/exa-Pieterjan_0-1622128058140.png)
 
-## Calling a stored procedure or script.
+## Calling a stored procedure or script
 
-We can also call a stored procedure (or 'script' as we call them) that returns a table. 
+We can also call a stored procedure (or 'script' as we call them) that returns a table.
 
-Using this approach you could call the [Exasol bulk loader](https://docs.exasol.com/loading_data/loading_from_file.htm)  and run complex transformation logic directly in the database.
+Using this approach you could call the [Exasol bulk loader](https://docs.exasol.com/loading_data/loading_from_file.htm) and run complex transformation logic directly in the database.
 
 The following script shows a simplified example:
 
-`--/`  
-`CREATE OR REPLACE SCRIPT "adf"."hi"(name) RETURNS TABLE AS`  
-`greeting = "Hello, "`  
-`concatStr = greeting .. name`  
-`local result_table = {{concatStr}}`  
-`exit(result_table, "greeting varchar(50)")`  
-`/`
+```lua
+--/
+CREATE OR REPLACE SCRIPT "adf"."hi"(name) RETURNS TABLE AS
+greeting = "Hello, "
+concatStr = greeting .. name
+local result_table = {{concatStr}}
+exit(result_table, "greeting varchar(50)")
+/
+```
 
 Which returns a custom table with a greeting to whatever name you've passed in as a parameter.
 
 We can easily execute this script and get the results:
 
-![](images/exa-Pieterjan_1-1622128286812.png)
+![Script as a source](images/exa-Pieterjan_1-1622128286812.png)
 
 In some cases you'd probably also want to call a script without defining a data sink.
 
 You can accomplish this by using a 'Lookup' activity instead of the 'Copy data' activity we've been using before.
 
-![](images/exa-Pieterjan_2-1622128546499.png)
+![Lookup](images/exa-Pieterjan_2-1622128546499.png)
 
 ## Conclusion
 
@@ -270,4 +273,4 @@ As you can see the setup and workflows for using the Exasol database in Azure Da
 
 We hope you've enjoyed reading this article.
 
-*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).*
