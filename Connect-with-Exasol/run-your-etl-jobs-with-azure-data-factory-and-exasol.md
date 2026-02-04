@@ -159,7 +159,7 @@ This is what our dataset should look like then:
 
 We'll also need an azure blob storage dataset for this tutorial.
 
-This article goes over setting up an azure blob storage dataset in more detail: 
+This article goes over setting up an azure blob storage dataset in more detail:
 
 <https://docs.microsoft.com/en-us/azure/data-factory/quickstart-create-data-factory-portal>
 
@@ -178,7 +178,7 @@ Pick 'DelimitedText' as the format:
 
 ![DelimitedText](images/exa-Pieterjan_1-1622019421513.png)
 
-We're picking the "DelimitedText" option, because this allows us to configure how to extract comma separated values from our CSV file out of the box. 
+We're picking the "DelimitedText" option, because this allows us to configure how to extract comma separated values from our CSV file out of the box.
 For Parquet files or other files we'd pick one of the other corresponding options.
 
 Then we'll need to configure the filepath so it points to the right csv file(s) in our blob storage. There's a handy file browser you can use for this.
@@ -237,9 +237,9 @@ Another possibility is a custom query, we can set this option in the activity so
 
 ![Exporting](images/exa-Pieterjan_0-1622128058140.png)
 
-## Calling a stored procedure or script.
+## Calling a stored procedure or script
 
-We can also call a stored procedure (or 'script' as we call them) that returns a table. 
+We can also call a stored procedure (or 'script' as we call them) that returns a table.
 
 Using this approach you could call the [Exasol bulk loader](https://docs.exasol.com/loading_data/loading_from_file.htm) and run complex transformation logic directly in the database.
 
