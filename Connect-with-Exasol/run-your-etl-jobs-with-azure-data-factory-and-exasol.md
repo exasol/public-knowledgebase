@@ -1,4 +1,5 @@
-# Run your ETL jobs with Azure Data Factory and Exasol 
+# Run your ETL jobs with Azure Data Factory and Exasol
+
 ## Background
 
 This tutorial shows you how to use the Exasol database with the ETL Tool Azure Data Factory.
@@ -94,7 +95,7 @@ Let's pick the integrated runtime we've just created under 'connect via integrat
 
 Enter the connection string: In our case it looks like this.
 
-`DRIVER=EXASolution Driver;EXAHOST=exasol-pjs-adf-tutorial.westeurope.cloudapp.azure.com;`
+`DRIVER=Exasol Driver;EXAHOST=exasol-pjs-adf-tutorial.westeurope.cloudapp.azure.com;`
 
 The `DRIVER` name is important since it needs to know which ODBC driver to use (in our case the Exasol ODBC driver we've installed earlier).
 
@@ -138,7 +139,7 @@ For this example I've added a very simple table to my database containing just a
 
 Here's the script:
 
-```
+```sql
 CREATE SCHEMA "adf";
 ALTER SCHEMA "adf" CHANGE OWNER SYS;
 
@@ -240,17 +241,19 @@ Another possibility is a custom query, we can set this option in the activity so
 
 We can also call a stored procedure (or 'script' as we call them) that returns a table. 
 
-Using this approach you could call the [Exasol bulk loader](https://docs.exasol.com/loading_data/loading_from_file.htm)  and run complex transformation logic directly in the database.
+Using this approach you could call the [Exasol bulk loader](https://docs.exasol.com/loading_data/loading_from_file.htm) and run complex transformation logic directly in the database.
 
 The following script shows a simplified example:
 
-`--/`  
-`CREATE OR REPLACE SCRIPT "adf"."hi"(name) RETURNS TABLE AS`  
-`greeting = "Hello, "`  
-`concatStr = greeting .. name`  
-`local result_table = {{concatStr}}`  
-`exit(result_table, "greeting varchar(50)")`  
-`/`
+```lua
+--/
+CREATE OR REPLACE SCRIPT "adf"."hi"(name) RETURNS TABLE AS
+greeting = "Hello, "
+concatStr = greeting .. name
+local result_table = {{concatStr}}
+exit(result_table, "greeting varchar(50)")
+/
+```
 
 Which returns a custom table with a greeting to whatever name you've passed in as a parameter.
 
@@ -270,4 +273,4 @@ As you can see the setup and workflows for using the Exasol database in Azure Da
 
 We hope you've enjoyed reading this article.
 
-*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).*
