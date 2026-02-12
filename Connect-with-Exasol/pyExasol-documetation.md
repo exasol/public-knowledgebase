@@ -26,7 +26,7 @@ in the releases section (and in a CHANGELOG.md file, if available).
 
 ### References
 
-* https://github.com/exasol/pyexasol
-* https://exasol.github.io/pyexasol/master/index.html
+* <https://github.com/exasol/pyexasol>
+* <https://exasol.github.io/pyexasol/master/index.html>
 
 *We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).*
