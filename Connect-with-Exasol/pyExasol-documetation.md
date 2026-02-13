@@ -22,7 +22,8 @@ You can visit the GitHub repository at
 source code, tests, and the project history. You should use it if you
 want to understand how something is implemented, report a bug by opening
 an issue, contribute changes through a pull request, or review updates
-in the releases section (and in a CHANGELOG.md file, if available).
+in the releases section and in the changelog, in folder 
+[doc/changes/](https://github.com/exasol/pyexasol/tree/master/doc/changes).
 
 ### References
 
