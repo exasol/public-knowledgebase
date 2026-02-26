@@ -6,9 +6,9 @@
 
 ## Introduction
 
-The content of this article provides more information on [Changelog-content-22913](https://exasol.my.site.com/s/article/Changelog-content-7802) and applies to Exasol versions starting with **8.34.0**.
+The content of this article provides more information on [Changelog-content-22914](https://exasol.my.site.com/s/article/Changelog-content-22914) and applies to Exasol versions starting with **8.34.0**.
 
-There is another, older, automated optimization[^union-all-opt] for `UNION ALL` covering the case of identical tables in every branch.
+There is another, older, automated optimization for `UNION ALL` covering the case of identical tables in every branch. [^union-all-opt]
 
 [^union-all-opt]: Union All Optimization: [Knowledge Base Article](https://exasol.my.site.com/s/article/Union-all-optimization)
 
