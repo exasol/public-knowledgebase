@@ -1,6 +1,6 @@
-# Training Badge - Exasol 7 Certified Professional Administrator
+# Training Badge - Exasol Certified Professional Administrator
 
-You may download and use the badge on this page according to the terms listed below if you passed the current online exam **Exasol 7 Certified Professional Administrator** or if you hold a formerly granted certificate as "Exasol 6 Certified Professional Administrator" or as “Exasol Certified Administrator”  (Issued before 2020, now retired) and you passed the Certification Upgrade Exam.
+You may download and use the badge on this page according to the terms listed below if you passed the current online exam **Exasol Certified Professional Administrator** or if you hold a formerly granted certificate as "Exasol 6 Certified Professional Administrator" or as “Exasol Certified Administrator”  (Issued before 2020, now retired) and you passed the Certification Upgrade Exam.
 
 ![Professional Administrator](images/ECP7_Administrator.png)
 
