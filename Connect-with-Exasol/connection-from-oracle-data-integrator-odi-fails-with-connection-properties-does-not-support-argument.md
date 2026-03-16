@@ -57,7 +57,7 @@ In our tests ignoring the following parameters was enough:
 ignoreparams=ENC_KEY,ENC_ALGO,enc_iv,enc_key_len
 ```
 
-You might need to adapt the parameter list if in your setup, based on exact received error message.
+You might need to adapt the parameter list in your setup, based on exact received error message.
 
 ## Additional References
 
