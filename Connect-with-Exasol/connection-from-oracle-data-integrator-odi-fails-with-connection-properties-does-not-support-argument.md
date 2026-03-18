@@ -2,7 +2,7 @@
 
 ## Problem
 
-You try to configure connection from Oracle Data Integrator (ODI) to Exasol database and receive an error like:
+You try to configure a connection from Oracle Data Integrator (ODI) to Exasol database and receive an error like:
 
 ```text
 oracle.odi.runtime.agent.invocation.InvocationException: oracle.odi.core.exception.OdiRuntimeException: java.sql.SQLException:
@@ -21,7 +21,7 @@ Instead of parameter name "ENC_KEY" it could contain another one.
 
 ## Solution
 
-Since version 24.2.0 Exasol JDBC driver detects if connection string or connection properties contain unsupported parameters and throws error
+Since version 24.2.0 Exasol JDBC driver detects if connection string or connection properties contain unsupported parameters and throws the following error
 
 ```text
 Exception:
@@ -45,7 +45,7 @@ Connection Properties does not support (ENC_KEY) argument.
 
 means that it adds parameter `ENC_KEY`, unsupported by Exasol JDBC driver, to the JDBC connection properties.
 
-The easiest way to address it is to instruct Exasol JDBC driver to ignore some provided unknown connection properties. It can be done by using JDBC driver's parameter `ignoreparams` (see [JDBC Driver](https://docs.exasol.com/db/latest/connect_exasol/drivers/jdbc.htm)):
+The easiest way to address this is to instruct Exasol JDBC driver to ignore some provided unknown connection properties. It can be done by using JDBC driver's parameter `ignoreparams` (see [JDBC Driver](https://docs.exasol.com/db/latest/connect_exasol/drivers/jdbc.htm)):
 
 | Property | Value type | Description |
 | - | - | - |
