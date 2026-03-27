@@ -38,6 +38,7 @@ When confronted with these errors, you should first check who is the owner of th
 SELECT SCHEMA_NAME, SCHEMA_OWNER FROM EXA_SCHEMAS 
 WHERE SCHEMA_NAME = '<Schema name>';
 ```
+
 Once you find out the owner, you should verify the system and object privileges of this owner by checking EXA_DBA_OBJ_PRIVS and EXA_DBA_SYS_PRIVS:
 
 ```sql
@@ -56,6 +57,7 @@ This occurs because, even though the owner is able to select the underlying tabl
 ```sql
 ALTER SCHEMA <source schema name> CHANGE OWNER <view owner>;
 ```
+
 or indirectly via the role:
 
 ```sql
@@ -70,4 +72,4 @@ grant <Source ovnership role> to <view owner>;
 
 * [Permissions](https://docs.exasol.com/database_concepts/privileges.htm)
 
-*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).*
