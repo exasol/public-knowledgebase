@@ -51,12 +51,19 @@ To fix the error, you can grant the necessary object privileges on the owner of 
 
 In case of the third error, "**SELECT ON TABLE ... must be grantable ...**":
 
-This occurs because, even though the owner is able to select the underlying tables and objects, it does not mean that the owner is allowed to grant this object to other people. In this scenario, granting on a view is essentially granting a SELECT on the underlying objects to someone else. When the object is in the same schema, this is okay because the owner of the view and the underlying objects are the same (meaning the owner is able to decide if other people should select this object). In order to resolve this error, the **owner** of the schema needs to either have the SELECT ANY TABLE privilege, or also be the owner of the other schema which is referenced in the view.
-
+This occurs because, even though the owner is able to select the underlying tables and objects, it does not mean that the owner is allowed to grant this object to other people. In this scenario, granting on a view is essentially granting a SELECT on the underlying objects to someone else. When the object is in the same schema, this is okay because the owner of the view and the underlying objects are the same (meaning the owner is able to decide if other people should select this object). In order to resolve this error, the **owner** of the view must also have the ownership over the underlying objects directly by owning the schema of the source objects:
 
 ```sql
-GRANT SELECT ANY TABLE TO '<Schema owner>';  
-ALTER SCHEMA <schema name> CHANGE OWNER <owner name>;
+ALTER SCHEMA <source schema name> CHANGE OWNER <view owner>;
+```
+or indirectly via the role:
+
+```sql
+create role <Source ovnership role>;
+
+alter schema <source schema name> change owner <Source ovnership role>; 
+
+grant <Source ovnership role> to <view owner>;
 ```
 ## Additional References
 
