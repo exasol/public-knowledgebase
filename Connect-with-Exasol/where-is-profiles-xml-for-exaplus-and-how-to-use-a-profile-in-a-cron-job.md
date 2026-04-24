@@ -65,6 +65,6 @@ chmod 600 ~/.exasol/profiles.xml
 
 * [Scheduling Database Jobs](scheduling-database-jobs.md)
 * [EXAplus CLI](https://docs.exasol.com/db/latest/connect_exasol/sql_clients/exaplus_cli/exaplus_cli.htm)
-* [EXAplus CLI parameters in Exasol 7.1](https://docs.exasol.com/db/7.1/connect_exasol/sql_clients/exaplus_cli/exaplus_cli.htm)
+* [EXAplus 7.1 CLI parameters](https://docs.exasol.com/db/7.1/connect_exasol/sql_clients/exaplus_cli/exaplus_cli.htm)
 
 *We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).*
