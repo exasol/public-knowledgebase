@@ -52,7 +52,7 @@ You can use the same pattern for other scheduled scripts, for example:
  -sql "EXECUTE SCRIPT DWH.KILL_ACTIVE_LONG_SESSIONS();"
 ```
 
-Because the saved profile contains the connection details, including the password, protect the file with Linux file permissions so that only the intended OS user can read it.
+Because the saved profile contains the connection details, including the hashed password, protect the file with Linux file permissions so that only the intended OS user can read it.
 
 For example:
 
