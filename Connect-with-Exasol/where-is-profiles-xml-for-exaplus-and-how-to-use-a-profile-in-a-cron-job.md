@@ -4,7 +4,7 @@
 
 I want to run scripts such as `KILL_IDLE_SESSIONS()` and `KILL_ACTIVE_LONG_SESSIONS()` from a shell script that calls EXAplus through `cron`.
 
-EXAplus has a `-profile` parameter, but the help text only says that the profile must exist in `&lt;configDir&gt;/profiles.xml`. It does not clearly state where `&lt;configDir&gt;` is located on Linux. I want to avoid putting the database password directly into the cron command.
+EXAplus has a `-profile` parameter, but the help text only says that the profile must exist in `<configDir>/profiles.xml`. It does not clearly state where `<configDir>` is located on Linux. I want to avoid putting the database password directly into the cron command.
 
 ## Answer
 
