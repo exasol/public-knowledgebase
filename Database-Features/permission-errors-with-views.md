@@ -14,7 +14,7 @@ Usually, when there are permission problems with views, you would see an error m
 
 or
 
-```sql
+```text
 [Code: 0, SQL State: 42500]  insufficient privileges for SELECT on table : 
 USAGE on schema ... needed. 
 ```
