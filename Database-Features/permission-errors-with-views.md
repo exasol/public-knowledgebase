@@ -8,7 +8,7 @@ A user may report that they are not able to select views due to permission error
 
 Usually, when there are permission problems with views, you would see an error message such as:
 
-```sql
+```text
 [Code: 0, SQL State: 42500]  insufficient privileges for SELECT on table ...
 ```
 
