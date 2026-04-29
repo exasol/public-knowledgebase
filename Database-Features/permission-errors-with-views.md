@@ -61,7 +61,7 @@ ALTER SCHEMA <source schema name> CHANGE OWNER <view owner>;
 or indirectly via the role:
 
 ```sql
-create role <Source ovnership role>;
+create role <Source ownership role>;
 
 alter schema <source schema name> change owner <Source ovnership role>; 
 
