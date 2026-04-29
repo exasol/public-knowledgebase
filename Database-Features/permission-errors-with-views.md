@@ -21,7 +21,7 @@ USAGE on schema ... needed.
 
 or
 
-```sql
+```text
 [Code: 0, SQL State: 42500]  insufficient privileges: SELECT on table ... 
 must be grantable for ... (Session: 1680100781957054464)
 ```
