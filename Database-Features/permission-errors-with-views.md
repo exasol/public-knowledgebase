@@ -63,7 +63,7 @@ or indirectly via the role:
 ```sql
 create role <Source ownership role>;
 
-alter schema <source schema name> change owner <Source ovnership role>; 
+alter schema <source schema name> change owner <Source ownership role>; 
 
 grant <Source ownership role> to <view owner>;
 ```
