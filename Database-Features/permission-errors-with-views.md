@@ -65,7 +65,7 @@ create role <Source ownership role>;
 
 alter schema <source schema name> change owner <Source ovnership role>; 
 
-grant <Source ovnership role> to <view owner>;
+grant <Source ownership role> to <view owner>;
 ```
 
 ## Additional References
