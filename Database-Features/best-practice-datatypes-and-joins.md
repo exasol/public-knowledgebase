@@ -2,15 +2,15 @@
 
 ## Background
 
-* Joins between tables use up an unexpected amount of time and/or ressources
-* Data is missing / not fitered correctly
+* Joins between tables use up an unexpected amount of time and/or resources
+* Data is missing / not filtered correctly
 * We need to use cumbersome expressions for filtering or joining
 
 All this may be caused by a lack of discipline in database design and/or data cleansing.
 
 ## Explanation
 
-Since expression indexes (see [Indexes](https://exasol.my.site.com/s/article/Indexes)) may occur when joining on different datatypes or joining on expressions we recommend having the same data types and homogenous data in the tables that are joined.
+Since expression indexes (see [Indexes](/Database-Features/indexes.md)) may occur when joining on different datatypes or joining on expressions we recommend having the same data types and homogenous data in the tables that are joined.
 
 Let's assume we have two tables (T1 and T2) with two columns each (ID and COUNTRY_CODE). The COUNTRY_CODE is stored heterogeneous (e.g. 'USA' and 'usa' as COUNTRY_CODE for the United States of America).
 
@@ -44,27 +44,31 @@ As columns used to join tables often have the same name in different tables, one
 
 ```sql
 select
-	c1.column_schema
-	, c1.column_table
-	, c1.column_name
-	, c1.column_type
-	, c2.column_schema
-	, c2.column_table
-	, c2.column_name
-	, c2.column_type
+  c1.column_schema
+  , c1.column_table
+  , c1.column_name
+  , c1.column_type
+  , c2.column_schema
+  , c2.column_table
+  , c2.column_name
+  , c2.column_type
 FROM
-	exa_dba_columns c1
-		join exa_dba_columns c2
-		on c1.column_name = c2.column_name
+  exa_dba_columns c1
+    join exa_dba_columns c2
+    on c1.column_name = c2.column_name
 WHERE
-	1=1
-	and c1.column_type <> c2.column_type
-	and c1.column_object_type in ('TABLE')
-	and c2.column_object_type in ('TABLE')
-	and c1.column_schema || '.' || c1.column_table > c2.column_schema || '.' || c2.column_table
+  1=1
+  and c1.column_type <> c2.column_type
+  and c1.column_object_type in ('TABLE')
+  and c2.column_object_type in ('TABLE')
+  and c1.column_schema || '.' || c1.column_table > c2.column_schema || '.' || c2.column_table
 ;
 ```
 
 If you find a pair of columns used for joining tables in the output of this query, then it would make sense to verify if you can use the very same data type for them.
+
+## Additional References
+
+* [Indexes](/Database-Features/indexes.md)
 
 *We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 
