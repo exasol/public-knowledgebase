@@ -1,6 +1,6 @@
 # Changing the license file on a Docker-based Exasol system
 
-**Since database version 8 please use `confd_client` to manage licenses: [Upload a license](https://docs.exasol.com/db/latest/administration/on-premise/installation/install_as_app/upload_license.htm). Likely, this functionality will eventually be added to Admin UI.**
+**This article describes the process for Exasol versions up to 7.1.x. Since database version 8 please use `confd_client` to manage licenses: [Upload a license](https://docs.exasol.com/db/latest/administration/on-premise/installation/install_as_app/upload_license.htm). Likely, this functionality will eventually be added to Admin UI.**
 
 **Note:** $CONTAINER_EXA is a variable set before deploying an Exasol database container with persistent storage. For more information, please check [our Github repo](https://github.com/exasol/docker-db).
 

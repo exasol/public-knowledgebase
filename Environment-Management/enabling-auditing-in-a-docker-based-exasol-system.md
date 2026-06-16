@@ -1,6 +1,6 @@
 # Enabling Auditing in a Docker-based Exasol system
 
-**Since database version 8 please use `confd_client` to manage audit settings:**
+**This article describes the process for Exasol versions up to 7.1.x. Since database version 8 please use `confd_client` to manage audit settings:**
 
 * [Enable Auditing](https://docs.exasol.com/db/latest/administration/on-premise/manage_database/enable_auditing.htm)
 * [Disable Auditing](https://docs.exasol.com/db/latest/administration/on-premise/manage_database/disable_auditing.htm)
