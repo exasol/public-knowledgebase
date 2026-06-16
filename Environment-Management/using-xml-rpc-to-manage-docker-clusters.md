@@ -1,6 +1,6 @@
 # Using XML-RPC to manage Docker clusters
 
-**Since database version 8 XML-RPC interface described in <https://github.com/exasol/exaoperation-xmlrpc> is deprecated. Please use ConfD XML-RPC interface in Python: [Use XML-RPC in Python](https://docs.exasol.com/db/latest/confd/confd.htm#UseXMLRPCinPython).**
+**This article describes the process for Exasol versions up to 7.1.x. Since database version 8 XML-RPC interface described in <https://github.com/exasol/exaoperation-xmlrpc> is deprecated. Please use ConfD XML-RPC interface in Python: [Use XML-RPC in Python](https://docs.exasol.com/db/latest/confd/confd.htm#UseXMLRPCinPython).**
 
 ## Background
 

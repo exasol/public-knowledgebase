@@ -1,6 +1,6 @@
 # Setting a Database Parameter in a Docker-based Exasol system
 
-**Since database version 8 please use `confd_client` to manage database parameters:**
+**This article describes the process for Exasol versions up to 7.1.x. Since database version 8 please use `confd_client` to manage database parameters:**
 
 * [Add Database Parameters](https://docs.exasol.com/db/latest/administration/on-premise/manage_database/add_db_parameters.htm)
 * [Replace Database Parameters](https://docs.exasol.com/db/latest/administration/on-premise/manage_database/replace_db_parameters.htm)

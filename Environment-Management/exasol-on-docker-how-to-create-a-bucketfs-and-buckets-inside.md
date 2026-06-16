@@ -22,7 +22,7 @@ In this section, we will show you the whole process of:
 
 ### Step 1. Go to your Docker host, log in to the container and create a BucketFS
 
-**Since database version 8 please use `confd_client` to manage BucketFS: [ConfD](https://docs.exasol.com/db/latest/confd/confd.htm). Likely, this functionality will eventually be added to Admin UI.**
+**This article describes the process for Exasol versions up to 7.1.x. Since database version 8 please use `confd_client` to manage BucketFS: [ConfD](https://docs.exasol.com/db/latest/confd/confd.htm). Likely, this functionality will eventually be added to Admin UI.**
 
  Log in to your host via ssh (or console) and get inside your Exasol on Docker container:
 
@@ -46,7 +46,7 @@ This will create the BucketFS config required in the **/exa/etc/EXAConf** file.
 
 ### Step 2. Create a bucket inside your newly created BucketFS
 
-**Since database version 8 please use `confd_client` to manage BucketFS: [ConfD](https://docs.exasol.com/db/latest/confd/confd.htm). Likely, this functionality will eventually be added to Admin UI.**
+**This article describes the process for Exasol versions up to 7.1.x. Since database version 8 please use `confd_client` to manage BucketFS: [ConfD](https://docs.exasol.com/db/latest/confd/confd.htm). Likely, this functionality will eventually be added to Admin UI.**
 
 Once the BucketFS is created run the following command to create the bucket inside the aforementioned BucketFS:
 

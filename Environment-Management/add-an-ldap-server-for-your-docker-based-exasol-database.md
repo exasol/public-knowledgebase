@@ -1,6 +1,6 @@
 # Add an LDAP server for your Docker-based Exasol Database
 
-**Since database version 8 please use `confd_client` to manage LDAP servers: [Add an LDAP Server](https://docs.exasol.com/db/latest/administration/on-premise/manage_database/add_ldap_server.htm). Likely, this functionality will eventually be added to Admin UI.**
+**This article describes the process for Exasol versions up to 7.1.x. Since database version 8 please use `confd_client` to manage LDAP servers: [Add an LDAP Server](https://docs.exasol.com/db/latest/administration/on-premise/manage_database/add_ldap_server.htm). Likely, this functionality will eventually be added to Admin UI.**
 
 With this article, you will learn how to add an LDAP server for your database:
 
