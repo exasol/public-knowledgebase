@@ -10,7 +10,7 @@ You can pass required JVM arguments directly to the ExaLoader JVM by using a dat
 - Permission to stop and start the database
 - The database name that will run the JDBC IMPORT or EXPORT
 
-## How to add JVM parameters for JDBC IMPORT/EXPORT
+## Procedure
 
 ### Step 1: Connect to a cluster node
 
@@ -68,6 +68,6 @@ confd_client db_start db_name: <database_name>
 
 ## Additional References
 
-* [JDBC IMPORT/EXPORT: Create and receive JDBC logs](jdbc-import-export-create-and-receive-jdbc-logs.md)
+- [JDBC IMPORT/EXPORT: Create and receive JDBC logs](jdbc-import-export-create-and-receive-jdbc-logs.md)
 
 *We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).*
