@@ -150,8 +150,8 @@ If this succeeds with SSL enabled, retry creating or querying the Virtual Schema
 
 ## References
 
-* [Exasol BucketFS documentation](https://docs.exasol.com/db/latest/administration/on-premise/bucketfs/bucketfs.htm)
-* [Exasol Virtual Schema documentation](https://docs.exasol.com/db/latest/database_concepts/virtual_schema/virtual_schema.htm)
-* [Exasol IMPORT documentation](https://docs.exasol.com/db/latest/sql/import.htm)
+- [Exasol BucketFS documentation](https://docs.exasol.com/db/latest/administration/on-premise/bucketfs/bucketfs.htm)
+- [Exasol Virtual Schema documentation](https://docs.exasol.com/db/latest/database_concepts/virtual_schema/virtual_schema.htm)
+- [Exasol IMPORT documentation](https://docs.exasol.com/db/latest/sql/import.htm)
 
 *We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).*
