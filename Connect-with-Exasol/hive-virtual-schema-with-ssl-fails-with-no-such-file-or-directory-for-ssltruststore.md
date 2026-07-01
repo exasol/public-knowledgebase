@@ -82,7 +82,9 @@ The reported error
 No such file or directory
 ```
 
-indicates that the JDBC driver successfully parsed the connection string but could not open the truststore because the specified path does not exist in the runtime environment executing the query.
+indicates that the JDBC driver used by the ExaLoader successfully parsed the connection string but could not open the truststore because the specified path does not exist in the runtime environment executing the `IMPORT` query.
+
+Note that this has nothing to do with the Virtual Schema adapter. There the JDBC configuration is correct.
 
 Without SSL, no truststore is required, so the connection succeeds.
 
