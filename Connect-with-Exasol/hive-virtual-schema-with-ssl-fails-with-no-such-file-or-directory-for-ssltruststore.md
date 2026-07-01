@@ -64,7 +64,7 @@ This is the path used by UDFs and adapter scripts.
 
 ### Physical BucketFS location
 
-This is the location where the file is actually stored on disk.
+This is absolute path of the truststore file in the COS filesystem context..
 
 ```text
 /exa/data/bfsdefault/buckethive/example-truststore.jks
