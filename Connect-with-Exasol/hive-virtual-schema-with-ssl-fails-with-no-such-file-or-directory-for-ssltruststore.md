@@ -101,7 +101,7 @@ Although both phases use the same connection definition, they are executed by di
 
 ### Metadata access
 
-During `CREATE VIRTUAL SCHEMA`, the Java adapter connects to Hive to retrieve metadata such as schemas, tables, and column definitions.
+During `CREATE VIRTUAL SCHEMA`, the virtual schema adapter (a UDF) connects to Hive to retrieve metadata such as schemas, tables, and column definitions.
 
 This explains why the Virtual Schema can be created successfully and tables are visible.
 
