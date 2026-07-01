@@ -48,7 +48,7 @@ Error initialized or created transport for authentication:
 
 The error is **not** caused by SSL itself.
 
-Instead, the Hive JDBC driver cannot access the truststore file referenced in the JDBC URL from the runtime environment where the query is executed.
+Instead, the Hive JDBC driver used by the ExaLoader cannot access the truststore file referenced in the JDBC URL from the runtime environment where the query is executed.
 
 When referencing files in Exasol, there are two different views of BucketFS.
 
