@@ -88,7 +88,7 @@ Note that this has nothing to do with the Virtual Schema adapter. There the JDBC
 
 Without SSL, no truststore is required, so the connection succeeds.
 
-When SSL is enabled, the JDBC driver attempts to load the truststore before establishing the TLS connection. Since the truststore cannot be resolved, the connection fails before any TLS handshake with Hive begins.
+When SSL is enabled, the JDBC driver in the loader attempts to load the truststore before establishing the TLS connection. Since the truststore cannot be resolved, the connection fails before any TLS handshake with Hive begins.
 
 ## Why metadata works but queries fail
 
