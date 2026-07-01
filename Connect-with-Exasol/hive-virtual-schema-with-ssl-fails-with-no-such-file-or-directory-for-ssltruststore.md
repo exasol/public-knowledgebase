@@ -50,7 +50,9 @@ The error is **not** caused by SSL itself.
 
 Instead, the Hive JDBC driver used by the ExaLoader cannot access the truststore file referenced in the JDBC URL from the runtime environment where the query is executed.
 
-When referencing files in Exasol, there are two different views of BucketFS.
+When referencing files in Exasol, there are two different views of the filesystem behind BucketFS. One of them is a change root used by the UDFs.
+
+That means that the Virtual Schema Adapter (a UDF) and the ExaLoader (running in COS) never see the same paths.
 
 ### Logical BucketFS path
 
