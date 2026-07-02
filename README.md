@@ -8,7 +8,7 @@ Exasol KB articles must be created using Markdown (.md) format. If you are new t
 
 Your final article will be converted to HTML and rendered on the [Exasol Knowledge Base website](https://exasol.my.site.com). Please use only [basic Markdown syntax](https://www.markdownguide.org/basic-syntax/).
 
-__Note__: Using other flavors of Markdown may not work as expected when rendered on Exasol's website. Even some basic syntax does not work as expected. For example, do not use [Blockquotes](https://www.markdownguide.org/basic-syntax/#blockquotes-1) ( `>` ).
+__Note__: Using other flavors of Markdown may not work as expected when rendered on Exasol's website. Even some basic syntax does not work as expected.
 
 ## Templates
 
