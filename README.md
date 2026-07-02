@@ -55,8 +55,6 @@ All remaining steps below apply to all ways of authoring articles.
 Please keep in mind the following limitations when creating or modifying KB articles:
 
 1. Images must not be larger than 1 MB.
-1. Do not include the `<` or `>` symbols in your Markdown in plaintext parts of the article, they might get interpreted as HTML tags. If you need to use those symbols, use `&lt;` or `&gt;` instead to represent those characters.
-1. Symbols `<` or `>` should, however, be used inside code blocks (triple ticks) and code inlines (single ticks).
 1. Use `<br />` instead of `<br>`
 1. Article should contain only one level 1 header (starting from a single hash sign #). Any content starting from the second single hash sign will not be rendered in Salesforce Knowledgebase.
 1. Tables need to be separated from the surrounding text by at least one blank line from above and below.
