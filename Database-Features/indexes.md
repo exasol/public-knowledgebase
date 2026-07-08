@@ -56,6 +56,23 @@ Local indices are perfect for table scans and local joins, as all information is
 A global index stores information on a per-table basis, but behaves like a table with a distribution key: All references to a certain key are stored on a well-defined node in the cluster, even if the rows referenced reside on different or multiple nodes.  
 If a distribution key is set on the table and the index contains all columns of that distribution key, the index will be distributed in line with the table, effectively making it a local index.
 
+#### Manual index operations, ENFORCE index
+
+Exasol manages index creation and maintenance automatically in normal operation, so manual index creation is generally not recommended. In rare cases, however, Exasol Support may advise creating or dropping an index manually to improve performance for specific query patterns, for example on frequently used filter columns.
+
+Manual index operations use the statements:
+
+```sql
+ENFORCE [LOCAL|GLOBAL] INDEX ON <table>(<columns>)
+DROP [LOCAL|GLOBAL] INDEX ON <table>(<columns>)
+```
+
+If neither LOCAL nor GLOBAL is specified, both index types are created or dropped. Creating an index requires that the same index does not already exist, and these operations lock the table, which means concurrent write activity is blocked while the command runs.
+
+A key point is the index lifecycle: **enforced indexes are treated similarly to automatically created indexes with respect to usage, maintenance, and dropping**. In Exasol, indexes that are not used for about five weeks (35 days) are automatically removed. In other words, **even a manually enforced index is not necessarily permanent** if it is no longer read and provides no ongoing benefit.
+
+Because manual indexes can interfere with Exasol’s automatic index management, they **should only be used in exceptional cases and under guidance from Exasol Support**. The commands are available to the table owner, to users with suitable object privileges such as SELECT or ALTER, or through equivalent system privileges such as SELECT ANY TABLE or ALTER ANY TABLE.
+
 ## Additional References
 
 [Local-and-Global-joins](https://exasol.my.site.com/s/article/Local-and-Global-Joins)
