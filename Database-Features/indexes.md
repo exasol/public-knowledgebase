@@ -1,4 +1,5 @@
-# Indexes 
+# Indexes
+
 ## Background
 
 ## Index creation
@@ -8,14 +9,14 @@ Indexes are automatically generated, reutilized, and discarded by the system as 
 Indexes will be stored persistently and reused in later executions. Indexes are stored in a compressed manner and don't need to be decompressed when accessing them. Indexes are used for joins and under certain circumstances for filtering the data of a table (index scan).  
 Internally, Exasol is using a highly tuned B-tree structure.
 
-#### Expression Index
+### Expression Index
 
 Assuming the join,
-
 
 ```sql
 ... A join B on round(A.x) = B.x ...
 ```
+
 an index might have to be built on table A, based on the given expression. Such an index will NOT be stored persistently but will be dropped after query execution. It follows that this index will have to be rebuilt every time a join of this type is being performed.
 
 ## Explanation
@@ -39,24 +40,24 @@ If an index is not accessed, it will simply be removed from memory and reside on
 
 ## Visibility
 
-The overall amount of indexes is reflected by AUXILIARY_SIZE*-columns of EXA_DB_SIZE_* tables.   
+The overall amount of indexes is reflected by AUXILIARY_SIZE*-columns of EXA_DB_SIZE_* tables.
 In Version 5 system tables showing detailed information - including size - for all indices were introduced: EXA_DBA_INDICES, EXA_ALL_INDICES, EXA_USER_INDICES
 
 ## Index types
 
 In Exasol, there are two different types of indexes: GLOBAL and LOCAL indexes depending on the join type (see [Local-and-Global-joins](https://exasol.my.site.com/s/article/Local-and-Global-Joins)). Like tables, indices are stored in a distributed fashion across the cluster.
 
-#### LOCAL index
+### LOCAL index
 
 A local index stores information on a per-node basis: Given a local index on (A.x), the index part on node 1 will only contain references to rows of A that are stored on node 1.  
 Local indices are perfect for table scans and local joins, as all information is available without requiring network traffic.
 
-#### GLOBAL index
+### GLOBAL index
 
 A global index stores information on a per-table basis, but behaves like a table with a distribution key: All references to a certain key are stored on a well-defined node in the cluster, even if the rows referenced reside on different or multiple nodes.  
 If a distribution key is set on the table and the index contains all columns of that distribution key, the index will be distributed in line with the table, effectively making it a local index.
 
-#### Manual index operations, ENFORCE index
+### Manual index operations, ENFORCE index
 
 Exasol manages index creation and maintenance automatically in normal operation, so manual index creation is generally not recommended. In rare cases, however, Exasol Support may advise creating or dropping an index manually to improve performance for specific query patterns, for example on frequently used filter columns.
 
@@ -79,4 +80,4 @@ Because manual indexes can interfere with Exasol’s automatic index management,
 
 [Does-Exasol-index-nulls](https://exasol.my.site.com/s/article/Does-Exasol-index-NULLS)
 
-*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).*
