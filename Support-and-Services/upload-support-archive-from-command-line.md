@@ -32,8 +32,8 @@ for cmd in jq curl grep mktemp; do
     }
 done
 usage() {
-    echo "Usage: $0 <seafile_url> <file_path>" >&2
-    echo "Example: $0 https://seafile.example.com/f/abc123 /path/to/file.txt" >&2
+    echo "Usage: $0 <upload_log_url> <file_path>" >&2
+    echo "Example: $0 https://upload.log.com/f/abc123 /path/to/file.txt" >&2
     exit 1
 }
 url="$1"
@@ -68,12 +68,12 @@ chmod +x upload_exasol_logs.sh
 
 ## Upload a Support Archive
 
-Run the script by providing the upload URL received from Exasol Support and the path to the Support Archive.
+Run the script by providing the upload URL received from Exasol Support and the path to the Support Archive file.
 
 ```bash
 ./upload_exasol_logs.sh \
-  https://logupload.exasol.com/u/d/64ded56......fbb819/ \
-  /exa/tmp/support/exacluster_debuginfo_2026_07_08-16_08_41.tar.gz
+  https://upload.link.com/ \
+  file_name.tar.gz
 ```
 
 If the upload is successful, the script prints the JSON response returned by the upload service.
