@@ -33,7 +33,7 @@ IMPORT FROM EXA AT EXA_CONNECTION ...
 IMPORT FROM ORA AT ORA_CONNECTION ...
 ```
 
-The EXA interface uses a special interface in order to parallelize the connection and improve the performance. Generally, IMPORT FROM EXA is faster than IMPORT FROM JDBC. This interface, however, will use a different port range compared to a regular JDBC connection. Specifically, IMPORT FROM EXA uses the port range 20000-21000. Whenever these ports are not opened, you will receive the error message above. It is not possible to choose a single port to open - the entire range needs to be opened because the chosen port differs for each query. It is not possible to influence which port number the IMPORT FROM EXA uses. 
+The EXA interface uses a special interface in order to parallelize the connection and improve the performance. Generally, IMPORT FROM EXA is faster than IMPORT FROM JDBC. This interface, however, will use a different port range compared to a regular JDBC connection. Specifically, IMPORT FROM EXA uses the port range 20000-21000. Whenever these ports are not opened, you will receive the error message above. It is not possible to choose a single port to open - the entire range needs to be opened because the chosen port differs for each query. It is not possible to influence which port number the IMPORT FROM EXA uses.
 
 ## Recommendation
 
@@ -59,10 +59,9 @@ IMPORT INTO TABLE1 FROM JDBC AT EXA_DB_JDBC STATEMENT '...';
 
 The JDBC interface will likely have slower performance than the EXA interface. Once the ports are opened, we recommend to use the EXA interface whenever possible.
 
-## Recommendation
-
 ## Additional References
 
+* [CHANGELOG: IMPORT/EXPORT FROM/INTO EXA: No More Special Configuration for IP and Port](https://exasol.my.site.com/s/article/Changelog-content-21243?language=en_US)
 * [List of default ports](https://docs.exasol.com/db/7.1/administration/on-premise/installation/prepareenvironment/cluster_network_access.htm#DefaultPorts)
 * [IMPORT syntax](https://docs.exasol.com/sql/import.htm)
 * [Loading Data Best Practices](https://docs.exasol.com/loading_data/best_practice.htm)
