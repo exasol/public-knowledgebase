@@ -1,17 +1,20 @@
-# IMPORT FROM EXA: Connection Errors 
+# IMPORT FROM EXA: Connection Errors
+
 ## Scope
 
 While loading data from one Exasol database into another database, you may get connection issues. This article will describe how you can resolve these.
+
+Due to Improvement [CHANGELOG: IMPORT/EXPORT FROM/INTO EXA: No More Special Configuration for IP and Port](https://exasol.my.site.com/s/article/Changelog-content-21243?language=en_US) this article applies only to version prior to 8.32.0.
 
 ## Diagnosis
 
 If you run an IMPORT FROM EXA command, you are affected by this problem if you see an error message which looks like:
 
-
-```
+```text
 [Code: 0, SQL State: 42636]  ETL-4212: Parallel connection from n0010.c0001.exacluster.local to external EXASolution at <host>:20386 failed. 
 [Connection attempt timed out No server listening.] (Session: 1692134639113732096)
 ```
+
 ## Explanation
 
 In order to load data into Exasol from another database, there are three interfaces available:
@@ -22,15 +25,15 @@ In order to load data into Exasol from another database, there are three interfa
 
 You choose the interface in your IMPORT or EXPORT statement:
 
-
 ```sql
 IMPORT FROM <INTERFACE> AT <CONNECTION NAME> ...  
 -- Examples  
-IMPORT FROM JDBC AT 'JDBC_CONNECTION' ... 
-IMPORT FROM EXA AT 'EXA_CONNECTION' ... 
-IMPORT FROM ORA AT 'ORA_CONNECTION' ...
+IMPORT FROM JDBC AT JDBC_CONNECTION ... 
+IMPORT FROM EXA AT EXA_CONNECTION ... 
+IMPORT FROM ORA AT ORA_CONNECTION ...
 ```
-The EXA interface uses a different interface in order to parallelize the connection and improve the performance. Generally, IMPORT FROM EXA is faster than IMPORT FROM JDBC. This interface, however, will use a different port range compared to a regular JDBC connection. Specifically, IMPORT FROM EXA uses the port range 20000-21000. Whenever these ports are not opened, you will receive the error message above. It is not possible to choose a single port to open - the entire range needs to be opened because the chosen port differs for each query. It is not possible to influence which port number the IMPORT FROM EXA uses. 
+
+The EXA interface uses a special interface in order to parallelize the connection and improve the performance. Generally, IMPORT FROM EXA is faster than IMPORT FROM JDBC. This interface, however, will use a different port range compared to a regular JDBC connection. Specifically, IMPORT FROM EXA uses the port range 20000-21000. Whenever these ports are not opened, you will receive the error message above. It is not possible to choose a single port to open - the entire range needs to be opened because the chosen port differs for each query. It is not possible to influence which port number the IMPORT FROM EXA uses. 
 
 ## Recommendation
 
@@ -44,6 +47,7 @@ CREATE CONNECTION EXA_DB TO '<ip address>' USER 'username' IDENTIFIED BY 'passwo
 -- JDBC connection 
 CREATE CONNECTION EXA_DB_JDBC TO 'jdbc:exa:<ip address>:8563' user 'username' identified by 'password';
 ```
+
 Now, in your IMPORT statement, you can use the IMPORT FROM JDBC syntax instead of IMPORT FROM EXA:
 
 ```sql
@@ -63,4 +67,4 @@ The JDBC interface will likely have slower performance than the EXA interface. O
 * [IMPORT syntax](https://docs.exasol.com/sql/import.htm)
 * [Loading Data Best Practices](https://docs.exasol.com/loading_data/best_practice.htm)
 
-*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).*
