@@ -9,7 +9,7 @@ If I try to access a table from Tableau (ODBC) I get the following error:
 Fehlercode: 1E953F46
 ```
 
-I do not see any quoted column with a "."  in it. How can this issue be solved? 
+I do not see any quoted column with a "."  in it. How can this issue be solved?
 
 ## Answer
 
@@ -23,4 +23,4 @@ This should tell you what Tableau is up to and give you an indication what you'r
 
 Prerequisite: Auditing is enabled on your database (as it should be).
 
-*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).*
