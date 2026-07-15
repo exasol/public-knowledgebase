@@ -25,8 +25,9 @@ unblock with 'mysqladmin flush-hosts'" 
 
 ## Explanation
 
-Exasol has to communicate with the MySQL server. If Exasol receives an error message from the MySQL server Exasol prints this message. This message is caused by the MySQL server.   
-In the example above it means the number of faulty connections is exceeded. 
+Exasol has to communicate with the MySQL server. If Exasol receives an error message from the MySQL server Exasol prints this message. This message is caused by the MySQL server.
+
+In the example above it means the number of faulty connections is exceeded.
 
 ## Recommendation
 
@@ -46,10 +47,10 @@ There are 2 possibilities:
    mysql -u root -p -e 'flush hosts'
    ```
 
-You can find out what causes these faulty connections in the MySQL error log file in the data directory. Now you can try to execute the command again. 
+You can find out what causes these faulty connections in the MySQL error log file in the data directory. Now you can try to execute the command again.
 
 ## Additional References
 
 * [15.7.8.3 FLUSH Statement](https://dev.mysql.com/doc/refman/8.0/en/flush.html)
 
-*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).*
