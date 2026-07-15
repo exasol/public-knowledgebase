@@ -68,12 +68,12 @@ chmod +x upload_exasol_logs.sh
 
 ## Upload a Support Archive
 
-Run the script by providing the upload URL received from Exasol Support and the path to the Support Archive file.
+On the host level (outside COS), execute the script by providing the upload URL received from Exasol Support and the path to the Support Archive file.
 
 ```bash
 ./upload_exasol_logs.sh \
   https://upload.link.com/ \
-  file_name.tar.gz
+  /home/exasol/.ccc/play/local/.../main/.../data/tmp/support/file_name.tar.gz
 ```
 
 If the upload is successful, the script prints the JSON response returned by the upload service.
