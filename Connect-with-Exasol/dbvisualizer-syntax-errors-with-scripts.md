@@ -10,7 +10,7 @@ When trying to create a script using DbVisualizer, you may get a popup to insert
 
 ![Enter Data for Parameter Markers](images/exa-Nico_0-1616087203219.png)
 
-If you just hit "Continue", the database will then more than likely throw a syntax error on your script, even though the code is correct. 
+If you just hit "Continue", the database will then more than likely throw a syntax error on your script, even though the code is correct.
 
 ## Explanation
 
