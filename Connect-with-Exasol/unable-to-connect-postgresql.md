@@ -1,6 +1,7 @@
 # Unable to Connect to PostgreSQL
 
 ## Question
+
 We just moved our Google Cloud environment to Frankfurt, and I am trying to restablish the setup.
 
 One of the things is to let Exasol access a postgres database.
@@ -11,7 +12,7 @@ When trying to connect I get this error message. As I understand it, it sounds l
 
 Any ideas as to what I can try to make this work.
 
-```
+```text
 SQL Error [ETL-5]: JDBC-Client-Error: Connecting to 'jdbc:postgresql://<IP>:5432/metadata?currentSchema=analyticaldata' as user='postgres' failed:
 SSL error: access denied ("java.io.FilePermission" "/home/exasolution/.postgresql/postgresql.crt" "read") (Session: 1690951028142374912)
 ```
@@ -23,6 +24,12 @@ Exasol is installed as a community edition using the Exasol BYOL option in GCP m
 Postgres is a CloudSQL.
 
 ## Answer
-The driver needs additional permissions. Go into Exaoperation -> Software -> JDBC Drivers. Click on your postgres driver and check the box to disable the security manager. 
 
-*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 
+The driver needs additional permissions. Add line "NOSECURITY=YES" to driver's `settings.cfg` file (see [Add JDBC driver](https://docs.exasol.com/db/latest/administration/on-premise/manage_drivers/add_jdbc_driver.htm)).
+
+## References
+
+* [Add JDBC driver](https://docs.exasol.com/db/latest/administration/on-premise/manage_drivers/add_jdbc_driver.htm)
+* [Upload PostgreSQL JDBC driver](https://docs.exasol.com/db/latest/loading_data/connect_sources/postgresql.htm)
+
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).*
