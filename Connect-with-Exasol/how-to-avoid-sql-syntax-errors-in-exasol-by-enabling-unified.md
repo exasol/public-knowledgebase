@@ -22,7 +22,7 @@ Example 1
 
 The following query will fail with the error:  
 
-"\[EXASOL\]\[EXASolution driver\]syntax error, **unexpected DATE&lowbar;**, expecting UNION_ or EXCEPT_ or MINUS_ or INTERSECT_"
+"\[EXASOL\]\[EXASolution driver\]syntax error, **unexpected DATE\_**, expecting UNION\_ or EXCEPT\_ or MINUS\_ or INTERSECT\_"
 
 ```sql
 SELECT  
