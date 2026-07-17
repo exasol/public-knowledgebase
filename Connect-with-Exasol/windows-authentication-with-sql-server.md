@@ -2,7 +2,7 @@
 
 ## Background
 
-Sometimes, you want to set up a JDBC connection to your SQL Server database, but the SQL Server database only allows Windows Authentication (or the user you are trying to use is configured for Windows authentication). Windows authentication lets you use your Windows username and password to login, instead of using a different SQL Server password. You can read more about this authentication mode in [Microsoft's documentation](https://docs.microsoft.com/en-us/sql/relational-databases/security/choose-an-authentication-mode?view=sql-server-ver15). This article will show you how to configure your JDBC connection to use Windows authentication. 
+Sometimes, you want to set up a JDBC connection to your SQL Server database, but the SQL Server database only allows Windows Authentication (or the user you are trying to use is configured for Windows authentication). Windows authentication lets you use your Windows username and password to login, instead of using a different SQL Server password. You can read more about this authentication mode in [Microsoft's documentation](https://docs.microsoft.com/en-us/sql/relational-databases/security/choose-an-authentication-mode?view=sql-server-ver15). This article will show you how to configure your JDBC connection to use Windows authentication.
 
 ## Prerequisites
 
@@ -25,7 +25,7 @@ To disable the Security Manager, add line "NOSECURITY=YES" to the driver's `sett
 
 ### Step 2: Create Connection
 
-Now you need to create the JDBC connection. The connection string will probably look different for each server based on its configuration, and may require additional parameters. What's important is that the following parameters are present: 
+Now you need to create the JDBC connection. The connection string will probably look different for each server based on its configuration, and may require additional parameters. What's important is that the following parameters are present:
 
 * domain=<domain_name>
 * integratedSecurity=true
@@ -76,13 +76,12 @@ import from jdbc at JDBC_SQLSERVER statement 'select 1';
 
 ### Step 1: Create Connection
 
-Once the driver is installed, you need to create the JDBC connection. The connection string will probably look different for each server based on its configuration, and may require additional parameters. What's important is that the following parameters are present: 
+Once the driver is installed, you need to create the JDBC connection. The connection string will probably look different for each server based on its configuration, and may require additional parameters. What's important is that the following parameters are present:
 
 * domain=<domain_name>
 * useNTLMv2=true
 
 A full connection string would look like:
-
 
 ```sql
 create or replace CONNECTION JTDS_SQLSERVER TO 'jdbc:jtds:sqlserver://<server host>:<port>;
