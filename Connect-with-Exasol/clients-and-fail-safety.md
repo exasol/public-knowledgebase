@@ -1,8 +1,8 @@
-# Clients and Fail Safety 
+# Clients and Fail Safety
 
 ## Background
 
-This article explains some of the fail safety mechanisms that clients can perform. 
+This article explains some of the fail safety mechanisms that clients can perform.
 
 ## Explanation
 
