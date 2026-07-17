@@ -63,7 +63,7 @@ The JDBC interface will likely have slower performance than the EXA interface. O
 
 * [CHANGELOG: IMPORT/EXPORT FROM/INTO EXA: No More Special Configuration for IP and Port](https://exasol.my.site.com/s/article/Changelog-content-21243?language=en_US)
 * [List of default ports](https://docs.exasol.com/db/7.1/administration/on-premise/installation/prepareenvironment/cluster_network_access.htm#DefaultPorts)
-* [IMPORT syntax](https://docs.exasol.com/sql/import.htm)
+* [IMPORT syntax](https://docs.exasol.com/db/latest/sql/import.htm)
 * [Loading Data Best Practices](https://docs.exasol.com/loading_data/best_practice.htm)
 
 *We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).*
