@@ -3,18 +3,18 @@
 ## Question
 
 Since 7.1 there is the standard encryption/fingerprint setting in the exasol driver, when trying to set this in the PowerBI dialog for an Exasol datasource...
- 
+
 ```text
 {"server":"XXX.XX.XX.XX..XX:8563\/9CXXXXXXXXXXXXXXXXXX80","encrypted":"Yes"}
 ```
- 
+
 this gives errors:
- 
+
 ```text
 ODBC: ERROR [08055] [EXASOL][EXASolution driver]Illegal character (47) in connection string at position 23. ERROR [08055] [EXASOL][EXASolution driver]
 Illegal character (47) in connection string at position 23.
 ```
- 
+
 Using the ODBC driver option does work, but this breaks all connections in existing reports.
 Any ideas on how to solve this?
 
