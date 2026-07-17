@@ -4,8 +4,7 @@
 
 This article will describe how to resolve the issue when you are using version 7.1 of the Exasol driver and your existing connections no longer work. This article is relevant for driver version 7.1.0+ and database versions 7.1.0+, 7.0.10+, and 6.2.15+. Other database and driver combinations are not affected.
 
-[exasol-7-1-connection-security-changes](https://www.exasol.com/resource/exasol-7-1-connection-security-changes/)
-Here is the original changelog documentation: [CHANGELOG: TLS for all Exasol drivers](https://exasol.my.site.com/s/article/Changelog-content-6507?language=en_US "Explanation")
+Here is the original changelog documentation: [CHANGELOG: TLS for all Exasol drivers](https://exasol.my.site.com/s/article/Changelog-content-6507?language=en_US)
 
 ## Diagnosis
 
@@ -77,8 +76,7 @@ If you are able to use a CA-signed certificate, it can be uploaded to EXAoperat
 
 ## Additional References
 
-* [exasol-7-1-connection-security-changes](https://www.exasol.com/resource/exasol-7-1-connection-security-changes/)
-* [Upload TLS Certificate](https://docs.exasol.com/administration/on-premise/access_management/tls_certificate.htm)
+* [Upload TLS Certificate](https://docs.exasol.com/db/latest/administration/on-premise/access_management/tls_certificate.htm)
 * [ODBC Documentation](https://docs.exasol.com/connect_exasol/drivers/odbc/using_odbc.htm)
 * [JDBC Documentation](https://docs.exasol.com/connect_exasol/drivers/jdbc.htm)
 * [ADO.NET Documentation](https://docs.exasol.com/connect_exasol/drivers/ado_net.htm)
