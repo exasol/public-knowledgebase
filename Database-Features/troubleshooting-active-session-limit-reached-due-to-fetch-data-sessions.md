@@ -4,7 +4,7 @@
 
 When a large number of sessions remain in the `FETCH DATA` state, Exasol may eventually reach the **Active Session Limit**, preventing new queries from being executed.
 
-Although this often appears to be a database performance problem, the database has usually already completed query execution successfully. 
+Although this often appears to be a database performance problem, the database has usually already completed query execution successfully.
 Instead, the client application has stopped consuming the query result, forcing Exasol to keep the result set—and therefore the session—open.
 
 This article explains why this happens, how to diagnose it, and how to prevent it.
@@ -73,7 +73,6 @@ From the database's perspective, the client may continue fetching rows at any ti
 ---
 
 ### Example: Export to a Named Pipe
-
 
 A common production scenario looks like this:
 
@@ -312,20 +311,16 @@ Since the client still owns an open result set, Exasol must keep the session act
 ## References
 
 - [Active Session Limit Reached (Knowledge Base)](https://exasol.my.site.com/s/article/Active-Session-Limit-Reached?language=en_US) – General troubleshooting guide for diagnosing and resolving the **Active Session Limit Reached** warning and related errors.
-
 - [Session Management](https://docs.exasol.com/db/latest/database_concepts/session_management.htm) – Explains how Exasol manages active and inactive sessions, defines active session slots, and describes the active session limit and queueing behavior.
-
 - [EXA_DBA_SESSIONS System Table](https://docs.exasol.com/db/latest/sql_references/system_tables/metadata/exa_dba_sessions.htm) – Reference for monitoring active sessions and identifying long-running `FETCH DATA` sessions.
-
 - [EXA_ALL_SESSIONS System Table](https://docs.exasol.com/db/latest/sql_references/system_tables/metadata/exa_all_sessions.htm) – Describes session states such as `FETCH DATA` and `QUEUED`, and explains the meaning of the `STATUS` column.
+
 ## Further Reading
 
 The following resources explain the operating system behavior that commonly causes this issue:
 
 - [Named Pipe (FIFO) – Wikipedia](https://en.wikipedia.org/wiki/Named_pipe) – Overview of named pipes and their blocking behavior.
-
 - [pipe(7) – Linux Manual](https://man7.org/linux/man-pages/man7/pipe.7.html) – Explains pipe buffers and why writers block when the pipe buffer becomes full.
-
 - [write(2) – Linux Manual](https://man7.org/linux/man-pages/man2/write.2.html) – Describes the POSIX `write()` system call and the conditions under which it blocks.
 
 *We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).*
