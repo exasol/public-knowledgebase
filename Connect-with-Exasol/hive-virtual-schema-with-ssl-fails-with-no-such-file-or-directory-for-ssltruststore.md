@@ -50,27 +50,39 @@ The error is **not** caused by SSL itself.
 
 Instead, the Hive JDBC driver used by the ExaLoader cannot access the truststore file referenced in the JDBC URL from the runtime environment where the query is executed.
 
+### BucketFS paths
+
 When referencing files in Exasol, there are two different views of the filesystem behind BucketFS. One of them is a change root used by the UDFs.
 
 That means that the Virtual Schema Adapter (a UDF) and the ExaLoader (running in COS) never see the same paths.
 
-### Logical BucketFS path
+The truststore is stored in BucketFS. Depending on the runtime environment, the same file may be referenced using different paths.
 
-This is the path used by UDFs and adapter scripts.
+#### Chroot view (UDFs and Java adapter scripts)
+
+UDFs and Java adapter scripts run inside a **change root (chroot)** environment. A chroot environment presents a restricted view of the filesystem by changing the apparent root directory (`/`) for a process. This is an intentional security mechanism that prevents UDFs from accessing arbitrary files on the underlying operating system while still allowing controlled access to resources such as BucketFS.
+
+For more information about chroot, see:  [https://en.wikipedia.org/wiki/Chroot](https://en.wikipedia.org/wiki/Chroot)  
+
+Within this restricted filesystem view, BucketFS is exposed under the `/buckets/...` path.
 
 ```text
 /buckets/bfsdefault/buckethive/example-truststore.jks
 ```
 
-### Physical BucketFS location
+#### Physical filesystem
 
-This is absolute path of the truststore file in the COS filesystem context..
+Outside the chroot environment, the same file is stored in its physical location in the COS filesystem context.
+
+This is absolute path of the truststore file .
 
 ```text
 /exa/data/bfsdefault/buckethive/example-truststore.jks
 ```
 
-The Hive JDBC connection references the logical BucketFS path:
+### Explanation of the Bug
+
+The Hive JDBC connection references the path visible inside the chroot environment:
 
 ```text
 SSLTrustStore=/buckets/bfsdefault/buckethive/example-truststore.jks
