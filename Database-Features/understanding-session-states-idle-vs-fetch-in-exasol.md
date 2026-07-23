@@ -373,7 +373,7 @@ Even after all rows have been read, explicitly calling `ResultSet.close()` immed
 
 ---
 
-# References
+## References
 
 - [Session Management](https://docs.exasol.com/db/latest/database_concepts/session_management.htm)
 - [EXA_DBA_SESSIONS System Table](https://docs.exasol.com/db/latest/sql_references/system_tables/metadata/exa_dba_sessions.htm)
