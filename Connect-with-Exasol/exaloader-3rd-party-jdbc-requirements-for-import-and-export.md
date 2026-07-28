@@ -1,11 +1,12 @@
-# EXAloader 3rd party JDBC requirements for IMPORT and EXPORT command 
+# EXAloader 3rd party JDBC requirements for IMPORT and EXPORT command
+
 ## Background
 
  In order for the Exasol Database to use a JDBC Driver in IMPORT or EXPORT commands, the JDBC Driver must support the following methods.
 
 If the JDBC driver does not, you might get an error message like:
 
-```
+```text
 [42636] ETL-5402: JDBC-Client-Error: Exception while disconnecting: Method not supported (Session: 1484043015261801495)
 ```
 
@@ -70,12 +71,12 @@ When EXPORTing data into JDBC sources, EXAloader requires that the following met
 	+ int getParameterCount()
 	+ int getParameterType(int param)
 
-In order to use a JDBC driver that doesn't support all required functions, you can write a wrapper for it. In that wrapper, you can e.g. suppress Exceptions or enhance the functionality of the JDBC driver in order to get it to work.
+In order to use a JDBC driver that doesn't support all required functions, you can write a wrapper for it. In that wrapper, you can e.g. suppress exceptions or enhance the functionality of the JDBC driver in order to get it to work.
 
 ## Additional References
 
 * [JDBC Driver Installation](https://docs.exasol.com/loading_data/connect_databases/import_data_using_jdbc.htm)
-* [IMPORT](https://docs.exasol.com/sql/import.htm)
-* [EXPORT](https://docs.exasol.com/sql/export.htm)
+* [IMPORT](https://docs.exasol.com/db/latest/sql/import.htm)
+* [EXPORT](https://docs.exasol.com/db/latest/sql/export.htm)
 
-*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).*
