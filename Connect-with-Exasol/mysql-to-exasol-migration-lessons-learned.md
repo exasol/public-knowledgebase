@@ -1,4 +1,5 @@
-# MySQL to Exasol Migration Lessons Learned 
+# MySQL to Exasol Migration Lessons Learned
+
 Here is a list of lessons we learned while migrating our reporting tools from MySQL (5.6 with strict mode off) to Exasol.
 
 Hopefully, this will be useful for others making the same transition:
@@ -74,6 +75,6 @@ Hopefully, this will be useful for others making the same transition:
 41. When dividing by zero, MySQL returns NULL while Exasol generates an error
 42. and more...
 
-Of course the greatest lesson learned was that Exasol is *incredibly* fast at handling large datasets compared to MySQL! 
+Of course the greatest lesson learned was that Exasol is *incredibly* fast at handling large datasets compared to MySQL!
 
-*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).*
