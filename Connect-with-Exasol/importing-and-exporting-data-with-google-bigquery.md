@@ -33,7 +33,7 @@ The description on how to IMPORT data from Google Bigquery is described in detai
     OAuthPvtKeyPath=/d02_data/<bucketfs-service>/<bucket-name>/<your-account-keyfile>;';
    ```
 
-6. You can run an IMPORT statement like below:
+5. You can run an IMPORT statement like below:
 
    ```sql
    IMPORT INTO (C1 INT) FROM JDBC AT BQ_CON STATEMENT 'SELECT 1';
@@ -43,7 +43,7 @@ The description on how to IMPORT data from Google Bigquery is described in detai
 
 This article will export the bigquery data into a CSV file stored in Google Cloud Storage via UDF using the Google API, and then will IMPORT the file into the target table in Exasol.
 
-#### Prerequisites for importing
+#### Prerequisites for Importing
 
 * You must create an HMAC key in the Google Cloud Console that has the correct permissions to interact with Google Cloud Storage (reading/writing). You can find more information on how to do this [here](https://cloud.google.com/storage/docs/authentication/hmackeys)
 * You will also need to have a Bigquery Service account. It is very likely that you already have this, because you needed it to establish the original JDBC connection to bigquery that we tested in the first place. You need to follow step 1 and 2 from this link: <https://docs.exasol.com/loading_data/connect_databases/google_bigquery.htm>
@@ -52,7 +52,7 @@ This article will export the bigquery data into a CSV file stored in Google Clou
 * You need to either create a new script language container that contains the [Google Cloud python library](https://googleapis.dev/python/bigquery/latest/index.html) or upload it to BucketFS. We recommend creating a new script language container from this Github project: <https://github.com/exasol/script-languages-release>.
 Since release 1.1.0 of Standard Script Language Containers ([link](https://github.com/exasol/script-languages-release/releases/tag/1.1.0)) and at least DB versions 7.0.17 and 7.1.7 ([link](https://exasol.my.site.com/s/article/Changelog-content-14476?language=en_US)) Google Cloud python library is available by default.
 
-#### Step 1 - Create Connection for importing
+#### Step 1 - Create Connection for Importing
 
 Create a CONNECTION to Google Cloud Storage as described [here](https://docs.exasol.com/loading_data/load_data_google_cloud_storage_buckets.htm). You will use the credentials from the HMAC key in the CONNECTION object, like below. You should replace the bucket-name with the name of the Google Cloud Storage bucket
 
@@ -61,11 +61,11 @@ create connection google_cloud_storage to 'https://<bucket-name>.storage.googlea
  user '<access key>' IDENTIFIED BY '<secret>';
 ```
 
-#### Step 2 - Create Scripts
+#### Step 2 - Create Scripts for Importing
 
 Run the commands found in the [import_from_bigquery.sql](https://raw.githubusercontent.com/exasol/exa-toolbox/master/utilities/import_from_bigquery.sql) statement to create the scripts that are needed. These are stored in the ETL schema, but can be replaced and use any schema.
 
-#### Step 3 - Execute Scripts
+#### Step 3 - Execute Scripts for Importing
 
 Once the scripts are created, you can run this command to run the Lua script which calls the UDF that was created:
 
@@ -103,7 +103,7 @@ As Google's documentation states, the JDBC driver is not designed for large volu
 
 [According to Google](https://cloud.google.com/bigquery/docs/loading-data), the *recommended* way to ingest data into Bigquery is via files or Cloud Storage. Therefore, this article will export the Exasol data into a CSV file stored in Google Cloud Storage, and then will call a UDF which will transfer the data to Bigquery using the Google API.
 
-### Prerequisites for exporting
+### Prerequisites for Exporting
 
 * You must create an HMAC key in the Google Cloud Console that has the correct permissions to interact with Google Cloud Storage (reading/writing). You can find more information on how to do this [here](https://cloud.google.com/storage/docs/authentication/hmackeys)
 * You will also need to have a Bigquery Service account. It is very likely that you already have this, because you needed it to establish the original JDBC connection to Bigquery that we tested in the first place. You need to follow step 1 and 2 from this link: <https://docs.exasol.com/loading_data/connect_databases/google_bigquery.htm>
@@ -112,7 +112,7 @@ As Google's documentation states, the JDBC driver is not designed for large volu
 * You need to either create a new script language container that contains the [Google Cloud python library](https://googleapis.dev/python/bigquery/latest/index.html) or upload it to BucketFS. We recommend creating a new script language container from this Github project: <https://github.com/exasol/script-languages-release>.
 Since release 1.1.0 of Standard Script Language Containers ([link](https://github.com/exasol/script-languages-release/releases/tag/1.1.0)) and at least DB versions 7.0.17 and 7.1.7 ([link](https://exasol.my.site.com/s/article/Changelog-content-14476?language=en_US)) Google Cloud python library is available by default.
 
-### Step 1 - Create Connection for exporting
+### Step 1 - Create Connection for Exporting
 
 Create a CONNECTION to Google Cloud Storage as described [here](https://docs.exasol.com/loading_data/load_data_google_cloud_storage_buckets.htm). You will use the credentials from the HMAC key in the CONNECTION object, like below. You should replace the bucket-name with the name of the Google Cloud Storage bucket
 
@@ -121,11 +121,11 @@ create connection google_cloud_storage to 'https://<bucket-name>.storage.googlea
  user '<access key>' IDENTIFIED BY '<secret>';
 ```
 
-### Step 2 - Create Scripts
+### Step 2 - Create Scripts for Exporting
 
-Run the commands found in the [export_to_bigquery.sql](https://raw.githubusercontent.com/exasol/exa-toolbox/master/utilities/export_to_bigquery.sql) statement to create the scripts that are needed. These are stored in the ETL schema, but can be replaced and use any schema. 
+Run the commands found in the [export_to_bigquery.sql](https://raw.githubusercontent.com/exasol/exa-toolbox/master/utilities/export_to_bigquery.sql) statement to create the scripts that are needed. These are stored in the ETL schema, but can be replaced and use any schema.
 
-### Step 3 - Execute Scripts
+### Step 3 - Execute Scripts for Exporting
 
 Once the scripts are created, you can run this command to run the Lua script which calls the UDF that was created:
 
