@@ -26,21 +26,24 @@ The description on how to IMPORT data from Google Bigquery is described in detai
 2. Upload JSON key to BucketFS
 3. Configure the Driver in Admin UI
 4. Create Database Connection to Google Bigquery, such as:
+
    ```sql
    CREATE CONNECTION BQ_CON TO 'jdbc:bigquery://https://www.googleapis.com/bigquery/v2:443;
     ProjectId=<your-project-id>;OAuthType=0;Timeout=10000;OAuthServiceAcctEmail=<your-service-account>;
     OAuthPvtKeyPath=/d02_data/<bucketfs-service>/<bucket-name>/<your-account-keyfile>;';
    ```
-5. You can run an IMPORT statement like below:
+
+6. You can run an IMPORT statement like below:
+
    ```sql
    IMPORT INTO (C1 INT) FROM JDBC AT BQ_CON STATEMENT 'SELECT 1';
    ```
 
 ### Method 2: Using the script (more performant and scalable)
 
-This article will export the bigquery data into a CSV file stored in Google Cloud Storage via UDF using the Google API, and then will IMPORT the file into the target table in Exasol. 
+This article will export the bigquery data into a CSV file stored in Google Cloud Storage via UDF using the Google API, and then will IMPORT the file into the target table in Exasol.
 
-#### Prerequisites
+#### Prerequisites for importing
 
 * You must create an HMAC key in the Google Cloud Console that has the correct permissions to interact with Google Cloud Storage (reading/writing). You can find more information on how to do this [here](https://cloud.google.com/storage/docs/authentication/hmackeys)
 * You will also need to have a Bigquery Service account. It is very likely that you already have this, because you needed it to establish the original JDBC connection to bigquery that we tested in the first place. You need to follow step 1 and 2 from this link: <https://docs.exasol.com/loading_data/connect_databases/google_bigquery.htm>
@@ -49,7 +52,7 @@ This article will export the bigquery data into a CSV file stored in Google Clou
 * You need to either create a new script language container that contains the [Google Cloud python library](https://googleapis.dev/python/bigquery/latest/index.html) or upload it to BucketFS. We recommend creating a new script language container from this Github project: <https://github.com/exasol/script-languages-release>.
 Since release 1.1.0 of Standard Script Language Containers ([link](https://github.com/exasol/script-languages-release/releases/tag/1.1.0)) and at least DB versions 7.0.17 and 7.1.7 ([link](https://exasol.my.site.com/s/article/Changelog-content-14476?language=en_US)) Google Cloud python library is available by default.
 
-#### Step 1 - Create Connection
+#### Step 1 - Create Connection for importing
 
 Create a CONNECTION to Google Cloud Storage as described [here](https://docs.exasol.com/loading_data/load_data_google_cloud_storage_buckets.htm). You will use the credentials from the HMAC key in the CONNECTION object, like below. You should replace the bucket-name with the name of the Google Cloud Storage bucket
 
@@ -60,7 +63,7 @@ create connection google_cloud_storage to 'https://<bucket-name>.storage.googlea
 
 #### Step 2 - Create Scripts
 
-Run the commands found in the [import_from_bigquery.sql](https://raw.githubusercontent.com/exasol/exa-toolbox/master/utilities/import_from_bigquery.sql) statement to create the scripts that are needed. These are stored in the ETL schema, but can be replaced and use any schema. 
+Run the commands found in the [import_from_bigquery.sql](https://raw.githubusercontent.com/exasol/exa-toolbox/master/utilities/import_from_bigquery.sql) statement to create the scripts that are needed. These are stored in the ETL schema, but can be replaced and use any schema.
 
 #### Step 3 - Execute Scripts
 
@@ -96,20 +99,20 @@ In my tests using a table containing approximately 1 million rows containing 10 
 
 ## How to EXPORT Data to Google Bigquery
 
-As Google's documentation states, the JDBC driver is not designed for large volumes of data transfer between external systems and Bigquery. Internally, the data is transferred via single-row inserts and these are limited by Google to 100. Thus, exporting data via the JDBC driver is not a performant or scalable solution. 
+As Google's documentation states, the JDBC driver is not designed for large volumes of data transfer between external systems and Bigquery. Internally, the data is transferred via single-row inserts and these are limited by Google to 100. Thus, exporting data via the JDBC driver is not a performant or scalable solution.
 
-[According to Google](https://cloud.google.com/bigquery/docs/loading-data), the *recommended* way to ingest data into Bigquery is via files or Cloud Storage. Therefore, this article will export the exasol data into a CSV file stored in Google Cloud Storage, and then will call a UDF which will transfer the data to Bigquery using the Google API. 
+[According to Google](https://cloud.google.com/bigquery/docs/loading-data), the *recommended* way to ingest data into Bigquery is via files or Cloud Storage. Therefore, this article will export the Exasol data into a CSV file stored in Google Cloud Storage, and then will call a UDF which will transfer the data to Bigquery using the Google API.
 
-### Prerequisites
+### Prerequisites for exporting
 
 * You must create an HMAC key in the Google Cloud Console that has the correct permissions to interact with Google Cloud Storage (reading/writing). You can find more information on how to do this [here](https://cloud.google.com/storage/docs/authentication/hmackeys)
-* You will also need to have a Bigquery Service account. It is very likely that you already have this, because you needed it to establish the original JDBC connection to bigquery that we tested in the first place. You need to follow step 1 and 2 from this link: <https://docs.exasol.com/loading_data/connect_databases/google_bigquery.htm>
+* You will also need to have a Bigquery Service account. It is very likely that you already have this, because you needed it to establish the original JDBC connection to Bigquery that we tested in the first place. You need to follow step 1 and 2 from this link: <https://docs.exasol.com/loading_data/connect_databases/google_bigquery.htm>
 * This service account needs to have the permission to read the files from the bucket that you will specify. Please grant access to the bucket for the service account beforehand, otherwise you will receive an ACCESS DENIED error.
 * The script is using Python3, so you need to have PYTHON3 running in the database (for versions > 6.2.0, this is delivered with the database).
 * You need to either create a new script language container that contains the [Google Cloud python library](https://googleapis.dev/python/bigquery/latest/index.html) or upload it to BucketFS. We recommend creating a new script language container from this Github project: <https://github.com/exasol/script-languages-release>.
 Since release 1.1.0 of Standard Script Language Containers ([link](https://github.com/exasol/script-languages-release/releases/tag/1.1.0)) and at least DB versions 7.0.17 and 7.1.7 ([link](https://exasol.my.site.com/s/article/Changelog-content-14476?language=en_US)) Google Cloud python library is available by default.
 
-### Step 1 - Create Connection
+### Step 1 - Create Connection for exporting
 
 Create a CONNECTION to Google Cloud Storage as described [here](https://docs.exasol.com/loading_data/load_data_google_cloud_storage_buckets.htm). You will use the credentials from the HMAC key in the CONNECTION object, like below. You should replace the bucket-name with the name of the Google Cloud Storage bucket
 
