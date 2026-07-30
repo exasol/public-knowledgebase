@@ -69,6 +69,6 @@ order by stmt_id;
 See here
 
 * for a video that explains impersonation: <https://www.youtube.com/watch?v=h2Mrbd0r67k>
-* for documentation <https://docs.exasol.com/sql/impersonate.htm>
+* for documentation <https://docs.exasol.com/db/latest/sql/impersonate.htm>
 
 *We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

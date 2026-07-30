@@ -83,7 +83,7 @@ select * from (IMPORT FROM EXA AT SYS_CONN statement 'select current_date');
 Notice the SQL part IMPORT FROM EXA. This means we are using the built-in Exasol driver to connect.
 You can find examples here [import](https://docs.exasol.com/db/latest/sql/import.htm).
 The results of the above query should return a column named CURRENT_DATE with the current data as the value.
-For more information on connections, see [create_connection](https://docs.exasol.com/sql/create_connection.htm), [alter_connection](https://docs.exasol.com/sql/alter_connection.htm).
+For more information on connections, see [create_connection](https://docs.exasol.com/db/latest/sql/create_connection.htm), [alter_connection](https://docs.exasol.com/db/latest/sql/alter_connection.htm).
 You can see existing connections in the EXA_DBA_CONNECTIONS table, see [exa_dba_connections](https://docs.exasol.com/db/latest/sql_references/system_tables/metadata/exa_dba_connections.htm).
 As loading data requires a connection, you can find more connection examples here [loading_data/load_data_from_externalsources](https://docs.exasol.com/db/latest/loading_data/load_data_from_externalsources.htm).
 
@@ -421,18 +421,18 @@ When concluding your development testing, be sure and execute either "DROP USER 
 
 ## Additional References
 
-[Hiding credentials](https://docs.exasol.com/database_concepts/udf_scripts/hide_access_keys_passwords.htm) 
+[Hiding credentials](https://docs.exasol.com/database_concepts/udf_scripts/hide_access_keys_passwords.htm)
 
-[Python Connections](https://docs.exasol.com/database_concepts/udf_scripts/python.htm#AccessingConnectionDefinitions) 
+[Python Connections](https://docs.exasol.com/database_concepts/udf_scripts/python.htm#AccessingConnectionDefinitions)
 
-[Lua Connections](https://docs.exasol.com/database_concepts/udf_scripts/lua.htm#AccessingConnectionDefinitions) 
+[Lua Connections](https://docs.exasol.com/database_concepts/udf_scripts/lua.htm#AccessingConnectionDefinitions)
 
-[General Connection info](https://docs.exasol.com/sql/create_connection.htm) 
+[General Connection info](https://docs.exasol.com/db/latest/sql/create_connection.htm)
 
-[Scripting Basics](https://docs.exasol.com/database_concepts/scripting.htm) 
+[Scripting Basics](https://docs.exasol.com/database_concepts/scripting.htm)
 
-[UDF Basics](https://docs.exasol.com/database_concepts/udf_scripts.htm) 
+[UDF Basics](https://docs.exasol.com/database_concepts/udf_scripts.htm)
 
-[Query and PQuery functionality](https://docs.exasol.com/database_concepts/scripting/db_interaction.htm) 
+[Query and PQuery functionality](https://docs.exasol.com/database_concepts/scripting/db_interaction.htm)
 
 *We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

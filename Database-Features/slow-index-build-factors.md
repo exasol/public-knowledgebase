@@ -63,7 +63,7 @@ CONTROL SET JOIN ORDER T2,T1;
 
 [Enforce Materializations](https://exasol.my.site.com/s/article/Enforcing-materializations-with-ORDER-BY-FALSE-in-subselects-views-or-CTEs)
 
-[Preloading indexes](https://docs.exasol.com/sql/preload.htm.)
+[Preloading indexes](https://docs.exasol.com/db/latest/sql/preload.htm)
 
 [Profiling](https://docs.exasol.com/performance/profiling.htm)
 

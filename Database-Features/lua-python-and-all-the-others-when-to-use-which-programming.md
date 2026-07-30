@@ -26,13 +26,13 @@ Lua differs a little from the others here as it is very natively integrated into
   
 ### Functions
 
- Exasol also offers the possibility to write basic [functions](https://docs.exasol.com/sql/create_function.htm "Functions") in SQL. Functions are more limited than UDFs in terms of what you can achieve with them, but they can be a good choice if you want to do some kind of mapping, like recreating a function that you have used in another database where Exasol's syntax is a little different. A set of SQL functions can be found in our Github Repository [exa-toolbox](https://github.com/exasol/exa-toolbox/tree/master/sqlserver_compatibility "exa-toolbox") . There we collected some functions that can be useful when migrating from SQL-Server to Exasol.  
+Exasol also offers the possibility to write basic [functions](https://docs.exasol.com/db/latest/sql/create_function.htm "Functions") in SQL. Functions are more limited than UDFs in terms of what you can achieve with them, but they can be a good choice if you want to do some kind of mapping, like recreating a function that you have used in another database where Exasol's syntax is a little different. A set of SQL functions can be found in our Github Repository [exa-toolbox](https://github.com/exasol/exa-toolbox/tree/master/sqlserver_compatibility) . There we collected some functions that can be useful when migrating from SQL-Server to Exasol.  
 ## Additional References
 
 Links to our documentation on:
 
-* [Scripts](https://docs.exasol.com/database_concepts/scripting.htm "Scripts")
-* [UDFs](https://docs.exasol.com/database_concepts/udf_scripts.htm "UDFs")
-* [Functions](https://docs.exasol.com/sql/create_function.htm "Functions")
+* [Scripts](https://docs.exasol.com/database_concepts/scripting.htm)
+* [UDFs](https://docs.exasol.com/database_concepts/udf_scripts.htm)
+* [Functions](https://docs.exasol.com/db/latest/sql/create_function.htm)
 
 *We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

@@ -11,6 +11,6 @@ It is not possible to kill or deactivate the process.
 ## Additional References
 
 * [List of statistical tables](https://docs.exasol.com/sql_references/metadata/statistical_system_table.htm)
-* [FLUSH STATISTICS syntax](https://docs.exasol.com/sql/flush_statistics.htm)
+* [FLUSH STATISTICS syntax](https://docs.exasol.com/db/latest/sql/flush_statistics.htm)
 
 *We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 
