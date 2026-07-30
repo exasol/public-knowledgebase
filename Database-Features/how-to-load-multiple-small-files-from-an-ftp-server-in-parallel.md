@@ -91,7 +91,7 @@ Of course, you rarely want to get the result on the screen, but typically embed 
 
 * [Python 3](https://docs.exasol.com/db/latest/database_concepts/udf_scripts/python3.htm)
 
-* [IMPORT](https://docs.exasol.com/sql/import.htm)
+* [IMPORT](https://docs.exasol.com/db/latest/sql/import.htm)
 
 * [Load Data from Other Files](https://docs.exasol.com/loading_data/other_file_formats.htm)
 

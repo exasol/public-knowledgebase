@@ -53,10 +53,10 @@ commit;
 ```
 ## Additional References
 
- <https://docs.exasol.com/sql_references/data_types/identitycolumns.htm>
+[Identity columns](https://docs.exasol.com/sql_references/data_types/identitycolumns.htm)
 
-<https://docs.exasol.com/sql/alter_table(column).htm>
+[ALTER TABLE (Column)](https://docs.exasol.com/db/latest/sql/alter_table(column).htm)
 
-<https://docs.exasol.com/sql_references/metadata/metadata_system_tables.htm>
+[Metadata system tables](https://docs.exasol.com/sql_references/metadata/metadata_system_tables.htm)
 
 *We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

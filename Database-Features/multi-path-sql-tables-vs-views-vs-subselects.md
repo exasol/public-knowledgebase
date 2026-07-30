@@ -97,7 +97,7 @@ GROUP BY b.name, c.name;
 ```
 ## Additional References
 
-* [CREATE VIEW Syntax](https://docs.exasol.com/sql/create_view.htm)
-* [SELECT syntax](https://docs.exasol.com/sql/select.htm)
+* [CREATE VIEW Syntax](https://docs.exasol.com/db/latest/sql/create_view.htm)
+* [SELECT syntax](https://docs.exasol.com/db/latest/sql/select.htm)
 
 *We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

@@ -129,7 +129,7 @@ PARTITION BY generator_type;
 
 ## Additional References
 
-* [IMPORT](https://docs.exasol.com/sql/import.htm)
+* [IMPORT](https://docs.exasol.com/db/latest/sql/import.htm)
 * [Skyline](https://docs.exasol.com/advanced_analytics/skyline.htm)
 * [Analytic Functions](https://docs.exasol.com/sql_references/functions/analyticfunctions.htm)
 * [Import Geospatial Data from CSV and GeoJSON File](https://docs.exasol.com/sql_references/geospatialdata/import_geospatial_data_from_csv.htm)
