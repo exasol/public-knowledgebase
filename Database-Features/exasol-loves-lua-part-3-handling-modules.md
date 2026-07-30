@@ -174,7 +174,7 @@ You now have a combination of the `remotelog` module and the script `main.lua` i
 
 ## How to create a script from a bundled module in Exasol
 
-The last piece of the puzzle is creating a Lua script in Exasol that uses the bundle you just created. You can find the [syntax for creating Lua scripts](https://docs.exasol.com/sql/create_script.htm "CREATE") in our doc portal.
+The last piece of the puzzle is creating a Lua script in Exasol that uses the bundle you just created. You can find the [syntax for creating Lua scripts](https://docs.exasol.com/db/latest/sql/create_script.htm) in our doc portal.
 
 Here is a concrete example.
 

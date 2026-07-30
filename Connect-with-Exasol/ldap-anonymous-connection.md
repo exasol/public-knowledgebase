@@ -3,7 +3,7 @@
 ## Question
 I have read the documentation about authenticating database users with LDAP: 
 
-[CREATE USER](https://docs.exasol.com/sql/create_user.htm)
+[CREATE USER](https://docs.exasol.com/db/latest/sql/create_user.htm)
 
 I couldn't see any technical user for exasol configured here, so I assume that exasol is making an anonymous LDAP connection to ask for user authentication.
 

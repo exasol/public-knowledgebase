@@ -40,7 +40,7 @@ Therefore there are a total of 16 tables. Examples:
 
 If Auditing is enabled for the database, the tables EXA_DBA_AUDIT_SESSIONS and EXA_DBA_AUDIT_SQL are used to trace all sessions/queries connected to/sent to the database.  
 Those tables can be accessed by users having the "SELECT ANY DICTIONARY" system privilege.  
-Auditing data can be dropped by the "[TRUNCATE AUDIT LOGS](https://docs.exasol.com/sql/truncate_audit_logs.htm)" statement.
+Auditing data can be dropped by the [TRUNCATE AUDIT LOGS](https://docs.exasol.com/db/latest/sql/truncate_audit_logs.htm) statement.
 
 ### Profiling data
 

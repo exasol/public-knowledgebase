@@ -1,7 +1,7 @@
 # CONNECT BY Cycle Detection 
 ## Problem
 
-As documented (see [SELECT](https://docs.exasol.com/sql/select.htm)) the connect by cycle detection works different than Oracles implementation. We recommend to change your logic accordingly. However, if you want to reduce Exasol results so that they match the Oracle results you can do it using this guide.
+As documented (see [SELECT](https://docs.exasol.com/db/latest/sql/select.htm) the connect by cycle detection works different than Oracles implementation. We recommend to change your logic accordingly. However, if you want to reduce Exasol results so that they match the Oracle results you can do it using this guide.
 
 ## Diagnosis
 

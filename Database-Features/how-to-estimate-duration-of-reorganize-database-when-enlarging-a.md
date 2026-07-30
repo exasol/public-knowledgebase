@@ -5,7 +5,7 @@ When you add new nodes to your database cluster (enlargement), those new nodes w
 
 ## Prerequisites
 
-The general recommendation to accomplish this is the `REORGANIZE DATABASE` command. It redistributes tables and rebuilds all indices. Each processed table is committed immediately so transaction dependencies are minimized. You can find more information about the `REORGANIZE` command here: [reorganize](https://docs.exasol.com/sql/reorganize.htm).
+The general recommendation to accomplish this is the `REORGANIZE DATABASE` command. It redistributes tables and rebuilds all indices. Each processed table is committed immediately so transaction dependencies are minimized. You can find more information about the `REORGANIZE` command here: [reorganize](https://docs.exasol.com/db/latest/sql/reorganize.htm).
 
 ## How to estimate the duration of REORGANIZE DATABASE when enlarging a cluster
 
