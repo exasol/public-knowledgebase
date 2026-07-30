@@ -73,7 +73,7 @@ CREATE OR REPLACE CONNECTION BIGQUERY_JDBC TO
  OAuthServiceAcctEmail=<your-service-account>;
  OAuthPvtKeyPath=/d02_data/<bucketfs-service>/<bucket-name>/<your-account-keyfile>;';
 ```
-Afterwards, the [IMPORT](https://docs.exasol.com/sql/import.htm "IMPORT") Command can be used to transfer data from BigQuery into Exasol database.
+Afterwards, the [IMPORT](https://docs.exasol.com/db/latest/sql/import.htm) Command can be used to transfer data from BigQuery into Exasol database.
 
 ![](images/exasol_ga360_13.jpg)
 

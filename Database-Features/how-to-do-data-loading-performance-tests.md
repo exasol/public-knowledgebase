@@ -76,9 +76,9 @@ ERRORS INTO error_table (CURRENT_TIMESTAMP) REJECT LIMIT 10;
 
 ## Additional References
 
-* [IMPORT](https://docs.exasol.com/sql/import.htm)
+* [IMPORT](https://docs.exasol.com/db/latest/sql/import.htm)
 
-* [EXPORT](https://docs.exasol.com/sql/export.htm)
+* [EXPORT](https://docs.exasol.com/db/latest/sql/export.htm)
 
 * [Load Data from CSV/FBV Files](https://docs.exasol.com/loading_data/csv_fbv_file_types.htm)
 

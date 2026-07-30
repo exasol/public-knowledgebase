@@ -1,7 +1,7 @@
 # Details on DELETE Operations 
 ## Background
 
-The [DELETE](https://docs.exasol.com/sql/delete.htm) command can be used to remove data from a table. In Exasol, the DELETE command can trigger different processes based on the table statistics. 
+The [DELETE](https://docs.exasol.com/db/latest/sql/delete.htm) command can be used to remove data from a table. In Exasol, the DELETE command can trigger different processes based on the table statistics. 
 
 ## Explanation
 
@@ -51,7 +51,7 @@ When many deletes are expected, an explicit reorganize of the affected tables sh
 
 ## Additional References
 
-* [DELETE Syntax](https://docs.exasol.com/sql/delete.htm)
-* [REORGANIZE Syntax](https://docs.exasol.com/sql/reorganize.htm)
+* [DELETE Syntax](https://docs.exasol.com/db/latest/sql/delete.htm)
+* [REORGANIZE Syntax](https://docs.exasol.com/db/latest/sql/reorganize.htm)
 
 *We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

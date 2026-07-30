@@ -57,7 +57,7 @@ Examples:
 
 ## Recommendation
 
-The group and decimal separators are defined in the [**NLS_NUMERIC_CHARACTERS**] (https://docs.exasol.com/sql/alter_session.htm#NLS_NUMERIC_CHARACTERS) parameter and you can check it by doing the below query:
+The group and decimal separators are defined in the [**NLS_NUMERIC_CHARACTERS**](https://docs.exasol.com/db/latest/sql/alter_session.htm#NLS_NUMERIC_CHARACTERS) parameter and you can check it by doing the below query:
 
 
 ```sql
@@ -65,13 +65,13 @@ select * from exa_parameters where PARAMETER_NAME='NLS_NUMERIC_CHARACTERS';
 ```
 If this is not the NLS_NUMERIC_CHARACTERS you need, you can change it as follows:
 
-for the current session using [**ALTER SESSION**] (https://docs.exasol.com/sql/alter_session.htm#ALTERSESSION) 
+for the current session using [**ALTER SESSION**](https://docs.exasol.com/db/latest/sql/alter_session.htm) 
 
 
 ```sql
 ALTER SESSION SET NLS_NUMERIC_CHARACTERS = ',.';
 ```
-or for the entire database using [**ALTER SYSTEM**] (https://docs.exasol.com/sql/alter_system.htm#ALTER_SYSTEM)
+or for the entire database using [**ALTER SYSTEM**](https://docs.exasol.com/db/latest/sql/alter_system.htm)
 
 
 ```sql
@@ -79,6 +79,6 @@ ALTER SYSTEM SET NLS_NUMERIC_CHARACTERS = ',.';
 ```
 ## Additional References
 
-<https://docs.exasol.com/sql/alter_session.htm#UsageNotes> 
+<https://docs.exasol.com/db/latest/sql/alter_session.htm#Usagenotes> 
 
 *We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 
