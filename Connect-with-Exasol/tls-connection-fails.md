@@ -72,7 +72,7 @@ If you are connecting using a tool, it may not be possible to change the driver
 
 ## Long-term solution
 
-If you are able to use a CA-signed certificate, it can be uploaded to EXAoperation as described in our [documentation](https://docs.exasol.com/administration/on-premise/access_management/tls_certificate.htm). The necessary certificate must also be provided to the client.
+If you are able to use a CA-signed certificate, it can be uploaded to EXAoperation as described in our [documentation](https://docs.exasol.com/db/latest/administration/on-premise/access_management/tls_certificate.htm). The necessary certificate must also be provided to the client.
 
 ## Additional References
 

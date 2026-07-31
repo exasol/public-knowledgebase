@@ -50,12 +50,12 @@ Example:
 ```sql
 DELETE FROM TEST.T1 WHERE FALSE;
 ```
-If it is not possible to determine the exact conflict from system tables when the transaction is merged, if it happens regularly, if the best practices on avoiding transaction conflicts do not help and if you need further clarity on the exact conflict, [contact Exasol support](https://www.exasol.com/product-overview/customer-support/) and send the [session and server logs](https://docs.exasol.com/administration/on-premise/support/logs_files_for_sql_server_processes.htm) for the day that the conflict occurred. 
+If it is not possible to determine the exact conflict from system tables when the transaction is merged, if it happens regularly, if the best practices on avoiding transaction conflicts do not help and if you need further clarity on the exact conflict, [contact Exasol support](https://www.exasol.com/product-overview/customer-support/) and send the [session and server logs](https://docs.exasol.com/db/latest/administration/on-premise/support/log_files_for_sql_server_processes.htm) for the day that the conflict occurred. 
 
 ## Additional References
 
 * [Investigating Transaction Conflicts using Auditing](https://exasol.my.site.com/s/article/Investigating-Transaction-Conflicts-using-Auditing)
-* [Gathering Logs for SQL/Server Processes](https://docs.exasol.com/administration/on-premise/support/logs_files_for_sql_server_processes.htm)
+* [Gathering Logs for SQL/Server Processes](https://docs.exasol.com/db/latest/administration/on-premise/support/log_files_for_sql_server_processes.htm)
 * [Transaction Conflicts in Mixed Read/Write Scenarios](https://exasol.my.site.com/s/article/Transaction-Conflicts-for-Mixed-Read-Write-Transactions)
 * [Exasol's Transaction Management System](https://docs.exasol.com/database_concepts/transaction_management.htm)
 

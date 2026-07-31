@@ -107,13 +107,13 @@ Don't forget to check the **Disable Security Manager** box. The reason is that t
 
 ## Step 4.
 
-Create a new bucket to hold the JDBC driver. If you already have a designated bucket to hold the new JDBC driver, you can skip this step. For example, we will create a new bucket named "jars" to follow what is in the documentation. More information can be found at  [Create New Buckets in BucketFS Service](https://docs.exasol.com/administration/on-premise/bucketfs/create_new_bucket_in_bucketfs_service.htm). This step is an extension of [BucketFS Setup](https://docs.exasol.com/database_concepts/bucketfs/bucketfs_setup.htm).
+Create a new bucket to hold the JDBC driver. If you already have a designated bucket to hold the new JDBC driver, you can skip this step. For example, we will create a new bucket named "jars" to follow what is in the documentation. More information can be found at [Create New Buckets in BucketFS Service](https://docs.exasol.com/db/latest/administration/on-premise/bucketfs/create_new_bucketfs_bucket.htm).
 
 a. Open the UI and navigate to the" EXABuckets" menu.
 
 ![](images/11_main_bucketfs_menu.png)
 
-Assuming you are familiar with how to [Create a new bucket in the BucketFS service](https://docs.exasol.com/administration/on-premise/bucketfs/create_new_bucket_in_bucketfs_service.htm), we start with you having a "bucketfs1" or other bucket appearing in the "EXABucketFS Services" menu, such as:
+Assuming you are familiar with how to [Create a new bucket in the BucketFS service](https://docs.exasol.com/db/latest/administration/on-premise/bucketfs/create_new_bucketfs_bucket.htm), we start with you having a "bucketfs1" or other bucket appearing in the "EXABucketFS Services" menu, such as:
 
 ![](images/12_bucketfs_service_menu.png)
 

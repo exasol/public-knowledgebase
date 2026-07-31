@@ -8,7 +8,7 @@ Does anyone know of any other preinstalled python libraries that can read Excel 
 ## Answer
 If you want to process Excel files you will need external libraries. If you do not want to generate a language container you have two other options.
 
-In each case you need to configure a bucket for your Exasol. But this task will take less than 5 minutes  ([Create New Buckets in BucketFS Service](https://docs.exasol.com/administration/on-premise/bucketfs/create_new_bucket_in_bucketfs_service.htm)). Make sure that you configure a read and write password for your bucket and that you add an HTTP port for your BucketFS Service. If the bucket is configured you can load all libraries which you need to solve your problem in wheel (`.whl`) format or `tar.gz` format and add them straight to the bucket. 
+In each case you need to configure a bucket for your Exasol. But this task will take less than 5 minutes  ([Create New Buckets in BucketFS Service](https://docs.exasol.com/db/latest/administration/on-premise/bucketfs/create_new_bucketfs_bucket.htm)). Make sure that you configure a read and write password for your bucket and that you add an HTTP port for your BucketFS Service. If the bucket is configured you can load all libraries which you need to solve your problem in wheel (`.whl`) format or `tar.gz` format and add them straight to the bucket. 
 
 You can load it from this page: https://pypi.org/project/xlrd/ and add this file to the bucket using one of
 
@@ -51,7 +51,7 @@ But as mentioned before, the best solution for me would be the language containe
 
 ## Additional References
 
-* [Create New Buckets in BucketFS Service](https://docs.exasol.com/administration/on-premise/bucketfs/create_new_bucket_in_bucketfs_service.htm)
+* [Create New Buckets in BucketFS Service](https://docs.exasol.com/db/latest/administration/on-premise/bucketfs/create_new_bucketfs_bucket.htm)
 * [User guide for "script-languages-release" github repo](https://github.com/exasol/script-languages-release/blob/master/doc/user_guide/usage.md)
 * ["bucketfs-client" application](https://github.com/exasol/bucketfs-client/blob/main/doc/user_guide/user_guide.md)
 * ["bucketfs-python" library](https://exasol.github.io/bucketfs-python/user_guide/user_guide.html)
