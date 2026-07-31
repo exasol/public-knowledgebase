@@ -28,7 +28,7 @@ Querying the `EXA_SYSTEM_EVENTS` table you will see the below messages (within o
 
 ## Explanation
 
-Exasol provides 2 different licenses: "Raw data License" (default one) and "Database RAM License". For further details follow [this](https://docs.exasol.com/administration/on-premise/licenses.htm "Licenses") link. We have already mentioned that there are certain limitations enforced on the license and a periodic check is done by Exasol on the size of the data. In this article, we will talk only about the case your Exasol License is a "Raw data License".
+Exasol provides 2 different licenses: "Raw data License" (default one) and "Database RAM License". For further details follow [this](https://docs.exasol.com/db/latest/administration/on-premise/licenses.htm) link. We have already mentioned that there are certain limitations enforced on the license and a periodic check is done by Exasol on the size of the data. In this article, we will talk only about the case your Exasol License is a "Raw data License".
 
 In this case, when the Raw size of the database exceeds **105%** of the license, the database **won't permit any further data insertion** and therefore a "Write Restricted Mode" is enabled. The statements that are affected in this mode are IMPORT, INSERT, CREATE TABLE AS, MERGE, SELECT INTO.
 

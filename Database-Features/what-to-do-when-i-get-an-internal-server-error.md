@@ -33,7 +33,7 @@ To further investigate the cause, please open a support ticket and include the f
 * SQL text of that session ID
 * If the error is reproducible or not? If so, how?
 * DDL of the tables and views used in the query so that we can reproduce it.
-* [SQL/Server Logs for the day that it happened](https://docs.exasol.com/administration/on-premise/support/logs_files_for_sql_server_processes.htm)
+* [SQL/Server Logs for the day that it happened](https://docs.exasol.com/db/latest/administration/on-premise/support/log_files_for_sql_server_processes.htm)
 
 Once we have investigated, we will let you know of any potential workarounds and fixes.
 

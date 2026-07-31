@@ -29,7 +29,7 @@ SELECT * FROM EXA_DBA_TRANSACTION_CONFLICTS WHERE SESSION_ID = <Session ID>;
 
 In many cases, it is worth it to investigate the exact cause of the conflict in order to better understand the cause and prevent it in the future. For WAIT FOR COMMIT on write/write scenarios (meaning two sessions writing to the same table at the same time), the only involved sessions are the SESSION_ID and CONFLICT_SESSION_ID found in EXA_DBA_TRANSACTION_CONFLICTS. Therefore, no other work is needed to investigate the exact cause of these conflicts.
 
-For [complex read/write scenarios](https://exasol.my.site.com/s/article/Transaction-Conflicts-for-Mixed-Read-Write-Transactions), it is much more complicated to investigate and is only possible by using [Auditing](https://docs.exasol.com/database_concepts/auditing.htm) or analyzing the [database logs](https://docs.exasol.com/administration/on-premise/support/logs_files_for_sql_server_processes.htm) (via Exasol Support). To investigate transaction conflicts using auditing, you can view [this article](https://exasol.my.site.com/s/article/Investigating-Transaction-Conflicts-using-Auditing).
+For [complex read/write scenarios](https://exasol.my.site.com/s/article/Transaction-Conflicts-for-Mixed-Read-Write-Transactions), it is much more complicated to investigate and is only possible by using [Auditing](https://docs.exasol.com/database_concepts/auditing.htm) or analyzing the [database logs](https://docs.exasol.com/db/latest/administration/on-premise/support/log_files_for_sql_server_processes.htm) (via Exasol Support). To investigate transaction conflicts using auditing, you can view [this article](https://exasol.my.site.com/s/article/Investigating-Transaction-Conflicts-using-Auditing).
 
 ## Recommendation
 

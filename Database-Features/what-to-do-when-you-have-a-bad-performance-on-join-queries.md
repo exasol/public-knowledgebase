@@ -112,6 +112,6 @@ As a general rule: **A single distribution column is optimal**, because more joi
 
 * [Best Practices - Distribution keys](https://docs.exasol.com/db/latest/performance/best_practices.htm#Distributionkeys)
 * [ALTER TABLE (Distribution/Partitioning)](https://docs.exasol.com/db/latest/sql/alter_table(distribution_partitioning).htm)
-* [Profiling Information](https://docs.exasol.com/administration/on-premise/support/profiling_information.htm)
+* [Profiling Information](https://docs.exasol.com/db/latest/administration/on-premise/support/profiling_information.htm)
 
 *We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

@@ -31,7 +31,7 @@ MAIN         2021-05-17 13:34:02 LICENSE_EXCEEDED 7.0.9        3     100.0
 ```
 ## Explanation
 
-Depending on your contract with Exasol and your business requirements, Exasol provides 2 different licenses: "Raw data License" (default one) and "Database RAM License". For further details follow [this](https://docs.exasol.com/administration/on-premise/licenses.htm "Licenses") link.
+Depending on your contract with Exasol and your business requirements, Exasol provides 2 different licenses: "Raw data License" (default one) and "Database RAM License". For further details follow [this](https://docs.exasol.com/db/latest/administration/on-premise/licenses.htm) link.
 
 There are certain limitations enforced on the license and a periodic check is done by Exasol on the size of the data. 
 

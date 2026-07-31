@@ -54,7 +54,7 @@ Step 3.1 - Create Service Account for your GCP project
   
 ![](images/exasol_ga360_9.jpg)
 
-Step 3.2 - Upload JSON Key File to [BucketFS](https://docs.exasol.com/administration/on-premise/bucketfs/bucketfs.htm "BucketFS")  
+Step 3.2 - Upload JSON Key File to [BucketFS](https://docs.exasol.com/db/latest/administration/on-premise/bucketfs/bucketfs.htm)
   
 ![](images/exasol_ga360_10.jpg)
 
