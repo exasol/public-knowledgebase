@@ -205,7 +205,7 @@ Only the latter requires TLS certificate validation.
 
 ### Why is the error reported as "self-signed certificate"?
 
-The temporary HTTPS server created by PyEXASOL uses a self-signed certificate.
+The temporary HTTPS server created by PyEXASOL uses a temporary self-signed certificate.
 
 Self-signed certificates are fully supported by Exasol **when the certificate fingerprint is supplied using the `PUBLIC KEY` clause**.
 
