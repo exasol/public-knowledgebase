@@ -91,6 +91,6 @@ We can verify that the MAC addresses that we selected were configured correctly.
 
 ## Additional References
 
-[Configuring Network Access - On Premise | Exasol Documentation](https://docs.exasol.com/administration/on-premise/manage_network/configure_network_access.htm#Addition)
+[Configuring Network Access - On Premise | Exasol Documentation](https://docs.exasol.com/db/7.1/administration/on-premise/installation/install_hardware/config_network.htm)
 
 *We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

@@ -56,7 +56,7 @@ $ docker run --cpuset-cpus="1,2,3,4" --memory=20g --memory-swap=20g --memory-res
 ```
 This is especially recommended if we need multiple Exasol containers (or other services) on the same host. In that case, we should evenly distribute the available CPUs and memory throughout your Exasol containers.
 
-Find more detailed information here <https://docs.docker.com/config/containers/resource_constraints/>
+Find more detailed information here [Resource constraints](https://docs.docker.com/engine/containers/resource_constraints/)
 
 ## **How to deploy a single-node Exasol database as a Docker image**
 
@@ -140,7 +140,7 @@ Use the dev.1 file as an EXAStorage device for Exasol DB and mount the LVM disk 
 
 Configure the volume size for Exasol DB before starting the container. There are 3 types of volumes available for Exasol.
 
-Volumes in Exasol serve three different purposes. You can find detailed information in <https://docs.exasol.com/administration/on-premise/manage_storage/volumes.htm>
+Volumes in Exasol serve three different purposes. You can find detailed information in [Volumes overview](https://docs.exasol.com/db/latest/administration/on-premise/manage_storage/volumes.htm)
 
 Since it’s recommended to use less disk space than the size of LVM disk (because Exasol will create a temporary volume and there should be a free disk space for it), we'll use 20 GiB space for the volume. The actual size of the volume increases or decreases depending on the data stored.
 
@@ -255,10 +255,8 @@ SELECT * FROM EXA_SYSCAT;
 
 ## Additional References
 
-<https://github.com/EXASOL/docker-db>
-
-<https://docs.docker.com/config/containers/resource_constraints/>
-
-<https://docs.exasol.com/administration/on-premise/manage_storage/volumes.htm>
+* [Exasol Docker Version](https://github.com/EXASOL/docker-db)
+* [Resource constraints](https://docs.docker.com/engine/containers/resource_constraints/)
+* [Volumes overview](https://docs.exasol.com/db/latest/administration/on-premise/manage_storage/volumes.htm)
 
 *We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

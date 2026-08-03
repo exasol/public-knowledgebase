@@ -5,7 +5,7 @@ This article describes how to improve the speed of your SMB share with disabling
 
 ## Symptoms
 
-* creating backups takes unusual long
+* creating backups takes unusually long
 * performance of the remote archive volumes are poor (only a few MiB/s)
 * remote share is a Microsoft Windows server
 * no performance problems by using "smbclient" on other Linux clients
@@ -18,6 +18,6 @@ Open the "Local Group Policy Editor" on your Windows server and goto "Windows Se
 
 ## Additional References
 
-<https://docs.exasol.com/administration/on-premise/manage_storage/create_remote_archive_volume.htm>
+[Create remote archive volume](https://docs.exasol.com/db/latest/administration/on-premise/manage_storage/create_remote_archive_volume.htm)
 
 *We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

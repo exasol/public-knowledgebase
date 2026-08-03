@@ -44,6 +44,6 @@ The tables below list the **default** ports of network services and DBMSs with w
 
 ## Additional References
 
-<https://docs.exasol.com/administration/on-premise/installation/prepareenvironment/cluster_networking_infrastructure.htm>
+[Prepare Cluster Networking Infrastructure](https://docs.exasol.com/db/7.1/administration/on-premise/installation/prepareenvironment/cluster_networking_infrastructure.htm)
 
 *We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 
