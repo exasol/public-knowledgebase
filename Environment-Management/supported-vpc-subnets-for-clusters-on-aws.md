@@ -57,6 +57,6 @@ The license server, therefore, gets the subnet base + 10, the other nodes follow
 
 ## Additional References
 
-<https://docs.exasol.com/administration/aws.htm>
+* [Administration (AWS)](https://docs.exasol.com/db/7.1/administration/aws/administration.htm)
 
 *We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

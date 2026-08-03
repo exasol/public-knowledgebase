@@ -20,7 +20,7 @@ If a higher network bandwidth is required, use alternative protocols like FTP (u
 
 ## Additional References
 
-* [Create Remote Archive Volume](https://docs.exasol.com/administration/on-premise/manage_storage/create_remote_archive_volume.htm)
+* [Create Remote Archive Volume](https://docs.exasol.com/db/latest/administration/on-premise/manage_storage/create_remote_archive_volume.htm)
 
 
 *We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

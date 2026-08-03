@@ -143,10 +143,8 @@ In order to change the existing schedule, the script can be reused.
 
 ## Additional References
 
-<https://docs.exasol.com/administration/aws/cloud_plugins.htm>
-
-<https://docs.exasol.com/administration/azure/plugin/cloud_ui_plugin.htm>
-
-<https://docs.exasol.com/administration/google/plugin/cloud_ui_plugin.htm>
+* [Cloud plug-ins for AWS](https://docs.exasol.com/db/7.1/administration/aws/cloud_plugins.htm)
+* [Cloud plug-ins for Azure](https://docs.exasol.com/db/7.1/administration/azure/plugin/cloud_ui_plugin.htm)
+* [Cloud plug-ins for GCP](https://docs.exasol.com/db/7.1/administration/google/plugin/cloud_ui_plugin.htm)
 
 *We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

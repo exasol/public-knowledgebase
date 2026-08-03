@@ -3,7 +3,7 @@
 ## Question
 Recently, we performed an update within our Exasol-AWS-hosted installation from Cloud UI Back-end Plug-in V.1.1.3 to V.1.1.4, following the provided instructions (for the XML RPC option) available under:
 
-https://docs.exasol.com/administration/aws/plugin/cloud_ui_plugin.htm#UpdatingthePlugin
+[Updating the Plug-in](https://docs.exasol.com/db/7.1/administration/aws/plugin/cloud_ui_plugin.htm#UpdatingthePlugin)
 
 Although (as per ExaOperation) the update was successful, the Cloud UI is not available / working anymore ever since, displaying a 404 error message.
 
