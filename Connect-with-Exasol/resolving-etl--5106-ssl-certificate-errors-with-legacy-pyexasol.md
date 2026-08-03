@@ -18,6 +18,13 @@ As a result, high-performance data transfer methods fail with **ETL-5106**, whil
 
 ---
 
+### Quick Resolution
+
+- ✅ **Recommended:** Upgrade to **PyEXASOL 1.0.0 or newer**, which automatically adds the required TLS certificate fingerprint (`PUBLIC KEY`) to internally generated `EXPORT` and `IMPORT` statements.
+- ⚠️ **Temporary workaround:** Disable default ETL certificate validation on the database (for example, using `-etlCheckCertsDefault=0`). This reduces security and should only be used until the client can be upgraded.
+
+---
+
 ## Symptoms
 
 The following methods may fail:
