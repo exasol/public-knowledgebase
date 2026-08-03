@@ -253,6 +253,6 @@ After some time all your databases will be up and running.
 
 ## Additional References
 
-[Install Exasol on a Hardware - On Premise | Exasol Documentation](https://docs.exasol.com/administration/on-premise/installation/install_exasol_hw.htm)
+[Install Exasol on a Hardware - On Premise | Exasol Documentation](https://docs.exasol.com/db/7.1/administration/on-premise/installation/install_hw.htm)
 
 *We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

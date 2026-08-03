@@ -51,7 +51,7 @@ Pay as you go (PAYG) license model is a flexible and scalable license model for 
 
 Bring your own license (BYOL) license model lets you choose a static license for Exasol software and a dynamic billing for the cloud resources. In this model, you need to purchase a license from Exasol and add it to your cloud instance. This way, you pay only for the cloud resources through the cloud platform's billing cycle and there is no billing for the software. You can always change your setup later to scale up or down your system and the billing changes accordingly. However, there is a limit for the maximum scaling based on your license type (DB RAM or raw data size).
 
-You can find detailed information about licensing in <https://docs.exasol.com/administration/aws/licenses.htm>
+You can find detailed information about licensing in [Licenses](https://docs.exasol.com/db/7.1/administration/aws/licenses.htm)
 
 System Type:
 
@@ -172,8 +172,8 @@ After you have connected your choice of tool to Exasol, you can load your data i
 
 ## Additional References
 
-<https://cloudtools.exasol.com>
+[Exasol Cloud Tools](https://cloudtools.exasol.com)
 
-<https://docs.exasol.com/administration/aws.htm>
+[Deploy Exasol on AWS](https://docs.exasol.com/db/7.1/administration/aws/installation.htm)
 
 *We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

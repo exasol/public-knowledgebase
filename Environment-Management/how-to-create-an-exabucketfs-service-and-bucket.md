@@ -52,6 +52,6 @@ curl --user r -v <http://10.70.0.61:8080/bucketone/@>
 ```
 ## Additional References
 
-<https://docs.exasol.com/administration/on-premise/bucketfs/create_new_bucket_in_bucketfs_service.htm>
+[Create new bucket](https://docs.exasol.com/db/7.1/administration/on-premise/bucketfs/create_new_bucketfs_bucket.htm)
 
 *We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

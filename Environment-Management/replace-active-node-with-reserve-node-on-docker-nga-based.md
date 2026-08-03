@@ -106,8 +106,7 @@ Please run only run once otherwise redundancy will be increased to **3.**
 
 Here I link to other sites/information that may be relevant.
 
-<https://docs.exasol.com/administration/aws/nodes/replace_active_node.htm>
-
-<https://docs.exasol.com/administration/on-premise/nodes/replace_active_node.htm>
+* [Add and activate data nodes](https://docs.exasol.com/db/latest/administration/on-premise/nodes/add_activate_datanodes.htm)
+* [Add reserve nodes to existing deployment](https://docs.exasol.com/db/latest/administration/on-premise/nodes/reserve_nodes/add_reserve_nodes_existing.htm)
 
 *We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

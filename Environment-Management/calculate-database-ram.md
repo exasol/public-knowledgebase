@@ -65,6 +65,6 @@ Maximum DB RAM per database / Number of active Nodes = Maximum DB RAM per databa
 
 ## Additional References
 
-[Sizing Considerations](https://docs.exasol.com/administration/on-premise/sizing.htm)
+[Sizing Considerations](https://docs.exasol.com/db/latest/administration/on-premise/sizing.htm)
 
 *We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 
