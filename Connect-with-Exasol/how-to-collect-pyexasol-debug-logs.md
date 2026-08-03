@@ -15,7 +15,7 @@ Before you collect PyExasol debug logs, make sure that you have:
 * A script or notebook that can reproduce the issue.
 * Permission to write a log file or create a log directory on the client machine.
 
-## How to Collect PyExasol Debug Logs
+## Steps
 
 ### Step 1
 
