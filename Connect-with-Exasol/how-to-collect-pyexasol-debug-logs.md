@@ -19,7 +19,7 @@ Before you collect PyExasol debug logs, make sure that you have:
 
 ### Step 1
 
-Enable debug logging in the PyExasol connection and set a directory where PyExasol can store the debug files.
+Enable debug logging in the PyExasol connection and set a directory where PyExasol can store the debug files. Make sure that the target log directory (e.g., pyexasol-debug-logs) already exists on your filesystem before running the script.
 
 ```python
 import pyexasol
