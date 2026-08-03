@@ -180,7 +180,7 @@ This restores the behavior of earlier Exasol releases.
 
 ---
 
-# Affected Versions
+## Affected Versions
 
 | Component | Affected |
 |------------|----------|
