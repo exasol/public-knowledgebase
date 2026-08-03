@@ -10,7 +10,7 @@ PyEXASOL provides several convenient high-performance data transfer methods, inc
 - `import_from_pandas()`
 - `import_from_iterable()`
 
-Unlike `execute().fetchall()`, these methods **do not transfer data over the existing database connection**. Instead, PyEXASOL starts a temporary local HTTP/HTTPS server and instructs the Exasol database to stream the data directly to that server using internally generated `EXPORT` or `IMPORT` statements.
+Unlike `execute().fetchall()`, these methods **do not transfer data over the existing database connection**. Instead, PyEXASOL starts a temporary local HTTP/HTTPS server and instructs the Exasol database to stream the data directly to that server using internally generated `EXPORT` or `IMPORT` statements over a reverse connection to the client.
 
 Starting with **Exasol 8.32.0 / 2025.1**, TLS certificate validation for HTTP(S)-based ETL connections is enabled by default. Older PyEXASOL versions (for example **0.27.0**) do not generate the required `PUBLIC KEY` clause for these internally generated statements. Consequently, the database cannot validate the temporary HTTPS server certificate and rejects the connection.
 
