@@ -18,7 +18,7 @@ In general, the authentication error means that the user name or password is not
 
 But in case when you authenticate a user with LDAP and if the user’s distinguished name contains spaces, then you might also get the 'Authentication Failure' error because the distinguished name is not set up correctly and it cannot handle the spaces.
 
-You can check in the `EXA_DBA_AUDIT_SESSIONS` table that the SESSION_ID is NULL and the ERROR_CODE, ERROR_TEXT column would be 08004, 'Connection exception – authentication failed' respectively. 
+You can check in the `EXA_DBA_AUDIT_SESSIONS` table that the SESSION_ID is NULL and the ERROR_CODE, ERROR_TEXT column would be 08004, 'Connection exception – authentication failed' respectively.
 
 ```sql
 select
@@ -54,4 +54,4 @@ You can check this in the DISTINGUISHED_NAME of the EXA_DBA_USERS table.
 * [Authentication using LDAP](https://docs.exasol.com/db/latest/sql/create_user.htm#AuthenticateusingLDAP)
 * [Manual LDAP Connection Test](https://exasol.my.site.com/s/article/Manual-LDAP-Connection-Test)
 
-*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).*
