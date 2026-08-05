@@ -52,7 +52,7 @@ When opening a support case, include the following context with the PyExasol log
 * Exasol database version.
 * Operating system of the client machine.
 * Approximate time when the issue was reproduced.
-* Session ID, if the script connected successfully.
+* Session ID, if available.
 * The error message or stack trace from the application.
 
 ## Additional Notes
