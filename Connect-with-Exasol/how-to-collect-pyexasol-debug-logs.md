@@ -13,6 +13,7 @@ Before you collect PyExasol debug logs, make sure that you have:
 * A Python environment with PyExasol installed.
 * A PyExasol, Python, and Exasol database version combination that is supported by PyExasol.
 * A script or notebook that can reproduce the issue.
+* Control over the application code or the PyExasol connection setup so you can enable debug logging.
 * Permission to write a log file or create a log directory on the client machine.
 
 ## Steps
