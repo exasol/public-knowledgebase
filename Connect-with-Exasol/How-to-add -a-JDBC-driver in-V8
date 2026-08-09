@@ -1,0 +1,30 @@
+# How to add a JDBC-driver in V8  
+## Table of contents:
+
+## Background
+
+When 
+## Explanation
+
+## JTDS Driver
+
+
+**Beware**: If you 
+
+```sql
+SELECT * FROM 
+```
+You can create 
+
+Once your connection is created, you can test the connectivity by querying the SQL Server system catalog like before:
+
+
+Please note, that usage of the newly created connection requires either a system privilege USE ANY CONNECTION or the connection has to be explicitly granted to the user. Connections are automatically granted to the creator, including the ADMIN OPTION.
+
+## Additional References
+
+
+* [IMPORT](https://docs.exasol.com/sql/import.htm)
+* [EXPORT](https://docs.exasol.com/sql/export.htm)
+
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 
