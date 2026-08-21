@@ -17,7 +17,7 @@ at com.exasol.jdbc.ExceptionFactory.createSQLException(ExceptionFactory.java:39)
 
 ## Explanation
 
-We do not support Prepared Parameters in EXECUTE SCRIPT statements. 
+We do not support Prepared Parameters in EXECUTE SCRIPT statements.
 
 ## Recommendation
 
@@ -25,7 +25,7 @@ As a workaround, to prevent SQL injection, you can insert the parameter value in
 
 Example:
 
-Assume, that we have a script that creates a table based upon the parameter. 
+Assume, that we have a script that creates a table based upon the parameter.
 
 ```lua
 --/  
