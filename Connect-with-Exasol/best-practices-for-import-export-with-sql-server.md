@@ -1,7 +1,5 @@
 # Best Practices for IMPORT/EXPORT with SQL Server
 
-## Table of contents:
-
 ## Background
 
 When transferring data between SQL Server and Exasol, there are two different drivers you could choose from which require different syntax. The following examples show how one can import data into Exasol from MS SQL Server and export data from Exasol into MS SQL Server.
@@ -40,7 +38,7 @@ CREATE CONNECTION conn_jtdsmssql TO
  IDENTIFIED BY 'AD password here' --Windows password; 
 ```
 
-Once the AD user/password are defined in the database connection (USER '' IDENTIFIED BY ''), they can be re-used as often as needed (as long as the credentials are valid). Please note that the passwords are masked in all SQL texts and logs. With this method, you can grant the connection only to the required users on Exasol side and it can be used to IMPORT data from SQL server. 
+Once the AD user/password are defined in the database connection (USER '' IDENTIFIED BY ''), they can be re-used as often as needed (as long as the credentials are valid). Please note that the passwords are masked in all SQL texts and logs. With this method, you can grant the connection only to the required users on Exasol side and it can be used to IMPORT data from SQL server.
 
 Once your connection is created, you can test the connectivity by querying the SQL Server system catalog:
 
