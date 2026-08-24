@@ -19,4 +19,4 @@ You can use the Exasol ODBC connection string attribute `CHARACTERDISPLAYSIZE=4`
 * [Exasol ODBC Documentation](https://docs.exasol.com/connect_exasol/drivers/odbc/using_odbc.htm)
 * [Debugging Issues using ODBC drivers](debugging-issues-using-odbc-drivers.md)
 
-*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).*
