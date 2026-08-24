@@ -103,7 +103,7 @@ As you can see, we easily find back the data objects we registered (in my case I
 You can now further add metadata or alter metadata and annotations on these objects as well in the portal. Select an object and pick the right action in the action pane to the right:
 
 ![Add metadata](images/exaPieterjan_2-1638538639701.png)
- 
+
 ### Using discovered data
 
 If you're discovering data and decide you want to work with a certain data source you can easily get the database connection string via the UI: this option is also available in the pane to the right. Click "View Connection Strings". A modal pops up and you can easily copy the connection string.
