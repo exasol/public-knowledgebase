@@ -8,7 +8,6 @@ Azure Data Catalog is a cloud service where users can register their data source
 
 Next to the functionality for registering and cataloging data sources Data Catalog also includes a powerful search option. The product's main aim is to increase data discoverability.
 
-  
 More info on Azure Data Catalog can be found here:
 
 <https://docs.microsoft.com/en-us/azure/data-catalog/overview>
@@ -27,7 +26,6 @@ You'll need:
 
 ## Registering your Exasol data sources in Azure Data Catalog
 
-  
 Navigate to the Azure data catalog hub and download the publishing tool. Go to <https://www.azuredatacatalog.com/>
 
 You might be prompted to log in. Do so. Navigate to the "Publish Data" page.
@@ -61,15 +59,14 @@ The next screen will prompt us for the right settings to connect to our database
 Let's configure the data source:
 
 - Driver : `Exasol Driver`
-
 - The connection string:
 
 `EXAHOST=192.168.56.117/E625D0BDD8A975CBC7001B842EAEFB56CDCC664459AE21BFAFCA13D9495D4D77`
 
 The format is `EXAHOST= hostname/fingerprint` when using a fingerprint or just `EXAHOST=hostname`.
 
- - The default name of the database is `EXA_DB`.
- - Username and password of the database user. Use your credentials.
+- The default name of the database is `EXA_DB`.
+- Username and password of the database user. Use your credentials.
 
 Finally, click "Connect".
 
@@ -85,7 +82,7 @@ Let's register some tables.
 
 To the right you find options to include the data profile as well as a data preview.
 
-You can also add a contact with expertise and you can add a number of relevant tags on the database objects you register. 
+You can also add a contact with expertise and you can add a number of relevant tags on the database objects you register.
 
 NOTE: Keep in mind that this tool is still in early development and the registrations might fail. In my personal experience, I mainly had issues with the 'Include Preview' option. Once I left this option unchecked I experienced fewer issues.
 
@@ -105,7 +102,7 @@ As you can see, we easily find back the data objects we registered (in my case I
 
 You can now further add metadata or alter metadata and annotations on these objects as well in the portal. Select an object and pick the right action in the action pane to the right:
 
- ![Add metadata](images/exaPieterjan_2-1638538639701.png)
+![Add metadata](images/exaPieterjan_2-1638538639701.png)
  
 ### Using discovered data
 
@@ -121,4 +118,4 @@ If you want to do it, however, it's available on the publish page in the Data Ca
 
 ![Manual Entry](images/exaPieterjan_3-1638538888692.png)
 
-*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).*
