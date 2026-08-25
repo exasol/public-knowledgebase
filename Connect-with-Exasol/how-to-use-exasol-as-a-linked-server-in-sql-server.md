@@ -10,11 +10,11 @@ Using this, MS SQL Server can be configured to access data in Exasol, both for r
 
 * The Exasol ODBC driver for windows, in the architecture (x86 / amd64) fitting the SQL Server installation. We recommend installing the latest available Exasol ODBC driver, even if it is a newer version than your Exasol database. All drivers are backward compatible. You can get them here: [Downloads](https://downloads.exasol.com/clients-and-drivers/odbc)
 * A properly configured ODBC data source (DSN), again with the correct architecture (x86 or 64).
-  + Provide a default schema if schema name and user name are not equal. The following setup will be limited to accessing tables in that schema.
-  + On the advanced tab, check the "Show only current schema" option. This will limit all catalog queries to one schema, eliminating "more than one table" errors later.
+  * Provide a default schema if schema name and user name are not equal. The following setup will be limited to accessing tables in that schema.
+  * On the advanced tab, check the "Show only current schema" option. This will limit all catalog queries to one schema, eliminating "more than one table" errors later.
 * As with many other systems, Exasol's database/catalog/schema concept is not 100% compatible with SQL Server, which is why we have to 'tune down' the data provider to lower its expectations:
-  + In the SQL Server Management Console, open the tree view to access "Linked Servers -&gt; Data Providers -&gt; MSDASQL". Use the context menu to open its properties.
-  + Check the '**use level 0 only**' option. This will reduce cross-checks on table metadata, especially catalog/schema names.
+  * In the SQL Server Management Console, open the tree view to access "Linked Servers -&gt; Data Providers -&gt; MSDASQL". Use the context menu to open its properties.
+  * Check the '**use level 0 only**' option. This will reduce cross-checks on table metadata, especially catalog/schema names.
 
 ## How to Create a Linked Server
 
