@@ -44,9 +44,9 @@ In queries/views you will be able to access the Exasol database objects using tw
 
 * Three-dots-notation `<link-name>...<object_name>` will allow you to use objects in native SQL, SQL Server will exchange data with Exasol as necessary (see Limitations below).
 
-	```sql
-	SELECT * FROM EXASOL_TEST...SUPPLIER;
-	```
+  ```sql
+  SELECT * FROM EXASOL_TEST...SUPPLIER;
+  ```
 
 * OPENQUERY (see [OPENQUERY (Transact-SQL)](http://msdn.microsoft.com/en-us/library/ms188427.aspx)).
 
@@ -55,9 +55,9 @@ To execute LUA scripts stored in Exasol from SQL Server do the following steps:
 * Edit the properties of the linked server. Set the parameter "RPC out" to True in the section "Server Options". This enables the execution of remote procedure calls.
 * Use the following command to trigger the execution of LUA Scripts
 
-	```sql
-	 EXEC('EXECUTE SCRIPT my_schema.my_lua_script') AT <link-name>;
-	```
+  ```sql
+  EXEC('EXECUTE SCRIPT my_schema.my_lua_script') AT <link-name>;
+  ```
 
 ## Additional Notes
 
@@ -68,7 +68,7 @@ To execute LUA scripts stored in Exasol from SQL Server do the following steps:
 * When sending data towards Exasol (for UPDATE, INSERT or DELETE), SQL Server will send VARCHAR data for all parameters. For that reason, be very careful about your combination of language settings for numeric values. After all, in most cases, there is some difference between '50.001' and '50,001'
 * SQL Server sets a QUERY TIMEOUT of 30 seconds on INSERT statements. This breaks larger transfers to Exasol, as our query timeout affects the whole prepared statement, not single execs as expected.
 
-### Performance:
+### Performance
 
 The following measurements are done on a single machine, using SQL Server 2017 Express and a local VM running a single-node Exasol 6.2.4. The benchmark consists of transferring the 1 million row SUPPLIER table of the TPC-H scenario between both systems, the target table always truncated before the run.
 
@@ -85,10 +85,9 @@ The above methods all rely on prepared statements, which is not compatible with 
 
 1. In the properties of your linked server (your Exasol), go to the page 'Server Options' and enable the 'RPC Out' feature
 2. You can now use [SQL Server's EXECUTE](https://learn.microsoft.com/en-us/sql/t-sql/language-elements/execute-transact-sql) command to run arbitrary statements on the linked server **and** receive the results for further local processing:
-
-	```sql
-	EXECUTE ('execute script sr_test.LuaTest(1,2,3)') AT LOCALVM
-	```
+   ```sql
+   EXECUTE ('execute script sr_test.LuaTest(1,2,3)') AT LOCALVM
+   ```
 
 ## Additional References
 
