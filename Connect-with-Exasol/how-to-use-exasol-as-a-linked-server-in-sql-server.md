@@ -1,7 +1,8 @@
-# How to use Exasol as a Linked Server in SQL Server 
+# How to use Exasol as a Linked Server in SQL Server
+
 ## Background
 
-"Linked Servers" in Microsoft SQL Server are what other database systems call "Database Links", "Database Gateway", "External Tables" or similar: It is a way to access contents from other systems to use in local processing. While other systems typically use ODBC or JDBC connectivity for this, Microsoft mainly supports its own OLEdb connectivity. Luckily, Microsoft also provides an "OLEdb to ODBC bridge".
+"Linked Servers" in Microsoft SQL Server are what other database systems call "Database Links", "Database Gateway", "External Tables" or similar: It is a way to access contents from other systems to use in local processing. While other systems typically use ODBC or JDBC connectivity for this, Microsoft mainly supports its own OLE DB connectivity. Luckily, Microsoft also provides an "OLD DB to ODBC bridge".
 
 Using this, MS SQL Server can be configured to access data in Exasol, both for reading and for writing.
 
@@ -9,10 +10,10 @@ Using this, MS SQL Server can be configured to access data in Exasol, both for r
 
 * The Exasol ODBC driver for windows, in the architecture (x86 / amd64) fitting the SQL Server installation. We recommend installing the latest available Exasol ODBC driver, even if it is a newer version than your Exasol database. All drivers are backward compatible. You can get them here: [Downloads](https://downloads.exasol.com/clients-and-drivers/odbc)
 * A properly configured ODBC data source (DSN), again with the correct architecture (x86 or 64).
-	+ Provide a default schema if schema name and user name are not equal. The following setup will be limited to accessing tables in that schema
-	+ on the advanced tab, check the "Show only current schema" option. This will limit all catalog queries to one schema, eliminating "more than one table" errors later.
+	+ Provide a default schema if schema name and user name are not equal. The following setup will be limited to accessing tables in that schema.
+	+ On the advanced tab, check the "Show only current schema" option. This will limit all catalog queries to one schema, eliminating "more than one table" errors later.
 * As with many other systems, Exasol's database/catalog/schema concept is not 100% compatible with SQL Server, which is why we have to 'tune down' the data provider to lower its expectations:
-	+ In the SQL Server Management Console, open the tree view to access "Linked Servers -&gt; Data Providers -&gt; MSDASQL". Use the context menu to open its properties
+	+ In the SQL Server Management Console, open the tree view to access "Linked Servers -&gt; Data Providers -&gt; MSDASQL". Use the context menu to open its properties.
 	+ Check the '**use level 0 only**' option. This will reduce cross-checks on table metadata, especially catalog/schema names.
 
 ## How to Create a Linked Server
@@ -21,7 +22,7 @@ Using this, MS SQL Server can be configured to access data in Exasol, both for r
 
 In the tree view, right-click on "Linked Servers" to add a new server.
 
-![](images/image.png)
+![New Linked Server](images/image.png)
 
 ## Step 2
 
@@ -41,19 +42,22 @@ In the tree view, you can now 'drill down' to table and view level on the remote
 
 In queries/views you will be able to access the Exasol database objects using two different methods:
 
-* Three-dots-notation &lt;link-name&gt;...&lt;object_name&gt; will allow you to use objects in native SQL, SQL Server will exchange data with Exasol as necessary (see Limitations below).
-```sql
-SELECT * FROM EXASOL_TEST...SUPPLIER;
-```
-* OPENQUERY (see <http://msdn.microsoft.com/en-us/library/ms188427.aspx>).
+* Three-dots-notation `<link-name>...<object_name>` will allow you to use objects in native SQL, SQL Server will exchange data with Exasol as necessary (see Limitations below).
+
+	```sql
+	SELECT * FROM EXASOL_TEST...SUPPLIER;
+	```
+
+* OPENQUERY (see [OPENQUERY (Transact-SQL)](http://msdn.microsoft.com/en-us/library/ms188427.aspx)).
 
 To execute LUA scripts stored in Exasol from SQL Server do the following steps:
 
 * Edit the properties of the linked server. Set the parameter "RPC out" to True in the section "Server Options". This enables the execution of remote procedure calls.
 * Use the following command to trigger the execution of LUA Scripts
-```sql
- EXEC('EXECUTE SCRIPT my_schema.my_lua_script') AT <link-name>;
-```
+
+	```sql
+	 EXEC('EXECUTE SCRIPT my_schema.my_lua_script') AT <link-name>;
+	```
 
 ## Additional Notes
 
@@ -80,16 +84,18 @@ The SQL Server -&gt; EXA export using a Linked Server could only be estimated be
 The above methods all rely on prepared statements, which is not compatible with Exasol's Lua scripting. If you need to trigger script execution remotely from the SQL Server, you need to use the RPC functionality:
 
 1. In the properties of your linked server (your Exasol), go to the page 'Server Options' and enable the 'RPC Out' feature
-2. You can now use [SQL Server's EXECUTE](https://technet.microsoft.com/en-us/library/ms188332(v=SQL.110).aspx) command to run arbitrary statements on the linked server **and** receive the results for further local processing:
+2. You can now use [SQL Server's EXECUTE](https://learn.microsoft.com/en-us/sql/t-sql/language-elements/execute-transact-sql) command to run arbitrary statements on the linked server **and** receive the results for further local processing:
 
+	```sql
+	EXECUTE ('execute script sr_test.LuaTest(1,2,3)') AT LOCALVM
+	```
 
-```sql
-EXECUTE ('execute script sr_test.LuaTest(1,2,3)') AT LOCALVM
-```
 ## Additional References
 
 * [IMPORT](https://docs.exasol.com/db/latest/sql/import.htm)
 * [EXPORT](https://docs.exasol.com/db/latest/sql/export.htm)
-* [SQL Server Documentation](https://docs.microsoft.com/en-us/sql/sql-server/?view=sql-server-ver15)
+* [SQL Server Documentation](https://learn.microsoft.com/en-us/sql/sql-server/)
+* [OPENQUERY (Transact-SQL)](http://msdn.microsoft.com/en-us/library/ms188427.aspx)
+* [EXECUTE (Transact-SQL)](https://learn.microsoft.com/en-us/sql/t-sql/language-elements/execute-transact-sql)
 
 *We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 
