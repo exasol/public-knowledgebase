@@ -61,7 +61,7 @@ To execute LUA scripts stored in Exasol from SQL Server do the following steps:
 
 ## Additional Notes
 
-### Limitations:
+### Limitations
 
 * When using three-dots-notation, SQL Server will always perform a full table select without any column selection or filters. Obviously, this is a performance killer for larger tables. When using views to transparently embed Exasol into an SQL Server environment, you might want to use OPENQUERY or Views on Exasol's side instead.
 * The MSDASQL provider is limited in terms of VARCHAR size. If any column definition in Exasol exceeds VARCHAR(8191), this will result in an "unexpected catastrophic failure" on the SQL Server side. The contents of the column are not even considered.
@@ -85,6 +85,7 @@ The above methods all rely on prepared statements, which is not compatible with 
 
 1. In the properties of your linked server (your Exasol), go to the page 'Server Options' and enable the 'RPC Out' feature
 2. You can now use [SQL Server's EXECUTE](https://learn.microsoft.com/en-us/sql/t-sql/language-elements/execute-transact-sql) command to run arbitrary statements on the linked server **and** receive the results for further local processing:
+
    ```sql
    EXECUTE ('execute script sr_test.LuaTest(1,2,3)') AT LOCALVM
    ```
@@ -97,4 +98,4 @@ The above methods all rely on prepared statements, which is not compatible with 
 * [OPENQUERY (Transact-SQL)](http://msdn.microsoft.com/en-us/library/ms188427.aspx)
 * [EXECUTE (Transact-SQL)](https://learn.microsoft.com/en-us/sql/t-sql/language-elements/execute-transact-sql)
 
-*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).*
