@@ -1,4 +1,4 @@
-# Writing a DataFrame Syntax Error 
+# Writing a DataFrame Syntax Error
 
 ## Question
 
