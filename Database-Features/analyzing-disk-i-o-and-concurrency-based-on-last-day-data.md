@@ -143,7 +143,7 @@ order by 1
 
 ## Additional References
 
-* [CHANGELOG: Transaction collisions when validating views on virtual tables in concurrent sessions](https://exasol.my.site.com/s/article/Changelog-content-6991?language=en_US)
+* [CHANGELOG: Transaction collisions when validating views on virtual tables in concurrent sessions](https://docs.exasol.com/db/latest/changelogs/6991.htm)
 * [Statistical System Tables](https://docs.exasol.com/sql_references/metadata/statistical_system_table.htm)
 
 *We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).*

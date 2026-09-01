@@ -4,7 +4,7 @@
 
 This article will describe how to resolve the issue when you are using version 7.1 of the Exasol driver and your existing connections no longer work. This article is relevant for driver version 7.1.0+ and database versions 7.1.0+, 7.0.10+, and 6.2.15+. Other database and driver combinations are not affected.
 
-Here is the original changelog documentation: [CHANGELOG: TLS for all Exasol drivers](https://exasol.my.site.com/s/article/Changelog-content-6507?language=en_US)
+Here is the original changelog documentation: [CHANGELOG: TLS for all Exasol drivers](https://docs.exasol.com/db/latest/changelogs/6507.htm)
 
 ## Diagnosis
 
@@ -31,7 +31,7 @@ If you trust the server, connect to it using the fingerprint:
 
 **If another certificate has not been uploaded using EXAoperation, a self-signed certificate is used by Exasol per default. Since this certificate is self-signed, TLS connections to Exasol will fail by default.**
 
-For an in-depth explanation of this change, see [CHANGELOG: TLS for all Exasol drivers](https://exasol.my.site.com/s/article/Changelog-content-6507?language=en_US)
+For an in-depth explanation of this change, see [CHANGELOG: TLS for all Exasol drivers](https://docs.exasol.com/db/latest/changelogs/6507.htm)
 
 ## Recommendation
 

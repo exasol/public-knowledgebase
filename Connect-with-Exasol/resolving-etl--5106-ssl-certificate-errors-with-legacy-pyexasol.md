@@ -232,7 +232,7 @@ The failing connection is a completely separate HTTPS connection initiated later
 
 - [PyEXASOL Release Notes (v1.0.0)](https://exasol.github.io/pyexasol/master/changes/changes_1.0.0.html)
 - [PyEXASOL GitHub Repository](https://github.com/exasol/pyexasol)
-- [Exasol CHANGELOG: Default TLS Certificate Validation Enabled for Import/Export Queries](https://exasol.my.site.com/s/article/Changelog-content-25090?language=en_US)
-- [Exasol CHANGELOG: TLS Certificate Verification for Loader File Connections (CSV, FBV, LOCAL files)](https://exasol.my.site.com/s/article/Changelog-content-16273?language=en_US)
+- [Exasol CHANGELOG: Default TLS Certificate Validation Enabled for Import/Export Queries](https://docs.exasol.com/db/latest/changelogs/25090.htm)
+- [Exasol CHANGELOG: TLS Certificate Verification for Loader File Connections (CSV, FBV, LOCAL files)](https://docs.exasol.com/db/latest/changelogs/16273.htm)
 
 *We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).*

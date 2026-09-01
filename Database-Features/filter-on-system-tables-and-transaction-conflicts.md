@@ -29,7 +29,7 @@ If filters that violate the constraints above (Type B) are used, we distinguish 
 ## Additional References
 
 * [Transaction-conflicts-for-mixed-read-write-transactions](https://exasol.my.site.com/s/article/Transaction-Conflicts-for-Mixed-Read-Write-Transactions)
-* [CHANGELOG: Missing transaction conflict between write and drop of objects](https://exasol.my.site.com/s/article/Changelog-content-5156?language=en_US)
+* [CHANGELOG: Missing transaction conflict between write and drop of objects](https://docs.exasol.com/db/latest/changelogs/5156.htm)
 * [Transaction-system](https://exasol.my.site.com/s/article/Transaction-System)
 * [Transaction_management.htm](https://docs.exasol.com/database_concepts/transaction_management.htm)
 

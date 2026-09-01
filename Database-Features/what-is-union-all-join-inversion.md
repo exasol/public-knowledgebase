@@ -6,7 +6,7 @@
 
 ## Introduction
 
-The content of this article provides more information on [Changelog-content-22914](https://exasol.my.site.com/s/article/Changelog-content-22914) and applies to Exasol versions starting with **8.34.0**.
+The content of this article provides more information on [Changelog-content-22914](https://docs.exasol.com/db/latest/changelogs/22914.htm) and applies to Exasol versions starting with **8.34.0**.
 
 There is another, older, automated optimization for `UNION ALL` covering the case of identical tables in every branch. [^union-all-opt]
 

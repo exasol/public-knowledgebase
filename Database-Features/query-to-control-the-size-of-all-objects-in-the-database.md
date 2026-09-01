@@ -212,6 +212,6 @@ ORDER BY
 * [Documentation of EXA_DB_SIZE_DAILY](https://docs.exasol.com/db/latest/sql_references/system_tables/statistical/exa_db_size_daily.htm)
 * [Documentation of EXA_DB_SIZE_MONTHLY](https://docs.exasol.com/db/latest/sql_references/system_tables/statistical/exa_db_size_monthly.htm)
 * [Documentation of how the raw size is determined for different data types.](https://docs.exasol.com/db/latest/sql_references/data_types/data_type_size.htm)
-* [CHANGELOG: Raw size of scripts, views, and functions set to 0 bytes](https://exasol.my.site.com/s/article/Changelog-content-11369?language=en_US)
+* [CHANGELOG: Raw size of scripts, views, and functions set to 0 bytes](https://docs.exasol.com/db/latest/changelogs/11369.htm)
 
 *We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).*

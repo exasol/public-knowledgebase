@@ -50,7 +50,7 @@ This article will export the bigquery data into a CSV file stored in Google Clou
 * This service account needs to have the permission to read the files from the bucket that you will specify. Please grant access to the bucket for the service account beforehand, otherwise you will receive an ACCESS DENIED error.
 * The script is using Python3, so you need to have PYTHON3 running in the database (for versions > 6.2.0, this is delivered with the database).
 * You need to either create a new script language container that contains the [Google Cloud python library](https://googleapis.dev/python/bigquery/latest/index.html) or upload it to BucketFS. We recommend creating a new script language container from this Github project: <https://github.com/exasol/script-languages-release>.
-Since release 1.1.0 of Standard Script Language Containers ([link](https://github.com/exasol/script-languages-release/releases/tag/1.1.0)) and at least DB versions 7.0.17 and 7.1.7 ([link](https://exasol.my.site.com/s/article/Changelog-content-14476?language=en_US)) Google Cloud python library is available by default.
+Since release 1.1.0 of Standard Script Language Containers ([link](https://github.com/exasol/script-languages-release/releases/tag/1.1.0)) and at least DB versions 7.0.17 and 7.1.7 ([link](https://docs.exasol.com/db/latest/changelogs/14476.htm)) Google Cloud python library is available by default.
 
 #### Step 1 - Create Connection for Importing
 
@@ -110,7 +110,7 @@ As Google's documentation states, the JDBC driver is not designed for large volu
 * This service account needs to have the permission to read the files from the bucket that you will specify. Please grant access to the bucket for the service account beforehand, otherwise you will receive an ACCESS DENIED error.
 * The script is using Python3, so you need to have PYTHON3 running in the database (for versions > 6.2.0, this is delivered with the database).
 * You need to either create a new script language container that contains the [Google Cloud python library](https://googleapis.dev/python/bigquery/latest/index.html) or upload it to BucketFS. We recommend creating a new script language container from this Github project: <https://github.com/exasol/script-languages-release>.
-Since release 1.1.0 of Standard Script Language Containers ([link](https://github.com/exasol/script-languages-release/releases/tag/1.1.0)) and at least DB versions 7.0.17 and 7.1.7 ([link](https://exasol.my.site.com/s/article/Changelog-content-14476?language=en_US)) Google Cloud python library is available by default.
+Since release 1.1.0 of Standard Script Language Containers ([link](https://github.com/exasol/script-languages-release/releases/tag/1.1.0)) and at least DB versions 7.0.17 and 7.1.7 ([link](https://docs.exasol.com/db/latest/changelogs/14476.htm)) Google Cloud python library is available by default.
 
 ### Step 1 - Create Connection for Exporting
 
@@ -161,7 +161,7 @@ execute script ETL.bigquery_export('GOOGLE_CLOUD_STORAGE','test_1.csv','DATASET1
 * [CREATE CONNECTION statement](https://docs.exasol.com/db/latest/sql/create_connection.htm)
 * [Loading Data from Google Cloud Storage](https://docs.exasol.com/loading_data/load_data_google_cloud_storage_buckets.htm)
 * [Loading Data from Bigquery](https://docs.exasol.com/loading_data/connect_databases/google_bigquery.htm)
-* [CHANGELOG: Updated Script Language Container](https://exasol.my.site.com/s/article/Changelog-content-14476?language=en_US)
+* [CHANGELOG: Updated Script Language Container](https://docs.exasol.com/db/latest/changelogs/14476.htm)
 * [import_from_bigquery.sql](https://raw.githubusercontent.com/exasol/exa-toolbox/master/utilities/import_from_bigquery.sql)
 * [export_to_bigquery.sql](https://raw.githubusercontent.com/exasol/exa-toolbox/master/utilities/export_to_bigquery.sql)
 

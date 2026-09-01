@@ -41,7 +41,7 @@ The same situation may occur if you query **system tables** while SqlLogServer i
 |   |                                              |commit;   |Starts a new transaction (LogServer transaction 2 < Transaction 3)   |
 |   |                                              |select * from EXA_DB_SIZE_LAST_DAY;   |This statement end up in WAIT FOR COMMIT   |
 
-Please note that the problem around system tables has been mitigated by introducing [automated metadata snapshot execution](https://exasol.my.site.com/s/article/Changelog-content-10122) in Exasol 7.0.
+Please note that the problem around system tables has been mitigated by introducing [automated metadata snapshot execution](https://docs.exasol.com/db/latest/changelogs/10122.htm) in Exasol 7.0.
 
 ## Solution
 

@@ -35,7 +35,7 @@ Exception:
 [ERROR] Connection Properties does not support ([ARGUMENT]) argument.
 ```
 
-based on where the wrong parameter was found. See also [CHANGELOG: Exasol JDBC Driver should throw error on invalid parameter in connection string and connection string properties](https://exasol.my.site.com/s/article/Changelog-content-21749?language=en_US).
+based on where the wrong parameter was found. See also [CHANGELOG: Exasol JDBC Driver should throw error on invalid parameter in connection string and connection string properties](https://docs.exasol.com/db/latest/changelogs/21749.htm).
 
 Therefore, the original error thrown by ODI
 
@@ -61,9 +61,9 @@ You might need to adapt the parameter list in your setup, based on exact receive
 
 ## Additional References
 
-* [CHANGELOG: Exasol JDBC Driver should throw error on invalid parameter in connection string and connection string properties](https://exasol.my.site.com/s/article/Changelog-content-21749?language=en_US)
-* [CHANGELOG: JDBC Improved Handling of Invalid Connection String Parameters](https://exasol.my.site.com/s/article/Changelog-content-19621?language=en_US)
-* [CHANGELOG: Improved ignoreparams Handling in Exasol JDBC Driver](https://exasol.my.site.com/s/article/Changelog-content-26259?language=en_US)
+* [CHANGELOG: Exasol JDBC Driver should throw error on invalid parameter in connection string and connection string properties](https://docs.exasol.com/db/latest/changelogs/21749.htm)
+* [CHANGELOG: JDBC Improved Handling of Invalid Connection String Parameters](https://docs.exasol.com/db/latest/changelogs/19621.htm)
+* [CHANGELOG: Improved ignoreparams Handling in Exasol JDBC Driver](https://docs.exasol.com/db/latest/changelogs/26259.htm)
 * [JDBC Driver](https://docs.exasol.com/db/latest/connect_exasol/drivers/jdbc.htm)
 
 *We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).*

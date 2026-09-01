@@ -44,6 +44,6 @@ The sessions 1505061190568112648 and 1505059543549212162 in the example have bee
 
 * [Session Management](https://docs.exasol.com/db/latest/database_concepts/session_management.htm)
 * [EXA_DBA_SESSIONS](https://docs.exasol.com/db/latest/sql_references/system_tables/metadata/exa_dba_sessions.htm)
-* [CHANGELOG: Termination of idle session with KILL SESSION command may not be possible](https://exasol.my.site.com/s/article/Changelog-content-7334?language=en_US)
+* [CHANGELOG: Termination of idle session with KILL SESSION command may not be possible](https://docs.exasol.com/db/latest/changelogs/7334.htm)
 
 *We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).*

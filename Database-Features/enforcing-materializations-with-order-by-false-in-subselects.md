@@ -38,6 +38,6 @@ Mind that the optimizer is constantly improved, so a trick like that to improve 
 
 * [Replication border in Exasol 6.1](https://exasol.my.site.com/s/article/Replication-border-in-Exasol-6-1)
 
-* [CHANGELOG: Replication border can be set now with ALTER SYTEM without restarting the database](https://exasol.my.site.com/s/article/Changelog-content-16000?language=en_US)
+* [CHANGELOG: Replication border can be set now with ALTER SYTEM without restarting the database](https://docs.exasol.com/db/latest/changelogs/16000.htm)
 
 *We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

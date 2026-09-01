@@ -34,7 +34,7 @@ SQL conditions are pushed to the data sources to ensure minimum data transfer an
 
 Prior version 8, Exasol to a large degree tolerated the situations where data types for columns in pushdown query did not exactly correspond to metadata stored for virtual schemas in data dictionary.
 
-Since version 8.9.0 Exasol enforces that virtual schemas always return the correct column data types instead of trying to implicitly cast into the required type: [CHANGELOG: Correct virtual schema data types are enforced at runtime](https://exasol.my.site.com/s/article/Changelog-content-15525?language=en_US).
+Since version 8.9.0 Exasol enforces that virtual schemas always return the correct column data types instead of trying to implicitly cast into the required type: [CHANGELOG: Correct virtual schema data types are enforced at runtime](https://docs.exasol.com/db/latest/changelogs/15525.htm).
 
 There are at least few real world examples that lead to an error:
 
@@ -54,7 +54,7 @@ So please download the latest virtual schema JAR, upload it to BucketFS, recreat
 ## Additional References
 
 * [Virtual Schemas](https://docs.exasol.com/db/latest/database_concepts/virtual_schemas.htm)
-* [CHANGELOG: Correct virtual schema data types are enforced at runtime](https://exasol.my.site.com/s/article/Changelog-content-15525?language=en_US)
+* [CHANGELOG: Correct virtual schema data types are enforced at runtime](https://docs.exasol.com/db/latest/changelogs/15525.htm)
 * [Supported Dialects](https://github.com/exasol/virtual-schemas/blob/main/doc/user-guide/dialects.md)
 
 *We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

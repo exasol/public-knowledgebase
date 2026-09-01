@@ -14,7 +14,7 @@ No 64 bit java virtual machine found in registry.
 
 EXAplus required a java runtime instance and proper registry entries to start.
 
-According to [CHANGELOG: EXAplus on Windows will use Java from the current console](https://exasol.my.site.com/s/article/Changelog-content-18724?language=en_US) since version 24.0.0 of EXAplus it uses the Java interpreter set in the PATH variable of the console where it is started.
+According to [CHANGELOG: EXAplus on Windows will use Java from the current console](https://docs.exasol.com/db/latest/changelogs/18724.htm) since version 24.0.0 of EXAplus it uses the Java interpreter set in the PATH variable of the console where it is started.
 
 ## Solution
 
@@ -60,6 +60,6 @@ Example:
 
 ## Additional References
 
-* [CHANGELOG: EXAplus on Windows will use Java from the current console](https://exasol.my.site.com/s/article/Changelog-content-18724?language=en_US)
+* [CHANGELOG: EXAplus on Windows will use Java from the current console](https://docs.exasol.com/db/latest/changelogs/18724.htm)
 
 *We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).*

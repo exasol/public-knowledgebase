@@ -9,7 +9,7 @@ The concept of using and uploading TLS certificates to an Exasol cluster is expl
 * [Upload TLS Certificate, version 8](https://docs.exasol.com/db/latest/administration/on-premise/access_management/tls_certificate.htm)
 * [Upload TLS Certificate, version 7.1](https://docs.exasol.com/db/7.1/administration/on-premise/access_management/tls_certificate.htm)
 
-The description of the TLS encryption feature could be found in the following changelog entry: [CHANGELOG: TLS for all Exasol drivers](https://exasol.my.site.com/s/article/Changelog-content-6507?language=en_US).
+The description of the TLS encryption feature could be found in the following changelog entry: [CHANGELOG: TLS for all Exasol drivers](https://docs.exasol.com/db/latest/changelogs/6507.htm).
 
 Our github repository "Exasol Java tutorial" also contains two articles explaining the overall concept and relation to Exasol:
 
@@ -147,7 +147,7 @@ After a DBeaver restart connection to DB should be possible without a fingerprin
 
 ### EXAplus on Windows
 
-According to [CHANGELOG: EXAplus on Windows will use Java from the current console](https://exasol.my.site.com/s/article/Changelog-content-18724?language=en_US) since version 24.0.0 EXAplus on Windows
+According to [CHANGELOG: EXAplus on Windows will use Java from the current console](https://docs.exasol.com/db/latest/changelogs/18724.htm) since version 24.0.0 EXAplus on Windows
 uses the Java interpreter set in the PATH variable of the console where it is started. We will be referring to this scenario.
 
 As EXAplus uses Exasol JDBC driver we simply need to perform the same steps as in the section "DBeaver, DbVisualizer and other third party tools using Exasol JDBC driver" but for the right Java.
@@ -193,7 +193,7 @@ Therefore, please follow the approach from the section "ODBC driver on Windows".
 
 * [Upload TLS Certificate, version 7.1](https://docs.exasol.com/db/7.1/administration/on-premise/access_management/tls_certificate.htm)
 
-* [CHANGELOG: TLS for all Exasol drivers](https://exasol.my.site.com/s/article/Changelog-content-6507?language=en_US)
+* [CHANGELOG: TLS for all Exasol drivers](https://docs.exasol.com/db/latest/changelogs/6507.htm)
 
 * [An Introduction to TLS](https://github.com/exasol/exasol-java-tutorial/blob/main/tls-tutorial/doc/tls_introduction.md)
 
@@ -207,7 +207,7 @@ Therefore, please follow the approach from the section "ODBC driver on Windows".
 
 * ["keytool" utility documentation](https://docs.oracle.com/javase/8/docs/technotes/tools/unix/keytool.html)
 
-* [CHANGELOG: EXAplus on Windows will use Java from the current console](https://exasol.my.site.com/s/article/Changelog-content-18724?language=en_US)
+* [CHANGELOG: EXAplus on Windows will use Java from the current console](https://docs.exasol.com/db/latest/changelogs/18724.htm)
 
 * Ubuntu: [Install a root CA certificate in the trust store](https://ubuntu.com/server/docs/install-a-root-ca-certificate-in-the-trust-store)
 

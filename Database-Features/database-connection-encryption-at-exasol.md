@@ -59,7 +59,7 @@ However, the above paragraph (prior to version 7.1) stands not entirely true for
 
 ### Starting from version 8
 
-Since version 8 this parameter is not necessary as by default DB accepts only TLS-encrypted connections (no ChaCha20 or unencrypted): [CHANGELOG: Database accepts only TLS connections](https://exasol.my.site.com/s/article/Changelog-content-16927?language=en_US).
+Since version 8 this parameter is not necessary as by default DB accepts only TLS-encrypted connections (no ChaCha20 or unencrypted): [CHANGELOG: Database accepts only TLS connections](https://docs.exasol.com/db/latest/changelogs/16927.htm).
 
 ## Additional references
 
@@ -67,8 +67,8 @@ Since version 8 this parameter is not necessary as by default DB accepts only TL
 
 * [Metadata System Tables](https://docs.exasol.com/sql_references/metadata/metadata_system_tables.htm)
 
-* Bug related to this topic: [CHANGELOG: Encrypted connections may be shown as unencrypted in sessions tables](https://exasol.my.site.com/s/article/Changelog-content-9722?language=en_US)
+* Bug related to this topic: [CHANGELOG: Encrypted connections may be shown as unencrypted in sessions tables](https://docs.exasol.com/db/latest/changelogs/9722.htm)
 
-* [CHANGELOG: Database accepts only TLS connections](https://exasol.my.site.com/s/article/Changelog-content-16927?language=en_US)
+* [CHANGELOG: Database accepts only TLS connections](https://docs.exasol.com/db/latest/changelogs/16927.htm)
 
 *We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).*

@@ -45,7 +45,7 @@ CREATE CONNECTION exa_connection
 
 ## References
 
-* Documentation of [CHANGELOG: Fixed incorrect error messages for invalid connection string syntax in Exasol ODBC driver](https://exasol.my.site.com/s/article/Changelog-content-15363?language=en_US&name=Changelog-content-15363)
+* Documentation of [CHANGELOG: Fixed incorrect error messages for invalid connection string syntax in Exasol ODBC driver](https://docs.exasol.com/db/latest/changelogs/15363.htm&name=Changelog-content-15363)
 * Documentation of [CREATE CONNECTION](https://docs.exasol.com/db/latest/sql/create_connection.htm)
 * Documentation of [IMPORT](https://docs.exasol.com/db/latest/sql/import.htm)
 
