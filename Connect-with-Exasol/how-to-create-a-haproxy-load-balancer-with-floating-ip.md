@@ -3,7 +3,7 @@
 
 An Internet-facing load balancer has a publicly available IP Address, so it can route requests from clients over the Internet to the EC2 instances that are registered with the load balancer. We use this approach make your EXASOL DB connectable from the internet using a single static EIP.
 
-In this How-to we're using a simple 2+1 cluster in a private subnet (2 active node + 1 spare node). As this How-to makes the database connectable from the internet, we recommend to enforce protocol encryption for all database connections (Database parameter `"-forceProtocolEncryption=1"`). Since version 8 this parameter is not necessary as by default DB accepts only TLS-encrypted connections (no ChaCha20 or unencrypted): [CHANGELOG: Database accepts only TLS connections](https://exasol.my.site.com/s/article/Changelog-content-16927?language=en_US).
+In this How-to we're using a simple 2+1 cluster in a private subnet (2 active node + 1 spare node). As this How-to makes the database connectable from the internet, we recommend to enforce protocol encryption for all database connections (Database parameter `"-forceProtocolEncryption=1"`). Since version 8 this parameter is not necessary as by default DB accepts only TLS-encrypted connections (no ChaCha20 or unencrypted): [CHANGELOG: Database accepts only TLS connections](https://docs.exasol.com/db/latest/changelogs/16927.htm).
 
 EXA<->EXA export and import is not supported.
 
@@ -262,6 +262,6 @@ echo "$(date) I'm backup nothing to do"
 
 ## Additional References
 
-* [CHANGELOG: Database accepts only TLS connections](https://exasol.my.site.com/s/article/Changelog-content-16927?language=en_US)
+* [CHANGELOG: Database accepts only TLS connections](https://docs.exasol.com/db/latest/changelogs/16927.htm)
 
 *We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

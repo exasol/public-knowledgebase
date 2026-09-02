@@ -12,7 +12,7 @@ The NULLs of the index have rather few application scenarios as filters and join
 
 ## Additional References
 
-* [CHANGELOG: Improve NL joins of "OR NULL" equi joins](https://exasol.my.site.com/s/article/Changelog-content-836?language=en_US)
+* [CHANGELOG: Improve NL joins of "OR NULL" equi joins](https://docs.exasol.com/db/latest/changelogs/836.htm)
 * [NULL in Exasol](https://exasol.my.site.com/s/article/NULL-in-Exasol)
 
 *We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).*

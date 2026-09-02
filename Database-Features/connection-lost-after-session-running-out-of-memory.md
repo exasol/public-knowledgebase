@@ -5,7 +5,7 @@ The error we are addressing is connection lost after the session runs out of mem
 
 ## Diagnosis
 
-Before going into detail, please review [CHANGELOG: Queries containing a very high number of JOINs may fail](https://exasol.my.site.com/s/article/Changelog-content-11113?language=en_US) that addresses one of the reasons you may receive the error: 
+Before going into detail, please review [CHANGELOG: Queries containing a very high number of JOINs may fail](https://docs.exasol.com/db/latest/changelogs/11113.htm) that addresses one of the reasons you may receive the error: 
 
 ```
 Connection lost after session running out of memory
@@ -54,7 +54,7 @@ Be aware that changing this parameter means every connection *can* now use up to
 * In commandline via ConfD (`confd_client + db_configure + (params_add OR params_delete OR params)`): [db_configure](https://docs.exasol.com/db/latest/confd/jobs/db_configure.htm)
 * Via REST API: [Add Database Parameters](https://docs.exasol.com/db/latest/administration/aws/manage_database/add_db_parameters.htm)
 
-Since version 8.29.0 system heap limit should be changed via option `max_system_heap_memory` of ConfD job [db_configure](https://docs.exasol.com/db/latest/confd/jobs/db_configure.htm). See [CHANGELOG: Improved configuration of database system heap memory](https://exasol.my.site.com/s/article/Changelog-content-17833?language=en_US).
+Since version 8.29.0 system heap limit should be changed via option `max_system_heap_memory` of ConfD job [db_configure](https://docs.exasol.com/db/latest/confd/jobs/db_configure.htm). See [CHANGELOG: Improved configuration of database system heap memory](https://docs.exasol.com/db/latest/changelogs/17833.htm).
 
 Either way requires a DB restart and, therefore, a short downtime.
 
@@ -68,11 +68,11 @@ Changes to this parameters need to be agreed with Exasol Support.
 
 ## Additional References
 
-* [CHANGELOG: Queries containing a very high number of JOINs may fail](https://exasol.my.site.com/s/article/Changelog-content-11113?language=en_US)
+* [CHANGELOG: Queries containing a very high number of JOINs may fail](https://docs.exasol.com/db/latest/changelogs/11113.htm)
 
-* [CHANGELOG: Improved system usability in case of heavy load and swapping](https://exasol.my.site.com/s/article/Changelog-content-5000?language=en_US)
+* [CHANGELOG: Improved system usability in case of heavy load and swapping](https://docs.exasol.com/db/latest/changelogs/5000.htm)
 
-* [CHANGELOG: High memory usage when inserting into distributed table with many varchar columns](https://exasol.my.site.com/s/article/Changelog-content-8211?language=en_US)
+* [CHANGELOG: High memory usage when inserting into distributed table with many varchar columns](https://docs.exasol.com/db/latest/changelogs/8211.htm)
 
 * [Version 7.1, Edit a Database](https://docs.exasol.com/db/7.1/administration/on-premise/manage_database/edit_database.htm)
 
@@ -80,6 +80,6 @@ Changes to this parameters need to be agreed with Exasol Support.
 
 * [Version 8, Add Database Parameters](https://docs.exasol.com/db/latest/administration/aws/manage_database/add_db_parameters.htm)
 
-* [CHANGELOG: Improved configuration of database system heap memory](https://exasol.my.site.com/s/article/Changelog-content-17833?language=en_US)
+* [CHANGELOG: Improved configuration of database system heap memory](https://docs.exasol.com/db/latest/changelogs/17833.htm)
 
 *We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

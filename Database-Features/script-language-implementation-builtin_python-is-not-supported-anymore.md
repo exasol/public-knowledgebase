@@ -74,7 +74,7 @@ If it's not possible to convert Python 2 scripts to Python 3, then you can resto
 
 ## References
 
-* [CHANGELOG: Python 2 removed from Script Language Containers](https://exasol.my.site.com/s/article/Changelog-content-16903)
+* [CHANGELOG: Python 2 removed from Script Language Containers](https://docs.exasol.com/db/latest/changelogs/16903.htm)
 * [Using Python 2 with Exasol 7.1.20 or later | Exasol DB Documentation](https://docs.exasol.com/db/7.1/database_concepts/udf_scripts/python2_extended_use.htm#UpdateFrom71xTo7120ornewer)
 * [Sunsetting Python 2](https://www.python.org/doc/sunset-python-2/#:~:text=The%20sunset%20date%20has%20now,when%20we%20released%20Python%202.7.)
 * [How to port Python 2 Code to Python 3](https://docs.python.org/3/howto/pyporting.html)

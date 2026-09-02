@@ -4,7 +4,7 @@
 
 While loading data from one Exasol database into another database, you may get connection issues. This article will describe how you can resolve these.
 
-Due to Improvement [CHANGELOG: IMPORT/EXPORT FROM/INTO EXA: No More Special Configuration for IP and Port](https://exasol.my.site.com/s/article/Changelog-content-21243?language=en_US) this article applies only to version prior to 8.32.0.
+Due to Improvement [CHANGELOG: IMPORT/EXPORT FROM/INTO EXA: No More Special Configuration for IP and Port](https://docs.exasol.com/db/latest/changelogs/21243.htm) this article applies only to version prior to 8.32.0.
 
 ## Diagnosis
 
@@ -61,7 +61,7 @@ The JDBC interface will likely have slower performance than the EXA interface. O
 
 ## Additional References
 
-* [CHANGELOG: IMPORT/EXPORT FROM/INTO EXA: No More Special Configuration for IP and Port](https://exasol.my.site.com/s/article/Changelog-content-21243?language=en_US)
+* [CHANGELOG: IMPORT/EXPORT FROM/INTO EXA: No More Special Configuration for IP and Port](https://docs.exasol.com/db/latest/changelogs/21243.htm)
 * [List of default ports](https://docs.exasol.com/db/7.1/administration/on-premise/installation/prepareenvironment/cluster_network_access.htm#DefaultPorts)
 * [IMPORT syntax](https://docs.exasol.com/db/latest/sql/import.htm)
 * [Loading Data Best Practices](https://docs.exasol.com/loading_data/best_practice.htm)

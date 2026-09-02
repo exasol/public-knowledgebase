@@ -105,13 +105,13 @@ SELECT ETYPE(sysdate, systimestamp, trunc(systimestamp));
 
 ### New function TYPEOF
 
-In version 7.1.0 new built-in function called TYPEOF was introduced: [CHANGELOG: Add scalar function TYPEOF](https://exasol.my.site.com/s/article/Changelog-content-10769?language=en_US).
+In version 7.1.0 new built-in function called TYPEOF was introduced: [CHANGELOG: Add scalar function TYPEOF](https://docs.exasol.com/db/latest/changelogs/10769.htm).
 
 Its purpose is the same - to show the data type of the argument provided. See the devoted page in the documentation: [TYPEOF](https://docs.exasol.com/db/latest/sql_references/functions/alphabeticallistfunctions/typeof.htm).
 
 ## Additional References
 
-* [CHANGELOG: Add scalar function TYPEOF](https://exasol.my.site.com/s/article/Changelog-content-10769?language=en_US)
+* [CHANGELOG: Add scalar function TYPEOF](https://docs.exasol.com/db/latest/changelogs/10769.htm)
 * [TYPEOF](https://docs.exasol.com/db/latest/sql_references/functions/alphabeticallistfunctions/typeof.htm)
 
 *We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 
