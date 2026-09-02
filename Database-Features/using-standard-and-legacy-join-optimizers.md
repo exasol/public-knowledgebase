@@ -7,9 +7,9 @@ Exasol provides two join-order optimizers:
 - **STANDARD**
 - **LEGACY**
 
-The **STANDARD optimizer is the preferred default** and should normally be used for workloads.
+The **STANDARD** optimizer is the preferred default starting from Exasol v8 and should normally be used for workloads.
 
-The **LEGACY optimizer remains available as an alternative** for individual queries where it produces a more efficient execution plan.
+The **LEGACY** optimizer remains available in v8 as an alternative for individual queries where it produces a more efficient execution plan.
 
 ## Scope
 
