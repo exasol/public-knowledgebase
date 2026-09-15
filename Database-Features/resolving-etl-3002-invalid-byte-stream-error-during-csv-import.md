@@ -89,13 +89,7 @@ ORDER BY ROW_NR;
 1. Test the import with a small sample file containing known special characters, such as `ä`, `ö`, `ü`, `ß`, and `€`.
 2. Set `ENCODING` to the encoding actually used by the source file.
 3. Check the error table after the import.
-4. Verify the imported values:
-
-```sql
-SELECT *
-FROM test.test_import_encoding;
-```
-
+4. Verify the imported values
 5. Repeat the test with a representative production sample before starting the full import.
 
 ## Important limitations
