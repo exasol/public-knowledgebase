@@ -101,7 +101,7 @@ or double click on the 'Queries and Connections' panel on the right.
 You can also easily refresh this data under the 'Queries & Connections' menu by right clicking and selecting 'Refresh'.
 
 ![Refresh](images/exaPieterjan_0-1622817558264.png)
- 
+
 ## Extracting data using a query
 
 Using a custom SQL query is also possible, albeit a little more tricky.
@@ -118,7 +118,7 @@ Click 'Advanced Editor' on top:
 
 ![Advanced Editor](images/exaPieterjan_0-1622816614384.png)
 
-Here we have Power Query at our disposal: 
+Here we have Power Query at our disposal:
 
 We'll use the PowerQuery `Odbc.Query` function (documented here: <https://docs.microsoft.com/en-us/powerquery-m/odbc-query>).
 
@@ -160,4 +160,4 @@ The results should swiftly load in to your worksheet:
 
 And you've successfully imported data using PowerQuery with an SQL query!
 
-*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).*
