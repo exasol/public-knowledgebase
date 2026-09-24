@@ -1,4 +1,5 @@
-# Accessing IBM Spectrum Scale Storage 
+# Accessing IBM Spectrum Scale Storage
+
 ## Background
 
 Spectrum Scale, previously known as General Parallel File System (GPFS), is a high-performance clustered file system software developed by IBM. It offers a parallel high-performance solution for many data related challenges with global file and object data access for managing data at scale.
@@ -8,7 +9,7 @@ In this article, we are going to show how to import data into a table or create 
 ## Prerequisites
 
 * You'll need to setup IBM Spectrum Scale cluster
-* You can use the Vagrant based solution provided on Github, <https://github.com/IBM/SpectrumScaleVagrant/>
+* You can use the Vagrant based solution provided on Github, [StorageScaleVagrant](https://github.com/IBM/StorageScaleVagrant)
 * It allows you to setup Spectrum Scale on KVM/Libvirt, VirtualBox and Amazon Web Services (AWS)
 * You'll need to setup an Exasol database
 * Prepare cloud-storage-extension [deployment scripts](https://github.com/exasol/cloud-storage-extension/blob/main/doc/user_guide/user_guide.md#deployment)
@@ -31,7 +32,6 @@ In this section we are going to show you how to import Parquet formatted data fr
 
 Create an Exasol table corresponding to the Parquet schema:
 
-
 ```sql
 CREATE TABLE SALES_POSITIONS 
  (   
@@ -43,14 +43,14 @@ CREATE TABLE SALES_POSITIONS
   EXA_ROW_ROLES  DECIMAL(20, 0) 
  );
 ```
- Create a connection object that encodes the username and password as S3 access and secret keys:
 
+ Create a connection object that encodes the username and password as S3 access and secret keys:
 
 ```sql
 CREATE OR REPLACE CONNECTION S3_CONNECTION TO '' USER '' IDENTIFIED BY 'S3_ACCESS_KEY=testuser;S3_SECRET_KEY=zPassw0rd1';
 ```
-Run the import SQL statement:
 
+Run the import SQL statement:
 
 ```sql
 IMPORT INTO RETAIL.SALES_POSITIONS FROM SCRIPT ETL.IMPORT_PATH WITH   
@@ -60,6 +60,7 @@ S3_ENDPOINT              = 'http://172.31.21.23:8080'
 CONNECTION_NAME          = 'S3_CONNECTION'   
 PARALLELISM              = 'nproc()';
 ```
+
 The `S3_ENDPOINT` parameter should point to the CES IPv4 address of Spectrum Scale.
 
 ## Create Virtual Schema Over Data in Spectrum Scale
@@ -67,7 +68,6 @@ The `S3_ENDPOINT` parameter should point to the CES IPv4 address of Spectrum S
 Similarly, you can create a Virtual Schema (VS) over data stored in Spectrum Scale using the S3 API.
 
 In this guide, I am going to create a VS over [JSON Lines](https://jsonlines.org) data. First we need to create a mapping file and upload it to  Exasol's BucketFS bucket.
-
 
 ```json
 {
@@ -86,10 +86,10 @@ In this guide, I am going to create a VS over [JSON Lines](https://jsonlines.org
   }
 }
 ```
+
 You can read more about EDML schema mapping in S3 VS files [user guide, Defining the Schema Mapping](https://github.com/exasol/s3-document-files-virtual-schema/blob/main/doc/user_guide/user_guide.md#defining-the-schema-mapping).
 
 Now we can create a VS over JSON Lines data stored Spectrum Scale:
-
 
 ```sql
 CREATE OR REPLACE CONNECTION S3_VS_CONNECTION    
@@ -102,16 +102,17 @@ CONNECTION_NAME = 'S3_VS_CONNECTION'
 SQL_DIALECT     = 'S3_DOCUMENT_FILES'     
 MAPPING         = '/buckets/bfsdefault/schemamapping/jsonl-mapping.json';
 ```
+
 As you can see, in the address of the connection object, we use custom endpoint from Spectrum Scale Object Storage.
 
 You should be able to query data using the `LINES` table in `FILES_VS_TEST` Virtual Schema.
 
-
 ```sql
 SELECT * FROM FILES_VS_TEST.LINES LIMIT 10;
 ```
+
 ## Conclusion
 
 By following the steps shown in this guide, you can easily import Avro, Parquet or Orc formatted data from IBM Spectrum Scale object storage. Similarly, you can use [Virtual Schema S3 Document Files](https://github.com/exasol/s3-document-files-virtual-schema) integration to create a Virtual Schema over JSON or JSONLine files stored in Spectrum Scale.
 
-*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).*

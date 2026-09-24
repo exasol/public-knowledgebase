@@ -1,4 +1,5 @@
-# Connecting Spotfire Server with EXASOL via JDBC 
+# Connecting Spotfire Server with EXASOL via JDBC
+
 ## Background
 
 This article describes a way how to connect Spotfire to Exasol.
@@ -11,7 +12,7 @@ Download the EXASOL JDBC driver and extract the exajdbc.jar
 
 ## *Step 1*
 
-Copy the exajdbc.jar to to the Spotfire library directory, see the following link where this directory is located: <https://community.tibco.com/wiki/tibco-spotfirer-jdbc-data-access-connectivity-details#toc-2>
+Copy the exajdbc.jar to to the Spotfire library directory, see the following link where this directory is located: [Spotfire® JDBC Data Access Connectivity Details](https://community.spotfire.com/articles/spotfire/spotfire-jdbc-data-access-connectivity-details/).
 
 ## *Step 2*
 
@@ -28,7 +29,6 @@ Go to the Configuration tab and create a new Data Source Template
 ## *Step 5*
 
 In the Add data source template enter EXASOL as name and copy paste the following template:
-
 
 ```xml
 <jdbc-type-settings>
@@ -70,6 +70,7 @@ In the Add data source template enter EXASOL as name and copy paste the followin
 </java-to-sql-type-conversions>
 </jdbc-type-settings>
 ```
+
 ## *Step 6*
 
 Save the config, close the configuration tool and restart the server
@@ -82,4 +83,4 @@ Check the logs if the XML config for EXASOL was validated correctly
 
 Use the Information Designer tool in the Spotfire Analyst to create a new Data Source
 
-*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).*
