@@ -7,8 +7,8 @@ You have an Exasol database and want to read data from Microsoft Azure Blob Stor
 
 ## Prerequisites
 
-The theory of how to access files stored in Microsoft Azure Blob Storage via HTTP/HTTPS is described here:  
-<https://azure.microsoft.com/en-gb/documentation/articles/storage-dotnet-shared-access-signature-part-1/>  
+The theory of how to access files stored in Microsoft Azure Blob Storage via HTTP/HTTPS is described here: [Shared Access Signatures, Part 1: Understanding the SAS model](https://github.com/uglide/azure-content/blob/master/articles/storage/storage-dotnet-shared-access-signature-part-1.md) 
+
 In practice, you will face the following problems:
 
 1. You want to import all files in a specific folder into a specific table. So you need to generate urls for all the files in that folder.
@@ -26,14 +26,14 @@ You can make use of Lua scripting to generate the IMPORT SQL commands. Addition
 
 ## Additional Notes
 
-Follow the steps described in the comments of the file [azure_blob.sql](https://github.com/exasol/public-knowledgebase/blob/main/Connect-with-Exasol/attachments/azure_blob.sql "azure_blob.sql").
+Follow the steps described in the comments of the file [azure_blob.sql](https://github.com/exasol/public-knowledgebase/blob/main/Connect-with-Exasol/attachments/azure_blob.sql).
 
 The script in file `azure_blob.sql` needs to be adapted for the newer version of `azure-storage` python module.
 The following call (with dependencies) could be used as a starting point: https://github.com/Azure-Samples/AzureStorageSnippets/blob/master/blobs/howto/python/blob-devguide-py/blob-devguide-create-sas.py#L219
 
 ## Additional References
 
-* <https://azure.microsoft.com/en-gb/documentation/articles/storage-python-how-to-use-blob-storage/>
+* [How to use Azure Blob storage from Python](https://github.com/uglide/azure-content/blob/master/articles/storage/storage-python-how-to-use-blob-storage.md)
 
 * <https://github.com/Azure-Samples/AzureStorageSnippets/blob/master/blobs/howto/python/blob-devguide-py/blob-devguide-create-sas.py#L219>
 

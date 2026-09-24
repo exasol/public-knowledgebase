@@ -8,7 +8,7 @@ In this article, we are going to show how to import data into a table or create 
 ## Prerequisites
 
 * You'll need to setup IBM Spectrum Scale cluster
-* You can use the Vagrant based solution provided on Github, <https://github.com/IBM/SpectrumScaleVagrant/>
+* You can use the Vagrant based solution provided on Github, [StorageScaleVagrant](https://github.com/IBM/StorageScaleVagrant)
 * It allows you to setup Spectrum Scale on KVM/Libvirt, VirtualBox and Amazon Web Services (AWS)
 * You'll need to setup an Exasol database
 * Prepare cloud-storage-extension [deployment scripts](https://github.com/exasol/cloud-storage-extension/blob/main/doc/user_guide/user_guide.md#deployment)

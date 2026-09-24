@@ -31,7 +31,7 @@ This How-to describes the installation of two HAproxy instances (Master 10.0.1.2
 
 ### 5. Log into both instances using SSH user ec2-user
 
-### 6. Update system packages and install haproxy and keepalived (ensure you get the latest version of keepalived <http://www.keepalived.org/download.html>)
+### 6. Update system packages and install haproxy and keepalived (ensure you get the latest version of keepalived <https://www.keepalived.org/download/>)
 
 
 ```

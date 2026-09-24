@@ -11,7 +11,7 @@ Download the EXASOL JDBC driver and extract the exajdbc.jar
 
 ## *Step 1*
 
-Copy the exajdbc.jar to to the Spotfire library directory, see the following link where this directory is located: <https://community.tibco.com/wiki/tibco-spotfirer-jdbc-data-access-connectivity-details#toc-2>
+Copy the exajdbc.jar to to the Spotfire library directory, see the following link where this directory is located: [Spotfire® JDBC Data Access Connectivity Details](https://community.spotfire.com/articles/spotfire/spotfire-jdbc-data-access-connectivity-details/).
 
 ## *Step 2*
 
