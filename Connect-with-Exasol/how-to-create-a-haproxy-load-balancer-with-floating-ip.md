@@ -1,5 +1,6 @@
-# How to create a HAproxy Load Balancer with floating IP 
-### Background
+# How to create a HAproxy Load Balancer with floating IP
+
+## Background
 
 An Internet-facing load balancer has a publicly available IP Address, so it can route requests from clients over the Internet to the EC2 instances that are registered with the load balancer. We use this approach make your EXASOL DB connectable from the internet using a single static EIP.
 
@@ -33,21 +34,20 @@ This How-to describes the installation of two HAproxy instances (Master 10.0.1.2
 
 ### 6. Update system packages and install haproxy and keepalived (ensure you get the latest version of keepalived <https://www.keepalived.org/download/>)
 
-
-```
+```shell
 [ec2-user@ip-10-0-1-207 ~]$ sudo mkdir /usr/libexec/keepalived/
 [ec2-user@ip-10-0-1-207 ~]$ sudo yum -y upgrade && sudo yum -y install haproxy keepalived && sudo reboot
 ```
+
 ### 7. Use the packages from the repo (Point 6) **OR** (Point 7) install the latest keepalived (additional packages are required see below)
 
-
-```
+```shell
 [root@ip-10-0-1-207]# yum install -y openssl-devel kernel-devel kernel-headers gcc && wget http://www.keepalived.org/software/keepalived-1.3.2.tar.gz && tar xf keepalived* && cd keepalived-1.3.2 && mkdir /opt/keepalived && ./configure --prefix=/opt/keepalived && make && make install
 ```
+
 Use the steps below when keepalived has been compiled from source. We also need to the init script (attached to this article) and sysconfig file of keepalived.
 
-
-```
+```shell
 [root@ip-10-0-1-207]# cp keepalived_initd.txt /etc/init.d/keepalived
 [root@ip-10-0-1-207]# cp /root/keepalived-1.3.2/keepalived/etc/sysconfig/keepalived /etc/sysconfig/
 [root@ip-10-0-1-207]# cp /root/keepalived-1.3.2/keepalived/etc/init/keepalived.conf /etc/init/
@@ -57,12 +57,12 @@ Use the steps below when keepalived has been compiled from source. We also need 
 [root@ip-10-0-1-207]# mkdir /usr/libexec/keepalived/
 [root@ip-10-0-1-207]# useradd -M keepalived_script
 ```
+
 ## Configuration
 
 ### 1. Configure HAproxy Master and Slave (copy it to both instances)
 
-
-```
+```shell
 [ec2-user@ip-10-0-1-207 ~]$ cat /etc/haproxy/haproxy.cfg
 global
     log         127.0.0.1 local2
@@ -99,10 +99,10 @@ listen exasol_proxy :8563
         server ip-10-0-1-12.eu-west-1.compute.internal 10.0.1.12:8563 weight 1 check rise 2 fall 3
         server ip-10-0-1-13.eu-west-1.compute.internal 10.0.1.13:8563 weight 1 check rise 2 fall 3 
 ```
+
 ### 2. Configure Keepalived Master
 
-
-```
+```shell
 [ec2-user@ip-10-0-1-207 ~]$ cat /etc/keepalived/keepalived.conf
 vrrp_script chk_haproxy {
 script "pidof haproxy"
@@ -128,10 +128,10 @@ notify_fault "/usr/libexec/keepalived/notify.sh FAULT"
 
 }
 ```
+
 ### 3. Configure Keepalived Slave
 
-
-```
+```shell
 [ec2-user@ip-10-0-1-190 ~]$ cat /etc/keepalived/keepalived.conf
 vrrp_script chk_haproxy {
 script "pidof haproxy"
@@ -156,10 +156,10 @@ notify_backup "/usr/libexec/keepalived/notify.sh BACKUP"
 notify_fault "/usr/libexec/keepalived/notify.sh FAULT"  
 }   
 ```
+
 ### 4. Keepalived will trigger a script when the HAproxy service fails on the current master, deploy the scripts (**notify.sh, master.sh, backup.sh**) on both instances ((!) change owner to keepalived_script if using the latest version of keepalived)
 
-
-```
+```shell
 [root@ip-10-0-1-207 ec2-user]# cat /usr/libexec/keepalived/notify.sh
 #!/bin/bash                                                         
                                                                     
@@ -189,10 +189,10 @@ case $STATE in
                   ;;                                                
 esac                                                                  
 ```
+
 ### 5. Master Script (change owner to keepalived_script if using the latest version of keepalived)
 
-
-```
+```shell
 [root@ip-10-0-1-207 ec2-user]# cat /usr/libexec/keepalived/master.sh
 #!/bin/bash                                                                                                            
                                                                                                                        
@@ -217,10 +217,10 @@ PRIVATE_IP=$(curl -s http://169.254.169.254/latest/meta-data/local-ipv4)
 /opt/aws/bin/ec2-associate-address -O $AWS_ACCESS_KEY -W $AWS_SECRET_KEY -U $EC2_URL $EIP -instance $INSTANCE_ID -p $PRIVATE_IP --allow-reassociation
 echo "$(date) I'm master now"
 ```
+
 ### 6. Backup Script (change owner to keepalived_script if using the latest version of keepalived)
 
-
-```
+```shell
 [root@ip-10-0-1-207 ec2-user]# cat /usr/libexec/keepalived/backup.sh
 #!/bin/bash                                                                                                    
                                                                                                                
@@ -230,29 +230,29 @@ exec 2>&1
 
 echo "$(date) I'm backup nothing to do" 
 ```
+
 ### 7. Make keepalived scripts executable (both instances)
 
-
-```
+```shell
 [root@ip-10-0-1-207 ec2-user]# chmod +x /usr/libexec/keepalived/*sh && chmod 700 /usr/libexec/keepalived/*sh 
 ```
+
 ### 8. Enable HAproxy und Keepalived on Start-up (both instances)
 
-
-```
+```shell
 [root@ip-10-0-1-207 ec2-user]# chkconfig haproxy on && chkconfig keepalived on 
 ```
+
 ### 9. Start HAproxy and Keepalived on the master and check logs
 
-
-```
+```shell
 [root@ip-10-0-1-207 ec2-user]# service haproxy start && service keepalived start 
 [root@ip-10-0-1-207 ec2-user]# tail -n 30 /var/log/messages 
 ```
+
 ### 10. Start HAproxy and Keepalived on the slave and check logs
 
-
-```
+```shell
 [root@ip-10-0-1-207 ec2-user]# service haproxy start && service keepalived start 
 [root@ip-10-0-1-207 ec2-user]# tail -n 30 /var/log/messages 
 ```
@@ -264,4 +264,4 @@ echo "$(date) I'm backup nothing to do"
 
 * [CHANGELOG: Database accepts only TLS connections](https://docs.exasol.com/db/latest/changelogs/16927.htm)
 
-*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).*
