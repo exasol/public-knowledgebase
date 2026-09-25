@@ -1,4 +1,5 @@
-# Proper csv export from Microsoft SQL Server 
+# Proper csv export from Microsoft SQL Server
+
 How do I export CSV files properly from Microsoft SQL Server? Choose one option and follow the instructions.
 
 ## Option 1: Using the SQL Server Import and Export Data Wizard / DTSWizard
@@ -27,6 +28,7 @@ SELECT  [Customer Key],  [WWI Customer ID],
  REPLACE([Primary Contact], '"', '""') AS 'Primary Contact',  
  [Postal Code],  [Valid From],  [Valid To],  [Lineage Key]  FROM Dimension.Customer​
 ```
+
 * Confirm your settings for the ***Flat File Destination*** and continue with ***Next***
 * Start the export by clicking ***Finish***
 * You will receive a short report about the successful export
@@ -88,5 +90,4 @@ From WideWorldImporters.Dimension.Customer"
 queryout "C:\Test.csv" -c -t"," -r"\n" -q -S HW1729 –T
 * Start the export by pressing Enter
 
-*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 
-
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).*
