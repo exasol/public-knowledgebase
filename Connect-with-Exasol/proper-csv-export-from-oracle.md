@@ -1,69 +1,70 @@
-# Proper csv export from Oracle 
+# Proper csv export from Oracle
+
 We want to show you how to export CSV files from Oracle DB. Use one of the following options.
 
 ## Option 1: Using the Oracle SQL Developer
 
-* Connect to the database you want to export  
+* Connect to the database you want to export
 
-![](images/Oracle1.png)
+  ![Oracle SQL Developer / List of connections](images/Oracle1.png)
 
 * Select the table you want to export
 * Open context menu by right-clicking on the table
 * Select ***Export*** to start the integrated *****Export Wizard*****
 
-![](images/Oracle2.png)
+  ![Table / Export](images/Oracle2.png)
 
 * To guarantee a proper export, you should deselect the option ***Export DDL***
 * Change format to csv and set the path for the exported file
-* Click ***Next*** to continue 
- 
-![](images/Oracle3.png)
+* Click ***Next*** to continue
+
+  ![Export options](images/Oracle3.png)
 
 * The following screen allows you to specify the columns you want to export (SELECT *… by default)
 * Use the ***Edit-Button*** to change settings - otherwise, you can proceed by clicking *****Next*****
 
-![](images/Oracle4.png)
+  ![Further Export settings](images/Oracle4.png)
 
 * Finally, you will receive a summary of the export process
 * Make sure that your settings are valid and complete the export by clicking *****Finish*****
 
-![](images/Oracle5.png)
+  ![Export Summary](images/Oracle5.png)
 
 Notes:
 
 * ***Oracle SQL Developer*** automatically converts NULL to "" (empty string)
 * ***Oracle SQL Developer*** automatically masks double quotes ("Example" -> ""Example"")
 
-## Option 2):Using ***SQLcl***: ***SQLcl*** is a free tool provided by Oracle.
+## Option 2 : Using ***SQLcl***, a free tool provided by Oracle
 
-* Download:<http://www.oracle.com/technetwork/developer-tools/sqlcl/overview/index.html>
-	+ Short documentation about how to get started and some of its features: <https://mikesmithers.wordpress.com/2015/04/12/sqlcl-the-new-sqlplus/>
+* Download: [Oracle SQLcl](https://www.oracle.com/database/sqldeveloper/technologies/sqlcl/)
+  * Short documentation about how to get started and some of its features: <https://mikesmithers.wordpress.com/2015/04/12/sqlcl-the-new-sqlplus/>
 * Connect to the database you want to export
-* To guarantee a proper export of your data, you have to change some of the system variables of ***SQLcl***:  
-o ***SET SQLFORMAT csv*** (automatic conversion into proper csv)  
-o ***SET TERMOUT OFF*** (suppresses output on display - this option is only necessary when using scripts)  
-o ***SET FEEDBACK OFF*** (suppresses displaying the number of records returned by a query)
-* To apply each option, just press ***ENTER*** after every single command  
-Note: These options have to be set every time ***SQLcl*** is started!  
+* To guarantee a proper export of your data, you have to change some of the system variables of ***SQLcl***:
+  * ***SET SQLFORMAT csv*** (automatic conversion into proper csv)
+  * ***SET TERMOUT OFF*** (suppresses output on display - this option is only necessary when using scripts)
+  * ***SET FEEDBACK OFF*** (suppresses displaying the number of records returned by a query)
+* To apply each option, just press ***ENTER*** after every single command
+  Note: These options have to be set every time ***SQLcl*** is started!
 
-![](images/Oracle6.png)
+  ![Needed SQLcl options](images/Oracle6.png)
 
-* Use the integrated spooler with the appended file path to start the process  
+* Use the integrated spooler with the appended file path to start the process
 
-![](images/Oracle7.png)
+  !["spool" command](images/Oracle7.png)
 
 * ***SQLcl*** will write the result set of your ***SELECT-statement*** to *****table1.csv*****
 
-![](images/Oracle8.png)
+  ![SELECT statement](images/Oracle8.png)
 
 * To finish the process, you have to stop the spooler by using the command: *****spool off*****
 
-![](images/Oracle9.png)
+  !["spool off" command](images/Oracle9.png)
 
-Notes:  
-o You are not able to access the exported csv file until you stopped the spooler  
-o ***SQLcl*** automatically masks double quotes (“Example” -> “”Example””)  
-o ***SQLcl*** automatically converts NULL to “” (empty string)
+Notes:
 
-*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 
+* You are not able to access the exported csv file until you stopped the spooler
+* Command ***SQLcl*** automatically masks double quotes (“Example” -> “”Example””)
+* Command ***SQLcl*** automatically converts NULL to “” (empty string)
 
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).*
