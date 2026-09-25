@@ -4,7 +4,7 @@ We want to show you how to export CSV files from Oracle DB. Use one of the follo
 
 ## Option 1: Using the Oracle SQL Developer
 
-* Connect to the database you want to export  
+* Connect to the database you want to export
 
   ![Oracle SQL Developer / List of connections](images/Oracle1.png)
 
@@ -40,16 +40,16 @@ Notes:
 * Download: [Oracle SQLcl](https://www.oracle.com/database/sqldeveloper/technologies/sqlcl/)
   * Short documentation about how to get started and some of its features: <https://mikesmithers.wordpress.com/2015/04/12/sqlcl-the-new-sqlplus/>
 * Connect to the database you want to export
-* To guarantee a proper export of your data, you have to change some of the system variables of ***SQLcl***:  
-  * ***SET SQLFORMAT csv*** (automatic conversion into proper csv)  
-  * ***SET TERMOUT OFF*** (suppresses output on display - this option is only necessary when using scripts)  
+* To guarantee a proper export of your data, you have to change some of the system variables of ***SQLcl***:
+  * ***SET SQLFORMAT csv*** (automatic conversion into proper csv)
+  * ***SET TERMOUT OFF*** (suppresses output on display - this option is only necessary when using scripts)
   * ***SET FEEDBACK OFF*** (suppresses displaying the number of records returned by a query)
-* To apply each option, just press ***ENTER*** after every single command  
-Note: These options have to be set every time ***SQLcl*** is started!  
+* To apply each option, just press ***ENTER*** after every single command
+  Note: These options have to be set every time ***SQLcl*** is started!
 
   ![Needed SQLcl options](images/Oracle6.png)
 
-* Use the integrated spooler with the appended file path to start the process  
+* Use the integrated spooler with the appended file path to start the process
 
   !["spool" command](images/Oracle7.png)
 
@@ -63,8 +63,8 @@ Note: These options have to be set every time ***SQLcl*** is started!
 
 Notes:  
 
-* You are not able to access the exported csv file until you stopped the spooler  
-* Command ***SQLcl*** automatically masks double quotes (“Example” -> “”Example””)  
+* You are not able to access the exported csv file until you stopped the spooler
+* Command ***SQLcl*** automatically masks double quotes (“Example” -> “”Example””)
 * Command ***SQLcl*** automatically converts NULL to “” (empty string)
 
 *We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).*
