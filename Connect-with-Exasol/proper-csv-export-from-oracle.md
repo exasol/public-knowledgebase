@@ -17,7 +17,7 @@ We want to show you how to export CSV files from Oracle DB. Use one of the follo
 * To guarantee a proper export, you should deselect the option ***Export DDL***
 * Change format to csv and set the path for the exported file
 * Click ***Next*** to continue
- 
+
   ![Export options](images/Oracle3.png)
 
 * The following screen allows you to specify the columns you want to export (SELECT *… by default)
@@ -38,7 +38,7 @@ Notes:
 ## Option 2 : Using ***SQLcl***, a free tool provided by Oracle
 
 * Download: [Oracle SQLcl](https://www.oracle.com/database/sqldeveloper/technologies/sqlcl/)
-	* Short documentation about how to get started and some of its features: <https://mikesmithers.wordpress.com/2015/04/12/sqlcl-the-new-sqlplus/>
+  * Short documentation about how to get started and some of its features: <https://mikesmithers.wordpress.com/2015/04/12/sqlcl-the-new-sqlplus/>
 * Connect to the database you want to export
 * To guarantee a proper export of your data, you have to change some of the system variables of ***SQLcl***:  
   * ***SET SQLFORMAT csv*** (automatic conversion into proper csv)  
@@ -64,7 +64,7 @@ Note: These options have to be set every time ***SQLcl*** is started!
 Notes:  
 
 * You are not able to access the exported csv file until you stopped the spooler  
-* ***SQLcl*** automatically masks double quotes (“Example” -> “”Example””)  
-* ***SQLcl*** automatically converts NULL to “” (empty string)
+* **SQLcl** automatically masks double quotes (“Example” -> “”Example””)  
+* **SQLcl** automatically converts NULL to “” (empty string)
 
 *We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).*
