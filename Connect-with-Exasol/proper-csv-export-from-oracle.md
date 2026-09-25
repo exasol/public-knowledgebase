@@ -1,4 +1,5 @@
-# Proper csv export from Oracle 
+# Proper csv export from Oracle
+
 We want to show you how to export CSV files from Oracle DB. Use one of the following options.
 
 ## Option 1: Using the Oracle SQL Developer
@@ -15,7 +16,7 @@ We want to show you how to export CSV files from Oracle DB. Use one of the follo
 
 * To guarantee a proper export, you should deselect the option ***Export DDL***
 * Change format to csv and set the path for the exported file
-* Click ***Next*** to continue 
+* Click ***Next*** to continue
  
 ![](images/Oracle3.png)
 
@@ -34,7 +35,7 @@ Notes:
 * ***Oracle SQL Developer*** automatically converts NULL to "" (empty string)
 * ***Oracle SQL Developer*** automatically masks double quotes ("Example" -> ""Example"")
 
-## Option 2):Using ***SQLcl***: ***SQLcl*** is a free tool provided by Oracle.
+## Option 2 : Using ***SQLcl***, a free tool provided by Oracle
 
 * Download: [Oracle SQLcl](https://www.oracle.com/database/sqldeveloper/technologies/sqlcl/)
 	+ Short documentation about how to get started and some of its features: <https://mikesmithers.wordpress.com/2015/04/12/sqlcl-the-new-sqlplus/>
@@ -65,5 +66,4 @@ o You are not able to access the exported csv file until you stopped the spooler
 o ***SQLcl*** automatically masks double quotes (“Example” -> “”Example””)  
 o ***SQLcl*** automatically converts NULL to “” (empty string)
 
-*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 
-
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).*
