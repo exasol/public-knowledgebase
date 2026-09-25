@@ -22,7 +22,7 @@ You could also use a connection string if you prefer.
 
 ## Installing the ODBC Driver
 
-As a prerequisite for the ODBC driver to function you'll need to install the "Microsoft Visual C++ Redistributable for Visual Studio 2015, 2017 and 2019". It can be found here : [Microsoft Visual C++ Redistributable latest supported downloads](https://learn.microsoft.com/en-us/cpp/windows/latest-supported-vc-redist).
+As a prerequisite for the ODBC driver to function you'll need to install the "Microsoft Visual C++ Redistributable for Visual Studio 2015, 2017 and 2019". It can be found here : [Microsoft Visual C++ Redistributable latest supported downloads](https://learn.microsoft.com/en-us/cpp/windows/latest-supported-vc-redist?view=msvc-180).
 
 The Exasol ODBC Driver installers can be found here: <https://downloads.exasol.com/clients-and-drivers/odbc>
 

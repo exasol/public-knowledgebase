@@ -32,9 +32,7 @@ The first thing we'll need to do is set up an an azure data factory to transform
 
 Next to that we'll also need a blob storage and attach this as a linked service:
 
-For getting started with data factory I recommend the official Microsoft tutorial:
-
-<https://docs.microsoft.com/en-us/azure/data-factory/quickstart-create-data-factory-portal>
+For getting started with data factory I recommend the official Microsoft tutorial: [Quickstart: Create a data factory](https://learn.microsoft.com/en-us/azure/data-factory/quickstart-create-data-factory)
 
 ## Enabling ODBC Connectivity to the Exasol database
 
@@ -77,7 +75,7 @@ If you choose to use the manual setup / default installer instead then there's j
 
 You'll also need to make sure to install the 64-bit Exasol ODBC driver and the Visual Studio 2015-19 C++ redistributables on the machine hosting this self-hosted integration runtime. Install the redistributables before the driver.
 
-(Driver here: <https://downloads.exasol.com/clients-and-drivers/odbc> and redistributables here : <https://support.microsoft.com/en-us/topic/the-latest-supported-visual-c-downloads-2647da03-1eea-4433-9aff-95f26a218cc0> )
+(Driver here: <https://downloads.exasol.com/clients-and-drivers/odbc> and redistributables here : [Microsoft Visual C++ Redistributable latest supported downloads](https://learn.microsoft.com/en-us/cpp/windows/latest-supported-vc-redist?view=msvc-180))
 
 Next we'll set up a linked service using this integration runtime.
 
@@ -159,9 +157,7 @@ This is what our dataset should look like then:
 
 We'll also need an azure blob storage dataset for this tutorial.
 
-This article goes over setting up an azure blob storage dataset in more detail:
-
-<https://docs.microsoft.com/en-us/azure/data-factory/quickstart-create-data-factory-portal>
+This article goes over setting up an azure blob storage dataset in more detail: [Quickstart: Create a data factory](https://learn.microsoft.com/en-us/azure/data-factory/quickstart-create-data-factory)
 
 For the tutorial we've added a very simple csv file to the blob storage we'll use that has the following contents:
 

@@ -36,7 +36,7 @@ Notes:
 
 ## Option 2):Using ***SQLcl***: ***SQLcl*** is a free tool provided by Oracle.
 
-* Download:<http://www.oracle.com/technetwork/developer-tools/sqlcl/overview/index.html>
+* Download: [Oracle SQLcl](https://www.oracle.com/database/sqldeveloper/technologies/sqlcl/)
 	+ Short documentation about how to get started and some of its features: <https://mikesmithers.wordpress.com/2015/04/12/sqlcl-the-new-sqlplus/>
 * Connect to the database you want to export
 * To guarantee a proper export of your data, you have to change some of the system variables of ***SQLcl***:  
