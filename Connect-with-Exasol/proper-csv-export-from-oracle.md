@@ -64,7 +64,7 @@ Note: These options have to be set every time ***SQLcl*** is started!
 Notes:  
 
 * You are not able to access the exported csv file until you stopped the spooler  
-* **SQLcl** automatically masks double quotes (“Example” -> “”Example””)  
-* **SQLcl** automatically converts NULL to “” (empty string)
+* __SQLcl__ automatically masks double quotes (“Example” -> “”Example””)  
+* __SQLcl__ automatically converts NULL to “” (empty string)
 
 *We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).*
