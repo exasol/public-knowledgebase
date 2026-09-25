@@ -8,7 +8,7 @@ Connection to Exasol's Usage Insight Hub gives you the following benefits:
 
 1. Faster problem identification as support is able to view a subset of logs before they are sent to Exasol
 2. Better performance analysis by Exasol experts using pre-defined Grafana dashboards based on best practices
-3. A quarterly Usage Report as a PDF with an insight into your database usage and any potential findings that require action.
+3. A quarterly Usage Report as a PDF with an insight into your database usage and any potential findings that require action (currently not available)
 4. (Platinum Support) 24/7 Monitoring, Alerting, and Incident Management
 
 ## How does it work
