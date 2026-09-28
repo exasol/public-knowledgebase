@@ -16,7 +16,7 @@ The file contains several scripts which will copy the DDL for all objects in the
    2. The script creates a new schema, stores the data into a table in this new schema, and then exports the table contents into an SQL file to prevent formatting errors. After the export, the schema is dropped.
 7. The DDL and CSV's of the old tables are compressed and saved as a .tar.gz file in the './backups' directory or on a different location if "EXTERNAL_DIR" is set on the "config" file.
 
-## Limitations
+## Limitations for Metadata Backup script
 
 Creating DDL based on system tables is not perfect and has some limitations and imperfections. To safeguard incorrect DDL creation, the script also saves the system tables which are used in the script. If a DDL is not created perfectly or if you discover imperfections/errors, you can query the system tables directly and create your own DDL.
 
@@ -29,7 +29,7 @@ Creating DDL based on system tables is not perfect and has some limitations and 
 * UDF scripts with delimited identifiers (in- or output) will cause an error on DDL execution
 * Comments containing apostrophes (single-quote) will cause an error on DDL execution
 
-## Prerequisites
+## Prerequisites for Metadata Backup script
 
 * Linux system
 * Exaplus installed
@@ -102,30 +102,30 @@ Run backup.sh
 
 ## Article: Metadata Restore
 
-## Background
+## Background 
 
 This script will import the CSV's created in the Backup and run all of the CREATE statements.
 
 1. The script opens an Exaplus session, creates a schema called 'SYS_OLD' containing the same system tables that were created in the backup, and then imports the CSV's into these tables.
 2. All of the CREATE statements are executed, which restores the 'structure' of the database, however all tables are empty.
-	1. Note: During execution, the owner of all objects is the user running the script. At the end of the script, the owner of all schema changes to match the correct owner.
-	2. To monitor errors, profiling is enabled by default. You can search through EXA_DBA_PROFILE_LAST_DAY to find commands which were rolled back
+   1. Note: During execution, the owner of all objects is the user running the script. At the end of the script, the owner of all schema changes to match the correct owner.
+   2. To monitor errors, profiling is enabled by default. You can search through EXA_DBA_PROFILE_LAST_DAY to find commands which were rolled back
 
-## Limitations
+## Limitations for Metadata Restore script
 
 * If the database is not empty, some objects may fail to be created if they already exist in the database. Objects will not be overwritten.
 * Limitations of the create DDL script may cause errors during the CREATE statements. Please check the restore log, profiling or auditing to identify statements which were not created successfully.
 * If restoring to a database running a different version than the database from the backup, the IMPORT of old sys tables may fail due to different columns.
 
-## Prerequisites
+## Prerequisites for Metadata Restore script
 
 * Linux system
 * Exaplus command line
 * Database is already created and is able to be connected from the system you are running the scripts on
 * It is recommended to start the database with auditing ENABLED
 * Database user will need extensive CREATE privileges. It is recommended that the user running the scripts has DBA privileges as the following commands will be carried out:
-	+ CREATE SCHEMA, TABLE, VIEW, SCRIPT, CONNECTION, etc.
-	+ GRANT
+  * CREATE SCHEMA, TABLE, VIEW, SCRIPT, CONNECTION, etc.
+  * GRANT
 
 ## How to apply a Metadata Restore?
 
@@ -146,11 +146,11 @@ tar xf ddl-backup-DB_NAME-YYYY-MM-DD-HH-Mi-SS.tar.gz
 Edit config file with the following information from:
 
 * Backup Section:
-	+ SYSPATH = The path where the scripts like backup.sh were downloaded to
-	+ DB_NAME = The Database Name
+  * SYSPATH = The path where the scripts like backup.sh were downloaded to
+  * DB_NAME = The Database Name
 * Restore Section:
-	+ BACKUP_RESTORE_PATH = The path that you unpacked the backup file to (should end with '/ddls')
-	+ RESTORE_SYS_SQL_PATH = The path containing the restore script
+  * BACKUP_RESTORE_PATH = The path that you unpacked the backup file to (should end with '/ddls')
+  * RESTORE_SYS_SQL_PATH = The path containing the restore script
 
 ## *Step 4*
 
