@@ -37,10 +37,10 @@ Creating DDL based on system tables is not perfect and has some limitations and 
 * Exaplus installed
 * Database is already created and is able to be connected from the system you are running the scripts
 * Database user, which you will connect to the database with, has the following system privileges:
-   * CREATE SCHEMA
-   * CREATE TABLE
-   * CREATE SCRIPT
-   * SELECT ANY DICTIONARY
+  * CREATE SCHEMA
+  * CREATE TABLE
+  * CREATE SCRIPT
+  * SELECT ANY DICTIONARY
 
 ## How to create a Metadata Backup?
 
