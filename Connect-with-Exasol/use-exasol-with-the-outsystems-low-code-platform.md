@@ -75,7 +75,7 @@ A Demo Application is available in the OutSystems Forge that describes how to us
 
          ![Administration > Database Connections](images/Service.png)
 
-      3. Click **New Database Connection** and fill in the form. Parameters you need for the Connection String:
+      2. Click **New Database Connection** and fill in the form. Parameters you need for the Connection String:
          1. IP Address of the Exasol Server
          2. Port Number where you can connect to Exasol Client e.g 8563
          3. Username and Password
@@ -124,9 +124,9 @@ For custom queries, we have built an extension in OutSystems where you can find 
    3. This “**ExasolExecute**” action takes two parameters; SQL Query (Query to be executed) and Connection Name (Exasol Connection Name that’s installed on your OutSystems Server in Service Center), and it returns the result set in Rows, Columns, Count, and Affected Rows.
    4. You will find in our demo app how to use it properly.
 
-	![Extension outlook](images/mohamedemam_2-1598948012271.png)
+      ![Extension outlook](images/mohamedemam_2-1598948012271.png)
 
-For more information or help visit [novioq.com](https://www.novioq.com/outsystems-exasol-connector/) or mail directly to [support@novioq.com](mailto:support@novioq.com) 
+For more information or help visit [novioq.com](https://www.novioq.com/outsystems-exasol-connector/) or mail directly to [support@novioq.com](mailto:support@novioq.com)
 
 ## More Information
 
@@ -136,4 +136,4 @@ For more information or help visit [novioq.com](https://www.novioq.com/outsyste
 
 [Exasol-database-connector-for-OutSystems.pdf](https://github.com/exasol/Public-Knowledgebase/files/9936516/Exasol-database-connector-for-OutSystems.pdf)
 
-*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).*
