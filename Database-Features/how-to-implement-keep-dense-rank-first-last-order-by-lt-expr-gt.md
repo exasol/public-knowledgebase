@@ -249,6 +249,6 @@ If there are multiple *&lt;order_expr&gt;* for a single `KEEP DENSE_RANK FIRST/L
 
 ## Additional References
 
-<https://www.exasol.com/support/browse/IDEA-65>
+* There was an Idea ticket on the subject: IDEA-65, but its traces were lost after few migrations of Ideation Portal.
 
 *We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

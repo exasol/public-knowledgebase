@@ -40,7 +40,7 @@ GEOMETRY columns can be filled with strings using the well-known text representa
 
 ### Importing geodata from CSV files
 
-Often, geodata is present in CSV files or in colunms of tables that are imported from different database systems in form of latitude and longitude values. On <https://openflights.org/data.html#airport>, you can download a CSV file containing international airport data. We are using the extended version of this file, which consists of more than 12,000 international airports and train stations. In the first two fields of the file, there is the id and the name of the airport; in columns 7 and 8, we find its latitude and longitude coordinates:
+Often, geodata is present in CSV files or in colunms of tables that are imported from different database systems in form of latitude and longitude values. On [Airport, airline and route data](https://openflights.org/data.php), you can download a CSV file containing international airport data. We are using the extended version of this file, which consists of more than 12,000 international airports and train stations. In the first two fields of the file, there is the id and the name of the airport; in columns 7 and 8, we find its latitude and longitude coordinates:
 
 
 ```sql

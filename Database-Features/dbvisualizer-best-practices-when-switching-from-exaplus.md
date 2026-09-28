@@ -41,15 +41,15 @@ Per default **keywords in DBVisualizer are displayed in uppercase**, so if you o
 
 ![](images/image-2018-07-10-09-42-23-824.png)
 
-Please also have a look at the official documentation <http://confluence.dbvis.com/display/UG100/Executing+Complex+Statements>
+Please also have a look at the official documentation [Executing Complex Statements](https://www.dbvis.com/docs/26.2/working-with-sql/executing-complex-statements/).
 
 ## Favorites versus Bookmarks
 
-In EXAplus frequently used SQL Statements have been stored in the favorite tab. In DBVisualizer you have a similiar feature called Bookmarks. Learn more in the official documentation:<http://confluence.dbvis.com/display/UG100/Managing+Frequently+Used+SQL> .
+In EXAplus frequently used SQL Statements have been stored in the favorite tab. In DBVisualizer you have a similiar feature called Bookmarks. Learn more in the official documentation: [Managing Frequently Used SQL](https://www.dbvis.com/docs/26.2/working-with-sql/managing-frequently-used-sql/).
 
 ### EXAplus commands
 
-EXAplus commands like **set autocommit off**  are not working in DBVisualizer. DBVisualizer has it's own syntax for it's client commands starting with @, e.g. **@set autocommit off;** See also official documentation: <http://confluence.dbvis.com/display/UG100/Using+Client-Side+Commands> 
+EXAplus commands like **set autocommit off**  are not working in DBVisualizer. DBVisualizer has it's own syntax for it's client commands starting with @, e.g. **@set autocommit off;** See also official documentation: [Using Client-Side Commands](https://www.dbvis.com/docs/26.2/working-with-sql/using-client-side-commands/).
 
 ## Additional Notes
 

@@ -89,10 +89,8 @@ If your model contains any of the above and it turns out to be relevant for repr
 
  ## Additional References
 
-The script itself: [create_view_ddl.sql](https://raw.githubusercontent.com/exasol/exa-toolbox/master/utilities/create_view_ddl.sql)
-
-<https://www.exasol.com/support/browse/IDEA-359>
-
-[create-ddl-for-the-entire-database](https://exasol.my.site.com/s/article/Create-DDL-for-the-entire-Database)
+* The script itself: [create_view_ddl.sql](https://raw.githubusercontent.com/exasol/exa-toolbox/master/utilities/create_view_ddl.sql)
+* There was an Idea ticket on the subject: IDEA-359, but its traces were lost after few migrations of Ideation Portal.
+* [create-ddl-for-the-entire-database](https://exasol.my.site.com/s/article/Create-DDL-for-the-entire-Database)
 
 *We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

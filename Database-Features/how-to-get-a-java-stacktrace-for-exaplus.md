@@ -5,9 +5,7 @@ In rare cases, to debug a problem Exasol will require detailed information regar
 
 ## Prerequisites
 
-Java SDK must be installed on the machine where EXAplus was started. The SDK can be downloaded here:
-
-<https://www.oracle.com/java/technologies/javase-jdk8-downloads.html>
+JDK must be installed on the machine where EXAplus was started. The SDK can be downloaded here: [Java Downloads](https://www.oracle.com/java/technologies/downloads/)
 
 ## How to get a java stacktrace for EXAplus?
 
