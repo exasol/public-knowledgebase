@@ -59,11 +59,11 @@ The geo field is now useable in any visualisation! That's it!
 
 ![Fields](images/exa-Pieterjan_4-1618840549123.png)
 
-## Extracting longitude and latitude from Well Known Text (WKT) data.
+## Extracting longitude and latitude from Well Known Text (WKT) data
 
 Let's continue from our example above. We now have a `geometry` column we could use straight away, but there's a challenge:
 
-All standard map visualisations expect longitude and latitude coordinates. We have data in the form of `POINT( x y)`. 
+All standard map visualisations expect longitude and latitude coordinates. We have data in the form of `POINT( x y)`.
 
 How do we get this data out?
 
@@ -128,7 +128,8 @@ I've added some custom colour as well. The final result is this beautifully rend
 
 ![Map with colors](images/exa-Pieterjan_0-1618906897312.jpg)
 
-And this concludes our short tutorial.   
+And this concludes our short tutorial.
+
 I hope you've found this helpful.
 
 For more information on all topics I'd advise you to read the links under additional references.
