@@ -1,4 +1,5 @@
-# How to create DDL for Exasol support 
+# How to create DDL for Exasol support
+
 ## Problem
 
  To reproduce certain problems, Exasol support may ask you to send DDL statements for required tables and views.  
@@ -12,9 +13,10 @@ Both options are not optimal.
 
 The attachment of this article contains a procedure script (Lua) that can create DDL statements for recursive dependencies of a view. The DDL are presented as a single-column result-set and are ready for copy/paste into a text editor (or EXAplus) for saving.
 
- ## Example Call
+## Example Call
 
-  **Script call**  
+**Script call**
+
 ```sql
 --DDL created by user SYS at 2017-11-14 09:44:59.554000
 
@@ -23,8 +25,8 @@ The attachment of this article contains a procedure script (Lua) that can create
 --========================================--
 CREATE SCHEMA "DUT";
 CREATE TABLE "DUT"."TAB1"(
-	"I" DECIMAL(18,0) IDENTITY NOT NULL,
-	"J" DECIMAL(3,0)
+  "I" DECIMAL(18,0) IDENTITY NOT NULL,
+  "J" DECIMAL(3,0)
 );
 -- SYSTEM TABLE: SYS.EXA_METADATA
 
@@ -36,7 +38,7 @@ CREATE TABLE "DUT"."TAB1"(
 function func( param decimal(3) ) returns decimal(3)
 as
 begin
-	return sqrt(param) * (select max(i) from dut.tab1);
+  return sqrt(param) * (select max(i) from dut.tab1);
 end
 /
 
@@ -45,9 +47,8 @@ end
 --========================================--
 CREATE LUA SCALAR SCRIPT "LUA_SCALAR" () RETURNS DECIMAL(18,0) AS
 function run()
-		return decimal(10,18,0)
-	end
-
+    return decimal(10,18,0)
+  end
 /
 
 --========================================--
@@ -59,19 +60,19 @@ function run()
 
 --> level 1
 CREATE VIEW "DUT"."BRANCH"
-	as ( select * from exa_metadata, cat );
+  as ( select * from exa_metadata, cat );
 
 -- final query/view:
 CREATE VIEW "DUT"."TRUNK"
-	as (
-		select * from dut.tab1, dut.branch
-		where func(j) > lua_scalar()
-	);
+  as (
+    select * from dut.tab1, dut.branch
+    where func(j) > lua_scalar()
+  );
 ```
 
 ## Caution
 
- This script is work in progress and has only seen minimal testing so far.
+This script is work in progress and has only seen minimal testing so far.
 
 ## Things known not to work:
 
@@ -87,10 +88,10 @@ There are the following prerequisites to run the script:
 
 If your model contains any of the above and it turns out to be relevant for reproduction of a problem, you might have to revert to "Skip all that" above. The "Copy Database" script in [create-ddl-for-the-entire-database](https://exasol.my.site.com/s/article/Create-DDL-for-the-entire-Database) may be of use then.
 
- ## Additional References
+## Additional References
 
 * The script itself: [create_view_ddl.sql](https://raw.githubusercontent.com/exasol/exa-toolbox/master/utilities/create_view_ddl.sql)
 * There was an Idea ticket on the subject: IDEA-359, but its traces were lost after few migrations of Ideation Portal.
 * [create-ddl-for-the-entire-database](https://exasol.my.site.com/s/article/Create-DDL-for-the-entire-Database)
 
-*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).*
