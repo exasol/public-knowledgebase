@@ -77,14 +77,14 @@ Create an Exaplus profile with all of the connection details, including database
 Edit config file with the help of following information:
 
 * Global Section:
-	+ EXAPLUS = Path to EXAPLUS excluding the exaplus. For the example above, it would be '/usr/opt/EXASuite-7/EXASolution-7.1.19/bin/Console'
-	+ PROFILENAME = The name of the profile created in the previous step as (metadata_backup_profile)
+   * EXAPLUS = Path to EXAPLUS excluding the exaplus. For the example above, it would be '/usr/opt/EXASuite-7/EXASolution-7.1.19/bin/Console'
+   * PROFILENAME = The name of the profile created in the previous step as (metadata_backup_profile)
 * Backup Section:
-	+ EXTERNAL_DIR = The path where the metadata backup will be stored if specified. Can be an external filesystem. Should be mounted or available beforehand
-	+ SYSPATH = The path where the scripts like backup.sh were downloaded to
-	+ DB_NAME = The Database Name
-	+ EXAPLUS_TIMEOUT = Timeout for Exaplus (default 300 seconds). If you want to prevent long-running queries, set the timeout accordingly. Please note, for very large databases, it might take over 5 minutes to run all of the scripts, so please set the timeout higher.
-	+ EXAPLUS_RECONNECT = Reconnect tries for Exaplus if the connection fails. Default value is set to '1'.
+   * EXTERNAL_DIR = The path where the metadata backup will be stored if specified. Can be an external filesystem. Should be mounted or available beforehand
+   * SYSPATH = The path where the scripts like backup.sh were downloaded to
+   * DB_NAME = The Database Name
+   * EXAPLUS_TIMEOUT = Timeout for Exaplus (default 300 seconds). If you want to prevent long-running queries, set the timeout accordingly. Please note, for very large databases, it might take over 5 minutes to run all of the scripts, so please set the timeout higher.
+   * EXAPLUS_RECONNECT = Reconnect tries for Exaplus if the connection fails. Default value is set to '1'.
 
 ## *Step 4*
 
