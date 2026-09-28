@@ -1,4 +1,5 @@
-# XML-parsing using Java UDFs 
+# XML-parsing using Java UDFs
+
 ## Background
 
 This article describes how to use the Java DOM Parser to parse an XML-Text stored in an Exasol database. The article will result in a Java-UDF that can be used to structure the content of a XML-Text. Documentation on the DOM Parser can be found here: [Reading XML Data into a DOM](https://docs.oracle.com/javase/tutorial/jaxp/dom/readingXML.html)
@@ -42,31 +43,28 @@ Within the attached xmlexample.zip file you will find 8 files:
 
 In addition, the `pom.xml` for maven is attached as part of xmlexample.zip. The POM file includes JUnit, and maven-assembly-plugin (used to create a single jar including all dependencies).
 
-### Maven project in Eclipse:
-
 ## Step 2. Building the sources
 
 1. `"cd"` to the workspace of the maven project
 2. run `"mvn clean package assembly:single"`  
 The jar with all dependencies can be found in the "target"-folder. Name: `"xmlexample-0.0.1-SNAPSHOT-jar-with-dependencies.jar"`
 
-You can find a precompiled jar attached to this article. xmlexample-0.0.1-SNAPSHOT-jar-with-dependencies.jar 
+You can find a precompiled jar attached to this article: xmlexample-0.0.1-SNAPSHOT-jar-with-dependencies.jar
 
 ## Step 3. Deploying jar to Exasol cluster
 
 Look in our documentation that describes how to install jar libraries in the cluster.  
 For this article, the fat jar was deployed to a Bucket named "jars" using the following curl© command:
 
-
-```
+```shell
 curl -X PUT -T xmlexample-0.0.1-SNAPSHOT-jar-with-dependencies.jar   
  http://w:<w_pwd>@<db_node>:<EXABucketFS_port>/jars/xmlexample-0.0.1-SNAPSHOT-jar-with-dependencies.jar 
 ```
+
 ## Step 4. UDF and usage
 
 The linked file `xmlexample_Data.sql` creates a table for storing the XML-Text and inserts two rows (including two rows for the CITIES table, each).   
 **Please note**: This approach requires the XML texts to have less than 2 million characters.
-
 
 ```sql
 -- Data.sql
@@ -103,9 +101,9 @@ insert into myXML values
 
 commit;
 ```
+
 The linked file `xmlexample_UDF.sql` describes how to create a UDF that imports the installed jar library and uses the XML-parsing functionality.  
 In addition, the UDF function is used to insert data into an Exasol table.
-
 
 ```sql
 -- UDF.sql
@@ -128,6 +126,7 @@ commit;
 
 select * from cities;  
 ```
+
 ## Step 5. Use UDF for ETL
 
 The last example shows how to use the functionality for inserting data into a table via a SELECT statement.  
@@ -142,7 +141,6 @@ For 1. we will demonstrate how to use the existing UDF for an ETL UDF. As for 2.
 
 The delivered source code already includes the method `"generateSqlForImportSpec(...)"` which is mandatory for ETL UDFs.  
 Class ProcessXML.java:
-
 
 ```java
 // ...
@@ -160,8 +158,8 @@ public static String generateSqlForImportSpec(ExaMetadata meta, ExaImportSpecifi
     	  return mySelect;
 }
 // ...
-
 ```
+
 ## Additional Notes
 
 This callback function is called by the Exasol engine if you use the UDF within an IMPORT statement and generates an appropriate SELECT statement for the IMPORT.
@@ -182,4 +180,4 @@ This article requires that the table storing the XML data is located in the curr
 * [xmlexample-0.0.1-SNAPSHOT-jar-with-dependencies.jar.zip](https://github.com/exasol/Public-Knowledgebase/files/9936896/xmlexample-0.0.1-SNAPSHOT-jar-with-dependencies.jar.zip)
 * [xmlexample.zip](https://github.com/exasol/Public-Knowledgebase/files/9936897/xmlexample.zip)
 
-*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).*
