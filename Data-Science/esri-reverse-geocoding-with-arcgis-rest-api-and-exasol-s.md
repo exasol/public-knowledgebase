@@ -3,11 +3,9 @@
 
 One way to work with geocoding is to use a GIS (geographic information system) service like ArcGIS ([www.arcgis.com](http://www.arcgis.com)) from Esri.
 
-The following website shows different use cases when such a service might be useful:  
-[https://developers.arcgis.com](https://developers.arcgis.com/)
+The following website shows different use cases when such a service might be useful: [https://developers.arcgis.com](https://developers.arcgis.com/)
 
-In this tutorial, we would like to show you how to use the ArcGIS REST API from Python:  
-<http://resources.arcgis.com/en/help/arcgis-rest-api>
+In this tutorial, we would like to show you how to use the ArcGIS REST API from Python: [ArcGIS REST APIs documentation](https://developers.arcgis.com/rest/)
 
 In practice, you might face the following challenges:
 
@@ -48,7 +46,7 @@ Run the linked demo to get the geo information for the cities specified!
 
 ## Additional Notes
 
-For better performance when working with large datasets, we recommend batch geocoding (<https://developers.arcgis.com/rest/geocode/api-reference/geocoding-geocode-addresses.htm>) instead of geocoding – but in order to use this, you need to have an ArcGIS online organizational account which you might be charged for.
+For better performance when working with large datasets, we recommend batch geocoding ([/geocodeAddresses])(https://developers.arcgis.com/rest/geocode/api-reference/geocoding-geocode-addresses.htm)) instead of geocoding – but in order to use this, you need to have an ArcGIS online organizational account which you might be charged for.
 
 ## Additional References
 
