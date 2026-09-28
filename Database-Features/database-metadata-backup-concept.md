@@ -1,4 +1,5 @@
-# Database Metadata Backup Concept 
+# Database Metadata Backup Concept
+
 ## Article: Metadata Backup
 
 ## Background
@@ -13,8 +14,8 @@ The file contains several scripts which will copy the DDL for all objects in the
 4. EXPORT statements are generated using the database script "BACKUP_SYS" for several system tables which can be referenced later on. The CSV files are saved in the './ddl/' path.
 5. A database script "*restore_sys.sql*" is created and saved in the './ddl/' path that includes all the commands neccesary to restore the system tables on a new "SYS_OLD" schema.
 6. The script executes the database script "CREATE_DB_DDL" and creates DDL for all database objects, including schemas, tables, views, users, roles. Limitations in the script are listed at the end.
-	1. Specifically, this script will read data from system tables and create the necessary CREATE statements which can be executed at a later time.
-	2. The script creates a new schema, stores the data into a table in this new schema, and then exports the table contents into an SQL file to prevent formatting errors. After the export, the schema is dropped.
+   1. Specifically, this script will read data from system tables and create the necessary CREATE statements which can be executed at a later time.
+   2. The script creates a new schema, stores the data into a table in this new schema, and then exports the table contents into an SQL file to prevent formatting errors. After the export, the schema is dropped.
 7. The DDL and CSV's of the old tables are compressed and saved as a .tar.gz file in the './backups' directory or on a different location if "EXTERNAL_DIR" is set on the "config" file.
 
 ## Limitations
@@ -36,10 +37,10 @@ Creating DDL based on system tables is not perfect and has some limitations and 
 * Exaplus installed
 * Database is already created and is able to be connected from the system you are running the scripts
 * Database user, which you will connect to the database with, has the following system privileges:
-	+ CREATE SCHEMA
-	+ CREATE TABLE
-	+ CREATE SCRIPT
-	+ SELECT ANY DICTIONARY
+   * CREATE SCHEMA
+   * CREATE TABLE
+   * CREATE SCRIPT
+   * SELECT ANY DICTIONARY
 
 ## How to create a Metadata Backup?
 
@@ -67,7 +68,6 @@ curl $GITHUB_BASE/create_db_ddl.sql -o prereq_db_scripts.sql
 
 Create an Exaplus profile with all of the connection details, including database user, password, and connection string. Details on the parameters for Exaplus can be found in the user manual. Example:
 
-
 ```shell
 /usr/opt/EXASuite-7/EXASolution-7.1.19/bin/Console/exaplus -u [YOUR_USER] -p [YOUR_PASSWORD] -c [DB IP Address]:8563 -wp metadata_backup_profile
 ```
@@ -90,18 +90,18 @@ Edit config file with the help of following information:
 
 Make .SH files executable
 
-
 ```shell
 chmod 755 *.sh
 ```
+
 ## *Step 5*
 
 Run backup.sh
 
-
 ```shell
 ./backup.sh or bash backup.sh
 ```
+
 ## Article: Metadata Restore
 
 ## Background
@@ -139,10 +139,10 @@ The restore script can be run from the same system you ran the backup on or a di
 
 Unpack the backup tar into the directory of your choice
 
-
 ```shell
 tar xf ddl-backup-DB_NAME-YYYY-MM-DD-HH-Mi-SS.tar.gz
 ```
+
 ## *Step 3*
 
 Edit config file with the following information from:
@@ -158,10 +158,10 @@ Edit config file with the following information from:
 
 Run restore.sh
 
-
 ```shell
 ./restore.sh or bash restore.sh 
 ```
+
 ## Additional References
 
 * [Create DDL for the entire Database](https://exasol.my.site.com/s/article/Create-DDL-for-the-entire-Database)
@@ -170,3 +170,5 @@ Run restore.sh
 ## Downloads
 * [metadata_backup folder](https://github.com/allipatev/exa-toolbox/tree/metadata-backup/utilities/metadata_backup)
 * [create_db_ddl.sql](https://github.com/allipatev/exa-toolbox/blob/metadata-backup/utilities/create_db_ddl.sql)
+
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).*
