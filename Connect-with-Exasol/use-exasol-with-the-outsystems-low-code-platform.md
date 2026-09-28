@@ -14,7 +14,7 @@ All Exasol queries and commands not supported by OutSystems’ Aggregates and Ad
 
 A Demo Application is available in the OutSystems Forge that describes how to use this Execute function, please see the documentation for more information on how to install the .dll.
 
-**Core capabilities**
+### Core capabilities
 
 * Connect the on-premise OutSystems platform to the Exasol database natively (like current SQLServer, Oracle, iDB2 and MySQL).
 * Add Exasol tables and views as external entities using Integration Studio.
@@ -56,7 +56,7 @@ A Demo Application is available in the OutSystems Forge that describes how to us
 
    ![ConfigurationTool.exe](images/mohamedemam_3-1598946872839.png)
   
-   First click on **Create/Update Database** Button (click Yes on new pop ups if needed) then click on **Apply and Exit** Button (click Yes on new pop ups if needed), the server will run some commands and then you will see if it’s “done”, and that’s it.      
+   First click on **Create/Update Database** Button (click Yes on new pop ups if needed) then click on **Apply and Exit** Button (click Yes on new pop ups if needed), the server will run some commands and then you will see if it’s “done”, and that’s it.
   
    ![Service Center Installation](images/mohamedemam_4-1598946942549.png)
 
@@ -67,8 +67,8 @@ A Demo Application is available in the OutSystems Forge that describes how to us
    *Please note the Known Limitations  section in the documentation provided with the connector files at* [OutSystemsExasolConnector](https://dev.azure.com/NovioQPublic/OutSystemsExasolConnector)
    2. Create a user in Exasol that has all privileges you need in your OutSystems application.
       * The database user must have permissions to:
-         + List the necessary tables and views on the external database.
-         + Perform the operations Create, Read, Update, and Delete on those tables and views.
+         * List the necessary tables and views on the external database.
+         * Perform the operations Create, Read, Update, and Delete on those tables and views.
 2. **Define a Connection to the External Database**
    1. Set up a connection to your database in Service Center:
       1. Open **Service Center** and go to **Administration > Database Connections**
@@ -81,11 +81,11 @@ A Demo Application is available in the OutSystems Forge that describes how to us
          3. Username and Password
          4. Name of the schema you want to connect to (Optional)
 
-			**You still can connect to other schemas as long as you have privileges for them**
+            **You still can connect to other schemas as long as you have privileges for them**
 
             ![New Database Connection](images/mohamedemam_0-1598947502199.png)
 
-	2. Click **Test Connection** to check if the connection is working properly, then click **Create** to create the Database Connection.
+   2. Click **Test Connection** to check if the connection is working properly, then click **Create** to create the Database Connection.
 3. **Map Tables or Views to Entities in an Extension Module**
    1. Open **Service Studio**, create a new application and add an Extension module to this application.
    2. Clicking on Create module will open **Integration Studio**. Connect to your OutSystems environment.
@@ -108,13 +108,13 @@ A Demo Application is available in the OutSystems Forge that describes how to us
 
       ![Associate the extension](images/mohamedemam_3-1598947597531.png)
 
-6. **Using the entities in your application**
+5. **Using the entities in your application**
    1. In your application, click **Manage Dependencies** ....
    2. Add a dependency to the Extension and select the Entities that you will use in your application. [Integrate with an External Database](https://success.outsystems.com/documentation/11/integration_with_external_systems/integrate_with_an_external_database/) for more screenshots and a general description of how to set up a connection to an external database.
 
       ![Manage Dependencies](images/connect-external-db-7.png)
 
-8. **Using custom queries in your application**  
+6. **Using custom queries in your application**  
 For custom queries, we have built an extension in OutSystems where you can find a function that can execute any query directly to Exasol Server:
    1. After installing the Forge Component, the extension **“ExasolConnectorExtension”** will be available in the Dependencies. In this extension you can find an action called “**ExasolExecute**”
    2. Add this Action to your application via "Manage Dependencies"
