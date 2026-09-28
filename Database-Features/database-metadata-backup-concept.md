@@ -42,7 +42,7 @@ Creating DDL based on system tables is not perfect and has some limitations and 
 
 ## How to create a Metadata Backup?
 
-## *Step 1*
+## Step 1 for Metadata Backup
 
 Create a folder called "metabackup" and download there the required files.
 Actually, this folder name is not mandatory. Just don't forget to change it in the configs (see below).
@@ -62,7 +62,7 @@ curl $GITHUB_BASE/metadata_backup/restore.sh -o restore.sh
 curl $GITHUB_BASE/create_db_ddl.sql -o prereq_db_scripts.sql
 ```
 
-## *Step 2*
+## Step 2 for Metadata Backup
 
 Create an Exaplus profile with all of the connection details, including database user, password, and connection string. Details on the parameters for Exaplus can be found in the user manual. Example:
 
@@ -70,7 +70,7 @@ Create an Exaplus profile with all of the connection details, including database
 /usr/opt/EXASuite-7/EXASolution-7.1.19/bin/Console/exaplus -u [YOUR_USER] -p [YOUR_PASSWORD] -c [DB IP Address]:8563 -wp metadata_backup_profile
 ```
 
-## *Step 3*
+## Step 3 for Metadata Backup
 
 Edit config file with the help of following information:
 
@@ -84,7 +84,7 @@ Edit config file with the help of following information:
   * EXAPLUS_TIMEOUT = Timeout for Exaplus (default 300 seconds). If you want to prevent long-running queries, set the timeout accordingly. Please note, for very large databases, it might take over 5 minutes to run all of the scripts, so please set the timeout higher.
   * EXAPLUS_RECONNECT = Reconnect tries for Exaplus if the connection fails. Default value is set to '1'.
 
-## *Step 4*
+## Step 4 for Metadata Backup
 
 Make .SH files executable
 
@@ -92,7 +92,7 @@ Make .SH files executable
 chmod 755 *.sh
 ```
 
-## *Step 5*
+## Step 5 for Metadata Backup
 
 Run backup.sh
 
@@ -102,7 +102,7 @@ Run backup.sh
 
 ## Article: Metadata Restore
 
-## Background 
+## Background
 
 This script will import the CSV's created in the Backup and run all of the CREATE statements.
 
@@ -129,11 +129,11 @@ This script will import the CSV's created in the Backup and run all of the CREAT
 
 ## How to apply a Metadata Restore?
 
-## *Step 1*
+## Step 1 for Metadata Restore
 
 The restore script can be run from the same system you ran the backup on or a different system. If running the restore on a new system, please follow steps 1-4 found in the Backup instructions to set up the files. NOTE: When setting up your exaplus profile, please enter the information for the database you are restoring to.
 
-## *Step 2*
+## Step 2 for Metadata Restore
 
 Unpack the backup tar into the directory of your choice
 
@@ -141,7 +141,7 @@ Unpack the backup tar into the directory of your choice
 tar xf ddl-backup-DB_NAME-YYYY-MM-DD-HH-Mi-SS.tar.gz
 ```
 
-## *Step 3*
+## Step 3 for Metadata Restore
 
 Edit config file with the following information from:
 
@@ -152,7 +152,7 @@ Edit config file with the following information from:
   * BACKUP_RESTORE_PATH = The path that you unpacked the backup file to (should end with '/ddls')
   * RESTORE_SYS_SQL_PATH = The path containing the restore script
 
-## *Step 4*
+## Step 4 for Metadata Restore
 
 Run restore.sh
 
@@ -166,6 +166,7 @@ Run restore.sh
 * There was an Idea ticket on the subject: IDEA-371, but its traces were lost after few migrations of Ideation Portal.
 
 ## Downloads
+
 * [metadata_backup folder](https://github.com/allipatev/exa-toolbox/tree/metadata-backup/utilities/metadata_backup)
 * [create_db_ddl.sql](https://github.com/allipatev/exa-toolbox/blob/metadata-backup/utilities/create_db_ddl.sql)
 
