@@ -137,14 +137,11 @@ For more information on all topics I'd advise you to read the links under additi
 Exasol's SQL reference section on geospatial data:  
 [Geospatial Data](https://docs.exasol.com/db/latest/sql_references/geospatialdata/geospatialdata_overview.htm)
 
-A how to on icon-map by the author himself:  
-<https://powerbi.jamesdales.com/how-to-use-icon-map/>
+A how to on icon-map by the author himself: [Getting Started with Icon Map](https://www.icon-map.com/documentation/getting-started)
 
-A post by Microsoft's Chris Webb on recent additions to Power BI for working with WKT types which goes over the Geography/Geometry/WKT conversion functions in more detail:  
-<https://blog.crossjoin.co.uk/2020/08/16/power-query-geography-and-geometry-functions-in-power-bi-and-excel/>
+A post by Microsoft's Chris Webb on recent additions to Power BI for working with WKT types which goes over the Geography/Geometry/WKT conversion functions in more detail: [Power Query Geography And Geometry Functions In Power BI And Excel](https://blog.crossjoin.co.uk/2020/08/16/power-query-geography-and-geometry-functions-in-power-bi-and-excel/)
 
-The wikipedia entry on Well Known Text:  
-<https://en.wikipedia.org/wiki/Well-known_text_representation_of_geometry>
+The wikipedia entry on Well Known Text: [Well-known text representation of geometry](https://en.wikipedia.org/wiki/Well-known_text_representation_of_geometry)
 
 ## Downloads
 

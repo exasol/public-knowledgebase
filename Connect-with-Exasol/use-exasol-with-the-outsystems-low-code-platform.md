@@ -1,4 +1,5 @@
-# Use Exasol with the OutSystems low-code platform 
+# Use Exasol with the OutSystems low-code platform
+
 ## Background
 
 The *Exasol database connector for OutSystems* component allows the OutSystems low-code application development platform to natively connect to the Exasol high-performance analytical database.  
@@ -6,7 +7,7 @@ The *Exasol database connector for OutSystems* component allows the OutSystems 
 
 Using Exasol with OutSystems enables companies to speed up their digital automation strategy and quickly implement low-code data driven business applications using Analytics, Artificial Intelligence, Predictive Modelling and Machine Learning techniques. 
 
-The connector component exists of two parts: an ExasolDatabaseProvider.dll you can download at<https://dev.azure.com/NovioQPublic/OutSystemsExasolConnector>and an Execute function component you can download from the OutSystems Forge at <https://www.outsystems.com/forge/component-overview/8697/exasol-connector>. 
+The connector component exists of two parts: an ExasolDatabaseProvider.dll you can download at [OutSystemsExasolConnector](https://dev.azure.com/NovioQPublic/OutSystemsExasolConnector) and an Execute function component you can download from the OutSystems Forge at [Exasol Connector](https://www.outsystems.com/forge/component-overview/8697/exasol-connector-o11).
 
 After the .dll has been installed, you can add a database connection to Exasol the ‘standard’ way, so by creating a Database Connection in Service Center and then importing tables using Integration Studio. All typical OutSystems Entity actions and Aggregates will be available.
 
@@ -25,7 +26,7 @@ A Demo Application is available in the OutSystems Forge that describes how to us
 ## Prerequisites
 
 * Download the latest **Exasol ADO.NET Driver** from: [Downloads](https://downloads.exasol.com/clients-and-drivers/adonet)/ and install it on your Windows Server where OutSystems is installed.
-* Download the file **ExasolDatabaseProvider.dll** from: <https://dev.azure.com/NovioQPublic/OutSystemsExasolConnector>.
+* Download the file **ExasolDatabaseProvider.dll** from: [OutSystemsExasolConnector](https://dev.azure.com/NovioQPublic/OutSystemsExasolConnector).
 * To get a free evaluation licence, send us an email at:[support@novioq.com](mailto:support@novioq.com) with your **Windows Server Product ID**, which you can find in ****Settings > System > About****  
 ![](images/mohamedemam_0-1598946817431.png)
 
@@ -57,7 +58,7 @@ A Demo Application is available in the OutSystems Forge that describes how to us
 
 1. **Exasol prerequisites**
 	1. Create your data model in Exasol.  
-	*Please note the Known Limitations  section in the documentation provided with the connector files at*<https://dev.azure.com/NovioQPublic/OutSystemsExasolConnector>
+	*Please note the Known Limitations  section in the documentation provided with the connector files at* [OutSystemsExasolConnector](https://dev.azure.com/NovioQPublic/OutSystemsExasolConnector)
 	2. Create a user in Exasol that has all privileges you need in your OutSystems application.
 		* The database user must have permissions to:
 			+ List the necessary tables and views on the external database.
@@ -98,7 +99,7 @@ A Demo Application is available in the OutSystems Forge that describes how to us
 2. **Using the entities in your application**
 	1. In your application, click **Manage Dependencies** ....
 	2. Add a dependency to the Extension and select the Entities that you will use in your application.  
-	<https://success.outsystems.com/Documentation/11/Extensibility_and_Integration/Integrate_with_an_External_Database>for more screenshots and a general description of how to set up a connection to an external database.   
+	[Integrate with an External Database](https://success.outsystems.com/documentation/11/integration_with_external_systems/integrate_with_an_external_database/) for more screenshots and a general description of how to set up a connection to an external database.   
 	  
 	![](images/connect-external-db-7.png)
 3. **Using custom queries in your application**  
@@ -120,6 +121,7 @@ For more information or help visit [novioq.com](https://www.novioq.com/outsyste
 *Visit the [OutSystems Forge](https://www.outsystems.com/forge/component-overview/8697/exasol-connector) for more extensive documentation and and [the NovioQ instruction page](https://novioq.com/outsystems-exasol-connector/) to watch step by step recordings on how to install and use this connector.*
 
 ## Downloads
+
 [Exasol-database-connector-for-OutSystems.pdf](https://github.com/exasol/Public-Knowledgebase/files/9936516/Exasol-database-connector-for-OutSystems.pdf)
 
 *We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 

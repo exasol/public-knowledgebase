@@ -165,7 +165,7 @@ Run restore.sh
 ## Additional References
 
 * [Create DDL for the entire Database](https://exasol.my.site.com/s/article/Create-DDL-for-the-entire-Database)
-* <https://www.exasol.com/support/browse/IDEA-371>
+* There was an Idea ticket on the subject: IDEA-371, but its traces were lost after few migrations of Ideation Portal.
 
 ## Downloads
 * [metadata_backup folder](https://github.com/allipatev/exa-toolbox/tree/metadata-backup/utilities/metadata_backup)
