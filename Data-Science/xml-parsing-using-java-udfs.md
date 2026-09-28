@@ -63,7 +63,8 @@ curl -X PUT -T xmlexample-0.0.1-SNAPSHOT-jar-with-dependencies.jar
 
 ## Step 4. UDF and usage
 
-The linked file `xmlexample_Data.sql` creates a table for storing the XML-Text and inserts two rows (including two rows for the CITIES table, each).   
+The linked file `xmlexample_Data.sql` creates a table for storing the XML-Text and inserts two rows (including two rows for the CITIES table, each).
+
 **Please note**: This approach requires the XML texts to have less than 2 million characters.
 
 ```sql
@@ -145,17 +146,17 @@ Class ProcessXML.java:
 ```java
 // ...
 public static String generateSqlForImportSpec(ExaMetadata meta, ExaImportSpecification importSpec)  {
-    	  Map<String, String> params = importSpec.getParameters();
-    	  
-    	  String etludf = new String(meta.getScriptSchema() + "." + meta.getScriptName());
-    	  
-    	  String mySelect = new String("SELECT ");  
-    	  mySelect += etludf;
-    	  mySelect += " (";
-    	  mySelect += params.get("COLUMN_NAME");
-    	  mySelect += ") FROM ";
-    	  mySelect += params.get("TABLE_NAME");
-    	  return mySelect;
+  Map<String, String> params = importSpec.getParameters();
+
+  String etludf = new String(meta.getScriptSchema() + "." + meta.getScriptName());
+
+  String mySelect = new String("SELECT ");  
+  mySelect += etludf;
+  mySelect += " (";
+  mySelect += params.get("COLUMN_NAME");
+  mySelect += ") FROM ";
+  mySelect += params.get("TABLE_NAME");
+  return mySelect;
 }
 // ...
 ```
