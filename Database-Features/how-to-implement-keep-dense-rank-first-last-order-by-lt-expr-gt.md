@@ -1,4 +1,5 @@
-# How to implement KEEP (DENSE_RANK FIRST/LAST ORDER BY &lt;expr&gt;) in EXASOL 
+# How to implement KEEP (DENSE_RANK FIRST/LAST ORDER BY &lt;expr&gt;) in EXASOL
+
 ## Background
 
 * This article is currently work in progress, but published anyway
@@ -9,7 +10,6 @@
 ## How to transform the following select to something supported in EXASOL?
 
 Note: The following transformation is an advanced topic. Understanding how to rewrite the query will need a considerable amount of time.
-
 
 ```sql
 SELECT
@@ -44,7 +44,6 @@ The minimum/maximum value of *&lt;order_expr&gt;* for the original `GROUP BY`. T
 The values for the original select from (1) will then be enriched with values from (2) by a join on the GROUP BY-columns of the original select together with the attribute for selecting exactly the *&lt;aggregate_function&gt;* value for the subaggregation for the FIRST / LAST value.
 
 So basically, the rewriting looks like this:
-
 
 ```sql
 WITH original_aggregation AS
@@ -87,8 +86,8 @@ FROM
   ON orig_agg.<group_by_cols> = sub_agg.<group_by_cols>
      AND orig_agg.first_last_selector = sub_agg.<order_expr>
 ```
-To get the computation faster, we don't use a separate select for 1) and 2), but combine the calculation in a single select with different GROUPING SETs and distinguish them by the different values of the GROUPING-function (see manual for more details):
 
+To get the computation faster, we don't use a separate select for 1) and 2), but combine the calculation in a single select with different GROUPING SETs and distinguish them by the different values of the GROUPING-function (see manual for more details):
 
 ```sql
 WITH all_aggregations AS
@@ -141,8 +140,8 @@ FROM
   ON orig_agg.<group_by_cols> = sub_agg.<group_by_cols>
      AND orig_agg.first_last_selector = sub_agg.<order_expr> 
 ```
-### Example of a simple transformation
 
+### Example of a simple transformation
 
 ```sql
 -- Sample data table
@@ -210,6 +209,7 @@ FROM
      AND orig_agg.first_last_selector = sub_agg.k
 ;
 ```
+
 ## Additional Notes
 
 ### What to do with aggregated select (no GROUP BY)
@@ -251,4 +251,4 @@ If there are multiple *&lt;order_expr&gt;* for a single `KEEP DENSE_RANK FIRST/L
 
 * There was an Idea ticket on the subject: IDEA-65, but its traces were lost after few migrations of Ideation Portal.
 
-*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).*
