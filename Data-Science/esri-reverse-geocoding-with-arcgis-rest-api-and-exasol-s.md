@@ -1,13 +1,12 @@
-# Esri: (reverse) geocoding with ArcGIS REST API and Exasol's GEOMETRY data type 
+# Esri: (reverse) geocoding with ArcGIS REST API and Exasol's GEOMETRY data type
+
 ## Background
 
 One way to work with geocoding is to use a GIS (geographic information system) service like ArcGIS ([www.arcgis.com](http://www.arcgis.com)) from Esri.
 
-The following website shows different use cases when such a service might be useful:  
-[https://developers.arcgis.com](https://developers.arcgis.com/)
+The following website shows different use cases when such a service might be useful: [https://developers.arcgis.com](https://developers.arcgis.com/)
 
-In this tutorial, we would like to show you how to use the ArcGIS REST API from Python:  
-<http://resources.arcgis.com/en/help/arcgis-rest-api>
+In this tutorial, we would like to show you how to use the ArcGIS REST API from Python: [ArcGIS REST APIs documentation](https://developers.arcgis.com/rest/)
 
 In practice, you might face the following challenges:
 
@@ -32,12 +31,12 @@ Since version 6.2, the Python package "requests" already comes in the standard l
 
 If you do not have the proper packages installed (see step 1) - you may need to update each UDF with code like this:
 
-
 ```python
 import sys 
 import glob   
 sys.path.extend(glob.glob('/path/to/bucket/*'))
 ```
+
 ## Step 3: Run arcgis_cities
 
 Run the linked script `arcgis_cities.sql` to create the data that you will use in the example.
@@ -48,7 +47,7 @@ Run the linked demo to get the geo information for the cities specified!
 
 ## Additional Notes
 
-For better performance when working with large datasets, we recommend batch geocoding (<https://developers.arcgis.com/rest/geocode/api-reference/geocoding-geocode-addresses.htm>) instead of geocoding – but in order to use this, you need to have an ArcGIS online organizational account which you might be charged for.
+For better performance when working with large datasets, we recommend batch geocoding ([/geocodeAddresses](https://developers.arcgis.com/rest/geocode/api-reference/geocoding-geocode-addresses.htm)) instead of geocoding – but in order to use this, you need to have an ArcGIS online organizational account which you might be charged for.
 
 ## Additional References
 
@@ -61,4 +60,4 @@ For better performance when working with large datasets, we recommend batch geoc
 * [arcgis_cities.sql](https://github.com/exasol/public-knowledgebase/blob/main/Data-Science/attachments/arcgis_cities.sql)
 * [arcgis_demo.sql](https://github.com/exasol/public-knowledgebase/blob/main/Data-Science/attachments/arcgis_demo.sql)
 
-*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).*
