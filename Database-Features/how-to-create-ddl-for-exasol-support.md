@@ -13,9 +13,7 @@ Both options are not optimal.
 
 The attachment of this article contains a procedure script (Lua) that can create DDL statements for recursive dependencies of a view. The DDL are presented as a single-column result-set and are ready for copy/paste into a text editor (or EXAplus) for saving.
 
-## Example Call
-
-**Script call**
+## Example Script Call
 
 ```sql
 --DDL created by user SYS at 2017-11-14 09:44:59.554000
@@ -74,7 +72,7 @@ CREATE VIEW "DUT"."TRUNK"
 
 This script is work in progress and has only seen minimal testing so far.
 
-## Things known not to work:
+## Things known not to work
 
 * Virtual Schemas – It is unlikely we would be able to clone your remote system anyway.
 * Connections and IMPORT inside views – Like virtual schemas, it probably does not make much sense.
