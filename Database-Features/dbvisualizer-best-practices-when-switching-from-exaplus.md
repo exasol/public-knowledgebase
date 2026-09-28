@@ -1,4 +1,5 @@
-# DBVisualizer: Best Practices when switching from EXAplus 
+# DBVisualizer: Best Practices when switching from EXAplus
+
 ## Problem
 
 When switching from EXAplus, you would like
@@ -14,7 +15,7 @@ When switching from EXAplus, you would like
 
 When switching from EXAplus, the first thing that you would like to change is the shortcut for executing the current statement. In DBVisualizer this is set to **Ctrl + .**  per default.  In EXAplus on the other hand this shortcut is defined as Ctrl + Enter. To chance it go to Tools -> Tool Properties and open the Key Bindings Dialog in the tree, create a copy of the current keymap called exasol and change the Binding for Main menu -> SQL Commander -> Execute Current:
 
-![](images/image-2018-07-09-09-27-51-989.png)
+![Key Bindings](images/image-2018-07-09-09-27-51-989.png)
 
 ## Auto completion
 
@@ -22,7 +23,7 @@ It's important to note that in DbVisualizer the auto completion of table/column
 
 You can also customize the behavior of the auto-completion in Tools -> Tool Properties in the Dialog SQL Commander -> Auto Completion:
 
-![](images/image-2018-07-09-09-31-27-731.png)
+![Auto Completion](images/image-2018-07-09-09-31-27-731.png)
 
 ## Creation of LUA Scripts / UDFs
 
@@ -30,16 +31,16 @@ In DBVisualizer LUA scripts / UDFs should be created as a SQL block.
 
 The start of the SQL Block is **--/** and the end of the block is defined with **/**:
 
-
 ```lua
 --/ 
 CREATE LUA SCRIPT MY_CAT RETURNS TABLE AS  
 return query([[select * from cat]])  
 /
 ```
+
 Per default **keywords in DBVisualizer are displayed in uppercase**, so if you open an existing LUA script keywords are automatically transformed to uppercase, so the case sensitive LUA script is not working anymore, please change this setting in Tool Properties -> Tools - SQL Formatting to "**Keep Case Asis**".
 
-![](images/image-2018-07-10-09-42-23-824.png)
+![SQL Formatting](images/image-2018-07-10-09-42-23-824.png)
 
 Please also have a look at the official documentation [Executing Complex Statements](https://www.dbvis.com/docs/26.2/working-with-sql/executing-complex-statements/).
 
@@ -65,6 +66,6 @@ In the current version, DbVisualizer uses the platforms linefeed convention, i.e
 
 2) Add the following on a new row: **dbvis.exasol.ReplaceCRLFwithLF=true**
 
-3) Restart DbVisualizer. 
+3) Restart DbVisualizer.
 
-*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).*
