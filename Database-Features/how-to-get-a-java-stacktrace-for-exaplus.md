@@ -1,13 +1,12 @@
-# How to get a java stacktrace for EXAplus 
+# How to get a java stacktrace for EXAplus
+
 ## Background
 
 In rare cases, to debug a problem Exasol will require detailed information regarding the status of the EXAplus client. As EXAplus is a java application, that information can be supplied as a **java stacktrace** using Oracle's java SDK.
 
 ## Prerequisites
 
-Java SDK must be installed on the machine where EXAplus was started. The SDK can be downloaded here:
-
-<https://www.oracle.com/java/technologies/javase-jdk8-downloads.html>
+JDK must be installed on the machine where EXAplus was started. The SDK can be downloaded here: [Java Downloads](https://www.oracle.com/java/technologies/downloads/)
 
 ## How to get a java stacktrace for EXAplus?
 
@@ -17,12 +16,12 @@ While the following examples and paths were generated on the Windows (tm) operat
 
 Any console will do, depending on your operating system.
 
-## Step 2: Change into the 'bin' directory of the JDK installation:
+## Step 2: Change into the 'bin' directory of the JDK installation
 
-
-```
+```shell
 cd "C:\Program Files\Java\jdk1.8.0_20\bin" 
 ```
+
 Please note:
 
 * The actual path may vary by operating system, installation and java version.
@@ -32,7 +31,7 @@ Please note:
 
 This can be done with the system's process monitor (windows task manager) or with thejpsprogram that is part of the JDK:
 
-![](images/image1.png)
+![jps output](images/image1.png)
 
 Here, we have two running java programs:jpsitself and something namedProgram. The latter is exaplus, with PID 2252.
 
@@ -40,12 +39,12 @@ Here, we have two running java programs:jpsitself and something namedProgram. Th
 
 The actual stacktrace is produced withjstackfrom the java SDK:
 
-![](images/image2.png)
+![jstack output](images/image2.png)
 
 jstack's output can also be redirected into a file:
 
-![](images/image3.png)
+![Output into file](images/image3.png)
 
-## Step 5: Attach the generated stacktrace to your ticket with Exasol.
+## Step 5: Attach the generated stacktrace to your ticket with Exasol
 
-*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).*
