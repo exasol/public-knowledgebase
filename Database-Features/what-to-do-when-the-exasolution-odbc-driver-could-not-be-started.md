@@ -13,7 +13,7 @@ The setup routines for the EXASolution Driver ODBC driver could not be loaded du
 The specified module could not be found. ((C:\Program Files\Exasol\EXASolution-x\ODBC\EXAODBCConfig.dll)
 ```
 
-![](images/exaPeggy_0-1632227123426.png)
+![Error message, English](images/exaPeggy_0-1632227123426.png)
 
 On German Windows System:
 
@@ -22,11 +22,11 @@ Die Setup-Routinen für den EXASolution Driver ODBC-Treiber konnten nicht gelade
 Das angegebene Modul wurde nicht gefunden. (C:\Program Files\Exasol\EXASolution-x\ODBC\EXAODBCConfig.dll)
 ```
 
-![](images/exaPeggy_0-1632232104172.png)
+![Error message, German](images/exaPeggy_0-1632232104172.png)
 
 The module `(C:\Program Files\Exasol\EXASolution-x\ODBC\EXAODBCConfig.dll)` is available:  
 
-![](images/exaPeggy_1-1632227250448.png)
+![.dll files](images/exaPeggy_1-1632227250448.png)
 
 ## Explanation
 
