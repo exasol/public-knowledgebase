@@ -1,7 +1,8 @@
-# What happens when I JOIN DECIMAL datatypes of various sizes? 
+# What happens when I JOIN DECIMAL datatypes of various sizes?
+
 ## Question
 
-Knowing that JOINS on VARCHAR of various sizes can create an expression index, what about using datatype DECIMAL? 
+Knowing that JOINS on VARCHAR of various sizes can create an expression index, what about using datatype DECIMAL?
 
 ## Answer
 
@@ -45,7 +46,7 @@ select * from dec_large join dec_small on dec_large.dec_28  = dec_small.dec_9; -
 select * from dec_small join var_tbl on dec_small.dec_9 = var_tbl.var_9; -- from EXA_DBA_PROFILE_LAST_DAY: INDEX CREATE,ExpressionIndex,VAR_TBL
 ```
 
-#### Externalize and show the statistics.
+#### Externalize and show the statistics
 
 ```sql
 flush statistics;
@@ -66,7 +67,7 @@ order by stmt_id, part_id;
 
 The most interesting line in the output is the expression index creation - which should be minimized if not avoided altogether.
 
-![](images/Expression_index.png)
+![Profiling with ExpressionIndex](images/Expression_index.png)
 
 Next, let's look at the indices created.
 
@@ -85,7 +86,7 @@ select edi.index_schema
 
 Reviewing the output, we see 4 indexes, 2 for each table and 0 indexes for the VAR_TBL.
 
-![](images/Indices_names_sizes.png)
+![Indices](images/Indices_names_sizes.png)
 
 ## Additional References
 
