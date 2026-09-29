@@ -1,7 +1,8 @@
-# What happens when I JOIN DECIMAL datatypes of various sizes? 
+# What happens when I JOIN DECIMAL datatypes of various sizes?
+
 ## Question
 
-Knowing that JOINS on VARCHAR of various sizes can create an expression index, what about using datatype DECIMAL? 
+Knowing that JOINS on VARCHAR of various sizes can create an expression index, what about using datatype DECIMAL?
 
 ## Answer
 
@@ -15,24 +16,25 @@ Before we go into detail, a few things to keep in mind:
 
 #### Environment build
 
-Our demonstration is using the SALES table from [https://github.com/exasol/database-migration/tree/master/test/testing_files/retail_mini](https://github.com/exasol/database-migration/tree/master/test/testing_files/retail_mini).
-
+Our demonstration is using the SALES table from RETAIL schema in public Demo database.
 
 ```sql
 create or replace table dec_small (dec_5 decimal(5,0), dec_9 decimal(9,0));
 create or replace table dec_large ( dec_18 decimal(18,0), dec_28 decimal(28,0));
 create or replace table int_tbl (int_1 integer);
 create or replace table var_tbl(var_9 varchar(9));
-insert into int_tbl select ( cast(price as integer)) from sales limit 1000 ;--Just insert some numeric data - our example uses a sales table.;
+insert into int_tbl select ( cast(price as integer)) from retail.sales limit 1000 ;--Just insert some numeric data - our example uses a sales table;
 
 insert into dec_small(dec_5, dec_9)  select int_1, int_1 from int_tbl;
 insert into dec_large(dec_18, dec_28)  select int_1, int_1 from int_tbl;
 insert into var_tbl(var_9)  select int_1 from int_tbl;
 ```
+
 #### Run JOINs and generate statistics
 
-
 ```sql
+alter session set profile='on';
+
 select * from dec_small join dec_large on dec_small.dec_5 = dec_large.dec_18; -- builds local index DEC_18
 select * from dec_small join dec_large on dec_small.dec_5 = dec_large.dec_28; -- builds local index DEC_28
 select * from dec_small join dec_large on dec_small.dec_9 = dec_large.dec_18; -- builds local index DEC_18
@@ -41,10 +43,10 @@ select * from dec_large join dec_small on dec_large.dec_18  = dec_small.dec_5; -
 select * from dec_large join dec_small on dec_large.dec_28  = dec_small.dec_5; --builds local index DEC_5
 select * from dec_large join dec_small on dec_large.dec_18  = dec_small.dec_9; -- builds local index DEC_9
 select * from dec_large join dec_small on dec_large.dec_28  = dec_small.dec_9; -- builds local index DEC_9
-select * from dec_small join var_tbl on dec_small.dec_9 = var_tbl.var_9; -- from EXA_DBA_PROFILE_LAST_DAY: INDEX CREATE,EXPRESSION INDEX on REPLICATED table,RETAIL,VAR_TBL
+select * from dec_small join var_tbl on dec_small.dec_9 = var_tbl.var_9; -- from EXA_DBA_PROFILE_LAST_DAY: INDEX CREATE,ExpressionIndex,VAR_TBL
 ```
-#### Externalize and show the statistics.
 
+#### Externalize and show the statistics
 
 ```sql
 flush statistics;
@@ -62,12 +64,12 @@ from EXA_DBA_PROFILE_LAST_DAY
   where session_id = (select current_session) 
 order by stmt_id, part_id;
 ```
+
 The most interesting line in the output is the expression index creation - which should be minimized if not avoided altogether.
 
-![](images/Expression_index.png)
+![Profiling with ExpressionIndex](images/Expression_index.png)
 
- Next, let's look at the indices created.
-
+Next, let's look at the indices created.
 
 ```sql
 select edi.index_schema
@@ -81,16 +83,15 @@ select edi.index_schema
     and edos.object_name = edi.index_table
 ;
 ```
+
 Reviewing the output, we see 4 indexes, 2 for each table and 0 indexes for the VAR_TBL.
 
-![](images/Indices_names_sizes.png)
+![Indices](images/Indices_names_sizes.png)
 
 ## Additional References
 
-[Local and Global Joins](https://exasol.my.site.com/s/article/Local-and-Global-Joins)
+* [Local and Global Joins](https://exasol.my.site.com/s/article/Local-and-Global-Joins)
+* [Best practice: Datatypes and Joins](https://exasol.my.site.com/s/article/Best-practice-Datatypes-and-Joins)
+* [NULL in Exasol](https://exasol.my.site.com/s/article/NULL-in-Exasol)
 
-[Best practice: Datatypes and Joins](https://exasol.my.site.com/s/article/Best-practice-Datatypes-and-Joins)
-
-[NULL in Exasol](https://exasol.my.site.com/s/article/NULL-in-Exasol)
-
-*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).*

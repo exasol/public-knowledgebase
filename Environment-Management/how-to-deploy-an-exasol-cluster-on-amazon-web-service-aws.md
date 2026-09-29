@@ -1,4 +1,4 @@
-# How to deploy an Exasol Cluster on Amazon Web Service (AWS) 
+# How to deploy an Exasol Cluster on Amazon Web Service (AWS)
 
 ## Prerequisites
 
@@ -23,7 +23,7 @@ You must have subscribed to one of the following Exasol subscriptions on AWS Mar
 
 Open <https://cloudtools.exasol.com/> to access the cloud deployment wizard in your browser and choose your cloud provider. In this case, the Cloud Provider should be Amazon Web Services. Select your region from the drop-down list. We deploy our cluster in Frankfurt
 
-![](images/wizard_home.png)
+![Platform choice](images/wizard_home.png)
 
 ## Step 2
 
@@ -61,12 +61,11 @@ Instance Family:
 
 You can choose one of the instance types of AWS EC2 service to deploy virtual machines for Exasol nodes. You can find detailed information about instance types of AWS EC2 in <https://aws.amazon.com/ec2/instance-types/>
 
-The number of DB Nodes: 
+The number of DB Nodes:
 
 We need to determine the total number of ***active data nodes*** in this section.
-
   
-![](images/advanced_configuration.jpg)
+![Configuration](images/advanced_configuration.jpg)
 
 After finishing the configuration we can see the RAW data size calculated automatically for us. On the left side of the screen, we can see the details of our setup on AWS.
 
@@ -85,13 +84,13 @@ For more information on VPC, see [Amazon Virtual Private Cloud](https://docs.aws
 
 Based on this VPC selection, the parameters in the stack creation page on AWS will change when you launch the stack. For more information
 
-on the stack parameters, see [**Template Parameters**](https://docs.exasol.com/cloud_platforms/aws/installation_cf_template.htm#Parameters).
+on the stack parameters, see [**Template Parameters**](https://docs.exasol.com/db/7.1/administration/aws/installation/installation_template.htm#Templateparameters).
 
 *If you want to download the configuration file and upload them later to your AWS stack through CloudFormation Console, you can click the CloudFormation Templates option on the left side.*
 
 Click **Launch Stack**. You will be redirected to the **Quick create stack** page on AWS.
 
-![](images/configuration_review.jpg)
+![Your configuration, review](images/configuration_review.jpg)
 
 ## Step 4
 
@@ -104,15 +103,17 @@ After getting redirected to the **Quick create stack** page on AWSReview, fill i
 If you want to keep the **Public IP** address set to **false**, then you need to enable VPN or other methods to be able to access your instance.
 
 * (Optional) **License** is applicable if your subscription model is **Bring-your-own-license**. Paste the entire content of the license file you have in the space provided.
-* Click **Create Stack** to continue deploying Exasol in the CloudFormation Console.   
-You can view the stack you created under **AWS CloudFormation > Stacks**, with the status CREATE_IN_PROGRESS. Once the stack is created successfully, the status is changed to CREATE_COMPLETE. Additionally, you can monitor the progress in the Events tab for the stack.
+* Click **Create Stack** to continue deploying Exasol in the CloudFormation Console.
+
+  You can view the stack you created under **AWS CloudFormation > Stacks**, with the status CREATE_IN_PROGRESS. Once the stack is created successfully, the status is changed to CREATE_COMPLETE. Additionally, you can monitor the progress in the Events tab for the stack.
 
 For more information about the stack parameters, please check the table here <https://docs.exasol.com/cloud_platforms/aws/installation_cf_template.htm>
 
-After filling the required parameters, we click **Create Stack** to continue deploying Exasol in the CloudFormation Console.   
+After filling the required parameters, we click **Create Stack** to continue deploying Exasol in the CloudFormation Console.
+
 We can view the stack created under **AWS CloudFormation > Stacks**, with the status CREATE_IN_PROGRESS. Once the stack is created successfully, the status is changed to CREATE_COMPLETE.
 
-![](images/stack.jpg)
+![Stack](images/stack.jpg)
 
 Additionally, we can monitor the progress in the Events tab for the stack.
 
@@ -129,7 +130,7 @@ We need the Public IP or DNS name displayed in the EC2 Console to connect to the
 
 *If the **Public IP** parameter for your stack is set to **false**,  you need to enable VPN or other methods to connect to the database server via the private IP address of the instances.*
 
-![](images/ec2-instance.jpg)
+![Instances](images/ec2-instance.jpg)
 
 ## Step 6
 
@@ -139,13 +140,13 @@ Copy and paste this IP address prefixed with **https** in a browser. In the cas
 
 After confirming the digital certificate, the following screen is displayed.
 
-![](images/exasol_initialization.png)
+![Exasol is starting up](images/exasol_initialization.png)
 
 Once the installation is complete, we are redirected to the EXAoperation screen. It may take up to 45 minutes for the EXAoperation to be online after deployment.
 
-You can login with the admin user name and password provided while creating your stack. 
+You can login with the admin user name and password provided while creating your stack.
 
-![](images/exaoperation.png)
+![EXAoperation](images/exaoperation.png)
 
 ## Step 7
 
@@ -169,11 +170,9 @@ After installing Exasol on AWS, you can do the following:
 
 After you have connected your choice of tool to Exasol, you can load your data into Exasol and process further. To know more about loading data into Exasol, see [Loading Data](https://docs.exasol.com/loading_data.htm).
 
-
 ## Additional References
 
-[Exasol Cloud Tools](https://cloudtools.exasol.com)
+* [Exasol Cloud Tools](https://cloudtools.exasol.com)
+* [Deploy Exasol on AWS](https://docs.exasol.com/db/7.1/administration/aws/installation.htm)
 
-[Deploy Exasol on AWS](https://docs.exasol.com/db/7.1/administration/aws/installation.htm)
-
-*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).*
