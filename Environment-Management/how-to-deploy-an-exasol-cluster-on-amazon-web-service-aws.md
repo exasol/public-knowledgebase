@@ -1,4 +1,4 @@
-# How to deploy an Exasol Cluster on Amazon Web Service (AWS) 
+# How to deploy an Exasol Cluster on Amazon Web Service (AWS)
 
 ## Prerequisites
 
@@ -64,7 +64,6 @@ You can choose one of the instance types of AWS EC2 service to deploy virtual ma
 The number of DB Nodes: 
 
 We need to determine the total number of ***active data nodes*** in this section.
-
   
 ![](images/advanced_configuration.jpg)
 
@@ -85,7 +84,7 @@ For more information on VPC, see [Amazon Virtual Private Cloud](https://docs.aws
 
 Based on this VPC selection, the parameters in the stack creation page on AWS will change when you launch the stack. For more information
 
-on the stack parameters, see [**Template Parameters**](https://docs.exasol.com/cloud_platforms/aws/installation_cf_template.htm#Parameters).
+on the stack parameters, see [**Template Parameters**](https://docs.exasol.com/db/7.1/administration/aws/installation/installation_template.htm#Templateparameters).
 
 *If you want to download the configuration file and upload them later to your AWS stack through CloudFormation Console, you can click the CloudFormation Templates option on the left side.*
 
@@ -172,8 +171,7 @@ After you have connected your choice of tool to Exasol, you can load your data i
 
 ## Additional References
 
-[Exasol Cloud Tools](https://cloudtools.exasol.com)
+* [Exasol Cloud Tools](https://cloudtools.exasol.com)
+* [Deploy Exasol on AWS](https://docs.exasol.com/db/7.1/administration/aws/installation.htm)
 
-[Deploy Exasol on AWS](https://docs.exasol.com/db/7.1/administration/aws/installation.htm)
-
-*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).*

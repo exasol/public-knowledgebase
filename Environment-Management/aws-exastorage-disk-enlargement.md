@@ -1,4 +1,5 @@
-# AWS EXAStorage disk enlargement 
+# AWS EXAStorage disk enlargement
+
 ## Background
 
 Enlarge EXAStorage disk(s) after changing disk size of the EC2 instances
@@ -11,7 +12,7 @@ Enlarge EXAStorage disk(s) after changing disk size of the EC2 instances
 ## How to enlarge disk space in AWS
 
 1. Stop all databases and stop EXAStorage in EXAoperation
-2. Stop your EC2 instances, except the license node (ensure they don’t get terminated on shutdown; check shutdown behavior <http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-expand-volume.html>)
+2. Stop your EC2 instances, except the license node (ensure they don’t get terminated on shutdown; check shutdown behavior [Modify an Amazon EBS volume using Elastic Volumes operations](https://docs.aws.amazon.com/ebs/latest/userguide/ebs-modify-volume.html)
 3. Modify the disk on AWS console (Select Volume -&gt; Actions -&gt; Modify -&gt; Enter the new size -&gt; Click Modify)
 4. Ensure Storage disk size is set to “Rest” &lt;EXAoperation node setting&gt;, if d03_storage/d04_storage is not set to "Rest", set INSTALL flag for all nodes adjust the setting and set the ACTIVE flag for all nodes, otherwise nodes will be reinstalled during boot (data loss)!
 5. Start instances
@@ -21,6 +22,6 @@ Enlarge EXAStorage disk(s) after changing disk size of the EC2 instances
 
 ## Additional References
 
-<https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-modify-volume.html>
+* [Modify an Amazon EBS volume using Elastic Volumes operations](https://docs.aws.amazon.com/ebs/latest/userguide/ebs-modify-volume.html)
 
-*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).*
