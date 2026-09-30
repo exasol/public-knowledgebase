@@ -191,7 +191,7 @@ SSH = server
 * The connection name in the configuration files must be the same for the source and destination clusters.
 * Setting the value for Verbose to true in the configuration file enables verbose logging – which captures more details on  syncing of files – in the EXACluster Monitoring Service.  If this not enabled only errors are logged. This option is disabled by default.
 
-The configuration files created must be uploaded to the clusters. The following sample scripts can be used to upload the configuration files: 
+The configuration files created must be uploaded to the clusters. The following sample scripts can be used to upload the configuration files:
 
 ```python
 # Sample Script to Upload Configuration File on EDU01
@@ -211,7 +211,7 @@ pp([[node] + server.callPlugin(pname, node, 'UPLOAD_CONFIG', config) for node in
 
 ### **Step 8:** **Create SSH Key**
 
-SSH key can be used to establish secure connections between the clusters. The following sample script generates the SSH key on the client machine with respect to the connection specified in the configuration file. 
+SSH key can be used to establish secure connections between the clusters. The following sample script generates the SSH key on the client machine with respect to the connection specified in the configuration file.
 
 ```python
 # SSH Keygen Sample Script
@@ -239,7 +239,7 @@ IfMiN6d+2XTCYCy7W0uezp7OqwBsp2UY31omw9jtSqDn3g5KOIZQ== root@n0011.c0001.exaclust
 
 The public key generated for the node must be uploaded to the remote server to be able to authenticate using SSH. Create a file (for example - /home/ssh/connection1_ssh_key_file.key) and copy the key generated in the previous step for the node into this file.
 
-The sample script below uploads SSH key for the specific connection to the remote server (in this example, the SSH key is uploaded to EDU02). 
+The sample script below uploads SSH key for the specific connection to the remote server (in this example, the SSH key is uploaded to EDU02).
 
 ```python
 # Sample Script to Upload SSH Key on EDU02
@@ -254,7 +254,7 @@ pp([[node] + server.callPlugin(pname, node, 'SSHKEY', 'Connection1') for node in
 
 ### **Step 10:** **Activate Connection between the two clusters**
 
-Once you have uploaded the SSH key file, the connections on the clusters must be activated to be able to establish a secure connection between them. 
+Once you have uploaded the SSH key file, the connections on the clusters must be activated to be able to establish a secure connection between them.
 
 ```python
 # Sample Script to Activate Connection on EDU01
