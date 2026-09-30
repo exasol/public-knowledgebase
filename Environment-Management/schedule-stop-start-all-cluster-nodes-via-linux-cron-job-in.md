@@ -10,7 +10,7 @@ If you want to schedule the stop and start of the Exasol cluster in cloud enviro
 * Latest CloudUI plugin installed (<https://github.com/exasol/cloud-plugins/releases>)
 * The license server is required to be always up and running
 
-## How to schedule Stop/Start all cluster nodes.
+## How to schedule Stop/Start all cluster nodes
 
 The CloudUI plugin will be used in order to stop the database, exasol storage services, and data nodes. The CloudUI plugin is pre-installed in all cloud deployments. In case you want to update it please refer to <https://github.com/exasol/cloud-plugins/releases>
 
@@ -130,7 +130,7 @@ git clone https://gist.github.com/08f6c2f8c59ebd347304cf5dcc266c5c.git
 
 Run the bash script and add the required values.
 
-![](images/run_script.png)
+![Script execution](images/run_script.png)
 
 ## Additional Notes
 
