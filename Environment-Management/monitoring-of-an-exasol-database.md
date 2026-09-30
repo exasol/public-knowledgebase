@@ -1,4 +1,5 @@
-# Monitoring of an Exasol Database 
+# Monitoring of an Exasol Database
+
 ## What is this article about?
 
 It shows how you can monitor the development of your database with regard to size, usage, hardware resources and SQL statements. At Exasol we use our customer dashboards to evaluate the progression of customer systems in these areas.In this article, we show you what the dashboards look like, on which metadata they are based and what you should pay attention to during the evaluation. A small note: We developed our dashboards on the basis of Tableau. Our goal is that this article will help you to develop your own dashboards based on the technology you prefer.
@@ -7,9 +8,9 @@ It shows how you can monitor the development of your database with regard to siz
 
 Exasol provides a large number of different system, metadata, and statistics tables that can be used to build a monitoring dashboard. We are now focusing on the progression of statistics over a longer period of time. The tables can of course also be used for other Monitoring Use Cases. E.g. real-time monitoring of the current database status. There are no limits to the imagination when developing new applications.
 
-There is an overview of all system tables in our documentation here: <https://docs.exasol.com/sql_references/metadata/metadata(systemtables).htm>
+There is an overview of all system tables in our documentation here: [System tables](https://docs.exasol.com/db/latest/sql_references/system_tables.htm)
 
-Let's focus on the statistical tables: <https://docs.exasol.com/sql_references/metadata/statistical_system_table.htm#Statistical_System_Tables>
+Let's focus on the statistical tables: [Statistical system tables](https://docs.exasol.com/db/latest/sql_references/system_tables/statistical_system_tables.htm)
 
 The tables that are important to us are here
 
@@ -37,7 +38,7 @@ Let's look at the database size dashboard. This consists of three different grap
 
 ![](images/Size.png)
 
-Source: <https://docs.exasol.com/sql_references/metadata/statistical_system_table.htm#EXA_DB_SIZE_DAILY> 
+Source: [EXA_DB_SIZE_DAILY](https://docs.exasol.com/db/latest/sql_references/system_tables/statistical/exa_db_size_daily.htm)
 
 ### DB SIZE diagram
 
@@ -79,7 +80,7 @@ As a distributed in-memory database system, the performance of Exasol depends on
 
 ![](images/HARDWARE_DASH.png) 
 
-Source: [https://docs.exasol.com/sql_references/metadata/statistical_system_table.htm#EXA_MONITOR_DAILY](https://docs.exasol.com/sql_references/metadata/statistical_system_table.htm#EXA_MONITOR_DAILY "EXA_MONITOR_DAILY")
+Source: [EXA_MONITOR_DAILY](https://docs.exasol.com/db/latest/sql_references/system_tables/statistical/exa_monitor_daily.htm)
 
 ### CPU Diagram
 
@@ -135,7 +136,7 @@ This dashboard is intended to give an overview of the average runtimes of differ
 
 ![](images/SQL.jpg)
 
-Source: [https://docs.exasol.com/sql_references/metadata/statistical_system_table.htm#EXA_SQL_DAILY](https://docs.exasol.com/sql_references/metadata/statistical_system_table.htm#EXA_SQL_DAILY "EXA_SQL_DAILY") 
+Source: [EXA_SQL_DAILY](https://docs.exasol.com/db/latest/sql_references/system_tables/statistical/exa_sql_daily.htm)
 
 ### SQL Queries by class diagram
 
@@ -179,7 +180,7 @@ We would like to use this dashboard to provide an overview of the use of the dat
 
 ![](images/USAGE_DASH.png)
 
-Source: <https://docs.exasol.com/sql_references/metadata/statistical_system_table.htm#EXA_USAGE_HOURLY>
+Source: [EXA_USAGE_HOURLY](https://docs.exasol.com/db/latest/sql_references/system_tables/statistical/exa_usage_hourly.htm)
 
 ### Idle diagram
 
@@ -209,4 +210,4 @@ The database describes in the table EXA_USAGE_LAST_DAY exactly how many queries 
 
 This might have given you an insight how you can monitor an Exasol database in a long-term perspective. The statistical system tables DB_SIZE, MONITORING, SQL and USAGE already give you a good overview of what is happening on the system. However, there are many other system tables that are suitable for different monitoring scenarios. There are no limits to creativity here.
 
-*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).*

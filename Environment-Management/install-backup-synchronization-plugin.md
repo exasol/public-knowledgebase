@@ -1,11 +1,12 @@
-# Install Backup Synchronization Plugin 
+# Install Backup Synchronization Plugin
+
 ## Backup Synchronization Plugin Installation
 
 ## **Overview**
 
 The backup synchronization process involves synchronization of data and metadata between clusters on different networks. This document provides you with the steps on how to install the Backup Synchronization plugin on two clusters using XML-RPC. XML-RPC lets you establish communication between the two clusters quickly and easily.
 
-Exasol’s XML-RPC support is implemented using the **xmlrpclib** (<http://docs.python.org/library/xmlrpclib.html>) library that is included with Python 2.2 and later.
+Exasol’s XML-RPC support is implemented using the [xmlrpclib](https://docs.python.org/3/library/xmlrpc.client.html) library that is included with Python 2.2 and later.
 
 ## **Recommendations**
 
@@ -19,7 +20,6 @@ You can follow the below steps to install the backup synchronization plugin on c
 ### **Step 1:** **Uninstall Older Plugins Versions on All Clusters**
 
 Any older plugin installed on the clusters must be uninstalled before you can install the latest plugin. The following sample script deactivates and uninstalls the older plugins on the two clusters *EDU01* and *EDU02*.      
-
 
 ```python
 # Sample Script Sample Script to Uninstall Plugin on EDU001
@@ -90,7 +90,6 @@ The lasted plugin must be uploaded through EXAoperation on all clusters (in this
 
 After the latest plugin is uploaded through EXAoperation (refer to step 3), you must install it on both the clusters (EDU01 and EDU02). The following sample scripts will install the latest plugins on the clusters. 
 
-
 ```python
 # Sample Script to Install Plugin on EDU01
 
@@ -117,6 +116,7 @@ nlist = server.getNodeList()
 pp([[node] + server.callPlugin(pname, node, 'INSTALL', '') for node in nlist])
 pp([[node] + server.callPlugin(pname, node, 'STATUS', '') for node in nlist])
 ```
+
 ### **Step 5:** **Create a User in EXAoperation**
 
 You must create a new user with admin role. The user account will be used to access the Exasol backup via FTP. You can use any existing user account with admin role, however, creating a new user for this purpose makes it easy to segregate specific tasks to users.
@@ -158,7 +158,6 @@ The configuration file enables you to establish a connection between two cluster
 
 The following are sample configuration files for the clusters: 
 
-
 ```python
 # Sample Configuration File for EDU01
 # Filename on SupportHost: /home/ssh/client.cfg
@@ -184,13 +183,13 @@ Verbose = true
 SSH = server
 }
 ```
+
 **Note:**
 
 * The connection name in the configuration files must be the same for the source and destination clusters.
 * Setting the value for Verbose to true in the configuration file enables verbose logging – which captures more details on  syncing of files – in the EXACluster Monitoring Service.  If this not enabled only errors are logged. This option is disabled by default.
 
 The configuration files created must be uploaded to the clusters. The following sample scripts can be used to upload the configuration files: 
-
 
 ```python
 # Sample Script to Upload Configuration File on EDU01
@@ -207,10 +206,10 @@ nlist = server.getNodeList()
 config = b64encode(open('/home/ssh/server.cfg').read())
 pp([[node] + server.callPlugin(pname, node, 'UPLOAD_CONFIG', config) for node in nlist]) 
 ```
+
 ### **Step 8:** **Create SSH Key**
 
 SSH key can be used to establish secure connections between the clusters. The following sample script generates the SSH key on the client machine with respect to the connection specified in the configuration file. 
-
 
 ```python
 # SSH Keygen Sample Script
@@ -229,6 +228,7 @@ R1qaCXQghb9M/mdHdbfTkk7zI41tAchlZrjbcRfRwOMAYOGSHIdegB1qs1kMBbEivcS9
 IfMiN6d+2XTCYCy7W0uezp7OqwBsp2UY31omw9jtSqDn3g5KOIZQ== root@n0011.c0001.exacluster.local']]
 >>>
 ```
+
 **Note:** The ssh key generated can be used only with the connection it is linked to.
 
  A public key is created for each node.  This public key must be copied and uploaded to the remote server to be able to use SSH authentication.
@@ -238,7 +238,6 @@ IfMiN6d+2XTCYCy7W0uezp7OqwBsp2UY31omw9jtSqDn3g5KOIZQ== root@n0011.c0001.exaclust
 The public key generated for the node must be uploaded to the remote server to be able to authenticate using SSH. Create a file (for example - /home/ssh/connection1_ssh_key_file.key) and copy the key generated in the previous step for the node into this file.
 
 The sample script below uploads SSH key for the specific connection to the remote server (in this example, the SSH key is uploaded to EDU02). 
-
 
 ```python
 # Sample Script to Upload SSH Key on EDU02
@@ -250,10 +249,10 @@ pp([[node] + server.callPlugin(pname, node, 'UPLOAD_KEY', key) for node in nlist
 Activate SSH key for "Connection1" 
 pp([[node] + server.callPlugin(pname, node, 'SSHKEY', 'Connection1') for node in nlist])
 ```
+
 ### **Step 10:** **Activate Connection between the two clusters**
 
 Once you have uploaded the SSH key file, the connections on the clusters must be activated to be able to establish a secure connection between them. 
-
 
 ```python
 # Sample Script to Activate Connection on EDU01
@@ -265,10 +264,10 @@ pp([[node] + server.callPlugin(pname, node, 'UPLOAD_KEY', key) for node in nlist
 # Activate SSH key for "Connection1" 
 pp([[node] + server.callPlugin(pname, node, 'ACTIVATE', 'Connection1') for node in nlist]) 
 ```
+
 ### **Step 11:** **Deactivate Connection between two cluster**
 
 In case you want to deactivate this connection, you can follow the below sample script:
-
 
 ```python
 # Sample Script to Deactivate Connection on EDU01
@@ -277,4 +276,4 @@ nlist = server.getNodeList()
 pp([[node] + server.callPlugin(pname, node, 'DEACTIVATE', 'Connection1') for node in ['n0011','n0012']]) 
 ```
 
-*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).*
