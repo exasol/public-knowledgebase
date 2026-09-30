@@ -19,7 +19,7 @@ You can follow the below steps to install the backup synchronization plugin on c
 
 ### **Step 1:** **Uninstall Older Plugins Versions on All Clusters**
 
-Any older plugin installed on the clusters must be uninstalled before you can install the latest plugin. The following sample script deactivates and uninstalls the older plugins on the two clusters *EDU01* and *EDU02*.      
+Any older plugin installed on the clusters must be uninstalled before you can install the latest plugin. The following sample script deactivates and uninstalls the older plugins on the two clusters *EDU01* and *EDU02*.
 
 ```python
 # Sample Script Sample Script to Uninstall Plugin on EDU001
@@ -61,12 +61,12 @@ pp([[node] + server.callPlugin(pname, node, 'DEACTIVATE', '') for node in nlist]
 pp([[node] + server.callPlugin(pname, node, 'UNINSTALL', '') for node in nlist])
 exit()
 ```
-    
+
 **Note:** All credentials and files names used in the sample scripts are example credentials and file names. Please replace them with the correct one for your clusters.
 
 ### **Step 2:** **Remove Plugin from EXAoperation**
 
-Once you have deactivated and uninstalled the previously installed plugin, you must remove the entry of the plugin from EXAoperation for all the clusters. Doing this will clear the folders directories previously created. 
+Once you have deactivated and uninstalled the previously installed plugin, you must remove the entry of the plugin from EXAoperation for all the clusters. Doing this will clear the folders directories previously created.
 
 You can follow the below steps to remove the plugin from EXAoperation:
 
@@ -88,7 +88,7 @@ The lasted plugin must be uploaded through EXAoperation on all clusters (in this
 
 ### **Step 4:** **Install the Latest Plugin**
 
-After the latest plugin is uploaded through EXAoperation (refer to step 3), you must install it on both the clusters (EDU01 and EDU02). The following sample scripts will install the latest plugins on the clusters. 
+After the latest plugin is uploaded through EXAoperation (refer to step 3), you must install it on both the clusters (EDU01 and EDU02). The following sample scripts will install the latest plugins on the clusters.
 
 ```python
 # Sample Script to Install Plugin on EDU01
@@ -128,12 +128,14 @@ To create a new user:
 1. In EXAoperation, navigation to **Configuration > Access Management**.
 2. Click **Users** tab and click **Add**.
 3. Complete the following information for the new user.  
-*For example:*
-	* ***Login:*** *FTPBackup*
-	* ***Title:*** *4FTPbackup*
-	* ***Description:*** *4FTPbackup*
-	* ***Identification by:*** *Internal*
-	* ***Password:*** *Enter the desired password*
+   *For example:*
+
+   * ***Login:*** *FTPBackup*
+   * ***Title:*** *4FTPbackup*
+   * ***Description:*** *4FTPbackup*
+   * ***Identification by:*** *Internal*
+   * ***Password:*** *Enter the desired password*
+
 4. Click **Add**. A user is created. The new user created will have the role of ‘**User’** by default.
 5. To set the role as ‘**Administrator’** for this new user, click the **Roles** tab and select **Administrator** from the **Roles** dropdown list.
 6. Click **Apply**.
@@ -156,7 +158,7 @@ To establish a connection between the clusters, you need to create a configurati
 
 The configuration file enables you to establish a connection between two clusters. However, if you are connecting to more than one cluster, then you need an exclusive configuration file to connect to each cluster. For example, you need a configuration file to establish a connection between EDU01 and EDU02. Now, if you have a third cluster EDU03, and you want to establish a connection between EDU02 and EDU03, or from EDU03 to EDU01. You must create a new configuration file for each of these connections.
 
-The following are sample configuration files for the clusters: 
+The following are sample configuration files for the clusters:
 
 ```python
 # Sample Configuration File for EDU01
