@@ -2,19 +2,19 @@
 
 This article describes how to install Dell's OpenManage Server Administration solution via XML-RPC.
 
-#### 1. Upload "Plugin.Administration.DELL-OpenManage-8.1.0.pkg" to EXAoperation
+## 1. Upload "Plugin.Administration.DELL-OpenManage-8.1.0.pkg" to EXAoperation
 
 * Login to EXAoperation (User privilege required - Administrator)
 * Upload pkg: **Configuration > Software > Versions > Browse > Submit**
 
-#### 2. Connect to EXAoperation via XML-RPC (this example uses Python)
+## 2. Connect to EXAoperation via XML-RPC (this example uses Python)
 
 ```python
 >>> import xmlrpclib, pprint 
 >>> s = xmlrpclib.ServerProxy("http://user:password@license-server/cluster1") 
 ```
 
-#### 3. Show plugin functions
+## 3. Show plugin functions
 
 ```python
 >>> pprint.pprint(s.showPluginFunctions('Administration.DELL-OpenManage-8.1.0'))
@@ -28,7 +28,7 @@ This article describes how to install Dell's OpenManage Server Administration so
  'UNINSTALL': 'Uninstall plugin.'}
 ```
 
-#### 4. Install DELL OMSA and check for return code
+## 4. Install DELL OMSA and check for return code
 
 ```python
 >>> sts, ret = s.callPlugin('Administration.DELL-OpenManage-8.1.0','n10','INSTALL_AND_START')
@@ -36,13 +36,13 @@ This article describes how to install Dell's OpenManage Server Administration so
 0
 ```
 
-#### 5. Upload snmpd.conf (Example attached to this article)
+## 5. Upload snmpd.conf (Example attached to this article)
 
 ```python
 >>> sts, ret = s.callPlugin('Administration.DELL-OpenManage-8.1.0', 'n10', 'PUT_SNMP_CONFIG', file('/home/user/snmpd.conf').read()) 
 ```
 
-#### 6. Restart OMSA and check status.
+## 6. Restart OMSA and check status
 
 ```python
 >>> ret = s.callPlugin('Administration.DELL-OpenManage-8.1.0', 'n10', 'RESTART')
@@ -53,9 +53,9 @@ This article describes how to install Dell's OpenManage Server Administration so
 [0, 'dell_rbu (module) is running\nipmi driver is running\ndsm_sa_datamgrd (pid 760 363) is running\ndsm_sa_eventmgrd (pid 732) is running\ndsm_sa_snmpd (pid 755) is running\ndsm_om_shrsvcd (pid 804) is running\ndsm_om_connsvcd (pid 850 845) is running']
 ```
 
-#### 7. Repeat steps 4-6 for each node.
+## 7. Repeat steps 4-6 for each node
 
-#### 8. For monitoring DELL OMSA please review [check_openmanage on Github](https://github.com/trondham/check_openmanage)
+## 8. For monitoring DELL OMSA please review [check_openmanage on Github](https://github.com/trondham/check_openmanage)
 
 ## Downloads
 
