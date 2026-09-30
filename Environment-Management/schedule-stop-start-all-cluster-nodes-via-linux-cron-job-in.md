@@ -1,17 +1,16 @@
-# Schedule Stop/Start all cluster nodes via linux cron job in Exasol cloud deployments 
+# Schedule Stop/Start all cluster nodes via linux cron job in Exasol cloud deployments
+
 ## Background
 
 If you want to schedule the stop and start of the Exasol cluster in cloud environments in order to save costs this can be done via running Linux cron jobs in the license server.
 
 ## Prerequisites
 
-- SSH access to the license server
+* SSH access to the license server
+* Latest CloudUI plugin installed (<https://github.com/exasol/cloud-plugins/releases>)
+* The license server is required to be always up and running
 
-- Latest CloudUI plugin installed (<https://github.com/exasol/cloud-plugins/releases>)
-
-- The license server is required to be always up and running
-
-## How to schedule Stop/Start all cluster nodes.
+## How to schedule Stop/Start all cluster nodes
 
 The CloudUI plugin will be used in order to stop the database, exasol storage services, and data nodes. The CloudUI plugin is pre-installed in all cloud deployments. In case you want to update it please refer to <https://github.com/exasol/cloud-plugins/releases>
 
@@ -19,18 +18,15 @@ The CloudUI plugin will be used in order to stop the database, exasol storage se
 
 Login to the license server via root user.
 
-- For AWS: You can use the "ec2 key-pair" which defined during cluster deployment. The default user name is **ec2-user**. After login, you can run **the sudo su** command in order to switch to the root user.
-
-- For Azure: During deployment, the resource template for exasol requires ssh-key data and username for ssh access. Please use it accordingly to login
-
-- For GCP: You can use SSH connection via browser from google cloud console. You can find detailed information at <https://cloud.google.com/compute/docs/instances/connecting-advanced>
+* For AWS: You can use the "ec2 key-pair" which defined during cluster deployment. The default user name is **ec2-user**. After login, you can run **the sudo su** command in order to switch to the root user.
+* For Azure: During deployment, the resource template for exasol requires ssh-key data and username for ssh access. Please use it accordingly to login
+* For GCP: You can use SSH connection via browser from google cloud console. You can find detailed information at [Connect to Linux VMs](https://docs.cloud.google.com/compute/docs/connect/standard-ssh?hl=en)
 
 ## Step 2
 
 Create a bash script in the license server.
 
-
-```
+```shell
 #/bin/bash
 
 # ----------------------------------
@@ -121,19 +117,20 @@ else
     echo -e "${GREEN}=======================================================${NC}"
 fi
 ```
+
 Give executable permission to the script via **chmod** command. (e.g. chmod +x {name_of_file})
 
 The script also can be cloned from GitHub:
 
-
-```
+```shell
 git clone https://gist.github.com/08f6c2f8c59ebd347304cf5dcc266c5c.git
 ```
+
 ## Step 3
 
 Run the bash script and add the required values.
 
-![](images/run_script.png)
+![Script execution](images/run_script.png)
 
 ## Additional Notes
 
@@ -147,4 +144,4 @@ In order to change the existing schedule, the script can be reused.
 * [Cloud plug-ins for Azure](https://docs.exasol.com/db/7.1/administration/azure/plugin/cloud_ui_plugin.htm)
 * [Cloud plug-ins for GCP](https://docs.exasol.com/db/7.1/administration/google/plugin/cloud_ui_plugin.htm)
 
-*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).* 
+*We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).*

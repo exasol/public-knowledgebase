@@ -107,7 +107,7 @@ If you want to keep the **Public IP** address set to **false**, then you need to
 
   You can view the stack you created under **AWS CloudFormation > Stacks**, with the status CREATE_IN_PROGRESS. Once the stack is created successfully, the status is changed to CREATE_COMPLETE. Additionally, you can monitor the progress in the Events tab for the stack.
 
-For more information about the stack parameters, please check the table here <https://docs.exasol.com/cloud_platforms/aws/installation_cf_template.htm>
+For more information about the stack parameters, please check the table here [**Template Parameters**](https://docs.exasol.com/db/7.1/administration/aws/installation/installation_template.htm#Templateparameters)
 
 After filling the required parameters, we click **Create Stack** to continue deploying Exasol in the CloudFormation Console.
 
