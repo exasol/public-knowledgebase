@@ -10,19 +10,19 @@ Ask at [service@exasol.com](mailto:service@exasol.com) for FSC Monitoring plugin
 
 ## How to Install FSC Linux Agents via XML-RPC
 
-#### 1. Upload "Plugin.Administration.FSC-7.31-16.pkg" to EXAoperation
+### 1. Upload "Plugin.Administration.FSC-7.31-16.pkg" to EXAoperation
 
 * Login to EXAoperation (User privilege Administrator)
 * Upload pkg **Configuration>Software>Versions>Browse>Submit**
 
-#### 2. Connect to EXAoperation via XML-RPC (this example uses Python)
+### 2. Connect to EXAoperation via XML-RPC (this example uses Python)
 
 ```python
 >>> import xmlrpclib, pprint 
 >>> s = xmlrpclib.ServerProxy("http://user:password@license-server/cluster1")
 ```
 
-#### 3. Show plugin functions
+### 3. Show plugin functions
 
 ```python
 >>> pprint.pprint(s.showPluginFunctions('Administration.FSC-7.31-16'))
@@ -38,7 +38,7 @@ Ask at [service@exasol.com](mailto:service@exasol.com) for FSC Monitoring plugin
 }
 ```
 
-#### 4. Install FSC and check for return code
+### 4. Install FSC and check for return code
 
 ```python
 >>> sts, ret = s.callPlugin('Administration.FSC-7.31-16','n10','INSTALL_AND_START')
@@ -46,13 +46,13 @@ Ask at [service@exasol.com](mailto:service@exasol.com) for FSC Monitoring plugin
 0
 ```
 
-#### 5. Upload snmpd.conf (Example attached to this article)
+### 5. Upload snmpd.conf (Example attached to this article)
 
 ```python
 >>> sts, ret = s.callPlugin('Administration.FSC-7.31-16', 'n10', 'PUT_SNMP_CONFIG', file('/home/user/snmpd.conf').read())
 ```
 
-#### 6. Start FSC and check status
+### 6. Start FSC and check status
 
 ```python
 >>> ret = s.callPlugin('Administration.FSC-7.31-16', 'n10', 'RESTART')
@@ -63,7 +63,7 @@ Ask at [service@exasol.com](mailto:service@exasol.com) for FSC Monitoring plugin
 [0, 'started']
 ```
 
-#### 7. Repeat steps 4-6 have for each node.
+### 7. Repeat steps 4-6 have for each node
 
 ## Additional Notes
 
@@ -72,6 +72,5 @@ For monitoring the FSC agents please refer to [ServerView Integration](https://s
 ## Downloads
 
 * [snmpd-min-fsc.zip](https://github.com/exasol/Public-Knowledgebase/files/9922038/snmpd-min-fsc.zip)
-
 
 *We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).*
