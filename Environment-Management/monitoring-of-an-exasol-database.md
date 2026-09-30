@@ -4,7 +4,7 @@
 
 It shows how you can monitor the development of your database with regard to size, usage, hardware resources and SQL statements. At Exasol we use our customer dashboards to evaluate the progression of customer systems in these areas.In this article, we show you what the dashboards look like, on which metadata they are based and what you should pay attention to during the evaluation. A small note: We developed our dashboards on the basis of Tableau. Our goal is that this article will help you to develop your own dashboards based on the technology you prefer.
 
-## Lets take a look at the statistic tables we need.
+**Lets take a look at the statistic tables we need.**
 
 Exasol provides a large number of different system, metadata, and statistics tables that can be used to build a monitoring dashboard. We are now focusing on the progression of statistics over a longer period of time. The tables can of course also be used for other Monitoring Use Cases. E.g. real-time monitoring of the current database status. There are no limits to the imagination when developing new applications.
 
@@ -36,13 +36,13 @@ In the following, we show you 4 of our most important customer dashboards. They 
 
 Let's look at the database size dashboard. This consists of three different graphics that consider the database size, the size of the indexes and the size of the recommended RAM over a longer period of time. The dashboard is designed for a long-term view. For this reason, we decided to use EXA_DB_SIZE_DAILY as the data source, since the corresponding values are already aggregated here at the day level. In order to compare the corresponding values with the current RAM, we also use the DB_RAM_SIZE column from the EXA_SYSTEM_EVENTS table.
 
-![](images/Size.png)
+![DB Raw Size and Recommended DB RAM Size](images/Size.png)
 
 Source: [EXA_DB_SIZE_DAILY](https://docs.exasol.com/db/latest/sql_references/system_tables/statistical/exa_db_size_daily.htm)
 
 ### DB SIZE diagram
 
-Let's start with a detailed analysis of the individual graphics. The DB Size graphic shows us the development of the database size - compressed and not compressed. As well as the ratio of the size to the available RAM. 
+Let's start with a detailed analysis of the individual graphics. The DB Size graphic shows us the development of the database size - compressed and not compressed. As well as the ratio of the size to the available RAM.
 
 **Data sources:** Table: EXA_DB_SIZE_DAILY - Due to the long observation period, we choose the **maximum** of the corresponding day for the columns **RAW** and **MEM_OBJECT_SIZE**. We also use the **DB_RAM_SIZE** from the EXA_SYSTEM_EVENTS table.
 
@@ -50,7 +50,7 @@ Let's start with a detailed analysis of the individual graphics. The DB Size gra
 
 **Important:** The graphic is also used to compare the amount of raw data with the available RAM. With an in-memory database, it is very important that the hot data fit permanently in the RAM so that optimal performance can be ensured. For this reason there is the so-called **ten percent rule** - this says that ten percent of the raw data volume should fit into the RAM. Therefore, another line is drawn in the graphic for the existing RAM. So that this rule can be monitored in the graphic, the RAW_OBJECT_SIZE_MAX line turns red if the RAM is less than 10% of the RAW_OBJECT value.
 
-![](images/DB_SIZE.png)
+![DB Raw Size](images/DB_SIZE.png)
 
 ### Auxiliary diagram
 
@@ -60,7 +60,9 @@ Similar to the previous graphic, the size of the indexes is examined and compare
 
 **Details of the graphic:** Both values are shown as lines over time.
 
-**Important:** In order to guarantee optimal performance, all indexes should fit together in the RAM. For this reason, the AUXILIARY line is displayed in red when the size exceeds the RAM.![](images/Index.png)
+**Important:** In order to guarantee optimal performance, all indexes should fit together in the RAM. For this reason, the AUXILIARY line is displayed in red when the size exceeds the RAM.
+
+![Index Size](images/Index.png)
 
 ### Recommended RAM diagram
 
@@ -72,13 +74,13 @@ On the basis of the current database usage, e.g. the created TEMP_DB_RAM, the da
 
 **Important:** The Recommended RAM_SIZE is a value estimated by the system and represents a recommendation for an ideal RAM size. Our experience has shown that the system can already be operated optimally with half this value. We have made this factor easy to maintain in the dashboard. If the RECOMMENDED_RAM_SIZE divided by FACTOR is greater than the RAM, the RECOMMENDED_RAM_SIZE is displayed in red. Our experience has shown that NOT (RECOMMENDED> 2 * RAM) turned out to be a good metric.
 
-![](images/Reccomended.jpg)
+![Recommended DB RAM Size](images/Reccomended.jpg)
 
 ## Hardware usage
 
 As a distributed in-memory database system, the performance of Exasol depends on the following four hardware components: CPU, RAM, network and hard disk access. For this reason, the following dashboard consists of four graphics, each dealing with one of these components. We use the EXA_MONITOR_DAILY table as the data source.
 
-![](images/HARDWARE_DASH.png) 
+![CPU / HDD Read / NET / TEMP](images/HARDWARE_DASH.png)
 
 Source: [EXA_MONITOR_DAILY](https://docs.exasol.com/db/latest/sql_references/system_tables/statistical/exa_monitor_daily.htm)
 
@@ -92,7 +94,7 @@ As a MPP database an Exasol cluster has a variable number of Nodes with its own 
 
 **Important:** The highest possible CPU utilization is desirable. The maximum values of the day are used for this. The average value is not meaningful because IDLE times have a massive influence on the result. The goal is a maximum utilization of over 85%. If the CPU load falls below this value on a day, this is displayed in red in the diagram
 
-![](images/CPU.png)
+![CPU](images/CPU.png)
 
 ### HDD read diagram
 
@@ -104,7 +106,7 @@ With an in-memory database, the most important data should always fit in the RAM
 
 **Important:** The HDD_READ values should be as low as possible. We have used AVG as a window function in our BI tool to determine whether values are increasing permanently or not. This ensures that the line is displayed in red if there is a permanent incline. For a long-term view, the Average is very important because peaks can occur from time to time.
 
-![](images/HDD_READ.png)
+![HDD Read](images/HDD_READ.png)
 
 ### NET diagram
 
@@ -116,7 +118,7 @@ If data is distributed to different Nodes, it is important to set the distributi
 
 **Important:** For the reason mentioned above, the NET values should be as low as possible. We have used AVG as a window function in our BI tool to determine whether values are increasing permanently or not. This ensures that the line is displayed in red if there is a permanent incline.
 
-![](images/NET.png)
+![NET](images/NET.png)
 
 ### Temp DB RAM diagram
 
@@ -128,13 +130,13 @@ Every database operation generates a temporary amount of data in the RAM. If the
 
 **Important:** For the reason mentioned above, the TEM DB RAM values should be monitored. We have used AVG as a window function in our BI tool to determine whether values are increasing permanently or not. This ensures that the line is displayed in red if there is a permanent incline.
 
-![](images/TEMP_DB_RAM.png)
+![TEMP](images/TEMP_DB_RAM.png)
 
 ## SQL statements
 
 This dashboard is intended to give an overview of the average runtimes of different queries. The EXA_SQL_DAILY table is used as the data source for this.
 
-![](images/SQL.jpg)
+![SQL Queries](images/SQL.jpg)
 
 Source: [EXA_SQL_DAILY](https://docs.exasol.com/db/latest/sql_references/system_tables/statistical/exa_sql_daily.htm)
 
@@ -148,7 +150,7 @@ The graphic shows over a longer timeline how many queries of a COMMAND_CLASS hav
 
 **Important:** The graphic shows differently colored lines. Each line stands for a COMMAND_CLASS. The statements are filtered on EXECUTION_MODE = 'EXECUTE' and SUCCESS*.* There is also a filter on the COMMAND_CLASS.
 
-![](images/SQL_QUERIES_BY_CLASS_DASH.png)
+![Number of SQL Queries by Class](images/SQL_QUERIES_BY_CLASS_DASH.png)
 
 ### Executed and successful Select Statements diagram
 
@@ -160,7 +162,7 @@ The following graphic gives an overview of the average and maximum duration of D
 
 **Important:** In the BI Tool, we have placed a trend line on the development of the curves for a better overview. The Data is filtered on the COMMAND_CLASS "DQL", EXECUTION_MODE = "EXECUTE" and SUCCESS.
 
-![](images/DURATION_EXECUTED.png)
+![Max and Avg. Duration of Executed and Successful Select Statement](images/DURATION_EXECUTED.png)
 
 ### Commit Duration diagram
 
@@ -172,13 +174,13 @@ The following graphic gives an overview of the average and maximum duration of C
 
 **Important:** In the BI TOOL, we have placed a trend line on the development of the curves for a better overview. The Data is filtered on the COMAND_CLASS "COMMIT", EXECUTION_MODE = "EXECUTE" and SUCCESS.
 
-![](images/COMMIT.jpg)
+![SQL Commit Duration](images/COMMIT.jpg)
 
 ## Concurrent Users & Queries
 
 We would like to use this dashboard to provide an overview of the use of the database. In order to be able to show the usage over the different days of the week and the time of day, we use a finer granularity here. For this reason, we are accessing a _HOURLY table for the first time in this article. This is the EXA_USAGE_HOURLY table. With this table we can evaluate on an hourly basis how many queries were processed by the database at the same time or how often the database was idle.
 
-![](images/USAGE_DASH.png)
+![Concurrency](images/USAGE_DASH.png)
 
 Source: [EXA_USAGE_HOURLY](https://docs.exasol.com/db/latest/sql_references/system_tables/statistical/exa_usage_hourly.htm)
 
@@ -192,7 +194,7 @@ By combining the different types of diagrams, this graphic provides an insight i
 
 **Important:** The IDLE column indicates the percentage of the hour (EXA_USAGE_HOURLY) for which the database has no queries to process. Depending on the percentage, the field is displayed in a different color.
 
-![](images/IDLE.png)
+![IDLE percentage](images/IDLE.png)
 
 ### Concurrent Queries diagram
 
@@ -204,7 +206,7 @@ The database describes in the table EXA_USAGE_LAST_DAY exactly how many queries 
 
 **Important:** The limit of parallel queries in Exasol is 100 by default. In the dashboard, the user has the option of specifying a limit value from which he sees the database load as critical. If this limit is exceeded, both the line for the average and the line for the maximum turn red.
 
-![](images/Concurrent_Queries.png)
+![Max Concurrent Queries by Week](images/Concurrent_Queries.png)
 
 ## Final conclusion
 
