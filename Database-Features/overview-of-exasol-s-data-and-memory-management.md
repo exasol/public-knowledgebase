@@ -58,6 +58,7 @@ Have a look at the following diagram showing the general relationships between m
 | DB_RAM:active data | N/A | 
 | DB_RAM:temp | see Node Level below | 
 | Persistent:size | STORAGE_SIZE in EXA_DB_SIZE_LAST_DAY | 
+| USE | System table EXA_DB_SIZE_LAST_DAY | Percentage of the database's physical persistent-volume storage currently in use, not the percentage of licensed data capacity consumed. Investigate high values as disk/storage pressure. For license utilization, compare RAW_OBJECT_SIZE (uncompressed data volume) with the organization's contracted license capacity. |
 | Persistent:committed | see Node Level below | ~= ( MEM_OBJECT_SIZE + AUXILIARY_SIZE + STATISTICS_SIZE ) |
 | Persistent:deleted | see Node Level below | size = committed * (100 / USE ) |
 
