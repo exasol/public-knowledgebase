@@ -31,7 +31,7 @@ Recompression shrinks the compressed size of your data (`MEM_OBJECT_SIZE`). The 
 * **More data in memory.** Exasol processes compressed data in RAM, so the same DB RAM holds a larger share of your working set and fewer reads go to disk.
 * **Faster queries on large tables.** There is less data to scan, less I/O per query, and freshly recreated indexes.
 * **Less disk space.** Storage usage drops, which postpones the next storage expansion.
-* **Smaller, faster backups.** Backups copy the compressed data blocks, so full and incremental backups shrink and finish faster. The gain is somewhat smaller than the compression gain, because backups are compressed again on their way to the archive volume.
+* **Smaller, faster backups.** Backups copy the compressed data blocks, so full and incremental backups shrink and finish faster. The gain is somewhat smaller than the compression gain, because backups receive additional compression on their way to the archive volume.
 * **Lower recommended DB RAM.** The recommended DB RAM is derived from the compressed size, which helps with sizing and capacity planning.
 * **Cleaner tables.** Rows that were only marked as deleted are removed.
 
