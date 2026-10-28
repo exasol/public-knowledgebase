@@ -11,7 +11,7 @@ Exasol chooses a compressor per column and data block, based on the data it find
 | [Two new block compressors for columns with NULL values](https://docs.exasol.com/db/latest/changelogs/26664.htm) | Sparse and nullable columns, which were not always compressed optimally before |
 | [Special compression now covers up to 64,000 distinct values (was 32,000)](https://docs.exasol.com/db/latest/changelogs/26225.htm) | Fixed-size columns with medium cardinality, such as codes, categories and status values |
 
-Both are on by default, and there is nothing to configure.
+Both are enabled by default, and there is nothing to configure.
 
 ### Why existing data does not benefit automatically
 
