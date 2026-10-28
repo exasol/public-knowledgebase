@@ -171,7 +171,7 @@ As soon as the last statement has committed, run a full backup (level 0) and con
 
 ### Step 7: Compare the results
 
-A few hours later, run the Step 1 queries again. Compare the compressed size, compression ratio, and recommended DB RAM with your baseline. Compare the size and duration of the new full backup with the previous one.
+A few hours later -- after a representative workload has been running -- run the Step 1 queries again. Compare the compressed size, compression ratio, and recommended DB RAM with your baseline. Compare the size and duration of the new full backup with the previous one.
 
 ## Additional Notes
 
