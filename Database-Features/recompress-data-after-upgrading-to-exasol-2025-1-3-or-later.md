@@ -44,7 +44,7 @@ Recompression shrinks the compressed size of your data (`MEM_OBJECT_SIZE`). The 
 
 ## Prerequisites
 
-The operation runs online, but it rewrites most of your data. Plan these points before you start:
+The operation does not require a database downtime, but it rewrites most of your data. Plan these points before you start:
 
 | Topic | What to do |
 | --- | --- |
