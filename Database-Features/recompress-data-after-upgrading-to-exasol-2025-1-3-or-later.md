@@ -22,18 +22,18 @@ An upgrade does not rewrite your tables. This is intentional, to keep the mainte
 Two SQL statements fix that:
 
 * [`RECOMPRESS ... ENFORCE`](https://docs.exasol.com/db/latest/sql/recompress.htm) re-encodes every column with the best compressor now available. Without `ENFORCE`, Exasol only recompresses columns where it expects a significant improvement.
-* [`REORGANIZE ... ENFORCE`](https://docs.exasol.com/db/latest/sql/reorganize.htm) rewrites the table data, removes rows that are only marked as deleted, recompresses degraded columns, and recreates internal indexes. Running it after `RECOMPRESS` gives the best result.
+* A final [`REORGANIZE DATABASE`](https://docs.exasol.com/db/latest/sql/reorganize.htm) removes rows that are only marked as deleted and recreates internal indexes in the tables that need it, and also covers internal system data.
 
 ### What you gain
 
 Recompression shrinks the compressed size of your data (`MEM_OBJECT_SIZE`). The uncompressed size (`RAW_OBJECT_SIZE`) stays the same and therefore does not have an impact on your raw data size license. In field deployments, the compressed size dropped by roughly 20% to 40%, depending on the data.
 
 * **More data in memory.** Exasol processes compressed data in RAM, so the same DB RAM holds a larger share of your working set and fewer reads go to disk.
-* **Faster queries on large tables.** There is less data to scan, less I/O per query, and freshly recreated indexes.
+* **Faster queries on large tables.** There is less data to scan and less I/O per query.
 * **Less disk space.** Storage usage drops, which postpones the next storage expansion.
 * **Smaller, faster backups.** Backups copy the compressed data blocks, so full and incremental backups shrink and finish faster. The gain is somewhat smaller than the compression gain, because backups receive additional compression on their way to the archive volume.
 * **Lower recommended DB RAM.** The recommended DB RAM is derived from the compressed size, which helps with sizing and capacity planning.
-* **Cleaner tables.** Rows that were only marked as deleted are removed.
+* **Cleaner tables.** In tables with many rows that are only marked as deleted, the final `REORGANIZE DATABASE` removes them.
 
 ### Why do it soon after the upgrade
 
@@ -55,7 +55,7 @@ The operation does not require a database downtime, but it rewrites most of your
 | Locks | `RECOMPRESS` and `REORGANIZE` put a write lock on each table while they process it. Concurrent ETL or DML on that table is blocked until the table is committed, or fails with a transaction conflict. Schedule the operation outside your load windows. |
 | Timing | Expect anything from minutes to many hours, depending on data volume and I/O. The operation runs alongside normal workload with a moderate performance impact, but large queries during `REORGANIZE` can slow it down. A night or weekend window is ideal. |
 | Privileges | `USE ANY SCHEMA` (or `USAGE` on the schema) plus a modifying `ANY TABLE` system privilege, a modifying object privilege, or ownership of the affected tables. Reading `EXA_DBA_OBJECT_SIZES`, `EXA_DBA_INDICES` and `EXA_DBA_SESSIONS` requires `SELECT ANY DICTIONARY`. |
-| Session | Use sessions that do not time out, such as EXAplus inside `screen` or `tmux`, or a scheduled job. Keep autocommit enabled (the default). |
+| Session | Use sessions that do not time out, such as EXAplus inside `screen` or `tmux`, or a scheduled job. Keep autocommit enabled (the default), because `RECOMPRESS TABLE` does not commit by itself. |
 
 ## How to recompress your data after the upgrade
 
@@ -97,64 +97,64 @@ The first query returns one row with the database totals. The recommended DB RAM
 
 ```sql
 -- Check free space against the largest table, including its indexes
-SELECT d.STORAGE_SIZE                                         AS STORAGE_GIB,
-       ROUND(d.STORAGE_SIZE * (100 - d.USE) / 100, 1)         AS FREE_GIB,
-       ROUND(MAX(t.TABLE_BYTES) / 1024 / 1024 / 1024, 1)      AS LARGEST_TABLE_MEM_GIB
+SELECT d.STORAGE_SIZE                                    AS STORAGE_GIB,
+       ROUND(d.STORAGE_SIZE * (100 - d.USE) / 100, 1)    AS FREE_GIB,
+       t.ROOT_NAME || '.' || t.OBJECT_NAME               AS LARGEST_TABLE,
+       ROUND(t.TABLE_BYTES / 1024 / 1024 / 1024, 1)      AS LARGEST_TABLE_MEM_GIB
   FROM (SELECT * FROM EXA_STATISTICS.EXA_DB_SIZE_LAST_DAY
          ORDER BY MEASURE_TIME DESC LIMIT 1) d
- CROSS JOIN (SELECT o.MEM_OBJECT_SIZE + COALESCE(SUM(i.MEM_OBJECT_SIZE), 0) AS TABLE_BYTES
+ CROSS JOIN (SELECT o.ROOT_NAME, o.OBJECT_NAME,
+                    o.MEM_OBJECT_SIZE + COALESCE(SUM(i.MEM_OBJECT_SIZE), 0) AS TABLE_BYTES
                FROM SYS.EXA_DBA_OBJECT_SIZES o
                LEFT JOIN SYS.EXA_DBA_INDICES i
                  ON i.INDEX_SCHEMA = o.ROOT_NAME
                 AND i.INDEX_TABLE  = o.OBJECT_NAME
               WHERE o.OBJECT_TYPE = 'TABLE'
                 AND NOT o.OBJECT_IS_VIRTUAL
-              GROUP BY o.ROOT_NAME, o.OBJECT_NAME, o.MEM_OBJECT_SIZE) t
- GROUP BY d.STORAGE_SIZE, d.USE;
+              GROUP BY o.ROOT_NAME, o.OBJECT_NAME, o.MEM_OBJECT_SIZE
+              ORDER BY TABLE_BYTES DESC
+              LIMIT 1) t;
 ```
 
-The query returns one row with the total storage, the free storage, and the compressed size of your largest table including its indexes, all in GiB.
+The query returns one row with the total storage, the free storage, and the name and compressed size of your largest table including its indexes, all in GiB.
 
-Continue when `FREE_GIB` comfortably exceeds `LARGEST_TABLE_MEM_GIB` multiplied by the number of parallel sessions you plan to use (see Step 4). On Exasol SaaS, `STORAGE_SIZE` can be empty. In that case, check free space in the SaaS console instead.
+Continue when `FREE_GIB` comfortably exceeds `LARGEST_TABLE_MEM_GIB` multiplied by the number of parallel sessions you plan to use (see Step 4). On Exasol SaaS, contact Exasol Support before you start.
 
 ### Step 3: Make sure you have a recent backup
 
-You should already have taken a backup before the database update. If data has changed since then, take an incremental backup now. For on-premises installations, see [Backup and restore](https://docs.exasol.com/db/latest/administration/on-premise/backup_restore.htm). On Exasol SaaS, use the backup options in the SaaS console.
+You should already have taken a backup before the database update. If data has changed since then, take an incremental backup now. For on-premises installations, see [Backup and restore](https://docs.exasol.com/db/latest/administration/on-premise/backup_restore.htm). On Exasol SaaS, contact Exasol Support.
 
 Make sure no backup is running when you start, and that none is scheduled during the operation. A running backup keeps the old data blocks in use, so they cannot be released while the new ones are being written.
 
 ### Step 4: Generate and run the script, smallest table first
 
-**Warning:** The statements temporarily need extra disk space, because new blocks are written before the old ones are released. If storage fills up, the database can no longer write data. Make sure you completed Step 2, and keep an eye on storage usage while the script runs.
+**Warning:** The statements temporarily need extra disk space, because new blocks are written before the old ones are released. If storage fills up, the database can crash or restart unexpectedly (see [changelog 11015](https://docs.exasol.com/db/latest/changelogs/11015.htm)). Make sure you completed Step 2, and keep an eye on storage usage while the script runs.
 
-`RECOMPRESS SCHEMA` and `REORGANIZE SCHEMA` already work table by table and commit after each table, but they process the tables one after the other in a single session, in an order you do not control. Generating one statement per table lets you start with the smallest tables, split the work into parallel sessions, and pause or resume at any point.
+`RECOMPRESS SCHEMA` already works table by table and commits after each table, but it processes the tables one after the other in a single session, in an order you do not control. Generating one statement per table lets you start with the smallest tables, split the work into parallel sessions, and pause or resume at any point.
 
-`RECOMPRESS` and `REORGANIZE` do not fully use the available CPU and disk throughput when they run in a single session, so running them in several parallel sessions usually shortens the total time considerably. Two or three sessions are a good starting point. More sessions put DB RAM under pressure when several large tables and their indexes are processed at the same time, and they raise the disk space peak.
+`RECOMPRESS` does not fully use the available CPU and disk throughput when it runs in a single session, so running it in several parallel sessions usually shortens the total time considerably. Two or three sessions are a good starting point. More sessions put more load on DB RAM and raise the disk space peak.
 
 The following query generates one statement per row and assigns each table to one of three sessions (`SESSION_NO` 0, 1 and 2). Change the `3` to the number of sessions you want:
 
 ```sql
 -- Generate commands: 1 statement per row, tables spread over 3 sessions
 SELECT t.SESSION_NO,
-       s.CMD || ' TABLE "' || t.ROOT_NAME || '"."' || t.OBJECT_NAME || '" ENFORCE;' AS STMT
+       'RECOMPRESS TABLE "' || t.ROOT_NAME || '"."' || t.OBJECT_NAME || '" ENFORCE;' AS STMT
   FROM (SELECT MOD(ROW_NUMBER() OVER (ORDER BY MEM_OBJECT_SIZE, ROOT_NAME, OBJECT_NAME) - 1, 3) AS SESSION_NO,
                MEM_OBJECT_SIZE, ROOT_NAME, OBJECT_NAME
           FROM SYS.EXA_DBA_OBJECT_SIZES
          WHERE OBJECT_TYPE = 'TABLE'
            AND NOT OBJECT_IS_VIRTUAL) t
- CROSS JOIN (SELECT 1 AS STEP, 'RECOMPRESS' AS CMD FROM DUAL
-             UNION ALL
-             SELECT 2, 'REORGANIZE' FROM DUAL) s
- ORDER BY t.SESSION_NO, t.MEM_OBJECT_SIZE, t.ROOT_NAME, t.OBJECT_NAME, s.STEP;
+ ORDER BY t.SESSION_NO, t.MEM_OBJECT_SIZE, t.ROOT_NAME, t.OBJECT_NAME;
 ```
 
-The query returns two statements per table, `RECOMPRESS` first and then `REORGANIZE`, smallest table first. To process a single schema only, add `AND ROOT_NAME = 'MY_SCHEMA'` to the inner `WHERE` clause.
+The query returns one statement per table, smallest table first. To process a single schema only, add `AND ROOT_NAME = 'MY_SCHEMA'` to the inner `WHERE` clause.
 
 Save the statements of each `SESSION_NO` to a separate script file, and run each file in its own session at the same time. Each line is a single statement, so any SQL client runs the files as they are:
 
 ```sql
+RECOMPRESS TABLE "SALES"."REGIONS" ENFORCE;
 RECOMPRESS TABLE "SALES"."ORDERS" ENFORCE;
-REORGANIZE TABLE "SALES"."ORDERS" ENFORCE;
 ```
 
 When all sessions have finished, run one final statement in a single session:
@@ -163,9 +163,9 @@ When all sessions have finished, run one final statement in a single session:
 REORGANIZE DATABASE;
 ```
 
-This also covers internal system data, such as auditing and profiling data, that you cannot address with table-level statements. Tables that you have just reorganized need no further work.
+Without `ENFORCE`, it only processes the tables that need it, for example tables with a high share of rows marked as deleted. It also covers internal system data, such as auditing and profiling data, that you cannot address with table-level statements.
 
-**Schema quotas:** If a schema has a raw size limit (`RAW_SIZE_LIMIT`), `REORGANIZE` can fail on a table in that schema while it rewrites the data, and `REORGANIZE DATABASE` can abort. Before you start, remove the limits with `ALTER SCHEMA ... SET RAW_SIZE_LIMIT = NULL` and set them again when the operation is complete.
+**Schema quotas:** If a schema has a raw size limit (`RAW_SIZE_LIMIT`), `REORGANIZE DATABASE` can fail on a table in that schema while it rewrites the data, and abort. Before you start, remove the limits with `ALTER SCHEMA ... SET RAW_SIZE_LIMIT = NULL` and set them again when the operation is complete.
 
 ### Step 5: Monitor progress
 
@@ -194,13 +194,13 @@ A few hours later -- after a representative workload has been running -- run the
 
 **I already use 2025.1.3 or later and am upgrading to 2026.1. Do I need to run this again?** Not because of the upgrade. The new compressors have been available since 2025.1.3, so upgrading to 2026.1 does not add new ones. If you have not recompressed your data since you upgraded to 2025.1.3 or later, run the procedure now. Otherwise, you do not need to run it again.
 
-**Why use `ENFORCE`?** Without it, both statements skip work they consider unnecessary. `RECOMPRESS` skips columns where it does not expect a significant improvement, so much of your older data keeps the old compressors. `REORGANIZE` skips tables that do not need a reorganization, for example tables with less than 12.5% of their rows marked as deleted (see `DELETE_PERCENTAGE` in `EXA_ALL_TABLES`).
+**Why use `ENFORCE` with `RECOMPRESS`?** Without it, `RECOMPRESS` skips columns where it does not expect a significant improvement, so much of your older data keeps the old compressors. The final `REORGANIZE DATABASE` deliberately runs without `ENFORCE`: it skips tables that do not need a reorganization, for example tables with less than 12.5% of their rows marked as deleted (see `DELETE_PERCENTAGE` in `EXA_ALL_TABLES`).
 
-**Why run `REORGANIZE` if no nodes were added?** Besides redistributing data, `REORGANIZE` removes rows that are only marked as deleted, recompresses degraded columns, and recreates indexes. Running `RECOMPRESS` followed by `REORGANIZE` consistently gives the best result.
+**Why not also run `REORGANIZE ... ENFORCE` on every table?** `RECOMPRESS ... ENFORCE` already rewrites every column with the new compressors. `REORGANIZE` may recompress columns as well, but only where it decides it is worthwhile, so it does not replace `RECOMPRESS`. Its other actions — removing rows that are only marked as deleted and recreating indexes — are covered by the final `REORGANIZE DATABASE` for the tables that need them. Indexes are also maintained automatically during normal operation. Running `REORGANIZE ... ENFORCE` on every table would roughly double the run time and disk activity.
 
-**Table by table, or `RECOMPRESS DATABASE`?** Both commit after each table, so neither runs as one large transaction. The table-level script lets you choose the order, run several sessions in parallel, and pause between tables. `RECOMPRESS DATABASE` and `REORGANIZE DATABASE ENFORCE` work too, but run as one long, sequential operation in a single session.
+**Table by table, or `RECOMPRESS DATABASE`?** Both commit after each table, so neither runs as one large transaction. The table-level script lets you choose the order, run several sessions in parallel, and pause between tables. `RECOMPRESS DATABASE ENFORCE` works too, but runs as one long, sequential operation in a single session.
 
-**Is it safe to run while users are working?** Yes, but plan for it. Both `RECOMPRESS` and `REORGANIZE` commit after each table, so a failure or cancellation leaves the tables processed so far completed, and the rest unchanged. `RECOMPRESS` also commits before it starts, which commits any open work in the same session. While a table is being processed, it is write-locked: concurrent writes to that table wait until it is committed or fail with a transaction conflict. Expect some performance impact, and avoid heavy queries during `REORGANIZE`.
+**Is it safe to run while users are working?** Yes, but plan for it. With autocommit enabled, each `RECOMPRESS TABLE` statement is committed on its own, and `REORGANIZE DATABASE` commits after each table, so a failure or cancellation leaves the tables processed so far completed, and the rest unchanged. Unlike `RECOMPRESS SCHEMA` and `RECOMPRESS DATABASE`, `RECOMPRESS TABLE` does not commit by itself, so keep autocommit enabled. While a table is being processed, it is write-locked: concurrent writes to that table wait until it is committed or fail with a transaction conflict. Expect some performance impact, and avoid heavy queries during `REORGANIZE`.
 
 **Do the savings last?** Yes. New data uses the new compressors automatically. Heavy updates and deletes can degrade compression over time. `REORGANIZE` without `ENFORCE` takes care of tables that need it.
 
