@@ -157,15 +157,31 @@ RECOMPRESS TABLE "SALES"."REGIONS" ENFORCE;
 RECOMPRESS TABLE "SALES"."ORDERS" ENFORCE;
 ```
 
-When all sessions have finished, run one final statement in a single session:
+When all sessions have finished, check for tables with a high share of rows marked as deleted. `REORGANIZE DATABASE` processes them one after the other in a single session, which can take a long time if there are many of them, or large ones. The following query generates a `REORGANIZE TABLE` statement for each of these tables, spread over three sessions in the same way:
+
+```sql
+-- Generate commands: REORGANIZE for tables with many deleted rows, 3 sessions
+SELECT t.SESSION_NO,
+       'REORGANIZE TABLE "' || t.TABLE_SCHEMA || '"."' || t.TABLE_NAME || '";' AS STMT
+  FROM (SELECT MOD(ROW_NUMBER() OVER (ORDER BY TABLE_ROW_COUNT, TABLE_SCHEMA, TABLE_NAME) - 1, 3) AS SESSION_NO,
+               TABLE_ROW_COUNT, TABLE_SCHEMA, TABLE_NAME
+          FROM SYS.EXA_DBA_TABLES
+         WHERE DELETE_PERCENTAGE >= 12.5
+           AND NOT TABLE_IS_VIRTUAL) t
+ ORDER BY t.SESSION_NO, t.TABLE_ROW_COUNT, t.TABLE_SCHEMA, t.TABLE_NAME;
+```
+
+If the query returns rows, run them as before, one script file per `SESSION_NO` in parallel sessions. If it returns no rows, skip this part.
+
+Finally, run one statement in a single session:
 
 ```sql
 REORGANIZE DATABASE;
 ```
 
-Without `ENFORCE`, it only processes the tables that need it, for example tables with a high share of rows marked as deleted. It also covers internal system data, such as auditing and profiling data, that you cannot address with table-level statements.
+Without `ENFORCE`, it only processes the tables that still need it, so after the previous part there is little left to do. It also covers internal system data, such as auditing and profiling data, that you cannot address with table-level statements.
 
-**Schema quotas:** If a schema has a raw size limit (`RAW_SIZE_LIMIT`), `REORGANIZE DATABASE` can fail on a table in that schema while it rewrites the data, and abort. Before you start, remove the limits with `ALTER SCHEMA ... SET RAW_SIZE_LIMIT = NULL` and set them again when the operation is complete.
+**Schema quotas:** If a schema has a raw size limit (`RAW_SIZE_LIMIT`), `REORGANIZE` can fail on a table in that schema while it rewrites the data, and abort. Before you start, remove the limits with `ALTER SCHEMA ... SET RAW_SIZE_LIMIT = NULL` and set them again when the operation is complete.
 
 ### Step 5: Monitor progress
 
@@ -196,11 +212,11 @@ A few hours later -- after a representative workload has been running -- run the
 
 **Why use `ENFORCE` with `RECOMPRESS`?** Without it, `RECOMPRESS` skips columns where it does not expect a significant improvement, so much of your older data keeps the old compressors. The final `REORGANIZE DATABASE` deliberately runs without `ENFORCE`: it skips tables that do not need a reorganization, for example tables with less than 12.5% of their rows marked as deleted (see `DELETE_PERCENTAGE` in `EXA_ALL_TABLES`).
 
-**Why not also run `REORGANIZE ... ENFORCE` on every table?** `RECOMPRESS ... ENFORCE` already rewrites every column with the new compressors. `REORGANIZE` may recompress columns as well, but only where it decides it is worthwhile, so it does not replace `RECOMPRESS`. Its other actions — removing rows that are only marked as deleted and recreating indexes — are covered by the final `REORGANIZE DATABASE` for the tables that need them. Indexes are also maintained automatically during normal operation. Running `REORGANIZE ... ENFORCE` on every table would roughly double the run time and disk activity.
+**Why not also run `REORGANIZE ... ENFORCE` on every table?** `RECOMPRESS ... ENFORCE` already rewrites every column with the new compressors. `REORGANIZE` may recompress columns as well, but only where it decides it is worthwhile, so it does not replace `RECOMPRESS`. Its other actions, removing rows that are only marked as deleted and recreating indexes, are only needed on some tables. The targeted `REORGANIZE TABLE` statements (without `ENFORCE`) cover tables with many deleted rows in parallel sessions, and the final `REORGANIZE DATABASE` covers whatever is left. Indexes are also maintained automatically during normal operation. Running `REORGANIZE ... ENFORCE` on every table would roughly double the run time and disk activity.
 
 **Table by table, or `RECOMPRESS DATABASE`?** Both commit after each table, so neither runs as one large transaction. The table-level script lets you choose the order, run several sessions in parallel, and pause between tables. `RECOMPRESS DATABASE ENFORCE` works too, but runs as one long, sequential operation in a single session.
 
-**Is it safe to run while users are working?** Yes, but plan for it. With autocommit enabled, each `RECOMPRESS TABLE` statement is committed on its own, and `REORGANIZE DATABASE` commits after each table, so a failure or cancellation leaves the tables processed so far completed, and the rest unchanged. Unlike `RECOMPRESS SCHEMA` and `RECOMPRESS DATABASE`, `RECOMPRESS TABLE` does not commit by itself, so keep autocommit enabled. While a table is being processed, it is write-locked: concurrent writes to that table wait until it is committed or fail with a transaction conflict. Expect some performance impact, and avoid heavy queries during `REORGANIZE`.
+**Is it safe to run while users are working?** Yes, but plan for it. With autocommit enabled, each `RECOMPRESS TABLE` and `REORGANIZE TABLE` statement is committed on its own, and `REORGANIZE DATABASE` commits after each table, so a failure or cancellation leaves the tables processed so far completed, and the rest unchanged. Unlike `RECOMPRESS SCHEMA` and `RECOMPRESS DATABASE`, `RECOMPRESS TABLE` does not commit by itself, so keep autocommit enabled. While a table is being processed, it is write-locked: concurrent writes to that table wait until it is committed or fail with a transaction conflict. Expect some performance impact, and avoid heavy queries during `REORGANIZE`.
 
 **Do the savings last?** Yes. New data uses the new compressors automatically. Heavy updates and deletes can degrade compression over time. `REORGANIZE` without `ENFORCE` takes care of tables that need it.
 
