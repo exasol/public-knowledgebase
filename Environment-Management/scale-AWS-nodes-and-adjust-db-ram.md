@@ -1,12 +1,12 @@
-# Scale AWS Nodes and Adjust DB RAM
+# Scale an AWS Exasol Deployment
 
 ## Background
 
-You need to scale an Exasol deployment up or down. First identify whether you mean changing the EC2 instance size, changing the number of active data nodes, or changing the database's configured RAM. These are separate operations.
+You need to scale an Exasol deployment up or down. Depending on the deployment, this can involve changing the EC2 instance size or the number of active data nodes. For an AsApp deployment, review the configured DB RAM after changing the EC2 instance size: the database RAM setting is separate and does not change automatically with the instance size.
 
 - Changing EC2 instance size changes the hardware available to a node.
 - Adding active data nodes changes database processing capacity. Reserve nodes provide failover capacity, not additional processing capacity while they remain reserved.
-- Changing DB RAM changes the memory configured for the database. It does not change EC2 instance size or node count.
+- Changing DB RAM changes the memory configured for the database. It does not change EC2 instance size or node count, but may be a follow-up step when scaling an AsApp deployment.
 
 ## Prerequisites
 
@@ -14,11 +14,11 @@ You need to scale an Exasol deployment up or down. First identify whether you me
 - For DB RAM changes, determine a suitable value for your data and workload before scheduling the database stop.
 - For node-count or instance-size changes, plan and validate a backup before making infrastructure changes.
 
-## How to scale AWS nodes and adjust DB RAM
+## Scale the deployment
 
 ### Step 1
 
-Identify whether you need to change EC2 instance size, active data-node count, or configured database RAM. Follow the matching procedure below.
+Identify whether you need to change EC2 instance size or active data-node count. After changing the instance size in an AsApp deployment, review DB RAM and adjust it if needed.
 
 ### Step 2
 
@@ -36,7 +36,9 @@ For an AsApp deployment running on AWS, change the EC2 instance type manually in
 
 This tutorial does not specify the manual EC2 resize sequence. Confirm the steps for the target AWS configuration and installed Exasol version before proceeding.
 
-### Step 5
+### Review and adjust DB RAM
+
+After changing the instance size in an AsApp deployment, review the configured DB RAM because it does not change automatically with the EC2 instance size. With a Raw Data license, the license limit is based on raw data size, not configured DB RAM. Choose a DB RAM value that fits the workload and available instance memory; see the [Exasol sizing guidelines](https://docs.exasol.com/db/latest/administration/on-premise/sizing.htm).
 
 Execution context: **Host**. Replace `<PLAY_ID>`, `<DB_NAME>`, and `<DB_RAM>` with the deployment ID, database name, and reviewed RAM value.
 
@@ -75,8 +77,8 @@ AsApp infrastructure-job behavior and manual EC2 resizing depend on the target d
 
 ## Additional References
 
-- [Virtual access on backups: adjust DB RAM](https://docs.exasol.com/db/latest/administration/on-premise/backup_restore/virtual_access_on_backup.htm)
-- [Exasol sizing guidelines](https://docs.exasol.com/db/latest/administration/on-premise/sizing.htm)
+- [ConfD `db_configure` job](https://docs.exasol.com/db/latest/confd/jobs/db_configure.htm)
+- [Exasol licensing](https://docs.exasol.com/db/latest/planning/licensing.htm)
 - [ConfD infrastructure jobs restricted on AsApp](https://docs.exasol.com/db/latest/changelogs/22167.htm)
 
 *We appreciate your input! Share your knowledge by contributing to the Knowledge Base directly in [GitHub](https://github.com/exasol/public-knowledgebase).*
