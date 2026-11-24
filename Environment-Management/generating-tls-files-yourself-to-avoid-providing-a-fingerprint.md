@@ -58,7 +58,7 @@ This command creates file `rootCA_key.pem`. Its content is sensitive and should 
 
 ```shell
 # Create CA cert
-openssl req -x509 -new -nodes -key rootCA_key.pem -sha256 -days 3650 -out rootCA_cert.pem -subj '/CN=Custom_root_CA_for_Exasol_databases/O=test/C=DE'
+openssl req -x509 -new -nodes -key rootCA_key.pem -sha256 -days 3650 -out rootCA_cert.pem -subj '/CN=Custom_root_CA_for_Exasol_databases/O=test/C=DE' -addext 'keyUsage=critical,keyCertSign,cRLSign'
 ```
 
 This command creates a CA certificate as file `rootCA_cert.pem` with the following settings
@@ -88,6 +88,7 @@ This command creates file `server_cert.csr`. It isn't sensitive and at the same 
 ```shell
 # Create cert extension file (for names/IPs not in CN)
 printf "
+keyUsage = critical,digitalSignature
 subjectAltName = @alt_names
 [alt_names]
 IP.1 = 10.36.1.4
