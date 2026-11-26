@@ -147,4 +147,3 @@ Use database-wide switching only when workload-level testing shows a clear benef
 
 - [Activation of new Join Order Optimizer by default](https://docs.exasol.com/db/latest/changelogs/12517.htm)
 - [Add query prefix to switch optimizers](https://docs.exasol.com/db/latest/changelogs/27990.htm)
-
