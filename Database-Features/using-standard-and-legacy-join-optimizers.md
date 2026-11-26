@@ -1,14 +1,3 @@
----
-doc_type: concept
-category: "Database Features"
-title: "Using the STANDARD and LEGACY Join Optimizers"
-summary: "Choose between STANDARD and LEGACY join-order optimizers and manage query, session, and database-wide overrides."
-version: 8.x
-needs_review: no
-tags: [optimizer, performance, joins]
-keywords: [standard, legacy, joinordermethod, profiling]
----
-
 # Using the STANDARD and LEGACY Join Optimizers
 
 ## Purpose
@@ -39,7 +28,7 @@ The recommended strategy is:
 3. If join order appears inefficient, compare STANDARD and LEGACY.
 4. If LEGACY performs consistently better, use LEGACY only for the affected query where possible.
 
-Some improvements to join-order optimization are implemented only in STANDARD.
+Both optimizers are intended to remain available, but the old optimizer is in maintenance mode only. It will not get new features and might get deprecated in a future release.
 
 ## Core concepts
 
